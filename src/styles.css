@@ -77,20 +77,33 @@
   --ring: var(--signal);
 }
 
-/* DARK — Apple black */
+/* DARK — art-directed pitch black */
 .dark {
-  --pitch: #000000;
-  --charcoal: #1c1c1e;
-  --panel: #2c2c2e;
+  --pitch: #0a0a0a;
+  --charcoal: #141414;
+  --panel: #1c1c1e;
   --cool: #86868b;
   --crisp: #f5f5f7;
-  --signal: #2997ff;
+  --signal: #ff453a;
 
+  --background: var(--pitch);
+  --foreground: var(--crisp);
+  --card: var(--charcoal);
+  --card-foreground: var(--crisp);
+  --popover: var(--charcoal);
+  --popover-foreground: var(--crisp);
   --primary: #ffffff;
   --primary-foreground: #000000;
-  --border: rgba(255, 255, 255, 0.1);
+  --secondary: var(--charcoal);
+  --muted: var(--charcoal);
+  --muted-foreground: var(--cool);
+  --accent: var(--signal);
+  --accent-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.08);
   --input: rgba(255, 255, 255, 0.12);
+  --ring: var(--signal);
 }
+
 
 @layer base {
   * {
@@ -99,6 +112,7 @@
   html {
     background-color: var(--pitch);
     color-scheme: light dark;
+    transition: background-color 350ms ease;
   }
   body {
     background-color: var(--pitch);
@@ -108,7 +122,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    transition: background-color 350ms ease, color 350ms ease;
   }
+
   ::selection {
     background: color-mix(in oklab, var(--signal) 30%, transparent);
     color: var(--crisp);
@@ -294,4 +310,86 @@
 }
 @utility marquee-track {
   animation: marquee 40s linear infinite;
+}
+
+/* Animated eyebrow gradient sweep */
+@keyframes eyebrow-sweep {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+@utility eyebrow-sweep {
+  background: linear-gradient(90deg, var(--signal), var(--crisp), var(--signal));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: eyebrow-sweep 6s linear infinite;
+}
+
+/* Cursor spotlight on bento cards */
+@utility spotlight-card {
+  position: relative;
+  background: var(--charcoal);
+  border-radius: 1.75rem;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    420px circle at var(--sx, 50%) var(--sy, 50%),
+    color-mix(in oklab, var(--signal) 18%, transparent),
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.spotlight-card:hover::before { opacity: 1; }
+.spotlight-card:hover { transform: translateY(-2px); }
+.spotlight-card > * { position: relative; z-index: 1; }
+
+/* Ambient hero glow — subtle red halo behind hero art */
+@utility hero-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(60% 50% at 50% 40%, color-mix(in oklab, var(--signal) 12%, transparent), transparent 70%);
+  filter: blur(20px);
+}
+
+/* Page-transition wrapper */
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@utility page-anim {
+  animation: page-in 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Ticker for outcomes / stats */
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 color-mix(in oklab, var(--signal) 40%, transparent); }
+  70%  { box-shadow: 0 0 0 16px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+@utility pulse-ring {
+  animation: pulse-ring 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+/* Reduced motion — respect user preference site-wide */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

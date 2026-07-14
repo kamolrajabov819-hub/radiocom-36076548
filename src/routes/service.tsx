@@ -3,9 +3,13 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { MapPin, Clock, Plus, Minus, Search, Microscope, Cog, ClipboardCheck } from "lucide-react";
+import serviceLight from "@/assets/service-tech-light.jpg";
+import serviceDark from "@/assets/service-tech-dark.jpg";
 import { openLead } from "@/components/LeadFormSheet";
 import { MapEmbed } from "@/components/MapEmbed";
+import { ThemedImage } from "@/components/ThemedImage";
 import { spring } from "@/lib/springs";
+
 
 export const Route = createFileRoute("/service")({
   head: () => ({
@@ -21,15 +25,29 @@ export const Route = createFileRoute("/service")({
 
 function ServicePage() {
   return (
-    <>
+    <div className="page-anim">
       <Hero />
+      <BenchStrip />
       <Flow />
       <Advantages />
       <Policy />
       <Visit />
-    </>
+    </div>
   );
 }
+
+function BenchStrip() {
+  return (
+    <section className="bg-pitch px-6 md:px-10">
+      <div className="max-w-[1200px] mx-auto">
+        <div className="rounded-3xl overflow-hidden aspect-[16/7] bg-charcoal relative">
+          <ThemedImage light={serviceLight} dark={serviceDark} alt="" width={1400} height={1000} className="absolute inset-0 h-full w-full" />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 
 function Hero() {
   const { t } = useTranslation();

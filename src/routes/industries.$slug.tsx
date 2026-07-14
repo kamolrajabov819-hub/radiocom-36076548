@@ -52,8 +52,9 @@ function IndustryPage() {
   const industryName = t(`industries.${s}.name`);
 
   return (
-    <>
+    <div className="page-anim">
       {/* Cinematic hero */}
+
       <section className="relative min-h-[85vh] overflow-hidden">
         <motion.div
           initial={{ scale: 1.08, opacity: 0.6 }}
@@ -227,7 +228,7 @@ function IndustryPage() {
           </Link>
         </div>
       </section>
-    </>
+    </div>
   );
 }
 

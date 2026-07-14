@@ -3,9 +3,12 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Check, X, Wifi, Radio, MapPin, MessagesSquare, Layers, Coins } from "lucide-react";
-import antennaImg from "@/assets/poc-antenna.jpg";
+import pocLight from "@/assets/poc-hero-light.jpg";
+import pocDark from "@/assets/poc-hero-dark.jpg";
 import { openLead } from "@/components/LeadFormSheet";
+import { ThemedImage } from "@/components/ThemedImage";
 import { spring } from "@/lib/springs";
+
 
 export const Route = createFileRoute("/poc")({
   head: () => ({
@@ -21,14 +24,15 @@ export const Route = createFileRoute("/poc")({
 
 function PoCPage() {
   return (
-    <>
+    <div className="page-anim">
       <PocHero />
       <Compare />
       <NetworkDesign />
       <Rental />
-    </>
+    </div>
   );
 }
+
 
 function PocHero() {
   const { t } = useTranslation();
@@ -62,11 +66,12 @@ function PocHero() {
         </motion.p>
       </div>
 
-      <div className="mt-20 max-w-[1200px] mx-auto px-6">
-        <div className="rounded-3xl overflow-hidden aspect-[16/8] bg-charcoal">
-          <img src={antennaImg} alt="" className="w-full h-full object-cover" />
+      <div className="mt-20 max-w-[1200px] mx-auto px-6 md:px-10">
+        <div className="rounded-3xl overflow-hidden aspect-[16/8] bg-charcoal relative">
+          <ThemedImage light={pocLight} dark={pocDark} alt="" width={1600} height={1000} className="absolute inset-0 h-full w-full" />
         </div>
       </div>
+
     </section>
   );
 }

@@ -38,8 +38,9 @@ function CatalogPage() {
   const categories = Object.keys(categoryLabels) as Category[];
 
   return (
-    <>
+    <div className="page-anim">
       {/* Hero */}
+
       <section className="pt-32 md:pt-40 pb-12 md:pb-16 bg-pitch px-6 text-center">
         <div className="max-w-3xl mx-auto">
           <motion.h1
@@ -114,8 +115,9 @@ function CatalogPage() {
       </section>
 
       <ProductPanel product={selected} lang={lang} onClose={() => setSelected(null)} />
-    </>
+    </div>
   );
+
 }
 
 function FilterChip({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
