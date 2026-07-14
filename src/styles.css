@@ -77,20 +77,33 @@
   --ring: var(--signal);
 }
 
-/* DARK — Apple black */
+/* DARK — art-directed pitch black */
 .dark {
-  --pitch: #000000;
-  --charcoal: #1c1c1e;
-  --panel: #2c2c2e;
+  --pitch: #0a0a0a;
+  --charcoal: #141414;
+  --panel: #1c1c1e;
   --cool: #86868b;
   --crisp: #f5f5f7;
-  --signal: #2997ff;
+  --signal: #ff453a;
 
+  --background: var(--pitch);
+  --foreground: var(--crisp);
+  --card: var(--charcoal);
+  --card-foreground: var(--crisp);
+  --popover: var(--charcoal);
+  --popover-foreground: var(--crisp);
   --primary: #ffffff;
   --primary-foreground: #000000;
-  --border: rgba(255, 255, 255, 0.1);
+  --secondary: var(--charcoal);
+  --muted: var(--charcoal);
+  --muted-foreground: var(--cool);
+  --accent: var(--signal);
+  --accent-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.08);
   --input: rgba(255, 255, 255, 0.12);
+  --ring: var(--signal);
 }
+
 
 @layer base {
   * {
@@ -99,6 +112,7 @@
   html {
     background-color: var(--pitch);
     color-scheme: light dark;
+    transition: background-color 350ms ease;
   }
   body {
     background-color: var(--pitch);
@@ -108,7 +122,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    transition: background-color 350ms ease, color 350ms ease;
   }
+
   ::selection {
     background: color-mix(in oklab, var(--signal) 30%, transparent);
     color: var(--crisp);
