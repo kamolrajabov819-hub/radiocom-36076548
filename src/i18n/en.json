@@ -11,7 +11,8 @@
     "theme_dark": "Dark theme",
     "tradein_badge": "Trade-In",
     "menu": "Menu",
-    "close": "Close"
+    "close": "Close",
+    "get_quote": "Get Quote"
   },
   "hero": {
     "eyebrow": "Authorized distributor · Tashkent",
@@ -23,7 +24,14 @@
     "social_proof": "247 free tests booked this year",
     "scroll": "Scroll"
   },
-  "marquee": ["35 radio types", "12-month warranty", "Authorized service center", "10,000+ clients", "Free nationwide delivery", "Trade-in program"],
+  "marquee": [
+    "35 radio types",
+    "12-month warranty",
+    "Authorized service center",
+    "10,000+ clients",
+    "Free nationwide delivery",
+    "Trade-in program"
+  ],
   "industries": {
     "title": "Industries",
     "kicker": "Turnkey solutions",
@@ -54,16 +62,37 @@
         "Regular phones die halfway through a shift"
       ],
       "outcomes": [
-        { "n": "0", "u": "licensing", "l": "PMR channels — no permits needed" },
-        { "n": "12", "u": "hours", "l": "Battery per shift" },
-        { "n": "3", "u": "years", "l": "Motorola warranty" }
+        {
+          "n": "0",
+          "u": "licensing",
+          "l": "PMR channels — no permits needed"
+        },
+        {
+          "n": "12",
+          "u": "hours",
+          "l": "Battery per shift"
+        },
+        {
+          "n": "3",
+          "u": "years",
+          "l": "Motorola warranty"
+        }
       ],
       "quote": "Guests no longer hear what's happening in the kitchen. Shifts got calmer and turnover went up — the team clears tables faster.",
       "quote_author": "Restaurant group operator, Tashkent",
       "faq": [
-        { "q": "Do I need a PMR license?", "a": "No. PMR446 models run on free channels without any permit." },
-        { "q": "How many radios for a restaurant?", "a": "Usually 4–6: host, floor manager, chef, bar, waiter, storeroom. We'll count on-site for free." },
-        { "q": "Can I try before I buy?", "a": "Yes — 7-day free test on your site." }
+        {
+          "q": "Do I need a PMR license?",
+          "a": "No. PMR446 models run on free channels without any permit."
+        },
+        {
+          "q": "How many radios for a restaurant?",
+          "a": "Usually 4–6: host, floor manager, chef, bar, waiter, storeroom. We'll count on-site for free."
+        },
+        {
+          "q": "Can I try before I buy?",
+          "a": "Yes — 7-day free test on your site."
+        }
       ]
     },
     "construction": {
@@ -78,16 +107,37 @@
         "Cell signal vanishes past concrete walls"
       ],
       "outcomes": [
-        { "n": "IP68", "u": "", "l": "Dust, water, 2 m drops" },
-        { "n": "8", "u": "km", "l": "Range with repeater" },
-        { "n": "24", "u": "hours", "l": "System live on-site" }
+        {
+          "n": "IP68",
+          "u": "",
+          "l": "Dust, water, 2 m drops"
+        },
+        {
+          "n": "8",
+          "u": "km",
+          "l": "Range with repeater"
+        },
+        {
+          "n": "24",
+          "u": "hours",
+          "l": "System live on-site"
+        }
       ],
       "quote": "We used to lose 2 hours a day chasing foremen. Now — press a button, the whole shift hears it. Paid off in a month.",
       "quote_author": "Project lead, mixed-use complex",
       "faq": [
-        { "q": "Will radios survive winter builds?", "a": "Yes. Motorola DP4400/DP4600 run from −30°C to +60°C." },
-        { "q": "Do I need a repeater?", "a": "Only for sites over 500 m or with heavy structure. We assess on-site." },
-        { "q": "What if a radio ends up in wet concrete?", "a": "IP68 survives submersion. We restore or replace under warranty." }
+        {
+          "q": "Will radios survive winter builds?",
+          "a": "Yes. Motorola DP4400/DP4600 run from −30°C to +60°C."
+        },
+        {
+          "q": "Do I need a repeater?",
+          "a": "Only for sites over 500 m or with heavy structure. We assess on-site."
+        },
+        {
+          "q": "What if a radio ends up in wet concrete?",
+          "a": "IP68 survives submersion. We restore or replace under warranty."
+        }
       ]
     },
     "security": {
@@ -102,16 +152,37 @@
         "Panic alerts go via phone — 30–90s lost"
       ],
       "outcomes": [
-        { "n": "AES256", "u": "", "l": "Military-grade encryption" },
-        { "n": "GPS", "u": "", "l": "Every post on live map" },
-        { "n": "1", "u": "button", "l": "Alarm to full shift in <1 s" }
+        {
+          "n": "AES256",
+          "u": "",
+          "l": "Military-grade encryption"
+        },
+        {
+          "n": "GPS",
+          "u": "",
+          "l": "Every post on live map"
+        },
+        {
+          "n": "1",
+          "u": "button",
+          "l": "Alarm to full shift in <1 s"
+        }
       ],
       "quote": "We standardized on encrypted DMR across all our sites. Dispatch sees every officer, and the panic button has already saved us twice.",
       "quote_author": "Director, private security firm",
       "faq": [
-        { "q": "Can our channels be intercepted?", "a": "With AES256, effectively no. Keys rotate over-the-air." },
-        { "q": "Does GPS work indoors?", "a": "Outdoors, yes. Indoors we fall back to last-known-position." },
-        { "q": "Where does the panic button go?", "a": "To everyone on the channel plus the dispatch console with coordinates." }
+        {
+          "q": "Can our channels be intercepted?",
+          "a": "With AES256, effectively no. Keys rotate over-the-air."
+        },
+        {
+          "q": "Does GPS work indoors?",
+          "a": "Outdoors, yes. Indoors we fall back to last-known-position."
+        },
+        {
+          "q": "Where does the panic button go?",
+          "a": "To everyone on the channel plus the dispatch console with coordinates."
+        }
       ]
     },
     "mining": {
@@ -126,16 +197,37 @@
         "Underground crew loses contact with surface"
       ],
       "outcomes": [
-        { "n": "ATEX", "u": "", "l": "Intrinsically-safe models" },
-        { "n": "15", "u": "km", "l": "Open-terrain range" },
-        { "n": "99.9%", "u": "", "l": "Uptime with redundant repeater" }
+        {
+          "n": "ATEX",
+          "u": "",
+          "l": "Intrinsically-safe models"
+        },
+        {
+          "n": "15",
+          "u": "km",
+          "l": "Open-terrain range"
+        },
+        {
+          "n": "99.9%",
+          "u": "",
+          "l": "Uptime with redundant repeater"
+        }
       ],
       "quote": "Radiocom rolled out the DMR network across the pit in 3 days. Second winter running — zero downtime.",
       "quote_author": "Chief engineer, mining operation",
       "faq": [
-        { "q": "Do you supply ATEX-certified units?", "a": "Yes — Motorola DP4801 Ex versions." },
-        { "q": "Do I need frequency licensing?", "a": "We handle full licensing with State Comms of Uzbekistan." },
-        { "q": "What warranty on industrial builds?", "a": "3 years with annual service at our center." }
+        {
+          "q": "Do you supply ATEX-certified units?",
+          "a": "Yes — Motorola DP4801 Ex versions."
+        },
+        {
+          "q": "Do I need frequency licensing?",
+          "a": "We handle full licensing with State Comms of Uzbekistan."
+        },
+        {
+          "q": "What warranty on industrial builds?",
+          "a": "3 years with annual service at our center."
+        }
       ]
     },
     "transport": {
@@ -150,16 +242,37 @@
         "Convoy comms via phone speakerphone only"
       ],
       "outcomes": [
-        { "n": "100%", "u": "UZ", "l": "LTE nationwide coverage" },
-        { "n": "1", "u": "flat rate", "l": "No per-minute billing" },
-        { "n": "∞", "u": "", "l": "Group channels for convoys" }
+        {
+          "n": "100%",
+          "u": "UZ",
+          "l": "LTE nationwide coverage"
+        },
+        {
+          "n": "1",
+          "u": "flat rate",
+          "l": "No per-minute billing"
+        },
+        {
+          "n": "∞",
+          "u": "",
+          "l": "Group channels for convoys"
+        }
       ],
       "quote": "Moved the whole fleet to PoC — 40% saved on comms, and dispatch sees every driver on the live map.",
       "quote_author": "Fleet manager, logistics operator",
       "faq": [
-        { "q": "Does PoC work on highways and mountains?", "a": "Anywhere with LTE — 97% coverage across UZ." },
-        { "q": "What's the monthly cost?", "a": "From 45,000 UZS/device on a 10-unit pack." },
-        { "q": "Can we mix PoC with traditional radios?", "a": "Yes, through a dispatch gateway." }
+        {
+          "q": "Does PoC work on highways and mountains?",
+          "a": "Anywhere with LTE — 97% coverage across UZ."
+        },
+        {
+          "q": "What's the monthly cost?",
+          "a": "From 45,000 UZS/device on a 10-unit pack."
+        },
+        {
+          "q": "Can we mix PoC with traditional radios?",
+          "a": "Yes, through a dispatch gateway."
+        }
       ]
     },
     "manufacturing": {
@@ -174,16 +287,37 @@
         "Shift doesn't know what happened at another zone"
       ],
       "outcomes": [
-        { "n": "40%", "u": "", "l": "Less time coordinating shifts" },
-        { "n": "60dB", "u": "", "l": "Active noise suppression" },
-        { "n": "1C", "u": "", "l": "PDA integrations included" }
+        {
+          "n": "40%",
+          "u": "",
+          "l": "Less time coordinating shifts"
+        },
+        {
+          "n": "60dB",
+          "u": "",
+          "l": "Active noise suppression"
+        },
+        {
+          "n": "1C",
+          "u": "",
+          "l": "PDA integrations included"
+        }
       ],
       "quote": "DMR plus PDAs rolled out in a week. Storemen dropped the paper, picking sped up almost 2×.",
       "quote_author": "Ops director, packaging plant",
       "faq": [
-        { "q": "Do radios work in noisy shops?", "a": "Yes — active noise suppression keeps voice clear at 100 dB." },
-        { "q": "Do PDAs integrate with 1C/ERP?", "a": "Yes, out of the box plus custom builds if needed." },
-        { "q": "How fast can you deploy?", "a": "2 to 7 days depending on plant size." }
+        {
+          "q": "Do radios work in noisy shops?",
+          "a": "Yes — active noise suppression keeps voice clear at 100 dB."
+        },
+        {
+          "q": "Do PDAs integrate with 1C/ERP?",
+          "a": "Yes, out of the box plus custom builds if needed."
+        },
+        {
+          "q": "How fast can you deploy?",
+          "a": "2 to 7 days depending on plant size."
+        }
       ]
     }
   },
@@ -194,9 +328,15 @@
     "desc": "Bring your worn-out walkie-talkie. Our specialists match it to a fresh Motorola or Hytera model at a massive discount.",
     "cta": "Start trade-in"
   },
-  "stats": { "types": "radio types", "clients": "clients", "years": "years on the market" },
+  "stats": {
+    "types": "radio types",
+    "clients": "clients",
+    "years": "years on the market"
+  },
   "brands_title": "Brands we distribute",
-  "brands": { "models": "models" },
+  "brands": {
+    "models": "models"
+  },
   "catalog": {
     "title_a": "Multi-brand",
     "title_b": "catalog.",
@@ -247,19 +387,54 @@
     "sub": "Push-to-Talk over LTE and WiFi. Instant comms with no infrastructure to build — group calls, GPS and multimedia included.",
     "vs_title": "PoC vs PMR",
     "vs_sub": "Real trade-offs by parameter, not marketing.",
-    "rows": { "coverage": "Coverage", "infra": "Infrastructure", "media": "Multimedia", "gps": "GPS positioning", "scale": "Scale", "cost": "Entry cost" },
-    "poc_vals": { "coverage": "Global (LTE / WiFi)", "infra": "None required", "media": "Voice, photo, video, text", "gps": "Built-in GPS/GLONASS", "scale": "Thousands of users", "cost": "Low" },
-    "pmr_vals": { "coverage": "Local (VHF/UHF)", "infra": "Repeaters, antennas", "media": "Voice only", "gps": "Optional", "scale": "Limited by zone", "cost": "High" },
+    "rows": {
+      "coverage": "Coverage",
+      "infra": "Infrastructure",
+      "media": "Multimedia",
+      "gps": "GPS positioning",
+      "scale": "Scale",
+      "cost": "Entry cost"
+    },
+    "poc_vals": {
+      "coverage": "Global (LTE / WiFi)",
+      "infra": "None required",
+      "media": "Voice, photo, video, text",
+      "gps": "Built-in GPS/GLONASS",
+      "scale": "Thousands of users",
+      "cost": "Low"
+    },
+    "pmr_vals": {
+      "coverage": "Local (VHF/UHF)",
+      "infra": "Repeaters, antennas",
+      "media": "Voice only",
+      "gps": "Optional",
+      "scale": "Limited by zone",
+      "cost": "High"
+    },
     "design": {
       "kicker": "NETWORK DESIGN · COMMISSIONING",
       "title": "We engineer the network for your site.",
-      "steps": ["Site survey and installation assessment", "Data collection and project documentation", "Equipment selection matched to your parameters", "Frequency licensing with State Comms of Uzbekistan", "Commissioning and acceptance documentation"]
+      "steps": [
+        "Site survey and installation assessment",
+        "Data collection and project documentation",
+        "Equipment selection matched to your parameters",
+        "Frequency licensing with State Comms of Uzbekistan",
+        "Commissioning and acceptance documentation"
+      ]
     },
     "rental": {
       "kicker": "RENTAL",
       "title": "From 1 day to 5+ years.",
       "desc": "Motorola with accessories, spare batteries and pre-tuning on Radiocom's own licensed nationwide frequencies.",
       "cta": "Request rental"
+    },
+    "compare": {
+      "poc": {
+        "title": "Anywhere there's LTE."
+      },
+      "pmr": {
+        "title": "Where you own the frequency."
+      }
     }
   },
   "service": {
@@ -268,14 +443,33 @@
     "title_b": "you can trust.",
     "sub": "Warranty and post-warranty service for Motorola, Hytera and Vertex Standard radios. Original parts, fixed pricing, diagnostics on dedicated hardware.",
     "request_repair": "Request repair",
-    "advantages": { "certified": "Certified technicians", "parts": "Original parts", "fast": "24/7 fast repair", "fixed": "Fixed pricing" },
-    "flow": ["Diagnostics", "Analysis", "Testing", "Repair"],
+    "advantages": {
+      "certified": "Certified technicians",
+      "parts": "Original parts",
+      "fast": "24/7 fast repair",
+      "fixed": "Fixed pricing"
+    },
+    "flow": [
+      "Diagnostics",
+      "Analysis",
+      "Testing",
+      "Repair"
+    ],
     "policy_title": "Returns & exchanges",
     "visit_title": "Visit our office",
     "policy": [
-      { "q": "Returns of goods in proper condition", "a": "The buyer may cancel the order before receipt and within 5 days after — provided the goods retain packaging, seals, tags and receipt." },
-      { "q": "Returns of defective goods", "a": "If defects are found — within 24 hours of purchase — replacement or refund per the Uzbek consumer protection law." },
-      { "q": "Replacement timelines", "a": "From 7 days for obvious factory defects up to 2 months for delivery to remote territories." }
+      {
+        "q": "Returns of goods in proper condition",
+        "a": "The buyer may cancel the order before receipt and within 5 days after — provided the goods retain packaging, seals, tags and receipt."
+      },
+      {
+        "q": "Returns of defective goods",
+        "a": "If defects are found — within 24 hours of purchase — replacement or refund per the Uzbek consumer protection law."
+      },
+      {
+        "q": "Replacement timelines",
+        "a": "From 7 days for obvious factory defects up to 2 months for delivery to remote territories."
+      }
     ]
   },
   "footer": {
@@ -292,5 +486,55 @@
     "tooltip": "Request a specialist visit",
     "sticky_cta": "Free 7-day test",
     "sticky_sub": "We deliver, tune and pick up"
+  },
+  "home": {
+    "hero": {
+      "title": "Pro Communication. Unbreakable.",
+      "sub": "Motorola, Hytera and PoC radios — authorized service, free 7-day testing and nationwide delivery.",
+      "cta_primary": "Book Free Test",
+      "cta_secondary": "Learn more"
+    },
+    "feature": {
+      "title": "Built for the toughest sites.",
+      "sub": "IP68 rugged. −30°C to +60°C. AES256 encryption. GPS on every unit.",
+      "link": "Explore PoC"
+    },
+    "bento": {
+      "title": "Every detail, engineered.",
+      "sub": "One partner for hardware, licensing, deployment and repair.",
+      "tradein": {
+        "title": "Trade-In",
+        "sub": "Bring your old radio. Take a fresh Motorola or Hytera at a discount."
+      },
+      "models": {
+        "title": "35+ models",
+        "sub": "Motorola, Hytera, Caltta, Baofeng, Radiocom RC."
+      },
+      "warranty": {
+        "title": "12-month warranty",
+        "sub": "Authorized coverage on every unit we sell."
+      },
+      "delivery": {
+        "title": "Nationwide delivery",
+        "sub": "Free delivery across Uzbekistan."
+      },
+      "test": {
+        "title": "Free 7-day test",
+        "sub": "We deliver, tune and pick up. No commitment."
+      },
+      "service": {
+        "title": "Authorized service",
+        "sub": "Certified technicians, original parts, fixed pricing."
+      }
+    },
+    "featured": {
+      "title": "Featured radios.",
+      "link": "See all"
+    },
+    "final_cta": {
+      "title": "Talk to an engineer.",
+      "sub": "15-minute reply during business hours. No sales pressure.",
+      "button": "Talk to an engineer"
+    }
   }
 }
