@@ -228,7 +228,7 @@ function IndustryPage() {
           </Link>
         </div>
       </section>
-    </>
+    </div>
   );
 }
 
