@@ -174,14 +174,15 @@ function FeatureDark() {
 /* ─── Bento grid — symmetric 4-col ─────────────────────── */
 function Bento() {
   const { t } = useTranslation();
-  const items = [
+  const items: { key: string; Icon: typeof Repeat; span: string; big?: boolean }[] = [
     { key: "tradein", Icon: Repeat, span: "md:col-span-2 md:row-span-2", big: true },
     { key: "models", Icon: Package, span: "" },
     { key: "warranty", Icon: ShieldCheck, span: "" },
     { key: "delivery", Icon: Truck, span: "" },
     { key: "test", Icon: Sparkles, span: "" },
     { key: "service", Icon: Wrench, span: "md:col-span-2" },
-  ] as const;
+  ];
+
 
   return (
     <Section className="bg-pitch">
