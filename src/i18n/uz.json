@@ -11,7 +11,8 @@
     "theme_dark": "Qorong'u rejim",
     "tradein_badge": "Trade-In",
     "menu": "Menyu",
-    "close": "Yopish"
+    "close": "Yopish",
+    "get_quote": "Ariza qoldirish"
   },
   "hero": {
     "eyebrow": "Rasmiy distribyutor · Toshkent",
@@ -23,7 +24,14 @@
     "social_proof": "Bu yil 247 ta bepul sinov band qilingan",
     "scroll": "Pastga"
   },
-  "marquee": ["35 xil ratsiya", "12 oy kafolat", "Vakolatli servis markazi", "10 000+ mijoz", "Respublika bo'ylab bepul yetkazib berish", "Trade-In dasturi"],
+  "marquee": [
+    "35 xil ratsiya",
+    "12 oy kafolat",
+    "Vakolatli servis markazi",
+    "10 000+ mijoz",
+    "Respublika bo'ylab bepul yetkazib berish",
+    "Trade-In dasturi"
+  ],
   "industries": {
     "title": "Sohalar",
     "kicker": "Tayyor yechimlar",
@@ -54,16 +62,37 @@
         "Oddiy telefonlar smenaning yarmida o'chadi"
       ],
       "outcomes": [
-        { "n": "0", "u": "litsenziya", "l": "PMR kanallar — ruxsatsiz" },
-        { "n": "12", "u": "soat", "l": "Bir zaryadda ishlash" },
-        { "n": "3", "u": "yil", "l": "Motorola kafolati" }
+        {
+          "n": "0",
+          "u": "litsenziya",
+          "l": "PMR kanallar — ruxsatsiz"
+        },
+        {
+          "n": "12",
+          "u": "soat",
+          "l": "Bir zaryadda ishlash"
+        },
+        {
+          "n": "3",
+          "u": "yil",
+          "l": "Motorola kafolati"
+        }
       ],
       "quote": "Mijozlar endi oshxonadagi gaplarni eshitmaydi. Smena tinchroq bo'ldi, tushum ko'paydi — jamoa stollarni tezroq bo'shatadi.",
       "quote_author": "Restoran tarmog'i menejeri, Toshkent",
       "faq": [
-        { "q": "PMR uchun litsenziya kerakmi?", "a": "Yo'q. PMR446 modellari bepul chastotalarda ishlaydi." },
-        { "q": "Restoranga nechta ratsiya kerak?", "a": "Odatda 4–6 ta: xostess, menejer, oshpaz, bar, ofitsiant, ombor. Bepul kelib sanaymiz." },
-        { "q": "Sotib olishdan oldin sinab ko'rish mumkinmi?", "a": "Ha — 7 kunlik bepul sinov ob'ektingizda." }
+        {
+          "q": "PMR uchun litsenziya kerakmi?",
+          "a": "Yo'q. PMR446 modellari bepul chastotalarda ishlaydi."
+        },
+        {
+          "q": "Restoranga nechta ratsiya kerak?",
+          "a": "Odatda 4–6 ta: xostess, menejer, oshpaz, bar, ofitsiant, ombor. Bepul kelib sanaymiz."
+        },
+        {
+          "q": "Sotib olishdan oldin sinab ko'rish mumkinmi?",
+          "a": "Ha — 7 kunlik bepul sinov ob'ektingizda."
+        }
       ]
     },
     "construction": {
@@ -78,16 +107,37 @@
         "Beton devor orasida mobil aloqa yo'qoladi"
       ],
       "outcomes": [
-        { "n": "IP68", "u": "", "l": "Chang, suv, 2 m tushish" },
-        { "n": "8", "u": "km", "l": "Retranslyator bilan masofa" },
-        { "n": "24", "u": "soat", "l": "Tizim ob'ektda ishga tushadi" }
+        {
+          "n": "IP68",
+          "u": "",
+          "l": "Chang, suv, 2 m tushish"
+        },
+        {
+          "n": "8",
+          "u": "km",
+          "l": "Retranslyator bilan masofa"
+        },
+        {
+          "n": "24",
+          "u": "soat",
+          "l": "Tizim ob'ektda ishga tushadi"
+        }
       ],
       "quote": "Ilgari brigadirlarni izlashga kunlik 2 soat ketardi. Endi — tugmani bosdim, butun smena eshitadi. Bir oyda o'zini oqladi.",
       "quote_author": "Loyiha rahbari, savdo majmuasi",
       "faq": [
-        { "q": "Qish qurilishida chidaydimi?", "a": "Ha. Motorola DP4400/DP4600 −30°C dan +60°C gacha ishlaydi." },
-        { "q": "Retranslyator kerakmi?", "a": "Faqat ob'ekt 500 m dan katta bo'lsa. Kelib baholaymiz." },
-        { "q": "Betonga tushib ketsa-chi?", "a": "IP68 suvga tushishga chidaydi. Kafolat bo'yicha almashtiramiz." }
+        {
+          "q": "Qish qurilishida chidaydimi?",
+          "a": "Ha. Motorola DP4400/DP4600 −30°C dan +60°C gacha ishlaydi."
+        },
+        {
+          "q": "Retranslyator kerakmi?",
+          "a": "Faqat ob'ekt 500 m dan katta bo'lsa. Kelib baholaymiz."
+        },
+        {
+          "q": "Betonga tushib ketsa-chi?",
+          "a": "IP68 suvga tushishga chidaydi. Kafolat bo'yicha almashtiramiz."
+        }
       ]
     },
     "security": {
@@ -102,16 +152,37 @@
         "Signal telefon orqali yuboriladi — 30–90 s yo'qoladi"
       ],
       "outcomes": [
-        { "n": "AES256", "u": "", "l": "Harbiy darajali shifrlash" },
-        { "n": "GPS", "u": "", "l": "Har bir post xaritada" },
-        { "n": "1", "u": "tugma", "l": "1 soniyada butun smenaga signal" }
+        {
+          "n": "AES256",
+          "u": "",
+          "l": "Harbiy darajali shifrlash"
+        },
+        {
+          "n": "GPS",
+          "u": "",
+          "l": "Har bir post xaritada"
+        },
+        {
+          "n": "1",
+          "u": "tugma",
+          "l": "1 soniyada butun smenaga signal"
+        }
       ],
       "quote": "Barcha ob'ektlarga shifrlangan DMR o'rnatdik. Dispetcher xodimlarni ko'radi, tugma ikki marta yordam berdi.",
       "quote_author": "Xususiy qo'riqlash direktori",
       "faq": [
-        { "q": "Kanalimizni ushlab olishlari mumkinmi?", "a": "AES256 bilan — deyarli yo'q. Kalitlar dasturiy almashadi." },
-        { "q": "GPS ichkarida ishlaydimi?", "a": "Ochiq havoda ha. Ichkarida oxirgi joylashuv saqlanadi." },
-        { "q": "Tugma qayerga signal yuboradi?", "a": "Kanaldagi hammaga va dispetcher konsoliga koordinatlar bilan." }
+        {
+          "q": "Kanalimizni ushlab olishlari mumkinmi?",
+          "a": "AES256 bilan — deyarli yo'q. Kalitlar dasturiy almashadi."
+        },
+        {
+          "q": "GPS ichkarida ishlaydimi?",
+          "a": "Ochiq havoda ha. Ichkarida oxirgi joylashuv saqlanadi."
+        },
+        {
+          "q": "Tugma qayerga signal yuboradi?",
+          "a": "Kanaldagi hammaga va dispetcher konsoliga koordinatlar bilan."
+        }
       ]
     },
     "mining": {
@@ -126,16 +197,37 @@
         "Yer ostidagi smena yer usti bilan aloqasiz"
       ],
       "outcomes": [
-        { "n": "ATEX", "u": "", "l": "Uchqun xavfsiz modellar" },
-        { "n": "15", "u": "km", "l": "Ochiq joyda masofa" },
-        { "n": "99.9%", "u": "", "l": "Zaxira retranslyator bilan uptime" }
+        {
+          "n": "ATEX",
+          "u": "",
+          "l": "Uchqun xavfsiz modellar"
+        },
+        {
+          "n": "15",
+          "u": "km",
+          "l": "Ochiq joyda masofa"
+        },
+        {
+          "n": "99.9%",
+          "u": "",
+          "l": "Zaxira retranslyator bilan uptime"
+        }
       ],
       "quote": "Radiocom karyerga DMR-tarmoqni 3 kunda o'rnatdi. Ikkinchi qish — hech qanday uzilish yo'q.",
       "quote_author": "Bosh muhandis, kon korxonasi",
       "faq": [
-        { "q": "ATEX sertifikatli modellar bormi?", "a": "Ha, Motorola DP4801 Ex versiyasi." },
-        { "q": "Chastota kelishuvini o'zingiz qilasizmi?", "a": "Ha, O'zbekiston Aloqa qo'mitasi bilan to'liq rasmiylashtiramiz." },
-        { "q": "Sanoat modellariga qanday kafolat?", "a": "3 yil, har yili servisda TO bilan." }
+        {
+          "q": "ATEX sertifikatli modellar bormi?",
+          "a": "Ha, Motorola DP4801 Ex versiyasi."
+        },
+        {
+          "q": "Chastota kelishuvini o'zingiz qilasizmi?",
+          "a": "Ha, O'zbekiston Aloqa qo'mitasi bilan to'liq rasmiylashtiramiz."
+        },
+        {
+          "q": "Sanoat modellariga qanday kafolat?",
+          "a": "3 yil, har yili servisda TO bilan."
+        }
       ]
     },
     "transport": {
@@ -150,16 +242,37 @@
         "Kolonnadagi aloqa faqat telefonning karnayida"
       ],
       "outcomes": [
-        { "n": "100%", "u": "O'zb", "l": "LTE bo'yicha qamrov" },
-        { "n": "1", "u": "tarif", "l": "Fikslangan to'lov" },
-        { "n": "∞", "u": "", "l": "Kolonna uchun guruh kanallari" }
+        {
+          "n": "100%",
+          "u": "O'zb",
+          "l": "LTE bo'yicha qamrov"
+        },
+        {
+          "n": "1",
+          "u": "tarif",
+          "l": "Fikslangan to'lov"
+        },
+        {
+          "n": "∞",
+          "u": "",
+          "l": "Kolonna uchun guruh kanallari"
+        }
       ],
       "quote": "Butun parkni PoC ga o'tkazdik — aloqa xarajatlari 40% kamaydi, dispetcher hammani xaritada ko'radi.",
       "quote_author": "Avtopark boshlig'i, logistika",
       "faq": [
-        { "q": "Tog' va trassalarda ishlaydimi?", "a": "LTE bor joyda ishlaydi — O'zb bo'yicha 97% qamrov." },
-        { "q": "Oylik to'lov qancha?", "a": "10 dan boshlab paketda 45 000 so'm/oy dan boshlab." },
-        { "q": "PoC va oddiy ratsiyani birlashtirsak bo'ladimi?", "a": "Ha, dispetcher shlyuzi orqali." }
+        {
+          "q": "Tog' va trassalarda ishlaydimi?",
+          "a": "LTE bor joyda ishlaydi — O'zb bo'yicha 97% qamrov."
+        },
+        {
+          "q": "Oylik to'lov qancha?",
+          "a": "10 dan boshlab paketda 45 000 so'm/oy dan boshlab."
+        },
+        {
+          "q": "PoC va oddiy ratsiyani birlashtirsak bo'ladimi?",
+          "a": "Ha, dispetcher shlyuzi orqali."
+        }
       ]
     },
     "manufacturing": {
@@ -174,16 +287,37 @@
         "Smena boshqa uchastkada nima bo'lganini bilmaydi"
       ],
       "outcomes": [
-        { "n": "40%", "u": "", "l": "Kamroq vaqt sarflanadi" },
-        { "n": "60dB", "u": "", "l": "Faol shovqin bosish" },
-        { "n": "1С", "u": "", "l": "Sanoat KPK integratsiyasi" }
+        {
+          "n": "40%",
+          "u": "",
+          "l": "Kamroq vaqt sarflanadi"
+        },
+        {
+          "n": "60dB",
+          "u": "",
+          "l": "Faol shovqin bosish"
+        },
+        {
+          "n": "1С",
+          "u": "",
+          "l": "Sanoat KPK integratsiyasi"
+        }
       ],
       "quote": "DMR va KPK ni bir haftada o'rnatdik. Omborchilar qog'ozdan voz kechdi, komplektatsiya deyarli 2 barobar tezlashdi.",
       "quote_author": "Operatsion direktor, qadoq zavodi",
       "faq": [
-        { "q": "Shovqinli sexda ishlaydimi?", "a": "Ha — faol shovqin bosish bilan 100 dB da ham aniq eshitiladi." },
-        { "q": "KPK 1C bilan integratsiyalashadimi?", "a": "Ha, tayyor va zarur bo'lsa kastom versiyalar." },
-        { "q": "Qancha vaqtda o'rnatasiz?", "a": "2 dan 7 kungacha, hajmga qarab." }
+        {
+          "q": "Shovqinli sexda ishlaydimi?",
+          "a": "Ha — faol shovqin bosish bilan 100 dB da ham aniq eshitiladi."
+        },
+        {
+          "q": "KPK 1C bilan integratsiyalashadimi?",
+          "a": "Ha, tayyor va zarur bo'lsa kastom versiyalar."
+        },
+        {
+          "q": "Qancha vaqtda o'rnatasiz?",
+          "a": "2 dan 7 kungacha, hajmga qarab."
+        }
       ]
     }
   },
@@ -194,9 +328,15 @@
     "desc": "Eski ratsiyangizni olib keling — mutaxassislarimiz sizga yangi Motorola yoki Hytera modelini katta chegirma bilan taklif qiladi.",
     "cta": "Almashishni boshlash"
   },
-  "stats": { "types": "ratsiya turi", "clients": "mijoz", "years": "yil bozorda" },
+  "stats": {
+    "types": "ratsiya turi",
+    "clients": "mijoz",
+    "years": "yil bozorda"
+  },
   "brands_title": "Portfelimizdagi brendlar",
-  "brands": { "models": "model" },
+  "brands": {
+    "models": "model"
+  },
   "catalog": {
     "title_a": "Ko'p brendli",
     "title_b": "katalog.",
@@ -247,19 +387,54 @@
     "sub": "LTE va WiFi orqali Push-to-Talk. Infratuzilma qurmasdan bir zumda aloqa — guruh chaqiruvlari, GPS va multimedia bilan.",
     "vs_title": "PoC va PMR",
     "vs_sub": "Marketing emas, haqiqiy parametrlar.",
-    "rows": { "coverage": "Qamrov", "infra": "Infratuzilma", "media": "Multimedia", "gps": "GPS", "scale": "Miqyos", "cost": "Kirish narxi" },
-    "poc_vals": { "coverage": "Global (LTE / WiFi)", "infra": "Talab etilmaydi", "media": "Ovoz, foto, video, matn", "gps": "Ichki GPS/GLONASS", "scale": "Minglab foydalanuvchi", "cost": "Past" },
-    "pmr_vals": { "coverage": "Mahalliy (VHF/UHF)", "infra": "Retranslyator, antenna", "media": "Faqat ovoz", "gps": "Ixtiyoriy", "scale": "Zona bilan cheklangan", "cost": "Yuqori" },
+    "rows": {
+      "coverage": "Qamrov",
+      "infra": "Infratuzilma",
+      "media": "Multimedia",
+      "gps": "GPS",
+      "scale": "Miqyos",
+      "cost": "Kirish narxi"
+    },
+    "poc_vals": {
+      "coverage": "Global (LTE / WiFi)",
+      "infra": "Talab etilmaydi",
+      "media": "Ovoz, foto, video, matn",
+      "gps": "Ichki GPS/GLONASS",
+      "scale": "Minglab foydalanuvchi",
+      "cost": "Past"
+    },
+    "pmr_vals": {
+      "coverage": "Mahalliy (VHF/UHF)",
+      "infra": "Retranslyator, antenna",
+      "media": "Faqat ovoz",
+      "gps": "Ixtiyoriy",
+      "scale": "Zona bilan cheklangan",
+      "cost": "Yuqori"
+    },
     "design": {
       "kicker": "LOYIHALASH · ISHGA TUSHIRISH",
       "title": "Sizning ob'ektingiz uchun tarmoq quramiz.",
-      "steps": ["O'rnatish joyini tekshirish", "Ma'lumot yig'ish va loyiha hujjatlari", "Parametrlar bo'yicha jihoz tanlash", "O'zbekiston Aloqa qo'mitasi bilan chastotani kelishish", "Ishga tushirish va topshiruv hujjatlari"]
+      "steps": [
+        "O'rnatish joyini tekshirish",
+        "Ma'lumot yig'ish va loyiha hujjatlari",
+        "Parametrlar bo'yicha jihoz tanlash",
+        "O'zbekiston Aloqa qo'mitasi bilan chastotani kelishish",
+        "Ishga tushirish va topshiruv hujjatlari"
+      ]
     },
     "rental": {
       "kicker": "IJARA",
       "title": "1 kundan 5+ yilgacha.",
       "desc": "Motorola aksessuarlari, zaxira akkumulyatorlar va Radiocom ning butun respublika bo'ylab litsenziyalangan chastotalariga sozlangan.",
       "cta": "Ijaraga so'rov"
+    },
+    "compare": {
+      "poc": {
+        "title": "LTE bor joyda."
+      },
+      "pmr": {
+        "title": "O'z chastotangiz bo'lgan joyda."
+      }
     }
   },
   "service": {
@@ -268,14 +443,33 @@
     "title_b": "ta'mirlash.",
     "sub": "Motorola, Hytera va Vertex Standard ratsiyalari uchun kafolat va kafolatdan keyingi xizmat. Original ehtiyot qismlar.",
     "request_repair": "Ta'mirlashga ariza",
-    "advantages": { "certified": "Sertifikatlangan mutaxassislar", "parts": "Original ehtiyot qismlar", "fast": "24/7 tez ta'mirlash", "fixed": "Qat'iy narxlar" },
-    "flow": ["Diagnostika", "Tahlil", "Testlash", "Ta'mirlash"],
+    "advantages": {
+      "certified": "Sertifikatlangan mutaxassislar",
+      "parts": "Original ehtiyot qismlar",
+      "fast": "24/7 tez ta'mirlash",
+      "fixed": "Qat'iy narxlar"
+    },
+    "flow": [
+      "Diagnostika",
+      "Tahlil",
+      "Testlash",
+      "Ta'mirlash"
+    ],
     "policy_title": "Qaytarish va almashish",
     "visit_title": "Ofisga tashrif buyuring",
     "policy": [
-      { "q": "Sifatli mahsulotni qaytarish", "a": "Xaridor mahsulotni olgunga qadar va olgandan keyin 5 kun ichida qaytarishi mumkin — o'ram, yorliq va chek saqlangan holda." },
-      { "q": "Nuqsonli mahsulotni qaytarish", "a": "Nuqson topilganda — sotib olingandan keyin 24 soat ichida — O'zbekiston Iste'molchilar huquqlarini himoya qilish qonuni bo'yicha almashtirish yoki qaytarish." },
-      { "q": "Almashtirish muddatlari", "a": "Zavod nuqsoni aniq bo'lganda 7 kundan boshlab, olis hududlarga yetkazish uchun 2 oygacha." }
+      {
+        "q": "Sifatli mahsulotni qaytarish",
+        "a": "Xaridor mahsulotni olgunga qadar va olgandan keyin 5 kun ichida qaytarishi mumkin — o'ram, yorliq va chek saqlangan holda."
+      },
+      {
+        "q": "Nuqsonli mahsulotni qaytarish",
+        "a": "Nuqson topilganda — sotib olingandan keyin 24 soat ichida — O'zbekiston Iste'molchilar huquqlarini himoya qilish qonuni bo'yicha almashtirish yoki qaytarish."
+      },
+      {
+        "q": "Almashtirish muddatlari",
+        "a": "Zavod nuqsoni aniq bo'lganda 7 kundan boshlab, olis hududlarga yetkazish uchun 2 oygacha."
+      }
     ]
   },
   "footer": {
@@ -292,5 +486,55 @@
     "tooltip": "Mutaxassisni chaqirish",
     "sticky_cta": "7 kunlik bepul sinov",
     "sticky_sub": "Yetkazamiz, sozlaymiz, olib ketamiz"
+  },
+  "home": {
+    "hero": {
+      "title": "Professional aloqa. Buzilmas.",
+      "sub": "Motorola, Hytera va PoC ratsiyalari — vakolatli servis, 7 kunlik bepul sinov va butun mamlakat bo'ylab yetkazib berish.",
+      "cta_primary": "Bepul sinovni band qilish",
+      "cta_secondary": "Batafsil"
+    },
+    "feature": {
+      "title": "Eng qiyin ob'ektlar uchun yaratilgan.",
+      "sub": "IP68 himoya. −30°C dan +60°C gacha. AES256 shifrlash. Har bir qurilmada GPS.",
+      "link": "PoC haqida"
+    },
+    "bento": {
+      "title": "Har bir tafsilot puxta ishlangan.",
+      "sub": "Jihoz, litsenziya, o'rnatish va ta'mirlash — bitta hamkorda.",
+      "tradein": {
+        "title": "Trade-In",
+        "sub": "Eski ratsiyani bering — yangi Motorola yoki Hytera ni chegirma bilan oling."
+      },
+      "models": {
+        "title": "35+ model",
+        "sub": "Motorola, Hytera, Caltta, Baofeng, Radiocom RC."
+      },
+      "warranty": {
+        "title": "12 oy kafolat",
+        "sub": "Har bir qurilmaga rasmiy kafolat."
+      },
+      "delivery": {
+        "title": "Respublika bo'ylab yetkazib berish",
+        "sub": "Butun O'zbekiston bo'ylab bepul yetkazib berish."
+      },
+      "test": {
+        "title": "7 kunlik bepul sinov",
+        "sub": "Yetkazamiz, sozlaymiz, olib ketamiz. Majburiyatsiz."
+      },
+      "service": {
+        "title": "Vakolatli servis",
+        "sub": "Sertifikatlangan mutaxassislar, original ehtiyot qismlar, qat'iy narxlar."
+      }
+    },
+    "featured": {
+      "title": "Tavsiya etiladi.",
+      "link": "Barcha katalog"
+    },
+    "final_cta": {
+      "title": "Muhandis bilan gaplashing.",
+      "sub": "Ish vaqti davomida 15 daqiqada javob. Bosim yo'q.",
+      "button": "Muhandisga bog'lanish"
+    }
   }
 }
