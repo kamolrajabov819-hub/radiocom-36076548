@@ -280,7 +280,7 @@ function IndustriesTeaser() {
         sub={t("industries.overview_sub")}
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 items-stretch">
         {items.map((it, i) => (
           <motion.div
             key={it.slug}
@@ -288,26 +288,71 @@ function IndustriesTeaser() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ ...spring, delay: i * 0.08 }}
+            className="group bg-pitch rounded-3xl overflow-hidden flex flex-col h-full shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.12)] hover:-translate-y-1 hover:shadow-[0_1px_2px_rgba(0,0,0,0.06),0_20px_40px_-16px_rgba(0,0,0,0.2)] transition-all duration-300"
           >
             <Link
               to="/industries/$slug"
               params={{ slug: it.slug }}
-              className="block bg-pitch rounded-3xl overflow-hidden group"
+              className="block aspect-[4/3] overflow-hidden"
             >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img src={it.img} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[900ms]" loading="lazy" />
-              </div>
-              <div className="p-6">
-                <h3 className="headline text-2xl text-crisp">{t(`industries.${it.slug}.name`)}</h3>
-                <p className="subhead text-[15px] mt-2 line-clamp-2">{t(`industries.${it.slug}.desc`)}</p>
-                <div className="mt-4 text-signal text-[14px] inline-flex items-center gap-1">
-                  {t("industries.cta")} <ChevronRight className="w-4 h-4" />
-                </div>
-              </div>
+              <img src={it.img} alt={t(`industries.${it.slug}.name`)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[900ms]" loading="lazy" />
             </Link>
+            <div className="p-6 md:p-7 flex flex-col flex-1">
+              <h3 className="headline text-2xl text-crisp">{t(`industries.${it.slug}.name`)}</h3>
+              <p className="subhead text-[15px] mt-2 flex-1">{t(`industries.${it.slug}.desc`)}</p>
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                <button
+                  onClick={() => openLead({ title: `${t("industries.cta")} · ${t(`industries.${it.slug}.name`)}` })}
+                  className="pill pill-sm pill-accent"
+                >
+                  {t("industries.cta")}
+                </button>
+                <Link to="/industries/$slug" params={{ slug: it.slug }} className="pill-link text-[13px]">
+                  {t("industries.compare_all", { defaultValue: "See radios" })} <ChevronRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            </div>
           </motion.div>
         ))}
       </div>
+
+      {/* Closing capture-contact banner */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={spring}
+        className="mt-8 md:mt-10 rounded-3xl bg-pitch p-8 md:p-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6 relative overflow-hidden"
+      >
+        <SignalPulse size={600} opacity={0.12} className="!items-start !justify-start" />
+        <div className="relative">
+          <h3 className="headline text-crisp text-2xl md:text-4xl max-w-xl">
+            {t("industries.banner_title", { defaultValue: "Not sure which radio fits your operation?" })}
+          </h3>
+          <p className="subhead mt-3 text-[15px] max-w-xl">
+            {t("industries.banner_sub", { defaultValue: "Tell us your industry — we'll recommend the right system within 15 minutes." })}
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-3 relative">
+          <Magnetic>
+            <button
+              onClick={() => openLead({ title: t("industries.cta") })}
+              className="pill pill-accent"
+            >
+              {t("industries.cta")}
+            </button>
+          </Magnetic>
+          <a
+            href="https://t.me/radiocom_uz"
+            target="_blank"
+            rel="noopener"
+            className="pill pill-ghost inline-flex items-center gap-2"
+          >
+            <MessageCircle className="w-4 h-4" /> Telegram
+          </a>
+        </div>
+      </motion.div>
+
       <div className="mt-10 text-center">
         <Link to="/industries" className="pill-link">
           {t("industries.view_all")} <ChevronRight className="w-4 h-4" />
