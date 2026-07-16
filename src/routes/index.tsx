@@ -384,7 +384,7 @@ function FeaturedCatalog() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 items-stretch">
         {featured.map((p, i) => (
           <motion.div
             key={p.id}
@@ -392,19 +392,20 @@ function FeaturedCatalog() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ ...spring, delay: i * 0.06 }}
+            className="h-full"
           >
             <SpotlightCard
               as="button"
-              className="p-6 md:p-8 text-left w-full h-full flex flex-col group"
+              className="p-6 md:p-8 text-left w-full h-full flex flex-col group min-h-[360px]"
             >
               <div onClick={() => openLead({ product: p.name })} className="contents">
-                <div className="aspect-square flex items-center justify-center mb-6">
-                  <img src={p.image} alt={p.name} className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                <div className="aspect-square flex items-center justify-center mb-6 bg-panel rounded-2xl overflow-hidden">
+                  <img src={p.image} alt={p.name} className="max-h-[85%] max-w-[85%] object-contain group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                 </div>
-                <div className="text-[12px] text-cool">{p.brand}</div>
+                <div className="text-[12px] text-cool uppercase tracking-wide">{p.brand}</div>
                 <h3 className="text-[15px] md:text-base font-semibold text-crisp mt-1 leading-tight">{p.name}</h3>
-                <div className="text-[13px] text-cool mt-1">{formatPrice(p.price, lang)}</div>
-                <div className="text-signal text-[13px] mt-3 inline-flex items-center gap-1">
+                <div className="text-[13px] text-cool mt-1 flex-1">{formatPrice(p.price, lang)}</div>
+                <div className="text-signal text-[13px] mt-4 inline-flex items-center gap-1">
                   {t("product.cta")} <ChevronRight className="w-3.5 h-3.5" />
                 </div>
               </div>
