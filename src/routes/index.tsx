@@ -180,15 +180,14 @@ function FeatureDark() {
 /* ─── Bento grid — symmetric 4-col ─────────────────────── */
 function Bento() {
   const { t } = useTranslation();
-  const items: { key: string; Icon: typeof Repeat; span: string; big?: boolean }[] = [
-    { key: "tradein", Icon: Repeat, span: "md:col-span-2 md:row-span-2", big: true },
-    { key: "models", Icon: Package, span: "" },
-    { key: "warranty", Icon: ShieldCheck, span: "" },
-    { key: "delivery", Icon: Truck, span: "" },
-    { key: "test", Icon: Sparkles, span: "" },
-    { key: "service", Icon: Wrench, span: "md:col-span-2" },
+  const items: { key: string; Icon: typeof Repeat }[] = [
+    { key: "tradein", Icon: Repeat },
+    { key: "warranty", Icon: ShieldCheck },
+    { key: "delivery", Icon: Truck },
+    { key: "test", Icon: Sparkles },
+    { key: "models", Icon: Package },
+    { key: "service", Icon: Wrench },
   ];
-
 
   return (
     <Section className="bg-pitch">
@@ -198,34 +197,30 @@ function Bento() {
         sub={t("home.bento.sub")}
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[220px] md:auto-rows-[240px] gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 items-stretch">
         {items.map((it, i) => (
           <motion.div
             key={it.key}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ ...spring, delay: i * 0.05 }}
-            className={it.span}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ ...spring, delay: i * 0.06 }}
+            className="h-full"
           >
-            <SpotlightCard className="h-full p-8 flex flex-col justify-between">
-              <div>
-                <it.Icon className="w-6 h-6 text-signal" strokeWidth={1.75} />
-                <h3
-                  className={`headline text-crisp mt-4 ${
-                    it.big ? "text-3xl md:text-5xl" : "text-2xl md:text-3xl"
-                  }`}
-                >
-                  {t(`home.bento.${it.key}.title`)}
-                </h3>
-              </div>
-              <p className="subhead text-[15px] mt-4 max-w-md">{t(`home.bento.${it.key}.sub`)}</p>
+            <SpotlightCard className="h-full p-8 md:p-10 flex flex-col text-left min-h-[280px]">
+              <it.Icon className="w-7 h-7 text-signal mb-6" strokeWidth={1.75} />
+              <h3 className="headline text-crisp text-xl md:text-2xl">
+                {t(`home.bento.${it.key}.title`)}
+              </h3>
+              <p className="subhead text-[15px] mt-3 flex-1">
+                {t(`home.bento.${it.key}.sub`)}
+              </p>
             </SpotlightCard>
           </motion.div>
         ))}
       </div>
 
-      {/* Network topology visual — sticky-pinned split scene */}
+      {/* Network topology visual — separate symmetric split scene */}
       <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -248,18 +243,19 @@ function Bento() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ ...spring, delay: 0.08 }}
-          className="bento-card p-10 md:p-14 flex flex-col justify-center"
+          className="bento-card p-10 md:p-14 flex flex-col justify-center relative overflow-hidden"
         >
-          <div className="eyebrow-sweep text-[13px] tracking-wide font-medium mb-4">
+          <SignalPulse size={700} opacity={0.15} className="!items-end !justify-end" />
+          <div className="eyebrow-sweep text-[13px] tracking-wide font-medium mb-4 relative">
             {t("home.bento.network.eyebrow", { defaultValue: "Network Design" })}
           </div>
-          <h3 className="headline text-crisp text-3xl md:text-5xl">
+          <h3 className="headline text-crisp text-3xl md:text-5xl relative">
             {t("home.bento.network.title", { defaultValue: "One system. Every site." })}
           </h3>
-          <p className="subhead mt-5 text-[15px] md:text-base max-w-md">
+          <p className="subhead mt-5 text-[15px] md:text-base max-w-md relative">
             {t("home.bento.network.sub", { defaultValue: "Custom radio network design with repeaters, dispatch and PoC — engineered end-to-end." })}
           </p>
-          <Link to="/poc" className="pill-link mt-6">
+          <Link to="/poc" className="pill-link mt-6 relative">
             {t("home.feature.link")} <ChevronRight className="w-4 h-4" />
           </Link>
         </motion.div>
