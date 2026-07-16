@@ -159,7 +159,7 @@ function IndustryPage() {
               {t("industries.compare_all")}
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 items-stretch">
             {picks.slice(0, 6).map((p, i) => (
               <motion.button
                 key={p.id}
@@ -168,13 +168,13 @@ function IndustryPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ ...spring, delay: (i % 3) * 0.06 }}
-                className="bento-card p-6 md:p-8 text-left group"
+                className="bento-card p-6 md:p-8 text-left group flex flex-col h-full min-h-[340px] hover:-translate-y-1 transition-transform duration-300"
               >
-                <div className="aspect-square flex items-center justify-center mb-6">
-                  <img src={p.image} alt={p.name} className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500" />
+                <div className="aspect-square flex items-center justify-center mb-6 bg-pitch rounded-2xl overflow-hidden">
+                  <img src={p.image} alt={p.name} className="max-h-[85%] max-w-[85%] object-contain group-hover:scale-105 transition-transform duration-500" />
                 </div>
-                <div className="text-[12px] text-cool">{p.brand}</div>
-                <h3 className="text-[15px] font-semibold text-crisp mt-1 leading-tight">{p.name}</h3>
+                <div className="text-[12px] text-cool uppercase tracking-wide">{p.brand}</div>
+                <h3 className="text-[15px] font-semibold text-crisp mt-1 leading-tight flex-1">{p.name}</h3>
                 <div className="text-[13px] text-cool mt-1">{formatPrice(p.price, lang)}</div>
               </motion.button>
             ))}
