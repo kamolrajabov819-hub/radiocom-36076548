@@ -140,25 +140,30 @@ function ProductCard({
   return (
     <motion.button
       onClick={onOpen}
-      className="bento-card p-6 md:p-8 text-left group flex flex-col"
+      className="group relative text-left flex flex-col rounded-3xl bg-charcoal/60 border border-white/5 p-3 md:p-4 hover:border-white/15 hover:-translate-y-1 hover:shadow-[0_20px_60px_-20px_rgba(227,6,19,0.35)] transition-all duration-500"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ ...spring, delay: (idx % 8) * 0.04 }}
     >
-      <div className="aspect-square flex items-center justify-center mb-6">
+      <div className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-white/[0.06] to-white/[0.01] flex items-center justify-center mb-5">
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_50%_50%,rgba(227,6,19,0.18),transparent_70%)]" />
         <img
           src={p.image}
           alt={p.name}
-          className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
+          className="relative max-h-[82%] max-w-[82%] object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] group-hover:scale-110 group-hover:-rotate-2 transition-transform duration-700"
           loading="lazy"
         />
+        <div className="absolute top-3 left-3 text-[10px] tracking-wider uppercase text-crisp/80 bg-black/40 backdrop-blur-md px-2 py-1 rounded-full border border-white/10">
+          {p.brand}
+        </div>
       </div>
-      <div className="text-[12px] text-cool">{p.brand}</div>
-      <h3 className="text-[15px] md:text-base font-semibold text-crisp mt-1 leading-tight">{p.name}</h3>
-      <div className="text-[13px] text-cool mt-1">{formatPrice(p.price, lang)}</div>
-      <div className="mt-4 text-signal text-[13px] inline-flex items-center gap-1">
-        {t("product.cta")} <ChevronRight className="w-3.5 h-3.5" />
+      <h3 className="text-[15px] md:text-base font-semibold text-crisp leading-tight px-1">{p.name}</h3>
+      <div className="flex items-center justify-between mt-2 px-1">
+        <div className="text-[13px] text-cool">{formatPrice(p.price, lang)}</div>
+        <div className="text-signal text-[12px] inline-flex items-center gap-1 opacity-80 group-hover:opacity-100 group-hover:gap-2 transition-all">
+          {t("product.cta")} <ChevronRight className="w-3.5 h-3.5" />
+        </div>
       </div>
     </motion.button>
   );
