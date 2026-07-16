@@ -60,6 +60,11 @@ function Hero() {
 
   return (
     <section ref={ref} className="pt-28 md:pt-32 pb-0 bg-pitch overflow-hidden relative">
+      {/* Signature signal-pulse motif behind hero */}
+      <div className="absolute inset-x-0 top-0 h-[120vh] pointer-events-none">
+        <SignalPulse size={1400} opacity={0.28} />
+      </div>
+
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: -8 }}
