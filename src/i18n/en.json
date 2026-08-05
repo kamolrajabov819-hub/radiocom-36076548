@@ -321,7 +321,8 @@
       ]
     },
     "banner_title": "Not sure which radio fits your operation?",
-    "banner_sub": "Tell us your industry — we will recommend the right system within 15 minutes."
+    "banner_sub": "Tell us your industry — we will recommend the right system within 15 minutes.",
+    "eyebrow": "Industries"
   },
   "tradein": {
     "kicker": "TRADE-IN",
@@ -359,7 +360,8 @@
     "active": "active",
     "in_stock": "In stock · Tashkent",
     "quick_all": "All",
-    "sort": "Sort"
+    "sort": "Sort",
+    "title": "The whole comms catalog."
   },
   "product": {
     "spec": "Specifications",
@@ -367,7 +369,7 @@
     "range_open": "Open-field range",
     "features": "Features",
     "price": "Price",
-    "cta": "Request quote"
+    "cta": "Buy"
   },
   "form": {
     "title": "Request quote",
@@ -472,7 +474,8 @@
         "q": "Replacement timelines",
         "a": "From 7 days for obvious factory defects up to 2 months for delivery to remote territories."
       }
-    ]
+    ],
+    "flow_title": "How the repair works"
   },
   "footer": {
     "hours": "Mon-Fri · 09:00–18:00",
@@ -494,7 +497,8 @@
       "title": "Pro Communication. Unbreakable.",
       "sub": "Motorola, Hytera and PoC radios — authorized service, free 7-day testing and nationwide delivery.",
       "cta_primary": "Book Free Test",
-      "cta_secondary": "Learn more"
+      "cta_secondary": "Learn more",
+      "eyebrow": "RADIOCOM · PROFESSIONAL TWO-WAY RADIO"
     },
     "feature": {
       "title": "Built for the toughest sites.",
@@ -527,11 +531,18 @@
       "service": {
         "title": "Authorized service",
         "sub": "Certified technicians, original parts, fixed pricing."
+      },
+      "eyebrow": "Why Radiocom",
+      "network": {
+        "eyebrow": "Network design",
+        "title": "Coverage where there was none.",
+        "sub": "Site RF survey, coverage modelling, repeater and antenna installation — turnkey, guaranteed."
       }
     },
     "featured": {
       "title": "Featured radios.",
-      "link": "See all"
+      "link": "See all",
+      "eyebrow": "Best sellers"
     },
     "final_cta": {
       "title": "Talk to an engineer.",

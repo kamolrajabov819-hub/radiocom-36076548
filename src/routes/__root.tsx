@@ -73,6 +73,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -108,7 +109,11 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  useEffect(() => { hydrateLanguage(); hydrateTheme(); }, []);
+  useEffect(() => {
+    hydrateTheme();
+    const id = requestAnimationFrame(() => requestAnimationFrame(() => hydrateLanguage()));
+    return () => cancelAnimationFrame(id);
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>

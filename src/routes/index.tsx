@@ -17,7 +17,8 @@ import { ThemedImage } from "@/components/ThemedImage";
 import { Section, SectionHead } from "@/components/Section";
 import { SpotlightCard } from "@/components/SpotlightCard";
 import { Magnetic } from "@/components/Magnetic";
-import { products, formatPrice } from "@/data/products";
+import { products } from "@/data/products";
+import { ProductCard } from "@/components/ProductCard";
 import { spring } from "@/lib/springs";
 
 export const Route = createFileRoute("/")({
@@ -371,7 +372,7 @@ function FeaturedCatalog() {
     .filter(Boolean) as typeof products;
 
   return (
-    <Section className="bg-pitch">
+    <Section className="bg-charcoal">
       <div className="flex items-end justify-between flex-wrap gap-4 mb-10">
         <div>
           <div className="eyebrow-sweep text-[13px] tracking-wide font-medium mb-3">
@@ -386,30 +387,7 @@ function FeaturedCatalog() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 items-stretch">
         {featured.map((p, i) => (
-          <motion.button
-            key={p.id}
-            onClick={() => openLead({ product: p.name })}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ ...spring, delay: i * 0.06 }}
-            className="group relative text-left flex flex-col rounded-3xl bg-charcoal/60 border border-white/5 p-3 md:p-4 hover:border-white/15 hover:-translate-y-1 hover:shadow-[0_20px_60px_-20px_rgba(227,6,19,0.35)] transition-all duration-500"
-          >
-            <div className="relative aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-white/[0.06] to-white/[0.01] flex items-center justify-center mb-5">
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_50%_50%,rgba(227,6,19,0.18),transparent_70%)]" />
-              <img src={p.image} alt={p.name} className="relative max-h-[82%] max-w-[82%] object-contain drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)] group-hover:scale-110 group-hover:-rotate-2 transition-transform duration-700" loading="lazy" />
-              <div className="absolute top-3 left-3 text-[10px] tracking-wider uppercase text-crisp/80 bg-black/40 backdrop-blur-md px-2 py-1 rounded-full border border-white/10">
-                {p.brand}
-              </div>
-            </div>
-            <h3 className="text-[15px] md:text-base font-semibold text-crisp leading-tight px-1">{p.name}</h3>
-            <div className="flex items-center justify-between mt-2 px-1">
-              <div className="text-[13px] text-cool">{formatPrice(p.price, lang)}</div>
-              <div className="text-signal text-[12px] inline-flex items-center gap-1 opacity-80 group-hover:opacity-100 group-hover:gap-2 transition-all">
-                {t("product.cta")} <ChevronRight className="w-3.5 h-3.5" />
-              </div>
-            </div>
-          </motion.button>
+          <ProductCard key={p.id} p={p} lang={lang} idx={i} onOpen={() => openLead({ product: p.name })} />
         ))}
       </div>
     </Section>

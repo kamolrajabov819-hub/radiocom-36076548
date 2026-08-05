@@ -7,6 +7,7 @@ import { LangToggle } from "./LangToggle";
 import { ThemeToggle } from "./ThemeToggle";
 import { openLead } from "./LeadFormSheet";
 import { INDUSTRY_SLUGS } from "@/data/industries";
+import logoAsset from "@/assets/radiocom-logo.png.asset.json";
 
 export function Nav() {
   const { t } = useTranslation();
@@ -91,9 +92,14 @@ export function Nav() {
           </nav>
 
           {/* Center wordmark */}
-          <Link to="/" className="flex items-center gap-2 lg:absolute lg:left-1/2 lg:-translate-x-1/2">
-            <RadiocomMark />
-            <span className="text-[15px] font-semibold tracking-tight text-crisp">Radiocom</span>
+          <Link to="/" className="flex items-center lg:absolute lg:left-1/2 lg:-translate-x-1/2" aria-label="Radiocom">
+            <img
+              src={logoAsset.url}
+              alt="Radiocom"
+              width={180}
+              height={32}
+              className="h-[22px] w-auto dark:invert"
+            />
           </Link>
 
           {/* Right actions */}
@@ -132,7 +138,7 @@ export function Nav() {
             className="fixed inset-0 z-50 lg:hidden bg-pitch"
           >
             <div className="flex items-center justify-between px-5 h-12 border-b border-border">
-              <span className="text-[15px] font-semibold text-crisp">Radiocom</span>
+              <img src={logoAsset.url} alt="Radiocom" width={150} height={26} className="h-[20px] w-auto dark:invert" />
               <button onClick={() => setMobileOpen(false)} aria-label={t("nav.close")} className="text-crisp">
                 <X className="w-5 h-5" />
               </button>
@@ -169,15 +175,5 @@ export function Nav() {
         )}
       </AnimatePresence>
     </>
-  );
-}
-
-function RadiocomMark() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 28 28" fill="none" aria-hidden>
-      <path d="M4 20 A10 10 0 0 1 24 20" stroke="currentColor" strokeWidth="1.5" opacity="0.4" />
-      <path d="M7.5 20 A6.5 6.5 0 0 1 20.5 20" stroke="currentColor" strokeWidth="1.5" opacity="0.7" />
-      <circle cx="14" cy="20" r="3" fill="var(--signal)" />
-    </svg>
   );
 }
