@@ -17,7 +17,7 @@ import { ThemedImage } from "@/components/ThemedImage";
 import { Section, SectionHead } from "@/components/Section";
 import { SpotlightCard } from "@/components/SpotlightCard";
 import { Magnetic } from "@/components/Magnetic";
-import { products, formatPrice } from "@/data/products";
+import { products } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
 import { spring } from "@/lib/springs";
 
@@ -372,7 +372,7 @@ function FeaturedCatalog() {
     .filter(Boolean) as typeof products;
 
   return (
-    <Section className="bg-pitch">
+    <Section className="bg-charcoal">
       <div className="flex items-end justify-between flex-wrap gap-4 mb-10">
         <div>
           <div className="eyebrow-sweep text-[13px] tracking-wide font-medium mb-3">

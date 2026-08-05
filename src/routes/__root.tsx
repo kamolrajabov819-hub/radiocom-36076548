@@ -108,7 +108,11 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  useEffect(() => { hydrateLanguage(); hydrateTheme(); }, []);
+  useEffect(() => {
+    hydrateTheme();
+    const id = requestAnimationFrame(() => requestAnimationFrame(() => hydrateLanguage()));
+    return () => cancelAnimationFrame(id);
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
