@@ -91,9 +91,14 @@ export function Nav() {
           </nav>
 
           {/* Center wordmark */}
-          <Link to="/" className="flex items-center gap-2 lg:absolute lg:left-1/2 lg:-translate-x-1/2">
-            <RadiocomMark />
-            <span className="text-[15px] font-semibold tracking-tight text-crisp">Radiocom</span>
+          <Link to="/" className="flex items-center lg:absolute lg:left-1/2 lg:-translate-x-1/2" aria-label="Radiocom">
+            <img
+              src={logoAsset.url}
+              alt="Radiocom"
+              width={180}
+              height={32}
+              className="h-[22px] w-auto dark:invert dark:brightness-0 dark:contrast-200"
+            />
           </Link>
 
           {/* Right actions */}
