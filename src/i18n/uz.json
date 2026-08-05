@@ -321,7 +321,8 @@
       ]
     },
     "banner_title": "Qaysi ratsiya biznesingizga mos kelishini bilmayapsizmi?",
-    "banner_sub": "Sohangizni ayting — 15 daqiqada tizim tanlab beramiz."
+    "banner_sub": "Sohangizni ayting — 15 daqiqada tizim tanlab beramiz.",
+    "eyebrow": "Sohalar"
   },
   "tradein": {
     "kicker": "TRADE-IN",
@@ -359,7 +360,8 @@
     "active": "faol",
     "in_stock": "Toshkentda mavjud",
     "quick_all": "Hammasi",
-    "sort": "Saralash"
+    "sort": "Saralash",
+    "title": "Butun aloqa katalogi."
   },
   "product": {
     "spec": "Xususiyatlar",
@@ -472,7 +474,8 @@
         "q": "Almashtirish muddatlari",
         "a": "Zavod nuqsoni aniq bo'lganda 7 kundan boshlab, olis hududlarga yetkazish uchun 2 oygacha."
       }
-    ]
+    ],
+    "flow_title": "Ta'mir qanday o'tadi"
   },
   "footer": {
     "hours": "Du-Ju · 09:00–18:00",
@@ -494,7 +497,8 @@
       "title": "Professional aloqa. Buzilmas.",
       "sub": "Motorola, Hytera va PoC ratsiyalari — vakolatli servis, 7 kunlik bepul sinov va butun mamlakat bo'ylab yetkazib berish.",
       "cta_primary": "Bepul sinovni band qilish",
-      "cta_secondary": "Batafsil"
+      "cta_secondary": "Batafsil",
+      "eyebrow": "RADIOCOM · PROFESSIONAL RADIOALOQA"
     },
     "feature": {
       "title": "Eng qiyin ob'ektlar uchun yaratilgan.",
@@ -527,11 +531,18 @@
       "service": {
         "title": "Vakolatli servis",
         "sub": "Sertifikatlangan mutaxassislar, original ehtiyot qismlar, qat'iy narxlar."
+      },
+      "eyebrow": "Nega Radiocom",
+      "network": {
+        "eyebrow": "Tarmoq loyihalash",
+        "title": "Aloqa bo‘lmagan joyda ham aloqa.",
+        "sub": "Obyektni radio tekshiruvi, qamrov hisobi, repiter va antennalarni o‘rnatish — kalit topshirish sharti bilan."
       }
     },
     "featured": {
       "title": "Tavsiya etiladi.",
-      "link": "Barcha katalog"
+      "link": "Barcha katalog",
+      "eyebrow": "Eng ko‘p sotilganlar"
     },
     "final_cta": {
       "title": "Muhandis bilan gaplashing.",
