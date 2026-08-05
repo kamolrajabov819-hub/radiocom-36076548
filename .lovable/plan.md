@@ -1,66 +1,45 @@
-# v4.1 — Apple Polish Pass
+# Radiocom — Finish & Refine (v5)
 
-Build on the existing v4 Apple aesthetic. Light mode stays the main experience; dark mode gets its own dedicated imagery so both themes feel intentionally art-directed. Every section gets locked to a symmetric 12-column rhythm and gains cinematic motion.
+Four fixes: complete the missing copy, swap the palette back to Radiocom red, rebuild product cards in the Apple "All models" style, and put the real logo in the header/footer.
 
-## 1. Dual-theme photography (light + dark pairs)
+## 1. Finish the unfinished text
 
-Generate matched pairs (light/dark) for each hero surface. Swap via `<picture>` + `prefers-color-scheme` and our theme class so switching the toggle instantly cross-fades.
+Nine keys render as raw placeholders on screen (e.g. `catalog.title`, `service.flow_title`):
 
-Assets to generate (all saved into `src/assets/`, streamed):
-- `hero-radio-light.jpg` — floating handheld radio on soft warm off-white gradient, top-down studio light, subtle red accent glow.
-- `hero-radio-dark.jpg` — same radio, pitch-black stage, rim light + red signal glow.
-- `bento-network-light.jpg` / `bento-network-dark.jpg` — abstract topology / repeater tower.
-- `bento-service-light.jpg` / `bento-service-dark.jpg` — clean tech bench.
-- `industry-{mining,logistics,security,energy,construction,government}-{light,dark}.jpg` — 12 total, cinematic.
-- `poc-hero-light.jpg` / `poc-hero-dark.jpg` — dispatcher console.
+- `catalog.title`
+- `service.flow_title`
+- `home.hero.eyebrow`, `home.featured.eyebrow`, `home.bento.eyebrow`, `industries.eyebrow`
+- `home.bento.network.eyebrow`, `home.bento.network.title`, `home.bento.network.sub`
 
-Delivery: `<picture>` with `<source media="(prefers-color-scheme: dark)">` plus a `.dark img[data-theme-swap]` override so manual toggle also works. Blur-up placeholder + fade on load.
+Write real, sales-oriented copy for each in RU, UZ and EN, then sweep every route for other placeholder/lorem strings and fill those too. Also fix the hero hydration flicker so the headline text matches on first paint.
 
-## 2. Symmetric layout system
+## 2. Palette: red and white, not blue
 
-Add a shared `Section` wrapper enforcing:
-- `max-w-[1280px] mx-auto px-6 md:px-10`
-- Vertical rhythm: `py-24 md:py-32` for standard, `py-40` for hero.
-- Every grid is 12-col with centered content; bento cards use fixed aspect ratios (`aspect-[4/5]`, `aspect-square`, `aspect-[16/9]`) so rows always align.
-- Headings centered by default; eyebrow + H2 + sub uses one component `<SectionHead>`.
+Brand accent becomes Radiocom red (`#E30613`, with a slightly brighter tint for dark mode) everywhere the current blue is used: buttons, eyebrows, icons, focus rings, pulse motif, gradients. Base stays near-white in light mode / near-black in dark. Backgrounds move to Apple's layered greys (`#FFFFFF` surfaces on `#F5F5F7` sections) so cards read as objects on a page.
 
-Refactor `index.tsx`, `catalog.tsx`, `industries.$slug.tsx`, `poc.tsx`, `service.tsx` to use `Section` + `SectionHead`.
+## 3. Product cards — Apple "All models" style
 
-## 3. "Blind-your-mind" motion layer
+New shared card used on the homepage best-sellers row, the catalog grid and industry recommendation grids:
 
-Add to `src/lib/motion.ts` and apply site-wide:
-- **Hero scale-scroll**: product image scales `1 → 1.15` and headline splits into per-char stagger reveal on load (Framer Motion `staggerChildren: 0.03`).
-- **Sticky pinned scenes** on Home + PoC using `useScroll` + `useTransform` — image stays pinned while captions cross-fade left column.
-- **Magnetic CTA** re-introduced (Apple-style subtle, 8px max pull) on primary buttons only.
-- **Marquee** for brand strip with hover-pause.
-- **Gradient text sweep** on section eyebrows (animated `background-position`).
-- **Number counters** on outcomes (already partial) — unify with `useInView`.
-- **Page transitions**: fade + 8px rise on route change via `AnimatePresence` in `__root.tsx`.
-- **Cursor-follow spotlight** on Bento cards (radial-gradient tracking mouse).
-- Respect `prefers-reduced-motion` — disable transforms, keep opacity fades.
+- White rounded card (~20px radius), generous padding, soft shadow, equal heights
+- Product name at the **top** in bold display type (2-line clamp)
+- Product photo centered in the middle of the card, transparent-style on a light well, subtle zoom on hover
+- Short spec/price line at the bottom left, red pill CTA ("Request quote") bottom right
+- Category/brand badge as a small pill above the name
+- One card per row below 640px; horizontal snap-scroll carousel on the homepage row like Apple's
 
-## 4. Theme polish
+## 4. Real logo
 
-- Keep light as default (`theme.ts` unchanged).
-- Refine dark palette: bg `#0A0A0A`, card `#141414`, border `#1F1F1F`, text `#F5F5F7`, accent stays `#E30613`.
-- Cross-fade theme toggle: 300ms opacity on `<html>` via CSS `transition: background-color, color`.
+Upload the supplied transparent RADIOCOM logo to CDN assets and use it in the nav (replacing the hand-drawn SVG mark + wordmark) and in the footer, with a colour-inverted treatment for dark mode. Also reuse it as the favicon.
 
-## 5. Files touched
+## 5. Photography refresh
 
-New:
-- `src/components/Section.tsx`, `src/components/SectionHead.tsx`, `src/components/ThemedImage.tsx`, `src/components/Magnetic.tsx`, `src/components/SpotlightCard.tsx`, `src/lib/motion.ts`.
-- 20 new images in `src/assets/`.
-
-Modified:
-- All 5 route files → wrapped in Section, ThemedImage swapped in.
-- `src/styles.css` → refined dark tokens, added `.eyebrow-sweep`, `.section-y` utilities, reduced-motion guards.
-- `src/routes/__root.tsx` → AnimatePresence wrapper.
+Regenerate the weak images as matched light/dark pairs on clean Apple-style seamless backdrops: hero radio, product shots (Motorola / Hytera / Baofeng / PoC), network bento, service bench, and the three industry photos. Consistent lighting, soft shadow under each device, no busy backgrounds.
 
 ## Technical notes
 
-Images generated via `imagegen` `standard` quality, 1600x1200 JPG for hero pairs, 1200x1500 for bento. Total ~20 generations — expensive but one-shot. No i18n keys change. No data changes. No backend changes.
-
-## Out of scope
-
-- No new routes, no product data changes, no auth, no CMS.
-- Not touching `LeadFormSheet` internals beyond styling.
+- Tokens live in `src/styles.css` (`--signal`, surfaces, shadows) — no component-level hex values.
+- New `src/components/ProductCard.tsx` consumed by `index.tsx`, `catalog.tsx`, `industries.$slug.tsx`.
+- Copy added to all three dictionaries in `src/i18n/{ru,uz,en}.json` via a deep merge so nothing existing is lost.
+- Logo goes through `lovable-assets` as a `.asset.json` pointer.
+- No changes to routes, data model, lead-gen, or maps.
