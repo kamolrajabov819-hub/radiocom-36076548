@@ -54,7 +54,7 @@
   --panel: #fafafa;
   --cool: #86868b;
   --crisp: #1d1d1f;
-  --signal: #0066cc;
+  --signal: #e30613;
 
   --background: var(--pitch);
   --foreground: var(--crisp);
@@ -84,7 +84,7 @@
   --panel: #1c1c1e;
   --cool: #86868b;
   --crisp: #f5f5f7;
-  --signal: #ff453a;
+  --signal: #ff3b30;
 
   --background: var(--pitch);
   --foreground: var(--crisp);
