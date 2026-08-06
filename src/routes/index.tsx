@@ -4,8 +4,9 @@ import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { ChevronRight, Repeat, ShieldCheck, Truck, Wrench, Package, Sparkles, MessageCircle } from "lucide-react";
 import { SignalPulse } from "@/components/SignalPulse";
-import heroLight from "@/assets/hero-radio-light.jpg";
-import heroDark from "@/assets/hero-radio-dark.jpg";
+import heroLightAsset from "@/assets/radiocom-rcd60.jpg.asset.json";
+import heroDark from "@/assets/hero-rcd60-dark.jpg";
+
 import bentoNetLight from "@/assets/bento-network-light.jpg";
 import bentoNetDark from "@/assets/bento-network-dark.jpg";
 import horecaImg from "@/assets/industry-horeca.jpg";
