@@ -2,6 +2,9 @@ import motorolaImg from "@/assets/product-motorola.jpg";
 import hyteraImg from "@/assets/product-hytera.jpg";
 import pocImg from "@/assets/product-poc.jpg";
 import compactImg from "@/assets/product-compact.jpg";
+import rcd60Asset from "@/assets/radiocom-rcd60.jpg.asset.json";
+
+const rcd60Img = rcd60Asset.url;
 
 export type Category =
   | "amateur"
@@ -44,9 +47,9 @@ const TALK = ["PMR446", "License-free"];
 export const products: Product[] = [
   // ─── Radiocom RC ───
   { id: "rc-5d",  name: "Radiocom RC-5D",  brand: RC, category: "professional", image: motorolaImg, tags: ["Long range", "License-free"], price: 2_000_000, rangeCity: "до 3 км",  rangeOpen: "до 10 км", industries: ["construction","security","mining","transport"], blurb: "Флагман линейки Radiocom. Дальность до 10 км на открытой местности." },
-  { id: "rc-50",  name: "Radiocom RC-50",  brand: RC, category: "professional", image: motorolaImg, tags: ["Long range"],                  price: 1_500_000, rangeCity: "до 2,5 км", rangeOpen: "до 5 км",  industries: ["construction","security","transport"], blurb: "Универсальная модель для среднего радиуса действия." },
-  { id: "rc-21",  name: "Radiocom RC-21",  brand: RC, category: "professional", image: motorolaImg, tags: ["Long range"],                  price: 2_100_000, rangeCity: "до 1,5 км", rangeOpen: "до 4 км",  industries: ["horeca","security","construction"], blurb: "Компактная профессиональная рация с усиленным приёмом." },
-  { id: "rc-10",  name: "Radiocom RC-10",  brand: RC, category: "amateur",      image: motorolaImg, tags: ["Compact"],                     price: 1_300_000, rangeCity: "до 1 км",   rangeOpen: "до 3 км",  industries: ["horeca","security"], blurb: "Начальный уровень линейки — надёжно и просто." },
+  { id: "rc-50",  name: "Radiocom RC-50",  brand: RC, category: "professional", image: rcd60Img, tags: ["Long range"],                  price: 1_500_000, rangeCity: "до 2,5 км", rangeOpen: "до 5 км",  industries: ["construction","security","transport"], blurb: "Универсальная модель для среднего радиуса действия." },
+  { id: "rc-21",  name: "Radiocom RC-21",  brand: RC, category: "professional", image: rcd60Img, tags: ["Long range"],                  price: 2_100_000, rangeCity: "до 1,5 км", rangeOpen: "до 4 км",  industries: ["horeca","security","construction"], blurb: "Компактная профессиональная рация с усиленным приёмом." },
+  { id: "rc-10",  name: "Radiocom RC-10",  brand: RC, category: "amateur",      image: rcd60Img, tags: ["Compact"],                     price: 1_300_000, rangeCity: "до 1 км",   rangeOpen: "до 3 км",  industries: ["horeca","security"], blurb: "Начальный уровень линейки — надёжно и просто." },
 
   // ─── Motorola Talkabout ───
   { id: "m-t82-extreme",       name: "Motorola Talkabout T82 Extreme",       brand: "Motorola", category: "amateur", image: motorolaImg, tags: [...TALK, "IPx4"], price: 1_700_000, rangeCity: "до 1,5 км", industries: ["horeca","security","construction"], blurb: "Защищённая безлицензионная рация для outdoor задач." },
