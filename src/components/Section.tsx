@@ -1,4 +1,6 @@
 import type { ReactNode, CSSProperties } from "react";
+import { WordReveal } from "@/components/WordReveal";
+
 
 export function Section({
   children,
@@ -42,12 +44,12 @@ export function SectionHead({
       {eyebrow && (
         <div className="eyebrow-sweep text-[13px] tracking-wide font-medium mb-4">{eyebrow}</div>
       )}
-      <h2
-        className={`headline ${invert ? "text-white" : "text-crisp"}`}
-        style={{ fontSize: "clamp(2.25rem, 5.5vw, 4.5rem)" }}
-      >
-        {title}
-      </h2>
+      <WordReveal
+        as="h2"
+        text={title}
+        className={`headline block ${invert ? "text-white" : "text-crisp"}`}
+      />
+
       {sub && (
         <p className={`subhead mt-4 text-lg ${align === "center" ? "mx-auto max-w-2xl" : ""}`}>
           {sub}
