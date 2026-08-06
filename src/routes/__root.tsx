@@ -13,6 +13,8 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import "../lib/i18n";
 import { hydrateLanguage } from "../lib/i18n";
+import { ScrollProgress } from "@/components/ScrollProgress";
+
 import { hydrateTheme } from "../lib/theme";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
@@ -118,7 +120,9 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="min-h-screen bg-pitch text-crisp">
+        <ScrollProgress />
         <Nav />
+
         <main>
           <Outlet />
         </main>

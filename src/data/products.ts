@@ -1,7 +1,10 @@
 import motorolaImg from "@/assets/product-motorola.jpg";
 import hyteraImg from "@/assets/product-hytera.jpg";
 import pocImg from "@/assets/product-poc.jpg";
-import baofengImg from "@/assets/product-baofeng.jpg";
+import compactImg from "@/assets/product-compact.jpg";
+import rcd60Asset from "@/assets/radiocom-rcd60.jpg.asset.json";
+
+const rcd60Img = rcd60Asset.url;
 
 export type Category =
   | "amateur"
@@ -17,7 +20,6 @@ export type Brand =
   | "Motorola"
   | "Hytera"
   | "Decross"
-  | "Baofeng"
   | "Alinco"
   | "Samcom"
   | "Caltta"
@@ -44,10 +46,10 @@ const TALK = ["PMR446", "License-free"];
 
 export const products: Product[] = [
   // ─── Radiocom RC ───
-  { id: "rc-5d",  name: "Radiocom RC-5D",  brand: RC, category: "professional", image: motorolaImg, tags: ["Long range", "License-free"], price: 2_000_000, rangeCity: "до 3 км",  rangeOpen: "до 10 км", industries: ["construction","security","mining","transport"], blurb: "Флагман линейки Radiocom. Дальность до 10 км на открытой местности." },
-  { id: "rc-50",  name: "Radiocom RC-50",  brand: RC, category: "professional", image: motorolaImg, tags: ["Long range"],                  price: 1_500_000, rangeCity: "до 2,5 км", rangeOpen: "до 5 км",  industries: ["construction","security","transport"], blurb: "Универсальная модель для среднего радиуса действия." },
-  { id: "rc-21",  name: "Radiocom RC-21",  brand: RC, category: "professional", image: motorolaImg, tags: ["Long range"],                  price: 2_100_000, rangeCity: "до 1,5 км", rangeOpen: "до 4 км",  industries: ["horeca","security","construction"], blurb: "Компактная профессиональная рация с усиленным приёмом." },
-  { id: "rc-10",  name: "Radiocom RC-10",  brand: RC, category: "amateur",      image: motorolaImg, tags: ["Compact"],                     price: 1_300_000, rangeCity: "до 1 км",   rangeOpen: "до 3 км",  industries: ["horeca","security"], blurb: "Начальный уровень линейки — надёжно и просто." },
+  { id: "rc-5d",  name: "Radiocom RC-5D",  brand: RC, category: "professional", image: rcd60Img, tags: ["Long range", "License-free"], price: 2_000_000, rangeCity: "до 3 км",  rangeOpen: "до 10 км", industries: ["construction","security","mining","transport"], blurb: "Флагман линейки Radiocom. Дальность до 10 км на открытой местности." },
+  { id: "rc-50",  name: "Radiocom RC-50",  brand: RC, category: "professional", image: rcd60Img, tags: ["Long range"],                  price: 1_500_000, rangeCity: "до 2,5 км", rangeOpen: "до 5 км",  industries: ["construction","security","transport"], blurb: "Универсальная модель для среднего радиуса действия." },
+  { id: "rc-21",  name: "Radiocom RC-21",  brand: RC, category: "professional", image: rcd60Img, tags: ["Long range"],                  price: 2_100_000, rangeCity: "до 1,5 км", rangeOpen: "до 4 км",  industries: ["horeca","security","construction"], blurb: "Компактная профессиональная рация с усиленным приёмом." },
+  { id: "rc-10",  name: "Radiocom RC-10",  brand: RC, category: "amateur",      image: rcd60Img, tags: ["Compact"],                     price: 1_300_000, rangeCity: "до 1 км",   rangeOpen: "до 3 км",  industries: ["horeca","security"], blurb: "Начальный уровень линейки — надёжно и просто." },
 
   // ─── Motorola Talkabout ───
   { id: "m-t82-extreme",       name: "Motorola Talkabout T82 Extreme",       brand: "Motorola", category: "amateur", image: motorolaImg, tags: [...TALK, "IPx4"], price: 1_700_000, rangeCity: "до 1,5 км", industries: ["horeca","security","construction"], blurb: "Защищённая безлицензионная рация для outdoor задач." },
@@ -83,11 +85,11 @@ export const products: Product[] = [
   { id: "m-slr8000",           name: "Motorola SLR8000",                     brand: "Motorola", category: "repeater", image: motorolaImg, tags: ["Repeater", "DMR", "Heavy duty"], price: 88_400_000, rangeCity: "покрытие города", industries: ["mining","transport","security"], blurb: "Мощный DMR-ретранслятор для крупных сетей." },
 
   // ─── Decross ───
-  { id: "d-dc93",              name: "Decross DC93",                          brand: "Decross", category: "amateur", image: baofengImg, tags: ["LPD/PMR"], price: 1_500_000, rangeCity: "до 1,5 км", industries: ["horeca","security"], blurb: "Профессиональная безлицензионная рация." },
-  { id: "d-dc63-red",          name: "Decross DC63 Red",                      brand: "Decross", category: "amateur", image: baofengImg, tags: ["LPD/PMR"], price: 800_000,   rangeCity: "до 900 м",  industries: ["horeca"], blurb: "Компактная рация в красном корпусе." },
-  { id: "d-dc63-blue",         name: "Decross DC63 Blue",                     brand: "Decross", category: "amateur", image: baofengImg, tags: ["LPD/PMR"], price: 800_000,   rangeCity: "до 900 м",  industries: ["horeca"], blurb: "Компактная рация в синем корпусе." },
-  { id: "d-dc44",              name: "Decross DC44",                          brand: "Decross", category: "amateur", image: baofengImg, tags: ["LPD/PMR"], price: 600_000,   rangeCity: "до 300 м",  industries: ["horeca"], blurb: "Начальный уровень для семей и малого бизнеса." },
-  { id: "d-dc43",              name: "Decross DC43",                          brand: "Decross", category: "amateur", image: baofengImg, tags: ["LPD/PMR"], price: 500_000,   rangeCity: "до 300 м",  industries: ["horeca"], blurb: "Самая доступная модель Decross." },
+  { id: "d-dc93",              name: "Decross DC93",                          brand: "Decross", category: "amateur", image: compactImg, tags: ["LPD/PMR"], price: 1_500_000, rangeCity: "до 1,5 км", industries: ["horeca","security"], blurb: "Профессиональная безлицензионная рация." },
+  { id: "d-dc63-red",          name: "Decross DC63 Red",                      brand: "Decross", category: "amateur", image: compactImg, tags: ["LPD/PMR"], price: 800_000,   rangeCity: "до 900 м",  industries: ["horeca"], blurb: "Компактная рация в красном корпусе." },
+  { id: "d-dc63-blue",         name: "Decross DC63 Blue",                     brand: "Decross", category: "amateur", image: compactImg, tags: ["LPD/PMR"], price: 800_000,   rangeCity: "до 900 м",  industries: ["horeca"], blurb: "Компактная рация в синем корпусе." },
+  { id: "d-dc44",              name: "Decross DC44",                          brand: "Decross", category: "amateur", image: compactImg, tags: ["LPD/PMR"], price: 600_000,   rangeCity: "до 300 м",  industries: ["horeca"], blurb: "Начальный уровень для семей и малого бизнеса." },
+  { id: "d-dc43",              name: "Decross DC43",                          brand: "Decross", category: "amateur", image: compactImg, tags: ["LPD/PMR"], price: 500_000,   rangeCity: "до 300 м",  industries: ["horeca"], blurb: "Самая доступная модель Decross." },
 
   // ─── Hytera ───
   { id: "h-s35-pro-lf",        name: "Hytera S35 Pro LF",                     brand: "Hytera", category: "amateur", image: hyteraImg, tags: ["Long range"], price: 1_800_000, rangeCity: "до 2,5 км", industries: ["construction","security","horeca"], blurb: "Профессиональная безлицензионная модель Hytera." },
@@ -99,13 +101,13 @@ export const products: Product[] = [
   { id: "c-e600",              name: "Caltta E600",                           brand: "Caltta",  category: "poc", image: pocImg, tags: ["PoC", "LTE", "GPS"], price: null, rangeCity: "Глобальная", industries: ["transport","security","manufacturing"], blurb: "PoC-платформа для профессиональных сетей." },
 
   // ─── Baby Monitors (Motorola) ───
-  { id: "bm-peekabo",          name: "Motorola PEEKABO",                      brand: "Motorola", category: "monitors", image: baofengImg, tags: ["Video"],                 price: 600_000, rangeCity: "до 300 м", industries: [], blurb: "Компактная видеоняня с ночным режимом." },
-  { id: "bm-vm65-connect",     name: "Motorola VM65 CONNECT",                 brand: "Motorola", category: "monitors", image: baofengImg, tags: ["Video", "WiFi"],         price: 1_200_000, rangeCity: "WiFi", industries: [], blurb: "Wi-Fi видеоняня с приложением на смартфоне." },
-  { id: "bm-mbp36xl",          name: "Motorola MBP36XL",                      brand: "Motorola", category: "monitors", image: baofengImg, tags: ["Video", "5\" screen"],   price: 960_000, rangeCity: "до 300 м", industries: [], blurb: "5-дюймовый экран, наклон и зум камеры." },
-  { id: "bm-vm34",             name: "Motorola VM34",                         brand: "Motorola", category: "monitors", image: baofengImg, tags: ["Video"],                 price: 900_000, rangeCity: "до 300 м", industries: [], blurb: "Средняя линейка с двусторонней связью." },
-  { id: "bm-mbp481",           name: "Motorola MBP481",                       brand: "Motorola", category: "monitors", image: baofengImg, tags: ["Video"],                 price: 600_000, rangeCity: "до 300 м", industries: [], blurb: "Начальная видеоняня Motorola." },
-  { id: "bm-am24-white",       name: "Motorola AM24 White",                   brand: "Motorola", category: "monitors", image: baofengImg, tags: ["Audio"],                 price: 480_000, rangeCity: "до 300 м", industries: [], blurb: "Аудио-радионяня с чётким звуком." },
-  { id: "bm-am21-white",       name: "Motorola AM21 White",                   brand: "Motorola", category: "monitors", image: baofengImg, tags: ["Audio", "Compact"],      price: 420_000, rangeCity: "до 300 м", industries: [], blurb: "Простая аудио-радионяня." },
+  { id: "bm-peekabo",          name: "Motorola PEEKABO",                      brand: "Motorola", category: "monitors", image: compactImg, tags: ["Video"],                 price: 600_000, rangeCity: "до 300 м", industries: [], blurb: "Компактная видеоняня с ночным режимом." },
+  { id: "bm-vm65-connect",     name: "Motorola VM65 CONNECT",                 brand: "Motorola", category: "monitors", image: compactImg, tags: ["Video", "WiFi"],         price: 1_200_000, rangeCity: "WiFi", industries: [], blurb: "Wi-Fi видеоняня с приложением на смартфоне." },
+  { id: "bm-mbp36xl",          name: "Motorola MBP36XL",                      brand: "Motorola", category: "monitors", image: compactImg, tags: ["Video", "5\" screen"],   price: 960_000, rangeCity: "до 300 м", industries: [], blurb: "5-дюймовый экран, наклон и зум камеры." },
+  { id: "bm-vm34",             name: "Motorola VM34",                         brand: "Motorola", category: "monitors", image: compactImg, tags: ["Video"],                 price: 900_000, rangeCity: "до 300 м", industries: [], blurb: "Средняя линейка с двусторонней связью." },
+  { id: "bm-mbp481",           name: "Motorola MBP481",                       brand: "Motorola", category: "monitors", image: compactImg, tags: ["Video"],                 price: 600_000, rangeCity: "до 300 м", industries: [], blurb: "Начальная видеоняня Motorola." },
+  { id: "bm-am24-white",       name: "Motorola AM24 White",                   brand: "Motorola", category: "monitors", image: compactImg, tags: ["Audio"],                 price: 480_000, rangeCity: "до 300 м", industries: [], blurb: "Аудио-радионяня с чётким звуком." },
+  { id: "bm-am21-white",       name: "Motorola AM21 White",                   brand: "Motorola", category: "monitors", image: compactImg, tags: ["Audio", "Compact"],      price: 420_000, rangeCity: "до 300 м", industries: [], blurb: "Простая аудио-радионяня." },
 
   // ─── PDA ───
   { id: "pda-pad-6000m2",      name: "Industrial PDA PAD 6000M2",             brand: RC, category: "pda", image: pocImg, tags: ["Rugged", "Barcode", "PoC"], price: null, rangeCity: "LTE / WiFi", industries: ["transport","manufacturing"], blurb: "Промышленный КПК для склада и логистики." },
@@ -123,7 +125,7 @@ export const categoryLabels: Record<Category, { ru: string; en: string; uz: stri
 };
 
 export const allBrands: Brand[] = [
-  "Motorola", "Hytera", "Radiocom RC", "Decross", "Caltta", "Baofeng", "Alinco", "Samcom",
+  "Motorola", "Hytera", "Radiocom RC", "Decross", "Caltta", "Alinco", "Samcom",
 ];
 
 export function formatPrice(price: number | null, lang: "ru" | "en" | "uz"): string {

@@ -4,8 +4,9 @@ import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { ChevronRight, Repeat, ShieldCheck, Truck, Wrench, Package, Sparkles, MessageCircle } from "lucide-react";
 import { SignalPulse } from "@/components/SignalPulse";
-import heroLight from "@/assets/hero-radio-light.jpg";
-import heroDark from "@/assets/hero-radio-dark.jpg";
+import heroLightAsset from "@/assets/radiocom-rcd60.jpg.asset.json";
+import heroDark from "@/assets/hero-rcd60-dark.jpg";
+
 import bentoNetLight from "@/assets/bento-network-light.jpg";
 import bentoNetDark from "@/assets/bento-network-dark.jpg";
 import horecaImg from "@/assets/industry-horeca.jpg";
@@ -118,16 +119,24 @@ function Hero() {
         className="mt-14 md:mt-20 relative w-full h-[60vh] md:h-[80vh]"
       >
         <div className="hero-glow" />
-        <ThemedImage
-          light={heroLight}
-          dark={heroDark}
-          alt=""
-          eager
-          width={1600}
-          height={1200}
-          className="absolute inset-0 h-full w-full"
-        />
+        <motion.div
+          className="absolute inset-0"
+          animate={{ y: [0, -14, 0] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ThemedImage
+            light={heroLightAsset.url}
+            dark={heroDark}
+            alt="Radiocom RCD-60 professional two-way radio"
+            eager
+            fit="contain"
+            width={1600}
+            height={1600}
+            className="absolute inset-0 h-full w-full"
+          />
+        </motion.div>
       </motion.div>
+
     </section>
   );
 }

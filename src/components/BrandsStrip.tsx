@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { products } from "@/data/products";
 
-const brands = ["Motorola", "Hytera", "Radiocom RC", "Decross", "Caltta", "Baofeng", "Alinco", "Samcom"] as const;
+const brands = ["Motorola", "Hytera", "Radiocom RC", "Decross", "Caltta", "Alinco", "Samcom"] as const;
 
 export function BrandsStrip() {
   const { t } = useTranslation();
