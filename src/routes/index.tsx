@@ -119,16 +119,24 @@ function Hero() {
         className="mt-14 md:mt-20 relative w-full h-[60vh] md:h-[80vh]"
       >
         <div className="hero-glow" />
-        <ThemedImage
-          light={heroLight}
-          dark={heroDark}
-          alt=""
-          eager
-          width={1600}
-          height={1200}
-          className="absolute inset-0 h-full w-full"
-        />
+        <motion.div
+          className="absolute inset-0"
+          animate={{ y: [0, -14, 0] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ThemedImage
+            light={heroLightAsset.url}
+            dark={heroDark}
+            alt="Radiocom RCD-60 professional two-way radio"
+            eager
+            fit="contain"
+            width={1600}
+            height={1600}
+            className="absolute inset-0 h-full w-full"
+          />
+        </motion.div>
       </motion.div>
+
     </section>
   );
 }
