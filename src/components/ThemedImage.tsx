@@ -12,6 +12,7 @@ export function ThemedImage({
   eager = false,
   width,
   height,
+  fit = "cover",
 }: {
   light: string;
   dark: string;
@@ -20,6 +21,7 @@ export function ThemedImage({
   eager?: boolean;
   width?: number;
   height?: number;
+  fit?: "cover" | "contain";
 }) {
   const [isDark, setIsDark] = useState(false);
 
@@ -32,6 +34,8 @@ export function ThemedImage({
     return () => obs.disconnect();
   }, []);
 
+  const fitCls = fit === "contain" ? "object-contain" : "object-cover";
+
   return (
     <div className={`relative ${className}`}>
       <img
@@ -40,7 +44,7 @@ export function ThemedImage({
         width={width}
         height={height}
         loading={eager ? "eager" : "lazy"}
-        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+        className={`absolute inset-0 h-full w-full ${fitCls} transition-opacity duration-500 ${
           isDark ? "opacity-0" : "opacity-100"
         }`}
       />
@@ -51,10 +55,11 @@ export function ThemedImage({
         height={height}
         loading={eager ? "eager" : "lazy"}
         aria-hidden
-        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+        className={`absolute inset-0 h-full w-full ${fitCls} transition-opacity duration-500 ${
           isDark ? "opacity-100" : "opacity-0"
         }`}
       />
     </div>
   );
 }
+
