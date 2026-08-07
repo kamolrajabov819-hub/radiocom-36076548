@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { ChevronRight, Plus, Minus, FileDown, Check, Quote } from "lucide-react";
+import { ChevronRight, Plus, Minus, FileDown, Check, Quote, Radio, Repeat, Wrench } from "lucide-react";
 import { INDUSTRY_SLUGS, industryPicks, type IndustrySlug } from "@/data/industries";
 import { products, formatPrice } from "@/data/products";
 import { openLead } from "@/components/LeadFormSheet";
