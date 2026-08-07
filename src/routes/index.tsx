@@ -113,11 +113,11 @@ function Hero() {
 
       <motion.div
         style={{ scale, opacity, y }}
-        className="mt-6 md:mt-10 relative w-full h-[68vh] md:h-[92vh]"
+        className="mt-4 md:mt-6 relative w-full h-[52vh] md:h-[72vh] max-h-[720px]"
       >
         <div className="hero-glow" />
         <motion.div
-          className="absolute inset-0 flex items-end justify-center"
+          className="absolute inset-0 flex items-center justify-center"
           animate={{ y: [0, -16, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
         >
@@ -127,7 +127,7 @@ function Hero() {
             loading="eager"
             width={1194}
             height={1506}
-            className="h-full w-auto max-w-none object-contain drop-shadow-[0_60px_70px_rgba(0,0,0,0.28)] scale-[1.12] md:scale-100"
+            className="h-full w-auto max-w-[92vw] object-contain drop-shadow-[0_50px_60px_rgba(0,0,0,0.25)]"
           />
         </motion.div>
         {/* soft contact shadow */}
