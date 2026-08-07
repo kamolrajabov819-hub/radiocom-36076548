@@ -322,7 +322,25 @@
     },
     "banner_title": "Not sure which radio fits your operation?",
     "banner_sub": "Tell us your industry — we will recommend the right system within 15 minutes.",
-    "eyebrow": "Industries"
+    "eyebrow": "Industries",
+    "offers": {
+      "title": "What you get",
+      "test": {
+        "t": "Free on-site trial",
+        "d": "We bring radios to your site and test coverage in real conditions — free for 7 days.",
+        "c": "Book a trial"
+      },
+      "tradein": {
+        "t": "Trade-in your old radios",
+        "d": "We accept your old radios of any brand or condition against the price of new ones.",
+        "c": "Get a quote"
+      },
+      "service": {
+        "t": "Service & programming",
+        "d": "Authorized service: channel setup, encryption, repairs and replacement units.",
+        "c": "Request service"
+      }
+    }
   },
   "tradein": {
     "kicker": "TRADE-IN",
@@ -557,5 +575,10 @@
       "sub": "15-minute reply during business hours. No sales pressure.",
       "button": "Talk to an engineer"
     }
+  },
+  "contact": {
+    "eyebrow": "Contacts",
+    "title": "Visit our office",
+    "sub": "See the equipment in person, pick the right model for your task and book a free trial."
   }
 }
