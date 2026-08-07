@@ -166,9 +166,8 @@ function ProductPanel({
                   <X className="w-4 h-4" />
                 </button>
               </div>
-              <div className="rounded-3xl bg-charcoal aspect-[4/3] flex items-center justify-center mb-8">
-                <img src={product.image} alt={product.name} className="max-h-full max-w-full object-contain" />
-              </div>
+              <ProductGallery product={product} />
+
               <h2 className="headline text-3xl md:text-4xl text-crisp">{product.name}</h2>
               <div className="text-[13px] text-cool mt-2">{categoryLabels[product.category][lang]}</div>
               <div className="text-2xl text-crisp mt-4 font-semibold">{formatPrice(product.price, lang)}</div>
