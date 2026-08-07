@@ -4,17 +4,14 @@ import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { ChevronRight, Repeat, ShieldCheck, Truck, Wrench, Package, Sparkles, MessageCircle } from "lucide-react";
 import { SignalPulse } from "@/components/SignalPulse";
-import heroLightAsset from "@/assets/radiocom-rcd60.jpg.asset.json";
-import heroDark from "@/assets/hero-rcd60-dark.jpg";
+import heroLight from "@/assets/hero-rcd60-light.jpg";
 
 import bentoNetLight from "@/assets/bento-network-light.jpg";
-import bentoNetDark from "@/assets/bento-network-dark.jpg";
 import horecaImg from "@/assets/industry-horeca.jpg";
 import constructionImg from "@/assets/industry-construction.jpg";
 import securityImg from "@/assets/industry-security.jpg";
 import { openLead } from "@/components/LeadFormSheet";
 import { BrandsStrip } from "@/components/BrandsStrip";
-import { ThemedImage } from "@/components/ThemedImage";
 import { Section, SectionHead } from "@/components/Section";
 import { SpotlightCard } from "@/components/SpotlightCard";
 import { Magnetic } from "@/components/Magnetic";
@@ -124,15 +121,13 @@ function Hero() {
           animate={{ y: [0, -14, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
         >
-          <ThemedImage
-            light={heroLightAsset.url}
-            dark={heroDark}
+          <img
+            src={heroLight}
             alt="Radiocom RCD-60 professional two-way radio"
-            eager
-            fit="contain"
+            loading="eager"
             width={1600}
             height={1600}
-            className="absolute inset-0 h-full w-full"
+            className="absolute inset-0 h-full w-full object-contain"
           />
         </motion.div>
       </motion.div>
@@ -239,13 +234,13 @@ function Bento() {
           transition={spring}
           className="bento-card aspect-[4/3] md:aspect-auto md:min-h-[420px] relative"
         >
-          <ThemedImage
-            light={bentoNetLight}
-            dark={bentoNetDark}
+          <img
+            src={bentoNetLight}
             alt=""
+            loading="lazy"
             width={1400}
             height={1400}
-            className="absolute inset-0 h-full w-full"
+            className="absolute inset-0 h-full w-full object-cover"
           />
         </motion.div>
         <motion.div

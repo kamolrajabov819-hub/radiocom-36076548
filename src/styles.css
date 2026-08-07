@@ -77,32 +77,6 @@
   --ring: var(--signal);
 }
 
-/* DARK — art-directed pitch black */
-.dark {
-  --pitch: #0a0a0a;
-  --charcoal: #141414;
-  --panel: #1c1c1e;
-  --cool: #86868b;
-  --crisp: #f5f5f7;
-  --signal: #ff3b30;
-
-  --background: var(--pitch);
-  --foreground: var(--crisp);
-  --card: var(--charcoal);
-  --card-foreground: var(--crisp);
-  --popover: var(--charcoal);
-  --popover-foreground: var(--crisp);
-  --primary: #ffffff;
-  --primary-foreground: #000000;
-  --secondary: var(--charcoal);
-  --muted: var(--charcoal);
-  --muted-foreground: var(--cool);
-  --accent: var(--signal);
-  --accent-foreground: #ffffff;
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.12);
-  --ring: var(--signal);
-}
 
 
 @layer base {
@@ -277,9 +251,6 @@
   width: 100% !important;
   height: 420px !important;
   border: 0;
-}
-:root.dark .map-embed iframe {
-  filter: invert(0.92) hue-rotate(180deg) contrast(0.9);
 }
 
 /* Sticky filter mask fade */

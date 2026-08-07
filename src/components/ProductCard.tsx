@@ -52,7 +52,7 @@ export function ProductCard({
               width={1024}
               height={1024}
               loading="lazy"
-              className="relative h-[180px] md:h-[210px] w-auto max-w-[85%] object-contain mix-blend-multiply dark:mix-blend-normal transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+              className="relative h-[180px] md:h-[210px] w-auto max-w-[85%] object-contain mix-blend-multiply transition-transform duration-700 ease-out group-hover:scale-[1.06]"
               style={{ transform: "translateZ(40px)" }}
             />
           </div>

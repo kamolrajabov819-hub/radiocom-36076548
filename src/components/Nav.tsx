@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { LangToggle } from "./LangToggle";
-import { ThemeToggle } from "./ThemeToggle";
 import { openLead } from "./LeadFormSheet";
 import { INDUSTRY_SLUGS } from "@/data/industries";
 import logoAsset from "@/assets/radiocom-logo.png.asset.json";
@@ -98,14 +97,13 @@ export function Nav() {
               alt="Radiocom"
               width={180}
               height={32}
-              className="h-[22px] w-auto dark:invert"
+              className="h-[22px] w-auto"
             />
           </Link>
 
           {/* Right actions */}
           <div className="hidden lg:flex items-center justify-end gap-3 flex-1">
             <LangToggle />
-            <ThemeToggle />
             <button
               onClick={() => openLead({ title: t("nav.get_quote") })}
               className="pill pill-sm pill-accent"
@@ -117,7 +115,6 @@ export function Nav() {
           {/* Mobile */}
           <div className="lg:hidden flex items-center gap-2">
             <LangToggle />
-            <ThemeToggle />
             <button
               onClick={() => setMobileOpen(true)}
               className="h-9 w-9 flex items-center justify-center text-crisp"
@@ -138,7 +135,7 @@ export function Nav() {
             className="fixed inset-0 z-50 lg:hidden bg-pitch"
           >
             <div className="flex items-center justify-between px-5 h-12 border-b border-border">
-              <img src={logoAsset.url} alt="Radiocom" width={150} height={26} className="h-[20px] w-auto dark:invert" />
+              <img src={logoAsset.url} alt="Radiocom" width={150} height={26} className="h-[20px] w-auto" />
               <button onClick={() => setMobileOpen(false)} aria-label={t("nav.close")} className="text-crisp">
                 <X className="w-5 h-5" />
               </button>

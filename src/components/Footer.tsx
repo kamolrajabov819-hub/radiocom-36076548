@@ -9,7 +9,7 @@ export function Footer() {
   return (
     <footer className="mt-24 bg-charcoal">
       <div className="max-w-[1440px] mx-auto px-6 md:px-10 pt-16 pb-10">
-        <img src={logoAsset.url} alt="Radiocom" width={200} height={34} loading="lazy" className="h-7 w-auto mb-10 dark:invert" />
+        <img src={logoAsset.url} alt="Radiocom" width={200} height={34} loading="lazy" className="h-7 w-auto mb-10" />
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 border-b border-border pb-12">
           <FooterCol title={t("footer.nav_col")}>
             <FLink to="/">{t("nav.home")}</FLink>
