@@ -15,7 +15,6 @@ import "../lib/i18n";
 import { hydrateLanguage } from "../lib/i18n";
 import { ScrollProgress } from "@/components/ScrollProgress";
 
-import { hydrateTheme } from "../lib/theme";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { LeadFormSheet } from "../components/LeadFormSheet";
@@ -83,11 +82,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap",
       },
     ],
-    scripts: [
-      {
-        children: `try{var t=localStorage.getItem('radiocom-theme');if(t==='dark'){document.documentElement.classList.add('dark');}else if(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.classList.add('dark');}else{document.documentElement.classList.remove('dark');}}catch(e){}`,
-      },
-    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -97,7 +91,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="ru">
       <head>
         <HeadContent />
       </head>
@@ -112,7 +106,6 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   useEffect(() => {
-    hydrateTheme();
     const id = requestAnimationFrame(() => requestAnimationFrame(() => hydrateLanguage()));
     return () => cancelAnimationFrame(id);
   }, []);
