@@ -121,7 +121,66 @@ function CatalogPage() {
 
 }
 
+function ProductGallery({ product }: { product: Product }) {
+  const shots = [product.image, ...(product.gallery ?? [])];
+  const [i, setI] = useState(0);
+  const idx = Math.min(i, shots.length - 1);
+  return (
+    <div className="mb-8">
+      <div className="relative rounded-3xl bg-charcoal aspect-[4/3] flex items-center justify-center overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={shots[idx]}
+            src={shots[idx]}
+            alt={product.name}
+            initial={{ opacity: 0, scale: 0.97 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+            className="max-h-full max-w-full object-contain mix-blend-multiply"
+          />
+        </AnimatePresence>
+        {shots.length > 1 && (
+          <>
+            <GalleryArrow side="left" onClick={() => setI((idx - 1 + shots.length) % shots.length)} />
+            <GalleryArrow side="right" onClick={() => setI((idx + 1) % shots.length)} />
+          </>
+        )}
+      </div>
+      {shots.length > 1 && (
+        <div className="mt-3 flex gap-2 overflow-x-auto no-scrollbar">
+          {shots.map((src, si) => (
+            <button
+              key={src}
+              onClick={() => setI(si)}
+              aria-label={`${product.name} ${si + 1}`}
+              className={`h-16 w-16 shrink-0 rounded-xl bg-charcoal p-1.5 ring-1 transition-colors ${
+                si === idx ? "ring-signal" : "ring-border hover:ring-crisp/30"
+              }`}
+            >
+              <img src={src} alt="" className="h-full w-full object-contain mix-blend-multiply" />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function GalleryArrow({ side, onClick }: { side: "left" | "right"; onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      aria-label={side}
+      className={`absolute top-1/2 -translate-y-1/2 ${side === "left" ? "left-3" : "right-3"} h-9 w-9 rounded-full bg-popover/90 ring-1 ring-border flex items-center justify-center text-crisp hover:bg-popover`}
+    >
+      <ChevronRight className={`w-4 h-4 ${side === "left" ? "rotate-180" : ""}`} />
+    </button>
+  );
+}
+
 function FilterChip({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
+
   return (
     <button
       onClick={onClick}
