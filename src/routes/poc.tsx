@@ -42,9 +42,24 @@ function PocHero() {
   return (
     <section
       ref={ref}
-      className="relative pt-32 md:pt-44 pb-20 md:pb-28 bg-pitch overflow-hidden"
+      className="relative pt-28 md:pt-40 pb-16 md:pb-28 bg-pitch overflow-hidden"
     >
-      <div className="max-w-[1200px] mx-auto px-6 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-8 items-center">
+      {/* Backdrop: soft warm stage + faint grid */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_60%_at_75%_35%,color-mix(in_oklab,var(--signal)_7%,transparent),transparent_70%)]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.35] [mask-image:radial-gradient(60%_60%_at_50%_40%,black,transparent)]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, color-mix(in oklab, var(--crisp) 7%, transparent) 1px, transparent 1px), linear-gradient(to bottom, color-mix(in oklab, var(--crisp) 7%, transparent) 1px, transparent 1px)",
+          backgroundSize: "64px 64px",
+        }}
+      />
+
+      <div className="relative max-w-[1200px] mx-auto px-6 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 items-center">
         {/* Copy */}
         <div className="text-center md:text-left order-2 md:order-1">
           <motion.span
@@ -57,7 +72,7 @@ function PocHero() {
             {t("poc.kicker")}
           </motion.span>
 
-          <h1 className="headline mt-6 text-crisp text-[clamp(1.9rem,3.8vw,3rem)] leading-[1.05] tracking-tight break-words hyphens-auto">
+          <h1 className="headline mt-6 text-crisp text-[clamp(2rem,4vw,3.25rem)] leading-[1.03] tracking-tight break-words hyphens-auto">
             {[t("poc.title_a"), t("poc.title_b")].map((line, li) => (
               <span key={li} className="block overflow-hidden max-w-full">
                 <motion.span
@@ -76,7 +91,7 @@ function PocHero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...spring, delay: 0.28 }}
-            className="subhead mt-6 text-lg md:text-xl max-w-xl mx-auto md:mx-0"
+            className="subhead mt-5 text-lg md:text-xl max-w-xl mx-auto md:mx-0"
           >
             {t("poc.sub")}
           </motion.p>
@@ -85,7 +100,7 @@ function PocHero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...spring, delay: 0.36 }}
-            className="mt-9 flex flex-wrap items-center justify-center md:justify-start gap-3"
+            className="mt-8 flex flex-wrap items-center justify-center md:justify-start gap-3"
           >
             <button
               onClick={() => openLead({ title: t("poc.kicker") })}
@@ -97,40 +112,66 @@ function PocHero() {
               {t("poc.cta_secondary")}
             </a>
           </motion.div>
+
+          {/* Proof chips */}
+          <div className="mt-8 flex flex-wrap items-center justify-center md:justify-start gap-2">
+            {[
+              { Icon: Wifi, label: "LTE + WiFi" },
+              { Icon: MapPin, label: "GPS" },
+              { Icon: MessagesSquare, label: t("poc.poc_vals.media") },
+            ].map((c, i) => (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ ...spring, delay: 0.46 + i * 0.07 }}
+                className="inline-flex max-w-full items-center gap-2 rounded-full bg-charcoal px-3.5 py-1.5 text-[12px] text-crisp/80 ring-1 ring-border"
+              >
+                <c.Icon className="w-3.5 h-3.5 text-signal shrink-0" />
+                <span className="truncate">{c.label}</span>
+              </motion.span>
+            ))}
+          </div>
         </div>
 
         {/* Device with coverage rings */}
         <motion.div
           style={{ y: deviceY, scale: deviceScale }}
-          className="order-1 md:order-2 relative h-[42vh] min-h-[280px] max-h-[560px] md:h-[62vh] flex items-center justify-center"
+          className="order-1 md:order-2 relative h-[46vh] min-h-[320px] max-h-[620px] md:h-[70vh] flex items-center justify-center"
         >
-          {[0, 1, 2].map((i) => (
+          {[0, 1, 2, 3].map((i) => (
             <motion.span
               key={i}
               aria-hidden
-              className="absolute rounded-full border border-signal/25"
-              style={{ width: "min(78vw, 460px)", height: "min(78vw, 460px)" }}
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ scale: [0.5, 1.35], opacity: [0.5, 0] }}
-              transition={{ duration: 4.5, repeat: Infinity, delay: i * 1.5, ease: "easeOut" }}
+              className="absolute rounded-full border border-signal/20"
+              style={{ width: "min(72vw, 520px)", height: "min(72vw, 520px)" }}
+              initial={{ scale: 0.35, opacity: 0 }}
+              animate={{ scale: [0.35, 1.25], opacity: [0.45, 0] }}
+              transition={{ duration: 6, repeat: Infinity, delay: i * 1.5, ease: "easeOut" }}
             />
           ))}
-          <div className="absolute h-[60%] w-[60%] rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--signal)_18%,transparent),transparent_70%)] blur-2xl" />
+          <div className="absolute h-[55%] w-[55%] rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--signal)_14%,transparent),transparent_70%)] blur-3xl" />
           <motion.img
             src={pocDevice}
             alt="PoC push-to-talk device over LTE"
             loading="eager"
             width={231}
             height={714}
-            animate={{ y: [0, -12, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="relative h-full w-auto max-w-none object-contain drop-shadow-[0_40px_60px_rgba(0,0,0,0.3)]"
+            animate={{ y: [0, -14, 0] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+            className="relative h-full w-auto max-w-none object-contain drop-shadow-[0_60px_70px_rgba(0,0,0,0.28)]"
+          />
+          {/* contact shadow */}
+          <span
+            aria-hidden
+            className="absolute bottom-[6%] h-6 w-[46%] rounded-[50%] bg-black/20 blur-2xl"
           />
         </motion.div>
       </div>
     </section>
   );
 }
+
 
 
 /* PoC vs PMR — dual card comparison, no table */
