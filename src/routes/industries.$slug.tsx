@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { ChevronRight, Plus, Minus, FileDown, Check, Quote } from "lucide-react";
+import { ChevronRight, Plus, Minus, FileDown, Check, Quote, Radio, Repeat, Wrench } from "lucide-react";
 import { INDUSTRY_SLUGS, industryPicks, type IndustrySlug } from "@/data/industries";
 import { products, formatPrice } from "@/data/products";
 import { openLead } from "@/components/LeadFormSheet";
@@ -116,39 +116,60 @@ function IndustryPage() {
         </div>
       </section>
 
-      {/* Outcomes */}
-      {outcomes.length > 0 && (
-        <section className="bg-charcoal section px-6 md:px-10">
-          <div className="max-w-[1200px] mx-auto text-center">
-            <motion.h2
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={spring}
-              className="headline text-crisp text-4xl md:text-6xl"
-            >
-              {t("industries.outcomes_title")}
-            </motion.h2>
-            <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
-              {outcomes.map((o, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ ...spring, delay: i * 0.08 }}
-                  className="bento-card p-10"
-                  style={{ background: "var(--pitch)" }}
+      {/* What you get — 3 offers */}
+      <section className="bg-charcoal section px-6 md:px-10">
+        <div className="max-w-[1200px] mx-auto text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={spring}
+            className="headline text-crisp text-4xl md:text-6xl"
+          >
+            {t("industries.offers.title")}
+          </motion.h2>
+          <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {([
+              { k: "test", Icon: Radio },
+              { k: "tradein", Icon: Repeat },
+              { k: "service", Icon: Wrench },
+            ] as const).map((o, i) => (
+              <motion.div
+                key={o.k}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ ...spring, delay: i * 0.1 }}
+                whileHover={{ y: -8 }}
+                className="group bento-card p-10 text-left relative overflow-hidden"
+                style={{ background: "var(--pitch)" }}
+              >
+                <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(70%_60%_at_50%_0%,color-mix(in_oklab,var(--signal)_16%,transparent),transparent_70%)]" />
+                <motion.span
+                  initial={{ scale: 0.6, opacity: 0, rotate: -12 }}
+                  whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ ...spring, delay: 0.15 + i * 0.1 }}
+                  className="relative inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-signal/10 text-signal"
                 >
-                  <OutcomeNumber value={o.n} />
-                  {o.u && <div className="text-signal text-2xl md:text-3xl font-semibold mt-1">{o.u}</div>}
-                  <div className="subhead text-[15px] mt-4">{o.l}</div>
-                </motion.div>
-              ))}
-            </div>
+                  <o.Icon className="h-6 w-6" />
+                </motion.span>
+                <div className="relative headline text-crisp text-2xl mt-6 leading-tight">
+                  {t(`industries.offers.${o.k}.t`)}
+                </div>
+                <p className="relative subhead text-[15px] mt-3">{t(`industries.offers.${o.k}.d`)}</p>
+                <button
+                  onClick={() => openLead({ title: t(`industries.offers.${o.k}.t`) })}
+                  className="relative pill-link mt-6"
+                >
+                  {t(`industries.offers.${o.k}.c`)} <ChevronRight className="w-4 h-4" />
+                </button>
+              </motion.div>
+            ))}
           </div>
-        </section>
-      )}
+        </div>
+      </section>
+
 
       {/* Recommended */}
       <section className="bg-pitch section px-6 md:px-10">

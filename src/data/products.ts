@@ -20,6 +20,30 @@ import xt185 from "@/assets/catalog/xt185.png.asset.json";
 import xt420 from "@/assets/catalog/xt420.png.asset.json";
 import tlkrT92 from "@/assets/catalog/tlkr-t92h2o.png.asset.json";
 
+import rcd60b from "@/assets/catalog/rcd-60-2.jpg.asset.json";
+import rcd70b from "@/assets/catalog/rcd-70-2.jpg.asset.json";
+import t82e2 from "@/assets/catalog/t82-extreme-2.jpg.asset.json";
+import t82e3 from "@/assets/catalog/t82-extreme-3.jpg.asset.json";
+import t72b from "@/assets/catalog/t72-2.jpg.asset.json";
+import t72c from "@/assets/catalog/t72-3.jpg.asset.json";
+import t62r2 from "@/assets/catalog/t62-red-2.jpg.asset.json";
+import t62r3 from "@/assets/catalog/t62-red-3.jpg.asset.json";
+import t62b2 from "@/assets/catalog/t62-blue-2.jpg.asset.json";
+import t42tri2 from "@/assets/catalog/t42-triple-2.jpg.asset.json";
+import t42tri3 from "@/assets/catalog/t42-triple-3.jpg.asset.json";
+import t42q2 from "@/assets/catalog/t42-quad-2.jpg.asset.json";
+import t42q3 from "@/assets/catalog/t42-quad-3.jpg.asset.json";
+import t42r2 from "@/assets/catalog/t42-red-2.jpg.asset.json";
+import t42r3 from "@/assets/catalog/t42-red-3.jpg.asset.json";
+import t42r4 from "@/assets/catalog/t42-red-4.jpg.asset.json";
+import t42b2 from "@/assets/catalog/t42-blue-2.jpg.asset.json";
+import t42b3 from "@/assets/catalog/t42-blue-3.jpg.asset.json";
+import t42b4 from "@/assets/catalog/t42-blue-4.jpg.asset.json";
+import tlkr2 from "@/assets/catalog/tlkr-t92h2o-2.jpg.asset.json";
+import tlkr3 from "@/assets/catalog/tlkr-t92h2o-3.jpg.asset.json";
+import xt185b from "@/assets/catalog/xt185-2.jpg.asset.json";
+import xt185c from "@/assets/catalog/xt185-3.jpg.asset.json";
+
 export type Category = "amateur" | "professional";
 
 export type Brand = "Motorola" | "Radiocom RC";
@@ -30,6 +54,7 @@ export type Product = {
   brand: Brand;
   category: Category;
   image: string;
+  gallery?: string[];
   tags: string[];
   price: number | null; // in сум; null = договорная
   rangeCity: string;
@@ -46,8 +71,8 @@ const TALK = ["PMR446", "License-free"];
 
 export const products: Product[] = [
   // ─── Radiocom RCD (digital / professional) ───
-  { id: "rcd-70", name: "Radiocom RCD-70", brand: RC, category: "professional", image: rcd70.url, tags: ["DMR", "GPS", "IP67"], price: 4_200_000, rangeCity: "до 4 км", rangeOpen: "до 12 км", industries: ["mining","construction","security","transport"], blurb: "Флагман линейки RCD: цифровой DMR, GPS и защита IP67." },
-  { id: "rcd-60", name: "Radiocom RCD-60", brand: RC, category: "professional", image: rcd60.url, tags: ["DMR", "Display", "Keypad"], price: 3_600_000, rangeCity: "до 3,5 км", rangeOpen: "до 10 км", industries: ["construction","security","mining","transport"], blurb: "Цифровая рация с дисплеем и клавиатурой в полном комплекте." },
+  { id: "rcd-70", name: "Radiocom RCD-70", brand: RC, category: "professional", image: rcd70.url, gallery: [rcd70b.url], tags: ["DMR", "GPS", "IP67"], price: 4_200_000, rangeCity: "до 4 км", rangeOpen: "до 12 км", industries: ["mining","construction","security","transport"], blurb: "Флагман линейки RCD: цифровой DMR, GPS и защита IP67." },
+  { id: "rcd-60", name: "Radiocom RCD-60", brand: RC, category: "professional", image: rcd60.url, gallery: [rcd60b.url], tags: ["DMR", "Display", "Keypad"], price: 3_600_000, rangeCity: "до 3,5 км", rangeOpen: "до 10 км", industries: ["construction","security","mining","transport"], blurb: "Цифровая рация с дисплеем и клавиатурой в полном комплекте." },
   { id: "rcd-50", name: "Radiocom RCD-50", brand: RC, category: "professional", image: rcd50.url, tags: ["DMR", "Display"], price: 3_100_000, rangeCity: "до 3 км", rangeOpen: "до 8 км", industries: ["construction","security","manufacturing"], blurb: "Рабочая лошадка бригад: чистый цифровой звук и дисплей." },
   { id: "rcd-40", name: "Radiocom RCD-40", brand: RC, category: "professional", image: rcd40.url, tags: ["DMR", "Long range"], price: 2_600_000, rangeCity: "до 2,5 км", rangeOpen: "до 7 км", industries: ["construction","security","transport"], blurb: "Средний класс RCD с усиленным приёмом и долгим циклом работы." },
   { id: "rcd-30", name: "Radiocom RCD-30", brand: RC, category: "professional", image: rcd30.url, tags: ["DMR", "Compact"], price: 2_200_000, rangeCity: "до 2 км", rangeOpen: "до 6 км", industries: ["horeca","security","construction"], blurb: "Компактная цифровая рация для входа в профессиональный сегмент." },
@@ -58,18 +83,18 @@ export const products: Product[] = [
   { id: "rc-10", name: "Radiocom RC-10", brand: RC, category: "amateur", image: rc10.url, tags: ["Compact"], price: 1_300_000, rangeCity: "до 1 км", rangeOpen: "до 3 км", industries: ["horeca","security"], blurb: "Начальный уровень линейки — надёжно и просто." },
 
   // ─── Motorola Talkabout ───
-  { id: "m-t82-extreme",      name: "Motorola Talkabout T82 Extreme",      brand: MOT, category: "amateur", image: t82extreme.url,     tags: [...TALK, "IPx4"],         price: 1_700_000, rangeCity: "до 1,5 км", industries: ["horeca","security","construction"], blurb: "Защищённая безлицензионная рация для outdoor задач." },
+  { id: "m-t82-extreme",      name: "Motorola Talkabout T82 Extreme",      brand: MOT, category: "amateur", image: t82extreme.url, gallery: [t82e2.url, t82e3.url],     tags: [...TALK, "IPx4"],         price: 1_700_000, rangeCity: "до 1,5 км", industries: ["horeca","security","construction"], blurb: "Защищённая безлицензионная рация для outdoor задач." },
   { id: "m-t82-extreme-quad", name: "Motorola Talkabout T82 Extreme Quad", brand: MOT, category: "amateur", image: t82extremeQuad.url, tags: [...TALK, "Quad", "IPx4"], price: 3_100_000, rangeCity: "до 1,5 км", industries: ["horeca","security","construction"], blurb: "Комплект из 4 раций для организованных бригад." },
   { id: "m-t82",              name: "Motorola Talkabout T82",              brand: MOT, category: "amateur", image: t82.url,            tags: TALK,                      price: 1_500_000, rangeCity: "до 1,5 км", industries: ["horeca","security"], blurb: "Компактная PMR-рация для команд и мероприятий." },
-  { id: "m-t72",              name: "Motorola Talkabout T72 Go Active",    brand: MOT, category: "amateur", image: t72.url,            tags: [...TALK, "IPx4"],         price: 1_300_000, rangeCity: "до 1 км",   industries: ["horeca","security","construction"], blurb: "Актуальная PMR для активного использования вне помещений." },
-  { id: "m-t62-red",          name: "Motorola Talkabout T62 Red",          brand: MOT, category: "amateur", image: t62red.url,         tags: TALK,                      price: 1_100_000, rangeCity: "до 900 м",  industries: ["horeca"], blurb: "Стильная PMR в красном корпусе с надёжным приёмом." },
-  { id: "m-t62-blue",         name: "Motorola Talkabout T62 Blue",         brand: MOT, category: "amateur", image: t62blue.url,        tags: TALK,                      price: 1_100_000, rangeCity: "до 900 м",  industries: ["horeca"], blurb: "Та же T62 в синем корпусе — для команд и семьи." },
-  { id: "m-t42-triple",       name: "Motorola Talkabout T42 Triple",       brand: MOT, category: "amateur", image: t42triple.url,      tags: [...TALK, "Triple"],       price: 700_000,   rangeCity: "до 300 м",  industries: ["horeca"], blurb: "Комплект из 3 раций для малых команд." },
-  { id: "m-t42-quad",         name: "Motorola Talkabout T42 Quad",         brand: MOT, category: "amateur", image: t42quad.url,        tags: [...TALK, "Quad"],         price: 900_000,   rangeCity: "до 300 м",  industries: ["horeca"], blurb: "Комплект из 4 раций T42." },
-  { id: "m-t42-red",          name: "Motorola Talkabout T42 Red",          brand: MOT, category: "amateur", image: t42red.url,         tags: TALK,                      price: 600_000,   rangeCity: "до 300 м",  industries: ["horeca"], blurb: "Начальная PMR для семей и малого бизнеса." },
-  { id: "m-t42-blue",         name: "Motorola Talkabout T42 Blue",         brand: MOT, category: "amateur", image: t42blue.url,        tags: TALK,                      price: 600_000,   rangeCity: "до 300 м",  industries: ["horeca"], blurb: "T42 в синем корпусе — просто, доступно, надёжно." },
-  { id: "m-tlkr-t92h2o",      name: "Motorola TLKR-T92 H2O",               brand: MOT, category: "amateur", image: tlkrT92.url,        tags: [...TALK, "IP67", "Float"], price: 1_800_000, rangeCity: "до 1,5 км", industries: ["horeca","construction","security"], blurb: "Плавает, водозащищена IP67 — для воды и стройки." },
-  { id: "m-xt185",            name: "Motorola XT185",                      brand: MOT, category: "amateur", image: xt185.url,          tags: TALK,                      price: 1_500_000, rangeCity: "до 1 км",   industries: ["horeca"], blurb: "PMR для розницы, HoReCa и общественных заведений." },
+  { id: "m-t72",              name: "Motorola Talkabout T72 Go Active",    brand: MOT, category: "amateur", image: t72.url, gallery: [t72b.url, t72c.url],            tags: [...TALK, "IPx4"],         price: 1_300_000, rangeCity: "до 1 км",   industries: ["horeca","security","construction"], blurb: "Актуальная PMR для активного использования вне помещений." },
+  { id: "m-t62-red",          name: "Motorola Talkabout T62 Red",          brand: MOT, category: "amateur", image: t62red.url, gallery: [t62r2.url, t62r3.url],         tags: TALK,                      price: 1_100_000, rangeCity: "до 900 м",  industries: ["horeca"], blurb: "Стильная PMR в красном корпусе с надёжным приёмом." },
+  { id: "m-t62-blue",         name: "Motorola Talkabout T62 Blue",         brand: MOT, category: "amateur", image: t62blue.url, gallery: [t62b2.url],        tags: TALK,                      price: 1_100_000, rangeCity: "до 900 м",  industries: ["horeca"], blurb: "Та же T62 в синем корпусе — для команд и семьи." },
+  { id: "m-t42-triple",       name: "Motorola Talkabout T42 Triple",       brand: MOT, category: "amateur", image: t42triple.url, gallery: [t42tri2.url, t42tri3.url],      tags: [...TALK, "Triple"],       price: 700_000,   rangeCity: "до 300 м",  industries: ["horeca"], blurb: "Комплект из 3 раций для малых команд." },
+  { id: "m-t42-quad",         name: "Motorola Talkabout T42 Quad",         brand: MOT, category: "amateur", image: t42quad.url, gallery: [t42q2.url, t42q3.url],        tags: [...TALK, "Quad"],         price: 900_000,   rangeCity: "до 300 м",  industries: ["horeca"], blurb: "Комплект из 4 раций T42." },
+  { id: "m-t42-red",          name: "Motorola Talkabout T42 Red",          brand: MOT, category: "amateur", image: t42red.url, gallery: [t42r2.url, t42r3.url, t42r4.url],         tags: TALK,                      price: 600_000,   rangeCity: "до 300 м",  industries: ["horeca"], blurb: "Начальная PMR для семей и малого бизнеса." },
+  { id: "m-t42-blue",         name: "Motorola Talkabout T42 Blue",         brand: MOT, category: "amateur", image: t42blue.url, gallery: [t42b2.url, t42b3.url, t42b4.url],        tags: TALK,                      price: 600_000,   rangeCity: "до 300 м",  industries: ["horeca"], blurb: "T42 в синем корпусе — просто, доступно, надёжно." },
+  { id: "m-tlkr-t92h2o",      name: "Motorola TLKR-T92 H2O",               brand: MOT, category: "amateur", image: tlkrT92.url, gallery: [tlkr2.url, tlkr3.url],        tags: [...TALK, "IP67", "Float"], price: 1_800_000, rangeCity: "до 1,5 км", industries: ["horeca","construction","security"], blurb: "Плавает, водозащищена IP67 — для воды и стройки." },
+  { id: "m-xt185",            name: "Motorola XT185",                      brand: MOT, category: "amateur", image: xt185.url, gallery: [xt185b.url, xt185c.url],          tags: TALK,                      price: 1_500_000, rangeCity: "до 1 км",   industries: ["horeca"], blurb: "PMR для розницы, HoReCa и общественных заведений." },
   { id: "m-xt420",            name: "Motorola XT420",                      brand: MOT, category: "professional", image: xt420.url,     tags: [...TALK, "IP55"],         price: 2_200_000, rangeCity: "до 2 км",   industries: ["horeca","security","construction","manufacturing"], blurb: "Безлицензионная PMR для HoReCa и объектной охраны." },
 ];
 

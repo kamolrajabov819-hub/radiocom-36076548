@@ -52,10 +52,32 @@ export function ProductCard({
               width={1024}
               height={1024}
               loading="lazy"
-              className="relative h-[180px] md:h-[210px] w-auto max-w-[85%] object-contain mix-blend-multiply transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+              className={`relative h-[180px] md:h-[210px] w-auto max-w-[85%] object-contain mix-blend-multiply transition-all duration-700 ease-out group-hover:scale-[1.06] ${
+                p.gallery?.length ? "group-hover:opacity-0" : ""
+              }`}
               style={{ transform: "translateZ(40px)" }}
             />
+            {p.gallery?.length ? (
+              <img
+                src={p.gallery[0]}
+                alt={`${p.name} — 2`}
+                loading="lazy"
+                aria-hidden
+                className="pointer-events-none absolute inset-0 m-auto h-[180px] md:h-[210px] w-auto max-w-[85%] object-contain mix-blend-multiply opacity-0 transition-all duration-700 ease-out group-hover:scale-[1.06] group-hover:opacity-100"
+              />
+            ) : null}
+            {p.gallery?.length ? (
+              <div className="absolute bottom-0 left-1/2 flex -translate-x-1/2 gap-1.5">
+                {[p.image, ...p.gallery].slice(0, 4).map((_, di) => (
+                  <span
+                    key={di}
+                    className={`h-1.5 w-1.5 rounded-full transition-colors ${di === 0 ? "bg-crisp/40 group-hover:bg-crisp/20" : "bg-crisp/15 group-hover:bg-signal"}`}
+                  />
+                ))}
+              </div>
+            ) : null}
           </div>
+
 
           <div className="mt-auto flex items-end justify-between gap-3">
             <div className="min-w-0">

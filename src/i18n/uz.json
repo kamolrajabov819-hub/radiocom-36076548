@@ -322,7 +322,25 @@
     },
     "banner_title": "Qaysi ratsiya biznesingizga mos kelishini bilmayapsizmi?",
     "banner_sub": "Sohangizni ayting — 15 daqiqada tizim tanlab beramiz.",
-    "eyebrow": "Sohalar"
+    "eyebrow": "Sohalar",
+    "offers": {
+      "title": "Siz nima olasiz",
+      "test": {
+        "t": "Bepul sinov",
+        "d": "Ratsiyalarni obyektingizga olib boramiz va aloqani real sharoitda tekshiramiz — sotib olishdan oldin.",
+        "c": "Sinovga buyurtma"
+      },
+      "tradein": {
+        "t": "Eski ratsiyalarni almashtirish",
+        "d": "Eski texnikangizni hisobga olamiz va yangi to‘plam narxini pasaytiramiz.",
+        "c": "Baholashni olish"
+      },
+      "service": {
+        "t": "Servis va kafolat",
+        "d": "Avtorizatsiyalangan servis markazi, zaxira qurilmalar va chastota sozlamalari.",
+        "c": "Shartlarni bilish"
+      }
+    }
   },
   "tradein": {
     "kicker": "TRADE-IN",
@@ -557,5 +575,10 @@
       "sub": "Ish vaqti davomida 15 daqiqada javob. Bosim yo'q.",
       "button": "Muhandisga bog'lanish"
     }
+  },
+  "contact": {
+    "eyebrow": "Kontaktlar",
+    "title": "Ofisimizga tashrif buyuring",
+    "sub": "Jihozlarni jonli ko'rsatamiz, vazifangizga mos modelni tanlaymiz va bepul sinov rasmiylashtiramiz."
   }
 }

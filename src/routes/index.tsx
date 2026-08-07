@@ -374,9 +374,11 @@ function IndustriesTeaser() {
 function FeaturedCatalog() {
   const { t, i18n } = useTranslation();
   const lang = (i18n.language.slice(0, 2) as "ru" | "en" | "uz") || "ru";
-  const featured = ["m-dp4400", "c-e690", "h-s35-pro-lf", "rc-21"]
+  const picked = ["rcd-60", "rcd-70", "m-t82-extreme", "m-xt420"]
     .map((id) => products.find((p) => p.id === id))
     .filter(Boolean) as typeof products;
+  const featured = picked.length >= 4 ? picked.slice(0, 4) : products.slice(0, 4);
+
 
   return (
     <Section className="bg-charcoal">

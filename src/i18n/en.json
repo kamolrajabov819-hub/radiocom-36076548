@@ -322,7 +322,25 @@
     },
     "banner_title": "Not sure which radio fits your operation?",
     "banner_sub": "Tell us your industry — we will recommend the right system within 15 minutes.",
-    "eyebrow": "Industries"
+    "eyebrow": "Industries",
+    "offers": {
+      "title": "What you get",
+      "test": {
+        "t": "Free on-site testing",
+        "d": "We bring radios to your site and verify coverage in real conditions — before you buy.",
+        "c": "Book a test"
+      },
+      "tradein": {
+        "t": "Trade-in your old radios",
+        "d": "We take your old fleet in part-exchange and cut the price of the new set.",
+        "c": "Get a valuation"
+      },
+      "service": {
+        "t": "Service and warranty",
+        "d": "Authorized service center, loaner units and frequency setup for the whole lifecycle.",
+        "c": "See terms"
+      }
+    }
   },
   "tradein": {
     "kicker": "TRADE-IN",
@@ -557,5 +575,10 @@
       "sub": "15-minute reply during business hours. No sales pressure.",
       "button": "Talk to an engineer"
     }
+  },
+  "contact": {
+    "eyebrow": "Contacts",
+    "title": "Visit our office",
+    "sub": "See the equipment in person, pick the right model for your task and book a free trial."
   }
 }
