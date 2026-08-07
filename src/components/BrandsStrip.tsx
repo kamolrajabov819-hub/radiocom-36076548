@@ -72,7 +72,7 @@ export function BrandsStrip() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ ...spring, delay: i * 0.08 }}
               whileHover={{ y: -6 }}
-              className="group relative overflow-hidden rounded-[28px] border border-white/[0.07] bg-gradient-to-br from-white/[0.06] to-white/[0.015] backdrop-blur-sm p-8 md:p-10 text-left"
+              className="group relative overflow-hidden rounded-[28px] border border-black/[0.06] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.04)] hover:shadow-[0_24px_50px_-20px_rgba(0,0,0,0.22)] transition-shadow duration-500 p-8 md:p-10 text-left"
             >
               <div className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(60%_60%_at_50%_0%,color-mix(in_oklab,var(--signal)_22%,transparent),transparent_70%)]" />
               <div className="relative">
@@ -118,7 +118,7 @@ export function BrandsStrip() {
           {loop.map((name, i) => (
             <div
               key={`${name}-${i}`}
-              className="shrink-0 rounded-full border border-white/[0.08] bg-white/[0.03] px-5 py-2.5 text-[13px] text-cool whitespace-nowrap transition-colors duration-300 hover:border-signal/50 hover:text-crisp"
+              className="shrink-0 rounded-full border border-black/[0.07] bg-white px-5 py-2.5 text-[13px] text-cool whitespace-nowrap transition-colors duration-300 hover:border-signal/50 hover:text-crisp"
             >
               {name}
             </div>
