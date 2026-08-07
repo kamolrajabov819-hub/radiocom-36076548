@@ -19,6 +19,8 @@ import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { LeadFormSheet } from "../components/LeadFormSheet";
 import { StickyBottomCta } from "../components/StickyBottomCta";
+import { ContactBlock } from "../components/ContactBlock";
+
 
 function NotFoundComponent() {
   return (
