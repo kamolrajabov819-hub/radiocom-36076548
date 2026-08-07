@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Check, X, Wifi, Radio, MapPin, MessagesSquare, Layers, Coins } from "lucide-react";
-import pocLight from "@/assets/poc-hero-light.jpg";
+import pocDevice from "@/assets/poc-device-cutout.png";
 import { openLead } from "@/components/LeadFormSheet";
 import { spring } from "@/lib/springs";
 
@@ -36,43 +36,102 @@ function PocHero() {
   const { t } = useTranslation();
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const revealTo = useTransform(scrollYProgress, [0, 0.6], [50, 100]);
+  const deviceY = useTransform(scrollYProgress, [0, 1], [0, -70]);
+  const deviceScale = useTransform(scrollYProgress, [0, 1], [1, 1.06]);
 
   return (
-    <section ref={ref} className="pt-40 md:pt-56 pb-24 md:pb-32 bg-pitch overflow-hidden">
-      <div className="max-w-[1200px] mx-auto px-6 text-center">
-        <div className="text-signal text-[13px] mb-6">{t("poc.kicker")}</div>
-        <motion.h1
-          style={{
-            backgroundImage: useTransform(
-              revealTo,
-              (v) => `linear-gradient(180deg, var(--crisp) 0%, var(--crisp) ${v}%, color-mix(in oklab, var(--crisp) 25%, transparent) 100%)`,
-            ) as unknown as string,
-          }}
-          className="headline-hero text-crisp"
-        >
-          {t("poc.title_a")}<br />{t("poc.title_b")}
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ ...spring, delay: 0.1 }}
-          className="subhead mt-6 text-lg md:text-xl max-w-2xl mx-auto"
-        >
-          {t("poc.sub")}
-        </motion.p>
-      </div>
+    <section
+      ref={ref}
+      className="relative pt-32 md:pt-44 pb-20 md:pb-28 bg-pitch overflow-hidden"
+    >
+      <div className="max-w-[1200px] mx-auto px-6 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-8 items-center">
+        {/* Copy */}
+        <div className="text-center md:text-left order-2 md:order-1">
+          <motion.span
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={spring}
+            className="inline-flex items-center gap-2 rounded-full border border-signal/30 bg-signal/[0.07] px-4 py-1.5 text-[11px] uppercase tracking-[0.18em] text-signal"
+          >
+            <Wifi className="w-3.5 h-3.5" />
+            {t("poc.kicker")}
+          </motion.span>
 
-      <div className="mt-20 max-w-[1200px] mx-auto px-6 md:px-10">
-        <div className="rounded-3xl overflow-hidden aspect-[16/8] bg-charcoal relative">
-          <img src={pocLight} alt="" loading="lazy" width={1600} height={1000} className="absolute inset-0 h-full w-full object-cover" />
+          <h1 className="headline mt-6 text-crisp text-[clamp(1.9rem,3.8vw,3rem)] leading-[1.05] tracking-tight break-words hyphens-auto">
+            {[t("poc.title_a"), t("poc.title_b")].map((line, li) => (
+              <span key={li} className="block overflow-hidden max-w-full">
+                <motion.span
+                  className="inline-block max-w-full"
+                  initial={{ y: "110%", opacity: 0 }}
+                  animate={{ y: "0%", opacity: 1 }}
+                  transition={{ ...spring, delay: 0.08 + li * 0.09 }}
+                >
+                  {line}
+                </motion.span>
+              </span>
+            ))}
+          </h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ...spring, delay: 0.28 }}
+            className="subhead mt-6 text-lg md:text-xl max-w-xl mx-auto md:mx-0"
+          >
+            {t("poc.sub")}
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ...spring, delay: 0.36 }}
+            className="mt-9 flex flex-wrap items-center justify-center md:justify-start gap-3"
+          >
+            <button
+              onClick={() => openLead({ title: t("poc.kicker") })}
+              className="pill pill-accent"
+            >
+              {t("poc.cta_primary")}
+            </button>
+            <a href="#poc-compare" className="pill-link">
+              {t("poc.cta_secondary")}
+            </a>
+          </motion.div>
         </div>
-      </div>
 
+        {/* Device with coverage rings */}
+        <motion.div
+          style={{ y: deviceY, scale: deviceScale }}
+          className="order-1 md:order-2 relative h-[42vh] min-h-[280px] max-h-[560px] md:h-[62vh] flex items-center justify-center"
+        >
+          {[0, 1, 2].map((i) => (
+            <motion.span
+              key={i}
+              aria-hidden
+              className="absolute rounded-full border border-signal/25"
+              style={{ width: "min(78vw, 460px)", height: "min(78vw, 460px)" }}
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: [0.5, 1.35], opacity: [0.5, 0] }}
+              transition={{ duration: 4.5, repeat: Infinity, delay: i * 1.5, ease: "easeOut" }}
+            />
+          ))}
+          <div className="absolute h-[60%] w-[60%] rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--signal)_18%,transparent),transparent_70%)] blur-2xl" />
+          <motion.img
+            src={pocDevice}
+            alt="PoC push-to-talk device over LTE"
+            loading="eager"
+            width={231}
+            height={714}
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="relative h-full w-auto max-w-none object-contain drop-shadow-[0_40px_60px_rgba(0,0,0,0.3)]"
+          />
+        </motion.div>
+      </div>
     </section>
   );
 }
+
 
 /* PoC vs PMR — dual card comparison, no table */
 function Compare() {
@@ -92,7 +151,7 @@ function Compare() {
   ];
 
   return (
-    <section className="bg-charcoal section px-6 md:px-10">
+    <section id="poc-compare" className="bg-charcoal section px-6 md:px-10 scroll-mt-24">
       <div className="max-w-[1200px] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

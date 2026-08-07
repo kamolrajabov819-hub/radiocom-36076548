@@ -18,7 +18,7 @@
     "eyebrow": "Authorized distributor · Tashkent",
     "title_a": "Unbreakable",
     "title_b": "comms",
-    "sub": "11 years on the market. 10,000+ clients. The official hub for Motorola, Hytera and Radiocom RC in Uzbekistan.",
+    "sub": "11 years on the market. 10,000+ clients. The official hub for Motorola and Radiocom in Uzbekistan.",
     "cta_primary": "Free 7-day test",
     "cta_secondary": "Explore catalog",
     "social_proof": "247 free tests booked this year",
@@ -235,7 +235,7 @@
       "short": "Transport",
       "desc": "Fleets, warehouses, expeditions.",
       "problem": "The dispatcher loses drivers outside the city. Cellular is expensive and drops.",
-      "solution": "PoC radios (Caltta E690) with nationwide LTE coverage plus in-vehicle DM4600 base stations.",
+      "solution": "PoC radios (PoC devices) with nationwide LTE coverage plus in-vehicle Radiocom RCD base stations.",
       "pains": [
         "Driver in Bukhara — Tashkent dispatch can't reach",
         "Cellular tariffs eat freight margin",
@@ -328,7 +328,7 @@
     "kicker": "TRADE-IN",
     "title_a": "Trade the old.",
     "title_b": "Take the new.",
-    "desc": "Bring your worn-out walkie-talkie. Our specialists match it to a fresh Motorola or Hytera model at a massive discount.",
+    "desc": "Bring your worn-out walkie-talkie. Our specialists match it to a fresh Motorola or Radiocom model at a massive discount.",
     "cta": "Start trade-in"
   },
   "stats": {
@@ -338,7 +338,13 @@
   },
   "brands_title": "Brands we distribute",
   "brands": {
-    "models": "models"
+    "models": "models",
+    "headline": "Authorized distribution",
+    "sub": "We work directly with manufacturers: genuine devices, warranty and service in Tashkent.",
+    "official": "Authorized partner",
+    "view": "View models",
+    "rc_desc": "Our own Radiocom line: analog RC handhelds and digital RCD DMR radios with warranty and service.",
+    "mot_desc": "Talkabout, XT and TLKR — license-free PMR radios from the global market leader."
   },
   "catalog": {
     "title_a": "Multi-brand",
@@ -439,13 +445,15 @@
       "pmr": {
         "title": "Where you own the frequency."
       }
-    }
+    },
+    "cta_primary": "Design my network",
+    "cta_secondary": "PoC or PMR?"
   },
   "service": {
     "kicker": "AUTHORIZED SERVICE CENTER",
     "title_a": "Repairs",
     "title_b": "you can trust.",
-    "sub": "Warranty and post-warranty service for Motorola, Hytera and Vertex Standard radios. Original parts, fixed pricing, diagnostics on dedicated hardware.",
+    "sub": "Warranty and post-warranty service for Motorola, Radiocom and Vertex Standard radios. Original parts, fixed pricing, diagnostics on dedicated hardware.",
     "request_repair": "Request repair",
     "advantages": {
       "certified": "Certified technicians",
@@ -495,7 +503,7 @@
   "home": {
     "hero": {
       "title": "Pro Communication. Unbreakable.",
-      "sub": "Motorola, Hytera and PoC radios — authorized service, free 7-day testing and nationwide delivery.",
+      "sub": "Motorola and Radiocom — authorized service, a free 7-day trial and nationwide delivery.",
       "cta_primary": "Book Free Test",
       "cta_secondary": "Learn more",
       "eyebrow": "RADIOCOM · PROFESSIONAL TWO-WAY RADIO"
@@ -510,11 +518,11 @@
       "sub": "One partner for hardware, licensing, deployment and repair.",
       "tradein": {
         "title": "Trade-In",
-        "sub": "Bring your old radio. Take a fresh Motorola or Hytera at a discount."
+        "sub": "Bring your old radio. Take a fresh Motorola or Radiocom at a discount."
       },
       "models": {
         "title": "35+ models",
-        "sub": "Motorola, Hytera, Caltta, Decross, Radiocom RC."
+        "sub": "Motorola, Radiocom, Radiocom, Radiocom RC."
       },
       "warranty": {
         "title": "12-month warranty",

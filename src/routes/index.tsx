@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { ChevronRight, Repeat, ShieldCheck, Truck, Wrench, Package, Sparkles, MessageCircle } from "lucide-react";
 import { SignalPulse } from "@/components/SignalPulse";
-import heroLight from "@/assets/hero-rcd60-light.jpg";
+import heroCutout from "@/assets/hero-rcd60-cutout.png";
 
 import bentoNetLight from "@/assets/bento-network-light.jpg";
 import horecaImg from "@/assets/industry-horeca.jpg";
@@ -113,24 +113,27 @@ function Hero() {
 
       <motion.div
         style={{ scale, opacity, y }}
-        className="mt-14 md:mt-20 relative w-full h-[60vh] md:h-[80vh]"
+        className="mt-4 md:mt-6 relative w-full h-[52vh] md:h-[72vh] max-h-[720px]"
       >
         <div className="hero-glow" />
         <motion.div
-          className="absolute inset-0"
-          animate={{ y: [0, -14, 0] }}
+          className="absolute inset-0 flex items-center justify-center"
+          animate={{ y: [0, -16, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
         >
           <img
-            src={heroLight}
+            src={heroCutout}
             alt="Radiocom RCD-60 professional two-way radio"
             loading="eager"
-            width={1600}
-            height={1600}
-            className="absolute inset-0 h-full w-full object-contain"
+            width={1194}
+            height={1506}
+            className="h-full w-auto max-w-[92vw] object-contain drop-shadow-[0_50px_60px_rgba(0,0,0,0.25)]"
           />
         </motion.div>
+        {/* soft contact shadow */}
+        <div className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 h-10 w-[46%] rounded-[100%] bg-black/12 blur-2xl" />
       </motion.div>
+
 
     </section>
   );

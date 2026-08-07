@@ -36,7 +36,7 @@ export function SignalPulse({
             <stop offset="100%" stopColor={color} stopOpacity="0" />
           </radialGradient>
         </defs>
-        <circle cx="200" cy="200" r="6" fill={color} />
+        <circle cx="200" cy="200" r="4" fill={color} opacity="0.25" />
         {Array.from({ length: rings }).map((_, i) => (
           <motion.circle
             key={i}
