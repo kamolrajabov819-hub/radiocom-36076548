@@ -338,7 +338,13 @@
   },
   "brands_title": "Brands we distribute",
   "brands": {
-    "models": "models"
+    "models": "models",
+    "headline": "Authorized distribution",
+    "sub": "We work directly with manufacturers: genuine devices, warranty and service in Tashkent.",
+    "official": "Authorized partner",
+    "view": "View models",
+    "rc_desc": "Our own Radiocom line: analog RC handhelds and digital RCD DMR radios with warranty and service.",
+    "mot_desc": "Talkabout, XT and TLKR — license-free PMR radios from the global market leader."
   },
   "catalog": {
     "title_a": "Multi-brand",
@@ -439,7 +445,9 @@
       "pmr": {
         "title": "Where you own the frequency."
       }
-    }
+    },
+    "cta_primary": "Design my network",
+    "cta_secondary": "PoC or PMR?"
   },
   "service": {
     "kicker": "AUTHORIZED SERVICE CENTER",

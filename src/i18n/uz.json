@@ -338,7 +338,13 @@
   },
   "brands_title": "Portfelimizdagi brendlar",
   "brands": {
-    "models": "model"
+    "models": "model",
+    "headline": "Rasmiy distribyutsiya",
+    "sub": "Ishlab chiqaruvchilar bilan to'g'ridan-to'g'ri ishlaymiz: original qurilmalar, kafolat va Toshkentda servis.",
+    "official": "Rasmiy hamkor",
+    "view": "Modellarni ko'rish",
+    "rc_desc": "O'z liniyamiz Radiocom: analog RC va raqamli RCD DMR ratsiyalari, kafolat va servis bilan.",
+    "mot_desc": "Talkabout, XT va TLKR — jahon yetakchisidan litsenziyasiz PMR ratsiyalar."
   },
   "catalog": {
     "title_a": "Ko'p brendli",
@@ -439,7 +445,9 @@
       "pmr": {
         "title": "O'z chastotangiz bo'lgan joyda."
       }
-    }
+    },
+    "cta_primary": "Tarmoqni hisoblash",
+    "cta_secondary": "PoC yoki PMR?"
   },
   "service": {
     "kicker": "VAKOLATLI SERVIS MARKAZI",
