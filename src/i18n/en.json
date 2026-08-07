@@ -326,19 +326,19 @@
     "offers": {
       "title": "What you get",
       "test": {
-        "t": "Free on-site trial",
-        "d": "We bring radios to your site and test coverage in real conditions — free for 7 days.",
-        "c": "Book a trial"
+        "t": "Free on-site testing",
+        "d": "We bring radios to your site and verify coverage in real conditions — before you buy.",
+        "c": "Book a test"
       },
       "tradein": {
         "t": "Trade-in your old radios",
-        "d": "We accept your old radios of any brand or condition against the price of new ones.",
-        "c": "Get a quote"
+        "d": "We take your old fleet in part-exchange and cut the price of the new set.",
+        "c": "Get a valuation"
       },
       "service": {
-        "t": "Service & programming",
-        "d": "Authorized service: channel setup, encryption, repairs and replacement units.",
-        "c": "Request service"
+        "t": "Service and warranty",
+        "d": "Authorized service center, loaner units and frequency setup for the whole lifecycle.",
+        "c": "See terms"
       }
     }
   },

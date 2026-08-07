@@ -326,19 +326,19 @@
     "offers": {
       "title": "Siz nima olasiz",
       "test": {
-        "t": "Obyektda bepul sinov",
-        "d": "Ratsiyalarni obyektingizga olib boramiz va real sharoitda aloqani tekshiramiz — 7 kun bepul.",
+        "t": "Bepul sinov",
+        "d": "Ratsiyalarni obyektingizga olib boramiz va aloqani real sharoitda tekshiramiz — sotib olishdan oldin.",
         "c": "Sinovga buyurtma"
       },
       "tradein": {
-        "t": "Eski ratsiyalar trade-in",
-        "d": "Har qanday marka va holatdagi eski ratsiyalaringizni yangisi hisobiga qabul qilamiz.",
-        "c": "Baholash"
+        "t": "Eski ratsiyalarni almashtirish",
+        "d": "Eski texnikangizni hisobga olamiz va yangi to‘plam narxini pasaytiramiz.",
+        "c": "Baholashni olish"
       },
       "service": {
-        "t": "Servis va dasturlash",
-        "d": "Vakolatli servis: kanallarni sozlash, shifrlash, ta'mirlash va almashtirish fondi.",
-        "c": "Servis so'rash"
+        "t": "Servis va kafolat",
+        "d": "Avtorizatsiyalangan servis markazi, zaxira qurilmalar va chastota sozlamalari.",
+        "c": "Shartlarni bilish"
       }
     }
   },
