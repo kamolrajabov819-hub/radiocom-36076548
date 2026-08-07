@@ -18,7 +18,7 @@
     "eyebrow": "Rasmiy distribyutor · Toshkent",
     "title_a": "Buzilmas",
     "title_b": "aloqa",
-    "sub": "Bozorda 11 yil. 10 000+ mijoz. O'zbekistonda Motorola, Hytera va Radiocom RC ning rasmiy markazi.",
+    "sub": "Bozorda 11 yil. 10 000+ mijoz. O'zbekistonda Motorola va Radiocom ning rasmiy markazi.",
     "cta_primary": "7 kunlik bepul sinov",
     "cta_secondary": "Katalogni ko'rish",
     "social_proof": "Bu yil 247 ta bepul sinov band qilingan",
@@ -235,7 +235,7 @@
       "short": "Transport",
       "desc": "Avtoparklar, omborlar, ekspeditsiyalar.",
       "problem": "Dispetcher haydovchilarni shahar tashqarisida yo'qotadi. Mobil aloqa qimmat va uziladi.",
-      "solution": "Butun mamlakat bo'ylab LTE qamrovli Caltta E690 PoC ratsiyalari va DM4600 avtomobil stansiyalari.",
+      "solution": "Butun mamlakat bo'ylab LTE qamrovli PoC qurilmalari PoC ratsiyalari va Radiocom RCD avtomobil stansiyalari.",
       "pains": [
         "Haydovchi Buxoroda — Toshkentdagi dispetcher aloqasiz",
         "Mobil tarif marja yeydi",
@@ -328,7 +328,7 @@
     "kicker": "TRADE-IN",
     "title_a": "Eskini bering.",
     "title_b": "Yangisini oling.",
-    "desc": "Eski ratsiyangizni olib keling — mutaxassislarimiz sizga yangi Motorola yoki Hytera modelini katta chegirma bilan taklif qiladi.",
+    "desc": "Eski ratsiyangizni olib keling — mutaxassislarimiz sizga yangi Motorola yoki Radiocom modelini katta chegirma bilan taklif qiladi.",
     "cta": "Almashishni boshlash"
   },
   "stats": {
@@ -453,7 +453,7 @@
     "kicker": "VAKOLATLI SERVIS MARKAZI",
     "title_a": "Ishonchli",
     "title_b": "ta'mirlash.",
-    "sub": "Motorola, Hytera va Vertex Standard ratsiyalari uchun kafolat va kafolatdan keyingi xizmat. Original ehtiyot qismlar.",
+    "sub": "Motorola, Radiocom va Vertex Standard ratsiyalari uchun kafolat va kafolatdan keyingi xizmat. Original ehtiyot qismlar.",
     "request_repair": "Ta'mirlashga ariza",
     "advantages": {
       "certified": "Sertifikatlangan mutaxassislar",
@@ -518,11 +518,11 @@
       "sub": "Jihoz, litsenziya, o'rnatish va ta'mirlash — bitta hamkorda.",
       "tradein": {
         "title": "Trade-In",
-        "sub": "Eski ratsiyani bering — yangi Motorola yoki Hytera ni chegirma bilan oling."
+        "sub": "Eski ratsiyani bering — yangi Motorola yoki Radiocom ni chegirma bilan oling."
       },
       "models": {
         "title": "35+ model",
-        "sub": "Motorola, Hytera, Caltta, Decross, Radiocom RC."
+        "sub": "Motorola, Radiocom, Radiocom, Radiocom RC."
       },
       "warranty": {
         "title": "12 oy kafolat",
