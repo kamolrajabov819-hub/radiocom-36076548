@@ -119,7 +119,9 @@ function RootComponent() {
         <main>
           <Outlet />
         </main>
+        <ContactBlock />
         <Footer />
+
         <StickyBottomCta />
         <LeadFormSheet />
       </div>
