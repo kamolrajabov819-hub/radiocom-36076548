@@ -72,7 +72,7 @@ export function BrandsStrip() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ ...spring, delay: i * 0.08 }}
               whileHover={{ y: -6 }}
-              className="group relative overflow-hidden rounded-[28px] border border-black/[0.06] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.04)] hover:shadow-[0_24px_50px_-20px_rgba(0,0,0,0.22)] transition-shadow duration-500 p-8 md:p-10 text-left"
+              className="group relative overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)] hover:shadow-[0_24px_50px_-20px_rgba(0,0,0,0.22)] transition-shadow duration-500 p-8 md:p-10 text-left"
             >
               <div className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(60%_60%_at_50%_0%,color-mix(in_oklab,var(--signal)_22%,transparent),transparent_70%)]" />
               <div className="relative">
