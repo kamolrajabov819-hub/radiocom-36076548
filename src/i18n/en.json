@@ -19,7 +19,7 @@
     "title_a": "Unbreakable",
     "title_b": "comms",
     "sub": "11 years on the market. 10,000+ clients. The official hub for Motorola and Radiocom in Uzbekistan.",
-    "cta_primary": "Free 7-day test",
+    "cta_primary": "Free testing",
     "cta_secondary": "Explore catalog",
     "social_proof": "247 free tests booked this year",
     "scroll": "Scroll"
@@ -91,7 +91,7 @@
         },
         {
           "q": "Can I try before I buy?",
-          "a": "Yes — 7-day free test on your site."
+          "a": "Yes — free test on your site."
         }
       ]
     },
@@ -515,13 +515,13 @@
   "lead": {
     "float": "Free test",
     "tooltip": "Request a specialist visit",
-    "sticky_cta": "Free 7-day test",
+    "sticky_cta": "Free testing",
     "sticky_sub": "We deliver, tune and pick up"
   },
   "home": {
     "hero": {
       "title": "Pro Communication. Unbreakable.",
-      "sub": "Motorola and Radiocom — authorized service, a free 7-day trial and nationwide delivery.",
+      "sub": "Motorola and Radiocom — authorized service, free testing and nationwide delivery.",
       "cta_primary": "Book Free Test",
       "cta_secondary": "Learn more",
       "eyebrow": "RADIOCOM · PROFESSIONAL TWO-WAY RADIO"
@@ -551,7 +551,7 @@
         "sub": "Free delivery across Uzbekistan."
       },
       "test": {
-        "title": "Free 7-day test",
+        "title": "Free testing",
         "sub": "We deliver, tune and pick up. No commitment."
       },
       "service": {

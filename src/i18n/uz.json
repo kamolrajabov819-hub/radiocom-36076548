@@ -19,7 +19,7 @@
     "title_a": "Buzilmas",
     "title_b": "aloqa",
     "sub": "Bozorda 11 yil. 10 000+ mijoz. O'zbekistonda Motorola va Radiocom ning rasmiy markazi.",
-    "cta_primary": "7 kunlik bepul sinov",
+    "cta_primary": "Bepul sinov",
     "cta_secondary": "Katalogni ko'rish",
     "social_proof": "Bu yil 247 ta bepul sinov band qilingan",
     "scroll": "Pastga"
@@ -91,7 +91,7 @@
         },
         {
           "q": "Sotib olishdan oldin sinab ko'rish mumkinmi?",
-          "a": "Ha — 7 kunlik bepul sinov ob'ektingizda."
+          "a": "Ha — ob'ektingizda bepul sinov."
         }
       ]
     },
@@ -515,13 +515,13 @@
   "lead": {
     "float": "Bepul sinov",
     "tooltip": "Mutaxassisni chaqirish",
-    "sticky_cta": "7 kunlik bepul sinov",
+    "sticky_cta": "Bepul sinov",
     "sticky_sub": "Yetkazamiz, sozlaymiz, olib ketamiz"
   },
   "home": {
     "hero": {
       "title": "Professional aloqa. Buzilmas.",
-      "sub": "Motorola va Radiocom — rasmiy servis, bepul 7 kunlik sinov va butun mamlakat bo'ylab yetkazib berish.",
+      "sub": "Motorola va Radiocom — rasmiy servis, bepul sinov va butun mamlakat bo'ylab yetkazib berish.",
       "cta_primary": "Bepul sinovni band qilish",
       "cta_secondary": "Batafsil",
       "eyebrow": "RADIOCOM · PROFESSIONAL RADIOALOQA"
@@ -551,7 +551,7 @@
         "sub": "Butun O'zbekiston bo'ylab bepul yetkazib berish."
       },
       "test": {
-        "title": "7 kunlik bepul sinov",
+        "title": "Bepul sinov",
         "sub": "Yetkazamiz, sozlaymiz, olib ketamiz. Majburiyatsiz."
       },
       "service": {
