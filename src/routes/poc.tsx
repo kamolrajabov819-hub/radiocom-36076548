@@ -3,8 +3,8 @@ import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Check, X, Wifi, Radio, MapPin, MessagesSquare, Layers, Coins } from "lucide-react";
-import rcd60 from "@/assets/catalog/rcd-60.jpg.asset.json";
-import rcd70 from "@/assets/catalog/rcd-70.jpg.asset.json";
+import rcd60 from "@/assets/catalog/rcd-60-2.jpg.asset.json";
+import rcd70 from "@/assets/catalog/rcd-70-2.jpg.asset.json";
 import { openLead } from "@/components/LeadFormSheet";
 import { spring } from "@/lib/springs";
 
