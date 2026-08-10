@@ -265,7 +265,7 @@ function NetworkDesign() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ ...spring, delay: i * 0.06 }}
-              className="bento-card p-6"
+              className="bento-card h-full p-6"
             >
               <div className="text-signal text-[13px]">0{i + 1}</div>
               <div className="text-crisp text-[15px] mt-3 leading-snug">{s}</div>
