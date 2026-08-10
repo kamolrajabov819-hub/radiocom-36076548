@@ -118,7 +118,7 @@ function PocHero() {
             loading="eager"
             animate={reduced ? undefined : { y: [0, -12, 0] }}
             transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-            className="relative h-full w-auto max-w-none object-contain mix-blend-multiply drop-shadow-[0_40px_50px_rgba(0,0,0,0.14)]"
+            className="relative max-h-full w-auto max-w-full object-contain mix-blend-multiply drop-shadow-[0_40px_50px_rgba(0,0,0,0.14)]"
           />
           <span aria-hidden className="absolute bottom-[8%] h-5 w-[38%] rounded-[50%] bg-black/10 blur-2xl" />
         </motion.div>
