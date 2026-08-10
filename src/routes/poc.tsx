@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Check, X, Wifi, Radio, MapPin, MessagesSquare, Layers, Coins } from "lucide-react";
-import pocDevice from "@/assets/poc-device-cutout.png";
+import rcd60 from "@/assets/catalog/rcd-60.jpg.asset.json";
+import rcd70 from "@/assets/catalog/rcd-70.jpg.asset.json";
 import { openLead } from "@/components/LeadFormSheet";
 import { spring } from "@/lib/springs";
 
@@ -35,142 +36,118 @@ function PoCPage() {
 function PocHero() {
   const { t } = useTranslation();
   const ref = useRef<HTMLElement>(null);
+  const reduced = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const deviceY = useTransform(scrollYProgress, [0, 1], [0, -70]);
-  const deviceScale = useTransform(scrollYProgress, [0, 1], [1, 1.06]);
+  const deviceY = useTransform(scrollYProgress, [0, 1], [0, reduced ? 0 : -60]);
+  const deviceScale = useTransform(scrollYProgress, [0, 1], [1, reduced ? 1 : 1.05]);
 
   return (
     <section
       ref={ref}
-      className="relative pt-28 md:pt-40 pb-16 md:pb-28 bg-pitch overflow-hidden"
+      className="relative overflow-hidden bg-background pt-28 pb-20 md:pt-40 md:pb-28"
     >
-      {/* Backdrop: soft warm stage + faint grid */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_60%_at_75%_35%,color-mix(in_oklab,var(--signal)_7%,transparent),transparent_70%)]"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.35] [mask-image:radial-gradient(60%_60%_at_50%_40%,black,transparent)]"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, color-mix(in oklab, var(--crisp) 7%, transparent) 1px, transparent 1px), linear-gradient(to bottom, color-mix(in oklab, var(--crisp) 7%, transparent) 1px, transparent 1px)",
-          backgroundSize: "64px 64px",
-        }}
-      />
+      <div className="relative mx-auto max-w-[1100px] px-6 text-center md:px-10">
+        <motion.span
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={spring}
+          className="inline-flex items-center gap-2 rounded-full border border-border bg-popover px-4 py-1.5 text-[11px] uppercase tracking-[0.18em] text-signal"
+        >
+          <Wifi className="h-3.5 w-3.5" />
+          {t("poc.kicker")}
+        </motion.span>
 
-      <div className="relative max-w-[1200px] mx-auto px-6 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 items-center">
-        {/* Copy */}
-        <div className="text-center md:text-left order-2 md:order-1">
-          <motion.span
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={spring}
-            className="inline-flex items-center gap-2 rounded-full border border-signal/30 bg-signal/[0.07] px-4 py-1.5 text-[11px] uppercase tracking-[0.18em] text-signal"
-          >
-            <Wifi className="w-3.5 h-3.5" />
-            {t("poc.kicker")}
-          </motion.span>
-
-          <h1 className="headline mt-6 text-crisp text-[clamp(2rem,4vw,3.25rem)] leading-[1.03] tracking-tight break-words hyphens-auto">
-            {[t("poc.title_a"), t("poc.title_b")].map((line, li) => (
-              <span key={li} className="block overflow-hidden max-w-full">
-                <motion.span
-                  className="inline-block max-w-full"
-                  initial={{ y: "110%", opacity: 0 }}
-                  animate={{ y: "0%", opacity: 1 }}
-                  transition={{ ...spring, delay: 0.08 + li * 0.09 }}
-                >
-                  {line}
-                </motion.span>
-              </span>
-            ))}
-          </h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...spring, delay: 0.28 }}
-            className="subhead mt-5 text-lg md:text-xl max-w-xl mx-auto md:mx-0"
-          >
-            {t("poc.sub")}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...spring, delay: 0.36 }}
-            className="mt-8 flex flex-wrap items-center justify-center md:justify-start gap-3"
-          >
-            <button
-              onClick={() => openLead({ title: t("poc.kicker") })}
-              className="pill pill-accent"
-            >
-              {t("poc.cta_primary")}
-            </button>
-            <a href="#poc-compare" className="pill-link">
-              {t("poc.cta_secondary")}
-            </a>
-          </motion.div>
-
-          {/* Proof chips */}
-          <div className="mt-8 flex flex-wrap items-center justify-center md:justify-start gap-2">
-            {[
-              { Icon: Wifi, label: "LTE + WiFi" },
-              { Icon: MapPin, label: "GPS" },
-              { Icon: MessagesSquare, label: t("poc.poc_vals.media") },
-            ].map((c, i) => (
+        <h1 className="headline mt-6 text-[clamp(2.25rem,6vw,4.5rem)] leading-[1.02] tracking-tight text-crisp">
+          {[t("poc.title_a"), t("poc.title_b")].map((line, li) => (
+            <span key={li} className="block overflow-hidden">
               <motion.span
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ ...spring, delay: 0.46 + i * 0.07 }}
-                className="inline-flex max-w-full items-center gap-2 rounded-full bg-charcoal px-3.5 py-1.5 text-[12px] text-crisp/80 ring-1 ring-border"
+                className="inline-block max-w-full"
+                initial={{ y: "110%", opacity: 0 }}
+                animate={{ y: "0%", opacity: 1 }}
+                transition={{ ...spring, delay: 0.08 + li * 0.09 }}
               >
-                <c.Icon className="w-3.5 h-3.5 text-signal shrink-0" />
-                <span className="truncate">{c.label}</span>
+                {line}
               </motion.span>
-            ))}
-          </div>
-        </div>
+            </span>
+          ))}
+        </h1>
 
-        {/* Device with coverage rings */}
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ ...spring, delay: 0.26 }}
+          className="subhead mx-auto mt-5 max-w-2xl text-lg md:text-xl"
+        >
+          {t("poc.sub")}
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ ...spring, delay: 0.34 }}
+          className="mt-8 flex flex-wrap items-center justify-center gap-3"
+        >
+          <button onClick={() => openLead({ title: t("poc.kicker") })} className="pill pill-accent">
+            {t("poc.cta_primary")}
+          </button>
+          <a href="#poc-compare" className="pill-link">
+            {t("poc.cta_secondary")}
+          </a>
+        </motion.div>
+
+        {/* Product stage */}
         <motion.div
           style={{ y: deviceY, scale: deviceScale }}
-          className="order-1 md:order-2 relative h-[46vh] min-h-[320px] max-h-[620px] md:h-[70vh] flex items-center justify-center"
+          className="relative mx-auto mt-12 flex h-[42vh] min-h-[300px] max-w-[820px] items-center justify-center md:mt-16 md:h-[54vh] md:max-h-[560px]"
         >
-          {[0, 1, 2, 3].map((i) => (
+          {!reduced &&
+            [0, 1, 2].map((i) => (
+              <motion.span
+                key={i}
+                aria-hidden
+                className="absolute rounded-full border border-signal/15"
+                style={{ width: "min(78vw, 520px)", height: "min(78vw, 520px)" }}
+                initial={{ scale: 0.4, opacity: 0 }}
+                animate={{ scale: [0.4, 1.15], opacity: [0.4, 0] }}
+                transition={{ duration: 7, repeat: Infinity, delay: i * 2.3, ease: "easeOut" }}
+              />
+            ))}
+          <motion.img
+            src={rcd60.url}
+            alt="Radiocom RCD-60 PoC push-to-talk radio"
+            loading="eager"
+            animate={reduced ? undefined : { y: [0, -12, 0] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+            className="relative h-full w-auto max-w-none object-contain mix-blend-multiply drop-shadow-[0_40px_50px_rgba(0,0,0,0.14)]"
+          />
+          <span aria-hidden className="absolute bottom-[8%] h-5 w-[38%] rounded-[50%] bg-black/10 blur-2xl" />
+        </motion.div>
+
+        {/* Proof chips */}
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-2">
+          {[
+            { Icon: Wifi, label: "LTE + WiFi" },
+            { Icon: MapPin, label: "GPS" },
+            { Icon: MessagesSquare, label: t("poc.poc_vals.media") },
+          ].map((c, i) => (
             <motion.span
               key={i}
-              aria-hidden
-              className="absolute rounded-full border border-signal/20"
-              style={{ width: "min(72vw, 520px)", height: "min(72vw, 520px)" }}
-              initial={{ scale: 0.35, opacity: 0 }}
-              animate={{ scale: [0.35, 1.25], opacity: [0.45, 0] }}
-              transition={{ duration: 6, repeat: Infinity, delay: i * 1.5, ease: "easeOut" }}
-            />
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ ...spring, delay: i * 0.07 }}
+              className="inline-flex max-w-full items-center gap-2 rounded-full border border-border bg-popover px-4 py-2 text-[13px] text-crisp/80"
+            >
+              <c.Icon className="h-3.5 w-3.5 shrink-0 text-signal" />
+              <span className="truncate">{c.label}</span>
+            </motion.span>
           ))}
-          <div className="absolute h-[55%] w-[55%] rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--signal)_14%,transparent),transparent_70%)] blur-3xl" />
-          <motion.img
-            src={pocDevice}
-            alt="PoC push-to-talk device over LTE"
-            loading="eager"
-            width={231}
-            height={714}
-            animate={{ y: [0, -14, 0] }}
-            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-            className="relative h-full w-auto max-w-none object-contain drop-shadow-[0_60px_70px_rgba(0,0,0,0.28)]"
-          />
-          {/* contact shadow */}
-          <span
-            aria-hidden
-            className="absolute bottom-[6%] h-6 w-[46%] rounded-[50%] bg-black/20 blur-2xl"
-          />
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 }
+
 
 
 
