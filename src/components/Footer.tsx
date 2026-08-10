@@ -7,7 +7,7 @@ import logoAsset from "@/assets/radiocom-logo.png.asset.json";
 export function Footer() {
   const { t } = useTranslation();
   return (
-    <footer className="mt-24 bg-charcoal">
+    <footer className="bg-charcoal">
       <div className="max-w-[1440px] mx-auto px-6 md:px-10 pt-16 pb-10">
         <img src={logoAsset.url} alt="Radiocom" width={200} height={34} loading="lazy" className="h-7 w-auto mb-10" />
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 border-b border-border pb-12">
@@ -41,7 +41,7 @@ export function Footer() {
         </div>
         <div className="pt-6 flex flex-wrap items-center justify-between gap-3">
           <div className="text-[12px] text-cool">{t("footer.rights")}</div>
-          <div className="text-[12px] text-cool">MOTOROLA · HYTERA · RADIOCOM RC · CALTTA · DECROSS</div>
+          <div className="text-[12px] text-cool">MOTOROLA · RADIOCOM RC</div>
         </div>
       </div>
     </footer>
