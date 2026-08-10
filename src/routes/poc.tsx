@@ -55,7 +55,7 @@ function PocHero() {
 
         <h1 className="headline mt-4 text-[clamp(2.4rem,6.4vw,5rem)] leading-[1.03] tracking-[-0.03em] text-crisp">
           {[t("poc.title_a"), t("poc.title_b")].map((line, li) => (
-            <span key={li} className="block overflow-hidden">
+            <span key={li} className="block overflow-hidden pb-[0.14em] -mb-[0.14em]">
               <motion.span
                 className="inline-block max-w-full"
                 initial={{ y: "110%", opacity: 0 }}
