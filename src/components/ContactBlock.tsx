@@ -55,29 +55,48 @@ export function ContactBlock() {
             </Row>
           </ul>
 
-          <form onSubmit={submit} className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <input
-              name="name"
-              required
-              maxLength={80}
-              placeholder={t("form.name")}
-              className="h-12 flex-1 rounded-full border border-border bg-popover px-5 text-[15px] text-crisp outline-none transition-colors placeholder:text-cool focus:border-signal"
-            />
-            <input
-              name="phone"
-              required
-              maxLength={30}
-              inputMode="tel"
-              placeholder={t("form.phone")}
-              className="h-12 flex-1 rounded-full border border-border bg-popover px-5 text-[15px] text-crisp outline-none transition-colors placeholder:text-cool focus:border-signal"
-            />
-            <button type="submit" disabled={sending || sent} className="pill pill-accent h-12 shrink-0">
-              {sending ? <Loader2 className="h-4 w-4 animate-spin" /> : sent ? <Check className="h-4 w-4" /> : t("form.submit")}
-            </button>
-          </form>
-          <div className="mt-3 text-[12px] text-cool">
-            {sent ? t("form.success") : t("form.trust_line")}
-          </div>
+          {sent ? (
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-8 flex items-center gap-3 rounded-3xl border border-border bg-popover px-6 py-5"
+            >
+              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-signal text-white">
+                <Check className="h-4 w-4" />
+              </span>
+              <span className="text-[15px] text-crisp">{t("form.success")}</span>
+            </motion.div>
+          ) : (
+            <>
+              <form onSubmit={submit} className="mt-8 w-full max-w-xl">
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <input
+                    name="name"
+                    required
+                    maxLength={80}
+                    placeholder={t("form.name")}
+                    className="h-12 w-full min-w-0 rounded-full border border-border bg-popover px-5 text-[15px] text-crisp outline-none transition-shadow placeholder:text-cool focus:border-signal focus:ring-2 focus:ring-signal/25"
+                  />
+                  <input
+                    name="phone"
+                    required
+                    maxLength={30}
+                    inputMode="tel"
+                    placeholder={t("form.phone")}
+                    className="h-12 w-full min-w-0 rounded-full border border-border bg-popover px-5 text-[15px] text-crisp outline-none transition-shadow placeholder:text-cool focus:border-signal focus:ring-2 focus:ring-signal/25"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={sending}
+                  className="pill pill-accent mt-3 h-12 w-full justify-center sm:w-auto sm:px-10"
+                >
+                  {sending ? <Loader2 className="h-4 w-4 animate-spin" /> : t("form.submit")}
+                </button>
+              </form>
+              <div className="mt-3 text-[12px] text-cool">{t("form.trust_line")}</div>
+            </>
+          )}
 
           <div className="mt-7">
             <Socials />
