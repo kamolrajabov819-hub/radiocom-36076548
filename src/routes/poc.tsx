@@ -216,30 +216,36 @@ function CompareCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={spring}
-      className="rounded-3xl p-8 md:p-12"
-      style={{ background: accent ? "var(--signal)" : "var(--pitch)", color: accent ? "#fff" : "var(--crisp)" }}
+      whileHover={{ y: -4 }}
+      className={`flex h-full flex-col rounded-[28px] border p-8 md:p-12 ${
+        accent
+          ? "border-signal/25 bg-popover shadow-[0_30px_70px_-40px_rgba(227,6,19,0.45)]"
+          : "border-border bg-background"
+      }`}
     >
-      <div className={`text-[13px] mb-3 ${accent ? "text-white/70" : "text-cool"}`}>{title}</div>
-      <h3 className="headline text-3xl md:text-4xl">{headline}</h3>
+      <div className={`mb-3 text-[13px] ${accent ? "text-signal" : "text-cool"}`}>{title}</div>
+      <h3 className="headline text-3xl text-crisp md:text-4xl">{headline}</h3>
       <ul className="mt-8 space-y-4">
         {points.map((p, i) => (
           <li key={i} className="flex items-start gap-4">
             <span
-              className="h-9 w-9 rounded-full flex items-center justify-center shrink-0"
-              style={{ background: accent ? "rgba(255,255,255,0.18)" : "var(--charcoal)" }}
+              className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${
+                accent ? "bg-signal text-white" : "bg-charcoal text-cool"
+              }`}
             >
-              {accent ? <Check className="w-4 h-4" /> : <X className="w-4 h-4 text-cool" />}
+              {accent ? <Check className="h-4 w-4" /> : <X className="h-4 w-4" />}
             </span>
-            <div className="flex-1">
-              <div className={`text-[15px] ${accent ? "text-white" : "text-crisp"}`}>{p.label}</div>
+            <div className="min-w-0 flex-1">
+              <div className="text-[15px] text-crisp">{p.label}</div>
             </div>
-            <p.Icon className={`w-5 h-5 mt-2 shrink-0 ${accent ? "text-white/70" : "text-cool"}`} />
+            <p.Icon className={`mt-2 h-5 w-5 shrink-0 ${accent ? "text-signal/70" : "text-cool"}`} />
           </li>
         ))}
       </ul>
     </motion.div>
   );
 }
+
 
 function NetworkDesign() {
   const { t } = useTranslation();
