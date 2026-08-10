@@ -8,6 +8,7 @@ import { openLead } from "@/components/LeadFormSheet";
 import catalogAsset from "@/assets/radiocom-catalog.pdf.asset.json";
 import { spring } from "@/lib/springs";
 import { ProductCard } from "@/components/ProductCard";
+import { assetUrl } from "@/lib/asset";
 
 export const Route = createFileRoute("/catalog")({
   head: () => ({
@@ -95,7 +96,7 @@ function CatalogPage() {
               {filtered.length} {t("catalog.results")}
             </div>
             <a
-              href={catalogAsset.url}
+              href={assetUrl(catalogAsset)}
               download="radiocom-catalog.pdf"
               className="pill pill-ghost pill-sm"
             >
