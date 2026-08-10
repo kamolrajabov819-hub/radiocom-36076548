@@ -2,10 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { MapPin, Clock, Plus, Minus, Search, Microscope, Cog, ClipboardCheck } from "lucide-react";
+import { Plus, Minus, Search, Microscope, Cog, ClipboardCheck } from "lucide-react";
 import serviceLight from "@/assets/service-tech-light.jpg";
 import { openLead } from "@/components/LeadFormSheet";
-import { MapEmbed } from "@/components/MapEmbed";
 import { spring } from "@/lib/springs";
 
 
@@ -29,7 +28,7 @@ function ServicePage() {
       <Flow />
       <Advantages />
       <Policy />
-      <Visit />
+
     </div>
   );
 }
@@ -185,38 +184,13 @@ function Policy() {
             );
           })}
         </div>
+        <div className="mt-10 text-center">
+          <button onClick={() => openLead({ title: t("service.request_repair") })} className="pill pill-accent">
+            {t("service.request_repair")}
+          </button>
+        </div>
       </div>
     </section>
   );
 }
 
-function Visit() {
-  const { t } = useTranslation();
-  return (
-    <section className="bg-charcoal section px-6 md:px-10">
-      <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-        <div>
-          <h2 className="headline text-crisp text-4xl md:text-6xl">{t("service.visit_title")}</h2>
-          <div className="mt-8 space-y-5">
-            <div className="flex items-start gap-4">
-              <MapPin className="w-5 h-5 text-signal mt-0.5 shrink-0" />
-              <p className="text-crisp text-[16px]">{t("footer.address")}</p>
-            </div>
-            <div className="flex items-start gap-4">
-              <Clock className="w-5 h-5 text-signal mt-0.5 shrink-0" />
-              <p className="text-crisp text-[16px]">{t("footer.hours")}</p>
-            </div>
-          </div>
-          <div className="mt-8">
-            <button onClick={() => openLead({ title: t("service.request_repair") })} className="pill pill-accent">
-              {t("service.request_repair")}
-            </button>
-          </div>
-        </div>
-        <div>
-          <MapEmbed />
-        </div>
-      </div>
-    </section>
-  );
-}
