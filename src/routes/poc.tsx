@@ -280,23 +280,48 @@ function NetworkDesign() {
 function Rental() {
   const { t } = useTranslation();
   return (
-    <section className="bg-black text-white py-24 md:py-40 px-6 text-center">
-      <div className="max-w-3xl mx-auto">
-        <div className="text-signal text-[13px] mb-4">{t("poc.rental.kicker")}</div>
-        <h2 className="headline text-white" style={{ fontSize: "clamp(2.25rem, 6vw, 4.5rem)" }}>
-          {t("poc.rental.title")}
-        </h2>
-        <p className="mt-5 text-lg md:text-xl text-white/60">{t("poc.rental.desc")}</p>
-        <div className="mt-8">
-          <button
-            onClick={() => openLead({ title: t("poc.rental.cta") })}
-            className="pill"
-            style={{ background: "#fff", color: "#000" }}
-          >
-            {t("poc.rental.cta")}
-          </button>
-        </div>
+    <section className="bg-black px-6 py-24 text-white md:py-40">
+      <div className="mx-auto grid max-w-[1100px] grid-cols-1 items-center gap-12 md:grid-cols-2">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={spring}
+          className="order-2 min-w-0 text-center md:order-1 md:text-left"
+        >
+          <div className="mb-4 text-[13px] text-signal">{t("poc.rental.kicker")}</div>
+          <h2 className="headline text-white" style={{ fontSize: "clamp(2rem, 5vw, 3.75rem)" }}>
+            {t("poc.rental.title")}
+          </h2>
+          <p className="mt-5 text-lg text-white/60 md:text-xl">{t("poc.rental.desc")}</p>
+          <div className="mt-8">
+            <button
+              onClick={() => openLead({ title: t("poc.rental.cta") })}
+              className="pill"
+              style={{ background: "#fff", color: "#000" }}
+            >
+              {t("poc.rental.cta")}
+            </button>
+          </div>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={spring}
+          className="order-1 flex items-center justify-center md:order-2"
+        >
+          <div className="w-full max-w-[420px] overflow-hidden rounded-[28px] bg-white p-6">
+            <img
+              src={rcd70.url}
+              alt="Radiocom RCD-70 radio available for rent"
+              loading="lazy"
+              className="mx-auto h-[240px] w-auto object-contain md:h-[320px]"
+            />
+          </div>
+        </motion.div>
       </div>
     </section>
   );
 }
+
