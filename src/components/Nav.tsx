@@ -7,6 +7,7 @@ import { LangToggle } from "./LangToggle";
 import { openLead } from "./LeadFormSheet";
 import { INDUSTRY_SLUGS } from "@/data/industries";
 import logoAsset from "@/assets/radiocom-logo.png.asset.json";
+import { assetUrl } from "@/lib/asset";
 
 export function Nav() {
   const { t } = useTranslation();
@@ -93,7 +94,7 @@ export function Nav() {
           {/* Center wordmark */}
           <Link to="/" className="flex items-center lg:absolute lg:left-1/2 lg:-translate-x-1/2" aria-label="Radiocom">
             <img
-              src={logoAsset.url}
+              src={assetUrl(logoAsset)}
               alt="Radiocom"
               width={180}
               height={32}
@@ -135,7 +136,7 @@ export function Nav() {
             className="fixed inset-0 z-50 lg:hidden bg-pitch"
           >
             <div className="flex items-center justify-between px-5 h-12 border-b border-border">
-              <img src={logoAsset.url} alt="Radiocom" width={150} height={26} className="h-[20px] w-auto" />
+              <img src={assetUrl(logoAsset)} alt="Radiocom" width={150} height={26} className="h-[20px] w-auto" />
               <button onClick={() => setMobileOpen(false)} aria-label={t("nav.close")} className="text-crisp">
                 <X className="w-5 h-5" />
               </button>

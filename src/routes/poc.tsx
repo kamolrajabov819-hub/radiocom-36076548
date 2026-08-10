@@ -7,6 +7,7 @@ import pocHero from "@/assets/poc-hero-rcd60.png.asset.json";
 import pocRental from "@/assets/poc-rental-rcd70.png.asset.json";
 import { openLead } from "@/components/LeadFormSheet";
 import { spring } from "@/lib/springs";
+import { assetUrl } from "@/lib/asset";
 
 
 export const Route = createFileRoute("/poc")({
@@ -100,7 +101,7 @@ function PocHero() {
           className="relative mx-auto mt-10 flex max-w-[760px] items-center justify-center md:mt-14"
         >
           <motion.img
-            src={pocHero.url}
+            src={assetUrl(pocHero)}
             alt="Radiocom RCD-60 PoC push-to-talk radio"
             loading="eager"
             width={1400}
@@ -286,7 +287,7 @@ function Rental() {
           className="order-1 flex items-center justify-center md:order-2"
         >
           <img
-            src={pocRental.url}
+            src={assetUrl(pocRental)}
             alt="Radiocom RCD-70 radio available for rent"
             loading="lazy"
             width={1400}

@@ -12,6 +12,7 @@ import horecaImg from "@/assets/industry-horeca.jpg";
 import constructionImg from "@/assets/industry-construction.jpg";
 import securityImg from "@/assets/industry-security.jpg";
 import { spring } from "@/lib/springs";
+import { assetUrl } from "@/lib/asset";
 
 const IMAGES: Record<string, string> = {
   horeca: horecaImg,
@@ -97,7 +98,7 @@ function IndustryPage() {
               {t("industries.cta")}
             </button>
             <a
-              href={catalogAsset.url}
+              href={assetUrl(catalogAsset)}
               download="radiocom-catalog.pdf"
               className="pill pill-ghost text-white"
               style={{ background: "rgba(255,255,255,0.15)", color: "#fff" }}
