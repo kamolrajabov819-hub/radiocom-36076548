@@ -43,7 +43,7 @@ function PocHero() {
   const deviceScale = useTransform(scrollYProgress, [0, 1], [1, reduced ? 1 : 1.04]);
 
   return (
-    <section ref={ref} className="relative overflow-hidden bg-background pt-32 pb-20 md:pt-44 md:pb-28">
+    <section ref={ref} className="relative overflow-hidden band-plain pt-32 pb-20 md:pt-44 md:pb-28">
       <div className="relative mx-auto max-w-[1100px] px-6 text-center md:px-10">
         <motion.div
           initial={{ opacity: 0, y: -6 }}
@@ -54,7 +54,7 @@ function PocHero() {
           {t("poc.kicker")}
         </motion.div>
 
-        <h1 className="headline mt-4 text-[clamp(2.4rem,6.4vw,5rem)] leading-[1.03] tracking-[-0.03em] text-crisp">
+        <h1 className="type-display mt-4 text-crisp">
           {[t("poc.title_a"), t("poc.title_b")].map((line, li) => (
             <span key={li} className="block overflow-hidden pb-[0.14em] -mb-[0.14em]">
               <motion.span
@@ -70,16 +70,16 @@ function PocHero() {
         </h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...spring, delay: 0.26 }}
-          className="subhead mx-auto mt-5 max-w-2xl text-lg font-light md:text-xl"
+          className="subhead type-body mx-auto mt-5 max-w-2xl font-light"
         >
           {t("poc.sub")}
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...spring, delay: 0.34 }}
           className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3"
@@ -92,28 +92,26 @@ function PocHero() {
           </a>
         </motion.div>
 
-        {/* Product stage — seamless white, no card */}
+        {/* Product stage — seamless white, soft contact shadow */}
         <motion.div
           style={{ y: deviceY, scale: deviceScale }}
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...spring, delay: 0.2 }}
-          className="relative mx-auto mt-10 flex max-w-[760px] items-center justify-center md:mt-14"
+          className="stage relative mx-auto mt-10 max-w-[820px] md:mt-16"
         >
-          <motion.img
+          <img
             src={assetUrl(pocHero)}
             alt="Radiocom RCD-60 PoC push-to-talk radio"
             loading="eager"
             width={1400}
             height={1400}
-            animate={reduced ? undefined : { y: [0, -10, 0] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="h-auto w-[78%] max-w-[520px] object-contain md:w-full"
+            className={`relative z-10 h-auto w-[74%] max-w-[560px] object-contain md:w-[86%] ${reduced ? "" : "float-slow"}`}
           />
         </motion.div>
 
         {/* Quiet spec row */}
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-[14px] text-cool md:mt-8">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-2 text-[14px] text-cool md:mt-10">
           {[
             { Icon: Wifi, label: "LTE + WiFi" },
             { Icon: MapPin, label: "GPS" },
@@ -121,10 +119,10 @@ function PocHero() {
           ].map((c, i) => (
             <motion.span
               key={i}
-              initial={{ opacity: 0, y: 8 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ ...spring, delay: i * 0.07 }}
+              transition={{ ...spring, delay: i * 0.06 }}
               className="inline-flex items-center gap-2"
             >
               <c.Icon className="h-4 w-4 shrink-0 text-signal" />
