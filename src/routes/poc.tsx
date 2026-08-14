@@ -187,15 +187,15 @@ function CompareCard({
   const accent = kind === "poc";
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={spring}
       whileHover={{ y: -4 }}
-      className="flex h-full flex-col rounded-[28px] border border-border bg-background p-8 shadow-[0_24px_60px_-48px_rgba(0,0,0,0.35)] md:p-12"
+      className="elev-1 flex h-full flex-col rounded-[28px] bg-background p-8 md:p-12"
     >
       <div className={`mb-3 text-[13px] ${accent ? "text-signal" : "text-cool"}`}>{title}</div>
-      <h3 className="headline text-3xl tracking-[-0.02em] text-crisp md:text-4xl">{headline}</h3>
+      <h3 className="type-title text-crisp md:text-[2rem]">{headline}</h3>
       <ul className="mt-8 space-y-4">
         {points.map((p, i) => (
           <li key={i} className="flex items-start gap-4">
