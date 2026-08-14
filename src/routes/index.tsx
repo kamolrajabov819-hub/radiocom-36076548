@@ -114,26 +114,24 @@ function Hero() {
 
       <motion.div
         style={{ scale, opacity, y }}
-        className="mt-4 md:mt-6 relative w-full h-[52vh] md:h-[72vh] max-h-[720px]"
+        className="stage mt-6 md:mt-10 relative w-full h-[46vh] md:h-[66vh] max-h-[680px]"
       >
-        <div className="hero-glow" />
         <motion.div
-          className="absolute inset-0 flex items-center justify-center"
-          animate={{ y: [0, -16, 0] }}
+          className="absolute inset-0 flex items-center justify-center px-6"
+          animate={{ y: [0, -14, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
         >
           <img
-            src={heroCutout}
-            alt="Radiocom RCD-60 professional two-way radio"
+            src={assetUrl(heroPair)}
+            alt="Radiocom RCD-60 professional two-way radios"
             loading="eager"
-            width={1194}
-            height={1506}
-            className="h-full w-auto max-w-[92vw] object-contain drop-shadow-[0_50px_60px_rgba(0,0,0,0.25)]"
+            width={1600}
+            height={1200}
+            className="h-full w-auto max-w-[94vw] object-contain"
           />
         </motion.div>
-        {/* soft contact shadow */}
-        <div className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 h-10 w-[46%] rounded-[100%] bg-black/12 blur-2xl" />
       </motion.div>
+
 
 
     </section>
