@@ -154,7 +154,7 @@ function Compare() {
   ];
 
   return (
-    <section id="poc-compare" className="bg-charcoal section scroll-mt-24 px-6 md:px-10">
+    <section id="poc-compare" className="band-soft section-lg scroll-mt-24 px-6 md:px-10">
       <div className="mx-auto max-w-[1200px]">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -163,8 +163,8 @@ function Compare() {
           transition={spring}
           className="mb-14 text-center"
         >
-          <h2 className="headline text-4xl tracking-[-0.02em] text-crisp md:text-6xl">{t("poc.vs_title")}</h2>
-          <p className="subhead mx-auto mt-4 max-w-2xl text-lg font-light">{t("poc.vs_sub")}</p>
+          <h2 className="type-headline text-crisp">{t("poc.vs_title")}</h2>
+          <p className="subhead type-body mx-auto mt-4 max-w-2xl font-light">{t("poc.vs_sub")}</p>
         </motion.div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
