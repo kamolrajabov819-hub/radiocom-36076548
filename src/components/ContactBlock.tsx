@@ -19,8 +19,15 @@ export function ContactBlock() {
     e.preventDefault();
     setSending(true);
     const data = Object.fromEntries(new FormData(e.currentTarget));
-    console.log("[lead:contact-block]", data);
-    await new Promise((r) => setTimeout(r, 800));
+    try {
+      await fetch("/api/send-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, source: "contact-block" }),
+      });
+    } catch (err) {
+      console.error("[lead:contact-block] failed to send", err);
+    }
     setSending(false);
     setSent(true);
   };
@@ -70,7 +77,7 @@ export function ContactBlock() {
           ) : (
             <>
               <form onSubmit={submit} className="mt-8 w-full max-w-xl">
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                   <input
                     name="name"
                     required
@@ -84,6 +91,14 @@ export function ContactBlock() {
                     maxLength={30}
                     inputMode="tel"
                     placeholder={t("form.phone")}
+                    className="h-12 w-full min-w-0 rounded-full border border-border bg-popover px-5 text-[15px] text-crisp outline-none transition-shadow placeholder:text-cool focus:border-signal focus:ring-2 focus:ring-signal/25"
+                  />
+                  <input
+                    name="qty"
+                    type="number"
+                    min={1}
+                    inputMode="numeric"
+                    placeholder={t("form.qty")}
                     className="h-12 w-full min-w-0 rounded-full border border-border bg-popover px-5 text-[15px] text-crisp outline-none transition-shadow placeholder:text-cool focus:border-signal focus:ring-2 focus:ring-signal/25"
                   />
                 </div>

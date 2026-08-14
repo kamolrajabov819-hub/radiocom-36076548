@@ -40,8 +40,15 @@ export function LeadFormSheet() {
     e.preventDefault();
     setSending(true);
     const data = Object.fromEntries(new FormData(e.currentTarget));
-    console.log("[lead]", { ...data, product: ctx.product });
-    await new Promise((r) => setTimeout(r, 900));
+    try {
+      await fetch("/api/send-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, product: ctx.product, source: "lead-sheet" }),
+      });
+    } catch (err) {
+      console.error("[lead] failed to send", err);
+    }
     setSending(false);
     setSent(true);
   };
@@ -96,6 +103,7 @@ export function LeadFormSheet() {
                   <form onSubmit={submit} className="space-y-4">
                     <Field name="name" label={t("form.name")} required />
                     <Field name="phone" label={t("form.phone")} required type="tel" />
+                    <Field name="qty" label={t("form.qty")} type="number" />
                     <Field name="message" label={t("form.message")} textarea />
                     <button
                       type="submit"
@@ -130,7 +138,7 @@ function Field({
       {textarea ? (
         <textarea name={name} rows={3} className={cls + " resize-none"} />
       ) : (
-        <input name={name} type={type} required={required} className={cls} />
+        <input name={name} type={type} required={required} min={type === "number" ? 1 : undefined} className={cls} />
       )}
     </label>
   );
