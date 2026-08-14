@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Check, X, Radio, MapPin, MessagesSquare, Layers, Coins, Wifi } from "lucide-react";
-import pocHero from "@/assets/poc-hero-v11.png.asset.json";
+import pocHero from "@/assets/hero-rcd60-cutout.png";
 import pocRental from "@/assets/poc-rental-v11.png.asset.json";
 import { openLead } from "@/components/LeadFormSheet";
 import { spring } from "@/lib/springs";
@@ -101,7 +101,7 @@ function PocHero() {
           className="stage relative mx-auto mt-10 max-w-[820px] md:mt-16"
         >
           <img
-            src={assetUrl(pocHero)}
+            src={pocHero}
             alt="Radiocom RCD-60 PoC push-to-talk radio"
             loading="eager"
             width={1400}

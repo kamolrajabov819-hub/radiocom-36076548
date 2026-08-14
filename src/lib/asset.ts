@@ -20,7 +20,9 @@ export function assetUrl(pointer: AssetPointer | string): string {
 
   // On Lovable hosting (preview, published) and in local dev the CDN path is
   // served from the same origin — keep it relative so freshly uploaded assets
-  // resolve immediately. Only foreign hosts need the absolute CDN origin.
+  // resolve immediately. Every other case — foreign hosts, and server-side
+  // rendering where the request host isn't checked here — needs the absolute
+  // CDN origin, since a bare path only resolves on Lovable's own servers.
   if (typeof window !== "undefined") {
     const host = window.location.hostname;
     const sameOrigin =
@@ -29,7 +31,6 @@ export function assetUrl(pointer: AssetPointer | string): string {
       host.endsWith("lovable.app") ||
       host.endsWith("lovableproject.com");
     if (sameOrigin) return path;
-    return `${ASSET_ORIGIN}${path}`;
   }
-  return path;
+  return `${ASSET_ORIGIN}${path}`;
 }

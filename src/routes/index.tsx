@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { ChevronRight, Repeat, ShieldCheck, Truck, Wrench, Package, Sparkles, MessageCircle } from "lucide-react";
 import { SignalPulse } from "@/components/SignalPulse";
-import heroPair from "@/assets/home-hero-v11.png.asset.json";
+import heroImage from "@/assets/hero-rcd60-cutout.png";
 import { assetUrl } from "@/lib/asset";
 
 import bentoDetail from "@/assets/detail-grille-v11.jpg.asset.json";
@@ -122,7 +122,7 @@ function Hero() {
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
         >
           <img
-            src={assetUrl(heroPair)}
+            src={heroImage}
             alt="Radiocom RCD-60 professional two-way radios"
             loading="eager"
             width={1600}
