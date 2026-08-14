@@ -5,6 +5,7 @@ import { MapPin, Clock, Phone, Mail, Loader2, Check } from "lucide-react";
 import { MapEmbed } from "@/components/MapEmbed";
 import { Socials } from "@/components/Socials";
 import { spring } from "@/lib/springs";
+import { PhoneInput } from "@/components/PhoneInput";
 
 /**
  * Shared closing block for every page: contacts + short lead form on the left,
@@ -85,12 +86,9 @@ export function ContactBlock() {
                     placeholder={t("form.name")}
                     className="h-12 w-full min-w-0 rounded-full border border-border bg-popover px-5 text-[15px] text-crisp outline-none transition-shadow placeholder:text-cool focus:border-signal focus:ring-2 focus:ring-signal/25"
                   />
-                  <input
+                  <PhoneInput
                     name="phone"
                     required
-                    maxLength={30}
-                    inputMode="tel"
-                    placeholder={t("form.phone")}
                     className="h-12 w-full min-w-0 rounded-full border border-border bg-popover px-5 text-[15px] text-crisp outline-none transition-shadow placeholder:text-cool focus:border-signal focus:ring-2 focus:ring-signal/25"
                   />
                   <input

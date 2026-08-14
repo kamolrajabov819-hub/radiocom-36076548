@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { X, Loader2, Check } from "lucide-react";
 import { spring } from "@/lib/springs";
+import { PhoneInput } from "@/components/PhoneInput";
 
 type Ctx = { open: boolean; title?: string; product?: string };
 let listeners: Array<(c: Ctx) => void> = [];
@@ -137,6 +138,8 @@ function Field({
       </span>
       {textarea ? (
         <textarea name={name} rows={3} className={cls + " resize-none"} />
+      ) : type === "tel" ? (
+        <PhoneInput name={name} required={required} className={cls} />
       ) : (
         <input name={name} type={type} required={required} min={type === "number" ? 1 : undefined} className={cls} />
       )}
