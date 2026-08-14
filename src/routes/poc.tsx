@@ -220,21 +220,22 @@ function NetworkDesign() {
   const { t } = useTranslation();
   const steps = t("poc.design.steps", { returnObjects: true }) as string[];
   return (
-    <section className="bg-pitch section px-6 md:px-10">
+    <section className="band-plain section-lg px-6 md:px-10">
       <div className="mx-auto max-w-[1200px] text-center">
         <div className="mb-4 text-[13px] text-signal">{t("poc.design.kicker")}</div>
-        <h2 className="headline mx-auto max-w-3xl text-4xl tracking-[-0.02em] text-crisp md:text-6xl">
+        <h2 className="type-headline mx-auto max-w-3xl text-crisp">
           {t("poc.design.title")}
         </h2>
-        <ol className="mt-14 grid grid-cols-1 gap-3 text-left sm:grid-cols-2 md:grid-cols-5">
+        <ol className="mt-14 grid grid-cols-1 gap-4 text-left sm:grid-cols-2 md:grid-cols-5">
           {steps.map((s, i) => (
             <motion.li
               key={i}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ ...spring, delay: i * 0.06 }}
-              className="bento-card h-full p-6"
+              whileHover={{ y: -4 }}
+              className="flex h-full flex-col rounded-[28px] bg-charcoal p-6"
             >
               <div className="text-[13px] text-signal">0{i + 1}</div>
               <div className="mt-3 text-[15px] leading-snug text-crisp">{s}</div>
