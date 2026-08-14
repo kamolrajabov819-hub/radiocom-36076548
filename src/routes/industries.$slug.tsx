@@ -11,6 +11,9 @@ import catalogAsset from "@/assets/radiocom-catalog.pdf.asset.json";
 import horecaImg from "@/assets/industry-horeca.jpg";
 import constructionImg from "@/assets/industry-construction.jpg";
 import securityImg from "@/assets/industry-security.jpg";
+import miningImg from "@/assets/industry-mining.jpg";
+import transportImg from "@/assets/industry-transport.jpg";
+import manufacturingImg from "@/assets/industry-manufacturing.jpg";
 import { spring } from "@/lib/springs";
 import { assetUrl } from "@/lib/asset";
 
@@ -18,9 +21,9 @@ const IMAGES: Record<string, string> = {
   horeca: horecaImg,
   construction: constructionImg,
   security: securityImg,
-  mining: constructionImg,
-  transport: securityImg,
-  manufacturing: constructionImg,
+  mining: miningImg,
+  transport: transportImg,
+  manufacturing: manufacturingImg,
 };
 
 export const Route = createFileRoute("/industries/$slug")({
