@@ -7,7 +7,7 @@ import { SignalPulse } from "@/components/SignalPulse";
 import heroPair from "@/assets/home-hero-v11.png.asset.json";
 import { assetUrl } from "@/lib/asset";
 
-import bentoNetLight from "@/assets/bento-network-light.jpg";
+import bentoDetail from "@/assets/detail-grille-v11.jpg.asset.json";
 import horecaImg from "@/assets/industry-horeca.jpg";
 import constructionImg from "@/assets/industry-construction.jpg";
 import securityImg from "@/assets/industry-security.jpg";
@@ -237,7 +237,7 @@ function Bento() {
           className="bento-card aspect-[4/3] md:aspect-auto md:min-h-[420px] relative"
         >
           <img
-            src={bentoNetLight}
+            src={assetUrl(bentoDetail)}
             alt=""
             loading="lazy"
             width={1400}
