@@ -249,24 +249,20 @@ function NetworkDesign() {
 
 function Rental() {
   const { t } = useTranslation();
+  const reduced = useReducedMotion();
   return (
-    <section className="overflow-hidden bg-black px-6 py-24 text-white md:py-40">
-      <div className="mx-auto grid max-w-[1100px] grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16">
+    <section className="band-dark overflow-hidden px-6 py-24 md:py-40">
+      <div className="mx-auto grid max-w-[1150px] grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-20">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={spring}
           className="order-2 min-w-0 text-center md:order-1 md:text-left"
         >
           <div className="mb-4 text-[13px] text-signal">{t("poc.rental.kicker")}</div>
-          <h2
-            className="headline tracking-[-0.03em] text-white"
-            style={{ fontSize: "clamp(2rem, 5vw, 3.75rem)" }}
-          >
-            {t("poc.rental.title")}
-          </h2>
-          <p className="mt-5 text-lg font-light text-white/60 md:text-xl">{t("poc.rental.desc")}</p>
+          <h2 className="type-headline text-white">{t("poc.rental.title")}</h2>
+          <p className="type-body mt-5 font-light text-white/60">{t("poc.rental.desc")}</p>
           <div className="mt-8">
             <button
               onClick={() => openLead({ title: t("poc.rental.cta") })}
@@ -291,7 +287,7 @@ function Rental() {
             loading="lazy"
             width={1400}
             height={1400}
-            className="h-auto w-[70%] max-w-[420px] object-contain md:w-full"
+            className={`h-auto w-[74%] max-w-[460px] object-contain md:w-full ${reduced ? "" : "float-slow"}`}
           />
         </motion.div>
       </div>
