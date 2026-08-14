@@ -16,5 +16,20 @@ export type AssetPointer = { url: string };
 export function assetUrl(pointer: AssetPointer | string): string {
   const url = typeof pointer === "string" ? pointer : pointer.url;
   if (/^https?:\/\//i.test(url)) return url;
-  return `${ASSET_ORIGIN}${url.startsWith("/") ? url : `/${url}`}`;
+  const path = url.startsWith("/") ? url : `/${url}`;
+
+  // On Lovable hosting (preview, published) and in local dev the CDN path is
+  // served from the same origin — keep it relative so freshly uploaded assets
+  // resolve immediately. Only foreign hosts need the absolute CDN origin.
+  if (typeof window !== "undefined") {
+    const host = window.location.hostname;
+    const sameOrigin =
+      host === "localhost" ||
+      host === "127.0.0.1" ||
+      host.endsWith("lovable.app") ||
+      host.endsWith("lovableproject.com");
+    if (sameOrigin) return path;
+    return `${ASSET_ORIGIN}${path}`;
+  }
+  return path;
 }
