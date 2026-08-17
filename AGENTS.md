@@ -9,21 +9,30 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-## Design skills
+## Skills
 
-This repo vendors 16 design/UX skills under `.claude/skills/`. Claude Code picks them up
-automatically at session start, so any UI work here should go through them rather than
-improvising. See [`.claude/skills/README.md`](.claude/skills/README.md) for the full map.
+This repo vendors 42 skills under `.claude/skills/` and 18 SEO sub-agents under
+`.claude/agents/`. Claude Code picks them up automatically at session start, so design, motion
+and SEO work here should go through them rather than improvising. See
+[`.claude/skills/README.md`](.claude/skills/README.md) for the full map.
 
 Fast path:
 
 - **Changing how something looks or feels** → `apple-design` (motion, materials, springs)
+- **Which Framer Motion prop or hook** → `framer-motion` (API reference; `apple-design` decides
+  whether and how it should move, this one tells you the call)
 - **Auditing what's already there** → `design-audit`
 - **Looking up an Apple convention** → `apple-design-hig` (`references/hig/`, 56 topics)
 - **Picking a palette or type pairing** → `ui-ux-pro-max`, which is a searchable database,
   not a prose guide: `python3 .claude/skills/ui-ux-pro-max/scripts/search.py "<query>" --design-system`
 - **shadcn/Tailwind component work** → `ui-styling` (matches this stack exactly)
 - **Any generated UI text** → `ui-typography` applies silently (real quotes, correct dashes)
+- **SEO** → `seo` orchestrates; `seo-audit` fans out to the sub-agents. The ones that bite
+  hardest on this site: `seo-hreflang` (three locales, no hreflang tags, `<html lang>` hardcoded
+  to `ru`), `seo-local` (Uzbekistan-only business), `seo-schema` (no `Product`/`LocalBusiness`
+  markup yet), `seo-sitemap` (none exists), `seo-technical`, `seo-images`.
+  Script-backed skills need a one-time `.claude/skills/seo/bin/claude-seo setup`, which builds
+  its own venv and leaves `bun`/`node` alone.
 
 ## Design system
 
