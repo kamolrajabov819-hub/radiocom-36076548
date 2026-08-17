@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Check, X, Radio, MapPin, MessagesSquare, Layers, Coins, Wifi } from "lucide-react";
-import pocHero from "@/assets/poc-hero-v12.png.asset.json";
+import pocHero from "@/assets/poc-hero-v13.png.asset.json";
 import pocRental from "@/assets/poc-rental-v11.png.asset.json";
 import { openLead } from "@/components/LeadFormSheet";
 import { spring } from "@/lib/springs";
