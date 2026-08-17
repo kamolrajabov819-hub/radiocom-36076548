@@ -57,7 +57,7 @@ export function ContactBlock() {
             <Row Icon={Phone}>
               <a href="tel:+998781131618" className="hover:text-signal">+998 78 113-16-18</a>
               <span className="mx-2 text-cool">·</span>
-              <a href="tel:+998933870710" className="hover:text-signal">+998 93 387-07-10</a>
+              <a href="tel:+998933890710" className="hover:text-signal">+998 93 389-07-10</a>
             </Row>
             <Row Icon={Mail}>
               <a href="mailto:sales@radiocom.uz" className="hover:text-signal">sales@radiocom.uz</a>
