@@ -8,16 +8,42 @@ import pocRental from "@/assets/poc-rental-v11.png.asset.json";
 import { openLead } from "@/components/LeadFormSheet";
 import { spring } from "@/lib/springs";
 import { assetUrl } from "@/lib/asset";
-
+import { absolute, canonical } from "@/lib/seo";
 
 export const Route = createFileRoute("/poc")({
   head: () => ({
     meta: [
-      { title: "PoC Systems & Network Design — Push-to-Talk over Cellular | Radiocom" },
-      { name: "description", content: "Push-to-Talk over Cellular systems, PMR comparison, network design and radio rental across Uzbekistan." },
-      { property: "og:title", content: "PoC · Global range, zero repeaters" },
-      { property: "og:description", content: "Instant group communication over LTE and WiFi with GPS and multimedia." },
+      { title: "PoC-рации: связь через LTE по всему Узбекистану | Radiocom" },
+      {
+        name: "description",
+        content:
+          "Push-to-Talk over Cellular — связь без ретрансляторов по всей стране, GPS, группы и диспетчеризация. Проектирование сети и аренда рации в Ташкенте.",
+      },
+      { property: "og:type", content: "website" },
+      {
+        property: "og:title",
+        content: "PoC-рации: связь через LTE по всему Узбекистану | Radiocom",
+      },
+      {
+        property: "og:description",
+        content:
+          "Push-to-Talk over Cellular — связь без ретрансляторов по всей стране, GPS, группы и диспетчеризация. Проектирование сети и аренда рации в Ташкенте.",
+      },
+      { property: "og:url", content: absolute("/poc") },
+      { property: "og:locale", content: "ru_RU" },
+      { property: "og:locale:alternate", content: "uz_UZ" },
+      { property: "og:locale:alternate", content: "en_US" },
+      {
+        name: "twitter:title",
+        content: "PoC-рации: связь через LTE по всему Узбекистану | Radiocom",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Push-to-Talk over Cellular — связь без ретрансляторов по всей стране, GPS, группы и диспетчеризация. Проектирование сети и аренда рации в Ташкенте.",
+      },
     ],
+    links: [canonical("/poc")],
   }),
   component: PoCPage,
 });
@@ -33,7 +59,6 @@ function PoCPage() {
   );
 }
 
-
 function PocHero() {
   const { t } = useTranslation();
   const ref = useRef<HTMLElement>(null);
@@ -43,7 +68,10 @@ function PocHero() {
   const deviceScale = useTransform(scrollYProgress, [0, 1], [1, reduced ? 1 : 1.04]);
 
   return (
-    <section ref={ref} className="relative overflow-hidden band-plain pt-32 pb-20 md:pt-44 md:pb-28">
+    <section
+      ref={ref}
+      className="relative overflow-hidden band-plain pt-32 pb-20 md:pt-44 md:pb-28"
+    >
       <div className="relative mx-auto max-w-[1100px] px-6 text-center md:px-10">
         <motion.div
           initial={{ opacity: 0, y: -6 }}
@@ -135,7 +163,6 @@ function PocHero() {
   );
 }
 
-
 /* PoC vs PMR — two quiet equal-height panels */
 function Compare() {
   const { t } = useTranslation();
@@ -168,8 +195,18 @@ function Compare() {
         </motion.div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <CompareCard kind="poc" title="PoC" headline={t("poc.compare.poc.title")} points={pocPoints} />
-          <CompareCard kind="pmr" title="PMR / DMR" headline={t("poc.compare.pmr.title")} points={pmrPoints} />
+          <CompareCard
+            kind="poc"
+            title="PoC"
+            headline={t("poc.compare.poc.title")}
+            points={pocPoints}
+          />
+          <CompareCard
+            kind="pmr"
+            title="PMR / DMR"
+            headline={t("poc.compare.pmr.title")}
+            points={pmrPoints}
+          />
         </div>
       </div>
     </section>
@@ -177,7 +214,10 @@ function Compare() {
 }
 
 function CompareCard({
-  kind, title, headline, points,
+  kind,
+  title,
+  headline,
+  points,
 }: {
   kind: "poc" | "pmr";
   title: string;
@@ -207,14 +247,15 @@ function CompareCard({
               {accent ? <Check className="h-4 w-4" /> : <X className="h-4 w-4" />}
             </span>
             <div className="min-w-0 flex-1 text-[15px] leading-relaxed text-crisp">{p.label}</div>
-            <p.Icon className={`mt-1.5 h-5 w-5 shrink-0 ${accent ? "text-signal/70" : "text-cool"}`} />
+            <p.Icon
+              className={`mt-1.5 h-5 w-5 shrink-0 ${accent ? "text-signal/70" : "text-cool"}`}
+            />
           </li>
         ))}
       </ul>
     </motion.div>
   );
 }
-
 
 function NetworkDesign() {
   const { t } = useTranslation();
@@ -223,9 +264,7 @@ function NetworkDesign() {
     <section className="band-plain section-lg px-6 md:px-10">
       <div className="mx-auto max-w-[1200px] text-center">
         <div className="mb-4 text-[13px] text-signal">{t("poc.design.kicker")}</div>
-        <h2 className="type-headline mx-auto max-w-3xl text-crisp">
-          {t("poc.design.title")}
-        </h2>
+        <h2 className="type-headline mx-auto max-w-3xl text-crisp">{t("poc.design.title")}</h2>
         <ol className="mt-14 grid grid-cols-1 gap-4 text-left sm:grid-cols-2 md:grid-cols-5">
           {steps.map((s, i) => (
             <motion.li

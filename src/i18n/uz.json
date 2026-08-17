@@ -393,7 +393,18 @@
     "range_open": "Ochiq joyda masofa",
     "features": "Xususiyatlar",
     "price": "Narx",
-    "cta": "Sotib olish"
+    "cta": "Sotib olish",
+    "overview": "Umumiy ma'lumot",
+    "in_box": "Komplektatsiya",
+    "tech_specs": "Xususiyatlar",
+    "gallery": "Galereya",
+    "colour": "Rang",
+    "kit_label": "Komplektdagi ratsiyalar",
+    "related": "O'xshash modellar",
+    "all_models": "Barcha modellar",
+    "more": "Batafsil",
+    "prev": "Oldingi rasm",
+    "next": "Keyingi rasm"
   },
   "form": {
     "title": "Taklif so'rash",

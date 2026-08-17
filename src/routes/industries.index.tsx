@@ -10,6 +10,7 @@ import miningImg from "@/assets/industry-mining.jpg";
 import transportImg from "@/assets/industry-transport.jpg";
 import manufacturingImg from "@/assets/industry-manufacturing.jpg";
 import { spring } from "@/lib/springs";
+import { absolute, canonical } from "@/lib/seo";
 
 const IMAGES: Record<string, string> = {
   horeca: horecaImg,
@@ -23,11 +24,37 @@ const IMAGES: Record<string, string> = {
 export const Route = createFileRoute("/industries/")({
   head: () => ({
     meta: [
-      { title: "Industries — Radiocom Uzbekistan" },
-      { name: "description", content: "Turnkey radio systems for HoReCa, Construction, Security, Mining, Transport and Manufacturing." },
-      { property: "og:title", content: "Industries — Radiocom" },
-      { property: "og:description", content: "Radio solutions engineered for 6 industries in Uzbekistan." },
+      { title: "Рации для бизнеса: HoReCa, стройка, охрана, транспорт | Radiocom" },
+      {
+        name: "description",
+        content:
+          "Готовые решения радиосвязи для 6 отраслей: HoReCa, строительство, охрана, горная добыча, транспорт и производство. Подбор моделей и бесплатный тест.",
+      },
+      { property: "og:type", content: "website" },
+      {
+        property: "og:title",
+        content: "Рации для бизнеса: HoReCa, стройка, охрана, транспорт | Radiocom",
+      },
+      {
+        property: "og:description",
+        content:
+          "Готовые решения радиосвязи для 6 отраслей: HoReCa, строительство, охрана, горная добыча, транспорт и производство. Подбор моделей и бесплатный тест.",
+      },
+      { property: "og:url", content: absolute("/industries") },
+      { property: "og:locale", content: "ru_RU" },
+      { property: "og:locale:alternate", content: "uz_UZ" },
+      { property: "og:locale:alternate", content: "en_US" },
+      {
+        name: "twitter:title",
+        content: "Рации для бизнеса: HoReCa, стройка, охрана, транспорт | Radiocom",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Готовые решения радиосвязи для 6 отраслей: HoReCa, строительство, охрана, горная добыча, транспорт и производство. Подбор моделей и бесплатный тест.",
+      },
     ],
+    links: [canonical("/industries")],
   }),
   component: IndustriesOverview,
 });
@@ -80,7 +107,9 @@ function IndustriesOverview() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="relative h-full flex flex-col justify-end p-8 md:p-10 text-white">
                   <h2 className="headline text-3xl md:text-5xl">{t(`industries.${s}.name`)}</h2>
-                  <p className="text-white/75 mt-2 text-[15px] max-w-md">{t(`industries.${s}.desc`)}</p>
+                  <p className="text-white/75 mt-2 text-[15px] max-w-md">
+                    {t(`industries.${s}.desc`)}
+                  </p>
                   <div className="mt-4 text-[14px] inline-flex items-center gap-1 text-white">
                     {t("industries.cta")} <ChevronRight className="w-4 h-4" />
                   </div>

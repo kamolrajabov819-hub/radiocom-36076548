@@ -393,7 +393,18 @@
     "range_open": "Open-field range",
     "features": "Features",
     "price": "Price",
-    "cta": "Buy"
+    "cta": "Buy",
+    "overview": "Overview",
+    "in_box": "In the box",
+    "tech_specs": "Tech specs",
+    "gallery": "Gallery",
+    "colour": "Colour",
+    "kit_label": "Radios per kit",
+    "related": "Related models",
+    "all_models": "All models",
+    "more": "Learn more",
+    "prev": "Previous image",
+    "next": "Next image"
   },
   "form": {
     "title": "Request quote",
