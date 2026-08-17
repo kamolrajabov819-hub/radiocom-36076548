@@ -25,14 +25,15 @@ import { StickyBottomCta } from "../components/StickyBottomCta";
 import { ContactBlock } from "../components/ContactBlock";
 
 function NotFoundComponent() {
+  const { t } = useTranslation();
   return (
     <div className="flex min-h-screen items-center justify-center bg-pitch px-6">
       <div className="max-w-md text-center">
-        <div className="text-signal text-sm mb-4">404</div>
-        <h1 className="headline text-5xl md:text-6xl text-crisp">This page can’t be found.</h1>
-        <p className="mt-4 text-cool">The link may be broken, or the page may have been moved.</p>
+        <div className="text-signal text-sm mb-4">{t("error.nf_code")}</div>
+        <h1 className="headline text-5xl md:text-6xl text-crisp">{t("error.nf_title")}</h1>
+        <p className="mt-4 text-cool">{t("error.nf_sub")}</p>
         <Link to="/" className="pill pill-primary mt-8 inline-flex">
-          Go to homepage
+          {t("error.nf_home")}
         </Link>
       </div>
     </div>
@@ -41,6 +42,7 @@ function NotFoundComponent() {
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
+  const { t } = useTranslation();
   const router = useRouter();
   useEffect(() => {
     reportLovableError(error, { boundary: "tanstack_root_error_component" });
@@ -49,9 +51,9 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-pitch px-6">
       <div className="max-w-md text-center">
-        <div className="text-signal text-sm mb-4">Something went wrong</div>
-        <h1 className="headline text-5xl text-crisp">We hit a snag.</h1>
-        <p className="mt-4 text-cool">Try again, or head back home.</p>
+        <div className="text-signal text-sm mb-4">{t("error.err_code")}</div>
+        <h1 className="headline text-5xl text-crisp">{t("error.err_title")}</h1>
+        <p className="mt-4 text-cool">{t("error.err_sub")}</p>
         <div className="mt-8 flex gap-3 justify-center">
           <button
             onClick={() => {
@@ -60,10 +62,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
             }}
             className="pill pill-primary"
           >
-            Retry
+            {t("error.err_retry")}
           </button>
           <a href="/" className="pill pill-ghost">
-            Home
+            {t("error.err_home")}
           </a>
         </div>
       </div>
@@ -148,7 +150,7 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const id = requestAnimationFrame(() => requestAnimationFrame(() => hydrateLanguage()));
@@ -177,10 +179,22 @@ function RootComponent() {
       */}
       <MotionConfig reducedMotion="user">
         <div className="min-h-screen bg-pitch text-crisp">
+          {/*
+            Skip link: the first tab stop on every page, visually hidden until
+            focused. Without it, keyboard and screen-reader users tab through the
+            whole fixed nav on every navigation.
+          */}
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-crisp focus:px-5 focus:py-2.5 focus:text-[14px] focus:font-medium focus:text-pitch focus:outline-none focus:ring-2 focus:ring-signal focus:ring-offset-2"
+          >
+            {t("nav.skip_to_content")}
+          </a>
+
           <ScrollProgress />
           <Nav />
 
-          <main>
+          <main id="main">
             <Outlet />
           </main>
           <ContactBlock />
