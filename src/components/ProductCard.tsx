@@ -63,8 +63,10 @@ export function ProductCard({
             {p.gallery?.length ? (
               <img
                 src={p.gallery[0]}
-                alt={`${p.name} — 2`}
+                alt=""
                 loading="lazy"
+                width={1024}
+                height={1024}
                 aria-hidden
                 className="pointer-events-none absolute inset-0 m-auto h-[180px] md:h-[210px] w-auto max-w-[85%] object-contain mix-blend-multiply opacity-0 transition-all duration-700 ease-out group-hover:scale-[1.06] group-hover:opacity-100"
               />

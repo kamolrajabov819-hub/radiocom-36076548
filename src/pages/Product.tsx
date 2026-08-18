@@ -274,6 +274,8 @@ function ProductMain({
                   }`}
                 >
                   <img
+                    width={1200}
+                    height={900}
                     src={src}
                     alt=""
                     className="h-full w-full object-contain mix-blend-multiply"
@@ -438,6 +440,8 @@ function InBox({ product, spec, lang }: { product: Product; spec: ProductSpec; l
             className="flex aspect-[4/3] items-center justify-center rounded-[28px] bg-charcoal"
           >
             <img
+              width={1200}
+              height={900}
               src={product.image}
               alt={product.name}
               loading="lazy"

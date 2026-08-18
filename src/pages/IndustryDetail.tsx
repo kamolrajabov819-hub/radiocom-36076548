@@ -118,7 +118,13 @@ export function IndustryPage() {
           transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
           className="absolute inset-0"
         >
-          <img src={IMAGES[s]} alt="" className="absolute inset-0 h-full w-full object-cover" />
+          <img
+            width={1200}
+            height={900}
+            src={IMAGES[s]}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/30" />
         </motion.div>
         <div className="relative pt-40 md:pt-56 pb-24 px-6 max-w-[1200px] mx-auto text-white">
@@ -264,6 +270,8 @@ export function IndustryPage() {
               >
                 <div className="aspect-square flex items-center justify-center mb-6 bg-pitch rounded-2xl overflow-hidden">
                   <img
+                    width={1200}
+                    height={900}
                     src={p.image}
                     alt={p.name}
                     className="max-h-[85%] max-w-[85%] object-contain group-hover:scale-105 transition-transform duration-500"

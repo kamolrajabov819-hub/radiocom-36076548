@@ -102,7 +102,10 @@ export function IndustriesOverview() {
                 <img
                   src={IMAGES[s]}
                   alt=""
-                  className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-[900ms]"
+                  loading={i < 2 ? "eager" : "lazy"}
+                  width={1600}
+                  height={1000}
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-[900ms] group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="relative h-full flex flex-col justify-end p-8 md:p-10 text-white">

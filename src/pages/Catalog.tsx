@@ -2,10 +2,21 @@ import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { FileDown } from "lucide-react";
-import { products, categoryLabels, allBrands, type Brand, type Category } from "@/data/products";
+import {
+  products,
+  categoryLabels,
+  allBrands,
+  formatPrice,
+  type Brand,
+  type Category,
+} from "@/data/products";
 import catalogAsset from "@/assets/radiocom-catalog.pdf.asset.json";
-import { spring } from "@/lib/springs";
+import { spring, fadeUpAt } from "@/lib/springs";
 import { ProductCard } from "@/components/ProductCard";
+import { SectionHead } from "@/components/Section";
+import { CompareTable, type CompareColumn } from "@/components/apple";
+import { getSpec } from "@/data/specs";
+import { pick, type Lang } from "@/data/spec-dict";
 import { assetUrl } from "@/lib/asset";
 import {
   absolute,
@@ -148,7 +159,89 @@ export function CatalogPage() {
           )}
         </div>
       </section>
+
+      <Compare lang={lang} />
     </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   "Which radio is right for you?" — apple.com's compare table
+
+   Four representative models across the range, drawn from the same spec sheets
+   the product pages use, so the table cannot drift from the products. A model
+   without a given spec shows an em dash — that gap is the comparison.
+   ───────────────────────────────────────────────────────────── */
+const COMPARE_IDS = ["rc-10", "rcd-30", "rcd-60", "rcd-70"] as const;
+const COMPARE_ROWS = [
+  "Стандарт",
+  "Режим работы",
+  "Радиус действия",
+  "Количество каналов",
+  "Класс защиты",
+  "Время работы от аккумулятора",
+  "Ёмкость аккумулятора",
+] as const;
+
+function Compare({ lang }: { lang: Lang }) {
+  const { t } = useTranslation();
+
+  const picked = COMPARE_IDS.map((id) => products.find((p) => p.id === id)).filter(
+    Boolean,
+  ) as typeof products;
+  if (picked.length < 2) return null;
+
+  // Only keep rows at least one model actually answers, so the table never
+  // renders a line of nothing but dashes.
+  const rows = COMPARE_ROWS.filter((labelRu) =>
+    picked.some((p) => getSpec(p.id)?.rows.some((r) => r.label.ru === labelRu)),
+  ).map((labelRu) => {
+    const sample = picked
+      .flatMap((p) => getSpec(p.id)?.rows ?? [])
+      .find((r) => r.label.ru === labelRu);
+    return { id: labelRu, label: sample ? pick(sample.label, lang) : labelRu };
+  });
+
+  const columns: CompareColumn[] = picked.map((p) => {
+    const spec = getSpec(p.id);
+    return {
+      id: p.id,
+      name: p.name.replace(/^Radiocom |^Motorola /, ""),
+      tagline: p.blurb,
+      note: formatPrice(p.price, lang),
+      media: (
+        <img
+          src={p.image}
+          alt={p.name}
+          loading="lazy"
+          width={512}
+          height={512}
+          className="h-24 w-auto object-contain mix-blend-multiply md:h-32"
+        />
+      ),
+      values: Object.fromEntries(
+        rows.map((r) => {
+          const row = spec?.rows.find((x) => x.label.ru === r.id);
+          return [r.id, row ? pick(row.value, lang) : undefined];
+        }),
+      ),
+    };
+  });
+
+  return (
+    <section className="band-soft section-tight px-4 md:px-6">
+      <div className="mx-auto max-w-[1200px]">
+        <SectionHead
+          align="center"
+          spacing="tight"
+          title={t("catalog.compare_title")}
+          sub={t("catalog.compare_sub")}
+        />
+        <motion.div {...fadeUpAt(1)}>
+          <CompareTable columns={columns} rows={rows} caption={t("catalog.compare_title")} />
+        </motion.div>
+      </div>
+    </section>
   );
 }
 
