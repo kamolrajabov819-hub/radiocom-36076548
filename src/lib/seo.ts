@@ -232,6 +232,55 @@ export function serviceSchema(opts: { name: string; description: string; path: s
   };
 }
 
+/**
+ * SiteNavigationElement — the main sections, in the order the nav presents them.
+ *
+ * Google generates sitelinks algorithmically and no markup forces them, but this
+ * is the schema that states the site's top-level hierarchy explicitly, and it
+ * pairs with the breadcrumb trail and the sitemap to make that hierarchy
+ * unambiguous. Titles here match each page's <title> so the signals agree.
+ */
+export function siteNavigationSchema(items: { name: string; description: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": `${SITE_URL}/#sitenav`,
+    name: "Radiocom",
+    itemListElement: items.map((item, i) => ({
+      "@type": "SiteNavigationElement",
+      position: i + 1,
+      name: item.name,
+      description: item.description,
+      url: absolute(item.path),
+    })),
+  };
+}
+
+/** The main sections, in nav order. Used for the SiteNavigationElement graph. */
+export const SITE_SECTIONS = [
+  {
+    name: "Каталог раций",
+    description: "Все модели Motorola и Radiocom с ценами, характеристиками и комплектацией.",
+    path: "/catalog",
+  },
+  {
+    name: "PoC-рации",
+    description: "Push-to-Talk через LTE: связь по всему Узбекистану без ретрансляторов.",
+    path: "/poc",
+  },
+  {
+    name: "Сервисный центр",
+    description: "Гарантийный и постгарантийный ремонт раций в Ташкенте.",
+    path: "/service",
+  },
+  {
+    name: "Отрасли",
+    description:
+      "Решения радиосвязи для HoReCa, стройки, охраны, добычи, транспорта и производства.",
+    path: "/industries",
+  },
+] as const;
+
 /** ItemList for the catalogue grid — helps Google understand the collection page. */
 export function itemListSchema(items: Product[]) {
   return {

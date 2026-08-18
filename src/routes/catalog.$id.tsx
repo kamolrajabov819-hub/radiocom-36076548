@@ -1,14 +1,15 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
-import { motion, useScroll, useTransform, useReducedMotion, AnimatePresence } from "framer-motion";
-import { useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Check, Package, FileDown } from "lucide-react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { useState } from "react";
+import { ChevronLeft, ChevronRight, Check, FileDown } from "lucide-react";
 import { products, categoryLabels, formatPrice, type Product } from "@/data/products";
 import { getSpec, RANGE_NOTE, type ProductSpec } from "@/data/specs";
 import { formatBoxLine, pick, type Lang } from "@/data/spec-dict";
 import { openLead } from "@/components/LeadFormSheet";
 import { spring, springSoft, fadeUpAt } from "@/lib/springs";
 import { ProductCard } from "@/components/ProductCard";
+import { SectionHead, FeatureCard, ScrollRow, ScrollItem } from "@/components/apple";
 import catalogAsset from "@/assets/radiocom-catalog.pdf.asset.json";
 import { assetUrl } from "@/lib/asset";
 import { absolute, breadcrumbSchema, canonical, jsonLd, productSchema } from "@/lib/seo";
@@ -23,10 +24,8 @@ export const Route = createFileRoute("/catalog/$id")({
     const p = loaderData?.product;
     if (!p) return {};
     const path = `/catalog/${p.id}`;
-    const title = `${p.name} — ${p.brand} | Radiocom`;
-    // Lead the description with the concrete buying facts (range, price, city) —
-    // those are the terms local search actually matches on.
-    const description = `${p.blurb} Дальность ${p.rangeCity}. ${formatPrice(p.price, "ru")}. Официальная гарантия, доставка по Узбекистану, сервис в Ташкенте.`;
+    const title = `${p.name} — купить в Ташкенте | Radiocom`;
+    const description = `${p.blurb} Дальность ${p.rangeCity}. ${formatPrice(p.price, "ru")}. Официальная гарантия, бесплатный тест, доставка по Узбекистану.`;
     const spec = getSpec(p.id);
 
     return {
@@ -38,6 +37,7 @@ export const Route = createFileRoute("/catalog/$id")({
         { property: "og:description", content: description },
         { property: "og:url", content: absolute(path) },
         { property: "og:image", content: absolute(p.image) },
+        { property: "og:locale", content: "ru_RU" },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: title },
         { name: "twitter:description", content: description },
@@ -45,11 +45,7 @@ export const Route = createFileRoute("/catalog/$id")({
       ],
       links: [canonical(path)],
       scripts: [
-        jsonLd(
-          productSchema(p, {
-            specNames: spec?.rows.map((r) => r.label.ru),
-          }),
-        ),
+        jsonLd(productSchema(p, { specNames: spec?.rows.map((r) => r.label.ru) })),
         jsonLd(
           breadcrumbSchema([
             { name: "Radiocom", path: "/" },
@@ -63,9 +59,19 @@ export const Route = createFileRoute("/catalog/$id")({
   component: ProductPage,
 });
 
+/** Spec rows worth surfacing as tiles beside the gallery, in priority order. */
+const HERO_SPEC_LABELS = [
+  "Радиус действия",
+  "Количество каналов",
+  "Класс защиты",
+  "Время работы от аккумулятора",
+  "Мощность передатчика",
+  "Зоны и каналы",
+];
+
 function ProductPage() {
   const { product } = Route.useLoaderData();
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const lang = ((i18n.language.slice(0, 2) as Lang) || "ru") satisfies Lang;
   const spec = getSpec(product.id);
 
@@ -73,27 +79,73 @@ function ProductPage() {
     <div className="page-anim">
       <ProductSubNav product={product} lang={lang} />
       <Breadcrumbs product={product} />
-      <ProductHero product={product} lang={lang} spec={spec} />
-      {spec?.intro && <IntroBand text={pick(spec.intro, lang)} />}
-      <Gallery product={product} />
-      {spec && <InBox spec={spec} lang={lang} />}
-      {spec && spec.features.length > 0 && <Features spec={spec} lang={lang} />}
+      <ProductMain product={product} lang={lang} spec={spec} />
+      {spec && spec.features.length > 0 && <Highlights spec={spec} lang={lang} />}
+      {spec && <InBox product={product} spec={spec} lang={lang} />}
       {spec && <TechSpecs product={product} spec={spec} lang={lang} />}
       <Related product={product} lang={lang} />
-      <BuyBand product={product} lang={lang} />
     </div>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Breadcrumbs — the visible counterpart to the BreadcrumbList schema
+   Sticky product sub-nav — name left, price and buy right
+   ───────────────────────────────────────────────────────────── */
+
+function ProductSubNav({ product, lang }: { product: Product; lang: Lang }) {
+  const { t } = useTranslation();
+  const links = [
+    { href: "#highlights", label: t("product.features") },
+    { href: "#in-box", label: t("product.in_box") },
+    { href: "#specs", label: t("product.tech_specs") },
+  ];
+  return (
+    <div className="sticky top-12 z-30 frost-nav">
+      <div className="mx-auto flex max-w-[1200px] items-center gap-4 px-4 py-2.5 md:px-8">
+        <Link
+          to="/catalog"
+          className="flex shrink-0 items-center gap-1 text-[13px] text-cool transition-opacity hover:opacity-70"
+          aria-label={t("product.all_models")}
+        >
+          <ChevronLeft className="h-3.5 w-3.5" aria-hidden />
+        </Link>
+        <div className="min-w-0 flex-1 truncate text-[15px] font-semibold tracking-tight text-crisp">
+          {product.name}
+        </div>
+        <nav aria-label={t("product.overview")} className="hidden items-center gap-5 lg:flex">
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="text-[13px] text-cool transition-colors hover:text-crisp"
+            >
+              {l.label}
+            </a>
+          ))}
+        </nav>
+        <div className="hidden text-[13px] text-cool sm:block">
+          {formatPrice(product.price, lang)}
+        </div>
+        <button
+          onClick={() => openLead({ product: product.name })}
+          className="pill pill-accent pill-sm shrink-0"
+        >
+          {t("product.cta")}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Breadcrumbs
    ───────────────────────────────────────────────────────────── */
 
 function Breadcrumbs({ product }: { product: Product }) {
   const { t } = useTranslation();
   return (
-    <nav aria-label="Breadcrumb" className="band-soft px-6 pt-6">
-      <ol className="mx-auto flex max-w-[1200px] flex-wrap items-center gap-1.5 text-[13px] text-cool">
+    <nav aria-label="Breadcrumb" className="band-plain px-6 pt-8">
+      <ol className="mx-auto flex max-w-[1200px] flex-wrap items-center gap-1.5 text-[12px] text-cool">
         <li>
           <Link to="/" className="transition-colors hover:text-crisp">
             {t("nav.home")}
@@ -119,56 +171,10 @@ function Breadcrumbs({ product }: { product: Product }) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Sticky product sub-nav — Apple's second-level bar
+   Main — apple.com product layout: gallery left, buy panel right
    ───────────────────────────────────────────────────────────── */
 
-function ProductSubNav({ product, lang }: { product: Product; lang: Lang }) {
-  const { t } = useTranslation();
-  const links = [
-    { href: "#overview", label: t("product.overview") },
-    { href: "#in-box", label: t("product.in_box") },
-    { href: "#specs", label: t("product.tech_specs") },
-  ];
-  return (
-    <div className="sticky top-12 z-30 frost-nav">
-      <div className="mx-auto flex max-w-[1200px] items-center gap-4 px-4 py-2.5 md:px-8">
-        <Link
-          to="/catalog"
-          className="flex shrink-0 items-center gap-1 text-[13px] text-cool transition-opacity hover:opacity-70"
-        >
-          <ChevronLeft className="h-3.5 w-3.5" />
-          <span className="hidden sm:inline">{t("catalog.title_a")}</span>
-        </Link>
-        <div className="min-w-0 flex-1 truncate text-[15px] font-semibold tracking-tight text-crisp">
-          {product.name}
-        </div>
-        <nav className="hidden items-center gap-5 lg:flex">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-[13px] text-cool transition-colors hover:text-crisp"
-            >
-              {l.label}
-            </a>
-          ))}
-        </nav>
-        <button
-          onClick={() => openLead({ product: product.name })}
-          className="pill pill-accent pill-sm shrink-0"
-        >
-          {t("product.cta")}
-        </button>
-      </div>
-    </div>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────
-   Hero — big type, product on a stage, scroll-linked parallax
-   ───────────────────────────────────────────────────────────── */
-
-function ProductHero({
+function ProductMain({
   product,
   lang,
   spec,
@@ -178,189 +184,155 @@ function ProductHero({
   spec?: ProductSpec;
 }) {
   const { t } = useTranslation();
-  const ref = useRef<HTMLElement>(null);
-  const reduced = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  // Parallax lift + gentle scale-down as the hero leaves — skipped entirely under reduced motion.
-  const y = useTransform(scrollYProgress, [0, 1], reduced ? [0, 0] : [0, -70]);
-  const scale = useTransform(scrollYProgress, [0, 1], reduced ? [1, 1] : [1, 0.93]);
-  const fade = useTransform(scrollYProgress, [0, 0.85], reduced ? [1, 1] : [1, 0.25]);
-
-  const headline = product.name.replace(/^Motorola |^Radiocom /, "");
-
-  return (
-    <section
-      id="overview"
-      ref={ref}
-      className="band-soft relative overflow-hidden pt-14 pb-16 md:pt-20 md:pb-24"
-    >
-      <div className="hero-glow" aria-hidden />
-      <div className="relative mx-auto max-w-[1200px] px-6">
-        <div className="text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={spring}
-            className="type-caption uppercase tracking-[0.14em] text-signal"
-          >
-            {product.brand} · {categoryLabels[product.category][lang]}
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...springSoft, delay: 0.05 }}
-            className="type-display mt-3 text-crisp"
-          >
-            {headline}
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...springSoft, delay: 0.12 }}
-            className="subhead mx-auto mt-4 max-w-2xl text-[17px] md:text-xl"
-          >
-            {product.blurb}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...springSoft, delay: 0.18 }}
-            className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2"
-          >
-            <div className="text-[19px] font-semibold text-crisp">
-              {formatPrice(product.price, lang)}
-            </div>
-            <button
-              onClick={() => openLead({ product: product.name })}
-              className="pill pill-primary"
-            >
-              {t("product.cta")}
-            </button>
-          </motion.div>
-        </div>
-
-        {/* Product stage */}
-        <motion.div style={{ y, scale, opacity: fade }} className="stage relative mt-10 md:mt-14">
-          <motion.img
-            src={product.image}
-            alt={product.name}
-            width={1024}
-            height={1024}
-            initial={{ opacity: 0, scale: 0.94 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ ...springSoft, delay: 0.1 }}
-            className={`h-[300px] w-auto max-w-full object-contain mix-blend-multiply md:h-[440px] ${
-              reduced ? "" : "float-slow"
-            }`}
-          />
-        </motion.div>
-
-        {/* Headline spec strip */}
-        <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-6 border-t border-border pt-8 md:mt-14 md:grid-cols-4">
-          <HeroStat label={t("product.range_city")} value={product.rangeCity} idx={0} />
-          {product.rangeOpen && (
-            <HeroStat label={t("product.range_open")} value={product.rangeOpen} idx={1} />
-          )}
-          {spec?.colour && (
-            <HeroStat label={t("product.colour")} value={pick(spec.colour, lang)} idx={2} />
-          )}
-          <HeroStat
-            label={t("product.kit_label")}
-            value={String(spec?.inBox.find((b) => b.qty)?.qty ?? 1)}
-            idx={3}
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function HeroStat({ label, value, idx }: { label: string; value: string; idx: number }) {
-  return (
-    <motion.div {...fadeUpAt(idx)}>
-      <div className="type-caption">{label}</div>
-      <div className="mt-1 text-[17px] font-medium tracking-tight text-crisp md:text-[19px]">
-        {value}
-      </div>
-    </motion.div>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────
-   Vendor intro paragraph, set large — Apple's editorial band
-   ───────────────────────────────────────────────────────────── */
-
-function IntroBand({ text }: { text: string }) {
-  return (
-    <section className="band-plain section-tight px-6">
-      <motion.p
-        {...fadeUpAt(0)}
-        className="mx-auto max-w-4xl text-center text-[22px] font-semibold leading-[1.35] tracking-[-0.02em] text-crisp md:text-[32px]"
-      >
-        {text}
-      </motion.p>
-    </section>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────
-   Gallery — 1:1 thumb selection, cross-fading main shot
-   ───────────────────────────────────────────────────────────── */
-
-function Gallery({ product }: { product: Product }) {
-  const { t } = useTranslation();
   const shots = [product.image, ...(product.gallery ?? [])];
   const [i, setI] = useState(0);
   const idx = Math.min(i, shots.length - 1);
-  if (shots.length < 2) return null;
+  const reduced = useReducedMotion();
 
-  const go = (d: number) => setI((idx + d + shots.length) % shots.length);
+  const heroSpecs = (spec?.rows ?? [])
+    .filter((r) => HERO_SPEC_LABELS.includes(r.label.ru))
+    .sort((a, b) => HERO_SPEC_LABELS.indexOf(a.label.ru) - HERO_SPEC_LABELS.indexOf(b.label.ru))
+    .slice(0, 4);
 
   return (
-    <section className="band-soft section-tight px-4 md:px-6">
-      <div className="mx-auto max-w-[1100px]">
-        <motion.h2 {...fadeUpAt(0)} className="type-headline mb-8 text-center text-crisp">
-          {t("product.gallery")}
-        </motion.h2>
-
-        <motion.div {...fadeUpAt(1)} className="relative">
-          <div className="bento-card relative flex aspect-[4/3] items-center justify-center bg-pitch">
+    <section className="band-plain px-4 pb-16 pt-8 md:px-6 md:pb-24">
+      <div className="mx-auto grid max-w-[1200px] items-start gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
+        {/* Gallery — sticks while the buy panel scrolls */}
+        <div className="lg:sticky lg:top-28">
+          <div className="relative flex aspect-square items-center justify-center overflow-hidden rounded-[28px] bg-charcoal md:aspect-[5/4]">
             <AnimatePresence mode="wait" initial={false}>
               <motion.img
                 key={shots[idx]}
                 src={shots[idx]}
                 alt={`${product.name} — ${idx + 1}`}
-                initial={{ opacity: 0, scale: 0.98 }}
+                width={1024}
+                height={1024}
+                initial={{ opacity: 0, scale: 0.97 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.01 }}
+                exit={{ opacity: 0, scale: 1.02 }}
                 transition={spring}
-                className="max-h-[85%] max-w-[85%] object-contain mix-blend-multiply"
+                className={`max-h-[78%] max-w-[78%] object-contain mix-blend-multiply ${
+                  reduced ? "" : "float-slow"
+                }`}
               />
             </AnimatePresence>
 
-            <GalleryArrow side="left" onClick={() => go(-1)} label={t("product.prev")} />
-            <GalleryArrow side="right" onClick={() => go(1)} label={t("product.next")} />
+            {shots.length > 1 && (
+              <>
+                <GalleryArrow
+                  side="left"
+                  label={t("product.prev")}
+                  onClick={() => setI((idx - 1 + shots.length) % shots.length)}
+                />
+                <GalleryArrow
+                  side="right"
+                  label={t("product.next")}
+                  onClick={() => setI((idx + 1) % shots.length)}
+                />
+                <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2">
+                  {shots.map((s, si) => (
+                    <button
+                      key={s}
+                      onClick={() => setI(si)}
+                      aria-label={`${product.name} — ${si + 1}`}
+                      aria-current={si === idx}
+                      className={`h-2 w-2 rounded-full transition-colors ${
+                        si === idx ? "bg-crisp" : "bg-crisp/25 hover:bg-crisp/50"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
           </div>
 
-          <div className="no-scrollbar mt-4 flex justify-center gap-2.5 overflow-x-auto pb-1">
-            {shots.map((src, si) => (
+          {shots.length > 1 && (
+            <div className="no-scrollbar mt-3 flex gap-2.5 overflow-x-auto">
+              {shots.map((src, si) => (
+                <button
+                  key={src}
+                  onClick={() => setI(si)}
+                  aria-label={`${product.name} — ${si + 1}`}
+                  className={`h-16 w-16 shrink-0 rounded-2xl bg-charcoal p-2 ring-1 transition-all duration-300 ${
+                    si === idx ? "ring-2 ring-signal" : "ring-border hover:ring-crisp/30"
+                  }`}
+                >
+                  <img
+                    src={src}
+                    alt=""
+                    className="h-full w-full object-contain mix-blend-multiply"
+                  />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Buy panel */}
+        <div className="lg:pt-4">
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={springSoft}
+          >
+            <div className="type-caption uppercase tracking-[0.14em] text-signal">
+              {product.brand} · {categoryLabels[product.category][lang]}
+            </div>
+
+            <h1 className="type-title mt-2 text-[34px] leading-[1.08] text-crisp md:text-[44px]">
+              {product.name}
+            </h1>
+
+            <p className="subhead mt-3 text-[17px]">{product.blurb}</p>
+
+            {spec?.intro ? (
+              <p className="mt-4 text-[15px] leading-relaxed text-cool">{pick(spec.intro, lang)}</p>
+            ) : null}
+
+            <div className="mt-6 text-[28px] font-semibold tracking-tight text-crisp">
+              {formatPrice(product.price, lang)}
+            </div>
+
+            {/* Key specs as tiles — the apple.com storage-picker shape, read-only */}
+            {heroSpecs.length > 0 && (
+              <dl className="mt-6 grid gap-2.5 sm:grid-cols-2">
+                {heroSpecs.map((r) => (
+                  <div key={r.label.ru} className="rounded-2xl border border-border px-4 py-3.5">
+                    <dt className="text-[12px] text-cool">{pick(r.label, lang)}</dt>
+                    <dd className="mt-0.5 text-[15px] font-medium leading-snug text-crisp">
+                      {pick(r.value, lang)}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+
+            {spec?.colour ? (
+              <div className="mt-4 flex items-center gap-2 text-[14px] text-cool">
+                <span>{t("product.colour")}:</span>
+                <span className="text-crisp">{pick(spec.colour, lang)}</span>
+              </div>
+            ) : null}
+
+            <div className="mt-7 flex flex-wrap gap-3">
               <button
-                key={src}
-                onClick={() => setI(si)}
-                aria-label={`${product.name} — ${si + 1}`}
-                aria-current={si === idx}
-                className={`h-16 w-16 shrink-0 rounded-2xl bg-pitch p-2 ring-1 transition-all duration-300 md:h-20 md:w-20 ${
-                  si === idx ? "ring-2 ring-signal" : "ring-border hover:ring-crisp/30"
-                }`}
+                onClick={() => openLead({ product: product.name })}
+                className="pill pill-accent flex-1 sm:flex-none"
               >
-                <img src={src} alt="" className="h-full w-full object-contain mix-blend-multiply" />
+                {t("product.cta")}
               </button>
-            ))}
-          </div>
-        </motion.div>
+              <a
+                href={assetUrl(catalogAsset)}
+                download="radiocom-catalog.pdf"
+                className="pill pill-ghost"
+              >
+                <FileDown className="h-4 w-4" aria-hidden /> {t("nav.download")}
+              </a>
+            </div>
+
+            <p className="mt-3 text-[12px] text-cool">{t("form.trust_line")}</p>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -380,11 +352,57 @@ function GalleryArrow({
       onClick={onClick}
       aria-label={label}
       className={`absolute top-1/2 -translate-y-1/2 ${
-        side === "left" ? "left-3 md:left-5" : "right-3 md:right-5"
+        side === "left" ? "left-4" : "right-4"
       } flex h-10 w-10 items-center justify-center rounded-full bg-popover/80 text-crisp ring-1 ring-border backdrop-blur-xl transition-transform duration-200 hover:scale-105 active:scale-95`}
     >
-      <ChevronRight className={`h-4 w-4 ${side === "left" ? "rotate-180" : ""}`} />
+      <ChevronRight className={`h-4 w-4 ${side === "left" ? "rotate-180" : ""}`} aria-hidden />
     </button>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Highlights — feature cards on a grey band
+   ───────────────────────────────────────────────────────────── */
+
+function Highlights({ spec, lang }: { spec: ProductSpec; lang: Lang }) {
+  const { t } = useTranslation();
+  const cards = spec.features.slice(0, 4);
+  const rest = spec.features.slice(4);
+
+  return (
+    <section id="highlights" className="band-soft section-tight px-4 md:px-6">
+      <div className="mx-auto max-w-[1200px]">
+        <SectionHead title={t("product.features")} />
+
+        <ScrollRow cols={4}>
+          {cards.map((f, i) => (
+            <ScrollItem key={`${f.ru}-${i}`}>
+              <FeatureCard
+                idx={i}
+                tone={i === 1 ? "dark" : "light"}
+                eyebrow={String(i + 1).padStart(2, "0")}
+                title={pick(f, lang)}
+                className="h-full min-h-[220px]"
+              />
+            </ScrollItem>
+          ))}
+        </ScrollRow>
+
+        {rest.length > 0 && (
+          <motion.ul
+            {...fadeUpAt(1)}
+            className="mt-8 grid gap-x-10 gap-y-3 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {rest.map((f, i) => (
+              <li key={`${f.ru}-${i}`} className="flex items-start gap-2.5 text-[15px] text-crisp">
+                <Check className="mt-1 h-4 w-4 shrink-0 text-signal" aria-hidden />
+                <span className="leading-snug">{pick(f, lang)}</span>
+              </li>
+            ))}
+          </motion.ul>
+        )}
+      </div>
+    </section>
   );
 }
 
@@ -392,88 +410,64 @@ function GalleryArrow({
    In the box
    ───────────────────────────────────────────────────────────── */
 
-function InBox({ spec, lang }: { spec: ProductSpec; lang: Lang }) {
+function InBox({ product, spec, lang }: { product: Product; spec: ProductSpec; lang: Lang }) {
   const { t } = useTranslation();
   return (
-    <section id="in-box" className="band-plain section-tight px-6">
-      <div className="mx-auto max-w-[1000px]">
-        <motion.div {...fadeUpAt(0)} className="mb-10 text-center">
-          <Package className="mx-auto mb-4 h-6 w-6 text-signal" aria-hidden />
-          <h2 className="type-headline text-crisp">{t("product.in_box")}</h2>
-        </motion.div>
+    <section id="in-box" className="band-plain section-tight px-4 md:px-6">
+      <div className="mx-auto max-w-[1200px]">
+        <SectionHead title={t("product.in_box")} />
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          <motion.div
+            {...fadeUpAt(0)}
+            className="flex aspect-[4/3] items-center justify-center rounded-[28px] bg-charcoal"
+          >
+            <img
+              src={product.image}
+              alt={product.name}
+              loading="lazy"
+              className="max-h-[70%] max-w-[70%] object-contain mix-blend-multiply"
+            />
+          </motion.div>
 
-        <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {spec.inBox.map((line, i) => (
-            <motion.li
-              key={`${line.item.ru}-${i}`}
-              {...fadeUpAt(Math.min(i, 8))}
-              className="flex items-start gap-3 rounded-2xl bg-charcoal px-5 py-4"
-            >
-              <Check className="mt-0.5 h-4 w-4 shrink-0 text-signal" aria-hidden />
-              <span className="text-[15px] leading-snug text-crisp">
-                {formatBoxLine(line, lang)}
-              </span>
-            </motion.li>
-          ))}
-        </ul>
+          <motion.ul {...fadeUpAt(1)} className="divide-y divide-border">
+            {spec.inBox.map((line, i) => (
+              <li
+                key={`${line.item.ru}-${i}`}
+                className="flex items-start gap-3 py-3.5 text-[16px] text-crisp"
+              >
+                <Check className="mt-1 h-4 w-4 shrink-0 text-signal" aria-hidden />
+                <span className="leading-snug">{formatBoxLine(line, lang)}</span>
+              </li>
+            ))}
+          </motion.ul>
+        </div>
       </div>
     </section>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Feature list
-   ───────────────────────────────────────────────────────────── */
-
-function Features({ spec, lang }: { spec: ProductSpec; lang: Lang }) {
-  const { t } = useTranslation();
-  return (
-    <section className="band-dark section-tight px-6">
-      <div className="mx-auto max-w-[1000px]">
-        <motion.h2 {...fadeUpAt(0)} className="type-headline mb-10 text-center">
-          {t("product.features")}
-        </motion.h2>
-        <ul className="grid gap-x-10 gap-y-5 sm:grid-cols-2">
-          {spec.features.map((f, i) => (
-            <motion.li
-              key={`${f.ru}-${i}`}
-              {...fadeUpAt(Math.min(i, 8))}
-              className="flex items-start gap-3 border-b border-white/10 pb-5"
-            >
-              <Check className="mt-1 h-4 w-4 shrink-0 text-signal" aria-hidden />
-              <span className="text-[16px] leading-snug">{pick(f, lang)}</span>
-            </motion.li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────
-   Tech specs table
+   Tech specs
    ───────────────────────────────────────────────────────────── */
 
 function TechSpecs({ product, spec, lang }: { product: Product; spec: ProductSpec; lang: Lang }) {
   const { t } = useTranslation();
   return (
-    <section id="specs" className="band-plain section-tight px-6">
+    <section id="specs" className="band-soft section-tight px-4 md:px-6">
       <div className="mx-auto max-w-[900px]">
-        <motion.h2 {...fadeUpAt(0)} className="type-headline mb-10 text-center text-crisp">
-          {t("product.tech_specs")}
-        </motion.h2>
+        <SectionHead title={t("product.tech_specs")} />
 
         <motion.dl {...fadeUpAt(1)} className="divide-y divide-border border-t border-border">
           {spec.rows.map((r, i) => (
             <div
               key={`${r.label.ru}-${i}`}
-              className="grid gap-1 py-4 sm:grid-cols-[minmax(0,14rem)_1fr] sm:gap-6"
+              className="grid gap-1 py-4 sm:grid-cols-[minmax(0,15rem)_1fr] sm:gap-6"
             >
               <dt className="text-[14px] text-cool">{pick(r.label, lang)}</dt>
               <dd className="text-[15px] leading-snug text-crisp">{pick(r.value, lang)}</dd>
             </div>
           ))}
-          <div className="grid gap-1 py-4 sm:grid-cols-[minmax(0,14rem)_1fr] sm:gap-6">
+          <div className="grid gap-1 py-4 sm:grid-cols-[minmax(0,15rem)_1fr] sm:gap-6">
             <dt className="text-[14px] text-cool">{t("catalog.price")}</dt>
             <dd className="text-[15px] font-medium text-crisp">
               {formatPrice(product.price, lang)}
@@ -482,31 +476,18 @@ function TechSpecs({ product, spec, lang }: { product: Product; spec: ProductSpe
         </motion.dl>
 
         {spec.rangeNote && (
-          <motion.p {...fadeUpAt(2)} className="mt-8 text-[13px] leading-relaxed text-cool">
+          <motion.p {...fadeUpAt(2)} className="mt-6 text-[13px] leading-relaxed text-cool">
             <span aria-hidden>* </span>
             {pick(RANGE_NOTE, lang)}
           </motion.p>
         )}
-
-        <motion.div {...fadeUpAt(3)} className="mt-10 flex flex-wrap justify-center gap-3">
-          <button onClick={() => openLead({ product: product.name })} className="pill pill-accent">
-            {t("product.cta")}
-          </button>
-          <a
-            href={assetUrl(catalogAsset)}
-            download="radiocom-catalog.pdf"
-            className="pill pill-ghost"
-          >
-            <FileDown className="h-4 w-4" /> {t("nav.download")}
-          </a>
-        </motion.div>
       </div>
     </section>
   );
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Related models
+   Related
    ───────────────────────────────────────────────────────────── */
 
 function Related({ product, lang }: { product: Product; lang: Lang }) {
@@ -523,45 +504,15 @@ function Related({ product, lang }: { product: Product; lang: Lang }) {
   if (related.length === 0) return null;
 
   return (
-    <section className="band-soft section-tight px-4 md:px-6">
+    <section className="band-plain section-tight px-4 md:px-6">
       <div className="mx-auto max-w-[1200px]">
-        <motion.h2 {...fadeUpAt(0)} className="type-headline mb-10 text-center text-crisp">
-          {t("product.related")}
-        </motion.h2>
+        <SectionHead title={t("product.related")} />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {related.map((p, i) => (
             <ProductCard key={p.id} p={p} lang={lang} idx={i} />
           ))}
         </div>
       </div>
-    </section>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────────
-   Closing CTA
-   ───────────────────────────────────────────────────────────── */
-
-function BuyBand({ product, lang }: { product: Product; lang: Lang }) {
-  const { t } = useTranslation();
-  return (
-    <section className="band-plain section-tight px-6 text-center">
-      <motion.div {...fadeUpAt(0)} className="mx-auto max-w-2xl">
-        <h2 className="type-headline text-crisp">{product.name}</h2>
-        <div className="mt-3 text-[19px] font-semibold text-crisp">
-          {formatPrice(product.price, lang)}
-        </div>
-        <p className="subhead mt-4 text-[17px]">{t("form.sub")}</p>
-        <div className="mt-7 flex flex-wrap justify-center gap-3">
-          <button onClick={() => openLead({ product: product.name })} className="pill pill-accent">
-            {t("product.cta")}
-          </button>
-          <Link to="/catalog" className="pill pill-ghost">
-            {t("product.all_models")}
-          </Link>
-        </div>
-        <div className="mt-4 text-[12px] text-cool">{t("form.trust_line")}</div>
-      </motion.div>
     </section>
   );
 }

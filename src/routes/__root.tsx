@@ -12,7 +12,14 @@ import { MotionConfig } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
 import appCss from "../styles.css?url";
-import { jsonLd, localBusinessSchema, organizationSchema, webSiteSchema } from "@/lib/seo";
+import {
+  jsonLd,
+  localBusinessSchema,
+  organizationSchema,
+  siteNavigationSchema,
+  SITE_SECTIONS,
+  webSiteSchema,
+} from "@/lib/seo";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import "../lib/i18n";
 import { hydrateLanguage } from "../lib/i18n";
@@ -126,7 +133,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     // Business identity graph — emitted once for the whole site. Child routes add
     // their own page-level schema (Product, BreadcrumbList, ItemList).
-    scripts: [jsonLd(organizationSchema()), jsonLd(localBusinessSchema()), jsonLd(webSiteSchema())],
+    scripts: [
+      jsonLd(organizationSchema()),
+      jsonLd(localBusinessSchema()),
+      jsonLd(webSiteSchema()),
+      jsonLd(siteNavigationSchema([...SITE_SECTIONS])),
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
