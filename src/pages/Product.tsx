@@ -14,15 +14,28 @@ import { FeatureCard, ScrollRow, ScrollItem } from "@/components/apple";
 import { SectionHead } from "@/components/Section";
 import catalogAsset from "@/assets/radiocom-catalog.pdf.asset.json";
 import { assetUrl } from "@/lib/asset";
-import { absolute, breadcrumbSchema, canonical, jsonLd, productSchema } from "@/lib/seo";
+import {
+  absolute,
+  breadcrumbSchema,
+  jsonLd,
+  productSchema,
+  localeLinks,
+  type SeoLang,
+} from "@/lib/seo";
 
 export const routeOptions = {
-  loader: ({ params }: { params: { id: string } }) => {
+  loader: ({ params }: { params: { lang: string; id: string } }) => {
     const product = products.find((p) => p.id === params.id);
     if (!product) throw notFound();
     return { product };
   },
-  head: ({ loaderData }: { loaderData?: { product: Product } }) => {
+  head: ({
+    params,
+    loaderData,
+  }: {
+    params: { lang: SeoLang; id: string };
+    loaderData?: { product: Product };
+  }) => {
     const p = loaderData?.product;
     if (!p) return {};
     const path = `/catalog/${p.id}`;
@@ -45,7 +58,7 @@ export const routeOptions = {
         { name: "twitter:description", content: description },
         { name: "twitter:image", content: absolute(p.image) },
       ],
-      links: [canonical(path)],
+      links: localeLinks(params.lang, path),
       scripts: [
         jsonLd(productSchema(p, { specNames: spec?.rows.map((r) => r.label.ru) })),
         jsonLd(

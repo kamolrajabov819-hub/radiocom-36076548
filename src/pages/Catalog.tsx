@@ -7,10 +7,17 @@ import catalogAsset from "@/assets/radiocom-catalog.pdf.asset.json";
 import { spring } from "@/lib/springs";
 import { ProductCard } from "@/components/ProductCard";
 import { assetUrl } from "@/lib/asset";
-import { absolute, breadcrumbSchema, canonical, itemListSchema, jsonLd } from "@/lib/seo";
+import {
+  absolute,
+  breadcrumbSchema,
+  itemListSchema,
+  jsonLd,
+  localeLinks,
+  type SeoLang,
+} from "@/lib/seo";
 
 export const routeOptions = {
-  head: () => {
+  head: ({ params }: { params: { lang: SeoLang } }) => {
     const title = `Каталог рации — ${products.length} моделей Motorola и Radiocom | Radiocom`;
     const description = `Полный каталог радиостанций в Ташкенте: ${products.length} моделей Motorola Talkabout, TLKR, XT и Radiocom RC/RCD. PMR и DMR, цены в сумах, официальная гарантия, бесплатный тест перед покупкой.`;
     return {
@@ -24,7 +31,7 @@ export const routeOptions = {
         { name: "twitter:title", content: title },
         { name: "twitter:description", content: description },
       ],
-      links: [canonical("/catalog")],
+      links: localeLinks(params.lang, "/catalog"),
       scripts: [
         jsonLd(itemListSchema(products)),
         jsonLd(

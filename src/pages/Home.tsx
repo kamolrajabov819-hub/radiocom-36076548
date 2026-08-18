@@ -28,10 +28,10 @@ import { Magnetic } from "@/components/Magnetic";
 import { products } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
 import { spring } from "@/lib/springs";
-import { absolute, canonical } from "@/lib/seo";
+import { absolute, localeLinks, type SeoLang } from "@/lib/seo";
 
 export const routeOptions = {
-  head: () => ({
+  head: ({ params }: { params: { lang: SeoLang } }) => ({
     meta: [
       { title: "Рации и радиостанции в Ташкенте — Motorola, Radiocom | Radiocom" },
       {
@@ -63,7 +63,7 @@ export const routeOptions = {
           "Официальный поставщик радиостанций в Узбекистане: 11 лет на рынке, 10 000+ клиентов. Motorola, Hytera, PoC и Radiocom RC. Бесплатный тест, гарантия, сервис в Ташкенте.",
       },
     ],
-    links: [canonical("/")],
+    links: localeLinks(params.lang, "/"),
   }),
   component: HomePage,
 };

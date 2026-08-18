@@ -7,10 +7,10 @@ import pocRental from "@/assets/poc-rental-v11.png.asset.json";
 import { openLead } from "@/components/LeadFormSheet";
 import { spring } from "@/lib/springs";
 import { assetUrl } from "@/lib/asset";
-import { absolute, canonical } from "@/lib/seo";
+import { absolute, localeLinks, type SeoLang } from "@/lib/seo";
 
 export const routeOptions = {
-  head: () => ({
+  head: ({ params }: { params: { lang: SeoLang } }) => ({
     meta: [
       { title: "PoC-рации: связь через LTE по всему Узбекистану | Radiocom" },
       {
@@ -42,7 +42,7 @@ export const routeOptions = {
           "Push-to-Talk over Cellular — связь без ретрансляторов по всей стране, GPS, группы и диспетчеризация. Проектирование сети и аренда рации в Ташкенте.",
       },
     ],
-    links: [canonical("/poc")],
+    links: localeLinks(params.lang, "/poc"),
   }),
   component: PoCPage,
 };

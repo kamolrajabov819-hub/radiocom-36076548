@@ -27,7 +27,14 @@ import transportImg from "@/assets/industry-transport.jpg";
 import manufacturingImg from "@/assets/industry-manufacturing.jpg";
 import { spring } from "@/lib/springs";
 import { assetUrl } from "@/lib/asset";
-import { absolute, breadcrumbSchema, canonical, faqSchema, jsonLd } from "@/lib/seo";
+import {
+  absolute,
+  breadcrumbSchema,
+  faqSchema,
+  jsonLd,
+  localeLinks,
+  type SeoLang,
+} from "@/lib/seo";
 import ruCopy from "@/i18n/ru.json";
 
 const IMAGES: Record<string, string> = {
@@ -40,10 +47,10 @@ const IMAGES: Record<string, string> = {
 };
 
 export const routeOptions = {
-  beforeLoad: ({ params }: { params: { slug: string } }) => {
+  beforeLoad: ({ params }: { params: { lang: string; slug: string } }) => {
     if (!INDUSTRY_SLUGS.includes(params.slug as IndustrySlug)) throw notFound();
   },
-  head: ({ params }: { params: { slug: string } }) => {
+  head: ({ params }: { params: { slug: string; lang: SeoLang } }) => {
     const slug = params.slug as IndustrySlug;
     // head() runs outside React, so the Russian copy is read straight from the
     // bundle. That is also the correct language here: the SSR pass renders `ru`,
@@ -68,7 +75,7 @@ export const routeOptions = {
         { name: "twitter:title", content: title },
         { name: "twitter:description", content: description },
       ],
-      links: [canonical(path)],
+      links: localeLinks(params.lang, path),
       scripts: [
         ...(faq.length ? [jsonLd(faqSchema(faq))] : []),
         jsonLd(

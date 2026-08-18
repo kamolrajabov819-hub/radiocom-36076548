@@ -5,10 +5,17 @@ import { Plus, Minus, Search, Microscope, Cog, ClipboardCheck } from "lucide-rea
 import serviceLight from "@/assets/service-tech-light.jpg";
 import { openLead } from "@/components/LeadFormSheet";
 import { spring } from "@/lib/springs";
-import { absolute, breadcrumbSchema, canonical, jsonLd, serviceSchema } from "@/lib/seo";
+import {
+  absolute,
+  breadcrumbSchema,
+  jsonLd,
+  serviceSchema,
+  localeLinks,
+  type SeoLang,
+} from "@/lib/seo";
 
 export const routeOptions = {
-  head: () => ({
+  head: ({ params }: { params: { lang: SeoLang } }) => ({
     meta: [
       { title: "Ремонт рации в Ташкенте — авторизованный сервис | Radiocom" },
       {
@@ -40,7 +47,7 @@ export const routeOptions = {
           "Гарантийный и постгарантийный ремонт Motorola, Hytera и Vertex Standard. Оригинальные запчасти, сертифицированные инженеры, фиксированные цены. Ташкент.",
       },
     ],
-    links: [canonical("/service")],
+    links: localeLinks(params.lang, "/service"),
     scripts: [
       jsonLd(
         serviceSchema({

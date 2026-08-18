@@ -10,7 +10,7 @@ import miningImg from "@/assets/industry-mining.jpg";
 import transportImg from "@/assets/industry-transport.jpg";
 import manufacturingImg from "@/assets/industry-manufacturing.jpg";
 import { spring } from "@/lib/springs";
-import { absolute, canonical } from "@/lib/seo";
+import { absolute, localeLinks, type SeoLang } from "@/lib/seo";
 
 const IMAGES: Record<string, string> = {
   horeca: horecaImg,
@@ -22,7 +22,7 @@ const IMAGES: Record<string, string> = {
 };
 
 export const routeOptions = {
-  head: () => ({
+  head: ({ params }: { params: { lang: SeoLang } }) => ({
     meta: [
       { title: "Рации для бизнеса: HoReCa, стройка, охрана, транспорт | Radiocom" },
       {
@@ -54,7 +54,7 @@ export const routeOptions = {
           "Готовые решения радиосвязи для 6 отраслей: HoReCa, строительство, охрана, горная добыча, транспорт и производство. Подбор моделей и бесплатный тест.",
       },
     ],
-    links: [canonical("/industries")],
+    links: localeLinks(params.lang, "/industries"),
   }),
   component: IndustriesOverview,
 };

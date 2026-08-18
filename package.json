@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "seo:generate": "bun scripts/generate-seo.ts"
+    "seo:generate": "bun scripts/generate-seo.ts",
+    "seo:verify": "bun scripts/verify-seo.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
