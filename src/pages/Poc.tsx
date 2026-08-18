@@ -1,11 +1,19 @@
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Check, X, Radio, MapPin, MessagesSquare, Layers, Coins, Wifi } from "lucide-react";
+import { Check, Radio, MapPin, MessagesSquare, Layers, Coins, Wifi } from "lucide-react";
 import pocHero from "@/assets/poc-hero-v13.png.asset.json";
 import pocRental from "@/assets/poc-rental-v11.png.asset.json";
 import { openLead } from "@/components/LeadFormSheet";
-import { spring } from "@/lib/springs";
+import { SectionHead } from "@/components/Section";
+import {
+  CompareTable,
+  FeatureCard,
+  ScrollRow,
+  ScrollItem,
+  type CompareColumn,
+} from "@/components/apple";
+import { spring, fadeUpAt } from "@/lib/springs";
 import { assetUrl } from "@/lib/asset";
 import { absolute, localeLinks, type SeoLang } from "@/lib/seo";
 
@@ -163,170 +171,121 @@ function PocHero() {
 }
 
 /* PoC vs PMR — two quiet equal-height panels */
+/* ─────────────────────────────────────────────────────────────
+   PoC vs PMR — apple.com's "which one is right for you?" table
+
+   The vendor copy is already a comparison matrix (rows x poc_vals x pmr_vals),
+   so it belongs in a table rather than two cards: side-by-side columns let a
+   buyer read down one axis, which is the whole point of the section.
+   ───────────────────────────────────────────────────────────── */
 function Compare() {
   const { t } = useTranslation();
+  const rowIds = ["coverage", "infra", "media", "gps", "scale", "cost"] as const;
 
-  const pocPoints = [
-    { Icon: Wifi, label: t("poc.poc_vals.coverage") },
-    { Icon: Layers, label: t("poc.poc_vals.infra") },
-    { Icon: MessagesSquare, label: t("poc.poc_vals.media") },
-    { Icon: MapPin, label: t("poc.poc_vals.gps") },
-  ];
-  const pmrPoints = [
-    { Icon: Radio, label: t("poc.pmr_vals.coverage") },
-    { Icon: Layers, label: t("poc.pmr_vals.infra") },
-    { Icon: MessagesSquare, label: t("poc.pmr_vals.media") },
-    { Icon: Coins, label: t("poc.pmr_vals.cost") },
+  const rows = rowIds.map((id) => ({ id, label: t(`poc.rows.${id}`) }));
+  const columns: CompareColumn[] = [
+    {
+      id: "poc",
+      name: "PoC",
+      tagline: t("poc.compare.poc.title"),
+      highlight: true,
+      media: <Wifi className="h-8 w-8 text-signal" strokeWidth={1.5} aria-hidden />,
+      values: Object.fromEntries(rowIds.map((id) => [id, t(`poc.poc_vals.${id}`)])),
+    },
+    {
+      id: "pmr",
+      name: "PMR / DMR",
+      tagline: t("poc.compare.pmr.title"),
+      media: <Radio className="h-8 w-8 text-cool" strokeWidth={1.5} aria-hidden />,
+      values: Object.fromEntries(rowIds.map((id) => [id, t(`poc.pmr_vals.${id}`)])),
+    },
   ];
 
   return (
-    <section id="poc-compare" className="band-soft section-lg scroll-mt-24 px-6 md:px-10">
-      <div className="mx-auto max-w-[1200px]">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={spring}
-          className="mb-14 text-center"
-        >
-          <h2 className="type-headline text-crisp">{t("poc.vs_title")}</h2>
-          <p className="subhead type-body mx-auto mt-4 max-w-2xl font-light">{t("poc.vs_sub")}</p>
+    <section id="poc-compare" className="band-soft section-tight px-4 md:px-6">
+      <div className="mx-auto max-w-[1000px]">
+        <SectionHead
+          align="center"
+          spacing="tight"
+          title={t("poc.vs_title")}
+          sub={t("poc.vs_sub")}
+        />
+        <motion.div {...fadeUpAt(1)}>
+          <CompareTable columns={columns} rows={rows} caption={t("poc.vs_title")} />
         </motion.div>
-
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <CompareCard
-            kind="poc"
-            title="PoC"
-            headline={t("poc.compare.poc.title")}
-            points={pocPoints}
-          />
-          <CompareCard
-            kind="pmr"
-            title="PMR / DMR"
-            headline={t("poc.compare.pmr.title")}
-            points={pmrPoints}
-          />
-        </div>
       </div>
     </section>
   );
 }
 
-function CompareCard({
-  kind,
-  title,
-  headline,
-  points,
-}: {
-  kind: "poc" | "pmr";
-  title: string;
-  headline: string;
-  points: { Icon: React.ComponentType<{ className?: string }>; label: string }[];
-}) {
-  const accent = kind === "poc";
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={spring}
-      whileHover={{ y: -4 }}
-      className="elev-1 flex h-full flex-col rounded-[28px] bg-background p-8 md:p-12"
-    >
-      <div className={`mb-3 text-[13px] ${accent ? "text-signal" : "text-cool"}`}>{title}</div>
-      <h3 className="type-title text-crisp md:text-[2rem]">{headline}</h3>
-      <ul className="mt-8 space-y-4">
-        {points.map((p, i) => (
-          <li key={i} className="flex items-start gap-4">
-            <span
-              className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${
-                accent ? "bg-signal text-white" : "bg-charcoal text-cool"
-              }`}
-            >
-              {accent ? <Check className="h-4 w-4" /> : <X className="h-4 w-4" />}
-            </span>
-            <div className="min-w-0 flex-1 text-[15px] leading-relaxed text-crisp">{p.label}</div>
-            <p.Icon
-              className={`mt-1.5 h-5 w-5 shrink-0 ${accent ? "text-signal/70" : "text-cool"}`}
-            />
-          </li>
-        ))}
-      </ul>
-    </motion.div>
-  );
-}
-
+/* ─── Network design — numbered steps as a card shelf ─────── */
 function NetworkDesign() {
   const { t } = useTranslation();
-  const steps = t("poc.design.steps", { returnObjects: true }) as string[];
+  const steps = (t("poc.design.steps", { returnObjects: true }) as string[]) || [];
+  const icons = [MapPin, Layers, Radio, Check, Coins];
+
   return (
-    <section className="band-plain section-lg px-6 md:px-10">
-      <div className="mx-auto max-w-[1200px] text-center">
-        <div className="mb-4 text-[13px] text-signal">{t("poc.design.kicker")}</div>
-        <h2 className="type-headline mx-auto max-w-3xl text-crisp">{t("poc.design.title")}</h2>
-        <ol className="mt-14 grid grid-cols-1 gap-4 text-left sm:grid-cols-2 md:grid-cols-5">
-          {steps.map((s, i) => (
-            <motion.li
-              key={i}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ ...spring, delay: i * 0.06 }}
-              whileHover={{ y: -4 }}
-              className="flex h-full flex-col rounded-[28px] bg-charcoal p-6"
-            >
-              <div className="text-[13px] text-signal">0{i + 1}</div>
-              <div className="mt-3 text-[15px] leading-snug text-crisp">{s}</div>
-            </motion.li>
-          ))}
-        </ol>
+    <section className="band-plain section-tight px-4 md:px-6">
+      <div className="mx-auto max-w-[1200px]">
+        <SectionHead
+          align="left"
+          spacing="tight"
+          eyebrow={t("poc.design.kicker")}
+          title={t("poc.design.title")}
+        />
+        <ScrollRow cols={3}>
+          {steps.map((s, i) => {
+            const Icon = icons[i] ?? Check;
+            return (
+              <ScrollItem key={s}>
+                <FeatureCard
+                  idx={i}
+                  tone={i === 1 ? "dark" : "light"}
+                  eyebrow={String(i + 1).padStart(2, "0")}
+                  title={s}
+                  className="h-full min-h-[230px] ring-1 ring-border"
+                  media={<Icon className="h-9 w-9 text-signal" strokeWidth={1.5} aria-hidden />}
+                />
+              </ScrollItem>
+            );
+          })}
+        </ScrollRow>
       </div>
     </section>
   );
 }
 
+/* ─── Rental — image / copy split ─────────────────────────── */
 function Rental() {
   const { t } = useTranslation();
-  const reduced = useReducedMotion();
   return (
-    <section className="band-dark overflow-hidden px-6 py-24 md:py-40">
-      <div className="mx-auto grid max-w-[1150px] grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-20">
+    <section className="band-soft section-tight px-4 md:px-6">
+      <div className="mx-auto grid max-w-[1200px] items-center gap-4 md:grid-cols-2">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.25 }}
-          transition={spring}
-          className="order-2 min-w-0 text-center md:order-1 md:text-left"
-        >
-          <div className="mb-4 text-[13px] text-signal">{t("poc.rental.kicker")}</div>
-          <h2 className="type-headline text-white">{t("poc.rental.title")}</h2>
-          <p className="type-body mt-5 font-light text-white/60">{t("poc.rental.desc")}</p>
-          <div className="mt-8">
-            <button
-              onClick={() => openLead({ title: t("poc.rental.cta") })}
-              className="pill"
-              style={{ background: "#fff", color: "#000" }}
-            >
-              {t("poc.rental.cta")}
-            </button>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={spring}
-          className="order-1 flex items-center justify-center md:order-2"
+          {...fadeUpAt(0)}
+          className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-[28px] bg-pitch"
         >
           <img
             src={assetUrl(pocRental)}
-            alt="Radiocom RCD-70 radio available for rent"
+            alt=""
             loading="lazy"
-            width={1400}
-            height={1400}
-            className={`h-auto w-[74%] max-w-[460px] object-contain md:w-full ${reduced ? "" : "float-slow"}`}
+            width={1200}
+            height={900}
+            className="max-h-[78%] max-w-[78%] object-contain mix-blend-multiply"
           />
+        </motion.div>
+        <motion.div {...fadeUpAt(1)} className="px-2 md:px-6">
+          <div className="text-[13px] font-medium tracking-tight text-signal">
+            {t("poc.rental.kicker")}
+          </div>
+          <h2 className="type-headline mt-3 text-crisp">{t("poc.rental.title")}</h2>
+          <p className="subhead mt-5 max-w-md text-[15px] md:text-base">{t("poc.rental.desc")}</p>
+          <button
+            onClick={() => openLead({ title: t("poc.rental.cta") })}
+            className="pill pill-accent mt-7"
+          >
+            {t("poc.rental.cta")}
+          </button>
         </motion.div>
       </div>
     </section>
