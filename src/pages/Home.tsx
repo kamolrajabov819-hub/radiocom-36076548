@@ -1,33 +1,25 @@
-import { LocaleLink } from "@/components/LocaleLink";
-import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import {
-  ChevronRight,
-  Repeat,
-  ShieldCheck,
-  Truck,
-  Wrench,
-  Package,
-  Sparkles,
-  MessageCircle,
-} from "lucide-react";
+import { ChevronRight, Repeat, ShieldCheck, Truck, Wrench, Package, Sparkles } from "lucide-react";
+import { LocaleLink } from "@/components/LocaleLink";
 import { SignalPulse } from "@/components/SignalPulse";
 import heroImage from "@/assets/hero-rcd60-cutout.png";
-import { assetUrl } from "@/lib/asset";
-
 import bentoDetail from "@/assets/detail-grille-v11.jpg.asset.json";
 import horecaImg from "@/assets/industry-horeca.jpg";
 import constructionImg from "@/assets/industry-construction.jpg";
 import securityImg from "@/assets/industry-security.jpg";
+import { assetUrl } from "@/lib/asset";
 import { openLead } from "@/components/LeadFormSheet";
 import { BrandsStrip } from "@/components/BrandsStrip";
-import { Section, SectionHead } from "@/components/Section";
-import { SpotlightCard } from "@/components/SpotlightCard";
+import { SectionHead } from "@/components/Section";
+import { FeatureCard, ScrollRow, ScrollItem } from "@/components/apple";
 import { Magnetic } from "@/components/Magnetic";
 import { products } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
-import { spring } from "@/lib/springs";
+import { CountUp } from "@/components/CountUp";
+import { spring, fadeUpAt } from "@/lib/springs";
+import { gsap, useGsap } from "@/lib/motion";
 import { absolute, localeLinks, type SeoLang } from "@/lib/seo";
 
 export const routeOptions = {
@@ -51,8 +43,6 @@ export const routeOptions = {
       },
       { property: "og:url", content: absolute("/") },
       { property: "og:locale", content: "ru_RU" },
-      { property: "og:locale:alternate", content: "uz_UZ" },
-      { property: "og:locale:alternate", content: "en_US" },
       {
         name: "twitter:title",
         content: "Рации и радиостанции в Ташкенте — Motorola, Radiocom | Radiocom",
@@ -72,8 +62,10 @@ export function HomePage() {
   return (
     <div className="page-anim">
       <Hero />
+      <Proof />
       <FeatureDark />
-      <Bento />
+      <ValueShelf />
+      <NetworkSplit />
       <IndustriesTeaser />
       <FeaturedCatalog />
       <BrandsStrip />
@@ -82,60 +74,88 @@ export function HomePage() {
   );
 }
 
-/* ─── Hero — split headline reveal + scale-scroll art ───── */
+/* ─────────────────────────────────────────────────────────────
+   Hero — pinned, scrub-driven product hand-off
+
+   The section holds still while the copy recedes and the radio grows into
+   frame with the scrollbar. This is the apple.com opening move, and the reason
+   it needs GSAP: Framer Motion can scrub, but pinning is what makes the
+   sequence read as one continuous scene instead of two stacked ones.
+   ───────────────────────────────────────────────────────────── */
 function Hero() {
   const { t } = useTranslation();
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.4]);
-  const y = useTransform(scrollYProgress, [0, 1], [0, -60]);
-
+  const scope = useRef<HTMLElement>(null);
   const title = t("home.hero.title");
-  const words = title.split(" ");
+
+  useGsap(
+    () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: scope.current,
+          start: "top top",
+          end: "+=90%",
+          pin: true,
+          scrub: 0.6,
+          anticipatePin: 1,
+        },
+      });
+      tl.to("[data-hero-copy]", { y: -70, opacity: 0.15, ease: "none" }, 0).to(
+        "[data-hero-art]",
+        { scale: 1.18, y: -40, ease: "none" },
+        0,
+      );
+    },
+    scope,
+    [],
+  );
 
   return (
-    <section ref={ref} className="pt-28 md:pt-32 pb-0 bg-pitch overflow-hidden relative">
-      {/* Signature signal-pulse motif behind hero */}
-      <div className="absolute inset-x-0 top-0 h-[120vh] pointer-events-none">
+    <section ref={scope} className="relative overflow-hidden bg-pitch pt-28 md:pt-32">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[120vh]">
         <SignalPulse size={1400} opacity={0.28} />
       </div>
 
-      <div className="max-w-[1200px] mx-auto px-6 md:px-10 text-center relative z-10">
+      <div
+        data-hero-copy
+        className="relative z-10 mx-auto max-w-[1200px] px-6 text-center md:px-10"
+      >
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...spring, delay: 0.05 }}
-          className="eyebrow-sweep text-[13px] tracking-wide font-medium mb-5"
+          className="eyebrow-sweep mb-5 text-[13px] font-medium tracking-wide"
         >
-          {t("home.hero.eyebrow", { defaultValue: "Radiocom · Uzbekistan" })}
+          {t("home.hero.eyebrow")}
         </motion.div>
+
         <h1 className="headline-hero text-crisp">
-          {words.map((w, i) => (
+          {title.split(" ").map((w, i) => (
             <motion.span
               key={i}
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...spring, delay: 0.1 + i * 0.04 }}
-              className="inline-block mr-[0.25em]"
+              className="mr-[0.25em] inline-block"
             >
               {w}
             </motion.span>
           ))}
         </h1>
+
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...spring, delay: 0.35 }}
-          className="subhead mt-6 text-lg md:text-2xl max-w-3xl mx-auto"
+          className="subhead mx-auto mt-6 max-w-3xl text-lg md:text-2xl"
         >
           {t("home.hero.sub")}
         </motion.p>
+
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...spring, delay: 0.45 }}
-          className="mt-9 flex items-center justify-center gap-3 md:gap-4 flex-wrap"
+          className="mt-9 flex flex-wrap items-center justify-center gap-3 md:gap-4"
         >
           <Magnetic>
             <button
@@ -146,20 +166,16 @@ function Hero() {
             </button>
           </Magnetic>
           <LocaleLink to="/catalog" className="pill-link">
-            {t("home.hero.cta_secondary")} <ChevronRight className="w-4 h-4" />
+            {t("home.hero.cta_secondary")} <ChevronRight className="h-4 w-4" aria-hidden />
           </LocaleLink>
         </motion.div>
       </div>
 
-      <motion.div
-        style={{ scale, opacity, y }}
-        className="stage mt-6 md:mt-10 relative w-full h-[46vh] md:h-[66vh] max-h-[680px]"
+      <div
+        data-hero-art
+        className="stage relative mt-6 h-[46vh] max-h-[680px] w-full md:mt-10 md:h-[62vh]"
       >
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center px-6"
-          animate={{ y: [0, -14, 0] }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-        >
+        <div className="absolute inset-0 flex items-center justify-center px-6">
           <img
             src={heroImage}
             alt="Radiocom RCD-60 professional two-way radios"
@@ -168,55 +184,59 @@ function Hero() {
             height={1200}
             className="h-full w-auto max-w-[94vw] object-contain"
           />
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
 }
 
-/* ─── Dark feature strip ─────────────────────────────────── */
+/* ─── Proof bar — the numbers, stated plainly ─────────────── */
+function Proof() {
+  const { t } = useTranslation();
+  const stats = [
+    { n: 35, suffix: "+", label: t("stats.types") },
+    { n: 10000, suffix: "+", label: t("stats.clients") },
+    { n: 11, suffix: "", label: t("stats.years") },
+  ];
+  return (
+    <section className="band-soft border-y border-border py-12 md:py-16">
+      <div className="mx-auto grid max-w-[1200px] grid-cols-3 gap-4 px-6 md:px-10">
+        {stats.map((s, i) => (
+          <motion.div key={s.label} {...fadeUpAt(i)} className="text-center">
+            <div className="type-title text-[28px] font-semibold text-crisp md:text-[44px]">
+              <CountUp to={s.n} />
+              {s.suffix}
+            </div>
+            <div className="type-caption mt-1">{s.label}</div>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ─── Dark statement band ─────────────────────────────────── */
 function FeatureDark() {
   const { t } = useTranslation();
   return (
-    <section className="bg-black text-white py-28 md:py-40 text-center px-6 md:px-10 overflow-hidden">
-      <div className="max-w-[1200px] mx-auto">
+    <section className="band-dark overflow-hidden px-6 py-28 text-center md:px-10 md:py-40">
+      <div className="mx-auto max-w-[1200px]">
         <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={spring}
-          className="headline text-white mx-auto max-w-4xl"
+          {...fadeUpAt(0)}
+          className="mx-auto max-w-4xl font-semibold leading-[1.05] tracking-[-0.03em]"
           style={{ fontSize: "clamp(2.25rem, 6vw, 4.5rem)" }}
         >
           {t("home.feature.title")}
         </motion.h2>
         <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ ...spring, delay: 0.1 }}
-          className="mt-5 text-lg md:text-xl text-white/60 max-w-2xl mx-auto"
+          {...fadeUpAt(1)}
+          className="mx-auto mt-5 max-w-2xl text-lg text-white/60 md:text-xl"
         >
           {t("home.feature.sub")}
         </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ ...spring, delay: 0.15 }}
-          className="mt-9 flex items-center justify-center gap-6 flex-wrap"
-        >
-          <Magnetic>
-            <LocaleLink
-              to="/catalog"
-              className="pill"
-              style={{ background: "#fff", color: "#000" }}
-            >
-              {t("home.hero.cta_secondary")}
-            </LocaleLink>
-          </Magnetic>
-          <LocaleLink to="/poc" className="text-signal text-[15px] inline-flex items-center gap-1">
-            {t("home.feature.link")} <ChevronRight className="w-4 h-4" />
+        <motion.div {...fadeUpAt(2)} className="mt-8">
+          <LocaleLink to="/poc" className="pill-link">
+            {t("home.feature.link")} <ChevronRight className="h-4 w-4" aria-hidden />
           </LocaleLink>
         </motion.div>
       </div>
@@ -224,55 +244,62 @@ function FeatureDark() {
   );
 }
 
-/* ─── Bento grid — symmetric 4-col ─────────────────────── */
-function Bento() {
+/* ─── Value shelf — apple.com's editorial card row ────────── */
+function ValueShelf() {
   const { t } = useTranslation();
-  const items: { key: string; Icon: typeof Repeat }[] = [
+  const items = [
     { key: "tradein", Icon: Repeat },
     { key: "warranty", Icon: ShieldCheck },
     { key: "delivery", Icon: Truck },
     { key: "test", Icon: Sparkles },
     { key: "models", Icon: Package },
     { key: "service", Icon: Wrench },
-  ];
+  ] as const;
 
   return (
-    <Section className="bg-pitch">
-      <SectionHead
-        eyebrow={t("home.bento.eyebrow", { defaultValue: "Why Radiocom" })}
-        title={t("home.bento.title")}
-        sub={t("home.bento.sub")}
-      />
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 items-stretch">
-        {items.map((it, i) => (
-          <motion.div
-            key={it.key}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ ...spring, delay: i * 0.06 }}
-            className="h-full"
-          >
-            <SpotlightCard className="h-full p-8 md:p-10 flex flex-col text-left min-h-[280px]">
-              <it.Icon className="w-7 h-7 text-signal mb-6" strokeWidth={1.75} />
-              <h3 className="headline text-crisp text-xl md:text-2xl">
-                {t(`home.bento.${it.key}.title`)}
-              </h3>
-              <p className="subhead text-[15px] mt-3 flex-1">{t(`home.bento.${it.key}.sub`)}</p>
-            </SpotlightCard>
-          </motion.div>
-        ))}
+    <section className="band-soft section-tight px-4 md:px-6">
+      <div className="mx-auto max-w-[1200px]">
+        <SectionHead
+          align="left"
+          spacing="tight"
+          eyebrow={t("home.bento.eyebrow")}
+          title={t("home.bento.title")}
+          sub={t("home.bento.sub")}
+        />
+        <ScrollRow cols={3}>
+          {items.map((it, i) => (
+            <ScrollItem key={it.key}>
+              <FeatureCard
+                idx={i}
+                tone={i === 1 || i === 4 ? "dark" : "light"}
+                eyebrow={t(`home.bento.${it.key}.title`)}
+                title={t(`home.bento.${it.key}.sub`)}
+                className="h-full min-h-[260px]"
+                media={
+                  <it.Icon
+                    className={`h-10 w-10 ${i === 1 || i === 4 ? "text-signal" : "text-signal"}`}
+                    strokeWidth={1.5}
+                    aria-hidden
+                  />
+                }
+              />
+            </ScrollItem>
+          ))}
+        </ScrollRow>
       </div>
+    </section>
+  );
+}
 
-      {/* Network topology visual — separate symmetric split scene */}
-      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+/* ─── Network design — image / copy split ─────────────────── */
+function NetworkSplit() {
+  const { t } = useTranslation();
+  return (
+    <section className="band-plain section-tight px-4 md:px-6">
+      <div className="mx-auto grid max-w-[1200px] gap-4 md:grid-cols-2">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={spring}
-          className="bento-card aspect-[4/3] md:aspect-auto md:min-h-[420px] relative"
+          {...fadeUpAt(0)}
+          className="relative aspect-[4/3] overflow-hidden rounded-[28px] bg-charcoal md:aspect-auto md:min-h-[440px]"
         >
           <img
             src={assetUrl(bentoDetail)}
@@ -284,35 +311,27 @@ function Bento() {
           />
         </motion.div>
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ ...spring, delay: 0.08 }}
-          className="bento-card p-10 md:p-14 flex flex-col justify-center relative overflow-hidden"
+          {...fadeUpAt(1)}
+          className="relative flex flex-col justify-center overflow-hidden rounded-[28px] bg-charcoal p-10 md:p-14"
         >
           <SignalPulse size={700} opacity={0.15} className="!items-end !justify-end" />
-          <div className="eyebrow-sweep text-[13px] tracking-wide font-medium mb-4 relative">
-            {t("home.bento.network.eyebrow", { defaultValue: "Network Design" })}
+          <div className="eyebrow-sweep relative mb-4 text-[13px] font-medium tracking-wide">
+            {t("home.bento.network.eyebrow")}
           </div>
-          <h3 className="type-headline text-crisp relative">
-            {t("home.bento.network.title", { defaultValue: "One system. Every site." })}
-          </h3>
-          <p className="subhead mt-5 text-[15px] md:text-base max-w-md relative">
-            {t("home.bento.network.sub", {
-              defaultValue:
-                "Custom radio network design with repeaters, dispatch and PoC — engineered end-to-end.",
-            })}
+          <h3 className="type-headline relative text-crisp">{t("home.bento.network.title")}</h3>
+          <p className="subhead relative mt-5 max-w-md text-[15px] md:text-base">
+            {t("home.bento.network.sub")}
           </p>
-          <LocaleLink to="/poc" className="pill-link mt-6 relative">
-            {t("home.feature.link")} <ChevronRight className="w-4 h-4" />
+          <LocaleLink to="/poc" className="pill-link relative mt-6">
+            {t("home.feature.link")} <ChevronRight className="h-4 w-4" aria-hidden />
           </LocaleLink>
         </motion.div>
       </div>
-    </Section>
+    </section>
   );
 }
 
-/* ─── Industries teaser ─────────────────────────────────── */
+/* ─── Industries — full-bleed image cards ─────────────────── */
 function IndustriesTeaser() {
   const { t } = useTranslation();
   const items = [
@@ -321,115 +340,52 @@ function IndustriesTeaser() {
     { slug: "security" as const, img: securityImg },
   ];
   return (
-    <Section className="bg-charcoal">
-      <SectionHead
-        eyebrow={t("industries.eyebrow", { defaultValue: "Industries" })}
-        title={t("industries.title")}
-        sub={t("industries.overview_sub")}
-      />
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 items-stretch">
-        {items.map((it, i) => (
-          <motion.div
-            key={it.slug}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ ...spring, delay: i * 0.08 }}
-            className="group bg-pitch rounded-3xl overflow-hidden flex flex-col h-full shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-12px_rgba(0,0,0,0.12)] hover:-translate-y-1 hover:shadow-[0_1px_2px_rgba(0,0,0,0.06),0_20px_40px_-16px_rgba(0,0,0,0.2)] transition-all duration-300"
-          >
-            <LocaleLink
-              to="/industries/$slug"
-              params={{ slug: it.slug }}
-              className="block aspect-[4/3] overflow-hidden"
-            >
-              <img
-                src={it.img}
-                alt={t(`industries.${it.slug}.name`)}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[900ms]"
-                loading="lazy"
-              />
-            </LocaleLink>
-            <div className="p-6 md:p-7 flex flex-col flex-1">
-              <h3 className="headline text-2xl text-crisp">{t(`industries.${it.slug}.name`)}</h3>
-              <p className="subhead text-[15px] mt-2 flex-1">{t(`industries.${it.slug}.desc`)}</p>
-              <div className="mt-5 flex flex-wrap items-center gap-3">
-                <button
-                  onClick={() =>
-                    openLead({
-                      title: `${t("industries.cta")} · ${t(`industries.${it.slug}.name`)}`,
-                    })
-                  }
-                  className="pill pill-sm pill-accent"
-                >
-                  {t("industries.cta")}
-                </button>
-                <LocaleLink
-                  to="/industries/$slug"
-                  params={{ slug: it.slug }}
-                  className="pill-link text-[13px]"
-                >
-                  {t("industries.compare_all", { defaultValue: "See radios" })}{" "}
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </LocaleLink>
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Closing capture-contact banner */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={spring}
-        className="mt-8 md:mt-10 rounded-3xl bg-pitch p-8 md:p-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6 relative overflow-hidden"
-      >
-        <SignalPulse size={600} opacity={0.12} className="!items-start !justify-start" />
-        <div className="relative">
-          <h3 className="type-headline text-crisp max-w-xl">
-            {t("industries.banner_title", {
-              defaultValue: "Not sure which radio fits your operation?",
-            })}
-          </h3>
-          <p className="subhead mt-3 text-[15px] max-w-xl">
-            {t("industries.banner_sub", {
-              defaultValue:
-                "Tell us your industry — we'll recommend the right system within 15 minutes.",
-            })}
-          </p>
+    <section className="band-soft section-tight px-4 md:px-6">
+      <div className="mx-auto max-w-[1200px]">
+        <SectionHead
+          align="left"
+          spacing="tight"
+          eyebrow={t("industries.kicker")}
+          title={t("industries.title")}
+          sub={t("industries.overview_sub")}
+          link={{ label: t("industries.view_all"), to: "/industries" }}
+        />
+        <div className="grid gap-4 md:grid-cols-3">
+          {items.map((it, i) => (
+            <motion.div key={it.slug} {...fadeUpAt(i)}>
+              <LocaleLink
+                to="/industries/$slug"
+                params={{ slug: it.slug }}
+                className="group relative block aspect-[3/4] overflow-hidden rounded-[28px] bg-charcoal"
+              >
+                <img
+                  src={it.img}
+                  alt=""
+                  loading="lazy"
+                  width={1200}
+                  height={1600}
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-7">
+                  <h3 className="text-[26px] font-semibold leading-tight tracking-[-0.02em] text-white">
+                    {t(`industries.${it.slug}.name`)}
+                  </h3>
+                  <span className="mt-2 inline-flex items-center gap-1 text-[14px] text-white/85">
+                    {t("industries.cta_secondary", { defaultValue: t("product.more") })}
+                    <ChevronRight className="h-4 w-4" aria-hidden />
+                  </span>
+                </div>
+              </LocaleLink>
+            </motion.div>
+          ))}
         </div>
-        <div className="flex flex-wrap gap-3 relative">
-          <Magnetic>
-            <button
-              onClick={() => openLead({ title: t("industries.cta") })}
-              className="pill pill-accent"
-            >
-              {t("industries.cta")}
-            </button>
-          </Magnetic>
-          <a
-            href="https://t.me/radiocom_uz"
-            target="_blank"
-            rel="noopener"
-            className="pill pill-ghost inline-flex items-center gap-2"
-          >
-            <MessageCircle className="w-4 h-4" /> Telegram
-          </a>
-        </div>
-      </motion.div>
-
-      <div className="mt-10 text-center">
-        <LocaleLink to="/industries" className="pill-link">
-          {t("industries.view_all")} <ChevronRight className="w-4 h-4" />
-        </LocaleLink>
       </div>
-    </Section>
+    </section>
   );
 }
 
-/* ─── Featured catalog ──────────────────────────────────── */
+/* ─── Featured catalogue shelf ────────────────────────────── */
 function FeaturedCatalog() {
   const { t, i18n } = useTranslation();
   const lang = (i18n.language.slice(0, 2) as "ru" | "en" | "uz") || "ru";
@@ -439,54 +395,42 @@ function FeaturedCatalog() {
   const featured = picked.length >= 4 ? picked.slice(0, 4) : products.slice(0, 4);
 
   return (
-    <Section className="bg-charcoal">
-      <div className="flex items-end justify-between flex-wrap gap-4 mb-10">
-        <div>
-          <div className="eyebrow-sweep text-[13px] tracking-wide font-medium mb-3">
-            {t("home.featured.eyebrow", { defaultValue: "Best sellers" })}
-          </div>
-          <h2 className="type-headline text-crisp">{t("home.featured.title")}</h2>
+    <section className="band-plain section-tight px-4 md:px-6">
+      <div className="mx-auto max-w-[1200px]">
+        <SectionHead
+          align="left"
+          spacing="tight"
+          eyebrow={t("home.featured.eyebrow")}
+          title={t("home.featured.title")}
+          link={{ label: t("home.featured.link"), to: "/catalog" }}
+        />
+        <div className="grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-4">
+          {featured.map((p, i) => (
+            <ProductCard key={p.id} p={p} lang={lang} idx={i} />
+          ))}
         </div>
-        <LocaleLink to="/catalog" className="pill-link">
-          {t("home.featured.link")} <ChevronRight className="w-4 h-4" />
-        </LocaleLink>
       </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 items-stretch">
-        {featured.map((p, i) => (
-          <ProductCard key={p.id} p={p} lang={lang} idx={i} />
-        ))}
-      </div>
-    </Section>
+    </section>
   );
 }
 
-/* ─── Final CTA ────────────────────────────────────────── */
+/* ─── Closing CTA ─────────────────────────────────────────── */
 function FinalCta() {
   const { t } = useTranslation();
   return (
-    <section className="bg-black text-white py-28 md:py-40 px-6 md:px-10 text-center">
-      <div className="max-w-[1200px] mx-auto">
+    <section className="band-dark px-6 py-28 text-center md:px-10 md:py-40">
+      <div className="mx-auto max-w-[1200px]">
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={spring}
-          className="headline text-white mx-auto max-w-3xl"
+          {...fadeUpAt(0)}
+          className="mx-auto max-w-3xl font-semibold leading-[1.05] tracking-[-0.03em]"
           style={{ fontSize: "clamp(2.25rem, 6vw, 4.5rem)" }}
         >
           {t("home.final_cta.title")}
         </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ ...spring, delay: 0.1 }}
-          className="mt-4 text-lg text-white/60 max-w-2xl mx-auto"
-        >
+        <motion.p {...fadeUpAt(1)} className="mx-auto mt-4 max-w-2xl text-lg text-white/60">
           {t("home.final_cta.sub")}
         </motion.p>
-        <div className="mt-9 flex items-center justify-center gap-4 flex-wrap">
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
           <Magnetic>
             <button
               onClick={() => openLead({ title: t("home.final_cta.button") })}
@@ -496,11 +440,8 @@ function FinalCta() {
               {t("home.final_cta.button")}
             </button>
           </Magnetic>
-          <LocaleLink
-            to="/service"
-            className="text-signal text-[15px] inline-flex items-center gap-1"
-          >
-            {t("nav.service")} <ChevronRight className="w-4 h-4" />
+          <LocaleLink to="/service" className="pill-link">
+            {t("nav.service")} <ChevronRight className="h-4 w-4" aria-hidden />
           </LocaleLink>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import type { ReactNode, CSSProperties } from "react";
 import { ChevronRight } from "lucide-react";
+import { LocaleLink } from "@/components/LocaleLink";
 import { WordReveal } from "@/components/WordReveal";
 
 export function Section({
@@ -47,7 +48,13 @@ export function SectionHead({
   sub?: string;
   align?: "center" | "left";
   invert?: boolean;
-  link?: { label: string; href?: string; onClick?: () => void };
+  link?: {
+    label: string;
+    /** Internal route, locale-resolved. Prefer this over href for site links. */
+    to?: "/catalog" | "/poc" | "/service" | "/industries";
+    href?: string;
+    onClick?: () => void;
+  };
   spacing?: "loose" | "tight";
 }) {
   const centred = align === "center";
@@ -72,7 +79,11 @@ export function SectionHead({
   return (
     <div className={`${gap} flex flex-wrap items-end justify-between gap-4`}>
       {heading}
-      {link.href ? (
+      {link.to ? (
+        <LocaleLink to={link.to} className="pill-link shrink-0">
+          {link.label} <ChevronRight className="w-4 h-4" aria-hidden />
+        </LocaleLink>
+      ) : link.href ? (
         <a href={link.href} className="pill-link shrink-0">
           {link.label} <ChevronRight className="w-4 h-4" aria-hidden />
         </a>
