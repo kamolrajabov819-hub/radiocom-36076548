@@ -11,7 +11,9 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "seo:generate": "bun scripts/generate-seo.ts",
-    "seo:verify": "bun scripts/verify-seo.ts"
+    "seo:verify": "bun scripts/verify-seo.ts",
+    "i18n:verify": "bun scripts/verify-i18n.ts",
+    "verify": "bun scripts/verify-seo.ts && bun scripts/verify-i18n.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

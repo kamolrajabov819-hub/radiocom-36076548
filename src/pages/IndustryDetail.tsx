@@ -28,13 +28,15 @@ import manufacturingImg from "@/assets/industry-manufacturing.jpg";
 import { spring } from "@/lib/springs";
 import { assetUrl } from "@/lib/asset";
 import {
-  absolute,
+  SITE_NAME,
   breadcrumbSchema,
   faqSchema,
   jsonLd,
   localeLinks,
+  pageMeta,
   type SeoLang,
 } from "@/lib/seo";
+import { tFor } from "@/lib/i18n";
 import ruCopy from "@/i18n/ru.json";
 
 const IMAGES: Record<string, string> = {
@@ -52,38 +54,46 @@ export const routeOptions = {
   },
   head: ({ params }: { params: { slug: string; lang: SeoLang } }) => {
     const slug = params.slug as IndustrySlug;
-    // head() runs outside React, so the Russian copy is read straight from the
-    // bundle. That is also the correct language here: the SSR pass renders `ru`,
-    // so Russian is the only variant crawlers ever see, and JSON-LD has to match
-    // the visible text.
-    const copy = ruCopy.industries[slug];
-    const name = copy?.name ?? slug;
-    const title = `Рации для ${name.toLowerCase()} — подбор и внедрение | Radiocom`;
-    const description = copy?.desc ?? `Решения радиосвязи для ${name} в Узбекистане.`;
+    const t = tFor(params.lang);
+
+    const name = t(`industries.${slug}.name`);
+    // `.seo` is the industry as it reads inside a sentence: Russian needs the
+    // genitive ("Рации для строительства", not "для строительство"), and the
+    // display names carry "·" separators that do not belong in a page title.
+    const inTitle = t(`industries.${slug}.seo`, { defaultValue: name });
+    const title = t("meta.industry.title", { name: inTitle });
+    const description =
+      t(`industries.${slug}.desc`, { defaultValue: "" }) ||
+      t("meta.industry.desc", { name: inTitle });
     const path = `/industries/${slug}`;
-    const faq = (copy?.faq ?? []) as { q: string; a: string }[];
+
+    // The FAQ pairs must be this locale's — schema that disagrees with the
+    // rendered text counts as mismatched markup.
+    const faq = (t(`industries.${slug}.faq`, { returnObjects: true, defaultValue: [] }) ?? []) as {
+      q: string;
+      a: string;
+    }[];
 
     return {
-      meta: [
-        { title },
-        { name: "description", content: description },
-        { property: "og:type", content: "article" },
-        { property: "og:title", content: title },
-        { property: "og:description", content: description },
-        { property: "og:url", content: absolute(path) },
-        { property: "og:locale", content: "ru_RU" },
-        { name: "twitter:title", content: title },
-        { name: "twitter:description", content: description },
-      ],
+      meta: pageMeta({
+        lang: params.lang,
+        title,
+        description,
+        path,
+        type: "article",
+      }),
       links: localeLinks(params.lang, path),
       scripts: [
-        ...(faq.length ? [jsonLd(faqSchema(faq))] : []),
+        ...(Array.isArray(faq) && faq.length ? [jsonLd(faqSchema(faq, params.lang))] : []),
         jsonLd(
-          breadcrumbSchema([
-            { name: "Radiocom", path: "/" },
-            { name: "Отрасли", path: "/industries" },
-            { name, path },
-          ]),
+          breadcrumbSchema(
+            [
+              { name: SITE_NAME, path: "/" },
+              { name: t("meta.crumb.industries"), path: "/industries" },
+              { name, path },
+            ],
+            params.lang,
+          ),
         ),
       ],
     };

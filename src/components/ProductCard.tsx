@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { LocaleLink } from "@/components/LocaleLink";
 import { useTranslation } from "react-i18next";
 import { formatPrice, type Product } from "@/data/products";
+import { pick } from "@/data/spec-dict";
 import { spring } from "@/lib/springs";
 import { TiltCard } from "@/components/TiltCard";
 
@@ -85,7 +86,7 @@ export function ProductCard({
 
           <div className="mt-auto flex items-end justify-between gap-3">
             <div className="min-w-0">
-              <div className="text-[13px] leading-snug text-cool">{p.rangeCity}</div>
+              <div className="text-[13px] leading-snug text-cool">{pick(p.rangeCity, lang)}</div>
               <div className="mt-1 text-[15px] font-medium text-crisp">
                 {formatPrice(p.price, lang)}
               </div>

@@ -15,43 +15,22 @@ import {
 } from "@/components/apple";
 import { spring, fadeUpAt } from "@/lib/springs";
 import { assetUrl } from "@/lib/asset";
-import { absolute, localeLinks, type SeoLang } from "@/lib/seo";
+import { localeLinks, pageMeta, type SeoLang } from "@/lib/seo";
+import { tFor } from "@/lib/i18n";
 
 export const routeOptions = {
-  head: ({ params }: { params: { lang: SeoLang } }) => ({
-    meta: [
-      { title: "PoC-рации: связь через LTE по всему Узбекистану | Radiocom" },
-      {
-        name: "description",
-        content:
-          "Push-to-Talk over Cellular — связь без ретрансляторов по всей стране, GPS, группы и диспетчеризация. Проектирование сети и аренда рации в Ташкенте.",
-      },
-      { property: "og:type", content: "website" },
-      {
-        property: "og:title",
-        content: "PoC-рации: связь через LTE по всему Узбекистану | Radiocom",
-      },
-      {
-        property: "og:description",
-        content:
-          "Push-to-Talk over Cellular — связь без ретрансляторов по всей стране, GPS, группы и диспетчеризация. Проектирование сети и аренда рации в Ташкенте.",
-      },
-      { property: "og:url", content: absolute("/poc") },
-      { property: "og:locale", content: "ru_RU" },
-      { property: "og:locale:alternate", content: "uz_UZ" },
-      { property: "og:locale:alternate", content: "en_US" },
-      {
-        name: "twitter:title",
-        content: "PoC-рации: связь через LTE по всему Узбекистану | Radiocom",
-      },
-      {
-        name: "twitter:description",
-        content:
-          "Push-to-Talk over Cellular — связь без ретрансляторов по всей стране, GPS, группы и диспетчеризация. Проектирование сети и аренда рации в Ташкенте.",
-      },
-    ],
-    links: localeLinks(params.lang, "/poc"),
-  }),
+  head: ({ params }: { params: { lang: SeoLang } }) => {
+    const t = tFor(params.lang);
+    return {
+      meta: pageMeta({
+        lang: params.lang,
+        title: t("meta.poc.title"),
+        description: t("meta.poc.desc"),
+        path: "/poc",
+      }),
+      links: localeLinks(params.lang, "/poc"),
+    };
+  },
   component: PoCPage,
 };
 

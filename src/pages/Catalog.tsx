@@ -19,37 +19,38 @@ import { getSpec } from "@/data/specs";
 import { pick, type Lang } from "@/data/spec-dict";
 import { assetUrl } from "@/lib/asset";
 import {
-  absolute,
+  SITE_NAME,
   breadcrumbSchema,
   itemListSchema,
   jsonLd,
   localeLinks,
+  pageMeta,
   type SeoLang,
 } from "@/lib/seo";
+import { tFor } from "@/lib/i18n";
 
 export const routeOptions = {
   head: ({ params }: { params: { lang: SeoLang } }) => {
-    const title = `Каталог рации — ${products.length} моделей Motorola и Radiocom | Radiocom`;
-    const description = `Полный каталог радиостанций в Ташкенте: ${products.length} моделей Motorola Talkabout, TLKR, XT и Radiocom RC/RCD. PMR и DMR, цены в сумах, официальная гарантия, бесплатный тест перед покупкой.`;
+    const t = tFor(params.lang);
+    // Named `count` so i18next selects the Russian numeral form: 24 модели,
+    // 25 моделей. A plain interpolation cannot decline the noun.
+    const count = products.length;
+    const title = t("meta.catalog.title", { count });
+    const description = t("meta.catalog.desc", { count });
+
     return {
-      meta: [
-        { title },
-        { name: "description", content: description },
-        { property: "og:type", content: "website" },
-        { property: "og:title", content: title },
-        { property: "og:description", content: description },
-        { property: "og:url", content: absolute("/catalog") },
-        { name: "twitter:title", content: title },
-        { name: "twitter:description", content: description },
-      ],
+      meta: pageMeta({ lang: params.lang, title, description, path: "/catalog" }),
       links: localeLinks(params.lang, "/catalog"),
       scripts: [
-        jsonLd(itemListSchema(products)),
+        jsonLd(itemListSchema(products, params.lang)),
         jsonLd(
-          breadcrumbSchema([
-            { name: "Radiocom", path: "/" },
-            { name: "Каталог", path: "/catalog" },
-          ]),
+          breadcrumbSchema(
+            [
+              { name: SITE_NAME, path: "/" },
+              { name: t("meta.crumb.catalog"), path: "/catalog" },
+            ],
+            params.lang,
+          ),
         ),
       ],
     };
@@ -207,7 +208,7 @@ function Compare({ lang }: { lang: Lang }) {
     return {
       id: p.id,
       name: p.name.replace(/^Radiocom |^Motorola /, ""),
-      tagline: p.blurb,
+      tagline: pick(p.blurb, lang),
       note: formatPrice(p.price, lang),
       media: (
         <img
