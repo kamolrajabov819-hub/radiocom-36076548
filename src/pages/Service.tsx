@@ -1,10 +1,13 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Plus, Minus, Search, Microscope, Cog, ClipboardCheck } from "lucide-react";
 import serviceLight from "@/assets/service-tech-light.jpg";
 import { openLead } from "@/components/LeadFormSheet";
 import { spring } from "@/lib/springs";
+import { gsap, useGsap } from "@/lib/motion";
+import { SectionHead } from "@/components/Section";
+import { FeatureCard } from "@/components/apple";
 import {
   absolute,
   breadcrumbSchema,
@@ -143,108 +146,140 @@ function Hero() {
   );
 }
 
+/* ─────────────────────────────────────────────────────────────
+   Repair flow — a scrub-driven horizontal timeline
+
+   The four stages advance sideways as the section is scrolled through, so the
+   process reads as a sequence rather than four disconnected tiles. Pinned via
+   GSAP; under reduced motion the hook no-ops and the row simply sits static.
+   ───────────────────────────────────────────────────────────── */
 function Flow() {
   const { t } = useTranslation();
-  const steps = t("service.flow", { returnObjects: true }) as string[];
+  const steps = (t("service.flow", { returnObjects: true }) as string[]) || [];
   const icons = [Search, Microscope, ClipboardCheck, Cog];
+  const scope = useRef<HTMLElement>(null);
+
+  useGsap(
+    () => {
+      const track = scope.current?.querySelector("[data-flow-track]");
+      if (!track) return;
+      // Only pin when the track actually overflows — on wide screens all four
+      // stages already fit and pinning would just freeze the page for nothing.
+      const overflow = track.scrollWidth - track.clientWidth;
+      if (overflow <= 0) return;
+
+      gsap.to(track, {
+        x: -overflow,
+        ease: "none",
+        scrollTrigger: {
+          trigger: scope.current,
+          start: "top top",
+          end: () => `+=${overflow + window.innerHeight * 0.6}`,
+          pin: true,
+          scrub: 0.6,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+    },
+    scope,
+    [steps.length],
+  );
+
   return (
-    <section className="bg-charcoal section-tight px-6 md:px-10">
-      <div className="max-w-[1200px] mx-auto">
-        <h2 className="type-headline text-crisp text-center mb-16">{t("service.flow_title")}</h2>
-        <div className="relative">
-          <div className="absolute top-8 left-8 right-8 h-px bg-border hidden md:block" />
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
-            {steps.map((s, i) => {
-              const Icon = icons[i] ?? Search;
-              return (
-                <motion.div
-                  key={s}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ ...spring, delay: i * 0.08 }}
-                  className="relative text-center flex flex-col items-center"
-                >
-                  <div className="h-16 w-16 rounded-full bg-pitch flex items-center justify-center relative z-10">
-                    <Icon className="w-6 h-6 text-signal" strokeWidth={1.75} />
-                  </div>
-                  <div className="text-[12px] text-cool mt-4">Step {i + 1}</div>
-                  <div className="headline text-lg md:text-xl text-crisp mt-1">{s}</div>
-                </motion.div>
-              );
-            })}
-          </div>
+    <section ref={scope} className="band-soft section-tight overflow-hidden px-4 md:px-6">
+      <div className="mx-auto max-w-[1200px]">
+        <SectionHead align="left" spacing="tight" title={t("service.flow_title")} />
+        <div data-flow-track className="flex gap-4 will-change-transform">
+          {steps.map((s, i) => {
+            const Icon = icons[i] ?? Search;
+            return (
+              <div key={s} className="w-[78vw] shrink-0 sm:w-[46vw] lg:w-[calc((100%-3rem)/4)]">
+                <FeatureCard
+                  idx={i}
+                  tone={i === 1 ? "dark" : "light"}
+                  eyebrow={`0${i + 1}`}
+                  title={s}
+                  className="h-full min-h-[240px] ring-1 ring-border"
+                  media={<Icon className="h-10 w-10 text-signal" strokeWidth={1.5} aria-hidden />}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
 
+/* ─── Advantages — white cards on grey ────────────────────── */
 function Advantages() {
   const { t } = useTranslation();
   const keys = ["certified", "parts", "fast", "fixed"] as const;
+  const icons = [ClipboardCheck, Cog, Search, Microscope];
   return (
-    <section className="bg-pitch section px-6 md:px-10">
-      <div className="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {keys.map((k, i) => (
-          <motion.div
-            key={k}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ ...spring, delay: i * 0.06 }}
-            className="bento-card p-8"
-          >
-            <div className="text-signal text-[12px]">0{i + 1}</div>
-            <div className="headline text-2xl text-crisp mt-3">{t(`service.advantages.${k}`)}</div>
-          </motion.div>
-        ))}
+    <section className="band-plain section px-4 md:px-6">
+      <div className="mx-auto max-w-[1200px]">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {keys.map((k, i) => {
+            const Icon = icons[i];
+            return (
+              <FeatureCard
+                key={k}
+                idx={i}
+                eyebrow={`0${i + 1}`}
+                title={t(`service.advantages.${k}`)}
+                className="min-h-[220px] bg-charcoal"
+                media={<Icon className="h-9 w-9 text-signal" strokeWidth={1.5} aria-hidden />}
+              />
+            );
+          })}
+        </div>
       </div>
     </section>
   );
 }
 
+/* ─── Policy — accordion ──────────────────────────────────── */
 function Policy() {
   const { t } = useTranslation();
   const rows = t("service.policy", { returnObjects: true }) as Array<{ q: string; a: string }>;
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section className="bg-pitch section px-6 md:px-10">
-      <div className="max-w-3xl mx-auto">
-        <h2 className="type-headline text-crisp text-center mb-12">{t("service.policy_title")}</h2>
-        <div className="rounded-3xl bg-charcoal overflow-hidden">
+    <section className="band-soft section px-6 md:px-10">
+      <div className="mx-auto max-w-3xl">
+        <SectionHead align="center" spacing="tight" title={t("service.policy_title")} />
+        <div className="divide-y divide-border border-y border-border">
           {rows.map((r, i) => {
             const isOpen = open === i;
             return (
-              <div key={i} className={i === 0 ? "" : "border-t border-border"}>
+              <div key={r.q}>
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="w-full text-left px-6 md:px-8 py-6 flex items-center justify-between gap-6"
+                  aria-expanded={isOpen}
+                  className="flex w-full items-center justify-between gap-6 py-5 text-left"
                 >
-                  <span className="text-crisp text-[16px] md:text-lg font-medium">{r.q}</span>
-                  <span className="shrink-0 h-8 w-8 rounded-full bg-pitch flex items-center justify-center text-crisp">
-                    {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                  <span className="text-[17px] font-medium text-crisp">{r.q}</span>
+                  <span className="shrink-0 text-signal" aria-hidden>
+                    {isOpen ? <Minus className="h-5 w-5" /> : <Plus className="h-5 w-5" />}
                   </span>
                 </button>
-                <motion.div
-                  initial={false}
-                  animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
-                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                  className="overflow-hidden"
-                >
-                  <p className="px-6 md:px-8 pb-6 text-cool text-[15px] leading-relaxed">{r.a}</p>
-                </motion.div>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={spring}
+                      className="overflow-hidden"
+                    >
+                      <p className="pb-6 text-[15px] leading-relaxed text-cool">{r.a}</p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           })}
-        </div>
-        <div className="mt-10 text-center">
-          <button
-            onClick={() => openLead({ title: t("service.request_repair") })}
-            className="pill pill-accent"
-          >
-            {t("service.request_repair")}
-          </button>
         </div>
       </div>
     </section>
