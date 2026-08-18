@@ -9,7 +9,8 @@ import { formatBoxLine, pick, type Lang } from "@/data/spec-dict";
 import { openLead } from "@/components/LeadFormSheet";
 import { spring, springSoft, fadeUpAt } from "@/lib/springs";
 import { ProductCard } from "@/components/ProductCard";
-import { SectionHead, FeatureCard, ScrollRow, ScrollItem } from "@/components/apple";
+import { FeatureCard, ScrollRow, ScrollItem } from "@/components/apple";
+import { SectionHead } from "@/components/Section";
 import catalogAsset from "@/assets/radiocom-catalog.pdf.asset.json";
 import { assetUrl } from "@/lib/asset";
 import { absolute, breadcrumbSchema, canonical, jsonLd, productSchema } from "@/lib/seo";
@@ -372,7 +373,7 @@ function Highlights({ spec, lang }: { spec: ProductSpec; lang: Lang }) {
   return (
     <section id="highlights" className="band-soft section-tight px-4 md:px-6">
       <div className="mx-auto max-w-[1200px]">
-        <SectionHead title={t("product.features")} />
+        <SectionHead title={t("product.features")} align="left" spacing="tight" />
 
         <ScrollRow cols={4}>
           {cards.map((f, i) => (
@@ -415,7 +416,7 @@ function InBox({ product, spec, lang }: { product: Product; spec: ProductSpec; l
   return (
     <section id="in-box" className="band-plain section-tight px-4 md:px-6">
       <div className="mx-auto max-w-[1200px]">
-        <SectionHead title={t("product.in_box")} />
+        <SectionHead title={t("product.in_box")} align="left" spacing="tight" />
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <motion.div
             {...fadeUpAt(0)}
@@ -455,7 +456,7 @@ function TechSpecs({ product, spec, lang }: { product: Product; spec: ProductSpe
   return (
     <section id="specs" className="band-soft section-tight px-4 md:px-6">
       <div className="mx-auto max-w-[900px]">
-        <SectionHead title={t("product.tech_specs")} />
+        <SectionHead title={t("product.tech_specs")} align="left" spacing="tight" />
 
         <motion.dl {...fadeUpAt(1)} className="divide-y divide-border border-t border-border">
           {spec.rows.map((r, i) => (
@@ -506,7 +507,7 @@ function Related({ product, lang }: { product: Product; lang: Lang }) {
   return (
     <section className="band-plain section-tight px-4 md:px-6">
       <div className="mx-auto max-w-[1200px]">
-        <SectionHead title={t("product.related")} />
+        <SectionHead title={t("product.related")} align="left" spacing="tight" />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {related.map((p, i) => (
             <ProductCard key={p.id} p={p} lang={lang} idx={i} />

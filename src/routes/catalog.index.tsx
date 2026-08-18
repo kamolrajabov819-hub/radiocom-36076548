@@ -66,7 +66,7 @@ function CatalogPage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={spring}
-            className="headline text-crisp text-5xl md:text-7xl"
+            className="type-display text-crisp"
           >
             {t("catalog.title")}
           </motion.h1>

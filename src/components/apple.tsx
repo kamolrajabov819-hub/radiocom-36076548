@@ -9,48 +9,12 @@ import { fadeUpAt } from "@/lib/springs";
  * These encode the three layouts apple.com reuses across every page, so sections
  * across this site share one rhythm instead of each route inventing its own:
  *
- *  1. `SectionHead`  — oversized left-aligned headline ending in a full stop,
- *                      with an optional blue action link on the right.
- *  2. `FeatureCard`  — white card on a grey band: small grey eyebrow, bold
- *                      two-line headline, short body, media, round corner button.
- *  3. `ScrollRow`    — the horizontally snapping row those cards sit in.
+ *  - `FeatureCard`  — white card on a grey band: small grey eyebrow, bold
+ *                     two-line headline, short body, media, round corner button.
+ *  - `ScrollRow`    — the horizontally snapping row those cards sit in.
+ *
+ * The section heading itself lives in `Section.tsx` as `SectionHead`.
  */
-
-/* ── 1. Section header ─────────────────────────────────────── */
-
-export function SectionHead({
-  title,
-  link,
-  align = "left",
-  tone = "light",
-}: {
-  title: ReactNode;
-  link?: { label: string; onClick?: () => void; href?: string };
-  align?: "left" | "center";
-  tone?: "light" | "dark";
-}) {
-  return (
-    <motion.div
-      {...fadeUpAt(0)}
-      className={`mb-8 flex flex-wrap items-end gap-4 md:mb-10 ${
-        align === "center" ? "justify-center text-center" : "justify-between"
-      }`}
-    >
-      <h2 className={`type-headline ${tone === "dark" ? "" : "text-crisp"}`}>{title}</h2>
-      {link ? (
-        link.href ? (
-          <a href={link.href} className="pill-link shrink-0">
-            {link.label} <ChevronRight className="h-4 w-4" aria-hidden />
-          </a>
-        ) : (
-          <button onClick={link.onClick} className="pill-link shrink-0">
-            {link.label} <ChevronRight className="h-4 w-4" aria-hidden />
-          </button>
-        )
-      ) : null}
-    </motion.div>
-  );
-}
 
 /* ── 2. Feature card ───────────────────────────────────────── */
 

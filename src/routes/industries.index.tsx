@@ -69,7 +69,7 @@ function IndustriesOverview() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={spring}
-            className="headline text-crisp text-5xl md:text-7xl"
+            className="type-display text-crisp"
           >
             {t("industries.title")}
           </motion.h1>
@@ -106,7 +106,7 @@ function IndustriesOverview() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="relative h-full flex flex-col justify-end p-8 md:p-10 text-white">
-                  <h2 className="headline text-3xl md:text-5xl">{t(`industries.${s}.name`)}</h2>
+                  <h2 className="type-headline">{t(`industries.${s}.name`)}</h2>
                   <p className="text-white/75 mt-2 text-[15px] max-w-md">
                     {t(`industries.${s}.desc`)}
                   </p>

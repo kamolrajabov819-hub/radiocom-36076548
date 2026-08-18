@@ -290,7 +290,7 @@ function Bento() {
           <div className="eyebrow-sweep text-[13px] tracking-wide font-medium mb-4 relative">
             {t("home.bento.network.eyebrow", { defaultValue: "Network Design" })}
           </div>
-          <h3 className="headline text-crisp text-3xl md:text-5xl relative">
+          <h3 className="type-headline text-crisp relative">
             {t("home.bento.network.title", { defaultValue: "One system. Every site." })}
           </h3>
           <p className="subhead mt-5 text-[15px] md:text-base max-w-md relative">
@@ -384,7 +384,7 @@ function IndustriesTeaser() {
       >
         <SignalPulse size={600} opacity={0.12} className="!items-start !justify-start" />
         <div className="relative">
-          <h3 className="headline text-crisp text-2xl md:text-4xl max-w-xl">
+          <h3 className="type-headline text-crisp max-w-xl">
             {t("industries.banner_title", {
               defaultValue: "Not sure which radio fits your operation?",
             })}
@@ -441,7 +441,7 @@ function FeaturedCatalog() {
           <div className="eyebrow-sweep text-[13px] tracking-wide font-medium mb-3">
             {t("home.featured.eyebrow", { defaultValue: "Best sellers" })}
           </div>
-          <h2 className="headline text-crisp text-4xl md:text-5xl">{t("home.featured.title")}</h2>
+          <h2 className="type-headline text-crisp">{t("home.featured.title")}</h2>
         </div>
         <Link to="/catalog" className="pill-link">
           {t("home.featured.link")} <ChevronRight className="w-4 h-4" />

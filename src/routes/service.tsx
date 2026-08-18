@@ -144,7 +144,7 @@ function Flow() {
   return (
     <section className="bg-charcoal section-tight px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto">
-        <h2 className="headline text-crisp text-3xl md:text-5xl text-center mb-16">
+        <h2 className="type-headline text-crisp text-center mb-16">
           {t("service.flow_title")}
         </h2>
         <div className="relative">
@@ -207,7 +207,7 @@ function Policy() {
   return (
     <section className="bg-pitch section px-6 md:px-10">
       <div className="max-w-3xl mx-auto">
-        <h2 className="headline text-crisp text-3xl md:text-5xl text-center mb-12">
+        <h2 className="type-headline text-crisp text-center mb-12">
           {t("service.policy_title")}
         </h2>
         <div className="rounded-3xl bg-charcoal overflow-hidden">
