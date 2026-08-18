@@ -386,7 +386,9 @@
     "in_stock": "In stock · Tashkent",
     "quick_all": "All",
     "sort": "Sort",
-    "title": "The whole comms catalog."
+    "title": "The whole comms catalog.",
+    "compare_title": "Which radio is right for you?",
+    "compare_sub": "Key models compared on specifications, not marketing."
   },
   "product": {
     "spec": "Specifications",

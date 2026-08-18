@@ -1,4 +1,5 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { useRouterState } from "@tanstack/react-router";
+import { LocaleLink } from "@/components/LocaleLink";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -12,7 +13,9 @@ import { spring, springFast } from "@/lib/springs";
 
 export function Nav() {
   const { t } = useTranslation();
-  const pathname = useRouterState({ select: (r) => r.location.pathname });
+  const rawPath = useRouterState({ select: (r) => r.location.pathname });
+  // Strip the /ru|/en|/uz prefix so active-state comparisons stay locale-agnostic.
+  const pathname = rawPath.replace(/^\/(ru|en|uz)(?=\/|$)/, "") || "/";
   const [industriesOpen, setIndustriesOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const industriesRef = useRef<HTMLDivElement>(null);
@@ -82,13 +85,13 @@ export function Nav() {
             {links.map((l) => {
               const active = l.to === "/" ? pathname === "/" : pathname.startsWith(l.to);
               return (
-                <Link
+                <LocaleLink
                   key={l.to}
                   to={l.to}
                   className={`text-[13px] font-normal transition-opacity ${active ? "text-crisp" : "text-crisp/80 hover:text-crisp"}`}
                 >
                   {l.label}
-                </Link>
+                </LocaleLink>
               );
             })}
             <div ref={industriesRef} className="relative">
@@ -126,21 +129,21 @@ export function Nav() {
                     style={{ transformOrigin: "top left" }}
                     className="absolute top-full left-0 mt-2 w-64 rounded-2xl bg-popover shadow-xl border border-border p-2"
                   >
-                    <Link
+                    <LocaleLink
                       to="/industries"
                       className="block px-4 py-2.5 rounded-xl text-[13px] text-signal hover:bg-charcoal"
                     >
                       {t("industries.view_all")}
-                    </Link>
+                    </LocaleLink>
                     {INDUSTRY_SLUGS.map((s) => (
-                      <Link
+                      <LocaleLink
                         key={s}
                         to="/industries/$slug"
                         params={{ slug: s }}
                         className="block px-4 py-2.5 rounded-xl text-[13px] text-crisp/80 hover:text-crisp hover:bg-charcoal"
                       >
                         {t(`industries.${s}.name`)}
-                      </Link>
+                      </LocaleLink>
                     ))}
                   </motion.div>
                 )}
@@ -149,7 +152,7 @@ export function Nav() {
           </nav>
 
           {/* Center wordmark */}
-          <Link
+          <LocaleLink
             to="/"
             className="flex items-center lg:absolute lg:left-1/2 lg:-translate-x-1/2"
             aria-label="Radiocom"
@@ -161,7 +164,7 @@ export function Nav() {
               height={32}
               className="h-[22px] w-auto"
             />
-          </Link>
+          </LocaleLink>
 
           {/* Right actions */}
           <div className="hidden lg:flex items-center justify-end gap-3 flex-1">
@@ -228,22 +231,22 @@ export function Nav() {
               className="px-6 pt-8 pb-10 flex flex-col gap-6 overflow-y-auto h-[calc(100vh-3rem)]"
             >
               {links.map((l) => (
-                <Link key={l.to} to={l.to} className="headline text-4xl text-crisp">
+                <LocaleLink key={l.to} to={l.to} className="headline text-4xl text-crisp">
                   {l.label}
-                </Link>
+                </LocaleLink>
               ))}
               <div className="pt-6 border-t border-border">
                 <div className="text-cool text-[13px] mb-4">{t("nav.industries")}</div>
                 <div className="flex flex-col gap-3">
                   {INDUSTRY_SLUGS.map((s) => (
-                    <Link
+                    <LocaleLink
                       key={s}
                       to="/industries/$slug"
                       params={{ slug: s }}
                       className="text-crisp/90 text-lg"
                     >
                       {t(`industries.${s}.name`)}
-                    </Link>
+                    </LocaleLink>
                   ))}
                 </div>
               </div>

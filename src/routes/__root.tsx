@@ -21,8 +21,8 @@ import {
   webSiteSchema,
 } from "@/lib/seo";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import "../lib/i18n";
-import { hydrateLanguage } from "../lib/i18n";
+import { useLang } from "@/lib/locale";
+import { useSmoothScroll } from "@/lib/motion";
 import { ScrollProgress } from "@/components/ScrollProgress";
 
 import { Nav } from "../components/Nav";
@@ -162,24 +162,19 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+  const lang = useLang();
 
-  useEffect(() => {
-    const id = requestAnimationFrame(() => requestAnimationFrame(() => hydrateLanguage()));
-    return () => cancelAnimationFrame(id);
-  }, []);
+  // Lenis + ScrollTrigger, mounted once for the document. No-ops under
+  // prefers-reduced-motion and never runs during SSR.
+  useSmoothScroll();
 
-  // The shell renders lang="ru" for the server pass; keep the real document language in
-  // sync once i18n resolves. Screen readers, hyphenation (`hyphens: auto` on .headline)
-  // and search engines all key off this attribute.
+  // The shell renders lang="ru" for the server pass; the URL is authoritative, so
+  // sync the real document language from the route. Screen readers, hyphenation
+  // (`hyphens: auto` on .headline) and search engines all key off this attribute.
   useEffect(() => {
-    const apply = (lng: string) => {
-      document.documentElement.lang = lng.slice(0, 2);
-    };
-    apply(i18n.language);
-    i18n.on("languageChanged", apply);
-    return () => i18n.off("languageChanged", apply);
-  }, [i18n]);
+    document.documentElement.lang = lang;
+  }, [lang]);
 
   return (
     <QueryClientProvider client={queryClient}>

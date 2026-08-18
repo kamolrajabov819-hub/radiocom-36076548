@@ -1,26 +1,51 @@
-import i18n from "i18next";
+import i18next, { type i18n as I18nInstance } from "i18next";
 import { initReactI18next } from "react-i18next";
 import ru from "@/i18n/ru.json";
 import uz from "@/i18n/uz.json";
 import en from "@/i18n/en.json";
 
-if (!i18n.isInitialized) {
-  i18n.use(initReactI18next).init({
-    resources: {
-      ru: { translation: ru },
-      uz: { translation: uz },
-      en: { translation: en },
-    },
-    lng: "ru",
-    fallbackLng: "ru",
+export const LANGS = ["ru", "en", "uz"] as const;
+export type Lang = (typeof LANGS)[number];
+
+export const DEFAULT_LANG: Lang = "ru";
+
+export const isLang = (v: unknown): v is Lang =>
+  typeof v === "string" && (LANGS as readonly string[]).includes(v);
+
+const resources = {
+  ru: { translation: ru },
+  uz: { translation: uz },
+  en: { translation: en },
+} as const;
+
+/**
+ * One immutable i18next instance per language.
+ *
+ * The previous implementation exported a single shared instance and called
+ * `changeLanguage` on it. Under SSR that is a cross-request data race: two
+ * concurrent requests for /en/catalog and /uz/poc mutate the same object, so one
+ * request can render in the other's language. It never shows up in development,
+ * where requests arrive one at a time.
+ *
+ * Holding a separate instance per language and never mutating it removes the
+ * race by construction — concurrent requests for different locales touch
+ * different objects — while still avoiding the cost of rebuilding an instance on
+ * every render.
+ */
+const instances = new Map<Lang, I18nInstance>();
+
+export function getI18n(lang: Lang): I18nInstance {
+  const existing = instances.get(lang);
+  if (existing) return existing;
+
+  const instance = i18next.createInstance();
+  instance.use(initReactI18next).init({
+    resources,
+    lng: lang,
+    fallbackLng: DEFAULT_LANG,
     interpolation: { escapeValue: false },
+    react: { useSuspense: false },
   });
+  instances.set(lang, instance);
+  return instance;
 }
-
-export function hydrateLanguage() {
-  if (typeof window === "undefined") return;
-  const saved = window.localStorage.getItem("radiocom-lang");
-  if (saved && saved !== i18n.language) i18n.changeLanguage(saved);
-}
-
-export default i18n;

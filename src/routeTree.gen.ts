@@ -9,17 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as PocRouteImport } from './routes/poc'
 import { Route as ServiceRouteImport } from './routes/service'
-import { Route as CatalogIndexRouteImport } from './routes/catalog.index'
-import { Route as CatalogIdRouteImport } from './routes/catalog.$id'
+import { Route as PocRouteImport } from './routes/poc'
+import { Route as LangRouteImport } from './routes/$lang'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as IndustriesIndexRouteImport } from './routes/industries.index'
+import { Route as CatalogIndexRouteImport } from './routes/catalog.index'
+import { Route as LangIndexRouteImport } from './routes/$lang/index'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
+import { Route as CatalogIdRouteImport } from './routes/catalog.$id'
+import { Route as LangServiceRouteImport } from './routes/$lang/service'
+import { Route as LangPocRouteImport } from './routes/$lang/poc'
+import { Route as LangIndustriesIndexRouteImport } from './routes/$lang/industries.index'
+import { Route as LangCatalogIndexRouteImport } from './routes/$lang/catalog.index'
+import { Route as LangIndustriesSlugRouteImport } from './routes/$lang/industries.$slug'
+import { Route as LangCatalogIdRouteImport } from './routes/$lang/catalog.$id'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const ServiceRoute = ServiceRouteImport.update({
+  id: '/service',
+  path: '/service',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PocRoute = PocRouteImport.update({
@@ -27,19 +35,14 @@ const PocRoute = PocRouteImport.update({
   path: '/poc',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServiceRoute = ServiceRouteImport.update({
-  id: '/service',
-  path: '/service',
+const LangRoute = LangRouteImport.update({
+  id: '/$lang',
+  path: '/$lang',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CatalogIndexRoute = CatalogIndexRouteImport.update({
-  id: '/catalog/',
-  path: '/catalog/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CatalogIdRoute = CatalogIdRouteImport.update({
-  id: '/catalog/$id',
-  path: '/catalog/$id',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndustriesIndexRoute = IndustriesIndexRouteImport.update({
@@ -47,72 +50,164 @@ const IndustriesIndexRoute = IndustriesIndexRouteImport.update({
   path: '/industries/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CatalogIndexRoute = CatalogIndexRouteImport.update({
+  id: '/catalog/',
+  path: '/catalog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LangIndexRoute = LangIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LangRoute,
+} as any)
 const IndustriesSlugRoute = IndustriesSlugRouteImport.update({
   id: '/industries/$slug',
   path: '/industries/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CatalogIdRoute = CatalogIdRouteImport.update({
+  id: '/catalog/$id',
+  path: '/catalog/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LangServiceRoute = LangServiceRouteImport.update({
+  id: '/service',
+  path: '/service',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangPocRoute = LangPocRouteImport.update({
+  id: '/poc',
+  path: '/poc',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangIndustriesIndexRoute = LangIndustriesIndexRouteImport.update({
+  id: '/industries/',
+  path: '/industries/',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangCatalogIndexRoute = LangCatalogIndexRouteImport.update({
+  id: '/catalog/',
+  path: '/catalog/',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangIndustriesSlugRoute = LangIndustriesSlugRouteImport.update({
+  id: '/industries/$slug',
+  path: '/industries/$slug',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangCatalogIdRoute = LangCatalogIdRouteImport.update({
+  id: '/catalog/$id',
+  path: '/catalog/$id',
+  getParentRoute: () => LangRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$lang': typeof LangRouteWithChildren
   '/poc': typeof PocRoute
   '/service': typeof ServiceRoute
+  '/$lang/poc': typeof LangPocRoute
+  '/$lang/service': typeof LangServiceRoute
   '/catalog/$id': typeof CatalogIdRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/$lang/': typeof LangIndexRoute
   '/catalog/': typeof CatalogIndexRoute
   '/industries/': typeof IndustriesIndexRoute
+  '/$lang/catalog/$id': typeof LangCatalogIdRoute
+  '/$lang/industries/$slug': typeof LangIndustriesSlugRoute
+  '/$lang/catalog/': typeof LangCatalogIndexRoute
+  '/$lang/industries/': typeof LangIndustriesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/poc': typeof PocRoute
   '/service': typeof ServiceRoute
+  '/$lang/poc': typeof LangPocRoute
+  '/$lang/service': typeof LangServiceRoute
   '/catalog/$id': typeof CatalogIdRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/$lang': typeof LangIndexRoute
   '/catalog': typeof CatalogIndexRoute
   '/industries': typeof IndustriesIndexRoute
+  '/$lang/catalog/$id': typeof LangCatalogIdRoute
+  '/$lang/industries/$slug': typeof LangIndustriesSlugRoute
+  '/$lang/catalog': typeof LangCatalogIndexRoute
+  '/$lang/industries': typeof LangIndustriesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$lang': typeof LangRouteWithChildren
   '/poc': typeof PocRoute
   '/service': typeof ServiceRoute
+  '/$lang/poc': typeof LangPocRoute
+  '/$lang/service': typeof LangServiceRoute
   '/catalog/$id': typeof CatalogIdRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/$lang/': typeof LangIndexRoute
   '/catalog/': typeof CatalogIndexRoute
   '/industries/': typeof IndustriesIndexRoute
+  '/$lang/catalog/$id': typeof LangCatalogIdRoute
+  '/$lang/industries/$slug': typeof LangIndustriesSlugRoute
+  '/$lang/catalog/': typeof LangCatalogIndexRoute
+  '/$lang/industries/': typeof LangIndustriesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/$lang'
     | '/poc'
     | '/service'
+    | '/$lang/poc'
+    | '/$lang/service'
     | '/catalog/$id'
     | '/industries/$slug'
+    | '/$lang/'
     | '/catalog/'
     | '/industries/'
+    | '/$lang/catalog/$id'
+    | '/$lang/industries/$slug'
+    | '/$lang/catalog/'
+    | '/$lang/industries/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/poc'
     | '/service'
+    | '/$lang/poc'
+    | '/$lang/service'
     | '/catalog/$id'
     | '/industries/$slug'
+    | '/$lang'
     | '/catalog'
     | '/industries'
+    | '/$lang/catalog/$id'
+    | '/$lang/industries/$slug'
+    | '/$lang/catalog'
+    | '/$lang/industries'
   id:
     | '__root__'
     | '/'
+    | '/$lang'
     | '/poc'
     | '/service'
+    | '/$lang/poc'
+    | '/$lang/service'
     | '/catalog/$id'
     | '/industries/$slug'
+    | '/$lang/'
     | '/catalog/'
     | '/industries/'
+    | '/$lang/catalog/$id'
+    | '/$lang/industries/$slug'
+    | '/$lang/catalog/'
+    | '/$lang/industries/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LangRoute: typeof LangRouteWithChildren
   PocRoute: typeof PocRoute
   ServiceRoute: typeof ServiceRoute
   CatalogIdRoute: typeof CatalogIdRoute
@@ -123,11 +218,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/service': {
+      id: '/service'
+      path: '/service'
+      fullPath: '/service'
+      preLoaderRoute: typeof ServiceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/poc': {
@@ -137,25 +232,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PocRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/service': {
-      id: '/service'
-      path: '/service'
-      fullPath: '/service'
-      preLoaderRoute: typeof ServiceRouteImport
+    '/$lang': {
+      id: '/$lang'
+      path: '/$lang'
+      fullPath: '/$lang'
+      preLoaderRoute: typeof LangRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/catalog/': {
-      id: '/catalog/'
-      path: '/catalog'
-      fullPath: '/catalog/'
-      preLoaderRoute: typeof CatalogIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/catalog/$id': {
-      id: '/catalog/$id'
-      path: '/catalog/$id'
-      fullPath: '/catalog/$id'
-      preLoaderRoute: typeof CatalogIdRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/industries/': {
@@ -165,6 +253,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndustriesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/catalog/': {
+      id: '/catalog/'
+      path: '/catalog'
+      fullPath: '/catalog/'
+      preLoaderRoute: typeof CatalogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$lang/': {
+      id: '/$lang/'
+      path: '/'
+      fullPath: '/$lang/'
+      preLoaderRoute: typeof LangIndexRouteImport
+      parentRoute: typeof LangRoute
+    }
     '/industries/$slug': {
       id: '/industries/$slug'
       path: '/industries/$slug'
@@ -172,11 +274,83 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndustriesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/catalog/$id': {
+      id: '/catalog/$id'
+      path: '/catalog/$id'
+      fullPath: '/catalog/$id'
+      preLoaderRoute: typeof CatalogIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$lang/service': {
+      id: '/$lang/service'
+      path: '/service'
+      fullPath: '/$lang/service'
+      preLoaderRoute: typeof LangServiceRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/poc': {
+      id: '/$lang/poc'
+      path: '/poc'
+      fullPath: '/$lang/poc'
+      preLoaderRoute: typeof LangPocRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/industries/': {
+      id: '/$lang/industries/'
+      path: '/industries'
+      fullPath: '/$lang/industries/'
+      preLoaderRoute: typeof LangIndustriesIndexRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/catalog/': {
+      id: '/$lang/catalog/'
+      path: '/catalog'
+      fullPath: '/$lang/catalog/'
+      preLoaderRoute: typeof LangCatalogIndexRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/industries/$slug': {
+      id: '/$lang/industries/$slug'
+      path: '/industries/$slug'
+      fullPath: '/$lang/industries/$slug'
+      preLoaderRoute: typeof LangIndustriesSlugRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/catalog/$id': {
+      id: '/$lang/catalog/$id'
+      path: '/catalog/$id'
+      fullPath: '/$lang/catalog/$id'
+      preLoaderRoute: typeof LangCatalogIdRouteImport
+      parentRoute: typeof LangRoute
+    }
   }
 }
 
+interface LangRouteChildren {
+  LangPocRoute: typeof LangPocRoute
+  LangServiceRoute: typeof LangServiceRoute
+  LangIndexRoute: typeof LangIndexRoute
+  LangCatalogIdRoute: typeof LangCatalogIdRoute
+  LangIndustriesSlugRoute: typeof LangIndustriesSlugRoute
+  LangCatalogIndexRoute: typeof LangCatalogIndexRoute
+  LangIndustriesIndexRoute: typeof LangIndustriesIndexRoute
+}
+
+const LangRouteChildren: LangRouteChildren = {
+  LangPocRoute: LangPocRoute,
+  LangServiceRoute: LangServiceRoute,
+  LangIndexRoute: LangIndexRoute,
+  LangCatalogIdRoute: LangCatalogIdRoute,
+  LangIndustriesSlugRoute: LangIndustriesSlugRoute,
+  LangCatalogIndexRoute: LangCatalogIndexRoute,
+  LangIndustriesIndexRoute: LangIndustriesIndexRoute,
+}
+
+const LangRouteWithChildren = LangRoute._addFileChildren(LangRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LangRoute: LangRouteWithChildren,
   PocRoute: PocRoute,
   ServiceRoute: ServiceRoute,
   CatalogIdRoute: CatalogIdRoute,

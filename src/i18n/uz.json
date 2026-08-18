@@ -386,7 +386,9 @@
     "in_stock": "Toshkentda mavjud",
     "quick_all": "Hammasi",
     "sort": "Saralash",
-    "title": "Butun aloqa katalogi."
+    "title": "Butun aloqa katalogi.",
+    "compare_title": "Qaysi ratsiya sizga mos keladi?",
+    "compare_sub": "Asosiy modellar marketing emas, xususiyatlar bo'yicha taqqoslangan."
   },
   "product": {
     "spec": "Xususiyatlar",

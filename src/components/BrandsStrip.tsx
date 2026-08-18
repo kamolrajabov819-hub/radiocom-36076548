@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Link } from "@tanstack/react-router";
+import { LocaleLink } from "@/components/LocaleLink";
 import { ArrowRight, BadgeCheck } from "lucide-react";
 import { products } from "@/data/products";
 import { CountUp } from "@/components/CountUp";
@@ -95,12 +95,12 @@ export function BrandsStrip() {
                       {t("brands.models")}
                     </div>
                   </div>
-                  <Link
+                  <LocaleLink
                     to="/catalog"
                     className="pill-link text-signal shrink-0"
                   >
                     {t("brands.view")} <ArrowRight className="w-4 h-4" />
-                  </Link>
+                  </LocaleLink>
                 </div>
               </div>
               <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-signal transition-all duration-700 group-hover:w-full" />

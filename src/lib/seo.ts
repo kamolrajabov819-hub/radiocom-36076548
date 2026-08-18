@@ -6,13 +6,15 @@
  * builders here — rather than inline per route — means one place governs the
  * business identity that Google reads on every page.
  *
- * Known ceiling: all three site languages are served from the same URL (language
- * lives in localStorage, see src/lib/i18n.ts), so `hreflang` is deliberately not
- * emitted — it requires one canonical URL per language. Until routing carries a
- * locale prefix, crawlers only ever index the Russian SSR pass.
+ * Each language has its own URL (/ru, /en, /uz), so every page emits a canonical
+ * for its own locale plus the full hreflang cluster — see `localeLinks`.
  */
 
 import type { Product } from "@/data/products";
+
+export const LANGS = ["ru", "en", "uz"] as const;
+export type SeoLang = (typeof LANGS)[number];
+export const DEFAULT_SEO_LANG: SeoLang = "ru";
 
 /** Production origin. Used for canonicals, sitemap entries and absolute schema URLs. */
 export const SITE_URL = "https://radiocom.uz";
@@ -39,7 +41,38 @@ export function absolute(path: string): string {
   return `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
-/** A `<link rel="canonical">` descriptor for a route's `head().links`. */
+/** Prefix a language-neutral path with its locale segment: "/catalog" -> "/en/catalog". */
+export function localePath(lang: SeoLang, path: string): string {
+  const clean = path === "/" ? "" : path.startsWith("/") ? path : `/${path}`;
+  return `/${lang}${clean}`;
+}
+
+/**
+ * Canonical plus the full hreflang cluster for one page.
+ *
+ * Every locale of a page must advertise the same complete set of alternates —
+ * including itself — or Google discards the cluster. `x-default` points at
+ * Russian, the language the business actually operates in.
+ *
+ * `path` is language-neutral ("/catalog"); the locale segment is added here.
+ */
+export function localeLinks(lang: SeoLang, path: string) {
+  return [
+    { rel: "canonical", href: absolute(localePath(lang, path)) },
+    ...LANGS.map((l) => ({
+      rel: "alternate",
+      hrefLang: l,
+      href: absolute(localePath(l, path)),
+    })),
+    {
+      rel: "alternate",
+      hrefLang: "x-default",
+      href: absolute(localePath(DEFAULT_SEO_LANG, path)),
+    },
+  ];
+}
+
+/** A plain `<link rel="canonical">`, for pages outside the locale tree. */
 export function canonical(path: string) {
   return { rel: "canonical", href: absolute(path) };
 }

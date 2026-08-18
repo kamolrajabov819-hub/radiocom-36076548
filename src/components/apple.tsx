@@ -107,3 +107,91 @@ export function ScrollItem({ children }: { children: ReactNode }) {
     </div>
   );
 }
+
+/* ── 4. Compare table ──────────────────────────────────────── */
+
+export type CompareColumn = {
+  id: string;
+  /** Column heading — a product or option name. */
+  name: string;
+  /** One-line positioning under the name. */
+  tagline?: string;
+  /** Optional image sitting above the heading. */
+  media?: ReactNode;
+  /** Footnote under the heading block, e.g. a price. */
+  note?: string;
+  /** Row id -> cell value. A missing key renders an em dash. */
+  values: Record<string, string | undefined>;
+  highlight?: boolean;
+};
+
+/**
+ * apple.com's "Which one is right for you?" table.
+ *
+ * Columns are products, rows are specs, and a value the column does not have
+ * renders as an em dash rather than being left blank — the absence is the
+ * comparison. Scrolls horizontally on small screens so cells never wrap into
+ * illegible columns.
+ */
+export function CompareTable({
+  columns,
+  rows,
+  caption,
+}: {
+  columns: CompareColumn[];
+  rows: { id: string; label: string }[];
+  caption?: string;
+}) {
+  return (
+    <div className="no-scrollbar -mx-4 overflow-x-auto px-4 md:mx-0 md:px-0">
+      <table className="w-full min-w-[640px] border-collapse text-center">
+        {caption ? <caption className="sr-only">{caption}</caption> : null}
+        <thead>
+          <tr>
+            <th scope="col" className="w-[1%] whitespace-nowrap p-0 text-left" />
+            {columns.map((c) => (
+              <th key={c.id} scope="col" className="px-3 pb-8 align-bottom md:px-5">
+                {c.media ? <div className="mb-4 flex justify-center">{c.media}</div> : null}
+                <div
+                  className={`text-[19px] font-semibold tracking-[-0.02em] md:text-[21px] ${
+                    c.highlight ? "text-signal" : "text-crisp"
+                  }`}
+                >
+                  {c.name}
+                </div>
+                {c.tagline ? (
+                  <div className="mx-auto mt-1.5 max-w-[15rem] text-[13px] font-normal leading-snug text-cool">
+                    {c.tagline}
+                  </div>
+                ) : null}
+                {c.note ? (
+                  <div className="mt-2 text-[13px] font-normal text-cool">{c.note}</div>
+                ) : null}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((r) => (
+            <tr key={r.id} className="border-t border-border">
+              <th
+                scope="row"
+                className="whitespace-nowrap py-5 pr-6 text-left text-[13px] font-normal text-cool"
+              >
+                {r.label}
+              </th>
+              {columns.map((c) => (
+                <td
+                  key={c.id}
+                  className="px-3 py-5 align-top text-[15px] leading-snug text-crisp md:px-5"
+                >
+                  {c.values[r.id] ?? <span className="text-cool">—</span>}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
