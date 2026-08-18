@@ -276,10 +276,29 @@ export const V = {
    Value builders for units
    ───────────────────────────────────────────────────────────── */
 
+/**
+ * Decimal separator by language: Russian and Uzbek write "1,5", English "1.5".
+ * Figures are authored in the Russian form, so only English needs converting.
+ */
+const num = (n: string, lang: Lang): string => (lang === "en" ? n.replace(",", ".") : n);
+
 export const upToKm = (n: string): L => ({
   ru: `до ${n} км`,
-  en: `up to ${n} km`,
+  en: `up to ${num(n, "en")} km`,
   uz: `${n} km gacha`,
+});
+
+export const upToM = (n: string): L => ({
+  ru: `до ${n} м`,
+  en: `up to ${num(n, "en")} m`,
+  uz: `${n} m gacha`,
+});
+
+/** Coverage quoted in storeys — how the on-site CL radios are specified. */
+export const upToFloors = (n: string): L => ({
+  ru: `до ${n} этажей`,
+  en: `up to ${n} floors`,
+  uz: `${n} qavatgacha`,
 });
 
 export const watts = (n: string): L => ({ ru: `${n} Вт`, en: `${n} W`, uz: `${n} Vt` });

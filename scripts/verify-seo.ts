@@ -57,7 +57,7 @@ console.log(`ok  sitemap ${locs.length} urls, all unique, ${alts} alternates`);
 
 // 3. Every product still yields valid Product JSON-LD with absolute images.
 for (const p of products) {
-  const s = JSON.parse(JSON.stringify(productSchema(p)));
+  const s = JSON.parse(JSON.stringify(productSchema(p, "ru")));
   if (s["@type"] !== "Product" || !s.name || !s.sku || !s.offers) bad(`product ${p.id}`);
   for (const img of s.image) if (!img.startsWith("https://")) bad(`product ${p.id} relative image`);
 }

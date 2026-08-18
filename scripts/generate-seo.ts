@@ -128,7 +128,7 @@ ${Object.entries(byBrand)
       list
         .map(
           (p) =>
-            `- [${p.name}](${SITE_URL}/ru/catalog/${p.id}) — ${p.blurb} Дальность ${p.rangeCity}.`,
+            `- [${p.name}](${SITE_URL}/ru/catalog/${p.id}) — ${p.blurb.ru} Дальность ${p.rangeCity.ru}.`,
         )
         .join("\n"),
   )

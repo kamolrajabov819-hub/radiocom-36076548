@@ -15,13 +15,15 @@ import { SectionHead } from "@/components/Section";
 import catalogAsset from "@/assets/radiocom-catalog.pdf.asset.json";
 import { assetUrl } from "@/lib/asset";
 import {
-  absolute,
+  SITE_NAME,
   breadcrumbSchema,
   jsonLd,
-  productSchema,
   localeLinks,
+  pageMeta,
+  productSchema,
   type SeoLang,
 } from "@/lib/seo";
+import { tFor } from "@/lib/i18n";
 
 export const routeOptions = {
   loader: ({ params }: { params: { lang: string; id: string } }) => {
@@ -38,35 +40,42 @@ export const routeOptions = {
   }) => {
     const p = loaderData?.product;
     if (!p) return {};
+    const t = tFor(params.lang);
     const path = `/catalog/${p.id}`;
-    const title = `${p.name} — купить в Ташкенте | Radiocom`;
-    const description = `${p.blurb} Дальность ${p.rangeCity}. ${formatPrice(p.price, "ru")}. Официальная гарантия, бесплатный тест, доставка по Узбекистану.`;
+    const title = t("meta.product.title", { name: p.name });
+    const description = t("meta.product.desc", {
+      name: p.name,
+      blurb: pick(p.blurb, params.lang),
+      range: pick(p.rangeCity, params.lang),
+      price: formatPrice(p.price, params.lang),
+    });
     const spec = getSpec(p.id);
 
     return {
-      meta: [
-        { title },
-        { name: "description", content: description },
-        { property: "og:type", content: "product" },
-        { property: "og:title", content: title },
-        { property: "og:description", content: description },
-        { property: "og:url", content: absolute(path) },
-        { property: "og:image", content: absolute(p.image) },
-        { property: "og:locale", content: "ru_RU" },
-        { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:title", content: title },
-        { name: "twitter:description", content: description },
-        { name: "twitter:image", content: absolute(p.image) },
-      ],
+      meta: pageMeta({
+        lang: params.lang,
+        title,
+        description,
+        path,
+        image: p.image,
+        type: "product",
+      }),
       links: localeLinks(params.lang, path),
       scripts: [
-        jsonLd(productSchema(p, { specNames: spec?.rows.map((r) => r.label.ru) })),
         jsonLd(
-          breadcrumbSchema([
-            { name: "Radiocom", path: "/" },
-            { name: "Каталог", path: "/catalog" },
-            { name: p.name, path },
-          ]),
+          productSchema(p, params.lang, {
+            specNames: spec?.rows.map((r) => pick(r.label, params.lang)),
+          }),
+        ),
+        jsonLd(
+          breadcrumbSchema(
+            [
+              { name: SITE_NAME, path: "/" },
+              { name: t("meta.crumb.catalog"), path: "/catalog" },
+              { name: p.name, path },
+            ],
+            params.lang,
+          ),
         ),
       ],
     };
@@ -301,7 +310,7 @@ function ProductMain({
               {product.name}
             </h1>
 
-            <p className="subhead mt-3 text-[17px]">{product.blurb}</p>
+            <p className="subhead mt-3 text-[17px]">{pick(product.blurb, lang)}</p>
 
             {spec?.intro ? (
               <p className="mt-4 text-[15px] leading-relaxed text-cool">{pick(spec.intro, lang)}</p>

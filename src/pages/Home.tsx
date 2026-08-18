@@ -20,41 +20,42 @@ import { ProductCard } from "@/components/ProductCard";
 import { CountUp } from "@/components/CountUp";
 import { spring, fadeUpAt } from "@/lib/springs";
 import { gsap, useGsap } from "@/lib/motion";
-import { absolute, localeLinks, type SeoLang } from "@/lib/seo";
+import {
+  SITE_SECTIONS,
+  jsonLd,
+  localeLinks,
+  pageMeta,
+  siteNavigationSchema,
+  type SeoLang,
+} from "@/lib/seo";
+import { tFor } from "@/lib/i18n";
 
 export const routeOptions = {
-  head: ({ params }: { params: { lang: SeoLang } }) => ({
-    meta: [
-      { title: "Рации и радиостанции в Ташкенте — Motorola, Radiocom | Radiocom" },
-      {
-        name: "description",
-        content:
-          "Официальный поставщик радиостанций в Узбекистане: 11 лет на рынке, 10 000+ клиентов. Motorola, Hytera, PoC и Radiocom RC. Бесплатный тест, гарантия, сервис в Ташкенте.",
-      },
-      { property: "og:type", content: "website" },
-      {
-        property: "og:title",
-        content: "Рации и радиостанции в Ташкенте — Motorola, Radiocom | Radiocom",
-      },
-      {
-        property: "og:description",
-        content:
-          "Официальный поставщик радиостанций в Узбекистане: 11 лет на рынке, 10 000+ клиентов. Motorola, Hytera, PoC и Radiocom RC. Бесплатный тест, гарантия, сервис в Ташкенте.",
-      },
-      { property: "og:url", content: absolute("/") },
-      { property: "og:locale", content: "ru_RU" },
-      {
-        name: "twitter:title",
-        content: "Рации и радиостанции в Ташкенте — Motorola, Radiocom | Radiocom",
-      },
-      {
-        name: "twitter:description",
-        content:
-          "Официальный поставщик радиостанций в Узбекистане: 11 лет на рынке, 10 000+ клиентов. Motorola, Hytera, PoC и Radiocom RC. Бесплатный тест, гарантия, сервис в Ташкенте.",
-      },
-    ],
-    links: localeLinks(params.lang, "/"),
-  }),
+  head: ({ params }: { params: { lang: SeoLang } }) => {
+    const t = tFor(params.lang);
+    const title = t("meta.home.title");
+    const description = t("meta.home.desc");
+
+    return {
+      meta: pageMeta({ lang: params.lang, title, description, path: "/" }),
+      links: localeLinks(params.lang, "/"),
+      // The section graph lives on the homepage: it is the page Google reads
+      // hierarchy from when it generates sitelinks, and only here can the URLs
+      // be locale-correct (the root route's head() has no params).
+      scripts: [
+        jsonLd(
+          siteNavigationSchema(
+            SITE_SECTIONS.map((sec) => ({
+              name: t(`meta.section.${sec.key}_name`),
+              description: t(`meta.section.${sec.key}_desc`),
+              path: sec.path,
+            })),
+            params.lang,
+          ),
+        ),
+      ],
+    };
+  },
   component: HomePage,
 };
 

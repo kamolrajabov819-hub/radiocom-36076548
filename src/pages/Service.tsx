@@ -9,65 +9,50 @@ import { gsap, useGsap } from "@/lib/motion";
 import { SectionHead } from "@/components/Section";
 import { FeatureCard } from "@/components/apple";
 import {
-  absolute,
+  SITE_NAME,
   breadcrumbSchema,
   jsonLd,
-  serviceSchema,
   localeLinks,
+  pageMeta,
+  serviceSchema,
   type SeoLang,
 } from "@/lib/seo";
+import { tFor } from "@/lib/i18n";
 
 export const routeOptions = {
-  head: ({ params }: { params: { lang: SeoLang } }) => ({
-    meta: [
-      { title: "Ремонт рации в Ташкенте — авторизованный сервис | Radiocom" },
-      {
-        name: "description",
-        content:
-          "Гарантийный и постгарантийный ремонт Motorola, Hytera и Vertex Standard. Оригинальные запчасти, сертифицированные инженеры, фиксированные цены. Ташкент.",
-      },
-      { property: "og:type", content: "website" },
-      {
-        property: "og:title",
-        content: "Ремонт рации в Ташкенте — авторизованный сервис | Radiocom",
-      },
-      {
-        property: "og:description",
-        content:
-          "Гарантийный и постгарантийный ремонт Motorola, Hytera и Vertex Standard. Оригинальные запчасти, сертифицированные инженеры, фиксированные цены. Ташкент.",
-      },
-      { property: "og:url", content: absolute("/service") },
-      { property: "og:locale", content: "ru_RU" },
-      { property: "og:locale:alternate", content: "uz_UZ" },
-      { property: "og:locale:alternate", content: "en_US" },
-      {
-        name: "twitter:title",
-        content: "Ремонт рации в Ташкенте — авторизованный сервис | Radiocom",
-      },
-      {
-        name: "twitter:description",
-        content:
-          "Гарантийный и постгарантийный ремонт Motorola, Hytera и Vertex Standard. Оригинальные запчасти, сертифицированные инженеры, фиксированные цены. Ташкент.",
-      },
-    ],
-    links: localeLinks(params.lang, "/service"),
-    scripts: [
-      jsonLd(
-        serviceSchema({
-          name: "Авторизованный сервисный центр Radiocom",
-          description:
-            "Гарантийный и постгарантийный ремонт радиостанций Motorola, Hytera и Vertex Standard в Ташкенте.",
-          path: "/service",
-        }),
-      ),
-      jsonLd(
-        breadcrumbSchema([
-          { name: "Radiocom", path: "/" },
-          { name: "Сервис", path: "/service" },
-        ]),
-      ),
-    ],
-  }),
+  head: ({ params }: { params: { lang: SeoLang } }) => {
+    const t = tFor(params.lang);
+    return {
+      meta: pageMeta({
+        lang: params.lang,
+        title: t("meta.service.title"),
+        description: t("meta.service.desc"),
+        path: "/service",
+      }),
+      links: localeLinks(params.lang, "/service"),
+      scripts: [
+        jsonLd(
+          serviceSchema(
+            {
+              name: t("meta.service.schema_name"),
+              description: t("meta.service.schema_desc"),
+              path: "/service",
+            },
+            params.lang,
+          ),
+        ),
+        jsonLd(
+          breadcrumbSchema(
+            [
+              { name: SITE_NAME, path: "/" },
+              { name: t("meta.crumb.service"), path: "/service" },
+            ],
+            params.lang,
+          ),
+        ),
+      ],
+    };
+  },
   component: ServicePage,
 };
 

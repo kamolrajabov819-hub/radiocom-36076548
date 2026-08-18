@@ -10,7 +10,15 @@ import miningImg from "@/assets/industry-mining.jpg";
 import transportImg from "@/assets/industry-transport.jpg";
 import manufacturingImg from "@/assets/industry-manufacturing.jpg";
 import { spring } from "@/lib/springs";
-import { absolute, localeLinks, type SeoLang } from "@/lib/seo";
+import {
+  SITE_NAME,
+  breadcrumbSchema,
+  jsonLd,
+  localeLinks,
+  pageMeta,
+  type SeoLang,
+} from "@/lib/seo";
+import { tFor } from "@/lib/i18n";
 
 const IMAGES: Record<string, string> = {
   horeca: horecaImg,
@@ -22,40 +30,29 @@ const IMAGES: Record<string, string> = {
 };
 
 export const routeOptions = {
-  head: ({ params }: { params: { lang: SeoLang } }) => ({
-    meta: [
-      { title: "Рации для бизнеса: HoReCa, стройка, охрана, транспорт | Radiocom" },
-      {
-        name: "description",
-        content:
-          "Готовые решения радиосвязи для 6 отраслей: HoReCa, строительство, охрана, горная добыча, транспорт и производство. Подбор моделей и бесплатный тест.",
-      },
-      { property: "og:type", content: "website" },
-      {
-        property: "og:title",
-        content: "Рации для бизнеса: HoReCa, стройка, охрана, транспорт | Radiocom",
-      },
-      {
-        property: "og:description",
-        content:
-          "Готовые решения радиосвязи для 6 отраслей: HoReCa, строительство, охрана, горная добыча, транспорт и производство. Подбор моделей и бесплатный тест.",
-      },
-      { property: "og:url", content: absolute("/industries") },
-      { property: "og:locale", content: "ru_RU" },
-      { property: "og:locale:alternate", content: "uz_UZ" },
-      { property: "og:locale:alternate", content: "en_US" },
-      {
-        name: "twitter:title",
-        content: "Рации для бизнеса: HoReCa, стройка, охрана, транспорт | Radiocom",
-      },
-      {
-        name: "twitter:description",
-        content:
-          "Готовые решения радиосвязи для 6 отраслей: HoReCa, строительство, охрана, горная добыча, транспорт и производство. Подбор моделей и бесплатный тест.",
-      },
-    ],
-    links: localeLinks(params.lang, "/industries"),
-  }),
+  head: ({ params }: { params: { lang: SeoLang } }) => {
+    const t = tFor(params.lang);
+    return {
+      meta: pageMeta({
+        lang: params.lang,
+        title: t("meta.industries.title"),
+        description: t("meta.industries.desc"),
+        path: "/industries",
+      }),
+      links: localeLinks(params.lang, "/industries"),
+      scripts: [
+        jsonLd(
+          breadcrumbSchema(
+            [
+              { name: SITE_NAME, path: "/" },
+              { name: t("meta.crumb.industries"), path: "/industries" },
+            ],
+            params.lang,
+          ),
+        ),
+      ],
+    };
+  },
   component: IndustriesOverview,
 };
 

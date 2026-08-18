@@ -11,6 +11,7 @@
  */
 
 import type { Product } from "@/data/products";
+import { pick } from "@/data/spec-dict";
 
 export const LANGS = ["ru", "en", "uz"] as const;
 export type SeoLang = (typeof LANGS)[number];
@@ -88,6 +89,56 @@ export function jsonLd(data: unknown) {
     attrs: { type: "application/ld+json" },
     children: JSON.stringify(data),
   };
+}
+
+/** BCP-47 → Open Graph locale. og:locale wants the underscore form. */
+export const OG_LOCALE: Record<SeoLang, string> = {
+  ru: "ru_RU",
+  en: "en_US",
+  uz: "uz_UZ",
+};
+
+/**
+ * The full meta block for one page in one language.
+ *
+ * Every page used to hardcode a Russian title and description and pin
+ * `og:locale` to `ru_RU`, while hreflang told Google the three locales were
+ * distinct language versions. Contradictory signals like that invite Google to
+ * fold them together as duplicates — which is exactly what the locale-prefixed
+ * URLs were meant to prevent. Titles now come from the `meta.*` i18n keys and
+ * everything language-dependent is derived from `lang` here, in one place.
+ */
+export function pageMeta(opts: {
+  lang: SeoLang;
+  title: string;
+  description: string;
+  /** Language-neutral path, e.g. "/catalog". */
+  path: string;
+  image?: string;
+  type?: "website" | "article" | "product";
+}) {
+  const url = absolute(localePath(opts.lang, opts.path));
+  const type = opts.type ?? "website";
+
+  return [
+    { title: opts.title },
+    { name: "description", content: opts.description },
+    { property: "og:type", content: type },
+    { property: "og:title", content: opts.title },
+    { property: "og:description", content: opts.description },
+    { property: "og:url", content: url },
+    { property: "og:locale", content: OG_LOCALE[opts.lang] },
+    // Facebook and LinkedIn read the alternates to offer the other versions.
+    ...LANGS.filter((l) => l !== opts.lang).map((l) => ({
+      property: "og:locale:alternate",
+      content: OG_LOCALE[l],
+    })),
+    ...(opts.image ? [{ property: "og:image", content: absolute(opts.image) }] : []),
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: opts.title },
+    { name: "twitter:description", content: opts.description },
+    ...(opts.image ? [{ name: "twitter:image", content: absolute(opts.image) }] : []),
+  ];
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -176,8 +227,8 @@ export function webSiteSchema() {
  * request"); Google rejects an Offer without a price, so those products get
  * availability and seller only, with no `priceSpecification`.
  */
-export function productSchema(p: Product, extra?: { specNames?: string[] }) {
-  const url = absolute(`/catalog/${p.id}`);
+export function productSchema(p: Product, lang: SeoLang, extra?: { specNames?: string[] }) {
+  const url = absolute(localePath(lang, `/catalog/${p.id}`));
   const offer: Record<string, unknown> = {
     "@type": "Offer",
     url,
@@ -196,7 +247,8 @@ export function productSchema(p: Product, extra?: { specNames?: string[] }) {
     "@id": `${url}#product`,
     name: p.name,
     sku: p.id,
-    description: p.blurb,
+    description: pick(p.blurb, lang),
+    inLanguage: lang,
     image: [absolute(p.image), ...(p.gallery ?? []).map(absolute)],
     brand: { "@type": "Brand", name: p.brand },
     category:
@@ -213,7 +265,12 @@ export function productSchema(p: Product, extra?: { specNames?: string[] }) {
   };
 }
 
-export function breadcrumbSchema(trail: { name: string; path: string }[]) {
+/**
+ * `trail` paths are language-neutral ("/catalog"); the locale prefix is added
+ * here so the breadcrumb points at the URL that actually serves 200 for this
+ * language rather than the unprefixed path, which now 301s.
+ */
+export function breadcrumbSchema(trail: { name: string; path: string }[], lang: SeoLang) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -221,7 +278,7 @@ export function breadcrumbSchema(trail: { name: string; path: string }[]) {
       "@type": "ListItem",
       position: i + 1,
       name: step.name,
-      item: absolute(step.path),
+      item: absolute(localePath(lang, step.path)),
     })),
   };
 }
@@ -229,14 +286,14 @@ export function breadcrumbSchema(trail: { name: string; path: string }[]) {
 /**
  * FAQPage from question/answer pairs.
  *
- * Built from the Russian copy specifically: the SSR pass renders `lng: "ru"`, so
- * Russian is the only language crawlers see, and schema must match the visible
- * page text or Google treats it as mismatched markup.
+ * The pairs must be the ones this locale actually renders — Google treats schema
+ * that disagrees with the visible page text as mismatched markup.
  */
-export function faqSchema(items: { q: string; a: string }[]) {
+export function faqSchema(items: { q: string; a: string }[], lang: SeoLang) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    inLanguage: lang,
     mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.q,
@@ -246,19 +303,23 @@ export function faqSchema(items: { q: string; a: string }[]) {
 }
 
 /** The repair/service offering — feeds "ремонт рации Ташкент" style queries. */
-export function serviceSchema(opts: { name: string; description: string; path: string }) {
+export function serviceSchema(
+  opts: { name: string; description: string; path: string },
+  lang: SeoLang,
+) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
     name: opts.name,
     description: opts.description,
-    url: absolute(opts.path),
+    inLanguage: lang,
+    url: absolute(localePath(lang, opts.path)),
     serviceType: "Two-way radio repair and maintenance",
     provider: { "@id": `${SITE_URL}/#organization` },
     areaServed: { "@type": "Country", name: "Uzbekistan" },
     availableChannel: {
       "@type": "ServiceChannel",
-      serviceUrl: absolute(opts.path),
+      serviceUrl: absolute(localePath(lang, opts.path)),
       servicePhone: BUSINESS.phones[0],
       serviceLocation: { "@id": `${SITE_URL}/#localbusiness` },
     },
@@ -273,57 +334,52 @@ export function serviceSchema(opts: { name: string; description: string; path: s
  * pairs with the breadcrumb trail and the sitemap to make that hierarchy
  * unambiguous. Titles here match each page's <title> so the signals agree.
  */
-export function siteNavigationSchema(items: { name: string; description: string; path: string }[]) {
+export function siteNavigationSchema(
+  items: { name: string; description: string; path: string }[],
+  lang: SeoLang,
+) {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "@id": `${SITE_URL}/#sitenav`,
-    name: "Radiocom",
+    "@id": `${SITE_URL}/${lang}#sitenav`,
+    name: SITE_NAME,
+    inLanguage: lang,
     itemListElement: items.map((item, i) => ({
       "@type": "SiteNavigationElement",
       position: i + 1,
       name: item.name,
       description: item.description,
-      url: absolute(item.path),
+      url: absolute(localePath(lang, item.path)),
     })),
   };
 }
 
-/** The main sections, in nav order. Used for the SiteNavigationElement graph. */
+/**
+ * The main sections, in nav order, keyed to their `meta.section.*` i18n strings.
+ *
+ * The nav labels used to be hardcoded Russian here, which meant the
+ * SiteNavigationElement graph advertised Russian section names on /en and /uz.
+ * Only the paths and keys are structural; the copy is resolved per language at
+ * the call site.
+ */
 export const SITE_SECTIONS = [
-  {
-    name: "Каталог раций",
-    description: "Все модели Motorola и Radiocom с ценами, характеристиками и комплектацией.",
-    path: "/catalog",
-  },
-  {
-    name: "PoC-рации",
-    description: "Push-to-Talk через LTE: связь по всему Узбекистану без ретрансляторов.",
-    path: "/poc",
-  },
-  {
-    name: "Сервисный центр",
-    description: "Гарантийный и постгарантийный ремонт раций в Ташкенте.",
-    path: "/service",
-  },
-  {
-    name: "Отрасли",
-    description:
-      "Решения радиосвязи для HoReCa, стройки, охраны, добычи, транспорта и производства.",
-    path: "/industries",
-  },
+  { key: "catalog", path: "/catalog" },
+  { key: "poc", path: "/poc" },
+  { key: "service", path: "/service" },
+  { key: "industries", path: "/industries" },
 ] as const;
 
 /** ItemList for the catalogue grid — helps Google understand the collection page. */
-export function itemListSchema(items: Product[]) {
+export function itemListSchema(items: Product[], lang: SeoLang) {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
     numberOfItems: items.length,
+    inLanguage: lang,
     itemListElement: items.map((p, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      url: absolute(`/catalog/${p.id}`),
+      url: absolute(localePath(lang, `/catalog/${p.id}`)),
       name: p.name,
     })),
   };
