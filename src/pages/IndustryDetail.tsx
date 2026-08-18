@@ -173,7 +173,7 @@ export function IndustryPage() {
       </section>
 
       {/* Problem / Solution — sticky-story pattern */}
-      <section className="bg-pitch section px-6 md:px-10">
+      <section className="band-plain section px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
           <StoryCard
             kicker={t("industries.problem_title")}
@@ -189,14 +189,14 @@ export function IndustryPage() {
       </section>
 
       {/* What you get — 3 offers */}
-      <section className="bg-charcoal section px-6 md:px-10">
+      <section className="band-soft section px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto text-center">
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={spring}
-            className="headline text-crisp text-4xl md:text-6xl"
+            className="type-headline text-crisp"
           >
             {t("industries.offers.title")}
           </motion.h2>
@@ -215,7 +215,7 @@ export function IndustryPage() {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ ...spring, delay: i * 0.1 }}
                 whileHover={{ y: -8 }}
-                className="group bento-card p-10 text-left relative overflow-hidden"
+                className="group relative overflow-hidden rounded-[28px] bg-pitch p-10 text-left"
                 style={{ background: "var(--pitch)" }}
               >
                 <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(70%_60%_at_50%_0%,color-mix(in_oklab,var(--signal)_16%,transparent),transparent_70%)]" />
@@ -247,12 +247,10 @@ export function IndustryPage() {
       </section>
 
       {/* Recommended */}
-      <section className="bg-pitch section px-6 md:px-10">
+      <section className="band-plain section px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto">
           <div className="flex items-end justify-between mb-10">
-            <h2 className="headline text-crisp text-4xl md:text-5xl">
-              {t("industries.recommended")}
-            </h2>
+            <h2 className="type-headline text-crisp">{t("industries.recommended")}</h2>
             <LocaleLink to="/catalog" className="pill-link">
               {t("industries.compare_all")}
             </LocaleLink>
@@ -266,7 +264,7 @@ export function IndustryPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ ...spring, delay: (i % 3) * 0.06 }}
-                className="bento-card p-6 md:p-8 text-left group flex flex-col h-full min-h-[340px] hover:-translate-y-1 transition-transform duration-300"
+                className="group flex h-full min-h-[340px] flex-col rounded-[28px] bg-charcoal p-6 text-left transition-transform duration-300 hover:-translate-y-1 md:p-8"
               >
                 <div className="aspect-square flex items-center justify-center mb-6 bg-pitch rounded-2xl overflow-hidden">
                   <img
@@ -289,7 +287,7 @@ export function IndustryPage() {
       </section>
 
       {/* Testimonial */}
-      <section className="bg-charcoal py-24 md:py-32 px-6">
+      <section className="band-soft section-tight px-6">
         <div className="max-w-3xl mx-auto text-center">
           <Quote className="w-10 h-10 text-signal mx-auto mb-6" strokeWidth={1.5} />
           <p className="headline text-crisp text-2xl md:text-4xl leading-[1.2]">
@@ -301,9 +299,9 @@ export function IndustryPage() {
 
       {/* FAQ */}
       {faq.length > 0 && (
-        <section className="bg-pitch section px-6 md:px-10">
+        <section className="band-plain section px-6 md:px-10">
           <div className="max-w-3xl mx-auto">
-            <h2 className="headline text-crisp text-4xl md:text-5xl text-center mb-12">
+            <h2 className="type-headline text-crisp text-center mb-12">
               {t("industries.faq_title")}
             </h2>
             <div className="rounded-3xl bg-charcoal overflow-hidden">
@@ -316,7 +314,7 @@ export function IndustryPage() {
       )}
 
       {/* Final CTA */}
-      <section className="bg-black text-white py-24 md:py-40 px-6 text-center">
+      <section className="band-dark section px-6 text-center">
         <h2
           className="headline text-white mx-auto max-w-3xl"
           style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
