@@ -1,7 +1,7 @@
 # Project skills
 
-Forty-two skills — 16 design/UX, 25 SEO, and 1 Framer Motion reference — plus 18 SEO
-sub-agents, vendored into this repo as **project skills**. Claude Code discovers anything at `.claude/skills/<name>/SKILL.md`
+Sixty-two skills — 16 design/UX, 25 SEO, and 21 animation/3D — plus 18 SEO sub-agents,
+vendored into this repo as **project skills**. Claude Code discovers anything at `.claude/skills/<name>/SKILL.md`
 and `.claude/agents/*.md` automatically at session start — nothing to install per machine,
 and they travel with the repo (including to Lovable).
 
@@ -45,10 +45,23 @@ palette). Prefer extending those utilities over pasting new CSS.
 | `bencium-controlled-ux-designer` | Same brief, but asks before each visual decision — use when you want to stay in the loop. |
 | `renaissance-architecture` | First-principles UI/architecture thinking; anti-derivative-work check. |
 
-## Motion
+## Motion and 3D — 21 skills
+
+The runtime only ships **Lenis + GSAP** alongside the Framer Motion already in the project
+(~80 KB added). Three.js, React Spring and Anime.js were deliberately not installed as
+dependencies: there are no `.glb` models for these radios (only photos), and the rest duplicate
+what GSAP and Framer Motion already do. Client JS was 947 KB before this work, and Core Web
+Vitals feed ranking. The skills are all installed regardless — they cost nothing at runtime.
 
 | Skill | Use it for |
 | --- | --- |
+| `gsap-core`, `gsap-timeline`, `gsap-utils` | GSAP tweens, timelines, helper functions |
+| `gsap-scrolltrigger` | Pinned and scrub-driven scroll scenes — the apple.com technique |
+| `gsap-react`, `gsap-frameworks` | `gsap.context()` cleanup and React integration |
+| `gsap-performance`, `gsap-plugins` | Frame budget, plugin catalogue |
+| `motion-framer` | Framer Motion patterns, variants, orchestration |
+| `react-spring-physics` | Spring physics reference (library not installed) |
+| `threejs-*` (10) | WebGL reference — fundamentals, geometry, materials, shaders, lighting, textures, loaders, animation, interaction, post-processing (library not installed) |
 | `framer-motion` | API reference — which prop or hook, variants and stagger, `AnimatePresence`, `layoutId`, `useScroll`/`useTransform`, gesture props, pitfalls. Pairs with `apple-design`: that one decides *whether and how* motion should feel, this one tells you the call. Carries a local addendum pointing at `src/lib/springs.ts` and the Framer-Motion reduced-motion gap. |
 
 ## SEO — 25 skills + 18 sub-agents
@@ -113,6 +126,9 @@ These are installed but inert until configured, and each requires an account:
 | uploaded `aphloappledesign.zip` | `apple-design-web` |
 | [AgricIDaniel/claude-seo](https://github.com/AgricIDaniel/claude-seo) v2.2.4 | `seo` + 24 `seo-*` skills, 18 agents in `.claude/agents/` |
 | [claude-dev-suite/claude-dev-suite](https://github.com/claude-dev-suite/claude-dev-suite) → `skills/animation/framer-motion` | `framer-motion` |
+| [greensock/gsap-skills](https://github.com/greensock/gsap-skills) | 8 `gsap-*` skills |
+| [cloudai-x/threejs-skills](https://github.com/cloudai-x/threejs-skills) | 10 `threejs-*` skills |
+| [freshtechbro/claudedesignskills](https://github.com/freshtechbro/claudedesignskills) | `motion-framer`, `react-spring-physics` |
 
 ## Local modifications
 
