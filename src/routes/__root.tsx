@@ -22,6 +22,7 @@ import {
 } from "@/lib/seo";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { useLang } from "@/lib/locale";
+import { useSmoothScroll } from "@/lib/motion";
 import { ScrollProgress } from "@/components/ScrollProgress";
 
 import { Nav } from "../components/Nav";
@@ -163,6 +164,10 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const { t } = useTranslation();
   const lang = useLang();
+
+  // Lenis + ScrollTrigger, mounted once for the document. No-ops under
+  // prefers-reduced-motion and never runs during SSR.
+  useSmoothScroll();
 
   // The shell renders lang="ru" for the server pass; the URL is authoritative, so
   // sync the real document language from the route. Screen readers, hyphenation
