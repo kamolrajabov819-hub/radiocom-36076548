@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Link } from "@tanstack/react-router";
+import { LocaleLink } from "@/components/LocaleLink";
 import { Socials } from "./Socials";
 import { INDUSTRY_SLUGS } from "@/data/industries";
 import logoAsset from "@/assets/radiocom-logo.png.asset.json";
@@ -22,9 +22,9 @@ export function Footer() {
           <FooterCol title={t("nav.industries")}>
             {INDUSTRY_SLUGS.map((s) => (
               <li key={s}>
-                <Link to="/industries/$slug" params={{ slug: s }} className="text-[13px] text-crisp/70 hover:text-crisp">
+                <LocaleLink to="/industries/$slug" params={{ slug: s }} className="text-[13px] text-crisp/70 hover:text-crisp">
                   {t(`industries.${s}.name`)}
-                </Link>
+                </LocaleLink>
               </li>
             ))}
           </FooterCol>
@@ -61,9 +61,9 @@ function FooterCol({ title, children }: { title: string; children: React.ReactNo
 function FLink({ to, children }: { to: "/" | "/catalog" | "/poc" | "/service" | "/industries"; children: React.ReactNode }) {
   return (
     <li>
-      <Link to={to} className="text-[13px] text-crisp/70 hover:text-crisp transition-colors">
+      <LocaleLink to={to} className="text-[13px] text-crisp/70 hover:text-crisp transition-colors">
         {children}
-      </Link>
+      </LocaleLink>
     </li>
   );
 }

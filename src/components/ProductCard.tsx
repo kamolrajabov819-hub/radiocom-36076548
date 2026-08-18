@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Link } from "@tanstack/react-router";
+import { LocaleLink } from "@/components/LocaleLink";
 import { useTranslation } from "react-i18next";
 import { formatPrice, type Product } from "@/data/products";
 import { spring } from "@/lib/springs";
@@ -31,7 +31,7 @@ export function ProductCard({
       className="group h-full"
     >
       <TiltCard className="h-full" max={5}>
-        <Link
+        <LocaleLink
           to="/catalog/$id"
           params={{ id: p.id }}
           aria-label={p.name}
@@ -90,7 +90,7 @@ export function ProductCard({
             </div>
             <span className="pill pill-accent pill-sm shrink-0">{t("product.more")}</span>
           </div>
-        </Link>
+        </LocaleLink>
       </TiltCard>
     </motion.div>
   );
