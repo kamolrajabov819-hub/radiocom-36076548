@@ -6,15 +6,57 @@ import { Plus, Minus, Search, Microscope, Cog, ClipboardCheck } from "lucide-rea
 import serviceLight from "@/assets/service-tech-light.jpg";
 import { openLead } from "@/components/LeadFormSheet";
 import { spring } from "@/lib/springs";
-
+import { absolute, breadcrumbSchema, canonical, jsonLd, serviceSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/service")({
   head: () => ({
     meta: [
-      { title: "Authorized Service Center — Radio Repair Tashkent | Radiocom" },
-      { name: "description", content: "Warranty and post-warranty repair for Motorola, Hytera and Vertex Standard radios. Original parts, certified technicians, fixed pricing." },
-      { property: "og:title", content: "Authorized Service Center — Radiocom" },
-      { property: "og:description", content: "Certified radio repair with original parts and fixed pricing in Tashkent." },
+      { title: "Ремонт рации в Ташкенте — авторизованный сервис | Radiocom" },
+      {
+        name: "description",
+        content:
+          "Гарантийный и постгарантийный ремонт Motorola, Hytera и Vertex Standard. Оригинальные запчасти, сертифицированные инженеры, фиксированные цены. Ташкент.",
+      },
+      { property: "og:type", content: "website" },
+      {
+        property: "og:title",
+        content: "Ремонт рации в Ташкенте — авторизованный сервис | Radiocom",
+      },
+      {
+        property: "og:description",
+        content:
+          "Гарантийный и постгарантийный ремонт Motorola, Hytera и Vertex Standard. Оригинальные запчасти, сертифицированные инженеры, фиксированные цены. Ташкент.",
+      },
+      { property: "og:url", content: absolute("/service") },
+      { property: "og:locale", content: "ru_RU" },
+      { property: "og:locale:alternate", content: "uz_UZ" },
+      { property: "og:locale:alternate", content: "en_US" },
+      {
+        name: "twitter:title",
+        content: "Ремонт рации в Ташкенте — авторизованный сервис | Radiocom",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Гарантийный и постгарантийный ремонт Motorola, Hytera и Vertex Standard. Оригинальные запчасти, сертифицированные инженеры, фиксированные цены. Ташкент.",
+      },
+    ],
+    links: [canonical("/service")],
+    scripts: [
+      jsonLd(
+        serviceSchema({
+          name: "Авторизованный сервисный центр Radiocom",
+          description:
+            "Гарантийный и постгарантийный ремонт радиостанций Motorola, Hytera и Vertex Standard в Ташкенте.",
+          path: "/service",
+        }),
+      ),
+      jsonLd(
+        breadcrumbSchema([
+          { name: "Radiocom", path: "/" },
+          { name: "Сервис", path: "/service" },
+        ]),
+      ),
     ],
   }),
   component: ServicePage,
@@ -28,7 +70,6 @@ function ServicePage() {
       <Flow />
       <Advantages />
       <Policy />
-
     </div>
   );
 }
@@ -38,13 +79,19 @@ function BenchStrip() {
     <section className="bg-pitch px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto">
         <div className="rounded-3xl overflow-hidden aspect-[16/7] bg-charcoal relative">
-          <img src={serviceLight} alt="" loading="lazy" width={1400} height={1000} className="absolute inset-0 h-full w-full object-cover" />
+          <img
+            src={serviceLight}
+            alt=""
+            loading="lazy"
+            width={1400}
+            height={1000}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
         </div>
       </div>
     </section>
   );
 }
-
 
 function Hero() {
   const { t } = useTranslation();
@@ -75,10 +122,15 @@ function Hero() {
           transition={{ ...spring, delay: 0.2 }}
           className="mt-8 flex items-center justify-center gap-4 flex-wrap"
         >
-          <button onClick={() => openLead({ title: t("service.request_repair") })} className="pill pill-accent">
+          <button
+            onClick={() => openLead({ title: t("service.request_repair") })}
+            className="pill pill-accent"
+          >
             {t("service.request_repair")}
           </button>
-          <a href="tel:+998939800710" className="pill-link">+998 93 980-07-10</a>
+          <a href="tel:+998939800710" className="pill-link">
+            +998 93 980-07-10
+          </a>
         </motion.div>
       </div>
     </section>
@@ -92,7 +144,7 @@ function Flow() {
   return (
     <section className="bg-charcoal section-tight px-6 md:px-10">
       <div className="max-w-[1200px] mx-auto">
-        <h2 className="headline text-crisp text-3xl md:text-5xl text-center mb-16">
+        <h2 className="type-headline text-crisp text-center mb-16">
           {t("service.flow_title")}
         </h2>
         <div className="relative">
@@ -155,7 +207,7 @@ function Policy() {
   return (
     <section className="bg-pitch section px-6 md:px-10">
       <div className="max-w-3xl mx-auto">
-        <h2 className="headline text-crisp text-3xl md:text-5xl text-center mb-12">
+        <h2 className="type-headline text-crisp text-center mb-12">
           {t("service.policy_title")}
         </h2>
         <div className="rounded-3xl bg-charcoal overflow-hidden">
@@ -185,7 +237,10 @@ function Policy() {
           })}
         </div>
         <div className="mt-10 text-center">
-          <button onClick={() => openLead({ title: t("service.request_repair") })} className="pill pill-accent">
+          <button
+            onClick={() => openLead({ title: t("service.request_repair") })}
+            className="pill pill-accent"
+          >
             {t("service.request_repair")}
           </button>
         </div>
@@ -193,4 +248,3 @@ function Policy() {
     </section>
   );
 }
-

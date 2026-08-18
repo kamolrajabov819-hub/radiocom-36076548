@@ -2,7 +2,17 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { ChevronRight, Plus, Minus, FileDown, Check, Quote, Radio, Repeat, Wrench } from "lucide-react";
+import {
+  ChevronRight,
+  Plus,
+  Minus,
+  FileDown,
+  Check,
+  Quote,
+  Radio,
+  Repeat,
+  Wrench,
+} from "lucide-react";
 import { INDUSTRY_SLUGS, industryPicks, type IndustrySlug } from "@/data/industries";
 import { products, formatPrice } from "@/data/products";
 import { openLead } from "@/components/LeadFormSheet";
@@ -16,6 +26,8 @@ import transportImg from "@/assets/industry-transport.jpg";
 import manufacturingImg from "@/assets/industry-manufacturing.jpg";
 import { spring } from "@/lib/springs";
 import { assetUrl } from "@/lib/asset";
+import { absolute, breadcrumbSchema, canonical, faqSchema, jsonLd } from "@/lib/seo";
+import ruCopy from "@/i18n/ru.json";
 
 const IMAGES: Record<string, string> = {
   horeca: horecaImg,
@@ -30,12 +42,44 @@ export const Route = createFileRoute("/industries/$slug")({
   beforeLoad: ({ params }) => {
     if (!INDUSTRY_SLUGS.includes(params.slug as IndustrySlug)) throw notFound();
   },
-  head: ({ params }) => ({
-    meta: [
-      { title: `Industry: ${params.slug} — Radiocom` },
-      { name: "description", content: `Radio systems engineered for ${params.slug} in Uzbekistan.` },
-    ],
-  }),
+  head: ({ params }) => {
+    const slug = params.slug as IndustrySlug;
+    // head() runs outside React, so the Russian copy is read straight from the
+    // bundle. That is also the correct language here: the SSR pass renders `ru`,
+    // so Russian is the only variant crawlers ever see, and JSON-LD has to match
+    // the visible text.
+    const copy = ruCopy.industries[slug];
+    const name = copy?.name ?? slug;
+    const title = `Рации для ${name.toLowerCase()} — подбор и внедрение | Radiocom`;
+    const description = copy?.desc ?? `Решения радиосвязи для ${name} в Узбекистане.`;
+    const path = `/industries/${slug}`;
+    const faq = (copy?.faq ?? []) as { q: string; a: string }[];
+
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:type", content: "article" },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:url", content: absolute(path) },
+        { property: "og:locale", content: "ru_RU" },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: description },
+      ],
+      links: [canonical(path)],
+      scripts: [
+        ...(faq.length ? [jsonLd(faqSchema(faq))] : []),
+        jsonLd(
+          breadcrumbSchema([
+            { name: "Radiocom", path: "/" },
+            { name: "Отрасли", path: "/industries" },
+            { name, path },
+          ]),
+        ),
+      ],
+    };
+  },
   component: IndustryPage,
 });
 
@@ -70,7 +114,9 @@ function IndustryPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/30" />
         </motion.div>
         <div className="relative pt-40 md:pt-56 pb-24 px-6 max-w-[1200px] mx-auto text-white">
-          <Link to="/industries" className="text-white/70 text-[13px] hover:text-white">← {t("industries.view_all")}</Link>
+          <Link to="/industries" className="text-white/70 text-[13px] hover:text-white">
+            ← {t("industries.view_all")}
+          </Link>
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -115,8 +161,16 @@ function IndustryPage() {
       {/* Problem / Solution — sticky-story pattern */}
       <section className="bg-pitch section px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-          <StoryCard kicker={t("industries.problem_title")} body={t(`industries.${s}.problem`)} tone="light" />
-          <StoryCard kicker={t("industries.solution_title")} body={t(`industries.${s}.solution`)} tone="accent" />
+          <StoryCard
+            kicker={t("industries.problem_title")}
+            body={t(`industries.${s}.problem`)}
+            tone="light"
+          />
+          <StoryCard
+            kicker={t("industries.solution_title")}
+            body={t(`industries.${s}.solution`)}
+            tone="accent"
+          />
         </div>
       </section>
 
@@ -133,11 +187,13 @@ function IndustryPage() {
             {t("industries.offers.title")}
           </motion.h2>
           <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
-            {([
-              { k: "test", Icon: Radio },
-              { k: "tradein", Icon: Repeat },
-              { k: "service", Icon: Wrench },
-            ] as const).map((o, i) => (
+            {(
+              [
+                { k: "test", Icon: Radio },
+                { k: "tradein", Icon: Repeat },
+                { k: "service", Icon: Wrench },
+              ] as const
+            ).map((o, i) => (
               <motion.div
                 key={o.k}
                 initial={{ opacity: 0, y: 28 }}
@@ -161,7 +217,9 @@ function IndustryPage() {
                 <div className="relative headline text-crisp text-2xl mt-6 leading-tight">
                   {t(`industries.offers.${o.k}.t`)}
                 </div>
-                <p className="relative subhead text-[15px] mt-3">{t(`industries.offers.${o.k}.d`)}</p>
+                <p className="relative subhead text-[15px] mt-3">
+                  {t(`industries.offers.${o.k}.d`)}
+                </p>
                 <button
                   onClick={() => openLead({ title: t(`industries.offers.${o.k}.t`) })}
                   className="relative pill-link mt-6"
@@ -174,12 +232,13 @@ function IndustryPage() {
         </div>
       </section>
 
-
       {/* Recommended */}
       <section className="bg-pitch section px-6 md:px-10">
         <div className="max-w-[1200px] mx-auto">
           <div className="flex items-end justify-between mb-10">
-            <h2 className="headline text-crisp text-4xl md:text-5xl">{t("industries.recommended")}</h2>
+            <h2 className="headline text-crisp text-4xl md:text-5xl">
+              {t("industries.recommended")}
+            </h2>
             <Link to="/catalog" className="pill-link">
               {t("industries.compare_all")}
             </Link>
@@ -196,10 +255,16 @@ function IndustryPage() {
                 className="bento-card p-6 md:p-8 text-left group flex flex-col h-full min-h-[340px] hover:-translate-y-1 transition-transform duration-300"
               >
                 <div className="aspect-square flex items-center justify-center mb-6 bg-pitch rounded-2xl overflow-hidden">
-                  <img src={p.image} alt={p.name} className="max-h-[85%] max-w-[85%] object-contain group-hover:scale-105 transition-transform duration-500" />
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    className="max-h-[85%] max-w-[85%] object-contain group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
                 <div className="text-[12px] text-cool uppercase tracking-wide">{p.brand}</div>
-                <h3 className="text-[15px] font-semibold text-crisp mt-1 leading-tight flex-1">{p.name}</h3>
+                <h3 className="text-[15px] font-semibold text-crisp mt-1 leading-tight flex-1">
+                  {p.name}
+                </h3>
                 <div className="text-[13px] text-cool mt-1">{formatPrice(p.price, lang)}</div>
               </motion.button>
             ))}
@@ -236,7 +301,10 @@ function IndustryPage() {
 
       {/* Final CTA */}
       <section className="bg-black text-white py-24 md:py-40 px-6 text-center">
-        <h2 className="headline text-white mx-auto max-w-3xl" style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}>
+        <h2
+          className="headline text-white mx-auto max-w-3xl"
+          style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
+        >
           {t("industries.cta")}.
         </h2>
         <p className="mt-4 text-lg text-white/60 max-w-xl mx-auto">{t("form.trust_line")}</p>
@@ -257,7 +325,15 @@ function IndustryPage() {
   );
 }
 
-function StoryCard({ kicker, body, tone }: { kicker: string; body: string; tone: "light" | "accent" }) {
+function StoryCard({
+  kicker,
+  body,
+  tone,
+}: {
+  kicker: string;
+  body: string;
+  tone: "light" | "accent";
+}) {
   const isAccent = tone === "accent";
   return (
     <motion.div
@@ -285,14 +361,21 @@ function OutcomeNumber({ value }: { value: string }) {
     const suffix = match[2];
     if (n < 10000 && Number.isFinite(n)) {
       return (
-        <div className="text-crisp font-semibold tracking-tight" style={{ fontSize: "clamp(3rem, 7vw, 5rem)", lineHeight: 1 }}>
-          <CountUp to={n} />{suffix}
+        <div
+          className="text-crisp font-semibold tracking-tight"
+          style={{ fontSize: "clamp(3rem, 7vw, 5rem)", lineHeight: 1 }}
+        >
+          <CountUp to={n} />
+          {suffix}
         </div>
       );
     }
   }
   return (
-    <div className="text-crisp font-semibold tracking-tight" style={{ fontSize: "clamp(2.5rem, 6vw, 4rem)", lineHeight: 1 }}>
+    <div
+      className="text-crisp font-semibold tracking-tight"
+      style={{ fontSize: "clamp(2.5rem, 6vw, 4rem)", lineHeight: 1 }}
+    >
       {value}
     </div>
   );

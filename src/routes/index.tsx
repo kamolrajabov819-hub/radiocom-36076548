@@ -2,7 +2,16 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { ChevronRight, Repeat, ShieldCheck, Truck, Wrench, Package, Sparkles, MessageCircle } from "lucide-react";
+import {
+  ChevronRight,
+  Repeat,
+  ShieldCheck,
+  Truck,
+  Wrench,
+  Package,
+  Sparkles,
+  MessageCircle,
+} from "lucide-react";
 import { SignalPulse } from "@/components/SignalPulse";
 import heroImage from "@/assets/hero-rcd60-cutout.png";
 import { assetUrl } from "@/lib/asset";
@@ -19,15 +28,42 @@ import { Magnetic } from "@/components/Magnetic";
 import { products } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
 import { spring } from "@/lib/springs";
+import { absolute, canonical } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Radiocom — Professional Radio Systems in Uzbekistan" },
-      { name: "description", content: "Pro communication. Unbreakable. 11 years, 10,000+ clients. Motorola, Hytera, PoC — authorized service and free testing across Uzbekistan." },
-      { property: "og:title", content: "Radiocom — Pro Communication. Unbreakable." },
-      { property: "og:description", content: "Motorola, Hytera and PoC radios with authorized service, free testing and nationwide delivery." },
+      { title: "Рации и радиостанции в Ташкенте — Motorola, Radiocom | Radiocom" },
+      {
+        name: "description",
+        content:
+          "Официальный поставщик радиостанций в Узбекистане: 11 лет на рынке, 10 000+ клиентов. Motorola, Hytera, PoC и Radiocom RC. Бесплатный тест, гарантия, сервис в Ташкенте.",
+      },
+      { property: "og:type", content: "website" },
+      {
+        property: "og:title",
+        content: "Рации и радиостанции в Ташкенте — Motorola, Radiocom | Radiocom",
+      },
+      {
+        property: "og:description",
+        content:
+          "Официальный поставщик радиостанций в Узбекистане: 11 лет на рынке, 10 000+ клиентов. Motorola, Hytera, PoC и Radiocom RC. Бесплатный тест, гарантия, сервис в Ташкенте.",
+      },
+      { property: "og:url", content: absolute("/") },
+      { property: "og:locale", content: "ru_RU" },
+      { property: "og:locale:alternate", content: "uz_UZ" },
+      { property: "og:locale:alternate", content: "en_US" },
+      {
+        name: "twitter:title",
+        content: "Рации и радиостанции в Ташкенте — Motorola, Radiocom | Radiocom",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Официальный поставщик радиостанций в Узбекистане: 11 лет на рынке, 10 000+ клиентов. Motorola, Hytera, PoC и Radiocom RC. Бесплатный тест, гарантия, сервис в Ташкенте.",
+      },
     ],
+    links: [canonical("/")],
   }),
   component: HomePage,
 });
@@ -102,7 +138,10 @@ function Hero() {
           className="mt-9 flex items-center justify-center gap-3 md:gap-4 flex-wrap"
         >
           <Magnetic>
-            <button onClick={() => openLead({ title: t("home.hero.cta_primary") })} className="pill pill-accent">
+            <button
+              onClick={() => openLead({ title: t("home.hero.cta_primary") })}
+              className="pill pill-accent"
+            >
               {t("home.hero.cta_primary")}
             </button>
           </Magnetic>
@@ -131,9 +170,6 @@ function Hero() {
           />
         </motion.div>
       </motion.div>
-
-
-
     </section>
   );
 }
@@ -219,9 +255,7 @@ function Bento() {
               <h3 className="headline text-crisp text-xl md:text-2xl">
                 {t(`home.bento.${it.key}.title`)}
               </h3>
-              <p className="subhead text-[15px] mt-3 flex-1">
-                {t(`home.bento.${it.key}.sub`)}
-              </p>
+              <p className="subhead text-[15px] mt-3 flex-1">{t(`home.bento.${it.key}.sub`)}</p>
             </SpotlightCard>
           </motion.div>
         ))}
@@ -256,11 +290,14 @@ function Bento() {
           <div className="eyebrow-sweep text-[13px] tracking-wide font-medium mb-4 relative">
             {t("home.bento.network.eyebrow", { defaultValue: "Network Design" })}
           </div>
-          <h3 className="headline text-crisp text-3xl md:text-5xl relative">
+          <h3 className="type-headline text-crisp relative">
             {t("home.bento.network.title", { defaultValue: "One system. Every site." })}
           </h3>
           <p className="subhead mt-5 text-[15px] md:text-base max-w-md relative">
-            {t("home.bento.network.sub", { defaultValue: "Custom radio network design with repeaters, dispatch and PoC — engineered end-to-end." })}
+            {t("home.bento.network.sub", {
+              defaultValue:
+                "Custom radio network design with repeaters, dispatch and PoC — engineered end-to-end.",
+            })}
           </p>
           <Link to="/poc" className="pill-link mt-6 relative">
             {t("home.feature.link")} <ChevronRight className="w-4 h-4" />
@@ -302,20 +339,34 @@ function IndustriesTeaser() {
               params={{ slug: it.slug }}
               className="block aspect-[4/3] overflow-hidden"
             >
-              <img src={it.img} alt={t(`industries.${it.slug}.name`)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[900ms]" loading="lazy" />
+              <img
+                src={it.img}
+                alt={t(`industries.${it.slug}.name`)}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[900ms]"
+                loading="lazy"
+              />
             </Link>
             <div className="p-6 md:p-7 flex flex-col flex-1">
               <h3 className="headline text-2xl text-crisp">{t(`industries.${it.slug}.name`)}</h3>
               <p className="subhead text-[15px] mt-2 flex-1">{t(`industries.${it.slug}.desc`)}</p>
               <div className="mt-5 flex flex-wrap items-center gap-3">
                 <button
-                  onClick={() => openLead({ title: `${t("industries.cta")} · ${t(`industries.${it.slug}.name`)}` })}
+                  onClick={() =>
+                    openLead({
+                      title: `${t("industries.cta")} · ${t(`industries.${it.slug}.name`)}`,
+                    })
+                  }
                   className="pill pill-sm pill-accent"
                 >
                   {t("industries.cta")}
                 </button>
-                <Link to="/industries/$slug" params={{ slug: it.slug }} className="pill-link text-[13px]">
-                  {t("industries.compare_all", { defaultValue: "See radios" })} <ChevronRight className="w-3.5 h-3.5" />
+                <Link
+                  to="/industries/$slug"
+                  params={{ slug: it.slug }}
+                  className="pill-link text-[13px]"
+                >
+                  {t("industries.compare_all", { defaultValue: "See radios" })}{" "}
+                  <ChevronRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
             </div>
@@ -333,11 +384,16 @@ function IndustriesTeaser() {
       >
         <SignalPulse size={600} opacity={0.12} className="!items-start !justify-start" />
         <div className="relative">
-          <h3 className="headline text-crisp text-2xl md:text-4xl max-w-xl">
-            {t("industries.banner_title", { defaultValue: "Not sure which radio fits your operation?" })}
+          <h3 className="type-headline text-crisp max-w-xl">
+            {t("industries.banner_title", {
+              defaultValue: "Not sure which radio fits your operation?",
+            })}
           </h3>
           <p className="subhead mt-3 text-[15px] max-w-xl">
-            {t("industries.banner_sub", { defaultValue: "Tell us your industry — we'll recommend the right system within 15 minutes." })}
+            {t("industries.banner_sub", {
+              defaultValue:
+                "Tell us your industry — we'll recommend the right system within 15 minutes.",
+            })}
           </p>
         </div>
         <div className="flex flex-wrap gap-3 relative">
@@ -378,7 +434,6 @@ function FeaturedCatalog() {
     .filter(Boolean) as typeof products;
   const featured = picked.length >= 4 ? picked.slice(0, 4) : products.slice(0, 4);
 
-
   return (
     <Section className="bg-charcoal">
       <div className="flex items-end justify-between flex-wrap gap-4 mb-10">
@@ -386,7 +441,7 @@ function FeaturedCatalog() {
           <div className="eyebrow-sweep text-[13px] tracking-wide font-medium mb-3">
             {t("home.featured.eyebrow", { defaultValue: "Best sellers" })}
           </div>
-          <h2 className="headline text-crisp text-4xl md:text-5xl">{t("home.featured.title")}</h2>
+          <h2 className="type-headline text-crisp">{t("home.featured.title")}</h2>
         </div>
         <Link to="/catalog" className="pill-link">
           {t("home.featured.link")} <ChevronRight className="w-4 h-4" />
@@ -395,7 +450,7 @@ function FeaturedCatalog() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 items-stretch">
         {featured.map((p, i) => (
-          <ProductCard key={p.id} p={p} lang={lang} idx={i} onOpen={() => openLead({ product: p.name })} />
+          <ProductCard key={p.id} p={p} lang={lang} idx={i} />
         ))}
       </div>
     </Section>

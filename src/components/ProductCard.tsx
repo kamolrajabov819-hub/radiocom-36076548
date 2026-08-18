@@ -1,24 +1,25 @@
 import { motion } from "framer-motion";
+import { Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { formatPrice, type Product } from "@/data/products";
 import { spring } from "@/lib/springs";
 import { TiltCard } from "@/components/TiltCard";
 
-
 /**
  * Apple "All models" style product card:
  * name on top, product photo centered in a rounded well, price + CTA pill at the bottom.
+ *
+ * The whole card is a link to the product page — the same affordance apple.com uses
+ * on its "All models" grid.
  */
 export function ProductCard({
   p,
   lang,
   idx = 0,
-  onOpen,
 }: {
   p: Product;
   lang: "ru" | "en" | "uz";
   idx?: number;
-  onOpen: () => void;
 }) {
   const { t } = useTranslation();
   return (
@@ -30,8 +31,10 @@ export function ProductCard({
       className="group h-full"
     >
       <TiltCard className="h-full" max={5}>
-        <button
-          onClick={onOpen}
+        <Link
+          to="/catalog/$id"
+          params={{ id: p.id }}
+          aria-label={p.name}
           className="relative flex h-full w-full flex-col overflow-hidden rounded-[20px] bg-popover p-6 md:p-7 text-left shadow-[0_1px_3px_rgba(0,0,0,0.06)] ring-1 ring-border transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_24px_60px_-24px_rgba(0,0,0,0.35)]"
         >
           <span className="pointer-events-none absolute inset-x-0 -top-1/2 h-[200%] translate-x-[-120%] rotate-12 bg-[linear-gradient(90deg,transparent,color-mix(in_oklab,var(--signal)_10%,transparent),transparent)] transition-transform duration-[900ms] ease-out group-hover:translate-x-[120%]" />
@@ -78,7 +81,6 @@ export function ProductCard({
             ) : null}
           </div>
 
-
           <div className="mt-auto flex items-end justify-between gap-3">
             <div className="min-w-0">
               <div className="text-[13px] leading-snug text-cool">{p.rangeCity}</div>
@@ -86,11 +88,10 @@ export function ProductCard({
                 {formatPrice(p.price, lang)}
               </div>
             </div>
-            <span className="pill pill-accent pill-sm shrink-0">{t("product.cta")}</span>
+            <span className="pill pill-accent pill-sm shrink-0">{t("product.more")}</span>
           </div>
-        </button>
+        </Link>
       </TiltCard>
     </motion.div>
-
   );
 }

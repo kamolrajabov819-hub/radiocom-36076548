@@ -9,16 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ServiceRouteImport } from './routes/service'
-import { Route as PocRouteImport } from './routes/poc'
-import { Route as CatalogRouteImport } from './routes/catalog'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PocRouteImport } from './routes/poc'
+import { Route as ServiceRouteImport } from './routes/service'
+import { Route as CatalogIndexRouteImport } from './routes/catalog.index'
+import { Route as CatalogIdRouteImport } from './routes/catalog.$id'
 import { Route as IndustriesIndexRouteImport } from './routes/industries.index'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 
-const ServiceRoute = ServiceRouteImport.update({
-  id: '/service',
-  path: '/service',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PocRoute = PocRouteImport.update({
@@ -26,14 +27,19 @@ const PocRoute = PocRouteImport.update({
   path: '/poc',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CatalogRoute = CatalogRouteImport.update({
-  id: '/catalog',
-  path: '/catalog',
+const ServiceRoute = ServiceRouteImport.update({
+  id: '/service',
+  path: '/service',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const CatalogIndexRoute = CatalogIndexRouteImport.update({
+  id: '/catalog/',
+  path: '/catalog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CatalogIdRoute = CatalogIdRouteImport.update({
+  id: '/catalog/$id',
+  path: '/catalog/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndustriesIndexRoute = IndustriesIndexRouteImport.update({
@@ -49,72 +55,79 @@ const IndustriesSlugRoute = IndustriesSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/catalog': typeof CatalogRoute
   '/poc': typeof PocRoute
   '/service': typeof ServiceRoute
+  '/catalog/$id': typeof CatalogIdRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/catalog/': typeof CatalogIndexRoute
   '/industries/': typeof IndustriesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/catalog': typeof CatalogRoute
   '/poc': typeof PocRoute
   '/service': typeof ServiceRoute
+  '/catalog/$id': typeof CatalogIdRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/catalog': typeof CatalogIndexRoute
   '/industries': typeof IndustriesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/catalog': typeof CatalogRoute
   '/poc': typeof PocRoute
   '/service': typeof ServiceRoute
+  '/catalog/$id': typeof CatalogIdRoute
   '/industries/$slug': typeof IndustriesSlugRoute
+  '/catalog/': typeof CatalogIndexRoute
   '/industries/': typeof IndustriesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/catalog'
     | '/poc'
     | '/service'
+    | '/catalog/$id'
     | '/industries/$slug'
+    | '/catalog/'
     | '/industries/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/catalog'
     | '/poc'
     | '/service'
+    | '/catalog/$id'
     | '/industries/$slug'
+    | '/catalog'
     | '/industries'
   id:
     | '__root__'
     | '/'
-    | '/catalog'
     | '/poc'
     | '/service'
+    | '/catalog/$id'
     | '/industries/$slug'
+    | '/catalog/'
     | '/industries/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CatalogRoute: typeof CatalogRoute
   PocRoute: typeof PocRoute
   ServiceRoute: typeof ServiceRoute
+  CatalogIdRoute: typeof CatalogIdRoute
   IndustriesSlugRoute: typeof IndustriesSlugRoute
+  CatalogIndexRoute: typeof CatalogIndexRoute
   IndustriesIndexRoute: typeof IndustriesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/service': {
-      id: '/service'
-      path: '/service'
-      fullPath: '/service'
-      preLoaderRoute: typeof ServiceRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/poc': {
@@ -124,18 +137,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PocRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/catalog': {
-      id: '/catalog'
-      path: '/catalog'
-      fullPath: '/catalog'
-      preLoaderRoute: typeof CatalogRouteImport
+    '/service': {
+      id: '/service'
+      path: '/service'
+      fullPath: '/service'
+      preLoaderRoute: typeof ServiceRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/catalog/': {
+      id: '/catalog/'
+      path: '/catalog'
+      fullPath: '/catalog/'
+      preLoaderRoute: typeof CatalogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/catalog/$id': {
+      id: '/catalog/$id'
+      path: '/catalog/$id'
+      fullPath: '/catalog/$id'
+      preLoaderRoute: typeof CatalogIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/industries/': {
@@ -157,10 +177,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CatalogRoute: CatalogRoute,
   PocRoute: PocRoute,
   ServiceRoute: ServiceRoute,
+  CatalogIdRoute: CatalogIdRoute,
   IndustriesSlugRoute: IndustriesSlugRoute,
+  CatalogIndexRoute: CatalogIndexRoute,
   IndustriesIndexRoute: IndustriesIndexRoute,
 }
 export const routeTree = rootRouteImport

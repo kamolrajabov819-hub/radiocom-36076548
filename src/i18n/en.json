@@ -12,7 +12,8 @@
     "tradein_badge": "Trade-In",
     "menu": "Menu",
     "close": "Close",
-    "get_quote": "Get Quote"
+    "get_quote": "Get Quote",
+    "skip_to_content": "Skip to content"
   },
   "hero": {
     "eyebrow": "Authorized distributor · Tashkent",
@@ -393,7 +394,18 @@
     "range_open": "Open-field range",
     "features": "Features",
     "price": "Price",
-    "cta": "Buy"
+    "cta": "Buy",
+    "overview": "Overview",
+    "in_box": "In the box",
+    "tech_specs": "Tech specs",
+    "gallery": "Gallery",
+    "colour": "Colour",
+    "kit_label": "Radios per kit",
+    "related": "Related models",
+    "all_models": "All models",
+    "more": "Learn more",
+    "prev": "Previous image",
+    "next": "Next image"
   },
   "form": {
     "title": "Request quote",
@@ -580,5 +592,16 @@
     "eyebrow": "Contacts",
     "title": "Visit our office",
     "sub": "See the equipment in person, pick the right model for your task and book a free trial."
+  },
+  "error": {
+    "nf_code": "404",
+    "nf_title": "This page can’t be found.",
+    "nf_sub": "The link may be broken, or the page may have been moved.",
+    "nf_home": "Go to homepage",
+    "err_code": "Something went wrong",
+    "err_title": "We hit a snag.",
+    "err_sub": "Try again, or head back home.",
+    "err_retry": "Retry",
+    "err_home": "Home"
   }
 }

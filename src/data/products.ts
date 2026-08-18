@@ -43,6 +43,9 @@ import tlkr2 from "@/assets/catalog/tlkr-t92h2o-2.jpg.asset.json";
 import tlkr3 from "@/assets/catalog/tlkr-t92h2o-3.jpg.asset.json";
 import xt185b from "@/assets/catalog/xt185-2.jpg.asset.json";
 import xt185c from "@/assets/catalog/xt185-3.jpg.asset.json";
+// Stand-in shot for the two on-site models that have no catalogue photo yet.
+// Replace with real CLP 446 / CLK 446 renders when they arrive.
+import genericMotorola from "@/assets/product-motorola.jpg";
 import { assetUrl } from "@/lib/asset";
 
 export type Category = "amateur" | "professional";
@@ -86,6 +89,7 @@ export const products: Product[] = [
   // ─── Motorola Talkabout ───
   { id: "m-t82-extreme",      name: "Motorola Talkabout T82 Extreme",      brand: MOT, category: "amateur", image: assetUrl(t82extreme), gallery: [assetUrl(t82e2), assetUrl(t82e3)],     tags: [...TALK, "IPx4"],         price: 1_700_000, rangeCity: "до 1,5 км", industries: ["horeca","security","construction"], blurb: "Защищённая безлицензионная рация для outdoor задач." },
   { id: "m-t82-extreme-quad", name: "Motorola Talkabout T82 Extreme Quad", brand: MOT, category: "amateur", image: assetUrl(t82extremeQuad), tags: [...TALK, "Quad", "IPx4"], price: 3_100_000, rangeCity: "до 1,5 км", industries: ["horeca","security","construction"], blurb: "Комплект из 4 раций для организованных бригад." },
+  { id: "m-t82-extreme-rsm",  name: "Motorola Talkabout T82 Extreme RSM", brand: MOT, category: "amateur", image: assetUrl(t82extreme), gallery: [assetUrl(t82e2), assetUrl(t82e3)],     tags: [...TALK, "RSM", "IPx4"],  price: 2_100_000, rangeCity: "до 1,5 км", industries: ["horeca","security","construction"], blurb: "T82 Extreme в комплекте с выносными микрофонами RSM для работы в шуме." },
   { id: "m-t82",              name: "Motorola Talkabout T82",              brand: MOT, category: "amateur", image: assetUrl(t82),            tags: TALK,                      price: 1_500_000, rangeCity: "до 1,5 км", industries: ["horeca","security"], blurb: "Компактная PMR-рация для команд и мероприятий." },
   { id: "m-t72",              name: "Motorola Talkabout T72 Go Active",    brand: MOT, category: "amateur", image: assetUrl(t72), gallery: [assetUrl(t72b), assetUrl(t72c)],            tags: [...TALK, "IPx4"],         price: 1_300_000, rangeCity: "до 1 км",   industries: ["horeca","security","construction"], blurb: "Актуальная PMR для активного использования вне помещений." },
   { id: "m-t62-red",          name: "Motorola Talkabout T62 Red",          brand: MOT, category: "amateur", image: assetUrl(t62red), gallery: [assetUrl(t62r2), assetUrl(t62r3)],         tags: TALK,                      price: 1_100_000, rangeCity: "до 900 м",  industries: ["horeca"], blurb: "Стильная PMR в красном корпусе с надёжным приёмом." },
@@ -97,6 +101,11 @@ export const products: Product[] = [
   { id: "m-tlkr-t92h2o",      name: "Motorola TLKR-T92 H2O",               brand: MOT, category: "amateur", image: assetUrl(tlkrT92), gallery: [assetUrl(tlkr2), assetUrl(tlkr3)],        tags: [...TALK, "IP67", "Float"], price: 1_800_000, rangeCity: "до 1,5 км", industries: ["horeca","construction","security"], blurb: "Плавает, водозащищена IP67 — для воды и стройки." },
   { id: "m-xt185",            name: "Motorola XT185",                      brand: MOT, category: "amateur", image: assetUrl(xt185), gallery: [assetUrl(xt185b), assetUrl(xt185c)],          tags: TALK,                      price: 1_500_000, rangeCity: "до 1 км",   industries: ["horeca"], blurb: "PMR для розницы, HoReCa и общественных заведений." },
   { id: "m-xt420",            name: "Motorola XT420",                      brand: MOT, category: "professional", image: assetUrl(xt420),     tags: [...TALK, "IP55"],         price: 2_200_000, rangeCity: "до 2 км",   industries: ["horeca","security","construction","manufacturing"], blurb: "Безлицензионная PMR для HoReCa и объектной охраны." },
+
+  // ─── Motorola CL — on-site retail & hospitality ───
+  // NOTE: both use a stand-in photo until real catalogue shots are supplied.
+  { id: "m-clp446",           name: "Motorola CLP 446",                    brand: MOT, category: "professional", image: genericMotorola, tags: [...TALK, "Antibacterial"], price: 2_400_000, rangeCity: "до 6 этажей", industries: ["horeca","security"], blurb: "Плоская рация без антенны для персонала зала — антибактериальный корпус." },
+  { id: "m-clk446",           name: "Motorola CLK 446",                    brand: MOT, category: "professional", image: genericMotorola, tags: [...TALK, "Antimicrobial", "Display"], price: 2_600_000, rangeCity: "до 6 этажей", industries: ["horeca","security"], blurb: "Самая тонкая CL: 14 мм, антимикробное покрытие, дисплей." },
 ];
 
 export const categoryLabels: Record<Category, { ru: string; en: string; uz: string }> = {
