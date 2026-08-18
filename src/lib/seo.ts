@@ -21,7 +21,7 @@ export const SITE_NAME = "Radiocom";
 
 export const BUSINESS = {
   legalName: "Radiocom",
-  phones: ["+998781131618", "+998935050719", "+998933870710"],
+  phones: ["+998781131618", "+998939800710", "+998933890710"],
   street: "ул. Узбекистон Овози, 2 (Гостиница Тата, 1 этаж)",
   city: "Ташкент",
   region: "Toshkent",

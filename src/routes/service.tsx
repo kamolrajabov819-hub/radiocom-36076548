@@ -128,8 +128,8 @@ function Hero() {
           >
             {t("service.request_repair")}
           </button>
-          <a href="tel:+998935050719" className="pill-link">
-            +998 93 505-07-19
+          <a href="tel:+998939800710" className="pill-link">
+            +998 93 980-07-10
           </a>
         </motion.div>
       </div>
