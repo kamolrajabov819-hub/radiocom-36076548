@@ -1,6 +1,7 @@
 # Project skills
 
-Sixty-two skills — 16 design/UX, 25 SEO, and 21 animation/3D — plus 18 SEO sub-agents,
+Seventy-four skills — 16 design/UX, 26 SEO, 21 animation/3D, 5 accessibility and 6
+React/frontend engineering — plus 18 SEO sub-agents,
 vendored into this repo as **project skills**. Claude Code discovers anything at `.claude/skills/<name>/SKILL.md`
 and `.claude/agents/*.md` automatically at session start — nothing to install per machine,
 and they travel with the repo (including to Lovable).
@@ -40,10 +41,45 @@ palette). Prefer extending those utilities over pasting new CSS.
 | --- | --- |
 | `design-audit` | Systematic visual audit of what already exists → phased, implementation-ready plan. Purely visual; touches no logic. Start here for "make it feel more premium". |
 | `ui-typography` | Enforcement-mode typographic correctness — real quote marks, correct dashes, spacing, hierarchy. Applies silently whenever UI text is generated. |
+| `frontend-design` | Anthropic's original: aesthetic direction, typography and layout choices that don't read as templated defaults. The three `bencium-*` skills below are opinionated forks of it — reach for this one when you want the unforked reference. |
 | `bencium-impact-designer` | Distinctive production-grade frontend that avoids generic AI aesthetics. |
 | `bencium-innovative-ux-designer` | Same brief, more experimental direction. |
 | `bencium-controlled-ux-designer` | Same brief, but asks before each visual decision — use when you want to stay in the loop. |
 | `renaissance-architecture` | First-principles UI/architecture thinking; anti-derivative-work check. |
+
+## Accessibility — 5 skills
+
+From [accesslint/claude-marketplace](https://github.com/accesslint/claude-marketplace) v0.10.2
+(MIT). A tiered WCAG 2.2 toolkit — the first accessibility coverage in this repo that isn't
+incidental to `apple-design-hig` or `ui-ux-pro-max`.
+
+| Skill | Use it for |
+| --- | --- |
+| `accessibility-scan` | One page, automated: runs the `@accesslint/core` rule engine over CDP against a live page and returns violations grounded to DOM selector and source `file:line`. |
+| `accessibility-inspect` | One page, hands-on: keyboard operation and focus order, screen-reader names/roles/states, reflow and zoom at 200%, reduced motion, target size — the things a rule engine can't decide. |
+| `accessibility-audit` | Whole site, WCAG-EM methodology: samples pages and flows, runs both tiers, produces one conformance report. |
+| `accessibility-fix` | Applies mechanical remediations from a worklist and re-verifies. Leaves TODOs where the call needs human judgment. |
+| `accessibility-diff` | Regression gate: new vs. fixed violations against uncommitted changes or a branch. |
+
+`accessibility-shared/` holds the `methodology.md` all five cite (severity rubric, the
+no-proxy boundary, grounding rules). It has no `SKILL.md`, so skill discovery ignores it —
+it is a reference sibling, not a stray directory. Don't delete it.
+
+**Runtime:** these shell out to `npx @accesslint/{chrome,cli,core}`, downloaded on first use,
+driving a debuggable Chrome. Verified working here: `npx -y @accesslint/cli --help` reports
+v0.12.0 / engine 0.16.0. Nothing is added to `package.json`. `accesslint init` scaffolds an
+`accesslint.config.json` with named targets (dev, prod) if you want to stop passing URLs.
+
+## React and frontend engineering — 6 skills
+
+| Skill | Use it for |
+| --- | --- |
+| `vercel-react-best-practices` | 70 rules across 8 categories, ordered by impact — waterfalls, bundle size, server perf, re-renders, rendering, JS micro-perf. `rules/<name>.md` per rule; `AGENTS.md` is the compiled whole. The project is React 19.2, so all of it applies except the Next.js-specific server rules. |
+| `vercel-composition-patterns` | Compound components, children over render props, killing boolean-prop proliferation, React 19's no-`forwardRef` change. Aimed straight at `src/components/`. |
+| `vercel-react-view-transitions` | React's `<ViewTransition>` API, `addTransitionType`, CSS pseudo-element recipes. Usable on React 19.2. Its `references/nextjs.md` covers App Router — routing here is TanStack Router, so read that file for the concepts, not the API. |
+| `web-design-guidelines` | Vercel's Web Interface Guidelines — 100+ a11y/perf/UX rules, terse `file:line` output. Good first pass before the deeper `accessibility-*` tiers. |
+| `webapp-testing` | Playwright driver for a locally running app: click through flows, capture screenshots, read console logs. Bundled `scripts/with_server.py` starts `bun dev` and waits for the port. **This project has no test tooling at all** — no Playwright, no Vitest — so this is the one new skill that adds a capability rather than knowledge. Needs Python + Playwright installed; this container already has Chromium at `/opt/pw-browsers/chromium`. |
+| `frontend-design` | Listed under *Craft and review* above. |
 
 ## Motion and 3D — 21 skills
 
@@ -64,7 +100,7 @@ Vitals feed ranking. The skills are all installed regardless — they cost nothi
 | `threejs-*` (10) | WebGL reference — fundamentals, geometry, materials, shaders, lighting, textures, loaders, animation, interaction, post-processing (library not installed) |
 | `framer-motion` | API reference — which prop or hook, variants and stagger, `AnimatePresence`, `layoutId`, `useScroll`/`useTransform`, gesture props, pitfalls. Pairs with `apple-design`: that one decides *whether and how* motion should feel, this one tells you the call. Carries a local addendum pointing at `src/lib/springs.ts` and the Framer-Motion reduced-motion gap. |
 
-## SEO — 25 skills + 18 sub-agents
+## SEO — 26 skills + 18 sub-agents
 
 From [AgricIDaniel/claude-seo](https://github.com/AgricIDaniel/claude-seo) v2.2.4. `seo` is the
 orchestrator; the rest are specialists it delegates to. The 18 matching sub-agents live in
@@ -83,6 +119,14 @@ physical products with a service business behind it:
 | `seo-page` / `seo-audit` | Single-page deep dive, or a full crawl that delegates to the specialists. |
 | `seo-images` | The catalog is image-heavy (`src/assets/catalog/`); covers alt text, WebP/AVIF, CLS, lazy-loading. |
 | `seo-geo` | AI Overviews / ChatGPT / Perplexity citability, `llms.txt`. |
+
+`seo-geo-aeo` is a separate skill from a different author
+([SNLabat/SEO-GEO-AEO-Skill](https://github.com/SNLabat/SEO-GEO-AEO-Skill)) — a standalone,
+end-to-end audit that scores a site 1–10 on each of SEO, GEO and AEO and emits a formatted
+`.docx` + `.pdf` client report. It overlaps `seo-geo` and both trigger on "GEO" / "AI
+Overviews" / "Perplexity": prefer `seo-geo` when the output feeds `seo-audit`'s fan-out,
+`seo-geo-aeo` when you want the standalone scored deliverable. Its report step needs the Node
+`docx` package and LibreOffice — see the "Local setup" block at the top of its `SKILL.md`.
 
 **The rest:** `seo-content`, `seo-content-brief`, `seo-cluster`, `seo-competitor-pages`,
 `seo-plan`, `seo-programmatic`, `seo-sxo`, `seo-drift`, `seo-backlinks`, `seo-maps`,
@@ -129,6 +173,10 @@ These are installed but inert until configured, and each requires an account:
 | [greensock/gsap-skills](https://github.com/greensock/gsap-skills) | 8 `gsap-*` skills |
 | [cloudai-x/threejs-skills](https://github.com/cloudai-x/threejs-skills) | 10 `threejs-*` skills |
 | [freshtechbro/claudedesignskills](https://github.com/freshtechbro/claudedesignskills) | `motion-framer`, `react-spring-physics` |
+| [SNLabat/SEO-GEO-AEO-Skill](https://github.com/SNLabat/SEO-GEO-AEO-Skill) | `seo-geo-aeo` |
+| [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) (MIT) | `vercel-react-best-practices`, `vercel-composition-patterns`, `vercel-react-view-transitions`, `web-design-guidelines` |
+| [anthropics/skills](https://github.com/anthropics/skills) → `skills/` | `frontend-design`, `webapp-testing` |
+| [accesslint/claude-marketplace](https://github.com/accesslint/claude-marketplace) (MIT) → `plugins/accesslint/skills/` | the 5 `accessibility-*` skills + `accessibility-shared/` |
 
 ## Local modifications
 
@@ -181,3 +229,49 @@ with this project's), `bencium-aeo`, `adaptive-communication`, `human-architect-
 `negentropy-lens`, `vanity-engineering-review`, `relationship-design`, `insurgent-campaign`,
 `eu-ai-act-reviewer`, `hungarian-humanizer`, and the `emotion-statusline` hook. They are one
 `cp -R` away from the upstream clone if wanted.
+
+Four more were needed for this round of installs:
+
+8. **The `accesslint` skills invoke each other by plugin name.** Upstream ships as a Claude Code
+   *plugin*, so all 20 cross-references read `accesslint:accessibility-scan`. That namespace
+   does not exist for project skills and the invocations would not resolve, so the
+   `accesslint:` prefix is stripped throughout. Their shared `shared/methodology.md` is
+   vendored as `accessibility-shared/methodology.md` — `shared/` alone reads as stray inside a
+   skills directory — and the five `../shared/…` links were repointed to match.
+9. **`seo-geo-aeo` hardcoded one author's Claude sandbox.** Five paths pointed at
+   `/sessions/wizardly-charming-thompson/mnt/…`, which exists on no other machine: the report
+   output directory, the `docx` skill's `validate.py` and `soffice.py`, and two `computer://`
+   download links. Reports now go to a gitignored `seo-reports/` in the project root, the
+   validator paths resolve through a `$DOCX_SKILL` variable, and a "Local setup" block at the
+   top of the file explains how to resolve it and how to fall back to plain `soffice`.
+10. **`web-design-guidelines` fetched its own rules over the network on every run.** Upstream is
+    a ~50-line stub that `WebFetch`es `vercel-labs/web-interface-guidelines/main/command.md`,
+    which fails offline, behind a proxy, and in Lovable. That file is vendored to
+    `references/web-interface-guidelines.md` and the skill now reads it first, treating the
+    live URL as an optional freshness check.
+11. **`AGENTS.md` rule cross-links were broken in both Vercel rule skills.** The compiled
+    `AGENTS.md` copies links verbatim out of `rules/*.md`, where `./async-defer-await.md`
+    resolves; at the skill root it does not. Those links now point at `rules/`. The two
+    `_template.md` / `_sections.md` scaffolding files, `metadata.json` and each skill's
+    authoring `README.md` were dropped — they only exist to compile the rules.
+
+Deliberately not installed from these four repos:
+
+- **vercel-labs**: `vercel-optimize`, `deploy-to-vercel`, `vercel-cli-with-tokens` — this site
+  deploys to Netlify (`netlify.toml`). `react-native-skills` — no mobile app.
+  `writing-guidelines` — a technical-docs voice guide; the copy here is marketing in three
+  locales.
+- **anthropics/skills**: `docx`, `pdf`, `pptx`, `xlsx`, `skill-creator`, `claude-api` are
+  already available from the account's own synced skills, and the four document skills are
+  source-available rather than open source, so vendoring them into a repo is the wrong move
+  regardless. `theme-factory`, `canvas-design`, `brand-guidelines`, `web-artifacts-builder`,
+  `algorithmic-art` duplicate `design-system` / `ui-ux-pro-max` / `ui-styling` / `brand`.
+  `mcp-builder`, `slack-gif-creator`, `internal-comms`, `doc-coauthoring`, `academy-guide`,
+  `discernment-nudge` are unrelated to this site.
+- **accesslint**: `plugins/accesslint/.mcp.json` and `.claude-plugin/`. The skills call
+  `npx @accesslint/*` directly and do not need the MCP server; installing it would add an MCP
+  process to every session for no gain.
+
+Four of the requested sources were already installed and were left untouched, since the
+local patches above would be lost by a re-clone: `nextlevelbuilder/ui-ux-pro-max-skill`,
+`AgricIDaniel/claude-seo`, `dickwu/apple-design-skill`, `bencium/bencium-claude-code-design-skill`.

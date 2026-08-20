@@ -33,3 +33,6 @@ dist-ssr
 
 # Local Netlify folder
 .netlify
+
+# SEO/GEO/AEO audit reports (.claude/skills/seo-geo-aeo)
+seo-reports/
