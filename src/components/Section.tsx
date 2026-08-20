@@ -3,25 +3,42 @@ import { ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
 import { WordReveal } from "@/components/WordReveal";
 
+/**
+ * The page's one section wrapper.
+ *
+ * `band` picks the background from the plain/soft/dark alternation, `tight`
+ * picks the vertical rhythm step, and the inner `.shell` supplies the single
+ * horizontal inset the whole site shares. Use this instead of hand-rolling a
+ * `<section className="px-4 md:px-6">` — that is how the left edge drifted to
+ * four different values in the first place.
+ *
+ * `bleed` drops the inset for full-width media, but still publishes `--gutter`
+ * so children can re-pad themselves with `.shell` or `.bleed-x`.
+ */
 export function Section({
   children,
   className = "",
+  band,
   tight = false,
   bleed = false,
+  wide = false,
   style,
   id,
 }: {
   children: ReactNode;
   className?: string;
+  band?: "plain" | "soft" | "dark";
   tight?: boolean;
   bleed?: boolean;
+  wide?: boolean;
   style?: CSSProperties;
   id?: string;
 }) {
-  const pad = tight ? "py-16 md:py-24" : "py-24 md:py-32";
+  const rhythm = tight ? "section-tight" : "section";
+  const bandClass = band ? `band-${band}` : "";
   return (
-    <section id={id} style={style} className={`${pad} ${className}`}>
-      <div className={bleed ? "" : "max-w-[1200px] mx-auto px-6 md:px-10"}>{children}</div>
+    <section id={id} style={style} className={`${bandClass} ${rhythm} ${className}`}>
+      <div className={bleed ? "shell !px-0" : `shell ${wide ? "shell-wide" : ""}`}>{children}</div>
     </section>
   );
 }

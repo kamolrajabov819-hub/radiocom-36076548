@@ -1,10 +1,12 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { ChevronRight, Repeat, ShieldCheck, Truck, Wrench, Package, Sparkles } from "lucide-react";
+import { ChevronRight, Truck, Wrench, Package, Sparkles } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
 import { SignalPulse } from "@/components/SignalPulse";
 import heroImage from "@/assets/hero-rcd60-cutout.png";
+import kitFlatlay from "@/assets/product/radio-kit-flatlay.webp";
+import radiosFloating from "@/assets/product/radios-floating.webp";
 import bentoDetail from "@/assets/detail-grille-v11.jpg.asset.json";
 import horecaImg from "@/assets/industry-horeca.jpg";
 import constructionImg from "@/assets/industry-construction.jpg";
@@ -12,8 +14,9 @@ import securityImg from "@/assets/industry-security.jpg";
 import { assetUrl } from "@/lib/asset";
 import { openLead } from "@/components/LeadFormSheet";
 import { BrandsStrip } from "@/components/BrandsStrip";
-import { SectionHead } from "@/components/Section";
-import { FeatureCard, ScrollRow, ScrollItem } from "@/components/apple";
+import { Section, SectionHead } from "@/components/Section";
+import { BentoGrid, FeatureCard, ScrollRow, ScrollItem } from "@/components/apple";
+import { ProductShot } from "@/components/ProductShot";
 import { Magnetic } from "@/components/Magnetic";
 import { products } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
@@ -201,7 +204,7 @@ function Proof() {
   ];
   return (
     <section className="band-soft border-y border-border py-12 md:py-16">
-      <div className="mx-auto grid max-w-[1200px] grid-cols-3 gap-4 px-6 md:px-10">
+      <div className="shell grid grid-cols-3 gap-4">
         {stats.map((s, i) => (
           <motion.div key={s.label} {...fadeUpAt(i)} className="text-center">
             <div className="type-title text-[28px] font-semibold text-crisp md:text-[44px]">
@@ -220,8 +223,8 @@ function Proof() {
 function FeatureDark() {
   const { t } = useTranslation();
   return (
-    <section className="band-dark overflow-hidden px-6 py-28 text-center md:px-10 md:py-40">
-      <div className="mx-auto max-w-[1200px]">
+    <section className="band-dark overflow-hidden py-28 text-center md:py-40">
+      <div className="shell">
         <motion.h2
           {...fadeUpAt(0)}
           className="mx-auto max-w-4xl font-semibold leading-[1.05] tracking-[-0.03em]"
@@ -245,50 +248,102 @@ function FeatureDark() {
   );
 }
 
-/* ─── Value shelf — apple.com's editorial card row ────────── */
+/* ─── Value shelf — asymmetric bento ──────────────────────── */
+/**
+ * Six equal tiles in a 3x2 grid read as filler: every cell carries the same
+ * weight, so nothing anchors the eye and the section feels static however
+ * nicely the cards are styled. This version gives the two claims that actually
+ * sell — the warranty and the trade-in — real estate and a product photograph,
+ * and lets the remaining four stay quiet at icon scale.
+ */
 function ValueShelf() {
   const { t } = useTranslation();
-  const items = [
-    { key: "tradein", Icon: Repeat },
-    { key: "warranty", Icon: ShieldCheck },
-    { key: "delivery", Icon: Truck },
-    { key: "test", Icon: Sparkles },
-    { key: "models", Icon: Package },
-    { key: "service", Icon: Wrench },
-  ] as const;
+  const openTest = () => openLead({ title: t("lead.title") });
 
   return (
-    <section className="band-soft section-tight px-4 md:px-6">
-      <div className="mx-auto max-w-[1200px]">
-        <SectionHead
-          align="left"
-          spacing="tight"
-          eyebrow={t("home.bento.eyebrow")}
-          title={t("home.bento.title")}
-          sub={t("home.bento.sub")}
+    <Section band="soft" tight>
+      <SectionHead
+        align="left"
+        spacing="tight"
+        eyebrow={t("home.bento.eyebrow")}
+        title={t("home.bento.title")}
+        sub={t("home.bento.sub")}
+      />
+      <BentoGrid>
+        {/*
+          Lead tile — the warranty, at headline scale beside the kit shot.
+          The flat-lay is a composition rather than a cut-out product, and its
+          sweep is light grey rather than pure white, so it is cropped to fill
+          its half of the card. Multiplied instead, that grey survives the blend
+          and reads as a stray rectangle floating on the card.
+        */}
+        <FeatureCard
+          idx={0}
+          span={2}
+          eyebrow={t("home.bento.warranty.title")}
+          title={t("home.bento.warranty.sub")}
+          className="min-h-[320px]"
+          backdrop={
+            <ProductShot
+              src={kitFlatlay}
+              alt=""
+              width={1600}
+              height={2143}
+              fit="cover"
+              sizes="(max-width: 1024px) 50vw, 420px"
+              className="absolute inset-y-0 right-0 w-[42%]"
+            />
+          }
         />
-        <ScrollRow cols={3}>
-          {items.map((it, i) => (
-            <ScrollItem key={it.key}>
-              <FeatureCard
-                idx={i}
-                tone={i === 1 || i === 4 ? "dark" : "light"}
-                eyebrow={t(`home.bento.${it.key}.title`)}
-                title={t(`home.bento.${it.key}.sub`)}
-                className="h-full min-h-[260px]"
-                media={
-                  <it.Icon
-                    className={`h-10 w-10 ${i === 1 || i === 4 ? "text-signal" : "text-signal"}`}
-                    strokeWidth={1.5}
-                    aria-hidden
-                  />
-                }
+
+        {/* Trade-in — the offer with the most pull, so it gets the tall cell. */}
+        <FeatureCard
+          idx={1}
+          tall
+          eyebrow={t("home.bento.tradein.title")}
+          title={t("home.bento.tradein.sub")}
+          className="min-h-[320px]"
+          action={{ label: t("lead.title"), onClick: openTest }}
+          media={
+            <ProductShot
+              src={radiosFloating}
+              alt=""
+              width={1482}
+              height={2243}
+              sizes="(max-width: 1024px) 45vw, 320px"
+              className="h-[260px] w-full"
+              imgClassName="object-contain object-bottom"
+            />
+          }
+        />
+
+        {[
+          { key: "delivery", Icon: Truck },
+          { key: "test", Icon: Sparkles },
+          { key: "models", Icon: Package },
+          { key: "service", Icon: Wrench },
+        ].map((it, i) => (
+          <FeatureCard
+            key={it.key}
+            idx={i + 2}
+            // One dark tile keeps the grid from reading as a sheet of white
+            // boxes. It carries an icon rather than a photo, for the reason
+            // spelled out on the lead tile.
+            tone={it.key === "models" ? "dark" : "light"}
+            eyebrow={t(`home.bento.${it.key}.title`)}
+            title={t(`home.bento.${it.key}.sub`)}
+            className="min-h-[240px]"
+            media={
+              <it.Icon
+                className={it.key === "models" ? "h-10 w-10 text-white" : "h-10 w-10 text-signal"}
+                strokeWidth={1.5}
+                aria-hidden
               />
-            </ScrollItem>
-          ))}
-        </ScrollRow>
-      </div>
-    </section>
+            }
+          />
+        ))}
+      </BentoGrid>
+    </Section>
   );
 }
 
@@ -296,8 +351,8 @@ function ValueShelf() {
 function NetworkSplit() {
   const { t } = useTranslation();
   return (
-    <section className="band-plain section-tight px-4 md:px-6">
-      <div className="mx-auto grid max-w-[1200px] gap-4 md:grid-cols-2">
+    <Section band="plain" tight>
+      <div className="grid gap-4 md:grid-cols-2">
         <motion.div
           {...fadeUpAt(0)}
           className="relative aspect-[4/3] overflow-hidden rounded-[28px] bg-charcoal md:aspect-auto md:min-h-[440px]"
@@ -328,7 +383,7 @@ function NetworkSplit() {
           </LocaleLink>
         </motion.div>
       </div>
-    </section>
+    </Section>
   );
 }
 
@@ -341,8 +396,8 @@ function IndustriesTeaser() {
     { slug: "security" as const, img: securityImg },
   ];
   return (
-    <section className="band-soft section-tight px-4 md:px-6">
-      <div className="mx-auto max-w-[1200px]">
+    <Section band="soft" tight>
+      <div>
         <SectionHead
           align="left"
           spacing="tight"
@@ -382,7 +437,7 @@ function IndustriesTeaser() {
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 
@@ -396,8 +451,8 @@ function FeaturedCatalog() {
   const featured = picked.length >= 4 ? picked.slice(0, 4) : products.slice(0, 4);
 
   return (
-    <section className="band-plain section-tight px-4 md:px-6">
-      <div className="mx-auto max-w-[1200px]">
+    <Section band="plain" tight>
+      <div>
         <SectionHead
           align="left"
           spacing="tight"
@@ -411,7 +466,7 @@ function FeaturedCatalog() {
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 

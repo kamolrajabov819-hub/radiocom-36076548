@@ -223,6 +223,65 @@
   position: relative;
 }
 
+/*
+ * The one container.
+ *
+ * Every section's horizontal inset comes from here, and `--gutter` is published
+ * so children that need to bleed past it (card shelves, wide tables) can undo
+ * exactly this much instead of guessing at a literal `-mx-4`. Before this the
+ * page used four different mobile insets and five max-widths, so the left edge
+ * moved four times down a single scroll.
+ */
+@utility shell {
+  --gutter: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+@media (min-width: 768px) {
+  .shell { --gutter: 2.5rem; }
+}
+
+/* Chrome (nav, footer) runs wider than content. */
+@utility shell-wide { max-width: 1440px; }
+
+/* Bleed to the viewport edge and re-pad — always in step with `shell`. */
+@utility bleed-x {
+  margin-inline: calc(var(--gutter) * -1);
+  padding-inline: var(--gutter);
+}
+
+/*
+ * Card interaction.
+ *
+ * Apple cards answer the pointer: a hairline that separates them from the band,
+ * a small lift on hover and a press that settles back down. Transform and
+ * opacity only, so it stays on the compositor. The global reduced-motion block
+ * at the bottom of this file neutralises the movement.
+ */
+@utility card-interactive {
+  box-shadow: inset 0 0 0 1px var(--border);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.card-interactive:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    inset 0 0 0 1px transparent,
+    0 18px 40px -22px rgba(0, 0, 0, 0.42);
+}
+.card-interactive:active { transform: translateY(-1px) scale(0.995); }
+/* Dark cards carry their own edge — a black hairline on black is invisible. */
+.card-interactive.is-dark { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1); }
+.card-interactive.is-dark:hover {
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 18px 40px -22px rgba(0, 0, 0, 0.6);
+}
+
 @utility section {
   padding-top: 6rem;
   padding-bottom: 6rem;
