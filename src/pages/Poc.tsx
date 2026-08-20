@@ -206,7 +206,7 @@ function Compare() {
   ];
 
   return (
-    <section id="poc-compare" className="band-soft section-tight px-4 md:px-6">
+    <section id="poc-compare" className="band-soft section-tight">
       <div className="mx-auto max-w-[1000px]">
         <SectionHead
           align="center"

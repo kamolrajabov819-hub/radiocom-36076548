@@ -70,8 +70,8 @@ export function ServicePage() {
 
 function BenchStrip() {
   return (
-    <section className="bg-pitch px-6 md:px-10">
-      <div className="max-w-[1200px] mx-auto">
+    <section className="bg-pitch">
+      <div className="shell">
         <div className="rounded-3xl overflow-hidden aspect-[16/7] bg-charcoal relative">
           <img
             src={serviceLight}
@@ -172,7 +172,7 @@ function Flow() {
   );
 
   return (
-    <section ref={scope} className="band-soft section-tight overflow-hidden px-4 md:px-6">
+    <section ref={scope} className="band-soft section-tight overflow-hidden">
       <div className="mx-auto max-w-[1200px]">
         <SectionHead align="left" spacing="tight" title={t("service.flow_title")} />
         <div data-flow-track className="flex gap-4 will-change-transform">
@@ -203,7 +203,7 @@ function Advantages() {
   const keys = ["certified", "parts", "fast", "fixed"] as const;
   const icons = [ClipboardCheck, Cog, Search, Microscope];
   return (
-    <section className="band-plain section px-4 md:px-6">
+    <section className="band-plain section">
       <div className="mx-auto max-w-[1200px]">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {keys.map((k, i) => {
@@ -231,7 +231,7 @@ function Policy() {
   const rows = t("service.policy", { returnObjects: true }) as Array<{ q: string; a: string }>;
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section className="band-soft section px-6 md:px-10">
+    <section className="band-soft section">
       <div className="mx-auto max-w-3xl">
         <SectionHead align="center" spacing="tight" title={t("service.policy_title")} />
         <div className="divide-y divide-border border-y border-border">

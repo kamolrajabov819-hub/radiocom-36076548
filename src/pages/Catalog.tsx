@@ -101,9 +101,9 @@ export function CatalogPage() {
 
       {/* Sticky filter bar */}
       <div className="sticky top-12 z-30 frost-nav">
-        <div className="max-w-[1200px] mx-auto">
+        <div className="shell">
           <div className="overflow-x-auto no-scrollbar mask-fade-x">
-            <div className="flex items-center gap-2 px-4 md:px-6 py-3 whitespace-nowrap">
+            <div className="flex items-center gap-2 py-3 whitespace-nowrap">
               <FilterChip
                 active={!cat && !brand}
                 onClick={() => {
@@ -134,8 +134,8 @@ export function CatalogPage() {
       </div>
 
       {/* Grid */}
-      <section className="bg-pitch px-4 md:px-6 py-10 md:py-14">
-        <div className="max-w-[1200px] mx-auto">
+      <section className="bg-pitch py-10 md:py-14">
+        <div className="shell">
           <div className="flex items-center justify-between mb-6 px-2">
             <div className="text-[13px] text-cool">
               {filtered.length} {t("catalog.results")}
@@ -230,7 +230,7 @@ function Compare({ lang }: { lang: Lang }) {
   });
 
   return (
-    <section className="band-soft section-tight px-4 md:px-6">
+    <section className="band-soft section-tight">
       <div className="mx-auto max-w-[1200px]">
         <SectionHead
           align="center"

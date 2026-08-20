@@ -137,7 +137,7 @@ export function IndustryPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/30" />
         </motion.div>
-        <div className="relative pt-40 md:pt-56 pb-24 px-6 max-w-[1200px] mx-auto text-white">
+        <div className="relative pt-40 md:pt-56 pb-24 px-6 shell text-white">
           <LocaleLink to="/industries" className="text-white/70 text-[13px] hover:text-white">
             ← {t("industries.view_all")}
           </LocaleLink>
@@ -183,8 +183,8 @@ export function IndustryPage() {
       </section>
 
       {/* Problem / Solution — sticky-story pattern */}
-      <section className="band-plain section px-6 md:px-10">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+      <section className="band-plain section">
+        <div className="shell grid grid-cols-1 md:grid-cols-2 gap-6">
           <StoryCard
             kicker={t("industries.problem_title")}
             body={t(`industries.${s}.problem`)}
@@ -199,8 +199,8 @@ export function IndustryPage() {
       </section>
 
       {/* What you get — 3 offers */}
-      <section className="band-soft section px-6 md:px-10">
-        <div className="max-w-[1200px] mx-auto text-center">
+      <section className="band-soft section">
+        <div className="shell text-center">
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -257,8 +257,8 @@ export function IndustryPage() {
       </section>
 
       {/* Recommended */}
-      <section className="band-plain section px-6 md:px-10">
-        <div className="max-w-[1200px] mx-auto">
+      <section className="band-plain section">
+        <div className="shell">
           <div className="flex items-end justify-between mb-10">
             <h2 className="type-headline text-crisp">{t("industries.recommended")}</h2>
             <LocaleLink to="/catalog" className="pill-link">
@@ -309,7 +309,7 @@ export function IndustryPage() {
 
       {/* FAQ */}
       {faq.length > 0 && (
-        <section className="band-plain section px-6 md:px-10">
+        <section className="band-plain section">
           <div className="max-w-3xl mx-auto">
             <h2 className="type-headline text-crisp text-center mb-12">
               {t("industries.faq_title")}
@@ -414,7 +414,7 @@ function FaqRow({ q, a, first }: { q: string; a: string; first: boolean }) {
     <div className={first ? "" : "border-t border-border"}>
       <button
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between gap-6 px-6 md:px-8 py-6 text-left"
+        className="w-full flex items-center justify-between gap-6 py-6 text-left"
       >
         <span className="text-[16px] md:text-lg font-medium text-crisp">{q}</span>
         <span className="shrink-0 h-8 w-8 rounded-full bg-pitch flex items-center justify-center text-crisp">
@@ -427,7 +427,7 @@ function FaqRow({ q, a, first }: { q: string; a: string; first: boolean }) {
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         className="overflow-hidden"
       >
-        <p className="px-6 md:px-8 pb-6 text-[15px] text-cool leading-relaxed">{a}</p>
+        <p className="pb-6 text-[15px] text-cool leading-relaxed">{a}</p>
       </motion.div>
     </div>
   );

@@ -9,8 +9,15 @@ export function Footer() {
   const { t } = useTranslation();
   return (
     <footer className="bg-charcoal">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-10 pt-16 pb-10">
-        <img src={assetUrl(logoAsset)} alt="Radiocom" width={200} height={34} loading="lazy" className="h-7 w-auto mb-10" />
+      <div className="shell shell-wide pt-16 pb-10">
+        <img
+          src={assetUrl(logoAsset)}
+          alt="Radiocom"
+          width={200}
+          height={34}
+          loading="lazy"
+          className="h-7 w-auto mb-10"
+        />
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 border-b border-border pb-12">
           <FooterCol title={t("footer.nav_col")}>
             <FLink to="/">{t("nav.home")}</FLink>
@@ -22,22 +29,50 @@ export function Footer() {
           <FooterCol title={t("nav.industries")}>
             {INDUSTRY_SLUGS.map((s) => (
               <li key={s}>
-                <LocaleLink to="/industries/$slug" params={{ slug: s }} className="text-[13px] text-crisp/70 hover:text-crisp">
+                <LocaleLink
+                  to="/industries/$slug"
+                  params={{ slug: s }}
+                  className="text-[13px] text-crisp/70 hover:text-crisp"
+                >
                   {t(`industries.${s}.name`)}
                 </LocaleLink>
               </li>
             ))}
           </FooterCol>
           <FooterCol title={t("footer.contact_col")}>
-            <li><a href="tel:+998781131618" className="text-[13px] text-crisp/70 hover:text-crisp">+998 78 113-16-18</a></li>
-            <li><a href="tel:+998933890710" className="text-[13px] text-crisp/70 hover:text-crisp">+998 93 389-07-10</a></li>
-            <li><a href="mailto:info@radiocom.uz" className="text-[13px] text-crisp/70 hover:text-crisp">info@radiocom.uz</a></li>
-            <li><a href="mailto:sales@radiocom.uz" className="text-[13px] text-crisp/70 hover:text-crisp">sales@radiocom.uz</a></li>
+            <li>
+              <a href="tel:+998781131618" className="text-[13px] text-crisp/70 hover:text-crisp">
+                +998 78 113-16-18
+              </a>
+            </li>
+            <li>
+              <a href="tel:+998933890710" className="text-[13px] text-crisp/70 hover:text-crisp">
+                +998 93 389-07-10
+              </a>
+            </li>
+            <li>
+              <a
+                href="mailto:info@radiocom.uz"
+                className="text-[13px] text-crisp/70 hover:text-crisp"
+              >
+                info@radiocom.uz
+              </a>
+            </li>
+            <li>
+              <a
+                href="mailto:sales@radiocom.uz"
+                className="text-[13px] text-crisp/70 hover:text-crisp"
+              >
+                sales@radiocom.uz
+              </a>
+            </li>
           </FooterCol>
           <FooterCol title="Radiocom">
             <li className="text-[13px] text-crisp/70 leading-relaxed">{t("footer.address")}</li>
             <li className="text-[13px] text-crisp/70 mt-1">{t("footer.hours")}</li>
-            <li className="pt-3"><Socials /></li>
+            <li className="pt-3">
+              <Socials />
+            </li>
           </FooterCol>
         </div>
         <div className="pt-6 flex flex-wrap items-center justify-between gap-3">
@@ -58,7 +93,13 @@ function FooterCol({ title, children }: { title: string; children: React.ReactNo
   );
 }
 
-function FLink({ to, children }: { to: "/" | "/catalog" | "/poc" | "/service" | "/industries"; children: React.ReactNode }) {
+function FLink({
+  to,
+  children,
+}: {
+  to: "/" | "/catalog" | "/poc" | "/service" | "/industries";
+  children: React.ReactNode;
+}) {
   return (
     <li>
       <LocaleLink to={to} className="text-[13px] text-crisp/70 hover:text-crisp transition-colors">

@@ -400,7 +400,7 @@ function Highlights({ spec, lang }: { spec: ProductSpec; lang: Lang }) {
   const rest = spec.features.slice(4);
 
   return (
-    <section id="highlights" className="band-soft section-tight px-4 md:px-6">
+    <section id="highlights" className="band-soft section-tight">
       <div className="mx-auto max-w-[1200px]">
         <SectionHead title={t("product.features")} align="left" spacing="tight" />
 
@@ -443,7 +443,7 @@ function Highlights({ spec, lang }: { spec: ProductSpec; lang: Lang }) {
 function InBox({ product, spec, lang }: { product: Product; spec: ProductSpec; lang: Lang }) {
   const { t } = useTranslation();
   return (
-    <section id="in-box" className="band-plain section-tight px-4 md:px-6">
+    <section id="in-box" className="band-plain section-tight">
       <div className="mx-auto max-w-[1200px]">
         <SectionHead title={t("product.in_box")} align="left" spacing="tight" />
         <div className="grid items-center gap-10 lg:grid-cols-2">
@@ -485,7 +485,7 @@ function InBox({ product, spec, lang }: { product: Product; spec: ProductSpec; l
 function TechSpecs({ product, spec, lang }: { product: Product; spec: ProductSpec; lang: Lang }) {
   const { t } = useTranslation();
   return (
-    <section id="specs" className="band-soft section-tight px-4 md:px-6">
+    <section id="specs" className="band-soft section-tight">
       <div className="mx-auto max-w-[900px]">
         <SectionHead title={t("product.tech_specs")} align="left" spacing="tight" />
 
@@ -536,7 +536,7 @@ function Related({ product, lang }: { product: Product; lang: Lang }) {
   if (related.length === 0) return null;
 
   return (
-    <section className="band-plain section-tight px-4 md:px-6">
+    <section className="band-plain section-tight">
       <div className="mx-auto max-w-[1200px]">
         <SectionHead title={t("product.related")} align="left" spacing="tight" />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
