@@ -88,6 +88,56 @@ for (const p of products) {
 }
 console.log(`ok  ${products.length} products carry distinct ru/en/uz copy`);
 
+/* 3b ── UI copy must differ per locale, not only meta.*.
+       `home.bento.models.sub` shipped as "Motorola, Radiocom, Radiocom,
+       Radiocom RC." in both en and uz — a find-and-replace that ran over the
+       wrong words. Byte-identical in the two files, and so invisible to every
+       check above.
+
+       Two exemptions, both structural rather than a list of strings to
+       maintain. `outcomes[].n` is the measured value of a stat ("ATEX",
+       "99.9%", "15") sitting beside its translated label in `.l`, so it is
+       meant to repeat. Short strings are codes and brand names. */
+const strings = (o: unknown, prefix = ""): [string, string][] => {
+  if (typeof o === "string") return [[prefix, o]];
+  if (Array.isArray(o)) return o.flatMap((v, i) => strings(v, `${prefix}[${i}]`));
+  if (o && typeof o === "object")
+    return Object.entries(o).flatMap(([k, v]) => strings(v, prefix ? `${prefix}.${k}` : k));
+  return [];
+};
+
+const byLang = Object.fromEntries(
+  LANGS.map((l) => [l, new Map(strings(JSON.parse(readFileSync(`src/i18n/${l}.json`, "utf8"))))]),
+) as Record<Lang, Map<string, string>>;
+
+const isStatValue = (k: string) => /\.n$/.test(k);
+
+let repeated = 0;
+for (const [key, ruValue] of byLang.ru) {
+  if (isStatValue(key) || ruValue.length <= 12) continue;
+  const values = LANGS.map((l) => byLang[l].get(key));
+  if (values.every((v) => v !== undefined) && new Set(values).size === 1) {
+    bad(`${key} is byte-identical in all three locales: ${JSON.stringify(ruValue)}`);
+    repeated++;
+  }
+}
+if (!repeated) console.log(`ok  no untranslated UI string repeats across all 3 locales`);
+
+/* 3c ── no Cyrillic outside ru. Catches the other half of a sloppy copy-paste:
+       uz carried "1С" with a Cyrillic С where the Latin "1C" was meant, which
+       looks identical on screen and sorts and searches differently. */
+let cyrillic = 0;
+for (const l of LANGS) {
+  if (l === "ru") continue;
+  for (const [key, value] of byLang[l]) {
+    if (/[А-Яа-яЁё]/.test(value)) {
+      bad(`${l}.json ${key} contains Cyrillic: ${JSON.stringify(value)}`);
+      cyrillic++;
+    }
+  }
+}
+if (!cyrillic) console.log(`ok  no Cyrillic left in the en/uz locale files`);
+
 /* 4 ── the fail-loud guard. With no instance registered as react-i18next's
        global default, a component rendered outside the provider must throw
        rather than quietly resolve against some other language. */

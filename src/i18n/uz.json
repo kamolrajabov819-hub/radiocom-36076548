@@ -304,7 +304,7 @@
           "l": "Faol shovqin bosish"
         },
         {
-          "n": "1С",
+          "n": "1C",
           "u": "",
           "l": "Sanoat KPK integratsiyasi"
         }
@@ -413,7 +413,8 @@
     "all_models": "Barcha modellar",
     "more": "Batafsil",
     "prev": "Oldingi rasm",
-    "next": "Keyingi rasm"
+    "next": "Keyingi rasm",
+    "breadcrumb": "Navigatsiya zanjiri"
   },
   "form": {
     "title": "Taklif so'rash",
@@ -429,7 +430,7 @@
     "trust_line": "15 daqiqada javob · Du–Ju 9:00–18:00"
   },
   "poc": {
-    "kicker": "PoC · PUSH-TO-TALK OVER CELLULAR",
+    "kicker": "PoC · UYALI TARMOQ ORQALI PUSH-TO-TALK",
     "title_a": "Global masofa.",
     "title_b": "Retranslyatorsiz.",
     "sub": "LTE va WiFi orqali Push-to-Talk. Infratuzilma qurmasdan bir zumda aloqa — guruh chaqiruvlari, GPS va multimedia bilan.",
@@ -560,7 +561,7 @@
       },
       "models": {
         "title": "35+ model",
-        "sub": "Motorola, Radiocom, Radiocom, Radiocom RC."
+        "sub": "Motorola va Radiocom RC / RCD."
       },
       "warranty": {
         "title": "12 oy kafolat",

@@ -169,7 +169,7 @@ function ProductSubNav({ product, lang }: { product: Product; lang: Lang }) {
 function Breadcrumbs({ product }: { product: Product }) {
   const { t } = useTranslation();
   return (
-    <nav aria-label="Breadcrumb" className="band-plain px-6 pt-8">
+    <nav aria-label={t("product.breadcrumb")} className="band-plain px-6 pt-8">
       <ol className="mx-auto flex max-w-[1200px] flex-wrap items-center gap-1.5 text-[12px] text-cool">
         <li>
           <LocaleLink to="/" className="transition-colors hover:text-crisp">
