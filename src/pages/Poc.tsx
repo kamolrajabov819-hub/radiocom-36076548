@@ -83,7 +83,7 @@ function PocHero() {
       ref={ref}
       className="relative overflow-hidden band-plain pt-32 pb-20 md:pt-44 md:pb-28"
     >
-      <div className="relative mx-auto max-w-[1100px] px-6 text-center md:px-10">
+      <div className="relative shell px-6 text-center md:px-10">
         <motion.div
           initial={{ opacity: 0, y: -6 }}
           animate={{ opacity: 1, y: 0 }}
@@ -207,7 +207,7 @@ function Compare() {
 
   return (
     <section id="poc-compare" className="band-soft section-tight">
-      <div className="mx-auto max-w-[1000px]">
+      <div className="shell">
         <SectionHead
           align="center"
           spacing="tight"
@@ -304,7 +304,7 @@ function Rental() {
   const { t } = useTranslation();
   return (
     <Section band="soft" tight>
-      <div className="grid items-center gap-8 md:grid-cols-2 md:gap-12">
+      <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-12">
         <motion.div {...fadeUpAt(0)} className="order-2 md:order-1">
           <div className="text-[13px] font-medium tracking-tight text-signal">
             {t("poc.rental.kicker")}

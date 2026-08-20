@@ -119,10 +119,7 @@ function Hero() {
         <SignalPulse size={1400} opacity={0.28} />
       </div>
 
-      <div
-        data-hero-copy
-        className="relative z-10 mx-auto max-w-[1200px] px-6 text-center md:px-10"
-      >
+      <div data-hero-copy className="relative z-10 shell px-6 text-center md:px-10">
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -489,7 +486,7 @@ function FinalCta() {
   const { t } = useTranslation();
   return (
     <section className="band-dark px-6 py-28 text-center md:px-10 md:py-40">
-      <div className="mx-auto max-w-[1200px]">
+      <div className="shell">
         <motion.h2
           {...fadeUpAt(0)}
           className="mx-auto max-w-3xl font-semibold leading-[1.05] tracking-[-0.03em]"

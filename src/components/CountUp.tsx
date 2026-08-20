@@ -1,7 +1,15 @@
 import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import { useEffect, useRef } from "react";
 
-export function CountUp({ to, duration = 1.6, className = "" }: { to: number; duration?: number; className?: string }) {
+export function CountUp({
+  to,
+  duration = 1.6,
+  className = "",
+}: {
+  to: number;
+  duration?: number;
+  className?: string;
+}) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.4 });
   const mv = useMotionValue(0);

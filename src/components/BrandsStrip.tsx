@@ -80,7 +80,7 @@ export function BrandsStrip() {
         </div>
 
         {/* Stage — product left, the brand's case right. */}
-        <div className="grid items-center gap-8 md:grid-cols-[1.1fr_1fr] md:gap-14">
+        <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] md:gap-14">
           <div className="relative h-[300px] md:h-[420px]">
             <AnimatePresence mode="wait">
               <motion.div

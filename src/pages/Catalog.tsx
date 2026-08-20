@@ -231,7 +231,7 @@ function Compare({ lang }: { lang: Lang }) {
 
   return (
     <section className="band-soft section-tight">
-      <div className="mx-auto max-w-[1200px]">
+      <div className="shell">
         <SectionHead
           align="center"
           spacing="tight"

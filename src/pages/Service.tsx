@@ -173,7 +173,7 @@ function Flow() {
 
   return (
     <section ref={scope} className="band-soft section-tight overflow-hidden">
-      <div className="mx-auto max-w-[1200px]">
+      <div className="shell">
         <SectionHead align="left" spacing="tight" title={t("service.flow_title")} />
         <div data-flow-track className="flex gap-4 will-change-transform">
           {steps.map((s, i) => {
@@ -204,7 +204,8 @@ function Advantages() {
   const icons = [ClipboardCheck, Cog, Search, Microscope];
   return (
     <section className="band-plain section">
-      <div className="mx-auto max-w-[1200px]">
+      <div className="shell">
+        <SectionHead align="left" spacing="tight" title={t("service.advantages_title")} />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {keys.map((k, i) => {
             const Icon = icons[i];
@@ -212,10 +213,16 @@ function Advantages() {
               <FeatureCard
                 key={k}
                 idx={i}
-                eyebrow={`0${i + 1}`}
+                tone={i === 3 ? "dark" : "light"}
                 title={t(`service.advantages.${k}`)}
-                className="min-h-[220px] bg-charcoal"
-                media={<Icon className="h-9 w-9 text-signal" strokeWidth={1.5} aria-hidden />}
+                className="min-h-[240px] bg-charcoal"
+                media={
+                  <Icon
+                    className={`h-9 w-9 ${i === 3 ? "text-white" : "text-signal"}`}
+                    strokeWidth={1.5}
+                    aria-hidden
+                  />
+                }
               />
             );
           })}

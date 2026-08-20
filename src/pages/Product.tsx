@@ -129,7 +129,7 @@ function ProductSubNav({ product, lang }: { product: Product; lang: Lang }) {
   ];
   return (
     <div className="sticky top-12 z-30 frost-nav">
-      <div className="mx-auto flex max-w-[1200px] items-center gap-4 px-4 py-2.5 md:px-8">
+      <div className="shell flex items-center gap-4 px-4 py-2.5 md:px-8">
         <LocaleLink
           to="/catalog"
           className="flex shrink-0 items-center gap-1 text-[13px] text-cool transition-opacity hover:opacity-70"
@@ -173,7 +173,7 @@ function Breadcrumbs({ product }: { product: Product }) {
   const { t } = useTranslation();
   return (
     <nav aria-label={t("product.breadcrumb")} className="band-plain px-6 pt-8">
-      <ol className="mx-auto flex max-w-[1200px] flex-wrap items-center gap-1.5 text-[12px] text-cool">
+      <ol className="shell flex flex-wrap items-center gap-1.5 text-[12px] text-cool">
         <li>
           <LocaleLink to="/" className="transition-colors hover:text-crisp">
             {t("nav.home")}
@@ -224,9 +224,9 @@ function ProductMain({
 
   return (
     <section className="band-plain px-4 pb-16 pt-8 md:px-6 md:pb-24">
-      <div className="mx-auto grid max-w-[1200px] items-start gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
+      <div className="shell grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-14">
         {/* Gallery — sticks while the buy panel scrolls */}
-        <div className="lg:sticky lg:top-28">
+        <div className="min-w-0 lg:sticky lg:top-28">
           <div className="relative flex aspect-square items-center justify-center overflow-hidden rounded-[28px] bg-charcoal md:aspect-[5/4]">
             <AnimatePresence mode="wait" initial={false}>
               <motion.img
@@ -401,7 +401,7 @@ function Highlights({ spec, lang }: { spec: ProductSpec; lang: Lang }) {
 
   return (
     <section id="highlights" className="band-soft section-tight">
-      <div className="mx-auto max-w-[1200px]">
+      <div className="shell">
         <SectionHead title={t("product.features")} align="left" spacing="tight" />
 
         <ScrollRow cols={4}>
@@ -444,9 +444,9 @@ function InBox({ product, spec, lang }: { product: Product; spec: ProductSpec; l
   const { t } = useTranslation();
   return (
     <section id="in-box" className="band-plain section-tight">
-      <div className="mx-auto max-w-[1200px]">
+      <div className="shell">
         <SectionHead title={t("product.in_box")} align="left" spacing="tight" />
-        <div className="grid items-center gap-10 lg:grid-cols-2">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
           <motion.div
             {...fadeUpAt(0)}
             className="flex aspect-[4/3] items-center justify-center rounded-[28px] bg-charcoal"
@@ -486,7 +486,7 @@ function TechSpecs({ product, spec, lang }: { product: Product; spec: ProductSpe
   const { t } = useTranslation();
   return (
     <section id="specs" className="band-soft section-tight">
-      <div className="mx-auto max-w-[900px]">
+      <div className="shell">
         <SectionHead title={t("product.tech_specs")} align="left" spacing="tight" />
 
         <motion.dl {...fadeUpAt(1)} className="divide-y divide-border border-t border-border">
@@ -537,7 +537,7 @@ function Related({ product, lang }: { product: Product; lang: Lang }) {
 
   return (
     <section className="band-plain section-tight">
-      <div className="mx-auto max-w-[1200px]">
+      <div className="shell">
         <SectionHead title={t("product.related")} align="left" spacing="tight" />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {related.map((p, i) => (

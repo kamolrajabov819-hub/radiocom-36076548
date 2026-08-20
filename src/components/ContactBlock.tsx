@@ -35,7 +35,7 @@ export function ContactBlock() {
 
   return (
     <section className="bg-charcoal py-20 md:py-28">
-      <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-14">
+      <div className="shell grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-14">
         <motion.div
           className="min-w-0"
           initial={{ opacity: 0, y: 24 }}
