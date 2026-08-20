@@ -1,0 +1,12 @@
+import { chromium } from 'playwright-core';
+const [, , url, out, width, mode] = process.argv;
+const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+const p = await b.newPage({ viewport: { width: +width, height: 1000 }, deviceScaleFactor: 2 });
+const errs = []; p.on('pageerror', e => errs.push(String(e)));
+await p.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
+await p.evaluate(async () => { const s = innerHeight*0.5;
+  for (let y=0;y<document.body.scrollHeight;y+=s){scrollTo(0,y);await new Promise(r=>setTimeout(r,130));} scrollTo(0,0); });
+await p.waitForTimeout(1000);
+await p.screenshot({ path: out, fullPage: mode === 'full' });
+if (errs.length) console.log('ERRORS: ' + errs.slice(0,3).join(' | '));
+await b.close();
