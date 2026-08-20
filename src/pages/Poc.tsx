@@ -10,7 +10,14 @@ import { CompareTable, type CompareColumn } from "@/components/apple";
 import { ProductShot } from "@/components/ProductShot";
 import { spring, fadeUpAt } from "@/lib/springs";
 import { assetUrl } from "@/lib/asset";
-import { localeLinks, pageMeta, type SeoLang } from "@/lib/seo";
+import {
+  breadcrumbSchema,
+  jsonLd,
+  localeLinks,
+  pageMeta,
+  serviceSchema,
+  type SeoLang,
+} from "@/lib/seo";
 import { tFor } from "@/lib/i18n";
 
 export const routeOptions = {
@@ -24,6 +31,29 @@ export const routeOptions = {
         path: "/poc",
       }),
       links: localeLinks(params.lang, "/poc"),
+      // /poc was the only page on the site emitting no structured data at all,
+      // despite being a named product line with its own service offer.
+      scripts: [
+        jsonLd(
+          serviceSchema(
+            {
+              name: t("poc.design.title"),
+              description: t("meta.poc.desc"),
+              path: "/poc",
+            },
+            params.lang,
+          ),
+        ),
+        jsonLd(
+          breadcrumbSchema(
+            [
+              { name: t("nav.home"), path: "/" },
+              { name: t("nav.poc"), path: "/poc" },
+            ],
+            params.lang,
+          ),
+        ),
+      ],
     };
   },
   component: PoCPage,

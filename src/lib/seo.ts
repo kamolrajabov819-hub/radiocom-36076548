@@ -227,7 +227,11 @@ export function webSiteSchema() {
  * request"); Google rejects an Offer without a price, so those products get
  * availability and seller only, with no `priceSpecification`.
  */
-export function productSchema(p: Product, lang: SeoLang, extra?: { specNames?: string[] }) {
+export function productSchema(
+  p: Product,
+  lang: SeoLang,
+  extra?: { specs?: { name: string; value: string }[] },
+) {
   const url = absolute(localePath(lang, `/catalog/${p.id}`));
   const offer: Record<string, unknown> = {
     "@type": "Offer",
@@ -254,11 +258,12 @@ export function productSchema(p: Product, lang: SeoLang, extra?: { specNames?: s
     category:
       p.category === "professional" ? "Professional two-way radios" : "Consumer two-way radios",
     offers: offer,
-    ...(extra?.specNames?.length
+    ...(extra?.specs?.length
       ? {
-          additionalProperty: extra.specNames.map((name) => ({
+          additionalProperty: extra.specs.map(({ name, value }) => ({
             "@type": "PropertyValue",
             name,
+            value,
           })),
         }
       : {}),

@@ -167,8 +167,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  // The URL is the only source of truth for language, and it is available here
+  // on the server — so the server response carries the right `lang` instead of
+  // shipping "ru" to every locale and correcting it after hydration. Crawlers
+  // read the server HTML and never see the correction; the page was
+  // contradicting its own hreflang and og:locale on every /en and /uz URL.
+  const lang = useLang();
   return (
-    <html lang="ru">
+    <html lang={lang}>
       <head>
         <HeadContent />
       </head>
@@ -206,13 +212,6 @@ function SiteChrome() {
   // Lenis + ScrollTrigger, mounted once for the document. No-ops under
   // prefers-reduced-motion and never runs during SSR.
   useSmoothScroll();
-
-  // The shell renders lang="ru" for the server pass; the URL is authoritative, so
-  // sync the real document language from the route. Screen readers, hyphenation
-  // (`hyphens: auto` on .headline) and search engines all key off this attribute.
-  useEffect(() => {
-    document.documentElement.lang = lang;
-  }, [lang]);
 
   return (
     /*

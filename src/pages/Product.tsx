@@ -64,7 +64,10 @@ export const routeOptions = {
       scripts: [
         jsonLd(
           productSchema(p, params.lang, {
-            specNames: spec?.rows.map((r) => pick(r.label, params.lang)),
+            specs: spec?.rows.map((r) => ({
+              name: pick(r.label, params.lang),
+              value: pick(r.value, params.lang),
+            })),
           }),
         ),
         jsonLd(

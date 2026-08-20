@@ -70,5 +70,24 @@ const llms = readFileSync("public/llms.txt", "utf8");
 if ((llms.match(/^- \[/gm) || []).length !== products.length) bad("llms.txt product count drifted");
 console.log("ok  robots.txt + llms.txt consistent with catalogue");
 
+// 5. The SSR shell must derive <html lang> from the route, not hardcode it.
+//    A literal here ships the wrong language to every crawler on /en and /uz
+//    while the page's own hreflang and og:locale say otherwise — the client
+//    only corrects it after hydration, which no crawler waits for.
+const shell = readFileSync("src/routes/__root.tsx", "utf8");
+if (/<html\s+lang=["'][a-z]{2}["']/.test(shell))
+  bad("__root.tsx hardcodes <html lang> instead of reading the route locale");
+console.log("ok  <html lang> is derived from the route, not hardcoded");
+
+// 6. Product specs must reach the schema as values, not bare labels. A
+//    PropertyValue carrying only a name is inert.
+const withSpecs = productSchema(products[0], "ru", {
+  specs: [{ name: "Standard", value: "DMR" }],
+}) as Record<string, { value?: string }[]>;
+const props = withSpecs.additionalProperty ?? [];
+if (!props.length || props.some((x) => !x.value))
+  bad("productSchema additionalProperty entries are missing values");
+console.log("ok  Product additionalProperty entries carry values");
+
 console.log(fail === 0 ? "\nALL SEO CHECKS PASSED" : `\n${fail} FAILURES`);
 process.exit(fail ? 1 : 0);
