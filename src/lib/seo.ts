@@ -32,6 +32,7 @@ export const BUSINESS = {
   postalCode: "100000",
   /** Office coordinates — Uzbekiston Ovozi 2, Tashkent. */
   geo: { lat: 41.3111, lng: 69.2797 },
+  email: "sales@radiocom.uz",
   openingHours: "Mo-Fr 09:00-18:00",
   sameAs: ["https://t.me/radiocom_uz", "https://www.instagram.com/radiocom_uzb"],
 } as const;
@@ -154,7 +155,17 @@ export function organizationSchema() {
     legalName: BUSINESS.legalName,
     url: SITE_URL,
     logo: absolute("/favicon.png"),
+    // All three lines, not just the first — a caller who finds the business
+    // through a knowledge panel should see the number they'd actually reach.
     telephone: BUSINESS.phones[0],
+    contactPoint: BUSINESS.phones.map((telephone) => ({
+      "@type": "ContactPoint",
+      telephone,
+      contactType: "sales",
+      areaServed: "UZ",
+      availableLanguage: ["ru", "uz", "en"],
+    })),
+    email: BUSINESS.email,
     sameAs: [...BUSINESS.sameAs],
     address: {
       "@type": "PostalAddress",
@@ -215,6 +226,14 @@ export function webSiteSchema() {
     name: SITE_NAME,
     inLanguage: ["ru", "uz", "en"],
     publisher: { "@id": `${SITE_URL}/#organization` },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${SITE_URL}/ru/catalog?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   };
 }
 

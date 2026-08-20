@@ -11,6 +11,7 @@ import { FeatureCard } from "@/components/apple";
 import {
   SITE_NAME,
   breadcrumbSchema,
+  faqSchema,
   jsonLd,
   localeLinks,
   pageMeta,
@@ -47,6 +48,16 @@ export const routeOptions = {
               { name: SITE_NAME, path: "/" },
               { name: t("meta.crumb.service"), path: "/service" },
             ],
+            params.lang,
+          ),
+        ),
+        // The repair policy accordion is already a list of questions and
+        // answers, translated in all three locales — it just was not marked up
+        // as one. Free eligibility for an FAQ rich result on the page that
+        // answers "how much does a repair cost".
+        jsonLd(
+          faqSchema(
+            t("service.policy", { returnObjects: true }) as { q: string; a: string }[],
             params.lang,
           ),
         ),
