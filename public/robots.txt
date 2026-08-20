@@ -25,3 +25,6 @@ User-agent: Google-Extended
 Allow: /
 
 Sitemap: https://radiocom.uz/sitemap.xml
+
+# Machine-readable site summaries, one per locale.
+# https://radiocom.uz/llms.txt (ru) · https://radiocom.uz/llms.en.txt · https://radiocom.uz/llms.uz.txt

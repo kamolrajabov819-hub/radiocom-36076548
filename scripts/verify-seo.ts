@@ -68,7 +68,15 @@ const robots = readFileSync("public/robots.txt", "utf8");
 if (!robots.includes(`Sitemap: ${SITE_URL}/sitemap.xml`)) bad("robots.txt missing sitemap");
 const llms = readFileSync("public/llms.txt", "utf8");
 if ((llms.match(/^- \[/gm) || []).length !== products.length) bad("llms.txt product count drifted");
-console.log("ok  robots.txt + llms.txt consistent with catalogue");
+// Each locale's llms.txt must carry the whole catalogue in that language, or
+// an answer engine asked in Uzbek gets a Russian answer or none at all.
+for (const l of LANGS) {
+  const f = l === "ru" ? "public/llms.txt" : `public/llms.${l}.txt`;
+  const text = readFileSync(f, "utf8");
+  if ((text.match(/^- \[/gm) || []).length !== products.length) bad(`${f} product count drifted`);
+  if (!text.includes(`${SITE_URL}/${l}/catalog/`)) bad(`${f} links the wrong locale`);
+}
+console.log(`ok  robots.txt + llms.txt (x${LANGS.length}) consistent with catalogue`);
 
 // 5. The SSR shell must derive <html lang> from the route, not hardcode it.
 //    A literal here ships the wrong language to every crawler on /en and /uz
