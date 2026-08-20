@@ -82,10 +82,17 @@ export function SectionHead({
       {eyebrow && (
         <div className="eyebrow-sweep text-[13px] tracking-wide font-medium mb-4">{eyebrow}</div>
       )}
+      {/*
+        `headline` carries weight, tracking and leading but deliberately no
+        font-size, and no call site was supplying one — so every section title
+        on the site rendered at the 16px body size while the sections that
+        hand-rolled their own <h2> got 52px. `type-headline` is the tier these
+        were always meant to sit in.
+      */}
       <WordReveal
         as="h2"
         text={title}
-        className={`headline block ${invert ? "text-white" : "text-crisp"}`}
+        className={`type-headline block ${invert ? "text-white" : "text-crisp"}`}
       />
       {sub && <p className={`subhead mt-4 text-lg ${centred ? "mx-auto max-w-2xl" : ""}`}>{sub}</p>}
     </div>

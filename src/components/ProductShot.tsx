@@ -71,18 +71,22 @@ export function ProductShot({
   // lead card's photograph ended up on the wrong side of the card.
   const positioned = /(?:^|\s)(?:absolute|fixed|sticky)(?:\s|$)/.test(className);
 
-  // Flex, not the `stage` grid. `stage` centres with `place-items: center`,
-  // which leaves the image content-sized — so `h-full` has no definite height
-  // to resolve against and the photo renders at natural size and overflows.
-  // The contact shadow is opt-in for the same reason it is not wanted here:
-  // inside a card or on a plate, a fake shadow lands on the wrong surface.
-  const frame = shadow ? "stage" : "flex items-center justify-center";
+  // Always flex-centred, never the `stage` grid. `stage` centres with
+  // `place-items: center`, which leaves the image content-sized, so `h-full`
+  // has no definite height to resolve against and the photo renders at natural
+  // size and overflows its frame. The contact shadow is drawn here instead of
+  // borrowed from `stage` so that opting into it cannot drag that sizing bug
+  // back in with it.
+  const frame = cover ? "overflow-hidden" : "flex items-center justify-center";
 
   return (
-    <div
-      className={`${cover ? "overflow-hidden" : frame} ${positioned ? "" : "relative"} ${className}`}
-      style={style}
-    >
+    <div className={`${frame} ${positioned ? "" : "relative"} ${className}`} style={style}>
+      {shadow ? (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute bottom-[6%] left-1/2 h-[5%] w-[46%] -translate-x-1/2 rounded-[50%] bg-black/20 blur-[26px]"
+        />
+      ) : null}
       <img
         src={src}
         srcSet={small === src ? undefined : `${small} 800w, ${src} 1600w`}

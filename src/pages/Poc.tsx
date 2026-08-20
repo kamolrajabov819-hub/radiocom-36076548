@@ -3,16 +3,12 @@ import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Check, Radio, MapPin, MessagesSquare, Layers, Coins, Wifi } from "lucide-react";
 import pocHero from "@/assets/poc-hero-v13.png.asset.json";
-import pocRental from "@/assets/poc-rental-v11.png.asset.json";
+import networkRadio from "@/assets/product/poc-network-radio.webp";
+import radioInHand from "@/assets/product/radio-in-hand.webp";
 import { openLead } from "@/components/LeadFormSheet";
-import { SectionHead } from "@/components/Section";
-import {
-  CompareTable,
-  FeatureCard,
-  ScrollRow,
-  ScrollItem,
-  type CompareColumn,
-} from "@/components/apple";
+import { Section, SectionHead } from "@/components/Section";
+import { CompareTable, type CompareColumn } from "@/components/apple";
+import { ProductShot } from "@/components/ProductShot";
 import { spring, fadeUpAt } from "@/lib/springs";
 import { assetUrl } from "@/lib/asset";
 import { localeLinks, pageMeta, type SeoLang } from "@/lib/seo";
@@ -197,63 +193,92 @@ function Compare() {
   );
 }
 
-/* ─── Network design — numbered steps as a card shelf ─────── */
+/* ─── Network design — the five steps as a process rail ───── */
+/**
+ * These five steps used to sit in `ScrollRow cols={3}`, which put three on the
+ * top row, two on the bottom and left the third cell of row two empty. The gap
+ * was not a design decision; it was five items in a three-column grid. The
+ * black card landed in the middle of the top row for the same reason — it was
+ * pinned to `i === 1`.
+ *
+ * A sequence should read as a sequence, so it is a rail now: the heading and
+ * the network shot hold still in a sticky column while the numbered steps run
+ * past them. Nothing can be orphaned, because there is no second row, and on
+ * mobile it degrades to the stack it always wanted to be.
+ */
 function NetworkDesign() {
   const { t } = useTranslation();
   const steps = (t("poc.design.steps", { returnObjects: true }) as string[]) || [];
   const icons = [MapPin, Layers, Radio, Check, Coins];
 
   return (
-    <section className="band-plain section-tight px-4 md:px-6">
-      <div className="mx-auto max-w-[1200px]">
-        <SectionHead
-          align="left"
-          spacing="tight"
-          eyebrow={t("poc.design.kicker")}
-          title={t("poc.design.title")}
-        />
-        <ScrollRow cols={3}>
-          {steps.map((s, i) => {
+    <Section band="plain" tight>
+      <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
+        <div className="lg:col-span-5">
+          <div className="lg:sticky lg:top-28">
+            <SectionHead
+              align="left"
+              spacing="tight"
+              eyebrow={t("poc.design.kicker")}
+              title={t("poc.design.title")}
+            />
+            <ProductShot
+              src={networkRadio}
+              alt=""
+              width={1600}
+              height={2143}
+              sizes="(max-width: 1024px) 70vw, 420px"
+              className="mt-2 hidden h-[300px] w-full lg:flex"
+            />
+          </div>
+        </div>
+
+        <ol className="lg:col-span-7">
+          {steps.map((step, i) => {
             const Icon = icons[i] ?? Check;
             return (
-              <ScrollItem key={s}>
-                <FeatureCard
-                  idx={i}
-                  tone={i === 1 ? "dark" : "light"}
-                  eyebrow={String(i + 1).padStart(2, "0")}
-                  title={s}
-                  className="h-full min-h-[230px] ring-1 ring-border"
-                  media={<Icon className="h-9 w-9 text-signal" strokeWidth={1.5} aria-hidden />}
-                />
-              </ScrollItem>
+              <motion.li
+                key={step}
+                {...fadeUpAt(Math.min(i, 4))}
+                className="group grid grid-cols-[auto_1fr] items-start gap-5 border-t border-border py-7 transition-colors duration-300 last:border-b hover:bg-charcoal/60 md:gap-7 md:py-8"
+              >
+                <span className="w-10 text-[15px] font-medium tabular-nums text-cool transition-colors duration-300 group-hover:text-signal">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="flex items-start justify-between gap-6">
+                  <h3 className="type-title max-w-lg text-crisp">{step}</h3>
+                  <Icon
+                    className="mt-0.5 h-7 w-7 shrink-0 text-signal transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
+                    strokeWidth={1.5}
+                    aria-hidden
+                  />
+                </div>
+              </motion.li>
             );
           })}
-        </ScrollRow>
+        </ol>
       </div>
-    </section>
+    </Section>
   );
 }
 
-/* ─── Rental — image / copy split ─────────────────────────── */
+/* ─── Rental — product on a stage, copy alongside ─────────── */
+/**
+ * The image here used to be rendered with `mix-blend-multiply` inside a
+ * `bg-pitch` card — and `--pitch` is white, despite the name. Multiply removes
+ * white and keeps black, so a dark-background source came through as a hard
+ * black rectangle sitting in a white box. That is the "black image on white
+ * background" in the brief.
+ *
+ * It now uses a studio shot on a light stage, the same treatment the hero at
+ * the top of this page already applied correctly.
+ */
 function Rental() {
   const { t } = useTranslation();
   return (
-    <section className="band-soft section-tight px-4 md:px-6">
-      <div className="mx-auto grid max-w-[1200px] items-center gap-4 md:grid-cols-2">
-        <motion.div
-          {...fadeUpAt(0)}
-          className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-[28px] bg-pitch"
-        >
-          <img
-            src={assetUrl(pocRental)}
-            alt=""
-            loading="lazy"
-            width={1200}
-            height={900}
-            className="max-h-[78%] max-w-[78%] object-contain mix-blend-multiply"
-          />
-        </motion.div>
-        <motion.div {...fadeUpAt(1)} className="px-2 md:px-6">
+    <Section band="soft" tight>
+      <div className="grid items-center gap-8 md:grid-cols-2 md:gap-12">
+        <motion.div {...fadeUpAt(0)} className="order-2 md:order-1">
           <div className="text-[13px] font-medium tracking-tight text-signal">
             {t("poc.rental.kicker")}
           </div>
@@ -266,7 +291,21 @@ function Rental() {
             {t("poc.rental.cta")}
           </button>
         </motion.div>
+
+        <motion.div
+          {...fadeUpAt(1)}
+          className="order-1 overflow-hidden rounded-[28px] bg-pitch md:order-2"
+        >
+          <ProductShot
+            src={radioInHand}
+            alt={t("poc.rental.title")}
+            width={1600}
+            height={2143}
+            sizes="(max-width: 768px) 90vw, 520px"
+            className="aspect-[4/3] w-full p-6"
+          />
+        </motion.div>
       </div>
-    </section>
+    </Section>
   );
 }
