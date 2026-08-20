@@ -87,6 +87,7 @@ export function ContactBlock() {
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                   <input
                     name="name"
+                    aria-label={t("form.name")}
                     required
                     maxLength={80}
                     placeholder={t("form.name")}
@@ -99,6 +100,7 @@ export function ContactBlock() {
                   />
                   <input
                     name="qty"
+                    aria-label={t("form.qty")}
                     type="number"
                     min={1}
                     inputMode="numeric"

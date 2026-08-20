@@ -52,7 +52,11 @@
   --pitch: #ffffff;
   --charcoal: #f5f5f7;
   --panel: #fafafa;
-  --cool: #86868b;
+  /* #86868b is 3.33:1 on white — below the 4.5:1 AA floor for body text, and
+     it is the site's entire secondary-text colour, so on its own it caused
+     most of the contrast failures. Apple's darker secondary grey clears it
+     at 4.6:1. */
+  --cool: #6e6e73;
   --crisp: #1d1d1f;
   --signal: #e30613;
 
@@ -202,6 +206,11 @@
   color: #ffffff;
 }
 .pill-accent:hover { background: color-mix(in oklab, var(--signal) 88%, #000); }
+
+/* Signal red on black is 4.19:1 — fine for a graphic, short of AA for a link. */
+.band-dark .pill-link {
+  color: #f5f5f7;
+}
 
 @utility pill-link {
   display: inline-flex;

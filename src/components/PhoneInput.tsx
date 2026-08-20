@@ -42,6 +42,7 @@ export function PhoneInput({
       type="tel"
       inputMode="tel"
       placeholder={t("form.phone")}
+      aria-label={t("form.phone")}
       name={name}
       required={required}
       pattern={UZ_PHONE_PATTERN}
