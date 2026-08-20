@@ -72,7 +72,7 @@ export function FeatureCard({
         </div>
       ) : null}
 
-      <h3 className="relative mt-1.5 hyphens-auto break-words text-[24px] font-semibold leading-[1.15] tracking-[-0.02em] md:text-[28px]">
+      <h3 className="relative mt-1.5 hyphens-auto break-words text-[22px] font-semibold leading-[1.15] tracking-[-0.02em] md:text-[26px]">
         {title}
       </h3>
 

@@ -1,12 +1,12 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { ChevronRight, Truck, Wrench, Package, Sparkles } from "lucide-react";
+import { ChevronRight, Repeat, Truck, Wrench, Package, Sparkles } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
 import { SignalPulse } from "@/components/SignalPulse";
 import heroImage from "@/assets/hero-rcd60-cutout.png";
-import kitFlatlay from "@/assets/product/radio-kit-flatlay.webp";
-import radiosFloating from "@/assets/product/radios-floating.webp";
+import kitWide from "@/assets/product/radio-kit-wide.webp";
+import macroWide from "@/assets/product/radio-macro-wide.webp";
 import bentoDetail from "@/assets/detail-grille-v11.jpg.asset.json";
 import horecaImg from "@/assets/industry-horeca.jpg";
 import constructionImg from "@/assets/industry-construction.jpg";
@@ -248,13 +248,16 @@ function FeatureDark() {
   );
 }
 
-/* ─── Value shelf — asymmetric bento ──────────────────────── */
+/* ─── Value shelf — a bento that closes ──────────────────── */
 /**
- * Six equal tiles in a 3x2 grid read as filler: every cell carries the same
- * weight, so nothing anchors the eye and the section feels static however
- * nicely the cards are styled. This version gives the two claims that actually
- * sell — the warranty and the trade-in — real estate and a product photograph,
- * and lets the remaining four stay quiet at icon scale.
+ * Three rows of three. The wide tiles span two columns and the rest span one,
+ * so every row fills exactly and the grid has no ragged edge — the earlier
+ * version mixed a `tall` tile into a three-column grid, which left a step in
+ * the right-hand column.
+ *
+ * The two wide tiles put their photograph *beside* the copy rather than behind
+ * it. A backdrop image under a headline is only safe when the art has dead
+ * space where the text lands, and a flat-lay does not.
  */
 function ValueShelf() {
   const { t } = useTranslation();
@@ -270,80 +273,91 @@ function ValueShelf() {
         sub={t("home.bento.sub")}
       />
       <BentoGrid>
-        {/*
-          Lead tile — the warranty, at headline scale beside the kit shot.
-          The flat-lay is a composition rather than a cut-out product, and its
-          sweep is light grey rather than pure white, so it is cropped to fill
-          its half of the card. Multiplied instead, that grey survives the blend
-          and reads as a stray rectangle floating on the card.
-        */}
-        <FeatureCard
+        {/* Row 1 — warranty (2 cols, photo beside copy) + trade-in (1 col). */}
+        <WideTile
           idx={0}
-          span={2}
           eyebrow={t("home.bento.warranty.title")}
           title={t("home.bento.warranty.sub")}
-          className="min-h-[320px]"
-          backdrop={
-            <ProductShot
-              src={kitFlatlay}
-              alt=""
-              width={1600}
-              height={2143}
-              fit="cover"
-              sizes="(max-width: 1024px) 50vw, 420px"
-              className="absolute inset-y-0 right-0 w-[42%]"
-            />
-          }
+          src={kitWide}
         />
-
-        {/* Trade-in — the offer with the most pull, so it gets the tall cell. */}
         <FeatureCard
           idx={1}
-          tall
           eyebrow={t("home.bento.tradein.title")}
           title={t("home.bento.tradein.sub")}
-          className="min-h-[320px]"
+          className="min-h-[260px]"
           action={{ label: t("lead.title"), onClick: openTest }}
-          media={
-            <ProductShot
-              src={radiosFloating}
-              alt=""
-              width={1482}
-              height={2243}
-              sizes="(max-width: 1024px) 45vw, 320px"
-              className="h-[260px] w-full"
-              imgClassName="object-contain object-bottom"
-            />
-          }
+          media={<Repeat className="h-10 w-10 text-signal" strokeWidth={1.5} aria-hidden />}
         />
 
+        {/* Row 2 — three equal tiles. */}
         {[
           { key: "delivery", Icon: Truck },
           { key: "test", Icon: Sparkles },
           { key: "models", Icon: Package },
-          { key: "service", Icon: Wrench },
         ].map((it, i) => (
           <FeatureCard
             key={it.key}
             idx={i + 2}
-            // One dark tile keeps the grid from reading as a sheet of white
-            // boxes. It carries an icon rather than a photo, for the reason
-            // spelled out on the lead tile.
-            tone={it.key === "models" ? "dark" : "light"}
             eyebrow={t(`home.bento.${it.key}.title`)}
             title={t(`home.bento.${it.key}.sub`)}
-            className="min-h-[240px]"
-            media={
-              <it.Icon
-                className={it.key === "models" ? "h-10 w-10 text-white" : "h-10 w-10 text-signal"}
-                strokeWidth={1.5}
-                aria-hidden
-              />
-            }
+            className="min-h-[260px]"
+            media={<it.Icon className="h-10 w-10 text-signal" strokeWidth={1.5} aria-hidden />}
           />
         ))}
+
+        {/* Row 3 — service (1 col) + the workshop close (2 cols). */}
+        <FeatureCard
+          idx={5}
+          tone="dark"
+          eyebrow={t("home.bento.service.title")}
+          title={t("home.bento.service.sub")}
+          className="min-h-[260px]"
+          media={<Wrench className="h-10 w-10 text-white" strokeWidth={1.5} aria-hidden />}
+        />
+        <WideTile
+          idx={6}
+          eyebrow={t("home.feature.title")}
+          title={t("home.feature.sub")}
+          src={macroWide}
+        />
       </BentoGrid>
     </Section>
+  );
+}
+
+/** Two-column tile: copy on the left, photograph filling the right half. */
+function WideTile({
+  idx,
+  eyebrow,
+  title,
+  src,
+}: {
+  idx: number;
+  eyebrow: string;
+  title: string;
+  src: string;
+}) {
+  return (
+    <motion.article
+      {...fadeUpAt(Math.min(idx, 6))}
+      className="card-interactive group relative flex min-h-[260px] overflow-hidden rounded-[28px] bg-pitch sm:col-span-2"
+    >
+      <div className="flex flex-1 flex-col justify-center p-7 md:p-8">
+        <div className="text-[14px] font-medium text-cool">{eyebrow}</div>
+        <h3 className="mt-1.5 hyphens-auto break-words text-[22px] font-semibold leading-[1.15] tracking-[-0.02em] text-crisp md:text-[26px]">
+          {title}
+        </h3>
+      </div>
+      <ProductShot
+        src={src}
+        alt=""
+        width={1600}
+        height={900}
+        fit="cover"
+        sizes="(max-width: 640px) 45vw, 340px"
+        className="w-[42%] shrink-0 [&_img]:transition-transform [&_img]:duration-700 [&_img]:ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[&_img]:scale-[1.04]"
+      />
+    </motion.article>
   );
 }
 

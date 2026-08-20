@@ -3,7 +3,6 @@ import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Check, Radio, MapPin, MessagesSquare, Layers, Coins, Wifi } from "lucide-react";
 import pocHero from "@/assets/poc-hero-v13.png.asset.json";
-import networkRadio from "@/assets/product/poc-network-radio.webp";
 import radioInHand from "@/assets/product/radio-in-hand.webp";
 import { openLead } from "@/components/LeadFormSheet";
 import { Section, SectionHead } from "@/components/Section";
@@ -193,18 +192,16 @@ function Compare() {
   );
 }
 
-/* ─── Network design — the five steps as a process rail ───── */
+/* ─── Network design — the five steps as a shelf ──────────── */
 /**
- * These five steps used to sit in `ScrollRow cols={3}`, which put three on the
- * top row, two on the bottom and left the third cell of row two empty. The gap
- * was not a design decision; it was five items in a three-column grid. The
- * black card landed in the middle of the top row for the same reason — it was
- * pinned to `i === 1`.
+ * Five steps do not divide into a three-column grid, and the earlier attempts
+ * both showed it: first as a grid with an empty cell in the second row, then as
+ * a list, which turned a five-beat sequence into a wall of rules.
  *
- * A sequence should read as a sequence, so it is a rail now: the heading and
- * the network shot hold still in a sticky column while the numbered steps run
- * past them. Nothing can be orphaned, because there is no second row, and on
- * mobile it degrades to the stack it always wanted to be.
+ * A shelf is what apple.com uses when the count does not fit the grid — the
+ * cards run off the right edge and scroll, so the layout never has to resolve
+ * into rows at all. Each card carries its step number as a large ghost numeral
+ * behind the copy, which is the sequence made visible rather than stated.
  */
 function NetworkDesign() {
   const { t } = useTranslation();
@@ -212,52 +209,52 @@ function NetworkDesign() {
   const icons = [MapPin, Layers, Radio, Check, Coins];
 
   return (
-    <Section band="plain" tight>
-      <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
-        <div className="lg:col-span-5">
-          <div className="lg:sticky lg:top-28">
-            <SectionHead
-              align="left"
-              spacing="tight"
-              eyebrow={t("poc.design.kicker")}
-              title={t("poc.design.title")}
-            />
-            <ProductShot
-              src={networkRadio}
-              alt=""
-              width={1600}
-              height={2143}
-              sizes="(max-width: 1024px) 70vw, 420px"
-              className="mt-2 hidden h-[300px] w-full lg:flex"
-            />
-          </div>
-        </div>
+    <Section band="soft" tight>
+      <SectionHead
+        align="left"
+        spacing="tight"
+        eyebrow={t("poc.design.kicker")}
+        title={t("poc.design.title")}
+      />
 
-        <ol className="lg:col-span-7">
-          {steps.map((step, i) => {
-            const Icon = icons[i] ?? Check;
-            return (
-              <motion.li
-                key={step}
-                {...fadeUpAt(Math.min(i, 4))}
-                className="group grid grid-cols-[auto_1fr] items-start gap-5 border-t border-border py-7 transition-colors duration-300 last:border-b hover:bg-charcoal/60 md:gap-7 md:py-8"
+      <ol className="no-scrollbar bleed-x flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4">
+        {steps.map((step, i) => {
+          const Icon = icons[i] ?? Check;
+          return (
+            <motion.li
+              key={step}
+              {...fadeUpAt(Math.min(i, 4))}
+              className="card-interactive group relative flex min-h-[340px] w-[78vw] shrink-0 snap-start flex-col overflow-hidden rounded-[28px] bg-pitch p-7 sm:w-[46vw] md:w-[32vw] lg:w-[23vw] lg:min-w-[260px]"
+            >
+              {/* The step number, at a scale you read as position, not as text. */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -bottom-8 -right-3 select-none text-[150px] font-semibold leading-none tracking-[-0.05em] text-crisp/[0.05] transition-colors duration-500 group-hover:text-signal/[0.09]"
               >
-                <span className="w-10 text-[15px] font-medium tabular-nums text-cool transition-colors duration-300 group-hover:text-signal">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="flex items-start justify-between gap-6">
-                  <h3 className="type-title max-w-lg text-crisp">{step}</h3>
-                  <Icon
-                    className="mt-0.5 h-7 w-7 shrink-0 text-signal transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
-                    strokeWidth={1.5}
-                    aria-hidden
-                  />
+                {i + 1}
+              </span>
+
+              <Icon
+                className="relative h-8 w-8 text-signal transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
+                strokeWidth={1.5}
+                aria-hidden
+              />
+
+              <div className="relative mt-auto">
+                <div className="text-[13px] font-medium uppercase tracking-[0.16em] text-cool">
+                  {t("poc.design.step_label", {
+                    defaultValue: String(i + 1).padStart(2, "0"),
+                    n: i + 1,
+                  })}
                 </div>
-              </motion.li>
-            );
-          })}
-        </ol>
-      </div>
+                <h3 className="mt-2 hyphens-auto break-words text-[21px] font-semibold leading-[1.2] tracking-[-0.02em] text-crisp">
+                  {step}
+                </h3>
+              </div>
+            </motion.li>
+          );
+        })}
+      </ol>
     </Section>
   );
 }
