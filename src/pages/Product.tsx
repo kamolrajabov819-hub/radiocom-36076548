@@ -12,6 +12,8 @@ import { spring, springSoft, fadeUpAt } from "@/lib/springs";
 import { ProductCard } from "@/components/ProductCard";
 import { FeatureCard, ScrollRow, ScrollItem } from "@/components/apple";
 import { SectionHead } from "@/components/Section";
+import { ProductShot } from "@/components/ProductShot";
+import kitFlatlay from "@/assets/product/radio-kit-flatlay.webp";
 import catalogAsset from "@/assets/radiocom-catalog.pdf.asset.json";
 import { assetUrl } from "@/lib/asset";
 import {
@@ -409,8 +411,7 @@ function Highlights({ spec, lang }: { spec: ProductSpec; lang: Lang }) {
             <ScrollItem key={`${f.ru}-${i}`}>
               <FeatureCard
                 idx={i}
-                tone={i === 1 ? "dark" : "light"}
-                eyebrow={String(i + 1).padStart(2, "0")}
+                tone={i === cards.length - 1 ? "dark" : "light"}
                 title={pick(f, lang)}
                 className="h-full min-h-[220px]"
               />
@@ -447,17 +448,15 @@ function InBox({ product, spec, lang }: { product: Product; spec: ProductSpec; l
       <div className="shell">
         <SectionHead title={t("product.in_box")} align="left" spacing="tight" />
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
-          <motion.div
-            {...fadeUpAt(0)}
-            className="flex aspect-[4/3] items-center justify-center rounded-[28px] bg-charcoal"
-          >
-            <img
-              width={1200}
-              height={900}
-              src={product.image}
-              alt={product.name}
-              loading="lazy"
-              className="max-h-[70%] max-w-[70%] object-contain mix-blend-multiply"
+          <motion.div {...fadeUpAt(0)}>
+            <ProductShot
+              src={kitFlatlay}
+              alt={t("product.in_box")}
+              width={1600}
+              height={2143}
+              fit="cover"
+              sizes="(max-width: 1024px) 90vw, 560px"
+              className="aspect-[4/3] w-full rounded-[28px]"
             />
           </motion.div>
 
