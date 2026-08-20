@@ -431,6 +431,14 @@
 }
 @utility marquee-track {
   animation: marquee 40s linear infinite;
+  /* The loop translates by -50%, so the track must be its content's full
+     width — at the default 100% it would scroll past its own end. */
+  width: max-content;
+}
+/* Hovering the strip pauses it, so a reader can actually look at one item. */
+.group:hover .marquee-track,
+.marquee-track:hover {
+  animation-play-state: paused;
 }
 
 /* Animated eyebrow gradient sweep */

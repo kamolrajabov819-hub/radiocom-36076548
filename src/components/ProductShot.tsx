@@ -32,6 +32,7 @@ export function ProductShot({
   imgClassName = "",
   blend,
   fit = "contain",
+  shadow = false,
   tone = "light",
   priority = false,
   sizes = "(max-width: 768px) 90vw, 45vw",
@@ -47,6 +48,8 @@ export function ProductShot({
   /** Defaults to true for `contain`, false for `cover`. */
   blend?: boolean;
   fit?: "contain" | "cover";
+  /** Adds the `stage` contact shadow. Only for a product floating on a band. */
+  shadow?: boolean;
   tone?: "light" | "dark";
   /** Set on the LCP image so the browser fetches it ahead of the rest. */
   priority?: boolean;
@@ -68,11 +71,16 @@ export function ProductShot({
   // lead card's photograph ended up on the wrong side of the card.
   const positioned = /(?:^|\s)(?:absolute|fixed|sticky)(?:\s|$)/.test(className);
 
+  // Flex, not the `stage` grid. `stage` centres with `place-items: center`,
+  // which leaves the image content-sized — so `h-full` has no definite height
+  // to resolve against and the photo renders at natural size and overflows.
+  // The contact shadow is opt-in for the same reason it is not wanted here:
+  // inside a card or on a plate, a fake shadow lands on the wrong surface.
+  const frame = shadow ? "stage" : "flex items-center justify-center";
+
   return (
-    // The `stage` contact shadow belongs under a floating product, not under a
-    // cropped photograph — a cover image would cast it onto its own frame.
     <div
-      className={`${cover ? `overflow-hidden ${positioned ? "" : "relative"}` : "stage"} ${className}`}
+      className={`${cover ? "overflow-hidden" : frame} ${positioned ? "" : "relative"} ${className}`}
       style={style}
     >
       <img

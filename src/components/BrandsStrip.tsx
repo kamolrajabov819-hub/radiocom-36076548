@@ -4,66 +4,53 @@ import { LocaleLink } from "@/components/LocaleLink";
 import { ArrowRight, BadgeCheck } from "lucide-react";
 import { products } from "@/data/products";
 import { CountUp } from "@/components/CountUp";
-import { WordReveal } from "@/components/WordReveal";
+import { ProductShot } from "@/components/ProductShot";
+import { Section, SectionHead } from "@/components/Section";
 import { spring } from "@/lib/springs";
+import rcdFrontBack from "@/assets/product/rcd-front-back.webp";
+import radiosPair from "@/assets/product/radios-pair.webp";
 
+/**
+ * Authorised distribution.
+ *
+ * The previous version read as generic because the two brands were rendered
+ * identically: two white cards on a white page, distinguished only by the
+ * brand name set in plain type, over a decorative sine wave that animated once
+ * and then sat frozen, above a marquee of text-only chips.
+ *
+ * Three changes fix that. The panels are no longer mirror images — one is dark,
+ * one light, which is how apple.com separates two things it is presenting side
+ * by side. Each carries the product rather than only its name. And the marquee
+ * shows the radios themselves, so the strip reads as a catalogue rather than a
+ * wall of words.
+ */
 const BRANDS = [
-  { key: "Radiocom RC" as const, i18n: "rc" },
-  { key: "Motorola" as const, i18n: "mot" },
+  { key: "Radiocom RC" as const, i18n: "rc", shot: rcdFrontBack, tone: "dark" as const },
+  { key: "Motorola" as const, i18n: "mot", shot: radiosPair, tone: "light" as const },
 ];
 
 export function BrandsStrip() {
   const { t } = useTranslation();
-  const models = products.map((p) => p.name);
-  const loop = [...models, ...models];
+
+  // The marquee shows real catalogue photography. Duplicated once so the
+  // translateX(-50%) loop in `marquee-track` meets itself seamlessly.
+  const shots = products.filter((p) => p.image).slice(0, 12);
+  const loop = [...shots, ...shots];
 
   return (
-    <section className="section-tight px-0 bg-pitch overflow-hidden relative">
-      {/* animated signal wave behind the section */}
-      <svg
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 w-full h-[320px] opacity-[0.10]"
-        viewBox="0 0 1200 320"
-        preserveAspectRatio="none"
-      >
-        <motion.path
-          d="M0,160 C150,60 300,260 450,160 C600,60 750,260 900,160 C1050,60 1200,260 1350,160"
-          fill="none"
-          stroke="var(--signal)"
-          strokeWidth="2"
-          initial={{ pathLength: 0, opacity: 0 }}
-          whileInView={{ pathLength: 1, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 2.2, ease: "easeInOut" }}
-        />
-        <motion.path
-          d="M0,190 C150,90 300,290 450,190 C600,90 750,290 900,190 C1050,90 1200,290 1350,190"
-          fill="none"
-          stroke="var(--signal)"
-          strokeWidth="1"
-          initial={{ pathLength: 0 }}
-          whileInView={{ pathLength: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 2.6, ease: "easeInOut", delay: 0.2 }}
-        />
-      </svg>
+    <Section band="plain" tight>
+      <SectionHead
+        align="center"
+        spacing="tight"
+        eyebrow={t("brands_title")}
+        title={t("brands.headline")}
+        sub={t("brands.sub")}
+      />
 
-      <div className="max-w-[1200px] mx-auto text-center px-6 md:px-10 mb-12 relative z-10">
-        <div className="text-[11px] tracking-[0.24em] uppercase text-cool">
-          {t("brands_title")}
-        </div>
-        <WordReveal
-          as="h2"
-          text={t("brands.headline")}
-          className="headline text-crisp text-3xl md:text-5xl mt-3 block"
-        />
-        <p className="subhead mt-4 max-w-xl mx-auto">{t("brands.sub")}</p>
-      </div>
-
-      {/* Two hero brand cards */}
-      <div className="max-w-[1200px] mx-auto px-6 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 relative z-10">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
         {BRANDS.map((b, i) => {
           const count = products.filter((p) => p.brand === b.key).length;
+          const dark = b.tone === "dark";
           return (
             <motion.div
               key={b.key}
@@ -71,75 +58,103 @@ export function BrandsStrip() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ ...spring, delay: i * 0.08 }}
-              whileHover={{ y: -6 }}
-              className="group relative overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-[0_10px_30px_-18px_rgba(0,0,0,0.35)] hover:shadow-[0_24px_50px_-20px_rgba(0,0,0,0.22)] transition-shadow duration-500 p-8 md:p-10 text-left"
+              className={`group card-interactive relative flex min-h-[420px] flex-col overflow-hidden rounded-[28px] p-8 text-left md:p-10 ${
+                dark ? "is-dark bg-black text-[#f5f5f7]" : "bg-charcoal text-crisp"
+              }`}
             >
-              <div className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(60%_60%_at_50%_0%,color-mix(in_oklab,var(--signal)_22%,transparent),transparent_70%)]" />
-              <div className="relative">
-                <div className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-signal">
-                  <BadgeCheck className="w-4 h-4" />
-                  {t("brands.official")}
-                </div>
-                <div className="headline text-crisp text-3xl md:text-5xl mt-4 tracking-tight">
-                  {b.key}
-                </div>
-                <p className="subhead mt-3 text-[15px] max-w-sm">
-                  {t(`brands.${b.i18n}_desc`)}
-                </p>
-                <div className="mt-8 flex items-end justify-between gap-4">
-                  <div>
-                    <div className="text-crisp text-4xl md:text-5xl font-semibold tracking-tight">
-                      <CountUp to={count} />
-                    </div>
-                    <div className="text-[11px] uppercase tracking-[0.18em] text-cool mt-1">
-                      {t("brands.models")}
-                    </div>
-                  </div>
-                  <LocaleLink
-                    to="/catalog"
-                    className="pill-link text-signal shrink-0"
-                  >
-                    {t("brands.view")} <ArrowRight className="w-4 h-4" />
-                  </LocaleLink>
-                </div>
+              <div
+                className={`relative inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] ${
+                  dark ? "text-white" : "text-signal"
+                }`}
+              >
+                <BadgeCheck className="h-4 w-4" aria-hidden />
+                {t("brands.official")}
               </div>
-              <div className="absolute bottom-0 left-0 h-[2px] w-0 bg-signal transition-all duration-700 group-hover:w-full" />
+
+              <div className="headline relative mt-4 text-3xl tracking-tight md:text-5xl">
+                {b.key}
+              </div>
+              <p
+                className={`relative mt-3 max-w-sm text-[15px] leading-relaxed ${
+                  dark ? "text-white/70" : "text-cool"
+                }`}
+              >
+                {t(`brands.${b.i18n}_desc`)}
+              </p>
+
+              {/*
+                The product sits on its own light plate rather than floating on
+                the card. These are studio shots on a white sweep, and the
+                multiply that knocks that white out only works against a light
+                ground — blended onto the black card the sweep survives as a
+                white rectangle. The plate also keeps the photo clear of the
+                copy, which it used to overlap.
+              */}
+              <div
+                className={`relative mt-8 min-h-[210px] flex-1 overflow-hidden rounded-3xl ${
+                  dark ? "bg-[#f5f5f7]" : "bg-pitch"
+                }`}
+              >
+                <ProductShot
+                  src={b.shot}
+                  alt=""
+                  width={1600}
+                  height={2212}
+                  sizes="(max-width: 768px) 80vw, 460px"
+                  className="absolute inset-0 h-full w-full p-5"
+                  imgClassName="object-contain"
+                />
+              </div>
+
+              <div className="relative flex items-end justify-between gap-4 pt-8">
+                <div>
+                  <div className="text-4xl font-semibold tracking-tight md:text-5xl">
+                    <CountUp to={count} />
+                  </div>
+                  <div
+                    className={`mt-1 text-[11px] uppercase tracking-[0.18em] ${
+                      dark ? "text-white/50" : "text-cool"
+                    }`}
+                  >
+                    {t("brands.models")}
+                  </div>
+                </div>
+                <LocaleLink
+                  to="/catalog"
+                  className={`pill-link shrink-0 ${dark ? "!text-white" : "text-signal"}`}
+                >
+                  {t("brands.view")} <ArrowRight className="h-4 w-4" aria-hidden />
+                </LocaleLink>
+              </div>
             </motion.div>
           );
         })}
       </div>
 
-      {/* Infinite model marquee */}
-      <div className="relative group mt-12">
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-24 md:w-40 z-10 bg-gradient-to-r from-pitch to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-24 md:w-40 z-10 bg-gradient-to-l from-pitch to-transparent" />
+      {/* Catalogue marquee — the range, shown rather than listed. */}
+      <div className="group relative mt-10">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-pitch to-transparent md:w-32" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-pitch to-transparent md:w-32" />
 
-        <div className="flex gap-3 marquee-track will-change-transform">
-          {loop.map((name, i) => (
+        <div className="marquee-track flex gap-4 will-change-transform">
+          {loop.map((p, i) => (
             <div
-              key={`${name}-${i}`}
-              className="shrink-0 rounded-full border border-black/[0.07] bg-white px-5 py-2.5 text-[13px] text-cool whitespace-nowrap transition-colors duration-300 hover:border-signal/50 hover:text-crisp"
+              key={`${p.id}-${i}`}
+              className="flex h-[132px] w-[132px] shrink-0 items-center justify-center rounded-3xl bg-charcoal p-4 transition-colors duration-300 hover:bg-[#ececef]"
             >
-              {name}
+              <img
+                src={p.image}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                width={132}
+                height={132}
+                className="h-full w-full object-contain mix-blend-multiply"
+              />
             </div>
           ))}
         </div>
       </div>
-
-      <style>{`
-        @keyframes marquee-scroll {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
-        }
-        .marquee-track {
-          animation: marquee-scroll 55s linear infinite;
-          width: max-content;
-        }
-        .group:hover .marquee-track { animation-play-state: paused; }
-        @media (prefers-reduced-motion: reduce) {
-          .marquee-track { animation: none; }
-        }
-      `}</style>
-    </section>
+    </Section>
   );
 }
