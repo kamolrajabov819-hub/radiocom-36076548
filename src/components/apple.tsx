@@ -77,7 +77,9 @@ export function FeatureCard({
       </h3>
 
       {body ? (
-        <p className={`relative mt-3 text-[15px] leading-relaxed ${dark ? "text-white/70" : "text-cool"}`}>
+        <p
+          className={`relative mt-3 text-[15px] leading-relaxed ${dark ? "text-white/70" : "text-cool"}`}
+        >
           {body}
         </p>
       ) : null}
