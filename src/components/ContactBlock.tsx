@@ -34,8 +34,8 @@ export function ContactBlock() {
   };
 
   return (
-    <section className="bg-charcoal px-6 md:px-10 py-20 md:py-28">
-      <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-14">
+    <section className="bg-charcoal py-20 md:py-28">
+      <div className="shell grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-14">
         <motion.div
           className="min-w-0"
           initial={{ opacity: 0, y: 24 }}
@@ -55,12 +55,18 @@ export function ContactBlock() {
             <Row Icon={MapPin}>{t("footer.address")}</Row>
             <Row Icon={Clock}>{t("footer.hours")}</Row>
             <Row Icon={Phone}>
-              <a href="tel:+998781131618" className="hover:text-signal">+998 78 113-16-18</a>
+              <a href="tel:+998781131618" className="hover:text-signal">
+                +998 78 113-16-18
+              </a>
               <span className="mx-2 text-cool">·</span>
-              <a href="tel:+998933890710" className="hover:text-signal">+998 93 389-07-10</a>
+              <a href="tel:+998933890710" className="hover:text-signal">
+                +998 93 389-07-10
+              </a>
             </Row>
             <Row Icon={Mail}>
-              <a href="mailto:sales@radiocom.uz" className="hover:text-signal">sales@radiocom.uz</a>
+              <a href="mailto:sales@radiocom.uz" className="hover:text-signal">
+                sales@radiocom.uz
+              </a>
             </Row>
           </ul>
 
@@ -81,6 +87,7 @@ export function ContactBlock() {
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                   <input
                     name="name"
+                    aria-label={t("form.name")}
                     required
                     maxLength={80}
                     placeholder={t("form.name")}
@@ -93,6 +100,7 @@ export function ContactBlock() {
                   />
                   <input
                     name="qty"
+                    aria-label={t("form.qty")}
                     type="number"
                     min={1}
                     inputMode="numeric"
@@ -131,7 +139,13 @@ export function ContactBlock() {
   );
 }
 
-function Row({ Icon, children }: { Icon: React.ComponentType<{ className?: string }>; children: React.ReactNode }) {
+function Row({
+  Icon,
+  children,
+}: {
+  Icon: React.ComponentType<{ className?: string }>;
+  children: React.ReactNode;
+}) {
   return (
     <li className="flex items-start gap-3 text-[15px] text-crisp">
       <Icon className="mt-0.5 h-4 w-4 shrink-0 text-signal" />

@@ -1,10 +1,12 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { ChevronRight, Repeat, ShieldCheck, Truck, Wrench, Package, Sparkles } from "lucide-react";
+import { ChevronRight, Repeat, Truck, Wrench, Package, Sparkles } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
 import { SignalPulse } from "@/components/SignalPulse";
 import heroImage from "@/assets/hero-rcd60-cutout.png";
+import kitWide from "@/assets/product/radio-kit-wide.webp";
+import macroWide from "@/assets/product/radio-macro-wide.webp";
 import bentoDetail from "@/assets/detail-grille-v11.jpg.asset.json";
 import horecaImg from "@/assets/industry-horeca.jpg";
 import constructionImg from "@/assets/industry-construction.jpg";
@@ -12,8 +14,9 @@ import securityImg from "@/assets/industry-security.jpg";
 import { assetUrl } from "@/lib/asset";
 import { openLead } from "@/components/LeadFormSheet";
 import { BrandsStrip } from "@/components/BrandsStrip";
-import { SectionHead } from "@/components/Section";
-import { FeatureCard, ScrollRow, ScrollItem } from "@/components/apple";
+import { Section, SectionHead } from "@/components/Section";
+import { BentoGrid, FeatureCard, ScrollRow, ScrollItem } from "@/components/apple";
+import { ProductShot } from "@/components/ProductShot";
 import { Magnetic } from "@/components/Magnetic";
 import { products } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
@@ -116,10 +119,7 @@ function Hero() {
         <SignalPulse size={1400} opacity={0.28} />
       </div>
 
-      <div
-        data-hero-copy
-        className="relative z-10 mx-auto max-w-[1200px] px-6 text-center md:px-10"
-      >
+      <div data-hero-copy className="relative z-10 shell px-6 text-center md:px-10">
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -201,7 +201,7 @@ function Proof() {
   ];
   return (
     <section className="band-soft border-y border-border py-12 md:py-16">
-      <div className="mx-auto grid max-w-[1200px] grid-cols-3 gap-4 px-6 md:px-10">
+      <div className="shell grid grid-cols-3 gap-4">
         {stats.map((s, i) => (
           <motion.div key={s.label} {...fadeUpAt(i)} className="text-center">
             <div className="type-title text-[28px] font-semibold text-crisp md:text-[44px]">
@@ -220,8 +220,8 @@ function Proof() {
 function FeatureDark() {
   const { t } = useTranslation();
   return (
-    <section className="band-dark overflow-hidden px-6 py-28 text-center md:px-10 md:py-40">
-      <div className="mx-auto max-w-[1200px]">
+    <section className="band-dark overflow-hidden py-28 text-center md:py-40">
+      <div className="shell">
         <motion.h2
           {...fadeUpAt(0)}
           className="mx-auto max-w-4xl font-semibold leading-[1.05] tracking-[-0.03em]"
@@ -245,50 +245,116 @@ function FeatureDark() {
   );
 }
 
-/* ─── Value shelf — apple.com's editorial card row ────────── */
+/* ─── Value shelf — a bento that closes ──────────────────── */
+/**
+ * Three rows of three. The wide tiles span two columns and the rest span one,
+ * so every row fills exactly and the grid has no ragged edge — the earlier
+ * version mixed a `tall` tile into a three-column grid, which left a step in
+ * the right-hand column.
+ *
+ * The two wide tiles put their photograph *beside* the copy rather than behind
+ * it. A backdrop image under a headline is only safe when the art has dead
+ * space where the text lands, and a flat-lay does not.
+ */
 function ValueShelf() {
   const { t } = useTranslation();
-  const items = [
-    { key: "tradein", Icon: Repeat },
-    { key: "warranty", Icon: ShieldCheck },
-    { key: "delivery", Icon: Truck },
-    { key: "test", Icon: Sparkles },
-    { key: "models", Icon: Package },
-    { key: "service", Icon: Wrench },
-  ] as const;
+  const openTest = () => openLead({ title: t("lead.title") });
 
   return (
-    <section className="band-soft section-tight px-4 md:px-6">
-      <div className="mx-auto max-w-[1200px]">
-        <SectionHead
-          align="left"
-          spacing="tight"
-          eyebrow={t("home.bento.eyebrow")}
-          title={t("home.bento.title")}
-          sub={t("home.bento.sub")}
+    <Section band="soft" tight>
+      <SectionHead
+        align="left"
+        spacing="tight"
+        eyebrow={t("home.bento.eyebrow")}
+        title={t("home.bento.title")}
+        sub={t("home.bento.sub")}
+      />
+      <BentoGrid>
+        {/* Row 1 — warranty (2 cols, photo beside copy) + trade-in (1 col). */}
+        <WideTile
+          idx={0}
+          eyebrow={t("home.bento.warranty.title")}
+          title={t("home.bento.warranty.sub")}
+          src={kitWide}
         />
-        <ScrollRow cols={3}>
-          {items.map((it, i) => (
-            <ScrollItem key={it.key}>
-              <FeatureCard
-                idx={i}
-                tone={i === 1 || i === 4 ? "dark" : "light"}
-                eyebrow={t(`home.bento.${it.key}.title`)}
-                title={t(`home.bento.${it.key}.sub`)}
-                className="h-full min-h-[260px]"
-                media={
-                  <it.Icon
-                    className={`h-10 w-10 ${i === 1 || i === 4 ? "text-signal" : "text-signal"}`}
-                    strokeWidth={1.5}
-                    aria-hidden
-                  />
-                }
-              />
-            </ScrollItem>
-          ))}
-        </ScrollRow>
+        <FeatureCard
+          idx={1}
+          eyebrow={t("home.bento.tradein.title")}
+          title={t("home.bento.tradein.sub")}
+          className="min-h-[260px]"
+          action={{ label: t("lead.title"), onClick: openTest }}
+          media={<Repeat className="h-10 w-10 text-signal" strokeWidth={1.5} aria-hidden />}
+        />
+
+        {/* Row 2 — three equal tiles. */}
+        {[
+          { key: "delivery", Icon: Truck },
+          { key: "test", Icon: Sparkles },
+          { key: "models", Icon: Package },
+        ].map((it, i) => (
+          <FeatureCard
+            key={it.key}
+            idx={i + 2}
+            eyebrow={t(`home.bento.${it.key}.title`)}
+            title={t(`home.bento.${it.key}.sub`)}
+            className="min-h-[260px]"
+            media={<it.Icon className="h-10 w-10 text-signal" strokeWidth={1.5} aria-hidden />}
+          />
+        ))}
+
+        {/* Row 3 — service (1 col) + the workshop close (2 cols). */}
+        <FeatureCard
+          idx={5}
+          tone="dark"
+          eyebrow={t("home.bento.service.title")}
+          title={t("home.bento.service.sub")}
+          className="min-h-[260px]"
+          media={<Wrench className="h-10 w-10 text-white" strokeWidth={1.5} aria-hidden />}
+        />
+        <WideTile
+          idx={6}
+          eyebrow={t("home.feature.title")}
+          title={t("home.feature.sub")}
+          src={macroWide}
+        />
+      </BentoGrid>
+    </Section>
+  );
+}
+
+/** Two-column tile: copy on the left, photograph filling the right half. */
+function WideTile({
+  idx,
+  eyebrow,
+  title,
+  src,
+}: {
+  idx: number;
+  eyebrow: string;
+  title: string;
+  src: string;
+}) {
+  return (
+    <motion.article
+      {...fadeUpAt(Math.min(idx, 6))}
+      className="card-interactive group relative flex min-h-[260px] overflow-hidden rounded-[28px] bg-pitch sm:col-span-2"
+    >
+      <div className="flex flex-1 flex-col justify-center p-7 md:p-8">
+        <div className="text-[14px] font-medium text-cool">{eyebrow}</div>
+        <h3 className="mt-1.5 hyphens-auto break-words text-[22px] font-semibold leading-[1.15] tracking-[-0.02em] text-crisp md:text-[26px]">
+          {title}
+        </h3>
       </div>
-    </section>
+      <ProductShot
+        src={src}
+        alt=""
+        width={1600}
+        height={900}
+        fit="cover"
+        sizes="(max-width: 640px) 45vw, 340px"
+        className="w-[42%] shrink-0 [&_img]:transition-transform [&_img]:duration-700 [&_img]:ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[&_img]:scale-[1.04]"
+      />
+    </motion.article>
   );
 }
 
@@ -296,8 +362,8 @@ function ValueShelf() {
 function NetworkSplit() {
   const { t } = useTranslation();
   return (
-    <section className="band-plain section-tight px-4 md:px-6">
-      <div className="mx-auto grid max-w-[1200px] gap-4 md:grid-cols-2">
+    <Section band="plain" tight>
+      <div className="grid gap-4 md:grid-cols-2">
         <motion.div
           {...fadeUpAt(0)}
           className="relative aspect-[4/3] overflow-hidden rounded-[28px] bg-charcoal md:aspect-auto md:min-h-[440px]"
@@ -328,7 +394,7 @@ function NetworkSplit() {
           </LocaleLink>
         </motion.div>
       </div>
-    </section>
+    </Section>
   );
 }
 
@@ -341,8 +407,8 @@ function IndustriesTeaser() {
     { slug: "security" as const, img: securityImg },
   ];
   return (
-    <section className="band-soft section-tight px-4 md:px-6">
-      <div className="mx-auto max-w-[1200px]">
+    <Section band="soft" tight>
+      <div>
         <SectionHead
           align="left"
           spacing="tight"
@@ -382,7 +448,7 @@ function IndustriesTeaser() {
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 
@@ -396,8 +462,8 @@ function FeaturedCatalog() {
   const featured = picked.length >= 4 ? picked.slice(0, 4) : products.slice(0, 4);
 
   return (
-    <section className="band-plain section-tight px-4 md:px-6">
-      <div className="mx-auto max-w-[1200px]">
+    <Section band="plain" tight>
+      <div>
         <SectionHead
           align="left"
           spacing="tight"
@@ -411,7 +477,7 @@ function FeaturedCatalog() {
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 
@@ -420,7 +486,7 @@ function FinalCta() {
   const { t } = useTranslation();
   return (
     <section className="band-dark px-6 py-28 text-center md:px-10 md:py-40">
-      <div className="mx-auto max-w-[1200px]">
+      <div className="shell">
         <motion.h2
           {...fadeUpAt(0)}
           className="mx-auto max-w-3xl font-semibold leading-[1.05] tracking-[-0.03em]"

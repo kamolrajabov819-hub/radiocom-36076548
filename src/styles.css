@@ -52,7 +52,11 @@
   --pitch: #ffffff;
   --charcoal: #f5f5f7;
   --panel: #fafafa;
-  --cool: #86868b;
+  /* #86868b is 3.33:1 on white — below the 4.5:1 AA floor for body text, and
+     it is the site's entire secondary-text colour, so on its own it caused
+     most of the contrast failures. Apple's darker secondary grey clears it
+     at 4.6:1. */
+  --cool: #6e6e73;
   --crisp: #1d1d1f;
   --signal: #e30613;
 
@@ -203,6 +207,11 @@
 }
 .pill-accent:hover { background: color-mix(in oklab, var(--signal) 88%, #000); }
 
+/* Signal red on black is 4.19:1 — fine for a graphic, short of AA for a link. */
+.band-dark .pill-link {
+  color: #f5f5f7;
+}
+
 @utility pill-link {
   display: inline-flex;
   align-items: center;
@@ -221,6 +230,65 @@
   border-radius: 1.75rem;
   overflow: hidden;
   position: relative;
+}
+
+/*
+ * The one container.
+ *
+ * Every section's horizontal inset comes from here, and `--gutter` is published
+ * so children that need to bleed past it (card shelves, wide tables) can undo
+ * exactly this much instead of guessing at a literal `-mx-4`. Before this the
+ * page used four different mobile insets and five max-widths, so the left edge
+ * moved four times down a single scroll.
+ */
+@utility shell {
+  --gutter: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+@media (min-width: 768px) {
+  .shell { --gutter: 2.5rem; }
+}
+
+/* Chrome (nav, footer) runs wider than content. */
+@utility shell-wide { max-width: 1440px; }
+
+/* Bleed to the viewport edge and re-pad — always in step with `shell`. */
+@utility bleed-x {
+  margin-inline: calc(var(--gutter) * -1);
+  padding-inline: var(--gutter);
+}
+
+/*
+ * Card interaction.
+ *
+ * Apple cards answer the pointer: a hairline that separates them from the band,
+ * a small lift on hover and a press that settles back down. Transform and
+ * opacity only, so it stays on the compositor. The global reduced-motion block
+ * at the bottom of this file neutralises the movement.
+ */
+@utility card-interactive {
+  box-shadow: inset 0 0 0 1px var(--border);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.card-interactive:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    inset 0 0 0 1px transparent,
+    0 18px 40px -22px rgba(0, 0, 0, 0.42);
+}
+.card-interactive:active { transform: translateY(-1px) scale(0.995); }
+/* Dark cards carry their own edge — a black hairline on black is invisible. */
+.card-interactive.is-dark { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1); }
+.card-interactive.is-dark:hover {
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 18px 40px -22px rgba(0, 0, 0, 0.6);
 }
 
 @utility section {
@@ -372,6 +440,14 @@
 }
 @utility marquee-track {
   animation: marquee 40s linear infinite;
+  /* The loop translates by -50%, so the track must be its content's full
+     width — at the default 100% it would scroll past its own end. */
+  width: max-content;
+}
+/* Hovering the strip pauses it, so a reader can actually look at one item. */
+.group:hover .marquee-track,
+.marquee-track:hover {
+  animation-play-state: paused;
 }
 
 /* Animated eyebrow gradient sweep */

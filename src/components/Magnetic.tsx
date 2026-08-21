@@ -5,7 +5,11 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
  * Apple-subtle magnetic hover: cursor pulls the child up to 8px.
  * Disabled automatically on touch and prefers-reduced-motion via CSS.
  */
-export function Magnetic({ children, className = "", strength = 0.25 }: {
+export function Magnetic({
+  children,
+  className = "",
+  strength = 0.25,
+}: {
   children: ReactNode;
   className?: string;
   strength?: number;
@@ -28,7 +32,10 @@ export function Magnetic({ children, className = "", strength = 0.25 }: {
         x.set((e.clientX - cx) * strength);
         y.set((e.clientY - cy) * strength);
       }}
-      onMouseLeave={() => { x.set(0); y.set(0); }}
+      onMouseLeave={() => {
+        x.set(0);
+        y.set(0);
+      }}
       style={{ x: sx, y: sy, display: "inline-flex" }}
       className={className}
     >

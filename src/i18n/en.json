@@ -413,7 +413,8 @@
     "all_models": "All models",
     "more": "Learn more",
     "prev": "Previous image",
-    "next": "Next image"
+    "next": "Next image",
+    "breadcrumb": "Breadcrumb"
   },
   "form": {
     "title": "Request quote",
@@ -521,7 +522,8 @@
         "a": "From 7 days for obvious factory defects up to 2 months for delivery to remote territories."
       }
     ],
-    "flow_title": "How the repair works"
+    "flow_title": "How the repair works",
+    "advantages_title": "Why bring it here"
   },
   "footer": {
     "hours": "Mon-Fri · 09:00–18:00",
@@ -560,7 +562,7 @@
       },
       "models": {
         "title": "35+ models",
-        "sub": "Motorola, Radiocom, Radiocom, Radiocom RC."
+        "sub": "Motorola and Radiocom RC / RCD."
       },
       "warranty": {
         "title": "12-month warranty",

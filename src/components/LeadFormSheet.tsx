@@ -27,7 +27,9 @@ export function LeadFormSheet() {
   useEffect(() => {
     const l = (c: Ctx) => setCtx({ ...c });
     listeners.push(l);
-    return () => { listeners = listeners.filter((x) => x !== l); };
+    return () => {
+      listeners = listeners.filter((x) => x !== l);
+    };
   }, []);
 
   useEffect(() => {
@@ -80,7 +82,7 @@ export function LeadFormSheet() {
                 <button
                   onClick={closeLead}
                   className="h-9 w-9 flex items-center justify-center rounded-full bg-charcoal text-crisp hover:opacity-70"
-                  aria-label="Close"
+                  aria-label={t("nav.close")}
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -114,7 +116,9 @@ export function LeadFormSheet() {
                       {sending && <Loader2 className="w-4 h-4 animate-spin" />}
                       {t("form.submit")}
                     </button>
-                    <div className="text-center text-[12px] text-cool pt-2">{t("form.trust_line")}</div>
+                    <div className="text-center text-[12px] text-cool pt-2">
+                      {t("form.trust_line")}
+                    </div>
                   </form>
                 </>
               )}
@@ -127,21 +131,38 @@ export function LeadFormSheet() {
 }
 
 function Field({
-  name, label, required, type = "text", textarea,
-}: { name: string; label: string; required?: boolean; type?: string; textarea?: boolean }) {
+  name,
+  label,
+  required,
+  type = "text",
+  textarea,
+}: {
+  name: string;
+  label: string;
+  required?: boolean;
+  type?: string;
+  textarea?: boolean;
+}) {
   const cls =
     "w-full rounded-2xl bg-charcoal border border-transparent focus:border-signal focus:bg-pitch outline-none px-4 py-3 text-[15px] text-crisp placeholder-cool transition-colors";
   return (
     <label className="block">
       <span className="block text-[13px] text-cool mb-1.5">
-        {label}{required && <span className="text-signal ml-0.5">*</span>}
+        {label}
+        {required && <span className="text-signal ml-0.5">*</span>}
       </span>
       {textarea ? (
         <textarea name={name} rows={3} className={cls + " resize-none"} />
       ) : type === "tel" ? (
         <PhoneInput name={name} required={required} className={cls} />
       ) : (
-        <input name={name} type={type} required={required} min={type === "number" ? 1 : undefined} className={cls} />
+        <input
+          name={name}
+          type={type}
+          required={required}
+          min={type === "number" ? 1 : undefined}
+          className={cls}
+        />
       )}
     </label>
   );

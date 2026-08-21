@@ -96,6 +96,9 @@ User-agent: Google-Extended
 Allow: /
 
 Sitemap: ${SITE_URL}/sitemap.xml
+
+# Machine-readable site summaries, one per locale.
+# ${SITE_URL}/llms.txt (ru) · ${SITE_URL}/llms.en.txt · ${SITE_URL}/llms.uz.txt
 `;
 
 // llms.txt — the emerging convention for telling AI answer engines what a site
@@ -106,21 +109,79 @@ const byBrand = products.reduce<Record<string, typeof products>>((acc, p) => {
   return acc;
 }, {});
 
-const llms = `# Radiocom
+// One file per locale. The Russian-only version described a trilingual site in
+// a single language, so an answer engine asked in Uzbek or English had no
+// catalogue to read — the /en and /uz halves of the site were invisible to the
+// surface this file exists to serve.
+const LLMS_COPY = {
+  ru: {
+    summary:
+      "Официальный поставщик профессиональных и любительских радиостанций в Узбекистане.\n" +
+      "> 11 лет на рынке, 10 000+ клиентов. Продажа, аренда, авторизованный сервис и\n" +
+      "> проектирование систем радиосвязи. Офис и сервисный центр в Ташкенте.",
+    languages: "Языки: русский, английский, узбекский. Канонический язык — русский.",
+    contacts: "## Контакты",
+    address: "- Адрес: ул. Узбекистон Овози, 2, Ташкент, Узбекистан",
+    phone: "- Телефон: +998 78 113-16-18",
+    hours: "- Часы работы: Пн-Пт 09:00-18:00",
+    catalogue: (n: number) => `## Каталог (${n} моделей)`,
+    sections: "## Разделы",
+    range: (v: string) => `Дальность ${v}.`,
+    note:
+      "## Примечание о дальности\nУказанная дальность рассчитана при прямой видимости и оптимальной погоде.\n" +
+      "Фактическая зависит от рельефа, погоды, электромагнитных помех и препятствий.",
+  },
+  en: {
+    summary:
+      "Authorised supplier of professional and consumer two-way radios in Uzbekistan.\n" +
+      "> 11 years in business, 10,000+ customers. Sales, rental, authorised service and\n" +
+      "> radio network design. Office and service centre in Tashkent.",
+    languages: "Languages: Russian, English, Uzbek. Russian is the canonical language.",
+    contacts: "## Contacts",
+    address: "- Address: Uzbekiston Ovozi 2, Tashkent, Uzbekistan",
+    phone: "- Phone: +998 78 113-16-18",
+    hours: "- Opening hours: Mon-Fri 09:00-18:00",
+    catalogue: (n: number) => `## Catalogue (${n} models)`,
+    sections: "## Sections",
+    range: (v: string) => `Range ${v}.`,
+    note:
+      "## A note on range\nQuoted range assumes line of sight and good conditions.\n" +
+      "Actual range depends on terrain, weather, interference and obstructions.",
+  },
+  uz: {
+    summary:
+      "O'zbekistonda professional va havaskor radiostansiyalarning rasmiy yetkazib beruvchisi.\n" +
+      "> Bozorda 11 yil, 10 000+ mijoz. Savdo, ijara, vakolatli servis va radioaloqa\n" +
+      "> tizimlarini loyihalash. Ofis va servis markazi Toshkentda.",
+    languages: "Tillar: rus, ingliz, o'zbek. Kanonik til — rus tili.",
+    contacts: "## Kontaktlar",
+    address: "- Manzil: O'zbekiston Ovozi 2, Toshkent, O'zbekiston",
+    phone: "- Telefon: +998 78 113-16-18",
+    hours: "- Ish vaqti: Du-Ju 09:00-18:00",
+    catalogue: (n: number) => `## Katalog (${n} model)`,
+    sections: "## Bo'limlar",
+    range: (v: string) => `Masofa ${v}.`,
+    note:
+      "## Masofa haqida izoh\nKo'rsatilgan masofa to'g'ridan-to'g'ri ko'rinish va qulay ob-havoda hisoblangan.\n" +
+      "Haqiqiy masofa relyef, ob-havo, elektromagnit shovqin va to'siqlarga bog'liq.",
+  },
+} as const;
 
-> Официальный поставщик профессиональных и любительских радиостанций в Узбекистане.
-> 11 лет на рынке, 10 000+ клиентов. Продажа, аренда, авторизованный сервис и
-> проектирование систем радиосвязи. Офис и сервисный центр в Ташкенте.
+const llmsFor = (lang: (typeof LANGS)[number]) => {
+  const c = LLMS_COPY[lang];
+  return `# Radiocom
 
-Языки: русский (${SITE_URL}/ru), английский (${SITE_URL}/en), узбекский (${SITE_URL}/uz).
-Канонический язык — русский.
+> ${c.summary}
 
-## Контакты
-- Адрес: ул. Узбекистон Овози, 2, Ташкент, Узбекистан
-- Телефон: +998 78 113-16-18
-- Часы работы: Пн-Пт 09:00-18:00
+${c.languages}
+${LANGS.map((l) => `- ${SITE_URL}/${l}`).join("\n")}
 
-## Каталог (${products.length} моделей)
+${c.contacts}
+${c.address}
+${c.phone}
+${c.hours}
+
+${c.catalogue(products.length)}
 ${Object.entries(byBrand)
   .map(
     ([brand, list]) =>
@@ -128,27 +189,31 @@ ${Object.entries(byBrand)
       list
         .map(
           (p) =>
-            `- [${p.name}](${SITE_URL}/ru/catalog/${p.id}) — ${p.blurb.ru} Дальность ${p.rangeCity.ru}.`,
+            `- [${p.name}](${SITE_URL}/${lang}/catalog/${p.id}) — ${p.blurb[lang]} ${c.range(
+              p.rangeCity[lang],
+            )}`,
         )
         .join("\n"),
   )
   .join("\n\n")}
 
-## Разделы
+${c.sections}
 ${entries
   .filter((e) => !e.path.startsWith("/catalog/"))
-  .map((e) => `- ${SITE_URL}/ru${e.path === "/" ? "" : e.path}`)
+  .map((e) => `- ${SITE_URL}/${lang}${e.path === "/" ? "" : e.path}`)
   .join("\n")}
 
-## Примечание о дальности
-Указанная дальность рассчитана при прямой видимости и оптимальной погоде.
-Фактическая зависит от рельефа, погоды, электромагнитных помех и препятствий.
+${c.note}
 `;
+};
 
 await mkdir("public", { recursive: true });
 await writeFile("public/sitemap.xml", sitemap, "utf8");
 await writeFile("public/robots.txt", robots, "utf8");
-await writeFile("public/llms.txt", llms, "utf8");
+// Russian stays at /llms.txt (the conventional location); the other two sit
+// beside it and are advertised from robots.txt.
+await writeFile("public/llms.txt", llmsFor("ru"), "utf8");
+for (const l of LANGS) await writeFile(`public/llms.${l}.txt`, llmsFor(l), "utf8");
 console.log(
   `seo: wrote public/sitemap.xml (${entries.length} pages x ${LANGS.length} locales = ${urls.length} urls) plus robots.txt and llms.txt`,
 );

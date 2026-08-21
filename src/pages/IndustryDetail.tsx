@@ -15,9 +15,12 @@ import {
   Wrench,
 } from "lucide-react";
 import { INDUSTRY_SLUGS, industryPicks, type IndustrySlug } from "@/data/industries";
-import { products, formatPrice } from "@/data/products";
+import { products } from "@/data/products";
 import { openLead } from "@/components/LeadFormSheet";
 import { CountUp } from "@/components/CountUp";
+import { ProductCard } from "@/components/ProductCard";
+import { Section, SectionHead } from "@/components/Section";
+import { BentoGrid, FeatureCard } from "@/components/apple";
 import catalogAsset from "@/assets/radiocom-catalog.pdf.asset.json";
 import horecaImg from "@/assets/industry-horeca.jpg";
 import constructionImg from "@/assets/industry-construction.jpg";
@@ -25,7 +28,7 @@ import securityImg from "@/assets/industry-security.jpg";
 import miningImg from "@/assets/industry-mining.jpg";
 import transportImg from "@/assets/industry-transport.jpg";
 import manufacturingImg from "@/assets/industry-manufacturing.jpg";
-import { spring } from "@/lib/springs";
+import { fadeUpAt, spring } from "@/lib/springs";
 import { assetUrl } from "@/lib/asset";
 import {
   SITE_NAME,
@@ -37,7 +40,6 @@ import {
   type SeoLang,
 } from "@/lib/seo";
 import { tFor } from "@/lib/i18n";
-import ruCopy from "@/i18n/ru.json";
 
 const IMAGES: Record<string, string> = {
   horeca: horecaImg,
@@ -114,14 +116,14 @@ export function IndustryPage() {
     .filter(Boolean) as typeof products;
 
   const outcomes = (t(`industries.${s}.outcomes`, { returnObjects: true }) as Outcome[]) || [];
+  const pains = (t(`industries.${s}.pains`, { returnObjects: true }) as string[]) || [];
   const faq = (t(`industries.${s}.faq`, { returnObjects: true }) as FAQ[]) || [];
   const industryName = t(`industries.${s}.name`);
 
   return (
     <div className="page-anim">
-      {/* Cinematic hero */}
-
-      <section className="relative min-h-[85vh] overflow-hidden">
+      {/* ── Cinematic hero ─────────────────────────────────── */}
+      <section className="relative min-h-[78vh] overflow-hidden">
         <motion.div
           initial={{ scale: 1.08, opacity: 0.6 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -129,16 +131,22 @@ export function IndustryPage() {
           className="absolute inset-0"
         >
           <img
-            width={1200}
-            height={900}
             src={IMAGES[s]}
             alt=""
+            width={1600}
+            height={1067}
+            fetchPriority="high"
+            decoding="sync"
             className="absolute inset-0 h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/25" />
         </motion.div>
-        <div className="relative pt-40 md:pt-56 pb-24 px-6 max-w-[1200px] mx-auto text-white">
-          <LocaleLink to="/industries" className="text-white/70 text-[13px] hover:text-white">
+
+        <div className="shell relative pb-24 pt-40 text-white md:pt-56">
+          <LocaleLink
+            to="/industries"
+            className="text-[13px] text-white/70 transition-colors hover:text-white"
+          >
             ← {t("industries.view_all")}
           </LocaleLink>
           <motion.h1
@@ -153,7 +161,7 @@ export function IndustryPage() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...spring, delay: 0.3 }}
-            className="mt-6 max-w-xl text-lg md:text-xl text-white/80"
+            className="mt-6 max-w-xl text-lg text-white/80 md:text-xl"
           >
             {t(`industries.${s}.desc`)}
           </motion.p>
@@ -161,30 +169,51 @@ export function IndustryPage() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...spring, delay: 0.4 }}
-            className="mt-8 flex flex-col sm:flex-row gap-3"
+            className="mt-8 flex flex-col gap-3 sm:flex-row"
           >
             <button
               onClick={() => openLead({ title: `${t("industries.cta")} · ${industryName}` })}
-              className="pill"
-              style={{ background: "#fff", color: "#000" }}
+              className="pill bg-white text-black"
             >
               {t("industries.cta")}
             </button>
             <a
               href={assetUrl(catalogAsset)}
               download="radiocom-catalog.pdf"
-              className="pill pill-ghost text-white"
-              style={{ background: "rgba(255,255,255,0.15)", color: "#fff" }}
+              className="pill bg-white/15 text-white backdrop-blur"
             >
-              <FileDown className="w-4 h-4" /> {t("industries.cta_secondary")}
+              <FileDown className="h-4 w-4" aria-hidden /> {t("industries.cta_secondary")}
             </a>
           </motion.div>
         </div>
       </section>
 
-      {/* Problem / Solution — sticky-story pattern */}
-      <section className="band-plain section px-6 md:px-10">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/*
+        ── Outcomes ──────────────────────────────────────────
+        These stats are translated in all three locales and were being read into
+        a variable that nothing rendered — the page threw away its own numbers.
+        Apple opens a product page on the figures, so they open here.
+      */}
+      {outcomes.length > 0 && (
+        <Section band="plain" tight>
+          <SectionHead align="left" spacing="tight" title={t("industries.outcomes_title")} />
+          <dl className="grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-3">
+            {outcomes.map((o, i) => (
+              <motion.div key={o.l} {...fadeUpAt(i)}>
+                <dt className="sr-only">{o.l}</dt>
+                <dd>
+                  <OutcomeNumber value={o.n} unit={o.u} />
+                  <div className="mt-3 max-w-[16rem] text-[15px] leading-snug text-cool">{o.l}</div>
+                </dd>
+              </motion.div>
+            ))}
+          </dl>
+        </Section>
+      )}
+
+      {/* ── Problem → solution ───────────────────────────────── */}
+      <Section band="soft" tight>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <StoryCard
             kicker={t("industries.problem_title")}
             body={t(`industries.${s}.problem`)}
@@ -193,165 +222,145 @@ export function IndustryPage() {
           <StoryCard
             kicker={t("industries.solution_title")}
             body={t(`industries.${s}.solution`)}
-            tone="accent"
+            tone="dark"
           />
         </div>
-      </section>
 
-      {/* What you get — 3 offers */}
-      <section className="band-soft section px-6 md:px-10">
-        <div className="max-w-[1200px] mx-auto text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={spring}
-            className="type-headline text-crisp"
-          >
-            {t("industries.offers.title")}
-          </motion.h2>
-          <div className="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
-            {(
-              [
-                { k: "test", Icon: Radio },
-                { k: "tradein", Icon: Repeat },
-                { k: "service", Icon: Wrench },
-              ] as const
-            ).map((o, i) => (
-              <motion.div
-                key={o.k}
-                initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ ...spring, delay: i * 0.1 }}
-                whileHover={{ y: -8 }}
-                className="group relative overflow-hidden rounded-[28px] bg-pitch p-10 text-left"
-                style={{ background: "var(--pitch)" }}
-              >
-                <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(70%_60%_at_50%_0%,color-mix(in_oklab,var(--signal)_16%,transparent),transparent_70%)]" />
-                <motion.span
-                  initial={{ scale: 0.6, opacity: 0, rotate: -12 }}
-                  whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ ...spring, delay: 0.15 + i * 0.1 }}
-                  className="relative inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-signal/10 text-signal"
-                >
-                  <o.Icon className="h-6 w-6" />
-                </motion.span>
-                <div className="relative headline text-crisp text-2xl mt-6 leading-tight">
-                  {t(`industries.offers.${o.k}.t`)}
-                </div>
-                <p className="relative subhead text-[15px] mt-3">
-                  {t(`industries.offers.${o.k}.d`)}
-                </p>
-                <button
-                  onClick={() => openLead({ title: t(`industries.offers.${o.k}.t`) })}
-                  className="relative pill-link mt-6"
-                >
-                  {t(`industries.offers.${o.k}.c`)} <ChevronRight className="w-4 h-4" />
-                </button>
-              </motion.div>
-            ))}
+        {/*
+          The pain list is the other block that was translated and never shown.
+          It is the page's most searchable copy — the words a buyer would
+          actually type — so it earns a place rather than staying in the JSON.
+        */}
+        {pains.length > 0 && (
+          <div className="mt-4 rounded-[28px] bg-pitch p-7 md:p-10">
+            <h3 className="type-title text-crisp">{t("industries.pains_title")}</h3>
+            <ul className="mt-6 grid gap-4 md:grid-cols-3">
+              {pains.map((pain, i) => (
+                <motion.li key={pain} {...fadeUpAt(i)} className="flex items-start gap-3">
+                  <Check className="mt-1 h-4 w-4 shrink-0 text-signal" aria-hidden />
+                  <span className="text-[15px] leading-snug text-crisp">{pain}</span>
+                </motion.li>
+              ))}
+            </ul>
           </div>
+        )}
+      </Section>
+
+      {/* ── What you get ─────────────────────────────────────── */}
+      <Section band="plain" tight>
+        <SectionHead align="left" spacing="tight" title={t("industries.offers.title")} />
+        <BentoGrid>
+          {(
+            [
+              { k: "test", Icon: Radio },
+              { k: "tradein", Icon: Repeat },
+              { k: "service", Icon: Wrench },
+            ] as const
+          ).map((o, i) => (
+            <FeatureCard
+              key={o.k}
+              idx={i}
+              tone={i === 1 ? "dark" : "light"}
+              eyebrow={t(`industries.offers.${o.k}.c`)}
+              title={t(`industries.offers.${o.k}.t`)}
+              body={t(`industries.offers.${o.k}.d`)}
+              className="min-h-[280px]"
+              action={{
+                label: t(`industries.offers.${o.k}.c`),
+                onClick: () => openLead({ title: t(`industries.offers.${o.k}.t`) }),
+              }}
+              media={
+                <o.Icon
+                  className={`h-10 w-10 ${i === 1 ? "text-white" : "text-signal"}`}
+                  strokeWidth={1.5}
+                  aria-hidden
+                />
+              }
+            />
+          ))}
+        </BentoGrid>
+      </Section>
+
+      {/* ── Recommended models ───────────────────────────────── */}
+      <Section band="soft" tight>
+        <SectionHead
+          align="left"
+          spacing="tight"
+          title={t("industries.recommended")}
+          link={{ label: t("industries.compare_all"), to: "/catalog" }}
+        />
+        <div className="grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-3">
+          {picks.slice(0, 6).map((p, i) => (
+            <ProductCard key={p.id} p={p} lang={lang} idx={i} />
+          ))}
         </div>
-      </section>
+      </Section>
 
-      {/* Recommended */}
-      <section className="band-plain section px-6 md:px-10">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="flex items-end justify-between mb-10">
-            <h2 className="type-headline text-crisp">{t("industries.recommended")}</h2>
-            <LocaleLink to="/catalog" className="pill-link">
-              {t("industries.compare_all")}
-            </LocaleLink>
+      {/* ── Testimonial ──────────────────────────────────────── */}
+      <Section band="plain" tight>
+        <figure className="mx-auto max-w-3xl text-center">
+          <Quote className="mx-auto mb-6 h-9 w-9 text-signal" strokeWidth={1.5} aria-hidden />
+          <div className="type-caption mb-6 uppercase tracking-[0.18em]">
+            {t("industries.quote_kicker")}
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 items-stretch">
-            {picks.slice(0, 6).map((p, i) => (
-              <motion.button
-                key={p.id}
-                onClick={() => openLead({ product: p.name })}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{ ...spring, delay: (i % 3) * 0.06 }}
-                className="group flex h-full min-h-[340px] flex-col rounded-[28px] bg-charcoal p-6 text-left transition-transform duration-300 hover:-translate-y-1 md:p-8"
-              >
-                <div className="aspect-square flex items-center justify-center mb-6 bg-pitch rounded-2xl overflow-hidden">
-                  <img
-                    width={1200}
-                    height={900}
-                    src={p.image}
-                    alt={p.name}
-                    className="max-h-[85%] max-w-[85%] object-contain group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <div className="text-[12px] text-cool uppercase tracking-wide">{p.brand}</div>
-                <h3 className="text-[15px] font-semibold text-crisp mt-1 leading-tight flex-1">
-                  {p.name}
-                </h3>
-                <div className="text-[13px] text-cool mt-1">{formatPrice(p.price, lang)}</div>
-              </motion.button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonial */}
-      <section className="band-soft section-tight px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <Quote className="w-10 h-10 text-signal mx-auto mb-6" strokeWidth={1.5} />
-          <p className="headline text-crisp text-2xl md:text-4xl leading-[1.2]">
+          <blockquote className="headline text-2xl leading-[1.2] text-crisp md:text-4xl">
             {t(`industries.${s}.quote`)}
-          </p>
-          <div className="mt-6 text-cool text-[13px]">— {t(`industries.${s}.quote_author`)}</div>
-        </div>
-      </section>
+          </blockquote>
+          <figcaption className="mt-6 text-[13px] text-cool">
+            — {t(`industries.${s}.quote_author`)}
+          </figcaption>
+        </figure>
+      </Section>
 
-      {/* FAQ */}
+      {/* ── FAQ ──────────────────────────────────────────────── */}
       {faq.length > 0 && (
-        <section className="band-plain section px-6 md:px-10">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="type-headline text-crisp text-center mb-12">
-              {t("industries.faq_title")}
-            </h2>
-            <div className="rounded-3xl bg-charcoal overflow-hidden">
+        <Section band="soft" tight>
+          <div className="mx-auto max-w-3xl">
+            <SectionHead align="center" spacing="tight" title={t("industries.faq_title")} />
+            <div className="overflow-hidden rounded-3xl bg-pitch">
               {faq.map((f, i) => (
-                <FaqRow key={i} q={f.q} a={f.a} first={i === 0} />
+                <FaqRow key={f.q} q={f.q} a={f.a} first={i === 0} />
               ))}
             </div>
           </div>
-        </section>
+        </Section>
       )}
 
-      {/* Final CTA */}
-      <section className="band-dark section px-6 text-center">
-        <h2
-          className="headline text-white mx-auto max-w-3xl"
-          style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
-        >
-          {t("industries.cta")}.
-        </h2>
-        <p className="mt-4 text-lg text-white/60 max-w-xl mx-auto">{t("form.trust_line")}</p>
-        <div className="mt-8 flex justify-center gap-4 flex-wrap">
-          <button
-            onClick={() => openLead({ title: `${t("industries.cta")} · ${industryName}` })}
-            className="pill"
-            style={{ background: "#fff", color: "#000" }}
+      {/* ── Closing CTA ──────────────────────────────────────── */}
+      <Section band="dark" tight>
+        <div className="text-center">
+          <h2
+            className="headline mx-auto max-w-3xl text-white"
+            style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
           >
-            {t("industries.cta")}
-          </button>
-          <LocaleLink
-            to="/catalog"
-            className="text-signal text-[15px] inline-flex items-center gap-1"
-          >
-            {t("industries.compare_all")} <ChevronRight className="w-4 h-4" />
-          </LocaleLink>
+            {t("industries.banner_title")}
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-lg text-white/60">
+            {t("industries.banner_sub")}
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <button
+              onClick={() => openLead({ title: `${t("industries.cta")} · ${industryName}` })}
+              className="pill bg-white text-black"
+            >
+              {t("industries.cta")}
+            </button>
+            <LocaleLink to="/catalog" className="pill-link">
+              {t("industries.compare_all")} <ChevronRight className="h-4 w-4" aria-hidden />
+            </LocaleLink>
+          </div>
         </div>
-      </section>
+      </Section>
     </div>
   );
 }
 
+/**
+ * Problem and solution, side by side. The solution panel used to be a solid
+ * `--signal` fill, which is the one thing Apple never does with a brand colour —
+ * saturated red across a whole panel shouts over the copy on it and fails
+ * contrast at body size. Black carries the same weight without either problem.
+ */
 function StoryCard({
   kicker,
   body,
@@ -359,51 +368,45 @@ function StoryCard({
 }: {
   kicker: string;
   body: string;
-  tone: "light" | "accent";
+  tone: "light" | "dark";
 }) {
-  const isAccent = tone === "accent";
+  const dark = tone === "dark";
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={spring}
-      className="rounded-3xl p-8 md:p-12"
-      style={{
-        background: isAccent ? "var(--signal)" : "var(--charcoal)",
-        color: isAccent ? "#fff" : "var(--crisp)",
-      }}
+      {...fadeUpAt(dark ? 1 : 0)}
+      className={`card-interactive rounded-[28px] p-8 md:p-12 ${
+        dark ? "is-dark bg-black text-[#f5f5f7]" : "bg-pitch text-crisp"
+      }`}
     >
-      <div className={`text-[13px] mb-4 ${isAccent ? "text-white/70" : "text-cool"}`}>{kicker}</div>
-      <p className="headline text-2xl md:text-3xl leading-[1.2]">{body}</p>
-      {isAccent && <Check className="w-6 h-6 mt-6 opacity-80" />}
+      <div className={`mb-4 text-[13px] ${dark ? "text-white/60" : "text-cool"}`}>{kicker}</div>
+      <p className="headline text-2xl leading-[1.2] md:text-3xl">{body}</p>
+      {dark && <Check className="mt-6 h-6 w-6 text-white" aria-hidden />}
     </motion.div>
   );
 }
 
-function OutcomeNumber({ value }: { value: string }) {
+/** A stat: the figure animates, the unit stays put beside it. */
+function OutcomeNumber({ value, unit }: { value: string; unit?: string }) {
   const match = value.match(/^(\d+(?:\.\d+)?)(.*)$/);
-  if (match) {
-    const n = parseFloat(match[1]);
-    const suffix = match[2];
-    if (n < 10000 && Number.isFinite(n)) {
-      return (
-        <div
-          className="text-crisp font-semibold tracking-tight"
-          style={{ fontSize: "clamp(3rem, 7vw, 5rem)", lineHeight: 1 }}
-        >
-          <CountUp to={n} />
-          {suffix}
-        </div>
-      );
-    }
-  }
+  const numeric = match ? parseFloat(match[1]) : NaN;
+  const canCount = Number.isFinite(numeric) && numeric < 10000;
+
   return (
-    <div
-      className="text-crisp font-semibold tracking-tight"
-      style={{ fontSize: "clamp(2.5rem, 6vw, 4rem)", lineHeight: 1 }}
-    >
-      {value}
+    <div className="flex items-baseline gap-2">
+      <span
+        className="font-semibold tracking-tight text-crisp"
+        style={{ fontSize: "clamp(3rem, 6vw, 4.5rem)", lineHeight: 1 }}
+      >
+        {canCount ? (
+          <>
+            <CountUp to={numeric} />
+            {match![2]}
+          </>
+        ) : (
+          value
+        )}
+      </span>
+      {unit ? <span className="text-[15px] text-cool">{unit}</span> : null}
     </div>
   );
 }
@@ -414,7 +417,7 @@ function FaqRow({ q, a, first }: { q: string; a: string; first: boolean }) {
     <div className={first ? "" : "border-t border-border"}>
       <button
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between gap-6 px-6 md:px-8 py-6 text-left"
+        className="w-full flex items-center justify-between gap-6 py-6 text-left"
       >
         <span className="text-[16px] md:text-lg font-medium text-crisp">{q}</span>
         <span className="shrink-0 h-8 w-8 rounded-full bg-pitch flex items-center justify-center text-crisp">
@@ -427,7 +430,7 @@ function FaqRow({ q, a, first }: { q: string; a: string; first: boolean }) {
         transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
         className="overflow-hidden"
       >
-        <p className="px-6 md:px-8 pb-6 text-[15px] text-cool leading-relaxed">{a}</p>
+        <p className="pb-6 text-[15px] text-cool leading-relaxed">{a}</p>
       </motion.div>
     </div>
   );

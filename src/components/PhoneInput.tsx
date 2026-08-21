@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { UZ_PHONE_PREFIX, UZ_PHONE_PATTERN, formatUzPhoneDigits, extractUzDigits } from "@/lib/phone";
+import { useTranslation } from "react-i18next";
+import {
+  UZ_PHONE_PREFIX,
+  UZ_PHONE_PATTERN,
+  formatUzPhoneDigits,
+  extractUzDigits,
+} from "@/lib/phone";
 
 /**
  * Phone input that keeps the "+998" country code fixed and formats the rest
@@ -7,8 +13,17 @@ import { UZ_PHONE_PREFIX, UZ_PHONE_PATTERN, formatUzPhoneDigits, extractUzDigits
  * Uzbekistan format ("+998 XX XXX-XX-XX").
  */
 export function PhoneInput({
-  name, required, className, id,
-}: { name: string; required?: boolean; className?: string; id?: string }) {
+  name,
+  required,
+  className,
+  id,
+}: {
+  name: string;
+  required?: boolean;
+  className?: string;
+  id?: string;
+}) {
+  const { t } = useTranslation();
   const [digits, setDigits] = useState("");
   const value = UZ_PHONE_PREFIX + formatUzPhoneDigits(digits);
 
@@ -26,6 +41,8 @@ export function PhoneInput({
       id={id}
       type="tel"
       inputMode="tel"
+      placeholder={t("form.phone")}
+      aria-label={t("form.phone")}
       name={name}
       required={required}
       pattern={UZ_PHONE_PATTERN}
@@ -43,7 +60,11 @@ export function PhoneInput({
         const el = e.currentTarget;
         const { selectionStart, selectionEnd } = el;
         if (selectionStart === null || selectionEnd === null) return;
-        if (e.key === "Backspace" && selectionStart <= UZ_PHONE_PREFIX.length && selectionEnd <= UZ_PHONE_PREFIX.length) {
+        if (
+          e.key === "Backspace" &&
+          selectionStart <= UZ_PHONE_PREFIX.length &&
+          selectionEnd <= UZ_PHONE_PREFIX.length
+        ) {
           e.preventDefault();
         }
         if (e.key === "Delete" && selectionStart < UZ_PHONE_PREFIX.length) {

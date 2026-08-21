@@ -11,6 +11,7 @@ import { FeatureCard } from "@/components/apple";
 import {
   SITE_NAME,
   breadcrumbSchema,
+  faqSchema,
   jsonLd,
   localeLinks,
   pageMeta,
@@ -50,6 +51,16 @@ export const routeOptions = {
             params.lang,
           ),
         ),
+        // The repair policy accordion is already a list of questions and
+        // answers, translated in all three locales — it just was not marked up
+        // as one. Free eligibility for an FAQ rich result on the page that
+        // answers "how much does a repair cost".
+        jsonLd(
+          faqSchema(
+            t("service.policy", { returnObjects: true }) as { q: string; a: string }[],
+            params.lang,
+          ),
+        ),
       ],
     };
   },
@@ -70,8 +81,8 @@ export function ServicePage() {
 
 function BenchStrip() {
   return (
-    <section className="bg-pitch px-6 md:px-10">
-      <div className="max-w-[1200px] mx-auto">
+    <section className="bg-pitch">
+      <div className="shell">
         <div className="rounded-3xl overflow-hidden aspect-[16/7] bg-charcoal relative">
           <img
             src={serviceLight}
@@ -172,8 +183,8 @@ function Flow() {
   );
 
   return (
-    <section ref={scope} className="band-soft section-tight overflow-hidden px-4 md:px-6">
-      <div className="mx-auto max-w-[1200px]">
+    <section ref={scope} className="band-soft section-tight overflow-hidden">
+      <div className="shell">
         <SectionHead align="left" spacing="tight" title={t("service.flow_title")} />
         <div data-flow-track className="flex gap-4 will-change-transform">
           {steps.map((s, i) => {
@@ -203,8 +214,9 @@ function Advantages() {
   const keys = ["certified", "parts", "fast", "fixed"] as const;
   const icons = [ClipboardCheck, Cog, Search, Microscope];
   return (
-    <section className="band-plain section px-4 md:px-6">
-      <div className="mx-auto max-w-[1200px]">
+    <section className="band-plain section">
+      <div className="shell">
+        <SectionHead align="left" spacing="tight" title={t("service.advantages_title")} />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {keys.map((k, i) => {
             const Icon = icons[i];
@@ -212,10 +224,16 @@ function Advantages() {
               <FeatureCard
                 key={k}
                 idx={i}
-                eyebrow={`0${i + 1}`}
+                tone={i === 3 ? "dark" : "light"}
                 title={t(`service.advantages.${k}`)}
-                className="min-h-[220px] bg-charcoal"
-                media={<Icon className="h-9 w-9 text-signal" strokeWidth={1.5} aria-hidden />}
+                className="min-h-[240px] bg-charcoal"
+                media={
+                  <Icon
+                    className={`h-9 w-9 ${i === 3 ? "text-white" : "text-signal"}`}
+                    strokeWidth={1.5}
+                    aria-hidden
+                  />
+                }
               />
             );
           })}
@@ -231,7 +249,7 @@ function Policy() {
   const rows = t("service.policy", { returnObjects: true }) as Array<{ q: string; a: string }>;
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section className="band-soft section px-6 md:px-10">
+    <section className="band-soft section">
       <div className="mx-auto max-w-3xl">
         <SectionHead align="center" spacing="tight" title={t("service.policy_title")} />
         <div className="divide-y divide-border border-y border-border">

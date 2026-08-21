@@ -3,19 +3,21 @@ import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Check, Radio, MapPin, MessagesSquare, Layers, Coins, Wifi } from "lucide-react";
 import pocHero from "@/assets/poc-hero-v13.png.asset.json";
-import pocRental from "@/assets/poc-rental-v11.png.asset.json";
+import radioInHand from "@/assets/product/radio-in-hand.webp";
 import { openLead } from "@/components/LeadFormSheet";
-import { SectionHead } from "@/components/Section";
-import {
-  CompareTable,
-  FeatureCard,
-  ScrollRow,
-  ScrollItem,
-  type CompareColumn,
-} from "@/components/apple";
+import { Section, SectionHead } from "@/components/Section";
+import { CompareTable, type CompareColumn } from "@/components/apple";
+import { ProductShot } from "@/components/ProductShot";
 import { spring, fadeUpAt } from "@/lib/springs";
 import { assetUrl } from "@/lib/asset";
-import { localeLinks, pageMeta, type SeoLang } from "@/lib/seo";
+import {
+  breadcrumbSchema,
+  jsonLd,
+  localeLinks,
+  pageMeta,
+  serviceSchema,
+  type SeoLang,
+} from "@/lib/seo";
 import { tFor } from "@/lib/i18n";
 
 export const routeOptions = {
@@ -29,6 +31,29 @@ export const routeOptions = {
         path: "/poc",
       }),
       links: localeLinks(params.lang, "/poc"),
+      // /poc was the only page on the site emitting no structured data at all,
+      // despite being a named product line with its own service offer.
+      scripts: [
+        jsonLd(
+          serviceSchema(
+            {
+              name: t("poc.design.title"),
+              description: t("meta.poc.desc"),
+              path: "/poc",
+            },
+            params.lang,
+          ),
+        ),
+        jsonLd(
+          breadcrumbSchema(
+            [
+              { name: t("nav.home"), path: "/" },
+              { name: t("nav.poc"), path: "/poc" },
+            ],
+            params.lang,
+          ),
+        ),
+      ],
     };
   },
   component: PoCPage,
@@ -58,7 +83,7 @@ function PocHero() {
       ref={ref}
       className="relative overflow-hidden band-plain pt-32 pb-20 md:pt-44 md:pb-28"
     >
-      <div className="relative mx-auto max-w-[1100px] px-6 text-center md:px-10">
+      <div className="relative shell px-6 text-center md:px-10">
         <motion.div
           initial={{ opacity: 0, y: -6 }}
           animate={{ opacity: 1, y: 0 }}
@@ -181,8 +206,8 @@ function Compare() {
   ];
 
   return (
-    <section id="poc-compare" className="band-soft section-tight px-4 md:px-6">
-      <div className="mx-auto max-w-[1000px]">
+    <section id="poc-compare" className="band-soft section-tight">
+      <div className="shell">
         <SectionHead
           align="center"
           spacing="tight"
@@ -197,63 +222,90 @@ function Compare() {
   );
 }
 
-/* ─── Network design — numbered steps as a card shelf ─────── */
+/* ─── Network design — the five steps as a shelf ──────────── */
+/**
+ * Five steps do not divide into a three-column grid, and the earlier attempts
+ * both showed it: first as a grid with an empty cell in the second row, then as
+ * a list, which turned a five-beat sequence into a wall of rules.
+ *
+ * A shelf is what apple.com uses when the count does not fit the grid — the
+ * cards run off the right edge and scroll, so the layout never has to resolve
+ * into rows at all. Each card carries its step number as a large ghost numeral
+ * behind the copy, which is the sequence made visible rather than stated.
+ */
 function NetworkDesign() {
   const { t } = useTranslation();
   const steps = (t("poc.design.steps", { returnObjects: true }) as string[]) || [];
   const icons = [MapPin, Layers, Radio, Check, Coins];
 
   return (
-    <section className="band-plain section-tight px-4 md:px-6">
-      <div className="mx-auto max-w-[1200px]">
-        <SectionHead
-          align="left"
-          spacing="tight"
-          eyebrow={t("poc.design.kicker")}
-          title={t("poc.design.title")}
-        />
-        <ScrollRow cols={3}>
-          {steps.map((s, i) => {
-            const Icon = icons[i] ?? Check;
-            return (
-              <ScrollItem key={s}>
-                <FeatureCard
-                  idx={i}
-                  tone={i === 1 ? "dark" : "light"}
-                  eyebrow={String(i + 1).padStart(2, "0")}
-                  title={s}
-                  className="h-full min-h-[230px] ring-1 ring-border"
-                  media={<Icon className="h-9 w-9 text-signal" strokeWidth={1.5} aria-hidden />}
-                />
-              </ScrollItem>
-            );
-          })}
-        </ScrollRow>
-      </div>
-    </section>
+    <Section band="soft" tight>
+      <SectionHead
+        align="left"
+        spacing="tight"
+        eyebrow={t("poc.design.kicker")}
+        title={t("poc.design.title")}
+      />
+
+      <ol className="no-scrollbar bleed-x flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4">
+        {steps.map((step, i) => {
+          const Icon = icons[i] ?? Check;
+          return (
+            <motion.li
+              key={step}
+              {...fadeUpAt(Math.min(i, 4))}
+              className="card-interactive group relative flex min-h-[340px] w-[78vw] shrink-0 snap-start flex-col overflow-hidden rounded-[28px] bg-pitch p-7 sm:w-[46vw] md:w-[32vw] lg:w-[23vw] lg:min-w-[260px]"
+            >
+              {/* The step number, at a scale you read as position, not as text. */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -bottom-8 -right-3 select-none text-[150px] font-semibold leading-none tracking-[-0.05em] text-crisp/[0.05] transition-colors duration-500 group-hover:text-signal/[0.09]"
+              >
+                {i + 1}
+              </span>
+
+              <Icon
+                className="relative h-8 w-8 text-signal transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
+                strokeWidth={1.5}
+                aria-hidden
+              />
+
+              <div className="relative mt-auto">
+                <div className="text-[13px] font-medium uppercase tracking-[0.16em] text-cool">
+                  {t("poc.design.step_label", {
+                    defaultValue: String(i + 1).padStart(2, "0"),
+                    n: i + 1,
+                  })}
+                </div>
+                <h3 className="mt-2 hyphens-auto break-words text-[21px] font-semibold leading-[1.2] tracking-[-0.02em] text-crisp">
+                  {step}
+                </h3>
+              </div>
+            </motion.li>
+          );
+        })}
+      </ol>
+    </Section>
   );
 }
 
-/* ─── Rental — image / copy split ─────────────────────────── */
+/* ─── Rental — product on a stage, copy alongside ─────────── */
+/**
+ * The image here used to be rendered with `mix-blend-multiply` inside a
+ * `bg-pitch` card — and `--pitch` is white, despite the name. Multiply removes
+ * white and keeps black, so a dark-background source came through as a hard
+ * black rectangle sitting in a white box. That is the "black image on white
+ * background" in the brief.
+ *
+ * It now uses a studio shot on a light stage, the same treatment the hero at
+ * the top of this page already applied correctly.
+ */
 function Rental() {
   const { t } = useTranslation();
   return (
-    <section className="band-soft section-tight px-4 md:px-6">
-      <div className="mx-auto grid max-w-[1200px] items-center gap-4 md:grid-cols-2">
-        <motion.div
-          {...fadeUpAt(0)}
-          className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-[28px] bg-pitch"
-        >
-          <img
-            src={assetUrl(pocRental)}
-            alt=""
-            loading="lazy"
-            width={1200}
-            height={900}
-            className="max-h-[78%] max-w-[78%] object-contain mix-blend-multiply"
-          />
-        </motion.div>
-        <motion.div {...fadeUpAt(1)} className="px-2 md:px-6">
+    <Section band="soft" tight>
+      <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-12">
+        <motion.div {...fadeUpAt(0)} className="order-2 md:order-1">
           <div className="text-[13px] font-medium tracking-tight text-signal">
             {t("poc.rental.kicker")}
           </div>
@@ -266,7 +318,21 @@ function Rental() {
             {t("poc.rental.cta")}
           </button>
         </motion.div>
+
+        <motion.div
+          {...fadeUpAt(1)}
+          className="order-1 overflow-hidden rounded-[28px] bg-pitch md:order-2"
+        >
+          <ProductShot
+            src={radioInHand}
+            alt={t("poc.rental.title")}
+            width={1600}
+            height={2143}
+            sizes="(max-width: 768px) 90vw, 520px"
+            className="aspect-[4/3] w-full p-6"
+          />
+        </motion.div>
       </div>
-    </section>
+    </Section>
   );
 }

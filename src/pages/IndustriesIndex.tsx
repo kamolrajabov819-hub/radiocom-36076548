@@ -81,8 +81,8 @@ export function IndustriesOverview() {
         </div>
       </section>
 
-      <section className="bg-pitch px-4 md:px-6 pb-24">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
+      <section className="bg-pitch pb-24">
+        <div className="shell grid grid-cols-1 md:grid-cols-2 gap-4">
           {INDUSTRY_SLUGS.map((s, i) => (
             <motion.div
               key={s}

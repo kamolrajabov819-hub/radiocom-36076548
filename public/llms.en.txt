@@ -1,0 +1,61 @@
+# Radiocom
+
+> Authorised supplier of professional and consumer two-way radios in Uzbekistan.
+> 11 years in business, 10,000+ customers. Sales, rental, authorised service and
+> radio network design. Office and service centre in Tashkent.
+
+Languages: Russian, English, Uzbek. Russian is the canonical language.
+- https://radiocom.uz/ru
+- https://radiocom.uz/en
+- https://radiocom.uz/uz
+
+## Contacts
+- Address: Uzbekiston Ovozi 2, Tashkent, Uzbekistan
+- Phone: +998 78 113-16-18
+- Opening hours: Mon-Fri 09:00-18:00
+
+## Catalogue (24 models)
+### Radiocom RC
+- [Radiocom RCD-70](https://radiocom.uz/en/catalog/rcd-70) — The RCD flagship: digital DMR, GPS and IP67 protection. Range up to 4 km.
+- [Radiocom RCD-60](https://radiocom.uz/en/catalog/rcd-60) — A digital radio with display and keypad, fully equipped. Range up to 3.5 km.
+- [Radiocom RCD-50](https://radiocom.uz/en/catalog/rcd-50) — The crew workhorse: clean digital audio and a display. Range up to 3 km.
+- [Radiocom RCD-40](https://radiocom.uz/en/catalog/rcd-40) — Mid-range RCD with boosted reception and a long duty cycle. Range up to 2.5 km.
+- [Radiocom RCD-30](https://radiocom.uz/en/catalog/rcd-30) — A compact digital radio — the way into the professional tier. Range up to 2 km.
+- [Radiocom RC-50](https://radiocom.uz/en/catalog/rc-50) — An all-round model for mid-range coverage. Range up to 2.5 km.
+- [Radiocom RC-20](https://radiocom.uz/en/catalog/rc-20) — A light radio for floor staff — ships with charger and headset. Range up to 1.5 km.
+- [Radiocom RC-10](https://radiocom.uz/en/catalog/rc-10) — The entry point of the range — simple and dependable. Range up to 1 km.
+
+### Motorola
+- [Motorola Talkabout T82 Extreme](https://radiocom.uz/en/catalog/m-t82-extreme) — A rugged licence-free radio for work outdoors. Range up to 1.5 km.
+- [Motorola Talkabout T82 Extreme Quad](https://radiocom.uz/en/catalog/m-t82-extreme-quad) — A four-radio kit for organised crews. Range up to 1.5 km.
+- [Motorola Talkabout T82 Extreme RSM](https://radiocom.uz/en/catalog/m-t82-extreme-rsm) — T82 Extreme bundled with RSM remote speaker microphones for noisy sites. Range up to 1.5 km.
+- [Motorola Talkabout T82](https://radiocom.uz/en/catalog/m-t82) — A compact PMR radio for teams and events. Range up to 1.5 km.
+- [Motorola Talkabout T72 Go Active](https://radiocom.uz/en/catalog/m-t72) — A current-generation PMR built for active outdoor use. Range up to 1 km.
+- [Motorola Talkabout T62 Red](https://radiocom.uz/en/catalog/m-t62-red) — A styled PMR in a red shell, with dependable reception. Range up to 900 m.
+- [Motorola Talkabout T62 Blue](https://radiocom.uz/en/catalog/m-t62-blue) — The same T62 in blue — for teams and families. Range up to 900 m.
+- [Motorola Talkabout T42 Triple](https://radiocom.uz/en/catalog/m-t42-triple) — A three-radio kit for small teams. Range up to 300 m.
+- [Motorola Talkabout T42 Quad](https://radiocom.uz/en/catalog/m-t42-quad) — A four-radio T42 kit. Range up to 300 m.
+- [Motorola Talkabout T42 Red](https://radiocom.uz/en/catalog/m-t42-red) — An entry-level PMR for families and small businesses. Range up to 300 m.
+- [Motorola Talkabout T42 Blue](https://radiocom.uz/en/catalog/m-t42-blue) — The T42 in blue — simple, affordable, dependable. Range up to 300 m.
+- [Motorola TLKR-T92 H2O](https://radiocom.uz/en/catalog/m-tlkr-t92h2o) — It floats, and it is IP67 waterproof — for water and building sites. Range up to 1.5 km.
+- [Motorola XT185](https://radiocom.uz/en/catalog/m-xt185) — PMR for retail, HoReCa and public venues. Range up to 1 km.
+- [Motorola XT420](https://radiocom.uz/en/catalog/m-xt420) — A licence-free PMR for HoReCa and on-site security. Range up to 2 km.
+- [Motorola CLP 446](https://radiocom.uz/en/catalog/m-clp446) — A flat, antenna-free radio for front-of-house staff — antibacterial housing. Range up to 6 floors.
+- [Motorola CLK 446](https://radiocom.uz/en/catalog/m-clk446) — The slimmest CL: 14 mm, antimicrobial coating, display. Range up to 6 floors.
+
+## Sections
+- https://radiocom.uz/en
+- https://radiocom.uz/en/catalog
+- https://radiocom.uz/en/poc
+- https://radiocom.uz/en/service
+- https://radiocom.uz/en/industries
+- https://radiocom.uz/en/industries/horeca
+- https://radiocom.uz/en/industries/construction
+- https://radiocom.uz/en/industries/security
+- https://radiocom.uz/en/industries/mining
+- https://radiocom.uz/en/industries/transport
+- https://radiocom.uz/en/industries/manufacturing
+
+## A note on range
+Quoted range assumes line of sight and good conditions.
+Actual range depends on terrain, weather, interference and obstructions.

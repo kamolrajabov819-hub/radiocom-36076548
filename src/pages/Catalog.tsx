@@ -1,5 +1,7 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { Link, useSearch } from "@tanstack/react-router";
+import { useLang } from "@/lib/locale";
 import { motion } from "framer-motion";
 import { FileDown } from "lucide-react";
 import {
@@ -29,7 +31,24 @@ import {
 } from "@/lib/seo";
 import { tFor } from "@/lib/i18n";
 
+export type CatalogSearch = { cat?: Category; brand?: Brand };
+
+/**
+ * The filters live in the URL, not in component state.
+ *
+ * As `useState` they were invisible: every brand and category the shop sells
+ * shared the single URL `/catalog`, so "Motorola rations Tashkent" had no page
+ * to land on and the facets could not be linked, shared or crawled at all.
+ */
 export const routeOptions = {
+  validateSearch: (search: Record<string, unknown>): CatalogSearch => {
+    const cat = search.cat as Category | undefined;
+    const brand = search.brand as Brand | undefined;
+    return {
+      ...(cat && cat in categoryLabels ? { cat } : {}),
+      ...(brand && (allBrands as readonly string[]).includes(brand) ? { brand } : {}),
+    };
+  },
   head: ({ params }: { params: { lang: SeoLang } }) => {
     const t = tFor(params.lang);
     // Named `count` so i18next selects the Russian numeral form: 24 модели,
@@ -38,6 +57,13 @@ export const routeOptions = {
     const title = t("meta.catalog.title", { count });
     const description = t("meta.catalog.desc", { count });
 
+    // Every facet URL canonicalises here on purpose. `head()` in this router
+    // version is not handed the search params, so a faceted URL cannot yet
+    // carry its own title and description — and shipping a dozen URLs that all
+    // claim the same title is worse than not indexing them. The facets are now
+    // linkable, shareable and crawl-discoverable, which is the win; giving each
+    // one its own indexable page needs real path segments
+    // (`/catalog/brand/motorola`), which is a separate change.
     return {
       meta: pageMeta({ lang: params.lang, title, description, path: "/catalog" }),
       links: localeLinks(params.lang, "/catalog"),
@@ -61,16 +87,14 @@ export const routeOptions = {
 export function CatalogPage() {
   const { t, i18n } = useTranslation();
   const lang = (i18n.language.slice(0, 2) as "ru" | "en" | "uz") || "ru";
-  const [cat, setCat] = useState<Category | null>(null);
-  const [brand, setBrand] = useState<Brand | null>(null);
+  const search = useSearch({ strict: false }) as CatalogSearch;
+  const cat = search.cat ?? null;
+  const brand = search.brand ?? null;
 
-  const filtered = useMemo(() => {
-    return products.filter((p) => {
-      if (cat && p.category !== cat) return false;
-      if (brand && p.brand !== brand) return false;
-      return true;
-    });
-  }, [cat, brand]);
+  const filtered = useMemo(
+    () => products.filter((p) => (!cat || p.category === cat) && (!brand || p.brand === brand)),
+    [cat, brand],
+  );
 
   const categories = Object.keys(categoryLabels) as Category[];
 
@@ -101,20 +125,18 @@ export function CatalogPage() {
 
       {/* Sticky filter bar */}
       <div className="sticky top-12 z-30 frost-nav">
-        <div className="max-w-[1200px] mx-auto">
+        <div className="shell">
           <div className="overflow-x-auto no-scrollbar mask-fade-x">
-            <div className="flex items-center gap-2 px-4 md:px-6 py-3 whitespace-nowrap">
-              <FilterChip
-                active={!cat && !brand}
-                onClick={() => {
-                  setCat(null);
-                  setBrand(null);
-                }}
-              >
+            <div className="flex items-center gap-2 py-3 whitespace-nowrap">
+              <FilterChip active={!cat && !brand} to={{}}>
                 {t("catalog.all")}
               </FilterChip>
               {categories.map((c) => (
-                <FilterChip key={c} active={cat === c} onClick={() => setCat(cat === c ? null : c)}>
+                <FilterChip
+                  key={c}
+                  active={cat === c}
+                  to={{ ...search, cat: cat === c ? undefined : c }}
+                >
                   {categoryLabels[c][lang]}
                 </FilterChip>
               ))}
@@ -123,7 +145,7 @@ export function CatalogPage() {
                 <FilterChip
                   key={b}
                   active={brand === b}
-                  onClick={() => setBrand(brand === b ? null : b)}
+                  to={{ ...search, brand: brand === b ? undefined : b }}
                 >
                   {b}
                 </FilterChip>
@@ -134,8 +156,8 @@ export function CatalogPage() {
       </div>
 
       {/* Grid */}
-      <section className="bg-pitch px-4 md:px-6 py-10 md:py-14">
-        <div className="max-w-[1200px] mx-auto">
+      <section className="bg-pitch py-10 md:py-14">
+        <div className="shell">
           <div className="flex items-center justify-between mb-6 px-2">
             <div className="text-[13px] text-cool">
               {filtered.length} {t("catalog.results")}
@@ -230,8 +252,8 @@ function Compare({ lang }: { lang: Lang }) {
   });
 
   return (
-    <section className="band-soft section-tight px-4 md:px-6">
-      <div className="mx-auto max-w-[1200px]">
+    <section className="band-soft section-tight">
+      <div className="shell">
         <SectionHead
           align="center"
           spacing="tight"
@@ -246,23 +268,32 @@ function Compare({ lang }: { lang: Lang }) {
   );
 }
 
+/**
+ * A real anchor, not a button. A crawler follows it, a reader can middle-click
+ * it, and the browser's back button undoes it — none of which is true of a
+ * click handler that sets state.
+ */
 function FilterChip({
   active,
-  onClick,
+  to,
   children,
 }: {
   active: boolean;
-  onClick: () => void;
+  to: CatalogSearch;
   children: React.ReactNode;
 }) {
+  const lang = useLang();
   return (
-    <button
-      onClick={onClick}
+    <Link
+      to="/$lang/catalog"
+      params={{ lang }}
+      search={to as never}
+      aria-current={active ? "true" : undefined}
       className={`shrink-0 rounded-full px-4 py-1.5 text-[13px] transition-colors ${
         active ? "bg-crisp text-pitch" : "bg-charcoal text-crisp/80 hover:text-crisp"
       }`}
     >
       {children}
-    </button>
+    </Link>
   );
 }

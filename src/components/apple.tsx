@@ -18,51 +18,76 @@ import { fadeUpAt } from "@/lib/springs";
 
 /* ── 2. Feature card ───────────────────────────────────────── */
 
+/** Column span within a `BentoGrid`. Ignored below `lg`, where cards stack. */
+export type Span = 1 | 2;
+
 export function FeatureCard({
   eyebrow,
   title,
   body,
   media,
+  backdrop,
   action,
   tone = "light",
   idx = 0,
+  span = 1,
+  tall = false,
   className = "",
 }: {
   eyebrow?: string;
   title: ReactNode;
   body?: ReactNode;
+  /** Sits below the copy, inside the card's padding. Icons, floating products. */
   media?: ReactNode;
+  /**
+   * Sits behind the copy, ignoring the card's padding, so a photograph can run
+   * to the card's rounded edge. Position it yourself (`absolute inset-y-0
+   * right-0 w-1/2`); the card clips whatever overflows.
+   */
+  backdrop?: ReactNode;
   action?: { label: string; onClick: () => void };
   tone?: "light" | "dark";
   idx?: number;
+  span?: Span;
+  tall?: boolean;
   className?: string;
 }) {
   const dark = tone === "dark";
   return (
     <motion.article
       {...fadeUpAt(Math.min(idx, 6))}
-      className={`group relative flex flex-col overflow-hidden rounded-[28px] p-7 md:p-8 ${
-        dark ? "bg-black text-[#f5f5f7]" : "bg-pitch text-crisp"
-      } ${className}`}
+      className={`group card-interactive relative flex flex-col overflow-hidden rounded-[28px] p-7 md:p-8 ${
+        dark ? "is-dark bg-black text-[#f5f5f7]" : "bg-pitch text-crisp"
+      } ${span === 2 ? "lg:col-span-2" : ""} ${tall ? "lg:row-span-2" : ""} ${className}`}
     >
+      {backdrop ? (
+        <div className="pointer-events-none absolute inset-0 [&_img]:transition-transform [&_img]:duration-700 [&_img]:ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[&_img]:scale-[1.04]">
+          {backdrop}
+        </div>
+      ) : null}
+
       {eyebrow ? (
-        <div className={`text-[14px] font-medium ${dark ? "text-white/60" : "text-cool"}`}>
+        <div className={`relative text-[14px] font-medium ${dark ? "text-white/60" : "text-cool"}`}>
           {eyebrow}
         </div>
       ) : null}
 
-      <h3 className="mt-1.5 text-[24px] font-semibold leading-[1.15] tracking-[-0.02em] md:text-[28px]">
+      <h3 className="relative mt-1.5 hyphens-auto break-words text-[22px] font-semibold leading-[1.15] tracking-[-0.02em] md:text-[26px]">
         {title}
       </h3>
 
       {body ? (
-        <p className={`mt-3 text-[15px] leading-relaxed ${dark ? "text-white/70" : "text-cool"}`}>
+        <p
+          className={`relative mt-3 text-[15px] leading-relaxed ${dark ? "text-white/70" : "text-cool"}`}
+        >
           {body}
         </p>
       ) : null}
 
       {media ? (
-        <div className="relative mt-6 flex flex-1 items-end justify-center">{media}</div>
+        <div className="relative mt-6 flex flex-1 items-end justify-center [&_img]:transition-transform [&_img]:duration-700 [&_img]:ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[&_img]:scale-[1.04]">
+          {media}
+        </div>
       ) : null}
 
       {action ? (
@@ -80,6 +105,27 @@ export function FeatureCard({
   );
 }
 
+/**
+ * Asymmetric card mosaic.
+ *
+ * A plain `grid-cols-3` of equal tiles is what made the value shelf read as
+ * filler — every cell the same weight, so the eye has nothing to land on. This
+ * grid lets one or two cards claim `span={2}` or `tall`, which is how apple.com
+ * builds the same kind of section. Below `lg` it collapses to a single column
+ * and the spans stop applying.
+ */
+export function BentoGrid({ children, cols = 3 }: { children: ReactNode; cols?: 2 | 3 }) {
+  return (
+    <div
+      className={`grid auto-rows-[minmax(240px,auto)] grid-cols-1 gap-4 sm:grid-cols-2 ${
+        cols === 2 ? "lg:grid-cols-2" : "lg:grid-cols-3"
+      }`}
+    >
+      {children}
+    </div>
+  );
+}
+
 /* ── 3. Scroll row ─────────────────────────────────────────── */
 
 /**
@@ -90,7 +136,7 @@ export function FeatureCard({
 export function ScrollRow({ children, cols = 4 }: { children: ReactNode; cols?: 3 | 4 }) {
   return (
     <div
-      className={`no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 md:-mx-6 md:px-6 lg:mx-0 lg:grid lg:snap-none lg:overflow-visible lg:px-0 ${
+      className={`no-scrollbar bleed-x flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 lg:mx-0 lg:grid lg:snap-none lg:overflow-visible lg:px-0 ${
         cols === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"
       }`}
     >
@@ -143,7 +189,7 @@ export function CompareTable({
   caption?: string;
 }) {
   return (
-    <div className="no-scrollbar -mx-4 overflow-x-auto px-4 md:mx-0 md:px-0">
+    <div className="no-scrollbar bleed-x overflow-x-auto md:mx-0 md:px-0">
       <table className="w-full min-w-[640px] border-collapse text-center">
         {caption ? <caption className="sr-only">{caption}</caption> : null}
         <thead>

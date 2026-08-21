@@ -12,6 +12,8 @@ import { spring, springSoft, fadeUpAt } from "@/lib/springs";
 import { ProductCard } from "@/components/ProductCard";
 import { FeatureCard, ScrollRow, ScrollItem } from "@/components/apple";
 import { SectionHead } from "@/components/Section";
+import { ProductShot } from "@/components/ProductShot";
+import kitFlatlay from "@/assets/product/radio-kit-flatlay.webp";
 import catalogAsset from "@/assets/radiocom-catalog.pdf.asset.json";
 import { assetUrl } from "@/lib/asset";
 import {
@@ -64,7 +66,10 @@ export const routeOptions = {
       scripts: [
         jsonLd(
           productSchema(p, params.lang, {
-            specNames: spec?.rows.map((r) => pick(r.label, params.lang)),
+            specs: spec?.rows.map((r) => ({
+              name: pick(r.label, params.lang),
+              value: pick(r.value, params.lang),
+            })),
           }),
         ),
         jsonLd(
@@ -126,7 +131,7 @@ function ProductSubNav({ product, lang }: { product: Product; lang: Lang }) {
   ];
   return (
     <div className="sticky top-12 z-30 frost-nav">
-      <div className="mx-auto flex max-w-[1200px] items-center gap-4 px-4 py-2.5 md:px-8">
+      <div className="shell flex items-center gap-4 px-4 py-2.5 md:px-8">
         <LocaleLink
           to="/catalog"
           className="flex shrink-0 items-center gap-1 text-[13px] text-cool transition-opacity hover:opacity-70"
@@ -169,8 +174,8 @@ function ProductSubNav({ product, lang }: { product: Product; lang: Lang }) {
 function Breadcrumbs({ product }: { product: Product }) {
   const { t } = useTranslation();
   return (
-    <nav aria-label="Breadcrumb" className="band-plain px-6 pt-8">
-      <ol className="mx-auto flex max-w-[1200px] flex-wrap items-center gap-1.5 text-[12px] text-cool">
+    <nav aria-label={t("product.breadcrumb")} className="band-plain px-6 pt-8">
+      <ol className="shell flex flex-wrap items-center gap-1.5 text-[12px] text-cool">
         <li>
           <LocaleLink to="/" className="transition-colors hover:text-crisp">
             {t("nav.home")}
@@ -221,9 +226,9 @@ function ProductMain({
 
   return (
     <section className="band-plain px-4 pb-16 pt-8 md:px-6 md:pb-24">
-      <div className="mx-auto grid max-w-[1200px] items-start gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
+      <div className="shell grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-14">
         {/* Gallery — sticks while the buy panel scrolls */}
-        <div className="lg:sticky lg:top-28">
+        <div className="min-w-0 lg:sticky lg:top-28">
           <div className="relative flex aspect-square items-center justify-center overflow-hidden rounded-[28px] bg-charcoal md:aspect-[5/4]">
             <AnimatePresence mode="wait" initial={false}>
               <motion.img
@@ -397,8 +402,8 @@ function Highlights({ spec, lang }: { spec: ProductSpec; lang: Lang }) {
   const rest = spec.features.slice(4);
 
   return (
-    <section id="highlights" className="band-soft section-tight px-4 md:px-6">
-      <div className="mx-auto max-w-[1200px]">
+    <section id="highlights" className="band-soft section-tight">
+      <div className="shell">
         <SectionHead title={t("product.features")} align="left" spacing="tight" />
 
         <ScrollRow cols={4}>
@@ -406,8 +411,7 @@ function Highlights({ spec, lang }: { spec: ProductSpec; lang: Lang }) {
             <ScrollItem key={`${f.ru}-${i}`}>
               <FeatureCard
                 idx={i}
-                tone={i === 1 ? "dark" : "light"}
-                eyebrow={String(i + 1).padStart(2, "0")}
+                tone={i === cards.length - 1 ? "dark" : "light"}
                 title={pick(f, lang)}
                 className="h-full min-h-[220px]"
               />
@@ -440,21 +444,19 @@ function Highlights({ spec, lang }: { spec: ProductSpec; lang: Lang }) {
 function InBox({ product, spec, lang }: { product: Product; spec: ProductSpec; lang: Lang }) {
   const { t } = useTranslation();
   return (
-    <section id="in-box" className="band-plain section-tight px-4 md:px-6">
-      <div className="mx-auto max-w-[1200px]">
+    <section id="in-box" className="band-plain section-tight">
+      <div className="shell">
         <SectionHead title={t("product.in_box")} align="left" spacing="tight" />
-        <div className="grid items-center gap-10 lg:grid-cols-2">
-          <motion.div
-            {...fadeUpAt(0)}
-            className="flex aspect-[4/3] items-center justify-center rounded-[28px] bg-charcoal"
-          >
-            <img
-              width={1200}
-              height={900}
-              src={product.image}
-              alt={product.name}
-              loading="lazy"
-              className="max-h-[70%] max-w-[70%] object-contain mix-blend-multiply"
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+          <motion.div {...fadeUpAt(0)}>
+            <ProductShot
+              src={kitFlatlay}
+              alt={t("product.in_box")}
+              width={1600}
+              height={2143}
+              fit="cover"
+              sizes="(max-width: 1024px) 90vw, 560px"
+              className="aspect-[4/3] w-full rounded-[28px]"
             />
           </motion.div>
 
@@ -482,8 +484,8 @@ function InBox({ product, spec, lang }: { product: Product; spec: ProductSpec; l
 function TechSpecs({ product, spec, lang }: { product: Product; spec: ProductSpec; lang: Lang }) {
   const { t } = useTranslation();
   return (
-    <section id="specs" className="band-soft section-tight px-4 md:px-6">
-      <div className="mx-auto max-w-[900px]">
+    <section id="specs" className="band-soft section-tight">
+      <div className="shell">
         <SectionHead title={t("product.tech_specs")} align="left" spacing="tight" />
 
         <motion.dl {...fadeUpAt(1)} className="divide-y divide-border border-t border-border">
@@ -533,8 +535,8 @@ function Related({ product, lang }: { product: Product; lang: Lang }) {
   if (related.length === 0) return null;
 
   return (
-    <section className="band-plain section-tight px-4 md:px-6">
-      <div className="mx-auto max-w-[1200px]">
+    <section className="band-plain section-tight">
+      <div className="shell">
         <SectionHead title={t("product.related")} align="left" spacing="tight" />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {related.map((p, i) => (

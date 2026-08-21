@@ -83,7 +83,6 @@ export function useGsap(
     registerGsap();
     const ctx = gsap.context(() => setup({ scope }), scope);
     return () => ctx.revert();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 }
 

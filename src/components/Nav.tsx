@@ -76,7 +76,7 @@ export function Nav() {
   return (
     <>
       <header className="frost-nav fixed top-0 left-0 right-0 z-40">
-        <div className="max-w-[1440px] mx-auto px-4 md:px-8 h-12 flex items-center justify-between gap-4">
+        <div className="shell shell-wide h-12 flex items-center justify-between gap-4">
           {/* Left nav */}
           <nav
             aria-label={t("footer.nav_col")}

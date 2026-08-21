@@ -134,13 +134,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         property: "og:image",
-        content:
-          "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/2c10cbb9-e240-4528-a145-b23d0936f9da",
+        content: "https://radiocom.uz/og-radiocom.jpg",
       },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: "Radiocom — Motorola и Radiocom RC в Ташкенте" },
       {
         name: "twitter:image",
-        content:
-          "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/2c10cbb9-e240-4528-a145-b23d0936f9da",
+        content: "https://radiocom.uz/og-radiocom.jpg",
       },
     ],
     links: [
@@ -167,8 +168,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  // The URL is the only source of truth for language, and it is available here
+  // on the server — so the server response carries the right `lang` instead of
+  // shipping "ru" to every locale and correcting it after hydration. Crawlers
+  // read the server HTML and never see the correction; the page was
+  // contradicting its own hreflang and og:locale on every /en and /uz URL.
+  const lang = useLang();
   return (
-    <html lang="ru">
+    <html lang={lang}>
       <head>
         <HeadContent />
       </head>
@@ -206,13 +213,6 @@ function SiteChrome() {
   // Lenis + ScrollTrigger, mounted once for the document. No-ops under
   // prefers-reduced-motion and never runs during SSR.
   useSmoothScroll();
-
-  // The shell renders lang="ru" for the server pass; the URL is authoritative, so
-  // sync the real document language from the route. Screen readers, hyphenation
-  // (`hyphens: auto` on .headline) and search engines all key off this attribute.
-  useEffect(() => {
-    document.documentElement.lang = lang;
-  }, [lang]);
 
   return (
     /*
