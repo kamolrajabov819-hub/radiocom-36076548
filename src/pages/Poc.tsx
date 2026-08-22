@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Check, Radio, MapPin, MessagesSquare, Layers, Coins, Wifi } from "lucide-react";
 import pocHero from "@/assets/poc-hero-v13.png.asset.json";
 import radioInHand from "@/assets/product/radio-in-hand.webp";
+import radioInHand800 from "@/assets/product/radio-in-hand@800.webp";
 import { openLead } from "@/components/LeadFormSheet";
 import { Section, SectionHead } from "@/components/Section";
 import { CompareTable, type CompareColumn } from "@/components/apple";
@@ -325,6 +326,7 @@ function Rental() {
         >
           <ProductShot
             src={radioInHand}
+            srcSmall={radioInHand800}
             alt={t("poc.rental.title")}
             width={1600}
             height={2143}

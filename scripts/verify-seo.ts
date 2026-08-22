@@ -5,6 +5,7 @@ import {
   DEFAULT_SEO_LANG,
   SITE_URL,
   productSchema,
+  jsonLd,
 } from "../src/lib/seo";
 import { products } from "../src/data/products";
 import { readFileSync } from "node:fs";
@@ -96,6 +97,23 @@ const props = withSpecs.additionalProperty ?? [];
 if (!props.length || props.some((x) => !x.value))
   bad("productSchema additionalProperty entries are missing values");
 console.log("ok  Product additionalProperty entries carry values");
+
+// 7. JSON-LD must render as a typed <script>, not as executable JavaScript.
+//    TanStack's <Scripts> maps each head().scripts entry with
+//    `({ children, ...script }) => ({ tag: "script", attrs: { ...script } })`,
+//    spreading every non-`children` key straight onto the element. A nested
+//    `{ attrs: { type } }` therefore emits `attrs="[object Object]"` and never
+//    sets the type — at which point the browser executes the JSON as JS
+//    (`SyntaxError: Unexpected token ':'`) and crawlers see no structured data
+//    at all. This shipped. Assert the flat shape so it cannot come back.
+const ld = jsonLd({ "@type": "Thing" }) as Record<string, unknown>;
+if (ld.type !== "application/ld+json")
+  bad('jsonLd() must set a top-level `type: "application/ld+json"`');
+if ("attrs" in ld)
+  bad("jsonLd() must be flat — a nested `attrs` renders as a literal attribute");
+if (typeof ld.children !== "string")
+  bad("jsonLd() must carry the payload as a `children` string");
+console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
 
 console.log(fail === 0 ? "\nALL SEO CHECKS PASSED" : `\n${fail} FAILURES`);
 process.exit(fail ? 1 : 0);

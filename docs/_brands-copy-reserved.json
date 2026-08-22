@@ -1,0 +1,38 @@
+{
+  "ru": {
+    "brands_title": "Бренды в нашем портфеле",
+    "brands": {
+      "models": "моделей",
+      "headline": "Официальная дистрибуция",
+      "sub": "Мы работаем напрямую с производителями: оригинальные устройства, гарантия и сервис в Ташкенте.",
+      "official": "Официальный партнёр",
+      "view": "Смотреть модели",
+      "rc_desc": "Собственная линейка Radiocom: аналоговые RC и цифровые DMR-рации RCD с гарантией и сервисом.",
+      "mot_desc": "Talkabout, XT и TLKR — безлицензионные PMR-рации мирового лидера рынка."
+    }
+  },
+  "en": {
+    "brands_title": "Brands we distribute",
+    "brands": {
+      "models": "models",
+      "headline": "Authorized distribution",
+      "sub": "We work directly with manufacturers: genuine devices, warranty and service in Tashkent.",
+      "official": "Authorized partner",
+      "view": "View models",
+      "rc_desc": "Our own Radiocom line: analog RC handhelds and digital RCD DMR radios with warranty and service.",
+      "mot_desc": "Talkabout, XT and TLKR — license-free PMR radios from the global market leader."
+    }
+  },
+  "uz": {
+    "brands_title": "Portfelimizdagi brendlar",
+    "brands": {
+      "models": "model",
+      "headline": "Rasmiy distribyutsiya",
+      "sub": "Ishlab chiqaruvchilar bilan to'g'ridan-to'g'ri ishlaymiz: original qurilmalar, kafolat va Toshkentda servis.",
+      "official": "Rasmiy hamkor",
+      "view": "Modellarni ko'rish",
+      "rc_desc": "O'z liniyamiz Radiocom: analog RC va raqamli RCD DMR ratsiyalari, kafolat va servis bilan.",
+      "mot_desc": "Talkabout, XT va TLKR — jahon yetakchisidan litsenziyasiz PMR ratsiyalar."
+    }
+  }
+}

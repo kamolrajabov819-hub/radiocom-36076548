@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { type ReactNode } from "react";
 import { ChevronRight } from "lucide-react";
 import { fadeUpAt } from "@/lib/springs";
+import { cn } from "@/lib/utils";
 
 /**
  * Apple.com section primitives.
@@ -33,6 +34,7 @@ export function FeatureCard({
   span = 1,
   tall = false,
   className = "",
+  copyClassName = "",
 }: {
   eyebrow?: string;
   title: ReactNode;
@@ -51,14 +53,32 @@ export function FeatureCard({
   span?: Span;
   tall?: boolean;
   className?: string;
+  /**
+   * Constrains the copy column. A `backdrop` photograph occupies part of the
+   * card, and long headlines — Russian runs ~15% longer than English, Uzbek
+   * longer still — will happily run underneath it. Give the copy an explicit
+   * max-width whenever a backdrop covers a side.
+   */
+  copyClassName?: string;
 }) {
   const dark = tone === "dark";
   return (
     <motion.article
       {...fadeUpAt(Math.min(idx, 6))}
-      className={`group card-interactive relative flex flex-col overflow-hidden rounded-[28px] p-7 md:p-8 ${
-        dark ? "is-dark bg-black text-[#f5f5f7]" : "bg-pitch text-crisp"
-      } ${span === 2 ? "lg:col-span-2" : ""} ${tall ? "lg:row-span-2" : ""} ${className}`}
+      // `cn()`, not template concatenation. Concatenating let a call site's
+      // `className` sit alongside the tone classes rather than replacing them,
+      // so `tone="dark"` + `className="bg-charcoal"` emitted both `bg-black`
+      // and `bg-charcoal` and the later rule in Tailwind's output won —
+      // rendering `#f5f5f7` text on a `#f5f5f7` card. `twMerge` resolves the
+      // conflict by intent instead: the caller's background replaces the
+      // tone's, and the text colour it was paired with survives.
+      className={cn(
+        "group card-interactive relative flex flex-col overflow-hidden rounded-[28px] p-7 md:p-8",
+        dark ? "is-dark bg-black text-[#f5f5f7]" : "bg-pitch text-crisp",
+        span === 2 && "lg:col-span-2",
+        tall && "lg:row-span-2",
+        className,
+      )}
     >
       {backdrop ? (
         <div className="pointer-events-none absolute inset-0 [&_img]:transition-transform [&_img]:duration-700 [&_img]:ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[&_img]:scale-[1.04]">
@@ -66,23 +86,23 @@ export function FeatureCard({
         </div>
       ) : null}
 
-      {eyebrow ? (
-        <div className={`relative text-[14px] font-medium ${dark ? "text-white/60" : "text-cool"}`}>
-          {eyebrow}
-        </div>
-      ) : null}
+      <div className={cn("relative", copyClassName)}>
+        {eyebrow ? (
+          <div className={cn("text-[14px] font-medium", dark ? "text-white/60" : "text-cool")}>
+            {eyebrow}
+          </div>
+        ) : null}
 
-      <h3 className="relative mt-1.5 hyphens-auto break-words text-[22px] font-semibold leading-[1.15] tracking-[-0.02em] md:text-[26px]">
-        {title}
-      </h3>
+        <h3 className="mt-1.5 hyphens-auto break-words text-[22px] font-semibold leading-[1.15] tracking-[-0.02em] md:text-[26px]">
+          {title}
+        </h3>
 
-      {body ? (
-        <p
-          className={`relative mt-3 text-[15px] leading-relaxed ${dark ? "text-white/70" : "text-cool"}`}
-        >
-          {body}
-        </p>
-      ) : null}
+        {body ? (
+          <p className={cn("mt-3 text-[15px] leading-relaxed", dark ? "text-white/70" : "text-cool")}>
+            {body}
+          </p>
+        ) : null}
+      </div>
 
       {media ? (
         <div className="relative mt-6 flex flex-1 items-end justify-center [&_img]:transition-transform [&_img]:duration-700 [&_img]:ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[&_img]:scale-[1.04]">
@@ -101,6 +121,80 @@ export function FeatureCard({
           <ChevronRight className="h-4 w-4" aria-hidden />
         </button>
       ) : null}
+    </motion.article>
+  );
+}
+
+/**
+ * A card whose photograph sits *below* its copy, running the card's full width
+ * and anchored to the bottom edge.
+ *
+ * This is apple.com's "Switch to Mac" / "Mac essentials" tile: centred or
+ * left-aligned text at the top, then the product beneath it with room to
+ * breathe. It reads as one object, where a side-by-side split reads as two
+ * columns that happen to share a border.
+ *
+ * The photo is `object-contain` and bottom-anchored rather than `cover`,
+ * because these are cut-out product shots — cropping them to fill a frame
+ * slices the product. Use `FeatureCard` with a `backdrop` when the art is a
+ * full-bleed composition and the frame *is* the point.
+ */
+export function StackedTile({
+  eyebrow,
+  title,
+  body,
+  idx = 0,
+  span = 1,
+  tall = false,
+  align = "left",
+  className = "",
+  children,
+}: {
+  eyebrow?: string;
+  title: ReactNode;
+  body?: ReactNode;
+  idx?: number;
+  span?: Span;
+  tall?: boolean;
+  align?: "left" | "center";
+  className?: string;
+  /** The photograph. Rendered into the bottom-anchored media well. */
+  children: ReactNode;
+}) {
+  const centred = align === "center";
+  return (
+    <motion.article
+      {...fadeUpAt(Math.min(idx, 6))}
+      className={cn(
+        "group card-interactive relative flex flex-col overflow-hidden rounded-[28px] bg-pitch text-crisp",
+        "px-7 pt-7 md:px-8 md:pt-8",
+        span === 2 && "lg:col-span-2",
+        tall && "lg:row-span-2",
+        className,
+      )}
+    >
+      <div className={cn("relative", centred && "text-center")}>
+        {eyebrow ? <div className="text-[14px] font-medium text-cool">{eyebrow}</div> : null}
+        <h3 className="mt-1.5 hyphens-auto break-words text-[22px] font-semibold leading-[1.15] tracking-[-0.02em] md:text-[26px]">
+          {title}
+        </h3>
+        {body ? (
+          <p
+            className={cn(
+              "mt-3 text-[15px] leading-relaxed text-cool",
+              centred && "mx-auto max-w-[46ch]",
+            )}
+          >
+            {body}
+          </p>
+        ) : null}
+      </div>
+
+      {/* `min-h-0` so the well can actually shrink inside the flex column —
+          without it the image's intrinsic height wins and overflows the card. */}
+      <div className="relative mt-6 flex min-h-0 flex-1 items-end justify-center pb-7 md:pb-8 [&_img]:transition-transform [&_img]:duration-700 [&_img]:ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[&_img]:scale-[1.03]">
+        {children}
+      </div>
     </motion.article>
   );
 }

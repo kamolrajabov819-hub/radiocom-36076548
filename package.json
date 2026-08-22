@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "bun scripts/generate-seo.ts && bun scripts/verify-seo.ts && bun scripts/verify-i18n.ts && vite build",
+    "build": "bun scripts/generate-seo.ts && bun scripts/verify-seo.ts && bun scripts/verify-i18n.ts && bun scripts/verify-assets.ts && vite build",
     "build:dev": "bun scripts/generate-seo.ts && vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
@@ -13,7 +13,8 @@
     "seo:generate": "bun scripts/generate-seo.ts",
     "seo:verify": "bun scripts/verify-seo.ts",
     "i18n:verify": "bun scripts/verify-i18n.ts",
-    "verify": "bun scripts/verify-seo.ts && bun scripts/verify-i18n.ts"
+    "verify": "bun scripts/verify-seo.ts && bun scripts/verify-i18n.ts && bun scripts/verify-assets.ts",
+    "assets:inventory": "bun scripts/inventory-assets.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
