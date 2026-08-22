@@ -36,3 +36,6 @@ dist-ssr
 
 # SEO/GEO/AEO audit reports (.claude/skills/seo-geo-aeo)
 seo-reports/
+
+# GTM research output (.claude/skills/{company-research,competitor-analysis,event-prospecting})
+gtm-reports/
