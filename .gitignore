@@ -39,3 +39,6 @@ seo-reports/
 
 # GTM research output (.claude/skills/{company-research,competitor-analysis,event-prospecting})
 gtm-reports/
+
+# Apple reference material (never shipped)
+refs/

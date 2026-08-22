@@ -361,16 +361,6 @@
     "clients": "clients",
     "years": "years on the market"
   },
-  "brands_title": "Brands we distribute",
-  "brands": {
-    "models": "models",
-    "headline": "Authorized distribution",
-    "sub": "We work directly with manufacturers: genuine devices, warranty and service in Tashkent.",
-    "official": "Authorized partner",
-    "view": "View models",
-    "rc_desc": "Our own Radiocom line: analog RC handhelds and digital RCD DMR radios with warranty and service.",
-    "mot_desc": "Talkabout, XT and TLKR — license-free PMR radios from the global market leader."
-  },
   "catalog": {
     "title_a": "Multi-brand",
     "title_b": "catalog.",
@@ -495,16 +485,40 @@
     "sub": "Warranty and post-warranty service for Motorola, Radiocom and Vertex Standard radios. Original parts, fixed pricing, diagnostics on dedicated hardware.",
     "request_repair": "Request repair",
     "advantages": {
-      "certified": "Certified technicians",
-      "parts": "Original parts",
-      "fast": "24/7 fast repair",
-      "fixed": "Fixed pricing"
+      "certified": {
+        "t": "Certified technicians",
+        "d": "An authorised service centre for Motorola and Radiocom."
+      },
+      "parts": {
+        "t": "Genuine spare parts",
+        "d": "Factory components only — no aftermarket, no refurbished stock."
+      },
+      "fast": {
+        "t": "Fast repair, 24/7",
+        "d": "We take requests around the clock, weekends included."
+      },
+      "fixed": {
+        "t": "Fixed pricing",
+        "d": "The price is set after diagnostics and does not move after that."
+      }
     },
     "flow": [
-      "Diagnostics",
-      "Analysis",
-      "Testing",
-      "Repair"
+      {
+        "t": "Diagnostics",
+        "d": "We take the radio in, log the fault and test it on dedicated service equipment."
+      },
+      {
+        "t": "Analysis",
+        "d": "We identify the cause, source genuine parts and quote a fixed price."
+      },
+      {
+        "t": "Repair",
+        "d": "The work is carried out — in and out of warranty — with genuine components only."
+      },
+      {
+        "t": "Testing",
+        "d": "We verify the link and the transmitter's parameters before the unit goes back."
+      }
     ],
     "policy_title": "Returns & exchanges",
     "visit_title": "Visit our office",
@@ -523,7 +537,8 @@
       }
     ],
     "flow_title": "How the repair works",
-    "advantages_title": "Why bring it here"
+    "advantages_title": "Why bring it here",
+    "request_repair_sub": "Describe the fault and we will come back with a diagnosis and a fixed price."
   },
   "footer": {
     "hours": "Mon-Fri · 09:00–18:00",

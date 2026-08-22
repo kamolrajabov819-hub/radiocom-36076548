@@ -1,13 +1,26 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useRef } from "react";
+import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Plus, Minus, Search, Microscope, Cog, ClipboardCheck } from "lucide-react";
+import { Search, Cog, ClipboardCheck } from "lucide-react";
 import serviceLight from "@/assets/service-tech-light.jpg";
+// One distinct photograph per repair stage — the brief's rule is never to
+// reuse a shot for two slots on the same page, and a lucide icon alone in
+// white space is what these cards looked like before.
+import stageIntake from "@/assets/radio-on-white.webp";
+import stageAnalysis from "@/assets/radios-lineup-seven.webp";
+import stageRepair from "@/assets/radios-four-aligned.webp";
+import stageTest from "@/assets/hands-tradein-pair.webp";
+import advCertified from "@/assets/hands-two-radios-front.webp";
 import { openLead } from "@/components/LeadFormSheet";
 import { spring } from "@/lib/springs";
-import { gsap, useGsap } from "@/lib/motion";
+import { ProductShot } from "@/components/ProductShot";
 import { SectionHead } from "@/components/Section";
-import { FeatureCard } from "@/components/apple";
+import { Faq } from "@/components/Faq";
+import { BentoGrid, FeatureCard, HighlightsShelf } from "@/components/apple";
+
+/** A title plus its supporting line. Both the repair stages and the
+ *  advantages tiles use this shape; a bare string is what made them read as
+ *  filler. */
+type FlowStep = { t: string; d: string };
 import {
   SITE_NAME,
   breadcrumbSchema,
@@ -149,141 +162,149 @@ function Hero() {
    process reads as a sequence rather than four disconnected tiles. Pinned via
    GSAP; under reduced motion the hook no-ops and the row simply sits static.
    ───────────────────────────────────────────────────────────── */
+/* ─── Как проходит ремонт — horizontal highlights shelf ───────
+   Was a pinned GSAP scrub that hijacked the page scroll sideways on narrow
+   screens and did nothing on wide ones. See HighlightsShelf for why this is a
+   scroll-snap row instead. Each stage now carries a photograph and a
+   supporting line — a numbered card with one noun in it is what read as
+   filler. */
 function Flow() {
   const { t } = useTranslation();
-  const steps = (t("service.flow", { returnObjects: true }) as string[]) || [];
-  const icons = [Search, Microscope, ClipboardCheck, Cog];
-  const scope = useRef<HTMLElement>(null);
-
-  useGsap(
-    () => {
-      const track = scope.current?.querySelector("[data-flow-track]");
-      if (!track) return;
-      // Only pin when the track actually overflows — on wide screens all four
-      // stages already fit and pinning would just freeze the page for nothing.
-      const overflow = track.scrollWidth - track.clientWidth;
-      if (overflow <= 0) return;
-
-      gsap.to(track, {
-        x: -overflow,
-        ease: "none",
-        scrollTrigger: {
-          trigger: scope.current,
-          start: "top top",
-          end: () => `+=${overflow + window.innerHeight * 0.6}`,
-          pin: true,
-          scrub: 0.6,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      });
-    },
-    scope,
-    [steps.length],
-  );
+  const steps = (t("service.flow", { returnObjects: true }) as FlowStep[]) || [];
+  const shots = [
+    { src: stageIntake, alt: "" },
+    { src: stageAnalysis, alt: "" },
+    { src: stageRepair, alt: "" },
+    { src: stageTest, alt: "" },
+  ];
 
   return (
-    <section ref={scope} className="band-soft section-tight overflow-hidden">
+    <section className="band-soft section-tight">
       <div className="shell">
         <SectionHead align="left" spacing="tight" title={t("service.flow_title")} />
-        <div data-flow-track className="flex gap-4 will-change-transform">
-          {steps.map((s, i) => {
-            const Icon = icons[i] ?? Search;
+        <HighlightsShelf label={t("service.flow_title")}>
+          {steps.map((step, i) => {
+            const shot = shots[i] ?? shots[0];
             return (
-              <div key={s} className="w-[78vw] shrink-0 sm:w-[46vw] lg:w-[calc((100%-3rem)/4)]">
-                <FeatureCard
-                  idx={i}
-                  tone={i === 1 ? "dark" : "light"}
-                  eyebrow={`0${i + 1}`}
-                  title={s}
-                  className="h-full min-h-[240px] ring-1 ring-border"
-                  media={<Icon className="h-10 w-10 text-signal" strokeWidth={1.5} aria-hidden />}
-                />
-              </div>
+              <article
+                key={step.t}
+                className="group card-interactive relative flex w-[78vw] shrink-0 snap-start flex-col overflow-hidden rounded-[28px] bg-pitch sm:w-[46vw] lg:w-[calc((100%-3rem)/4)]"
+              >
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-charcoal">
+                  <ProductShot
+                    src={shot.src}
+                    alt={shot.alt}
+                    width={1600}
+                    height={1200}
+                    fit="cover"
+                    sizes="(max-width: 640px) 78vw, (max-width: 1024px) 46vw, 300px"
+                    className="absolute inset-0 [&_img]:transition-transform [&_img]:duration-700 [&_img]:ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[&_img]:scale-[1.04]"
+                  />
+                  <div
+                    aria-hidden
+                    className="absolute left-5 top-5 flex h-9 w-9 items-center justify-center rounded-full bg-crisp/85 text-[15px] font-semibold text-pitch backdrop-blur-sm"
+                  >
+                    {i + 1}
+                  </div>
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="text-[19px] font-semibold leading-[1.2] tracking-[-0.01em] text-crisp">
+                    {step.t}
+                  </h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-cool">{step.d}</p>
+                </div>
+              </article>
             );
           })}
-        </div>
+        </HighlightsShelf>
       </div>
     </section>
   );
 }
 
-/* ─── Advantages — white cards on grey ────────────────────── */
+/* ─── Почему сюда — asymmetric bento ──────────────────────────
+   Four identical squares with one icon each is the shape the brief called AI
+   filler. This is one wide photographic tile, two narrow ones and a single
+   dark accent — and every tile carries a headline *and* a supporting line. */
 function Advantages() {
   const { t } = useTranslation();
-  const keys = ["certified", "parts", "fast", "fixed"] as const;
-  const icons = [ClipboardCheck, Cog, Search, Microscope];
+  const adv = t("service.advantages", { returnObjects: true }) as Record<string, FlowStep>;
+
   return (
-    <section className="band-plain section">
+    <section className="band-plain section-tight">
       <div className="shell">
         <SectionHead align="left" spacing="tight" title={t("service.advantages_title")} />
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {keys.map((k, i) => {
-            const Icon = icons[i];
-            return (
-              <FeatureCard
-                key={k}
-                idx={i}
-                tone={i === 3 ? "dark" : "light"}
-                title={t(`service.advantages.${k}`)}
-                className="min-h-[240px] bg-charcoal"
-                media={
-                  <Icon
-                    className={`h-9 w-9 ${i === 3 ? "text-white" : "text-signal"}`}
-                    strokeWidth={1.5}
-                    aria-hidden
-                  />
-                }
+        <BentoGrid>
+          {/* Wide photographic tile — the authorised-centre claim, which is the
+              one worth showing rather than stating. */}
+          <FeatureCard
+            idx={0}
+            span={2}
+            title={adv.certified?.t}
+            body={adv.certified?.d}
+            className="min-h-[300px]"
+            copyClassName="max-w-[56%] lg:max-w-[48%]"
+            backdrop={
+              <ProductShot
+                src={advCertified}
+                alt=""
+                width={1600}
+                height={1200}
+                fit="cover"
+                sizes="(max-width: 1024px) 90vw, 620px"
+                className="absolute inset-y-0 right-0 w-[52%]"
               />
-            );
-          })}
-        </div>
+            }
+          />
+
+          {/* The one dark tile in the section. */}
+          <FeatureCard
+            idx={1}
+            tone="dark"
+            title={adv.fixed?.t}
+            body={adv.fixed?.d}
+            className="min-h-[300px]"
+            media={<Cog className="h-9 w-9 text-white" strokeWidth={1.5} aria-hidden />}
+          />
+
+          <FeatureCard
+            idx={2}
+            title={adv.parts?.t}
+            body={adv.parts?.d}
+            className="min-h-[240px]"
+            media={<ClipboardCheck className="h-9 w-9 text-signal" strokeWidth={1.5} aria-hidden />}
+          />
+          <FeatureCard
+            idx={3}
+            title={adv.fast?.t}
+            body={adv.fast?.d}
+            className="min-h-[240px]"
+            media={<Search className="h-9 w-9 text-signal" strokeWidth={1.5} aria-hidden />}
+          />
+          <FeatureCard
+            idx={4}
+            title={t("service.request_repair")}
+            body={t("service.request_repair_sub")}
+            className="min-h-[240px]"
+            action={{
+              label: t("service.request_repair"),
+              onClick: () => openLead({ title: t("service.request_repair") }),
+            }}
+          />
+        </BentoGrid>
       </div>
     </section>
   );
 }
 
-/* ─── Policy — accordion ──────────────────────────────────── */
 function Policy() {
   const { t } = useTranslation();
   const rows = t("service.policy", { returnObjects: true }) as Array<{ q: string; a: string }>;
-  const [open, setOpen] = useState<number | null>(0);
   return (
     <section className="band-soft section">
       <div className="mx-auto max-w-3xl">
         <SectionHead align="center" spacing="tight" title={t("service.policy_title")} />
-        <div className="divide-y divide-border border-y border-border">
-          {rows.map((r, i) => {
-            const isOpen = open === i;
-            return (
-              <div key={r.q}>
-                <button
-                  onClick={() => setOpen(isOpen ? null : i)}
-                  aria-expanded={isOpen}
-                  className="flex w-full items-center justify-between gap-6 py-5 text-left"
-                >
-                  <span className="text-[17px] font-medium text-crisp">{r.q}</span>
-                  <span className="shrink-0 text-signal" aria-hidden>
-                    {isOpen ? <Minus className="h-5 w-5" /> : <Plus className="h-5 w-5" />}
-                  </span>
-                </button>
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={spring}
-                      className="overflow-hidden"
-                    >
-                      <p className="pb-6 text-[15px] leading-relaxed text-cool">{r.a}</p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
-        </div>
+        <Faq items={rows} />
       </div>
     </section>
   );

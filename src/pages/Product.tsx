@@ -14,6 +14,7 @@ import { FeatureCard, ScrollRow, ScrollItem } from "@/components/apple";
 import { SectionHead } from "@/components/Section";
 import { ProductShot } from "@/components/ProductShot";
 import kitFlatlay from "@/assets/product/radio-kit-flatlay.webp";
+import kitFlatlay800 from "@/assets/product/radio-kit-flatlay@800.webp";
 import catalogAsset from "@/assets/radiocom-catalog.pdf.asset.json";
 import { assetUrl } from "@/lib/asset";
 import {
@@ -451,6 +452,7 @@ function InBox({ product, spec, lang }: { product: Product; spec: ProductSpec; l
           <motion.div {...fadeUpAt(0)}>
             <ProductShot
               src={kitFlatlay}
+              srcSmall={kitFlatlay800}
               alt={t("product.in_box")}
               width={1600}
               height={2143}

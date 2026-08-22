@@ -20,11 +20,23 @@ import type { CSSProperties } from "react";
  *   - `"cover"` crops the photograph edge to edge and blends nothing. Use it
  *     for compositions — flat-lays, scenes — where the frame is the point.
  *
- * `srcSet` is built from the `@800` sibling the asset pipeline emits next to
- * every full-size WebP, so cards on phones fetch a third of the bytes.
+ * `srcSet` is only emitted when the caller passes `srcSmall` — an **explicit
+ * import** of the `@800` sibling. It is never derived from `src`.
+ *
+ * That distinction is the whole point. `src` is a Vite-fingerprinted URL by the
+ * time it reaches this component (`/assets/radio-kit-wide-BpJOK2JT.webp`), so
+ * deriving the small variant by string surgery produced
+ * `…-BpJOK2JT@800.webp`, which is not a real build artefact — and because
+ * nothing imported the `@800` files, Vite never emitted them at all. Per the
+ * HTML spec an `<img>` whose chosen `srcset` candidate fails goes to its broken
+ * state and does *not* fall back to `src`, so those cards rendered as a broken
+ * glyph at DPR 1 on desktop (where ~630 CSS px selects the 800w candidate) and
+ * correctly at DPR 2 (where 1600w wins). Importing the sibling is what makes
+ * Vite emit and fingerprint it.
  */
 export function ProductShot({
   src,
+  srcSmall,
   alt,
   width,
   height,
@@ -38,8 +50,14 @@ export function ProductShot({
   sizes = "(max-width: 768px) 90vw, 45vw",
   style,
 }: {
-  /** Full-size image. A `foo@800.webp` sibling is used for the small source. */
+  /** Full-size image, imported so Vite fingerprints and emits it. */
   src: string;
+  /**
+   * The `@800` variant, also imported. Omit when no such file exists — the
+   * image then ships a single source rather than advertising a candidate that
+   * 404s.
+   */
+  srcSmall?: string;
   alt: string;
   width: number;
   height: number;
@@ -57,7 +75,6 @@ export function ProductShot({
   style?: CSSProperties;
 }) {
   const cover = fit === "cover";
-  const small = src.replace(/\.webp$/, "@800.webp");
   const shouldBlend = blend ?? !cover;
   const blendClass = shouldBlend
     ? tone === "dark"
@@ -89,8 +106,8 @@ export function ProductShot({
       ) : null}
       <img
         src={src}
-        srcSet={small === src ? undefined : `${small} 800w, ${src} 1600w`}
-        sizes={sizes}
+        srcSet={srcSmall ? `${srcSmall} 800w, ${src} 1600w` : undefined}
+        sizes={srcSmall ? sizes : undefined}
         alt={alt}
         width={width}
         height={height}

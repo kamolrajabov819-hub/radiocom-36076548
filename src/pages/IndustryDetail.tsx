@@ -3,23 +3,14 @@ import { LocaleLink } from "@/components/LocaleLink";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import {
-  ChevronRight,
-  Plus,
-  Minus,
-  FileDown,
-  Check,
-  Quote,
-  Radio,
-  Repeat,
-  Wrench,
-} from "lucide-react";
+import { ChevronRight, FileDown, Check, Quote, Radio, Repeat, Wrench } from "lucide-react";
 import { INDUSTRY_SLUGS, industryPicks, type IndustrySlug } from "@/data/industries";
 import { products } from "@/data/products";
 import { openLead } from "@/components/LeadFormSheet";
 import { CountUp } from "@/components/CountUp";
 import { ProductCard } from "@/components/ProductCard";
 import { Section, SectionHead } from "@/components/Section";
+import { Faq } from "@/components/Faq";
 import { BentoGrid, FeatureCard } from "@/components/apple";
 import catalogAsset from "@/assets/radiocom-catalog.pdf.asset.json";
 import horecaImg from "@/assets/industry-horeca.jpg";
@@ -317,11 +308,7 @@ export function IndustryPage() {
         <Section band="soft" tight>
           <div className="mx-auto max-w-3xl">
             <SectionHead align="center" spacing="tight" title={t("industries.faq_title")} />
-            <div className="overflow-hidden rounded-3xl bg-pitch">
-              {faq.map((f, i) => (
-                <FaqRow key={f.q} q={f.q} a={f.a} first={i === 0} />
-              ))}
-            </div>
+            <Faq items={faq} />
           </div>
         </Section>
       )}
@@ -407,31 +394,6 @@ function OutcomeNumber({ value, unit }: { value: string; unit?: string }) {
         )}
       </span>
       {unit ? <span className="text-[15px] text-cool">{unit}</span> : null}
-    </div>
-  );
-}
-
-function FaqRow({ q, a, first }: { q: string; a: string; first: boolean }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className={first ? "" : "border-t border-border"}>
-      <button
-        onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between gap-6 py-6 text-left"
-      >
-        <span className="text-[16px] md:text-lg font-medium text-crisp">{q}</span>
-        <span className="shrink-0 h-8 w-8 rounded-full bg-pitch flex items-center justify-center text-crisp">
-          {open ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-        </span>
-      </button>
-      <motion.div
-        initial={false}
-        animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
-        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-        className="overflow-hidden"
-      >
-        <p className="pb-6 text-[15px] text-cool leading-relaxed">{a}</p>
-      </motion.div>
     </div>
   );
 }

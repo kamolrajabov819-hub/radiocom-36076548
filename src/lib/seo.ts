@@ -86,8 +86,21 @@ export function canonical(path: string) {
  * `<script>` tag itself and renders `children` as the body.
  */
 export function jsonLd(data: unknown) {
+  // Flat, deliberately. TanStack's `<Scripts>` maps each `head().scripts` entry
+  // with `({ children, ...script }) => ({ tag: "script", attrs: { ...script } })`
+  // — it pulls `children` off and spreads **everything else as attributes**.
+  //
+  // So a nested `{ attrs: { type } }` does not set the type; it renders the
+  // literal attribute `attrs="[object Object]"`. That is what shipped, and the
+  // consequences were bad in both directions: with no `type`, the browser
+  // treats a `<script>` as JavaScript, so each block threw
+  // `SyntaxError: Unexpected token ':'` on load, and Google saw no structured
+  // data at all — every Organization, LocalBusiness, Product, Service,
+  // FAQPage and BreadcrumbList block on the site was invisible.
+  //
+  // `verify-seo` now asserts the rendered `type` so this cannot regress.
   return {
-    attrs: { type: "application/ld+json" },
+    type: "application/ld+json",
     children: JSON.stringify(data),
   };
 }

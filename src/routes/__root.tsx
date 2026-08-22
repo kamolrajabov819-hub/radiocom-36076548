@@ -147,12 +147,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "icon", type: "image/png", href: "/favicon.png" },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap",
-      },
+      // Inter is self-hosted — see the @font-face block at the top of
+      // styles.css. The three fonts.googleapis.com / fonts.gstatic.com tags
+      // that stood here were render-blocking: an extra DNS lookup, TLS
+      // handshake and round trip to a third party before any text could
+      // paint. The subsets ship from our own origin now, so they are covered
+      // by the same connection as the stylesheet that references them.
     ],
     // Business identity graph — emitted once for the whole site, and
     // language-neutral by construction. Child routes add their own page-level
