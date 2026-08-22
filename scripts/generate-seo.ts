@@ -12,86 +12,18 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 // for the redirect map below, because a hidden model's old /catalog URL is
 // already indexed and must keep resolving.
 import { products, visibleProducts } from "../src/data/products";
-import { INDUSTRY_SLUGS } from "../src/data/industries";
-import {
-  SITE_URL,
-  LANGS,
-  DEFAULT_SEO_LANG,
-  localePath,
-  productPath,
-  productSpecsPath,
-} from "../src/lib/seo";
+import { SITE_URL, LANGS, localePath, productPath } from "../src/lib/seo";
+import { entries, renderSitemap } from "./lib/sitemap";
 
-type Entry = { path: string; changefreq: string; priority: string };
-
-const entries: Entry[] = [
-  { path: "/", changefreq: "weekly", priority: "1.0" },
-  // The catalogue's single URL became two brand pages plus a compare table.
-  // Both brands sit at the same priority: neither is a subordinate of the
-  // other, and each is the entry point for a different search intent.
-  { path: "/radiocom", changefreq: "weekly", priority: "0.9" },
-  { path: "/motorola", changefreq: "weekly", priority: "0.9" },
-  { path: "/compare", changefreq: "monthly", priority: "0.7" },
-  { path: "/poc", changefreq: "monthly", priority: "0.8" },
-  { path: "/service", changefreq: "monthly", priority: "0.8" },
-  { path: "/industries", changefreq: "monthly", priority: "0.7" },
-  ...INDUSTRY_SLUGS.map((slug) => ({
-    path: `/industries/${slug}`,
-    changefreq: "monthly",
-    priority: "0.7",
-  })),
-  // Product pages carry the long-tail model queries — the highest-intent
-  // traffic. Each model now has two: the story page answers "what is this for"
-  // and the specs page answers "what does it cost and what is in it". They are
-  // separate URLs with separate titles because they serve separate queries
-  // ("Radiocom RCD-60" vs "Radiocom RCD-60 характеристики"), and both are
-  // built from `productPath`/`productSpecsPath` so the sitemap cannot drift
-  // from what the router serves.
-  ...visibleProducts.map((p) => ({
-    path: productPath(p),
-    changefreq: "weekly",
-    priority: "0.8",
-  })),
-  ...visibleProducts.map((p) => ({
-    path: productSpecsPath(p),
-    changefreq: "weekly",
-    priority: "0.7",
-  })),
-];
-
-const lastmod = new Date().toISOString().slice(0, 10);
-
-// Every page is emitted once per locale, and each entry advertises the full
-// alternate set including itself — Google discards an hreflang cluster whose
-// members do not all point at each other.
-const urls = entries.flatMap((e) =>
-  LANGS.map((lang) => {
-    const alternates = [
-      ...LANGS.map(
-        (l) =>
-          `    <xhtml:link rel="alternate" hreflang="${l}" href="${SITE_URL}${localePath(l, e.path)}"/>`,
-      ),
-      `    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_URL}${localePath(DEFAULT_SEO_LANG, e.path)}"/>`,
-    ].join("\n");
-
-    return (
-      `  <url>\n` +
-      `    <loc>${SITE_URL}${localePath(lang, e.path)}</loc>\n` +
-      `${alternates}\n` +
-      `    <lastmod>${lastmod}</lastmod>\n` +
-      `    <changefreq>${e.changefreq}</changefreq>\n` +
-      `    <priority>${e.priority}</priority>\n` +
-      `  </url>`
-    );
-  }),
-);
-
-const sitemap =
-  `<?xml version="1.0" encoding="UTF-8"?>\n` +
-  `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n` +
-  `        xmlns:xhtml="http://www.w3.org/1999/xhtml">\n` +
-  urls.join("\n") +
-  `\n</urlset>\n`;
+// The page list and the XML renderer now live in `scripts/lib/sitemap.ts`,
+// shared with the post-build finalizer. See that file for why the image
+// extension cannot be written in this pass.
+//
+// No resolver is passed: at this point in the build a product's `image` is
+// still the filesystem path Bun resolved the import to, not the fingerprinted
+// URL the page will serve. `finalize-sitemap.ts` writes the image-enriched
+// version over the build output once vite has produced the hashed names.
+const sitemap = renderSitemap(entries);
 
 // AI crawlers are allowed deliberately: for a regional B2B catalogue, being quotable
 // by ChatGPT, Perplexity and AI Overviews is a channel, not a leak. Everything here
@@ -295,5 +227,5 @@ await writeFile("public/robots.txt", robots, "utf8");
 await writeFile("public/llms.txt", llmsFor("ru"), "utf8");
 for (const l of LANGS) await writeFile(`public/llms.${l}.txt`, llmsFor(l), "utf8");
 console.log(
-  `seo: wrote public/sitemap.xml (${entries.length} pages x ${LANGS.length} locales = ${urls.length} urls) plus robots.txt and llms.txt`,
+  `seo: wrote public/sitemap.xml (${entries.length} pages x ${LANGS.length} locales = ${entries.length * LANGS.length} urls) plus robots.txt and llms.txt`,
 );

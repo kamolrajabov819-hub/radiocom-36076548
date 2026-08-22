@@ -27,10 +27,11 @@ import { pick, type Lang } from "@/data/spec-dict";
 import {
   breadcrumbSchema,
   brandPath,
-  itemListSchema,
+  collectionPageSchema,
   jsonLd,
   localeLinks,
   pageMeta,
+  preloadImage,
   type SeoLang,
 } from "@/lib/seo";
 import { tFor } from "@/lib/i18n";
@@ -67,9 +68,34 @@ export function brandRouteOptions(brandSlug: BrandSlug) {
 
       return {
         meta: pageMeta({ lang: params.lang, title, description, path }),
-        links: localeLinks(params.lang, path),
+        links: [
+          ...localeLinks(params.lang, path),
+          // The first lineup card is the LCP element on this page at every
+          // width — the model strip above it is 52px thumbnails.
+          ...(list[0]
+            ? [
+                preloadImage({
+                  src: list[0].image,
+                  small: list[0].imageSmall,
+                  sizes: "(min-width: 1280px) 240px, (min-width: 640px) 45vw, 80vw",
+                }),
+              ]
+            : []),
+        ],
         scripts: [
-          jsonLd(itemListSchema(list, params.lang)),
+          // `CollectionPage` rather than a bare `ItemList`: it carries the
+          // family's real price range as an `AggregateOffer`, which is what a
+          // "Motorola рации цена" query is asking and what an ItemList of
+          // twelve links cannot answer.
+          jsonLd(
+            collectionPageSchema({
+              items: list,
+              lang: params.lang,
+              path,
+              name: t(`brand.${brandSlug}_title`),
+              description,
+            }),
+          ),
           jsonLd(
             breadcrumbSchema(
               [

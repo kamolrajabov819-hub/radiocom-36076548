@@ -27,7 +27,7 @@ import { visibleProducts } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
 import { CountUp } from "@/components/CountUp";
 import { spring, fadeUpAt } from "@/lib/springs";
-import { gsap, useGsap } from "@/lib/motion";
+import { useGsap } from "@/lib/motion";
 import {
   SITE_SECTIONS,
   jsonLd,
@@ -96,7 +96,10 @@ function Hero() {
   const title = t("home.hero.title");
 
   useGsap(
-    () => {
+    // `gsap` arrives through the callback rather than a module import: it is
+    // loaded on demand, so a static import here would put it back in this
+    // page's chunk and undo the split.
+    ({ gsap }) => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: scope.current,

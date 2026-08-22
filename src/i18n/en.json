@@ -629,7 +629,9 @@
     "err_title": "We hit a snag.",
     "err_sub": "Try again, or head back home.",
     "err_retry": "Retry",
-    "err_home": "Home"
+    "err_home": "Home",
+    "nf_where": "Where to next",
+    "nf_search_hint": "Or write to us — we will match a model to your task."
   },
   "meta": {
     "home": {

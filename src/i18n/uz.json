@@ -629,7 +629,9 @@
     "err_title": "Xatolik yuz berdi.",
     "err_sub": "Qayta urinib ko'ring yoki bosh sahifaga qayting.",
     "err_retry": "Qayta urinish",
-    "err_home": "Bosh sahifa"
+    "err_home": "Bosh sahifa",
+    "nf_where": "Keyingi qadam",
+    "nf_search_hint": "Yoki bizga yozing — vazifangizga mos modelni tanlaymiz."
   },
   "meta": {
     "home": {

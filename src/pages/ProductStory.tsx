@@ -29,6 +29,7 @@ import {
   jsonLd,
   localeLinks,
   pageMeta,
+  preloadImage,
   productPath,
   productSchema,
   type SeoLang,
@@ -79,8 +80,19 @@ export function productStoryRouteOptions() {
           path,
           image: p.image,
           type: "product",
+          product: { price: p.price },
         }),
-        links: localeLinks(params.lang, path),
+        links: [
+          ...localeLinks(params.lang, path),
+          // The hero photograph is the LCP element here, and its candidate set
+          // must match the <img> in `Hero` exactly or the browser fetches the
+          // image twice.
+          preloadImage({
+            src: p.image,
+            small: p.imageSmall,
+            sizes: "(min-width: 768px) 520px, 88vw",
+          }),
+        ],
         scripts: [
           jsonLd(
             productSchema(p, params.lang, {
