@@ -61,8 +61,21 @@ export type Brand = "Motorola" | "Radiocom RC";
  * visitor was on — the copy lives in the data layer, so no amount of i18n JSON
  * could reach it. Read them through `pick(value, lang)` from `spec-dict`.
  */
+export type BrandSlug = "radiocom" | "motorola";
+
 export type Product = {
   id: string;
+  /**
+   * URL segment under the brand, e.g. `rcd-60` at `/ru/radiocom/rcd-60`.
+   *
+   * Derived from `id` rather than hand-written per model: the Motorola ids
+   * carry an `m-` prefix that exists to keep the two families apart in one flat
+   * list, and that prefix is redundant once the brand is already in the path.
+   * Hand-maintaining 24 duplicate strings would only invite them to drift out
+   * of sync with the ids the redirect map is built from.
+   */
+  slug: string;
+  brandSlug: BrandSlug;
   name: string;
   brand: Brand;
   category: Category;
@@ -82,7 +95,7 @@ const MOT = "Motorola" as const;
 // Helper — most Motorola PMR-446 talkabouts share the same tag set
 const TALK = ["PMR446", "License-free"];
 
-export const products: Product[] = [
+const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
   // ─── Radiocom RCD (digital / professional) ───
   {
     id: "rcd-70",
@@ -497,6 +510,45 @@ export const products: Product[] = [
     },
   },
 ];
+
+export const BRAND_SLUG: Record<Brand, BrandSlug> = {
+  "Radiocom RC": "radiocom",
+  Motorola: "motorola",
+};
+
+/**
+ * The catalogue, with its URL identity attached.
+ *
+ * `/ru/catalog/m-t82` became `/ru/motorola/t82`, so the redirect map in
+ * `scripts/generate-seo.ts` is generated from `id` -> `brandSlug/slug` over
+ * this same array. One source, no second list to forget to update.
+ */
+export const products: Product[] = rawProducts.map((p) => ({
+  ...p,
+  brandSlug: BRAND_SLUG[p.brand],
+  slug: p.id.replace(/^m-/, ""),
+}));
+
+export const BRAND_SLUGS: readonly BrandSlug[] = ["radiocom", "motorola"];
+
+/** Narrows a raw route param to a real brand, so unknown segments can 404. */
+export function isBrandSlug(v: string): v is BrandSlug {
+  return (BRAND_SLUGS as readonly string[]).includes(v);
+}
+
+export function productsOfBrand(brandSlug: BrandSlug): Product[] {
+  return products.filter((p) => p.brandSlug === brandSlug);
+}
+
+export function productBySlug(brandSlug: BrandSlug, slug: string): Product | undefined {
+  return products.find((p) => p.brandSlug === brandSlug && p.slug === slug);
+}
+
+/** Cheapest price in a brand's line-up, for the "from N сум" on brand cards. */
+export function priceFrom(list: Product[]): number | null {
+  const known = list.map((p) => p.price).filter((n): n is number => n != null);
+  return known.length ? Math.min(...known) : null;
+}
 
 export const categoryLabels: Record<Category, { ru: string; en: string; uz: string }> = {
   amateur: { ru: "Любительские", en: "Amateur", uz: "Havaskor" },

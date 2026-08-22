@@ -7,11 +7,17 @@ import { spring } from "@/lib/springs";
 export function StickyBottomCta() {
   const { t } = useTranslation();
   const pathname = useRouterState({ select: (r) => r.location.pathname });
-  // Every URL carries a locale prefix now ("/ru", "/en/catalog"), so comparing
+  // Every URL carries a locale prefix now ("/ru", "/en/radiocom"), so comparing
   // against the bare paths matched nothing and this CTA had stopped rendering
   // on every page. Strip the prefix first, the way Nav does.
   const path = pathname.replace(/^\/(ru|en|uz)(?=\/|$)/, "") || "/";
-  const shouldShow = path === "/" || path.startsWith("/catalog");
+  // Home plus the whole product tree: brand pages, story pages and specs
+  // pages are all buy-intent surfaces.
+  const shouldShow =
+    path === "/" ||
+    path.startsWith("/radiocom") ||
+    path.startsWith("/motorola") ||
+    path.startsWith("/compare");
 
   return (
     <AnimatePresence>

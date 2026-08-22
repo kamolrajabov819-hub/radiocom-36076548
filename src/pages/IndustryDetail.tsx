@@ -278,7 +278,7 @@ export function IndustryPage() {
           align="left"
           spacing="tight"
           title={t("industries.recommended")}
-          link={{ label: t("industries.compare_all"), to: "/catalog" }}
+          link={{ label: t("industries.compare_all"), to: "/compare" }}
         />
         <div className="grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-3">
           {picks.slice(0, 6).map((p, i) => (
@@ -332,7 +332,7 @@ export function IndustryPage() {
             >
               {t("industries.cta")}
             </button>
-            <LocaleLink to="/catalog" className="pill-link">
+            <LocaleLink to="/compare" className="pill-link">
               {t("industries.compare_all")} <ChevronRight className="h-4 w-4" aria-hidden />
             </LocaleLink>
           </div>

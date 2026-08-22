@@ -13,7 +13,7 @@ import { DEFAULT_LANG } from "@/lib/i18n";
 export const Route = createFileRoute("/catalog/")({
   beforeLoad: () => {
     throw redirect({
-      to: "/$lang/catalog",
+      to: "/$lang/radiocom",
       params: { lang: DEFAULT_LANG },
       statusCode: 301,
     });

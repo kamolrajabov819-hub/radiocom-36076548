@@ -1,7 +1,6 @@
 {
   "nav": {
     "home": "Home",
-    "catalog": "Catalog",
     "poc": "PoC Systems",
     "service": "Service",
     "industries": "Industries",
@@ -13,7 +12,10 @@
     "menu": "Menu",
     "close": "Close",
     "get_quote": "Get Quote",
-    "skip_to_content": "Skip to content"
+    "skip_to_content": "Skip to content",
+    "radiocom": "Radiocom",
+    "motorola": "Motorola",
+    "compare": "Compare"
   },
   "hero": {
     "eyebrow": "Authorized distributor · Tashkent",
@@ -634,12 +636,6 @@
       "title": "Two-Way Radios in Tashkent — Motorola, Radiocom | Radiocom",
       "desc": "The official two-way radio supplier in Uzbekistan: 11 years in the market, 10,000+ customers. Motorola, Hytera, PoC and Radiocom RC. Free trial, warranty, service centre in Tashkent."
     },
-    "catalog": {
-      "title_one": "Radio Catalogue — {{count}} Motorola and Radiocom model | Radiocom",
-      "title_other": "Radio Catalogue — {{count}} Motorola and Radiocom models | Radiocom",
-      "desc_one": "The complete two-way radio catalogue in Tashkent: {{count}} Motorola Talkabout, TLKR and XT model plus Radiocom RC/RCD. PMR and DMR, prices in soum, official warranty, free trial before you buy.",
-      "desc_other": "The complete two-way radio catalogue in Tashkent: {{count}} Motorola Talkabout, TLKR and XT models plus Radiocom RC/RCD. PMR and DMR, prices in soum, official warranty, free trial before you buy."
-    },
     "poc": {
       "title": "PoC Radios: LTE Push-to-Talk across Uzbekistan | Radiocom",
       "desc": "Push-to-Talk over Cellular — nationwide coverage with no repeaters, plus GPS, talk groups and dispatch. Network design and radio rental in Tashkent."
@@ -663,19 +659,80 @@
       "desc": "{{blurb}} Range {{range}}. {{price}}. Official warranty, free trial, delivery across Uzbekistan."
     },
     "crumb": {
-      "catalog": "Catalogue",
       "industries": "Industries",
-      "service": "Service"
+      "service": "Service",
+      "radiocom": "Radiocom",
+      "motorola": "Motorola",
+      "compare": "Compare",
+      "specs": "Specs"
     },
     "section": {
-      "catalog_name": "Radio catalogue",
-      "catalog_desc": "Every Motorola and Radiocom model with prices, specifications and box contents.",
       "poc_name": "PoC radios",
       "poc_desc": "Push-to-Talk over LTE: coverage across Uzbekistan with no repeaters.",
       "service_name": "Service centre",
       "service_desc": "Warranty and post-warranty two-way radio repair in Tashkent.",
       "industries_name": "Industries",
-      "industries_desc": "Radio communication solutions for HoReCa, construction, security, mining, transport and manufacturing."
+      "industries_desc": "Radio communication solutions for HoReCa, construction, security, mining, transport and manufacturing.",
+      "radiocom_name": "Radiocom radios",
+      "radiocom_desc": "Analogue RC handhelds and digital RCD DMR radios with warranty and service in Tashkent.",
+      "motorola_name": "Motorola radios",
+      "motorola_desc": "Talkabout, XT, TLKR and CLP — license-free PMR radios from the market leader.",
+      "compare_name": "Compare models",
+      "compare_desc": "Every radio by range, standard, ingress protection and price in one table."
+    },
+    "brand": {
+      "radiocom_title": "Radiocom RC and RCD radios — buy in Tashkent | Radiocom",
+      "radiocom_desc": "{{count}} Radiocom models: analogue RC handhelds and digital RCD DMR radios. Prices, specs, 12-month warranty and a free trial across Uzbekistan.",
+      "motorola_title": "Motorola two-way radios — buy in Tashkent | Radiocom",
+      "motorola_desc": "{{count}} Motorola models: Talkabout, XT, TLKR and CLP. License-free PMR radios with warranty, delivery across Uzbekistan and a free trial."
+    },
+    "specs": {
+      "title": "{{name}} — specifications and price | Radiocom",
+      "desc": "Full specifications for the {{name}}: {{price}}. Box contents, range, ingress protection. 12-month warranty, free delivery across Uzbekistan."
+    },
+    "compare": {
+      "title": "Compare Motorola and Radiocom radios — {{count}} models | Radiocom",
+      "desc": "Every model by range, standard, ingress protection and price in one table. Find the radio that fits the job."
     }
+  },
+  "brand": {
+    "eyebrow": "Authorized partner",
+    "headline": "Authorized distribution",
+    "sub": "We work directly with manufacturers: genuine devices, warranty and service in Tashkent.",
+    "view": "View models",
+    "models": "models",
+    "radiocom_title": "Radiocom RC and RCD",
+    "radiocom_desc": "Our own Radiocom line: analog RC handhelds and digital RCD DMR radios with warranty and service.",
+    "motorola_title": "Motorola",
+    "motorola_desc": "Talkabout, XT and TLKR — license-free PMR radios from the global market leader.",
+    "lineup": "The line-up",
+    "why_title": "Why buy from us",
+    "compare_cta": "Which radio is right for you?",
+    "compare_sub": "Compare models by range, protection and price.",
+    "all_models": "All models"
+  },
+  "px": {
+    "from": "From",
+    "learn_more": "Learn more",
+    "buy": "Request a quote",
+    "specs_link": "Specs and price",
+    "story_link": "Overview",
+    "highlights": "Get the highlights",
+    "in_box": "In the box",
+    "features": "Features",
+    "where_used": "Where it is used",
+    "accessories": "Compatible accessories",
+    "spec_table": "Specifications",
+    "config": "Configuration",
+    "warranty": "12-month warranty",
+    "delivery": "Free delivery across Uzbekistan",
+    "trial": "Free trial: we deliver, set it up and collect it",
+    "range_city": "In town",
+    "range_open": "Open ground",
+    "price_on_request": "Price on request",
+    "back_to_brand": "All models",
+    "compare_title": "Compare models",
+    "compare_sub": "Every Radiocom and Motorola model by range, protection and price.",
+    "faq_title": "Frequently asked questions"
   }
 }

@@ -61,9 +61,17 @@ for (const l of LANGS) {
 console.log(`ok  ${keysets.ru.size} keys present in all ${LANGS.length} locale files`);
 
 /* 2 ── every meta.* string must actually differ per language. This is the check
-       that fails the moment a page title is hardcoded again. */
+       that fails the moment a page title is hardcoded again.
+
+       Proper nouns are the one honest exception: a breadcrumb reading
+       "Motorola" is "Motorola" in Russian, English and Uzbek, and inventing
+       three spellings to satisfy a lint would put a wrong brand name in front
+       of customers. Anything added here must be a name, never a phrase — if it
+       contains a verb or an article it is copy, and copy gets translated. */
+const PROPER_NOUNS = new Set(["meta.crumb.radiocom", "meta.crumb.motorola"]);
+
 const identical: string[] = [];
-for (const key of [...keysets.ru].filter((k) => k.startsWith("meta."))) {
+for (const key of [...keysets.ru].filter((k) => k.startsWith("meta.") && !PROPER_NOUNS.has(k))) {
   const rendered = LANGS.map((l) =>
     getI18n(l).t(key, { count: 24, name: "X", blurb: "", price: "", range: "" }),
   );
@@ -71,7 +79,10 @@ for (const key of [...keysets.ru].filter((k) => k.startsWith("meta."))) {
 }
 if (identical.length)
   bad(`meta keys not distinct across locales:\n     ${identical.join("\n     ")}`);
-else console.log(`ok  every meta.* string is distinct in ru/en/uz`);
+else
+  console.log(
+    `ok  every meta.* string is distinct in ru/en/uz (${PROPER_NOUNS.size} proper nouns exempt)`,
+  );
 
 /* 3 ── product copy in the data layer must be localised, not Russian everywhere. */
 const flat = (v: L) => LANGS.map((l) => pick(v, l));

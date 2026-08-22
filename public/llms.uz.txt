@@ -16,36 +16,38 @@ Tillar: rus, ingliz, o'zbek. Kanonik til — rus tili.
 
 ## Katalog (24 model)
 ### Radiocom RC
-- [Radiocom RCD-70](https://radiocom.uz/uz/catalog/rcd-70) — RCD liniyasining flagmani: raqamli DMR, GPS va IP67 himoyasi. Masofa 4 km gacha.
-- [Radiocom RCD-60](https://radiocom.uz/uz/catalog/rcd-60) — Displey va klaviaturali raqamli radiostansiya, to'liq komplektda. Masofa 3,5 km gacha.
-- [Radiocom RCD-50](https://radiocom.uz/uz/catalog/rcd-50) — Brigadalar uchun ishchi model: toza raqamli ovoz va displey. Masofa 3 km gacha.
-- [Radiocom RCD-40](https://radiocom.uz/uz/catalog/rcd-40) — Kuchaytirilgan qabul va uzoq ish sikliga ega o'rta sinf RCD. Masofa 2,5 km gacha.
-- [Radiocom RCD-30](https://radiocom.uz/uz/catalog/rcd-30) — Professional segmentga kirish uchun ixcham raqamli radiostansiya. Masofa 2 km gacha.
-- [Radiocom RC-50](https://radiocom.uz/uz/catalog/rc-50) — O'rta radiusdagi aloqa uchun universal model. Masofa 2,5 km gacha.
-- [Radiocom RC-20](https://radiocom.uz/uz/catalog/rc-20) — Xodimlar uchun yengil radiostansiya — quvvatlagich va garnitura bilan. Masofa 1,5 km gacha.
-- [Radiocom RC-10](https://radiocom.uz/uz/catalog/rc-10) — Liniyaning boshlang'ich darajasi — sodda va ishonchli. Masofa 1 km gacha.
+- [Radiocom RCD-70](https://radiocom.uz/uz/radiocom/rcd-70) — RCD liniyasining flagmani: raqamli DMR, GPS va IP67 himoyasi. Masofa 4 km gacha.
+- [Radiocom RCD-60](https://radiocom.uz/uz/radiocom/rcd-60) — Displey va klaviaturali raqamli radiostansiya, to'liq komplektda. Masofa 3,5 km gacha.
+- [Radiocom RCD-50](https://radiocom.uz/uz/radiocom/rcd-50) — Brigadalar uchun ishchi model: toza raqamli ovoz va displey. Masofa 3 km gacha.
+- [Radiocom RCD-40](https://radiocom.uz/uz/radiocom/rcd-40) — Kuchaytirilgan qabul va uzoq ish sikliga ega o'rta sinf RCD. Masofa 2,5 km gacha.
+- [Radiocom RCD-30](https://radiocom.uz/uz/radiocom/rcd-30) — Professional segmentga kirish uchun ixcham raqamli radiostansiya. Masofa 2 km gacha.
+- [Radiocom RC-50](https://radiocom.uz/uz/radiocom/rc-50) — O'rta radiusdagi aloqa uchun universal model. Masofa 2,5 km gacha.
+- [Radiocom RC-20](https://radiocom.uz/uz/radiocom/rc-20) — Xodimlar uchun yengil radiostansiya — quvvatlagich va garnitura bilan. Masofa 1,5 km gacha.
+- [Radiocom RC-10](https://radiocom.uz/uz/radiocom/rc-10) — Liniyaning boshlang'ich darajasi — sodda va ishonchli. Masofa 1 km gacha.
 
 ### Motorola
-- [Motorola Talkabout T82 Extreme](https://radiocom.uz/uz/catalog/m-t82-extreme) — Ochiq havodagi vazifalar uchun himoyalangan, litsenziyasiz radiostansiya. Masofa 1,5 km gacha.
-- [Motorola Talkabout T82 Extreme Quad](https://radiocom.uz/uz/catalog/m-t82-extreme-quad) — Uyushgan brigadalar uchun 4 ta radiostansiyadan iborat to'plam. Masofa 1,5 km gacha.
-- [Motorola Talkabout T82 Extreme RSM](https://radiocom.uz/uz/catalog/m-t82-extreme-rsm) — Shovqinli joylarda ishlash uchun RSM tashqi mikrofonlari bilan T82 Extreme. Masofa 1,5 km gacha.
-- [Motorola Talkabout T82](https://radiocom.uz/uz/catalog/m-t82) — Jamoalar va tadbirlar uchun ixcham PMR radiostansiya. Masofa 1,5 km gacha.
-- [Motorola Talkabout T72 Go Active](https://radiocom.uz/uz/catalog/m-t72) — Ochiq havoda faol foydalanish uchun zamonaviy PMR. Masofa 1 km gacha.
-- [Motorola Talkabout T62 Red](https://radiocom.uz/uz/catalog/m-t62-red) — Ishonchli qabulga ega qizil korpusdagi nafis PMR. Masofa 900 m gacha.
-- [Motorola Talkabout T62 Blue](https://radiocom.uz/uz/catalog/m-t62-blue) — Xuddi shu T62 ko'k korpusda — jamoa va oila uchun. Masofa 900 m gacha.
-- [Motorola Talkabout T42 Triple](https://radiocom.uz/uz/catalog/m-t42-triple) — Kichik jamoalar uchun 3 ta radiostansiyadan iborat to'plam. Masofa 300 m gacha.
-- [Motorola Talkabout T42 Quad](https://radiocom.uz/uz/catalog/m-t42-quad) — 4 ta T42 radiostansiyasidan iborat to'plam. Masofa 300 m gacha.
-- [Motorola Talkabout T42 Red](https://radiocom.uz/uz/catalog/m-t42-red) — Oilalar va kichik biznes uchun boshlang'ich PMR. Masofa 300 m gacha.
-- [Motorola Talkabout T42 Blue](https://radiocom.uz/uz/catalog/m-t42-blue) — Ko'k korpusdagi T42 — sodda, arzon, ishonchli. Masofa 300 m gacha.
-- [Motorola TLKR-T92 H2O](https://radiocom.uz/uz/catalog/m-tlkr-t92h2o) — Suzadi va IP67 suvdan himoyalangan — suv va qurilish uchun. Masofa 1,5 km gacha.
-- [Motorola XT185](https://radiocom.uz/uz/catalog/m-xt185) — Chakana savdo, HoReCa va jamoat joylari uchun PMR. Masofa 1 km gacha.
-- [Motorola XT420](https://radiocom.uz/uz/catalog/m-xt420) — HoReCa va obyekt qo'riqlash uchun litsenziyasiz PMR. Masofa 2 km gacha.
-- [Motorola CLP 446](https://radiocom.uz/uz/catalog/m-clp446) — Zal xodimlari uchun antennasiz yassi radiostansiya — antibakterial korpus. Masofa 6 qavatgacha.
-- [Motorola CLK 446](https://radiocom.uz/uz/catalog/m-clk446) — Eng nozik CL: 14 mm, antimikrob qoplama, displey. Masofa 6 qavatgacha.
+- [Motorola Talkabout T82 Extreme](https://radiocom.uz/uz/motorola/t82-extreme) — Ochiq havodagi vazifalar uchun himoyalangan, litsenziyasiz radiostansiya. Masofa 1,5 km gacha.
+- [Motorola Talkabout T82 Extreme Quad](https://radiocom.uz/uz/motorola/t82-extreme-quad) — Uyushgan brigadalar uchun 4 ta radiostansiyadan iborat to'plam. Masofa 1,5 km gacha.
+- [Motorola Talkabout T82 Extreme RSM](https://radiocom.uz/uz/motorola/t82-extreme-rsm) — Shovqinli joylarda ishlash uchun RSM tashqi mikrofonlari bilan T82 Extreme. Masofa 1,5 km gacha.
+- [Motorola Talkabout T82](https://radiocom.uz/uz/motorola/t82) — Jamoalar va tadbirlar uchun ixcham PMR radiostansiya. Masofa 1,5 km gacha.
+- [Motorola Talkabout T72 Go Active](https://radiocom.uz/uz/motorola/t72) — Ochiq havoda faol foydalanish uchun zamonaviy PMR. Masofa 1 km gacha.
+- [Motorola Talkabout T62 Red](https://radiocom.uz/uz/motorola/t62-red) — Ishonchli qabulga ega qizil korpusdagi nafis PMR. Masofa 900 m gacha.
+- [Motorola Talkabout T62 Blue](https://radiocom.uz/uz/motorola/t62-blue) — Xuddi shu T62 ko'k korpusda — jamoa va oila uchun. Masofa 900 m gacha.
+- [Motorola Talkabout T42 Triple](https://radiocom.uz/uz/motorola/t42-triple) — Kichik jamoalar uchun 3 ta radiostansiyadan iborat to'plam. Masofa 300 m gacha.
+- [Motorola Talkabout T42 Quad](https://radiocom.uz/uz/motorola/t42-quad) — 4 ta T42 radiostansiyasidan iborat to'plam. Masofa 300 m gacha.
+- [Motorola Talkabout T42 Red](https://radiocom.uz/uz/motorola/t42-red) — Oilalar va kichik biznes uchun boshlang'ich PMR. Masofa 300 m gacha.
+- [Motorola Talkabout T42 Blue](https://radiocom.uz/uz/motorola/t42-blue) — Ko'k korpusdagi T42 — sodda, arzon, ishonchli. Masofa 300 m gacha.
+- [Motorola TLKR-T92 H2O](https://radiocom.uz/uz/motorola/tlkr-t92h2o) — Suzadi va IP67 suvdan himoyalangan — suv va qurilish uchun. Masofa 1,5 km gacha.
+- [Motorola XT185](https://radiocom.uz/uz/motorola/xt185) — Chakana savdo, HoReCa va jamoat joylari uchun PMR. Masofa 1 km gacha.
+- [Motorola XT420](https://radiocom.uz/uz/motorola/xt420) — HoReCa va obyekt qo'riqlash uchun litsenziyasiz PMR. Masofa 2 km gacha.
+- [Motorola CLP 446](https://radiocom.uz/uz/motorola/clp446) — Zal xodimlari uchun antennasiz yassi radiostansiya — antibakterial korpus. Masofa 6 qavatgacha.
+- [Motorola CLK 446](https://radiocom.uz/uz/motorola/clk446) — Eng nozik CL: 14 mm, antimikrob qoplama, displey. Masofa 6 qavatgacha.
 
 ## Bo'limlar
 - https://radiocom.uz/uz
-- https://radiocom.uz/uz/catalog
+- https://radiocom.uz/uz/radiocom
+- https://radiocom.uz/uz/motorola
+- https://radiocom.uz/uz/compare
 - https://radiocom.uz/uz/poc
 - https://radiocom.uz/uz/service
 - https://radiocom.uz/uz/industries

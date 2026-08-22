@@ -1,7 +1,6 @@
 {
   "nav": {
     "home": "Главная",
-    "catalog": "Каталог",
     "poc": "PoC системы",
     "service": "Сервис",
     "industries": "Отрасли",
@@ -13,7 +12,10 @@
     "menu": "Меню",
     "close": "Закрыть",
     "get_quote": "Оставить заявку",
-    "skip_to_content": "Перейти к содержимому"
+    "skip_to_content": "Перейти к содержимому",
+    "radiocom": "Radiocom",
+    "motorola": "Motorola",
+    "compare": "Сравнить"
   },
   "hero": {
     "eyebrow": "Официальный дистрибьютор · Ташкент",
@@ -634,16 +636,6 @@
       "title": "Рации и радиостанции в Ташкенте — Motorola, Radiocom | Radiocom",
       "desc": "Официальный поставщик радиостанций в Узбекистане: 11 лет на рынке, 10 000+ клиентов. Motorola, Hytera, PoC и Radiocom RC. Бесплатный тест, гарантия, сервис в Ташкенте."
     },
-    "catalog": {
-      "title_one": "Каталог рации — {{count}} модель Motorola и Radiocom | Radiocom",
-      "title_few": "Каталог рации — {{count}} модели Motorola и Radiocom | Radiocom",
-      "title_many": "Каталог рации — {{count}} моделей Motorola и Radiocom | Radiocom",
-      "title_other": "Каталог рации — {{count}} моделей Motorola и Radiocom | Radiocom",
-      "desc_one": "Полный каталог радиостанций в Ташкенте: {{count}} модель Motorola Talkabout, TLKR, XT и Radiocom RC/RCD. PMR и DMR, цены в сумах, официальная гарантия, бесплатный тест перед покупкой.",
-      "desc_few": "Полный каталог радиостанций в Ташкенте: {{count}} модели Motorola Talkabout, TLKR, XT и Radiocom RC/RCD. PMR и DMR, цены в сумах, официальная гарантия, бесплатный тест перед покупкой.",
-      "desc_many": "Полный каталог радиостанций в Ташкенте: {{count}} моделей Motorola Talkabout, TLKR, XT и Radiocom RC/RCD. PMR и DMR, цены в сумах, официальная гарантия, бесплатный тест перед покупкой.",
-      "desc_other": "Полный каталог радиостанций в Ташкенте: {{count}} моделей Motorola Talkabout, TLKR, XT и Radiocom RC/RCD. PMR и DMR, цены в сумах, официальная гарантия, бесплатный тест перед покупкой."
-    },
     "poc": {
       "title": "PoC-рации: связь через LTE по всему Узбекистану | Radiocom",
       "desc": "Push-to-Talk over Cellular — связь без ретрансляторов по всей стране, GPS, группы и диспетчеризация. Проектирование сети и аренда рации в Ташкенте."
@@ -667,19 +659,80 @@
       "desc": "{{blurb}} Дальность {{range}}. {{price}}. Официальная гарантия, бесплатный тест, доставка по Узбекистану."
     },
     "crumb": {
-      "catalog": "Каталог",
       "industries": "Отрасли",
-      "service": "Сервис"
+      "service": "Сервис",
+      "radiocom": "Radiocom",
+      "motorola": "Motorola",
+      "compare": "Сравнение",
+      "specs": "Характеристики"
     },
     "section": {
-      "catalog_name": "Каталог раций",
-      "catalog_desc": "Все модели Motorola и Radiocom с ценами, характеристиками и комплектацией.",
       "poc_name": "PoC-рации",
       "poc_desc": "Push-to-Talk через LTE: связь по всему Узбекистану без ретрансляторов.",
       "service_name": "Сервисный центр",
       "service_desc": "Гарантийный и постгарантийный ремонт раций в Ташкенте.",
       "industries_name": "Отрасли",
-      "industries_desc": "Решения радиосвязи для HoReCa, стройки, охраны, добычи, транспорта и производства."
+      "industries_desc": "Решения радиосвязи для HoReCa, стройки, охраны, добычи, транспорта и производства.",
+      "radiocom_name": "Рации Radiocom",
+      "radiocom_desc": "Аналоговые RC и цифровые DMR-рации RCD с гарантией и сервисом в Ташкенте.",
+      "motorola_name": "Рации Motorola",
+      "motorola_desc": "Talkabout, XT, TLKR и CLP — безлицензионные PMR-рации мирового лидера.",
+      "compare_name": "Сравнение моделей",
+      "compare_desc": "Все рации по дальности, стандарту, классу защиты и цене в одной таблице."
+    },
+    "brand": {
+      "radiocom_title": "Рации Radiocom RC и RCD — купить в Ташкенте | Radiocom",
+      "radiocom_desc": "{{count}} моделей Radiocom: аналоговые RC и цифровые DMR-рации RCD. Цены, характеристики, гарантия 12 месяцев и бесплатный тест по Узбекистану.",
+      "motorola_title": "Рации Motorola — купить в Ташкенте | Radiocom",
+      "motorola_desc": "{{count}} моделей Motorola: Talkabout, XT, TLKR и CLP. Безлицензионные PMR-рации с гарантией, доставкой по Узбекистану и бесплатным тестом."
+    },
+    "specs": {
+      "title": "{{name}} — характеристики и цена | Radiocom",
+      "desc": "Полные характеристики {{name}}: {{price}}. Комплектация, дальность, защита. Гарантия 12 месяцев, бесплатная доставка по Узбекистану."
+    },
+    "compare": {
+      "title": "Сравнение раций Motorola и Radiocom — {{count}} моделей | Radiocom",
+      "desc": "Все модели по дальности, стандарту, классу защиты и цене в одной таблице. Подберите рацию под задачу."
     }
+  },
+  "brand": {
+    "eyebrow": "Официальный партнёр",
+    "headline": "Официальная дистрибуция",
+    "sub": "Мы работаем напрямую с производителями: оригинальные устройства, гарантия и сервис в Ташкенте.",
+    "view": "Смотреть модели",
+    "models": "моделей",
+    "radiocom_title": "Radiocom RC и RCD",
+    "radiocom_desc": "Собственная линейка Radiocom: аналоговые RC и цифровые DMR-рации RCD с гарантией и сервисом.",
+    "motorola_title": "Motorola",
+    "motorola_desc": "Talkabout, XT и TLKR — безлицензионные PMR-рации мирового лидера рынка.",
+    "lineup": "Модельный ряд",
+    "why_title": "Почему через нас",
+    "compare_cta": "Какая рация вам подойдёт?",
+    "compare_sub": "Сравните модели по дальности, защите и цене.",
+    "all_models": "Все модели"
+  },
+  "px": {
+    "from": "От",
+    "learn_more": "Подробнее",
+    "buy": "Оставить заявку",
+    "specs_link": "Характеристики и цена",
+    "story_link": "О модели",
+    "highlights": "Коротко о главном",
+    "in_box": "В комплекте",
+    "features": "Возможности",
+    "where_used": "Где применяется",
+    "accessories": "Совместимые аксессуары",
+    "spec_table": "Характеристики",
+    "config": "Конфигурация",
+    "warranty": "Гарантия 12 месяцев",
+    "delivery": "Бесплатная доставка по Узбекистану",
+    "trial": "Бесплатный тест: привозим, настраиваем, забираем",
+    "range_city": "В городе",
+    "range_open": "На открытой местности",
+    "price_on_request": "Цена по запросу",
+    "back_to_brand": "Ко всем моделям",
+    "compare_title": "Сравнение моделей",
+    "compare_sub": "Все модели Radiocom и Motorola по дальности, защите и цене.",
+    "faq_title": "Частые вопросы"
   }
 }

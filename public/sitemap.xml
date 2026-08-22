@@ -32,34 +32,94 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog"/>
+    <loc>https://radiocom.uz/ru/radiocom</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog"/>
+    <loc>https://radiocom.uz/en/radiocom</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog"/>
+    <loc>https://radiocom.uz/uz/radiocom</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/motorola</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/motorola</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/motorola</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/compare</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/compare"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/compare"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/compare"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/compare"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/compare</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/compare"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/compare"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/compare"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/compare"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/compare</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/compare"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/compare"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/compare"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/compare"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://radiocom.uz/ru/poc</loc>
@@ -332,723 +392,1443 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/rcd-70</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rcd-70"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rcd-70"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rcd-70"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rcd-70"/>
+    <loc>https://radiocom.uz/ru/radiocom/rcd-70</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-70"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-70"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-70"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-70"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/rcd-70</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rcd-70"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rcd-70"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rcd-70"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rcd-70"/>
+    <loc>https://radiocom.uz/en/radiocom/rcd-70</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-70"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-70"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-70"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-70"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/rcd-70</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rcd-70"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rcd-70"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rcd-70"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rcd-70"/>
+    <loc>https://radiocom.uz/uz/radiocom/rcd-70</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-70"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-70"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-70"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-70"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/rcd-60</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rcd-60"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rcd-60"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rcd-60"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rcd-60"/>
+    <loc>https://radiocom.uz/ru/radiocom/rcd-60</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-60"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-60"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-60"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-60"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/rcd-60</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rcd-60"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rcd-60"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rcd-60"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rcd-60"/>
+    <loc>https://radiocom.uz/en/radiocom/rcd-60</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-60"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-60"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-60"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-60"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/rcd-60</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rcd-60"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rcd-60"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rcd-60"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rcd-60"/>
+    <loc>https://radiocom.uz/uz/radiocom/rcd-60</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-60"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-60"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-60"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-60"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/rcd-50</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rcd-50"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rcd-50"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rcd-50"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rcd-50"/>
+    <loc>https://radiocom.uz/ru/radiocom/rcd-50</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-50"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-50"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-50"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-50"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/rcd-50</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rcd-50"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rcd-50"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rcd-50"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rcd-50"/>
+    <loc>https://radiocom.uz/en/radiocom/rcd-50</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-50"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-50"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-50"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-50"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/rcd-50</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rcd-50"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rcd-50"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rcd-50"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rcd-50"/>
+    <loc>https://radiocom.uz/uz/radiocom/rcd-50</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-50"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-50"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-50"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-50"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/rcd-40</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rcd-40"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rcd-40"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rcd-40"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rcd-40"/>
+    <loc>https://radiocom.uz/ru/radiocom/rcd-40</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-40"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-40"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-40"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-40"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/rcd-40</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rcd-40"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rcd-40"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rcd-40"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rcd-40"/>
+    <loc>https://radiocom.uz/en/radiocom/rcd-40</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-40"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-40"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-40"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-40"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/rcd-40</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rcd-40"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rcd-40"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rcd-40"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rcd-40"/>
+    <loc>https://radiocom.uz/uz/radiocom/rcd-40</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-40"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-40"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-40"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-40"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/rcd-30</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rcd-30"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rcd-30"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rcd-30"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rcd-30"/>
+    <loc>https://radiocom.uz/ru/radiocom/rcd-30</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-30"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-30"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-30"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-30"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/rcd-30</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rcd-30"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rcd-30"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rcd-30"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rcd-30"/>
+    <loc>https://radiocom.uz/en/radiocom/rcd-30</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-30"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-30"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-30"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-30"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/rcd-30</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rcd-30"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rcd-30"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rcd-30"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rcd-30"/>
+    <loc>https://radiocom.uz/uz/radiocom/rcd-30</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-30"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-30"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-30"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-30"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/rc-50</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rc-50"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rc-50"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rc-50"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rc-50"/>
+    <loc>https://radiocom.uz/ru/radiocom/rc-50</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rc-50"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rc-50"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rc-50"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rc-50"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/rc-50</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rc-50"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rc-50"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rc-50"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rc-50"/>
+    <loc>https://radiocom.uz/en/radiocom/rc-50</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rc-50"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rc-50"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rc-50"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rc-50"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/rc-50</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rc-50"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rc-50"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rc-50"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rc-50"/>
+    <loc>https://radiocom.uz/uz/radiocom/rc-50</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rc-50"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rc-50"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rc-50"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rc-50"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/rc-20</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rc-20"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rc-20"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rc-20"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rc-20"/>
+    <loc>https://radiocom.uz/ru/radiocom/rc-20</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rc-20"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rc-20"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rc-20"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rc-20"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/rc-20</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rc-20"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rc-20"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rc-20"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rc-20"/>
+    <loc>https://radiocom.uz/en/radiocom/rc-20</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rc-20"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rc-20"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rc-20"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rc-20"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/rc-20</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rc-20"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rc-20"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rc-20"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rc-20"/>
+    <loc>https://radiocom.uz/uz/radiocom/rc-20</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rc-20"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rc-20"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rc-20"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rc-20"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/rc-10</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rc-10"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rc-10"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rc-10"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rc-10"/>
+    <loc>https://radiocom.uz/ru/radiocom/rc-10</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rc-10"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rc-10"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rc-10"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rc-10"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/rc-10</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rc-10"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rc-10"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rc-10"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rc-10"/>
+    <loc>https://radiocom.uz/en/radiocom/rc-10</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rc-10"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rc-10"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rc-10"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rc-10"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/rc-10</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/rc-10"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/rc-10"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/rc-10"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/rc-10"/>
+    <loc>https://radiocom.uz/uz/radiocom/rc-10</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rc-10"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rc-10"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rc-10"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rc-10"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/m-t82-extreme</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t82-extreme"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t82-extreme"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t82-extreme"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t82-extreme"/>
+    <loc>https://radiocom.uz/ru/motorola/t82-extreme</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82-extreme"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82-extreme"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82-extreme"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82-extreme"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/m-t82-extreme</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t82-extreme"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t82-extreme"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t82-extreme"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t82-extreme"/>
+    <loc>https://radiocom.uz/en/motorola/t82-extreme</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82-extreme"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82-extreme"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82-extreme"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82-extreme"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/m-t82-extreme</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t82-extreme"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t82-extreme"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t82-extreme"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t82-extreme"/>
+    <loc>https://radiocom.uz/uz/motorola/t82-extreme</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82-extreme"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82-extreme"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82-extreme"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82-extreme"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/m-t82-extreme-quad</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t82-extreme-quad"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t82-extreme-quad"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t82-extreme-quad"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t82-extreme-quad"/>
+    <loc>https://radiocom.uz/ru/motorola/t82-extreme-quad</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82-extreme-quad"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82-extreme-quad"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82-extreme-quad"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82-extreme-quad"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/m-t82-extreme-quad</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t82-extreme-quad"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t82-extreme-quad"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t82-extreme-quad"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t82-extreme-quad"/>
+    <loc>https://radiocom.uz/en/motorola/t82-extreme-quad</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82-extreme-quad"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82-extreme-quad"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82-extreme-quad"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82-extreme-quad"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/m-t82-extreme-quad</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t82-extreme-quad"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t82-extreme-quad"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t82-extreme-quad"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t82-extreme-quad"/>
+    <loc>https://radiocom.uz/uz/motorola/t82-extreme-quad</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82-extreme-quad"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82-extreme-quad"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82-extreme-quad"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82-extreme-quad"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/m-t82-extreme-rsm</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t82-extreme-rsm"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t82-extreme-rsm"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t82-extreme-rsm"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t82-extreme-rsm"/>
+    <loc>https://radiocom.uz/ru/motorola/t82-extreme-rsm</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82-extreme-rsm"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82-extreme-rsm"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82-extreme-rsm"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82-extreme-rsm"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/m-t82-extreme-rsm</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t82-extreme-rsm"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t82-extreme-rsm"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t82-extreme-rsm"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t82-extreme-rsm"/>
+    <loc>https://radiocom.uz/en/motorola/t82-extreme-rsm</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82-extreme-rsm"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82-extreme-rsm"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82-extreme-rsm"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82-extreme-rsm"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/m-t82-extreme-rsm</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t82-extreme-rsm"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t82-extreme-rsm"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t82-extreme-rsm"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t82-extreme-rsm"/>
+    <loc>https://radiocom.uz/uz/motorola/t82-extreme-rsm</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82-extreme-rsm"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82-extreme-rsm"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82-extreme-rsm"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82-extreme-rsm"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/m-t82</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t82"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t82"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t82"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t82"/>
+    <loc>https://radiocom.uz/ru/motorola/t82</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/m-t82</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t82"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t82"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t82"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t82"/>
+    <loc>https://radiocom.uz/en/motorola/t82</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/m-t82</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t82"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t82"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t82"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t82"/>
+    <loc>https://radiocom.uz/uz/motorola/t82</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/m-t72</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t72"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t72"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t72"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t72"/>
+    <loc>https://radiocom.uz/ru/motorola/t72</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t72"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t72"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t72"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t72"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/m-t72</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t72"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t72"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t72"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t72"/>
+    <loc>https://radiocom.uz/en/motorola/t72</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t72"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t72"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t72"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t72"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/m-t72</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t72"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t72"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t72"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t72"/>
+    <loc>https://radiocom.uz/uz/motorola/t72</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t72"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t72"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t72"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t72"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/m-t62-red</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t62-red"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t62-red"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t62-red"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t62-red"/>
+    <loc>https://radiocom.uz/ru/motorola/t62-red</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t62-red"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t62-red"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t62-red"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t62-red"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/m-t62-red</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t62-red"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t62-red"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t62-red"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t62-red"/>
+    <loc>https://radiocom.uz/en/motorola/t62-red</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t62-red"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t62-red"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t62-red"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t62-red"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/m-t62-red</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t62-red"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t62-red"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t62-red"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t62-red"/>
+    <loc>https://radiocom.uz/uz/motorola/t62-red</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t62-red"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t62-red"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t62-red"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t62-red"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/m-t62-blue</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t62-blue"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t62-blue"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t62-blue"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t62-blue"/>
+    <loc>https://radiocom.uz/ru/motorola/t62-blue</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t62-blue"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t62-blue"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t62-blue"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t62-blue"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/m-t62-blue</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t62-blue"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t62-blue"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t62-blue"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t62-blue"/>
+    <loc>https://radiocom.uz/en/motorola/t62-blue</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t62-blue"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t62-blue"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t62-blue"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t62-blue"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/m-t62-blue</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t62-blue"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t62-blue"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t62-blue"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t62-blue"/>
+    <loc>https://radiocom.uz/uz/motorola/t62-blue</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t62-blue"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t62-blue"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t62-blue"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t62-blue"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/m-t42-triple</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t42-triple"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t42-triple"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t42-triple"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t42-triple"/>
+    <loc>https://radiocom.uz/ru/motorola/t42-triple</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-triple"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-triple"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-triple"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-triple"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/m-t42-triple</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t42-triple"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t42-triple"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t42-triple"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t42-triple"/>
+    <loc>https://radiocom.uz/en/motorola/t42-triple</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-triple"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-triple"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-triple"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-triple"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/m-t42-triple</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t42-triple"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t42-triple"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t42-triple"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t42-triple"/>
+    <loc>https://radiocom.uz/uz/motorola/t42-triple</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-triple"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-triple"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-triple"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-triple"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/m-t42-quad</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t42-quad"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t42-quad"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t42-quad"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t42-quad"/>
+    <loc>https://radiocom.uz/ru/motorola/t42-quad</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-quad"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-quad"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-quad"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-quad"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/m-t42-quad</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t42-quad"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t42-quad"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t42-quad"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t42-quad"/>
+    <loc>https://radiocom.uz/en/motorola/t42-quad</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-quad"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-quad"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-quad"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-quad"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/m-t42-quad</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t42-quad"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t42-quad"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t42-quad"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t42-quad"/>
+    <loc>https://radiocom.uz/uz/motorola/t42-quad</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-quad"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-quad"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-quad"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-quad"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/m-t42-red</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t42-red"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t42-red"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t42-red"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t42-red"/>
+    <loc>https://radiocom.uz/ru/motorola/t42-red</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-red"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-red"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-red"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-red"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/m-t42-red</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t42-red"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t42-red"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t42-red"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t42-red"/>
+    <loc>https://radiocom.uz/en/motorola/t42-red</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-red"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-red"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-red"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-red"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/m-t42-red</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t42-red"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t42-red"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t42-red"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t42-red"/>
+    <loc>https://radiocom.uz/uz/motorola/t42-red</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-red"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-red"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-red"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-red"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/m-t42-blue</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t42-blue"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t42-blue"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t42-blue"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t42-blue"/>
+    <loc>https://radiocom.uz/ru/motorola/t42-blue</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-blue"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-blue"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-blue"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-blue"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/m-t42-blue</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t42-blue"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t42-blue"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t42-blue"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t42-blue"/>
+    <loc>https://radiocom.uz/en/motorola/t42-blue</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-blue"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-blue"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-blue"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-blue"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/m-t42-blue</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-t42-blue"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-t42-blue"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-t42-blue"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-t42-blue"/>
+    <loc>https://radiocom.uz/uz/motorola/t42-blue</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-blue"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-blue"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-blue"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-blue"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/m-tlkr-t92h2o</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-tlkr-t92h2o"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-tlkr-t92h2o"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-tlkr-t92h2o"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-tlkr-t92h2o"/>
+    <loc>https://radiocom.uz/ru/motorola/tlkr-t92h2o</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/tlkr-t92h2o"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/tlkr-t92h2o"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/tlkr-t92h2o"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/tlkr-t92h2o"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/m-tlkr-t92h2o</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-tlkr-t92h2o"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-tlkr-t92h2o"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-tlkr-t92h2o"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-tlkr-t92h2o"/>
+    <loc>https://radiocom.uz/en/motorola/tlkr-t92h2o</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/tlkr-t92h2o"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/tlkr-t92h2o"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/tlkr-t92h2o"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/tlkr-t92h2o"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/m-tlkr-t92h2o</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-tlkr-t92h2o"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-tlkr-t92h2o"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-tlkr-t92h2o"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-tlkr-t92h2o"/>
+    <loc>https://radiocom.uz/uz/motorola/tlkr-t92h2o</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/tlkr-t92h2o"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/tlkr-t92h2o"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/tlkr-t92h2o"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/tlkr-t92h2o"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/m-xt185</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-xt185"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-xt185"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-xt185"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-xt185"/>
+    <loc>https://radiocom.uz/ru/motorola/xt185</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/xt185"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/xt185"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/xt185"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/xt185"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/m-xt185</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-xt185"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-xt185"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-xt185"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-xt185"/>
+    <loc>https://radiocom.uz/en/motorola/xt185</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/xt185"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/xt185"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/xt185"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/xt185"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/m-xt185</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-xt185"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-xt185"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-xt185"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-xt185"/>
+    <loc>https://radiocom.uz/uz/motorola/xt185</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/xt185"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/xt185"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/xt185"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/xt185"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/m-xt420</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-xt420"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-xt420"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-xt420"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-xt420"/>
+    <loc>https://radiocom.uz/ru/motorola/xt420</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/xt420"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/xt420"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/xt420"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/xt420"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/m-xt420</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-xt420"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-xt420"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-xt420"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-xt420"/>
+    <loc>https://radiocom.uz/en/motorola/xt420</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/xt420"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/xt420"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/xt420"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/xt420"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/m-xt420</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-xt420"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-xt420"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-xt420"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-xt420"/>
+    <loc>https://radiocom.uz/uz/motorola/xt420</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/xt420"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/xt420"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/xt420"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/xt420"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/m-clp446</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-clp446"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-clp446"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-clp446"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-clp446"/>
+    <loc>https://radiocom.uz/ru/motorola/clp446</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/clp446"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/clp446"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/clp446"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/clp446"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/m-clp446</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-clp446"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-clp446"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-clp446"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-clp446"/>
+    <loc>https://radiocom.uz/en/motorola/clp446</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/clp446"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/clp446"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/clp446"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/clp446"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/m-clp446</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-clp446"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-clp446"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-clp446"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-clp446"/>
+    <loc>https://radiocom.uz/uz/motorola/clp446</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/clp446"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/clp446"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/clp446"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/clp446"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/ru/catalog/m-clk446</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-clk446"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-clk446"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-clk446"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-clk446"/>
+    <loc>https://radiocom.uz/ru/motorola/clk446</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/clk446"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/clk446"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/clk446"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/clk446"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/en/catalog/m-clk446</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-clk446"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-clk446"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-clk446"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-clk446"/>
+    <loc>https://radiocom.uz/en/motorola/clk446</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/clk446"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/clk446"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/clk446"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/clk446"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://radiocom.uz/uz/catalog/m-clk446</loc>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/catalog/m-clk446"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/catalog/m-clk446"/>
-    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/catalog/m-clk446"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/catalog/m-clk446"/>
+    <loc>https://radiocom.uz/uz/motorola/clk446</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/clk446"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/clk446"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/clk446"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/clk446"/>
     <lastmod>2026-08-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/radiocom/rcd-70/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-70/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-70/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-70/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-70/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/radiocom/rcd-70/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-70/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-70/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-70/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-70/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/radiocom/rcd-70/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-70/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-70/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-70/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-70/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/radiocom/rcd-60/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-60/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-60/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-60/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-60/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/radiocom/rcd-60/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-60/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-60/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-60/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-60/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/radiocom/rcd-60/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-60/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-60/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-60/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-60/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/radiocom/rcd-50/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-50/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-50/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-50/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-50/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/radiocom/rcd-50/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-50/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-50/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-50/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-50/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/radiocom/rcd-50/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-50/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-50/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-50/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-50/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/radiocom/rcd-40/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-40/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-40/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-40/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-40/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/radiocom/rcd-40/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-40/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-40/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-40/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-40/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/radiocom/rcd-40/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-40/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-40/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-40/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-40/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/radiocom/rcd-30/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-30/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-30/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-30/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-30/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/radiocom/rcd-30/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-30/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-30/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-30/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-30/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/radiocom/rcd-30/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rcd-30/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rcd-30/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rcd-30/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rcd-30/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/radiocom/rc-50/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rc-50/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rc-50/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rc-50/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rc-50/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/radiocom/rc-50/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rc-50/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rc-50/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rc-50/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rc-50/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/radiocom/rc-50/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rc-50/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rc-50/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rc-50/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rc-50/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/radiocom/rc-20/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rc-20/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rc-20/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rc-20/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rc-20/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/radiocom/rc-20/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rc-20/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rc-20/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rc-20/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rc-20/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/radiocom/rc-20/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rc-20/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rc-20/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rc-20/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rc-20/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/radiocom/rc-10/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rc-10/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rc-10/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rc-10/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rc-10/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/radiocom/rc-10/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rc-10/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rc-10/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rc-10/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rc-10/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/radiocom/rc-10/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/radiocom/rc-10/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/radiocom/rc-10/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/radiocom/rc-10/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/radiocom/rc-10/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/motorola/t82-extreme/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82-extreme/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82-extreme/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82-extreme/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82-extreme/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/motorola/t82-extreme/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82-extreme/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82-extreme/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82-extreme/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82-extreme/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/motorola/t82-extreme/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82-extreme/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82-extreme/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82-extreme/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82-extreme/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/motorola/t82-extreme-quad/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82-extreme-quad/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82-extreme-quad/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82-extreme-quad/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82-extreme-quad/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/motorola/t82-extreme-quad/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82-extreme-quad/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82-extreme-quad/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82-extreme-quad/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82-extreme-quad/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/motorola/t82-extreme-quad/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82-extreme-quad/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82-extreme-quad/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82-extreme-quad/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82-extreme-quad/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/motorola/t82-extreme-rsm/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82-extreme-rsm/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82-extreme-rsm/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82-extreme-rsm/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82-extreme-rsm/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/motorola/t82-extreme-rsm/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82-extreme-rsm/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82-extreme-rsm/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82-extreme-rsm/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82-extreme-rsm/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/motorola/t82-extreme-rsm/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82-extreme-rsm/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82-extreme-rsm/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82-extreme-rsm/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82-extreme-rsm/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/motorola/t82/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/motorola/t82/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/motorola/t82/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t82/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t82/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t82/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t82/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/motorola/t72/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t72/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t72/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t72/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t72/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/motorola/t72/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t72/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t72/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t72/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t72/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/motorola/t72/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t72/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t72/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t72/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t72/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/motorola/t62-red/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t62-red/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t62-red/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t62-red/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t62-red/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/motorola/t62-red/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t62-red/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t62-red/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t62-red/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t62-red/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/motorola/t62-red/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t62-red/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t62-red/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t62-red/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t62-red/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/motorola/t62-blue/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t62-blue/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t62-blue/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t62-blue/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t62-blue/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/motorola/t62-blue/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t62-blue/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t62-blue/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t62-blue/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t62-blue/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/motorola/t62-blue/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t62-blue/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t62-blue/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t62-blue/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t62-blue/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/motorola/t42-triple/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-triple/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-triple/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-triple/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-triple/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/motorola/t42-triple/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-triple/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-triple/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-triple/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-triple/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/motorola/t42-triple/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-triple/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-triple/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-triple/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-triple/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/motorola/t42-quad/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-quad/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-quad/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-quad/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-quad/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/motorola/t42-quad/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-quad/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-quad/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-quad/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-quad/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/motorola/t42-quad/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-quad/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-quad/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-quad/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-quad/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/motorola/t42-red/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-red/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-red/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-red/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-red/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/motorola/t42-red/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-red/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-red/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-red/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-red/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/motorola/t42-red/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-red/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-red/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-red/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-red/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/motorola/t42-blue/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-blue/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-blue/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-blue/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-blue/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/motorola/t42-blue/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-blue/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-blue/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-blue/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-blue/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/motorola/t42-blue/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/t42-blue/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/t42-blue/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/t42-blue/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/t42-blue/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/motorola/tlkr-t92h2o/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/tlkr-t92h2o/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/tlkr-t92h2o/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/tlkr-t92h2o/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/tlkr-t92h2o/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/motorola/tlkr-t92h2o/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/tlkr-t92h2o/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/tlkr-t92h2o/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/tlkr-t92h2o/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/tlkr-t92h2o/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/motorola/tlkr-t92h2o/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/tlkr-t92h2o/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/tlkr-t92h2o/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/tlkr-t92h2o/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/tlkr-t92h2o/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/motorola/xt185/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/xt185/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/xt185/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/xt185/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/xt185/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/motorola/xt185/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/xt185/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/xt185/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/xt185/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/xt185/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/motorola/xt185/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/xt185/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/xt185/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/xt185/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/xt185/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/motorola/xt420/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/xt420/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/xt420/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/xt420/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/xt420/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/motorola/xt420/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/xt420/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/xt420/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/xt420/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/xt420/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/motorola/xt420/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/xt420/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/xt420/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/xt420/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/xt420/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/motorola/clp446/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/clp446/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/clp446/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/clp446/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/clp446/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/motorola/clp446/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/clp446/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/clp446/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/clp446/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/clp446/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/motorola/clp446/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/clp446/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/clp446/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/clp446/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/clp446/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/motorola/clk446/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/clk446/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/clk446/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/clk446/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/clk446/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/motorola/clk446/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/clk446/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/clk446/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/clk446/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/clk446/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/motorola/clk446/specs</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/motorola/clk446/specs"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/motorola/clk446/specs"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/motorola/clk446/specs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/motorola/clk446/specs"/>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
