@@ -233,3 +233,56 @@ Originals remain in git history at commit `6f4237d` if a print-resolution copy i
 T82 Extreme RSM, CLP446 and CLK446 have no photograph **and do not appear in the price list**.
 They are flagged `hidden: true` rather than deleted, so their already-indexed
 `/catalog/m-clp446` URLs keep redirecting. Flip the flag when photos and prices arrive.
+
+---
+
+# SEO — things that are live but that you should know about
+
+## IndexNow is switched on
+
+`scripts/indexnow.ts` pings Bing and Yandex whenever the sitemap changes, so a new model gets
+crawled in minutes rather than days. Yandex is the reason it is there — it has real share in
+Uzbekistan, and Google does not participate in IndexNow at all, so this is additive to the
+sitemap rather than a replacement.
+
+Nothing to register. The key is self-issued and published at
+`/522cb0c8834b9e0950503fc0e99cbed8.txt`; hosting it is what proves control of the domain.
+
+**It only fires on a Netlify production deploy** (`CONTEXT=production`). Local and preview
+builds skip it, because announcing the site to two search engines on every `bun run build`
+would get the key throttled. Force one by hand with `INDEXNOW=1 bun scripts/indexnow.ts`.
+
+If it ever fails it logs and the deploy continues — a slow search engine must not fail a
+deploy.
+
+## The two search-console verifications are still yours to do
+
+Everything below works without them, but you cannot *see* any of it working until they exist:
+
+1. **Google Search Console** — verify `radiocom.uz`, submit `https://radiocom.uz/sitemap.xml`.
+   This is where the Product rich-result and image-indexing reports appear.
+2. **Yandex Webmaster** — same, and the more important of the two for this market.
+
+## What is emitted, so you can check it against the report
+
+Per product: `Product` with `Offer` carrying price, `priceValidUntil` (a rolling year, not a
+fixed date), free-delivery `shippingDetails` and your published 5-day `hasMerchantReturnPolicy`.
+Per brand page: `CollectionPage` with an `AggregateOffer` spanning that family's real price
+floor and ceiling. Plus `Organization`, `LocalBusiness`, `WebSite`, `BreadcrumbList`,
+`FAQPage` (with `speakable`), `Service` and `SiteNavigationElement`.
+
+**Deliberately absent: `aggregateRating` and `review`.** There are no real reviews behind
+them. Emitting either is a Google policy violation that risks a manual action on the whole
+domain, and it is exactly the invented data your brief rules out. If you collect real reviews,
+that is the moment to add it — `scripts/verify-seo.ts` currently *fails the build* if rating
+markup appears, so flip that gate at the same time.
+
+## Prices are still unreconciled
+
+Seven Radiocom prices differ between the PDF price list and `src/data/products.ts`. The
+largest is RCD-70: **4 200 000 on the site, 1 900 000 in the list** — a factor of 2.2. All
+twelve Motorola prices match exactly.
+
+I have changed no number. This now matters more than it did: the price is emitted as
+structured data with a validity window, so a wrong number is published to Google as a
+merchant offer rather than just displayed on a page.

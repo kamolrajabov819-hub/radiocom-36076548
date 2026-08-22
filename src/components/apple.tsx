@@ -367,6 +367,16 @@ export type CompareColumn = {
   media?: ReactNode;
   /** Footnote under the heading block, e.g. a price. */
   note?: string;
+  /**
+   * Links out of the column, rendered as a footer row beneath the table.
+   *
+   * apple.com's "Which laptop is right for you?" puts Buy and Learn more under
+   * every column, and it is not decoration: a comparison table exists to end in
+   * a choice, and a table with no way to act on the choice sends the reader
+   * back to search. It is also the densest internal-link surface on the site —
+   * every model, twice, from one page.
+   */
+  actions?: ReactNode;
   /** Row id -> cell value. A missing key renders an em dash. */
   values: Record<string, string | undefined>;
   highlight?: boolean;
@@ -438,6 +448,20 @@ export function CompareTable({
             </tr>
           ))}
         </tbody>
+        {columns.some((c) => c.actions) ? (
+          <tfoot>
+            <tr className="border-t border-border">
+              <td className="p-0" />
+              {columns.map((c) => (
+                <td key={c.id} className="px-3 pt-8 align-top md:px-5">
+                  {c.actions ? (
+                    <div className="flex flex-col items-center gap-3">{c.actions}</div>
+                  ) : null}
+                </td>
+              ))}
+            </tr>
+          </tfoot>
+        ) : null}
       </table>
     </div>
   );

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "bun scripts/generate-seo.ts && bun scripts/verify-seo.ts && bun scripts/verify-i18n.ts && bun scripts/verify-assets.ts && vite build && bun scripts/finalize-sitemap.ts",
+    "build": "bun scripts/generate-seo.ts && bun scripts/verify-seo.ts && bun scripts/verify-i18n.ts && bun scripts/verify-assets.ts && vite build && bun scripts/finalize-sitemap.ts && bun scripts/indexnow.ts",
     "build:dev": "bun scripts/generate-seo.ts && vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",

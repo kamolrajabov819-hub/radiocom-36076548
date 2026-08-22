@@ -286,6 +286,19 @@ export function IndustryPage() {
             <ProductCard key={p.id} p={p} lang={lang} idx={i} />
           ))}
         </div>
+
+        {/* The six picks are a shortlist, not the range. Without these the
+            industry pages are a dead end in the link graph: they receive from
+            the nav and from every product's "where it is used", and pass
+            authority on only to the models they happen to recommend. */}
+        <div className="mt-10 flex flex-wrap items-center gap-4 text-[14px]">
+          <LocaleLink to="/radiocom" className="pill-link">
+            {t("brand.radiocom_title")} <ChevronRight className="h-4 w-4" aria-hidden />
+          </LocaleLink>
+          <LocaleLink to="/motorola" className="pill-link">
+            {t("brand.motorola_title")} <ChevronRight className="h-4 w-4" aria-hidden />
+          </LocaleLink>
+        </div>
       </Section>
 
       {/* ── Testimonial ──────────────────────────────────────── */}
