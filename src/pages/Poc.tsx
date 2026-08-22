@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Check, Radio, MapPin, MessagesSquare, Layers, Coins, Wifi } from "lucide-react";
-import pocHero from "@/assets/poc-hero-v13.png.asset.json";
+import pocHero from "@/assets/poc-hero-v13.png";
 import radioInHand from "@/assets/product/radio-in-hand.webp";
 import radioInHand800 from "@/assets/product/radio-in-hand@800.webp";
 import { openLead } from "@/components/LeadFormSheet";
@@ -10,7 +10,6 @@ import { Section, SectionHead } from "@/components/Section";
 import { CompareTable, type CompareColumn } from "@/components/apple";
 import { ProductShot } from "@/components/ProductShot";
 import { spring, fadeUpAt } from "@/lib/springs";
-import { assetUrl } from "@/lib/asset";
 import {
   breadcrumbSchema,
   jsonLd,
@@ -141,7 +140,7 @@ function PocHero() {
           className="stage relative mx-auto mt-10 max-w-[820px] md:mt-16"
         >
           <img
-            src={assetUrl(pocHero)}
+            src={pocHero}
             alt="Radiocom RCD-60 PoC push-to-talk radio"
             loading="eager"
             width={1400}

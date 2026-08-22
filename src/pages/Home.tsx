@@ -11,17 +11,19 @@ import macroWide from "@/assets/product/radio-macro-wide.webp";
 import macroWide800 from "@/assets/product/radio-macro-wide@800.webp";
 import radiosPair from "@/assets/product/radios-pair.webp";
 import radiosPair800 from "@/assets/product/radios-pair@800.webp";
-import bentoDetail from "@/assets/detail-grille-v11.jpg.asset.json";
+// The grille macro that used to be a CDN pointer. This cutout is the same
+// subject shot properly: alpha, so it can float on a tinted band.
+import bentoDetail from "@/assets/radio-macro-cutout.webp";
+import bentoDetail800 from "@/assets/radio-macro-cutout@800.webp";
 import horecaImg from "@/assets/industry-horeca.jpg";
 import constructionImg from "@/assets/industry-construction.jpg";
 import securityImg from "@/assets/industry-security.jpg";
-import { assetUrl } from "@/lib/asset";
 import { openLead } from "@/components/LeadFormSheet";
 import { Section, SectionHead } from "@/components/Section";
 import { BentoGrid, FeatureCard, StackedTile, ScrollRow, ScrollItem } from "@/components/apple";
 import { ProductShot } from "@/components/ProductShot";
 import { Magnetic } from "@/components/Magnetic";
-import { products } from "@/data/products";
+import { visibleProducts } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
 import { CountUp } from "@/components/CountUp";
 import { spring, fadeUpAt } from "@/lib/springs";
@@ -380,7 +382,7 @@ function NetworkSplit() {
           className="relative aspect-[4/3] overflow-hidden rounded-[28px] bg-charcoal md:aspect-auto md:min-h-[440px]"
         >
           <img
-            src={assetUrl(bentoDetail)}
+            src={bentoDetail}
             alt=""
             loading="lazy"
             width={1400}
@@ -468,9 +470,9 @@ function FeaturedCatalog() {
   const { t, i18n } = useTranslation();
   const lang = (i18n.language.slice(0, 2) as "ru" | "en" | "uz") || "ru";
   const picked = ["rcd-60", "rcd-70", "m-t82-extreme", "m-xt420"]
-    .map((id) => products.find((p) => p.id === id))
-    .filter(Boolean) as typeof products;
-  const featured = picked.length >= 4 ? picked.slice(0, 4) : products.slice(0, 4);
+    .map((id) => visibleProducts.find((p) => p.id === id))
+    .filter(Boolean) as typeof visibleProducts;
+  const featured = picked.length >= 4 ? picked.slice(0, 4) : visibleProducts.slice(0, 4);
 
   return (
     <Section band="plain" tight>

@@ -5,7 +5,7 @@ import { Section, SectionHead } from "@/components/Section";
 import { CompareTable, type CompareColumn } from "@/components/apple";
 import {
   formatPrice,
-  products,
+  visibleProducts,
   productsOfBrand,
   type BrandSlug,
   type Product,
@@ -54,13 +54,13 @@ export const routeOptions = {
     return {
       meta: pageMeta({
         lang: params.lang,
-        title: t("meta.compare.title", { count: products.length }),
+        title: t("meta.compare.title", { count: visibleProducts.length }),
         description: t("meta.compare.desc"),
         path,
       }),
       links: localeLinks(params.lang, path),
       scripts: [
-        jsonLd(itemListSchema(products, params.lang)),
+        jsonLd(itemListSchema(visibleProducts, params.lang)),
         jsonLd(
           breadcrumbSchema(
             [

@@ -162,3 +162,74 @@ accessory SKUs with which models they fit.
 
 - **Product-page FAQ** — the shared `<Faq>` component is ready, but there are no
   per-model questions in the repo. Give me 3–5 questions per family and it drops in.
+
+
+---
+
+# Phase A — photography imported
+
+## ⚠ PRICE LIST vs SITE — 7 mismatches, all Radiocom. Your call.
+
+I extracted every price from «29.06.26 Прайс лист рус» and compared it to
+`src/data/products.ts`. **All 12 Motorola prices match exactly**, and so does RC-10. The
+Radiocom line does not:
+
+| Model | Site now | Price list | Difference |
+|---|---|---|---|
+| RC-20 | 1 400 000 | **1 600 000** | site 200 000 **under** |
+| RC-50 | 1 500 000 | **1 300 000** | site 200 000 over |
+| RCD-30 PRO | 2 200 000 | **1 800 000** | site 400 000 over |
+| RCD-40 PRO | 2 600 000 | **1 600 000** | site 1 000 000 over |
+| RCD-50 PRO | 3 100 000 | **1 800 000** | site 1 300 000 over |
+| RCD-60 PRO | 3 600 000 | **1 800 000** | site 1 800 000 over |
+| RCD-70 PRO | 4 200 000 | **1 900 000** | site 2 300 000 over — **2.2×** |
+
+**I have changed nothing.** Either the site has been quoting RCD radios at up to double your
+list price, or that PDF is superseded. Only you know which. Tell me and it is a one-line edit
+per model — the price is read from `products.ts` everywhere it appears.
+
+## The price list also covers products the site does not sell
+
+- **Hytera** — AP515 LF, BD505 LF, BP515 LF, AP525 LF, S10 mini LF and more, 900 000 –
+  2 300 000. An entire brand with no pages.
+- **Decross** (2 700 000) and **ALINCO** (1 700 000 – 2 400 000).
+- **Accessories** — batteries, chargers, headsets, belt clips, 250 000 – 500 000, including
+  parts for Samcom CP500/CP510/CP420/CP210P.
+
+That is a lot of sellable inventory with no indexable page. Worth a conversation once the
+current work lands.
+
+## Photography — what landed and what is still thin
+
+45 photographs imported, renamed from `Motorola T42 blue (3).webp` / `rcd 50 .webp` to
+`t42-blue-hero.webp` / `rcd-50-kit.webp`. Mapped by **looking at every photograph**: the
+`.asset.json` pointers stored the old generated names, so filename matching was impossible.
+
+**Two compositions per model** — a radios-alone hero and a retail-box or kit flat-lay. Heroes
+lead the product pages; box shots became gallery images, because an apple.com product hero is
+the product, not its packaging.
+
+**Five models have only a kit flat-lay, no single-product shot:** RCD-30, RCD-40, RC-10,
+RC-20, RC-50. On the lineup grid they read at a different scale from the models that do have
+a clean hero — a radio photographed alone fills the frame, a flat-lay of eight accessories
+does not. A single-product frame for each of those five would make the lineup consistent.
+
+**Four files are low resolution** (731×813 where everything else is 4032×3024 or larger):
+`t62-red-front`, `t62-red-back`, `tlkr-t92h2o-front`, `tlkr-t92h2o-side`. They are gallery
+shots, so it is not urgent, but they will look soft next to their siblings.
+
+## Weight
+
+The upload was camera originals — most Motorola frames 6500×4333, several top-level photos
+3 MB each. Re-encoded to a 1600px source plus an 800px `srcSet` candidate:
+
+- `src/assets/catalog/` — **19 MB → 5.0 MB**
+- top-level photography — **29 MB → 1.7 MB** (95% smaller)
+
+Originals remain in git history at commit `6f4237d` if a print-resolution copy is ever needed.
+
+## Three models hidden
+
+T82 Extreme RSM, CLP446 and CLK446 have no photograph **and do not appear in the price list**.
+They are flagged `hidden: true` rather than deleted, so their already-indexed
+`/catalog/m-clp446` URLs keep redirecting. Flip the flag when photos and prices arrive.

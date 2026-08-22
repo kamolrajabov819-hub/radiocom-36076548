@@ -7,8 +7,7 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { LangToggle } from "./LangToggle";
 import { openLead } from "./LeadFormSheet";
 import { INDUSTRY_SLUGS } from "@/data/industries";
-import logoAsset from "@/assets/radiocom-logo.png.asset.json";
-import { assetUrl } from "@/lib/asset";
+import logoAsset from "@/assets/radiocom-logo.png";
 import { spring, springFast } from "@/lib/springs";
 
 export function Nav() {
@@ -159,7 +158,7 @@ export function Nav() {
             aria-label="Radiocom"
           >
             <img
-              src={assetUrl(logoAsset)}
+              src={logoAsset}
               alt="Radiocom"
               width={180}
               height={32}
@@ -210,7 +209,7 @@ export function Nav() {
           >
             <div className="flex items-center justify-between px-5 h-12 border-b border-border">
               <img
-                src={assetUrl(logoAsset)}
+                src={logoAsset}
                 alt="Radiocom"
                 width={150}
                 height={26}

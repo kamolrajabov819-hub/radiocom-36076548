@@ -14,7 +14,7 @@ Languages: Russian, English, Uzbek. Russian is the canonical language.
 - Phone: +998 78 113-16-18
 - Opening hours: Mon-Fri 09:00-18:00
 
-## Catalogue (24 models)
+## Catalogue (21 models)
 ### Radiocom RC
 - [Radiocom RCD-70](https://radiocom.uz/en/radiocom/rcd-70) — The RCD flagship: digital DMR, GPS and IP67 protection. Range up to 4 km.
 - [Radiocom RCD-60](https://radiocom.uz/en/radiocom/rcd-60) — A digital radio with display and keypad, fully equipped. Range up to 3.5 km.
@@ -28,7 +28,6 @@ Languages: Russian, English, Uzbek. Russian is the canonical language.
 ### Motorola
 - [Motorola Talkabout T82 Extreme](https://radiocom.uz/en/motorola/t82-extreme) — A rugged licence-free radio for work outdoors. Range up to 1.5 km.
 - [Motorola Talkabout T82 Extreme Quad](https://radiocom.uz/en/motorola/t82-extreme-quad) — A four-radio kit for organised crews. Range up to 1.5 km.
-- [Motorola Talkabout T82 Extreme RSM](https://radiocom.uz/en/motorola/t82-extreme-rsm) — T82 Extreme bundled with RSM remote speaker microphones for noisy sites. Range up to 1.5 km.
 - [Motorola Talkabout T82](https://radiocom.uz/en/motorola/t82) — A compact PMR radio for teams and events. Range up to 1.5 km.
 - [Motorola Talkabout T72 Go Active](https://radiocom.uz/en/motorola/t72) — A current-generation PMR built for active outdoor use. Range up to 1 km.
 - [Motorola Talkabout T62 Red](https://radiocom.uz/en/motorola/t62-red) — A styled PMR in a red shell, with dependable reception. Range up to 900 m.
@@ -40,8 +39,6 @@ Languages: Russian, English, Uzbek. Russian is the canonical language.
 - [Motorola TLKR-T92 H2O](https://radiocom.uz/en/motorola/tlkr-t92h2o) — It floats, and it is IP67 waterproof — for water and building sites. Range up to 1.5 km.
 - [Motorola XT185](https://radiocom.uz/en/motorola/xt185) — PMR for retail, HoReCa and public venues. Range up to 1 km.
 - [Motorola XT420](https://radiocom.uz/en/motorola/xt420) — A licence-free PMR for HoReCa and on-site security. Range up to 2 km.
-- [Motorola CLP 446](https://radiocom.uz/en/motorola/clp446) — A flat, antenna-free radio for front-of-house staff — antibacterial housing. Range up to 6 floors.
-- [Motorola CLK 446](https://radiocom.uz/en/motorola/clk446) — The slimmest CL: 14 mm, antimicrobial coating, display. Range up to 6 floors.
 
 ## Sections
 - https://radiocom.uz/en

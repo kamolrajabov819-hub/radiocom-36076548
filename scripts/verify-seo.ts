@@ -7,7 +7,9 @@ import {
   productSchema,
   jsonLd,
 } from "../src/lib/seo";
-import { products } from "../src/data/products";
+// `visibleProducts` is what the site advertises; `products` is the full
+// record, which stays larger because hidden models keep their /catalog 301s.
+import { products, visibleProducts } from "../src/data/products";
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
@@ -63,19 +65,23 @@ for (const p of products) {
   if (s["@type"] !== "Product" || !s.name || !s.sku || !s.offers) bad(`product ${p.id}`);
   for (const img of s.image) if (!img.startsWith("https://")) bad(`product ${p.id} relative image`);
 }
-console.log(`ok  ${products.length} products produce valid Product schema`);
+console.log(
+  `ok  ${products.length} products produce valid Product schema (${visibleProducts.length} visible)`,
+);
 
 // 4. robots + llms
 const robots = readFileSync("public/robots.txt", "utf8");
 if (!robots.includes(`Sitemap: ${SITE_URL}/sitemap.xml`)) bad("robots.txt missing sitemap");
 const llms = readFileSync("public/llms.txt", "utf8");
-if ((llms.match(/^- \[/gm) || []).length !== products.length) bad("llms.txt product count drifted");
+if ((llms.match(/^- \[/gm) || []).length !== visibleProducts.length)
+  bad("llms.txt product count drifted");
 // Each locale's llms.txt must carry the whole catalogue in that language, or
 // an answer engine asked in Uzbek gets a Russian answer or none at all.
 for (const l of LANGS) {
   const f = l === "ru" ? "public/llms.txt" : `public/llms.${l}.txt`;
   const text = readFileSync(f, "utf8");
-  if ((text.match(/^- \[/gm) || []).length !== products.length) bad(`${f} product count drifted`);
+  if ((text.match(/^- \[/gm) || []).length !== visibleProducts.length)
+    bad(`${f} product count drifted`);
   if (!text.includes(`${SITE_URL}/${l}/radiocom/`) && !text.includes(`${SITE_URL}/${l}/motorola/`))
     bad(`${f} links the wrong locale`);
 }

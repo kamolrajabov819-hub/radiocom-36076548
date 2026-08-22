@@ -2,8 +2,7 @@ import { useTranslation } from "react-i18next";
 import { LocaleLink } from "@/components/LocaleLink";
 import { Socials } from "./Socials";
 import { INDUSTRY_SLUGS } from "@/data/industries";
-import logoAsset from "@/assets/radiocom-logo.png.asset.json";
-import { assetUrl } from "@/lib/asset";
+import logoAsset from "@/assets/radiocom-logo.png";
 
 export function Footer() {
   const { t } = useTranslation();
@@ -11,7 +10,7 @@ export function Footer() {
     <footer className="bg-charcoal">
       <div className="shell shell-wide pt-16 pb-10">
         <img
-          src={assetUrl(logoAsset)}
+          src={logoAsset}
           alt="Radiocom"
           width={200}
           height={34}

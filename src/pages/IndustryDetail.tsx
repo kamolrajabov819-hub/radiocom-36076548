@@ -5,14 +5,16 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { ChevronRight, FileDown, Check, Quote, Radio, Repeat, Wrench } from "lucide-react";
 import { INDUSTRY_SLUGS, industryPicks, type IndustrySlug } from "@/data/industries";
-import { products } from "@/data/products";
+import { visibleProducts } from "@/data/products";
 import { openLead } from "@/components/LeadFormSheet";
 import { CountUp } from "@/components/CountUp";
 import { ProductCard } from "@/components/ProductCard";
 import { Section, SectionHead } from "@/components/Section";
 import { Faq } from "@/components/Faq";
 import { BentoGrid, FeatureCard } from "@/components/apple";
-import catalogAsset from "@/assets/radiocom-catalog.pdf.asset.json";
+// The client's own price list, dated 29.06.26. Replaces a CDN pointer to a
+// catalogue PDF that only existed on radiocom.lovable.app.
+import priceListPdf from "@/assets/radiocom-price-list.pdf";
 import horecaImg from "@/assets/industry-horeca.jpg";
 import constructionImg from "@/assets/industry-construction.jpg";
 import securityImg from "@/assets/industry-security.jpg";
@@ -20,7 +22,6 @@ import miningImg from "@/assets/industry-mining.jpg";
 import transportImg from "@/assets/industry-transport.jpg";
 import manufacturingImg from "@/assets/industry-manufacturing.jpg";
 import { fadeUpAt, spring } from "@/lib/springs";
-import { assetUrl } from "@/lib/asset";
 import {
   SITE_NAME,
   breadcrumbSchema,
@@ -103,8 +104,8 @@ export function IndustryPage() {
   const lang = (i18n.language.slice(0, 2) as "ru" | "en" | "uz") || "ru";
   const s = slug as IndustrySlug;
   const picks = industryPicks[s]
-    .map((id) => products.find((p) => p.id === id))
-    .filter(Boolean) as typeof products;
+    .map((id) => visibleProducts.find((p) => p.id === id))
+    .filter(Boolean) as typeof visibleProducts;
 
   const outcomes = (t(`industries.${s}.outcomes`, { returnObjects: true }) as Outcome[]) || [];
   const pains = (t(`industries.${s}.pains`, { returnObjects: true }) as string[]) || [];
@@ -169,8 +170,8 @@ export function IndustryPage() {
               {t("industries.cta")}
             </button>
             <a
-              href={assetUrl(catalogAsset)}
-              download="radiocom-catalog.pdf"
+              href={priceListPdf}
+              download="radiocom-price-list.pdf"
               className="pill bg-white/15 text-white backdrop-blur"
             >
               <FileDown className="h-4 w-4" aria-hidden /> {t("industries.cta_secondary")}

@@ -7,7 +7,11 @@
  */
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { products } from "../src/data/products";
+// `visibleProducts` for the sitemap and llms.txt — a hidden model must not be
+// advertised as an indexable page. `products` (the full record) is still used
+// for the redirect map below, because a hidden model's old /catalog URL is
+// already indexed and must keep resolving.
+import { products, visibleProducts } from "../src/data/products";
 import { INDUSTRY_SLUGS } from "../src/data/industries";
 import {
   SITE_URL,
@@ -43,12 +47,12 @@ const entries: Entry[] = [
   // ("Radiocom RCD-60" vs "Radiocom RCD-60 характеристики"), and both are
   // built from `productPath`/`productSpecsPath` so the sitemap cannot drift
   // from what the router serves.
-  ...products.map((p) => ({
+  ...visibleProducts.map((p) => ({
     path: productPath(p),
     changefreq: "weekly",
     priority: "0.8",
   })),
-  ...products.map((p) => ({
+  ...visibleProducts.map((p) => ({
     path: productSpecsPath(p),
     changefreq: "weekly",
     priority: "0.7",
@@ -127,7 +131,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
 // llms.txt — the emerging convention for telling AI answer engines what a site
 // is and where its canonical facts live. Generated from the same catalogue data
 // so model counts and names cannot drift from the site.
-const byBrand = products.reduce<Record<string, typeof products>>((acc, p) => {
+const byBrand = visibleProducts.reduce<Record<string, typeof products>>((acc, p) => {
   (acc[p.brand] ??= []).push(p);
   return acc;
 }, {});
@@ -204,7 +208,7 @@ ${c.address}
 ${c.phone}
 ${c.hours}
 
-${c.catalogue(products.length)}
+${c.catalogue(visibleProducts.length)}
 ${Object.entries(byBrand)
   .map(
     ([brand, list]) =>
