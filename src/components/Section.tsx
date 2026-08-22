@@ -27,7 +27,7 @@ export function Section({
 }: {
   children: ReactNode;
   className?: string;
-  band?: "plain" | "soft" | "dark";
+  band?: "plain" | "soft" | "dark" | "tint";
   tight?: boolean;
   bleed?: boolean;
   wide?: boolean;

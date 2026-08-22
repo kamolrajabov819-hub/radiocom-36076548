@@ -733,6 +733,10 @@
     "back_to_brand": "All models",
     "compare_title": "Compare models",
     "compare_sub": "Every Radiocom and Motorola model by range, protection and price.",
-    "faq_title": "Frequently asked questions"
+    "faq_title": "Frequently asked questions",
+    "design": "Design",
+    "design_title": "Take a closer look.",
+    "range_lead": "Range depends on terrain and built-up area.",
+    "spec_note": "The manufacturer's full specification is in the table below."
   }
 }

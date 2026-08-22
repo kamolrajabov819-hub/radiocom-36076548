@@ -353,6 +353,30 @@
 }
 
 /* Alternating neutral bands */
+/*
+ * `band-tint` — the product-hero band.
+ *
+ * apple.com does not stand a product hero on flat white. The MacBook Air page
+ * uses `linear-gradient(180deg,#D4EAF6,#F9F9F9 75%,#FFF)`: a soft colour wash
+ * at the top that resolves to white before the next section, so the product
+ * appears to sit *in* a space rather than on a sheet. The blue is chosen for
+ * the product; a cool neutral is the right equivalent for black professional
+ * radios, and a red tint at this scale would read as an alert rather than a
+ * brand cue.
+ *
+ * The wash resolves fully to `--pitch` by 78%, so whatever band follows starts
+ * from white and the seam is invisible.
+ */
+@utility band-tint {
+  background: linear-gradient(
+    180deg,
+    #eaeef2 0%,
+    #f4f6f8 42%,
+    var(--pitch) 78%,
+    var(--pitch) 100%
+  );
+}
+
 @utility band-plain { background: var(--pitch); }
 @utility band-soft  { background: var(--charcoal); }
 @utility band-dark {

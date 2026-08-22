@@ -442,3 +442,369 @@ export function CompareTable({
     </div>
   );
 }
+
+/* ══════════════════════════════════════════════════════════════
+   apple.com's typographic and layout devices
+
+   These are the details that separate "uses Apple's greys" from "reads as
+   apple.com". Each one is lifted from a specific place in the reference
+   captures under refs/apple/, and each is annotated with where.
+   ══════════════════════════════════════════════════════════════ */
+
+/**
+ * A headline whose closing phrase takes a lighter tint.
+ *
+ * "Might takes *flight*." "Get the *highlights*." "Built to go *places*."
+ * apple.com does this on almost every section head, and it is doing real work:
+ * the tint marks where the claim turns from subject to promise, so the eye
+ * lands on the verb rather than reading a flat line of bold text.
+ *
+ * `tintFrom` counts words from the END, because that is where the device
+ * always sits and counting backwards survives translation — Russian and Uzbek
+ * reorder the sentence but keep the payload late.
+ *
+ * The tint is `--cool` (#6e6e73), Apple's own secondary grey, not the brand
+ * red: red at headline size reads as an error state, and the accent is spent
+ * on actions.
+ */
+export function TintedHeadline({
+  children,
+  tintFrom = 1,
+  as: Tag = "h2",
+  className = "",
+}: {
+  children: string;
+  /** How many trailing words take the tint. */
+  tintFrom?: number;
+  as?: "h1" | "h2" | "h3";
+  className?: string;
+}) {
+  const words = children.trim().split(/\s+/);
+  const split = Math.max(0, words.length - Math.max(1, tintFrom));
+  const lead = words.slice(0, split).join(" ");
+  const tail = words.slice(split).join(" ");
+
+  return (
+    <Tag className={cn("text-balance", className)}>
+      {lead ? `${lead} ` : null}
+      <span className="text-cool">{tail}</span>
+    </Tag>
+  );
+}
+
+/**
+ * The price-and-buy pair from the MacBook Air hero.
+ *
+ * A grey pill carrying the price sits immediately left of a solid accent
+ * button. Apple pairs them so the number and the commitment are one object —
+ * a price floating alone above a button reads as a caption, and the two
+ * separated read as two unrelated decisions.
+ */
+export function PricePill({
+  price,
+  action,
+  note,
+}: {
+  price: string;
+  action: { label: string; onClick: () => void };
+  /** Optional second line inside the pill, e.g. a warranty note. */
+  note?: string;
+}) {
+  return (
+    <div className="flex flex-wrap items-center justify-center gap-3">
+      <div className="rounded-full bg-charcoal px-5 py-2.5 text-center">
+        <div className="text-[15px] font-medium leading-tight text-crisp">{price}</div>
+        {note ? <div className="text-[12px] leading-tight text-cool">{note}</div> : null}
+      </div>
+      <button onClick={action.onClick} className="pill pill-accent">
+        {action.label}
+      </button>
+    </div>
+  );
+}
+
+/**
+ * A figure stated at display size on its own panel.
+ *
+ * The MacBook Air design section renders `13"` / `15"` as 64px numerals on a
+ * light grey panel, with the unit beneath at body size. It works because the
+ * number is the argument — surrounding it with prose would bury it.
+ *
+ * Use for the two or three figures that actually decide a purchase (range,
+ * ingress rating, battery), never for a whole spec table.
+ */
+export function StatPanel({
+  value,
+  label,
+  caption,
+  className = "",
+  children,
+}: {
+  value: string;
+  label?: string;
+  /** Sits below the panel, outside it — apple.com's caption position. */
+  caption?: ReactNode;
+  className?: string;
+  children?: ReactNode;
+}) {
+  return (
+    <figure className={cn("m-0", className)}>
+      <div className="flex min-h-[220px] flex-col items-center justify-center rounded-[28px] bg-charcoal px-8 py-12 text-center">
+        <div className="text-[clamp(2.75rem,6vw,4rem)] font-semibold leading-[1] tracking-[-0.02em] text-crisp">
+          {value}
+        </div>
+        {label ? <div className="mt-2 text-[17px] text-cool">{label}</div> : null}
+        {children}
+      </div>
+      {caption ? <figcaption className="mt-5 max-w-[52ch]">{caption}</figcaption> : null}
+    </figure>
+  );
+}
+
+/**
+ * apple.com's caption: a bold lead-in clause, then regular prose.
+ *
+ * "**Two perfectly portable sizes.** The 13-inch MacBook Air is the ultimate
+ * on-the-go laptop…" — the bold half is the claim, the rest is the evidence.
+ * It lets a scanning reader take only the bold and still learn something,
+ * which a uniformly-weighted caption does not.
+ */
+export function LeadInCaption({
+  lead,
+  children,
+  className = "",
+}: {
+  lead: string;
+  children?: ReactNode;
+  className?: string;
+}) {
+  return (
+    <p className={cn("text-[15px] leading-relaxed text-cool", className)}>
+      <span className="font-semibold text-crisp">{lead}</span>
+      {children ? <> {children}</> : null}
+    </p>
+  );
+}
+
+/**
+ * The segmented filter above apple.com/mac's lineup ("All products · Laptops ·
+ * Desktops · Displays").
+ *
+ * Deliberately not a `<select>` and not links: the set is small, every option
+ * is worth showing, and the filtering is instant. Rendered as real radio inputs
+ * so arrow keys move between options and a screen reader announces the group
+ * and the selected state — a row of buttons gives neither.
+ */
+export function FilterPills<T extends string>({
+  options,
+  value,
+  onChange,
+  label,
+}: {
+  options: { value: T; label: string }[];
+  value: T;
+  onChange: (v: T) => void;
+  /** Accessible name for the group. */
+  label: string;
+}) {
+  return (
+    <div role="radiogroup" aria-label={label} className="flex flex-wrap justify-center gap-2">
+      {options.map((o) => {
+        const active = o.value === value;
+        return (
+          <button
+            key={o.value}
+            role="radio"
+            aria-checked={active}
+            onClick={() => onChange(o.value)}
+            className={cn(
+              "rounded-full px-4 py-2 text-[14px] font-medium transition-colors duration-200",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2",
+              // Only the selected option wears a pill. apple.com/mac leaves the
+              // rest as plain text on the band, which is what makes the
+              // selection readable at a glance — a row of grey pills with one
+              // darker one takes a second look to parse.
+              active
+                ? "bg-crisp text-pitch"
+                : "text-crisp hover:bg-[color-mix(in_oklab,var(--crisp)_6%,transparent)]",
+            )}
+          >
+            {o.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+/**
+ * The thumbnail nav that sits directly under the family name on apple.com/mac.
+ *
+ * Nine small product cutouts with an 11px label beneath each, in a row that
+ * scrolls when it runs out of room. Apple puts it above the fold on every
+ * family page for one reason: a visitor who arrived on `/mac` looking for a
+ * Mac mini can leave for it without reading a word of the lineup.
+ *
+ * The same argument applies harder here. A visitor landing on `/motorola` from
+ * «Motorola рации Ташкент» has thirteen models to sort through, and the strip
+ * is the only control on the page that lets them jump straight to the one they
+ * came for. It is real anchor links, not a carousel widget, so it also gives
+ * the crawler a dense in-page link mesh to the model URLs.
+ */
+export function ModelStrip({ children, label }: { children: ReactNode; label: string }) {
+  return (
+    <nav aria-label={label} className="bleed-x">
+      <ul className="no-scrollbar flex gap-6 overflow-x-auto pb-1 md:gap-8">{children}</ul>
+    </nav>
+  );
+}
+
+/**
+ * One cell of a `ModelStrip`: a small cutout above a label.
+ *
+ * Split out from `ModelStrip` because the link element itself has to come from
+ * the caller — `LocaleLink` needs typed route params this file has no business
+ * knowing about — while the internals stay identical everywhere.
+ */
+export function ModelStripItem({
+  image,
+  imageSmall,
+  label,
+}: {
+  image: string;
+  imageSmall?: string;
+  label: string;
+}) {
+  return (
+    <span className="flex w-[76px] flex-col items-center gap-2 text-center">
+      <span className="flex h-[52px] items-end justify-center">
+        <img
+          src={image}
+          srcSet={imageSmall ? `${imageSmall} 800w, ${image} 1600w` : undefined}
+          sizes={imageSmall ? "76px" : undefined}
+          alt=""
+          width={152}
+          height={104}
+          loading="lazy"
+          decoding="async"
+          className="max-h-[52px] w-auto object-contain mix-blend-multiply transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
+        />
+      </span>
+      <span className="text-[11px] leading-tight text-crisp">{label}</span>
+    </span>
+  );
+}
+
+/**
+ * A card whose detail is behind a `+` control in its bottom-right corner.
+ *
+ * apple.com uses this wherever a claim needs a footnote that would otherwise
+ * bury the claim — «Сделано из 55% переработанного материала» reads in one
+ * glance, and the paragraph explaining the certification is one tap away.
+ *
+ * Implemented as a real `<button>` driving `aria-expanded` over a
+ * `grid-template-rows: 0fr → 1fr` disclosure, which is the same mechanism the
+ * FAQ accordion uses. The detail stays in the DOM in both states, so it is
+ * indexable and findable with ⌘F even while collapsed — a `display:none`
+ * panel is neither.
+ */
+export function ExpandCard({
+  eyebrow,
+  title,
+  body,
+  detail,
+  media,
+  idx = 0,
+  className = "",
+}: {
+  eyebrow?: string;
+  title: ReactNode;
+  body?: ReactNode;
+  /** Revealed by the `+`. Omit and the control is not rendered. */
+  detail?: ReactNode;
+  media?: ReactNode;
+  idx?: number;
+  className?: string;
+}) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <motion.article
+      {...fadeUpAt(idx)}
+      className={cn(
+        "relative flex flex-col overflow-hidden rounded-[18px] bg-pitch p-6",
+        "shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_-16px_rgba(0,0,0,0.18)]",
+        className,
+      )}
+    >
+      {eyebrow ? (
+        <div className="mb-2 text-[12px] font-medium leading-tight text-cool">{eyebrow}</div>
+      ) : null}
+      <h3 className="text-[17px] font-semibold leading-[1.25] tracking-[-0.01em] text-crisp">
+        {title}
+      </h3>
+      {body ? <p className="mt-2 text-[13px] leading-relaxed text-cool">{body}</p> : null}
+
+      {detail ? (
+        <div
+          className={cn(
+            "grid transition-[grid-template-rows] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]",
+            open ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+          )}
+        >
+          {/* `min-h-0` is what lets the 0fr row actually collapse; without it
+              the row floors at the content's min-content height and the card
+              never closes. */}
+          <div className="min-h-0 overflow-hidden">
+            <p className="mt-3 text-[13px] leading-relaxed text-cool">{detail}</p>
+          </div>
+        </div>
+      ) : null}
+
+      {media ? <div className="mt-5 flex flex-1 items-end justify-center">{media}</div> : null}
+
+      {detail ? (
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          className={cn(
+            "absolute bottom-4 right-4 flex h-7 w-7 items-center justify-center rounded-full",
+            "bg-crisp text-pitch transition-transform duration-300",
+            "hover:scale-110 active:scale-95",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2",
+            open && "rotate-45",
+          )}
+        >
+          {/* Drawn rather than an icon import: one glyph that rotates 45° to
+              become a close control is smaller than shipping both Plus and X. */}
+          <svg viewBox="0 0 14 14" className="h-3.5 w-3.5" aria-hidden>
+            <path
+              d="M7 1v12M1 7h12"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+            />
+          </svg>
+          <span className="sr-only">{open ? "−" : "+"}</span>
+        </button>
+      ) : null}
+    </motion.article>
+  );
+}
+
+/**
+ * A figure tinted inside a running sentence.
+ *
+ * The environment cards on apple.com read «Сделано из **55% переработанного
+ * материала** по весу» with only the quantity in colour — the sentence stays a
+ * sentence, but the number is what the eye takes on a scan. Bolding it instead
+ * would shout; a separate stat panel would break the sentence apart.
+ *
+ * Not the brand red. Red on a claim reads as a warning, so this uses the same
+ * ink as the surrounding text at full weight while the rest sits at `--cool`,
+ * which produces the same figure-ground separation without the alarm.
+ */
+export function TintTag({ children }: { children: ReactNode }) {
+  return <span className="font-medium text-crisp">{children}</span>;
+}
