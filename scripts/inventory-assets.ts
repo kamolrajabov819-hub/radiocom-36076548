@@ -8,7 +8,16 @@
  *
  * Run: bun scripts/inventory-assets.ts
  */
-import { readdirSync, statSync, readFileSync, writeFileSync, existsSync } from "node:fs";
+import {
+  readdirSync,
+  statSync,
+  readFileSync,
+  writeFileSync,
+  existsSync,
+  openSync,
+  readSync,
+  closeSync,
+} from "node:fs";
 import { join, relative, extname, basename, dirname } from "node:path";
 
 const ROOT = new URL("..", import.meta.url).pathname.replace(/\/$/, "");
@@ -39,7 +48,8 @@ function walk(dir: string, acc: string[] = []): string[] {
 function png(b: Buffer) {
   const colourType = b[25];
   // 4 = grey+alpha, 6 = RGBA, 3 = palette (may carry tRNS)
-  const alpha = colourType === 4 || colourType === 6 || (colourType === 3 && b.includes(Buffer.from("tRNS")));
+  const alpha =
+    colourType === 4 || colourType === 6 || (colourType === 3 && b.includes(Buffer.from("tRNS")));
   return { width: b.readUInt32BE(16), height: b.readUInt32BE(20), alpha };
 }
 
@@ -47,7 +57,10 @@ function png(b: Buffer) {
 function jpeg(b: Buffer) {
   let i = 2;
   while (i < b.length - 9) {
-    if (b[i] !== 0xff) { i++; continue; }
+    if (b[i] !== 0xff) {
+      i++;
+      continue;
+    }
     const marker = b[i + 1];
     // SOF0-SOF15 except the non-frame markers DHT(c4), JPG(c8), DAC(cc)
     if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc) {
@@ -94,7 +107,8 @@ function ratio(w: number | null, h: number | null) {
   if (!w || !h) return "—";
   const g = (a: number, b: number): number => (b ? g(b, a % b) : a);
   const d = g(w, h);
-  const rw = w / d, rh = h / d;
+  const rw = w / d,
+    rh = h / d;
   // Only print an exact integer ratio when it is legible; otherwise decimal.
   return rw <= 32 && rh <= 32 ? `${rw}:${rh}` : (w / h).toFixed(2);
 }
@@ -110,28 +124,45 @@ for (const f of files) {
   if (f.endsWith(".asset.json")) {
     const j = JSON.parse(readFileSync(f, "utf8"));
     rows.push({
-      path: rel, format: "CDN pointer", width: j.width ?? null, height: j.height ?? null,
-      bytes, alpha: null, has800: false, remote: true,
+      path: rel,
+      format: "CDN pointer",
+      width: j.width ?? null,
+      height: j.height ?? null,
+      bytes,
+      alpha: null,
+      has800: false,
+      remote: true,
     });
     continue;
   }
   if (![".webp", ".png", ".jpg", ".jpeg"].includes(ext)) continue;
 
+  // Read only the header: dimensions live in the first few hundred bytes of
+  // every format here, so a 3 MB WebP costs a 64 KB read rather than a decode.
   const head = Buffer.alloc(Math.min(bytes, 65536));
-  const fd = require("node:fs").openSync(f, "r");
-  require("node:fs").readSync(fd, head, 0, head.length, 0);
-  require("node:fs").closeSync(fd);
+  const fd = openSync(f, "r");
+  try {
+    readSync(fd, head, 0, head.length, 0);
+  } finally {
+    closeSync(fd);
+  }
 
   const d = ext === ".png" ? png(head) : ext === ".webp" ? webp(head) : jpeg(head);
   const stem = basename(f, ext);
   rows.push({
-    path: rel, format: ext.slice(1), width: d.width, height: d.height, bytes,
-    alpha: d.alpha, has800: existsSync(join(dirname(f), `${stem}@800${ext}`)),
+    path: rel,
+    format: ext.slice(1),
+    width: d.width,
+    height: d.height,
+    bytes,
+    alpha: d.alpha,
+    has800: existsSync(join(dirname(f), `${stem}@800${ext}`)),
     remote: false,
   });
 }
 
-const kb = (n: number) => (n < 1024 * 1024 ? `${Math.round(n / 1024)} KB` : `${(n / 1024 / 1024).toFixed(1)} MB`);
+const kb = (n: number) =>
+  n < 1024 * 1024 ? `${Math.round(n / 1024)} KB` : `${(n / 1024 / 1024).toFixed(1)} MB`;
 const local = rows.filter((r) => !r.remote && !r.path.includes("@800"));
 const variants = rows.filter((r) => r.path.includes("@800"));
 const remote = rows.filter((r) => r.remote);
@@ -169,4 +200,6 @@ for (const r of remote) {
 }
 
 writeFileSync(OUT, md);
-console.log(`${OUT}: ${local.length} sources, ${variants.length} variants, ${remote.length} pointers`);
+console.log(
+  `${OUT}: ${local.length} sources, ${variants.length} variants, ${remote.length} pointers`,
+);

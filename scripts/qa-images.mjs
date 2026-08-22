@@ -89,7 +89,5 @@ for (const vp of VIEWPORTS) {
 }
 await browser.close();
 
-console.log(
-  `\n${checked} page loads, ${imgTotal} <img> elements, ${failures} failing\n`,
-);
+console.log(`\n${checked} page loads, ${imgTotal} <img> elements, ${failures} failing\n`);
 process.exit(failures ? 1 : 0);

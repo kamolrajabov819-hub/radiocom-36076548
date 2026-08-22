@@ -56,9 +56,7 @@ for (const file of walk(SRC)) {
 
   // Check 1 — no string-built image URLs. Comments are stripped first so the
   // explanatory prose in ProductShot.tsx does not trip its own guard.
-  const code = text
-    .replace(/\/\*[\s\S]*?\*\//g, "")
-    .replace(/(^|[^:])\/\/.*$/gm, "$1");
+  const code = text.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:])\/\/.*$/gm, "$1");
 
   for (const { re, why } of SYNTHESIS) {
     re.lastIndex = 0;
@@ -77,9 +75,7 @@ for (const file of walk(SRC)) {
   let m: RegExpExecArray | null;
   while ((m = imp.exec(text))) {
     const spec = m[1];
-    const abs = spec.startsWith("@/")
-      ? join(SRC, spec.slice(2))
-      : resolve(dirname(file), spec);
+    const abs = spec.startsWith("@/") ? join(SRC, spec.slice(2)) : resolve(dirname(file), spec);
     if (!existsSync(abs)) {
       const line = text.slice(0, m.index).split("\n").length;
       errors.push(`${rel}:${line} — imports a missing asset: ${spec}`);
@@ -92,9 +88,7 @@ for (const file of walk(SRC)) {
     const expr = m[1].trim();
     if (!/^[A-Za-z_$][\w$.]*$/.test(expr)) {
       const line = text.slice(0, m.index).split("\n").length;
-      errors.push(
-        `${rel}:${line} — srcSmall must be an imported binding, got: ${expr}`,
-      );
+      errors.push(`${rel}:${line} — srcSmall must be an imported binding, got: ${expr}`);
     }
   }
 }

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { type ReactNode } from "react";
-import { ChevronRight } from "lucide-react";
+import { type ReactNode, useCallback, useEffect, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { fadeUpAt } from "@/lib/springs";
 import { cn } from "@/lib/utils";
 
@@ -98,7 +98,9 @@ export function FeatureCard({
         </h3>
 
         {body ? (
-          <p className={cn("mt-3 text-[15px] leading-relaxed", dark ? "text-white/70" : "text-cool")}>
+          <p
+            className={cn("mt-3 text-[15px] leading-relaxed", dark ? "text-white/70" : "text-cool")}
+          >
             {body}
           </p>
         ) : null}
@@ -196,6 +198,111 @@ export function StackedTile({
         {children}
       </div>
     </motion.article>
+  );
+}
+
+/**
+ * The horizontal highlights shelf, with arrow controls.
+ *
+ * This is apple.com's "Get the highlights" / "Get to know Mac" row (see
+ * refs/apple/screenshot-p4.png and p8): equal-height cards scrolling
+ * horizontally, snapping, bleeding past the container to the viewport edge,
+ * with two circular controls centred *below* the shelf rather than floating
+ * over the content.
+ *
+ * It deliberately replaces a pinned GSAP scrub. That approach hijacked the
+ * page scroll to drive the row sideways, which meant the whole document froze
+ * on narrow screens for the duration — and did nothing at all on wide ones,
+ * where the cards already fit and the pin was skipped. A scroll-snap row
+ * behaves identically at every width, costs no JavaScript to scroll, works
+ * with a trackpad swipe, a shift-wheel, a drag or the arrow buttons, and
+ * leaves the page scroll alone.
+ *
+ * `scrollBy` respects `prefers-reduced-motion` by asking for `auto` behaviour
+ * when the user has asked for less movement.
+ */
+export function HighlightsShelf({
+  children,
+  label,
+}: {
+  children: ReactNode;
+  /** Accessible name for the scrollable region and its controls. */
+  label: string;
+}) {
+  const track = useRef<HTMLDivElement>(null);
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
+
+  const sync = useCallback(() => {
+    const el = track.current;
+    if (!el) return;
+    // 2px of slack: sub-pixel layout means scrollLeft rarely hits the exact
+    // maximum, and without it the trailing arrow never disables.
+    setAtStart(el.scrollLeft <= 2);
+    setAtEnd(el.scrollLeft >= el.scrollWidth - el.clientWidth - 2);
+  }, []);
+
+  useEffect(() => {
+    const el = track.current;
+    if (!el) return;
+    sync();
+    el.addEventListener("scroll", sync, { passive: true });
+    const ro = new ResizeObserver(sync);
+    ro.observe(el);
+    return () => {
+      el.removeEventListener("scroll", sync);
+      ro.disconnect();
+    };
+  }, [sync]);
+
+  const page = (dir: -1 | 1) => {
+    const el = track.current;
+    if (!el) return;
+    const card = el.firstElementChild as HTMLElement | null;
+    // Advance by one card plus the gap, so a page lands on a snap point
+    // instead of halfway across two cards.
+    const step = card ? card.offsetWidth + 16 : el.clientWidth * 0.8;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollBy({ left: dir * step, behavior: reduced ? "auto" : "smooth" });
+  };
+
+  return (
+    <div>
+      <div
+        ref={track}
+        role="group"
+        aria-label={label}
+        tabIndex={0}
+        className="no-scrollbar bleed-x flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal"
+      >
+        {children}
+      </div>
+
+      <div className="mt-8 flex items-center justify-center gap-3">
+        {([-1, 1] as const).map((dir) => {
+          const disabled = dir === -1 ? atStart : atEnd;
+          const Icon = dir === -1 ? ChevronLeft : ChevronRight;
+          return (
+            <button
+              key={dir}
+              type="button"
+              onClick={() => page(dir)}
+              disabled={disabled}
+              aria-label={`${label}: ${dir === -1 ? "previous" : "next"}`}
+              className={cn(
+                "flex h-11 w-11 items-center justify-center rounded-full bg-charcoal text-crisp",
+                "transition-[opacity,transform] duration-200",
+                "hover:scale-105 active:scale-95",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2",
+                disabled && "pointer-events-none opacity-30",
+              )}
+            >
+              <Icon className="h-5 w-5" aria-hidden />
+            </button>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 

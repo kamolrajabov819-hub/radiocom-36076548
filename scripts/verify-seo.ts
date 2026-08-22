@@ -109,10 +109,8 @@ console.log("ok  Product additionalProperty entries carry values");
 const ld = jsonLd({ "@type": "Thing" }) as Record<string, unknown>;
 if (ld.type !== "application/ld+json")
   bad('jsonLd() must set a top-level `type: "application/ld+json"`');
-if ("attrs" in ld)
-  bad("jsonLd() must be flat — a nested `attrs` renders as a literal attribute");
-if (typeof ld.children !== "string")
-  bad("jsonLd() must carry the payload as a `children` string");
+if ("attrs" in ld) bad("jsonLd() must be flat — a nested `attrs` renders as a literal attribute");
+if (typeof ld.children !== "string") bad("jsonLd() must carry the payload as a `children` string");
 console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
 
 console.log(fail === 0 ? "\nALL SEO CHECKS PASSED" : `\n${fail} FAILURES`);

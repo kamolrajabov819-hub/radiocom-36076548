@@ -485,16 +485,40 @@
     "sub": "Motorola, Radiocom va Vertex Standard ratsiyalari uchun kafolat va kafolatdan keyingi xizmat. Original ehtiyot qismlar.",
     "request_repair": "Ta'mirlashga ariza",
     "advantages": {
-      "certified": "Sertifikatlangan mutaxassislar",
-      "parts": "Original ehtiyot qismlar",
-      "fast": "24/7 tez ta'mirlash",
-      "fixed": "Qat'iy narxlar"
+      "certified": {
+        "t": "Sertifikatlangan mutaxassislar",
+        "d": "Motorola va Radiocom vakolatli xizmat markazi."
+      },
+      "parts": {
+        "t": "Original ehtiyot qismlar",
+        "d": "Faqat zavod qismlari — analog va tiklangan detallarsiz."
+      },
+      "fast": {
+        "t": "Tez ta'mirlash 24/7",
+        "d": "Arizalarni dam olish kunlari ham, kunu tun qabul qilamiz."
+      },
+      "fixed": {
+        "t": "Qat'iy narxlar",
+        "d": "Narxni diagnostikadan keyin aytamiz va uni o'zgartirmaymiz."
+      }
     },
     "flow": [
-      "Diagnostika",
-      "Tahlil",
-      "Testlash",
-      "Ta'mirlash"
+      {
+        "t": "Diagnostika",
+        "d": "Ratsiyani qabul qilamiz, nosozlikni qayd etamiz va maxsus uskunada tekshiramiz."
+      },
+      {
+        "t": "Tahlil",
+        "d": "Sababini aniqlaymiz, original ehtiyot qismlarni tanlaymiz va qat'iy narxni aytamiz."
+      },
+      {
+        "t": "Ta'mirlash",
+        "d": "Ishlarni — kafolatli va kafolatdan keyingi — faqat original qismlar bilan bajaramiz."
+      },
+      {
+        "t": "Sinov",
+        "d": "Qurilmani qaytarishdan oldin aloqa va uzatgich parametrlarini tekshiramiz."
+      }
     ],
     "policy_title": "Qaytarish va almashish",
     "visit_title": "Ofisga tashrif buyuring",
@@ -513,7 +537,8 @@
       }
     ],
     "flow_title": "Ta'mir qanday o'tadi",
-    "advantages_title": "Nega aynan bu yerga"
+    "advantages_title": "Nega aynan bu yerga",
+    "request_repair_sub": "Nosozlikni tavsiflang — diagnostika va qat'iy narx bilan qaytamiz."
   },
   "footer": {
     "hours": "Du-Ju · 09:00–18:00",

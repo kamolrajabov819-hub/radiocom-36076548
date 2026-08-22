@@ -13,22 +13,10 @@ which the script leaves alone.
 
 | File | Format | Dimensions | Ratio | Size | Alpha | @800 |
 |---|---|---|---|---|---|---|
-| `Four_radios_arranged_symmetrically_2K_202608211203.webp` | webp | 1792×2400 | 0.75 | 2.4 MB | no | — |
-| `Four_two-way_radios_aligned_2K_202608211204.webp` | webp | 2752×1536 | 1.79 | 2.2 MB | no | — |
-| `Hand_holding_two-way_radio_2K_202608211203.webp` | webp | 1792×2400 | 0.75 | 2.8 MB | no | — |
-| `Hands_holding_two-way_radios_2K_202608211203.webp` | webp | 2752×1536 | 1.79 | 1.7 MB | no | — |
-| `MacBook_Pro_-_Apple_Two-way_radio_and_accessories__no_bg.png` | png | 1792×2400 | 0.75 | 1.9 MB | **yes** (cutout) | — |
-| `MacBook_Pro_-_Apple_Two-way_radio_macro_product_ph_no_bg.webp` | webp | 1792×2400 | 0.75 | 896 KB | **yes** (cutout) | — |
-| `MacBook_Pro_-_Apple_Two_two-way_radios_displayed_2_no_bg.webp` | webp | 1792×2400 | 0.75 | 638 KB | **yes** (cutout) | — |
-| `MacBook_Pro_-_Apple_Two_two-way_radios_floating_2K_no_bg (1).webp` | webp | 2048×2048 | 1:1 | 209 KB | **yes** (cutout) | — |
-| `MacBook_Pro_-_Apple_Two_two-way_radios_floating_2K_no_bg.webp` | webp | 1792×2400 | 0.75 | 493 KB | **yes** (cutout) | — |
-| `Pastel_two-way_radios_lineup_2K_202608211203.webp` | webp | 2400×1792 | 1.34 | 2.2 MB | no | — |
-| `Two-way_radio_macro_photograph_2K_202608211203.webp` | webp | 1792×2400 | 0.75 | 2.9 MB | no | — |
-| `Two-way_radio_on_white_surface_202608211203.webp` | webp | 2752×1536 | 1.79 | 2.0 MB | no | — |
-| `Two-way_radios_floating_in_air_202608211204.webp` | webp | 2752×1536 | 1.79 | 2.7 MB | no | — |
-| `apple.image.promo_iphone_tradein__e4hrjxmgmf0i_large_2x.Woblo.jpg_2K_202608211203.webp` | webp | 2752×1536 | 1.79 | 2.6 MB | no | — |
 | `bento-network-light.jpg` | jpg | 1400×1400 | 1:1 | 35 KB | no | — |
-| `buy-iphone-education-apple.image.iphone-card-50-compare-202509.Woblo.jfif_2K_202608211203.webp` | webp | 2048×2048 | 1:1 | 1.9 MB | no | — |
+| `hands-radios-grid.webp` | webp | 2752×1536 | 1.79 | 1.7 MB | no | — |
+| `hands-tradein-pair.webp` | webp | 2752×1536 | 1.79 | 2.6 MB | no | — |
+| `hands-two-radios-front.webp` | webp | 2048×2048 | 1:1 | 1.9 MB | no | — |
 | `hero-rcd60-cutout.png` | png | 597×753 | 0.79 | 590 KB | **yes** (cutout) | — |
 | `hero-rcd60-light.jpg` | jpg | 1264×848 | 1.49 | 119 KB | no | — |
 | `industry-construction.jpg` | jpg | 1400×900 | 14:9 | 288 KB | no | — |
@@ -37,7 +25,6 @@ which the script leaves alone.
 | `industry-mining.jpg` | jpg | 1400×900 | 14:9 | 95 KB | no | — |
 | `industry-security.jpg` | jpg | 1400×900 | 14:9 | 110 KB | no | — |
 | `industry-transport.jpg` | jpg | 1400×900 | 14:9 | 337 KB | no | — |
-| `mac-apple.image.trade_in_f0404b799_2x.Woblo.png_2K_202608211204.webp` | webp | 2752×1536 | 1.79 | 2.7 MB | no | — |
 | `poc-antenna.jpg` | jpg | 1600×1100 | 16:11 | 30 KB | no | — |
 | `poc-device-cutout.png` | png | 231×714 | 0.32 | 255 KB | **yes** (cutout) | — |
 | `poc-hero-light.jpg` | jpg | 1264×848 | 1.49 | 77 KB | no | — |
@@ -54,6 +41,19 @@ which the script leaves alone.
 | `product/radios-floating.webp` | webp | 1482×2243 | 0.66 | 214 KB | no | yes |
 | `product/radios-pair.webp` | webp | 1226×1632 | 0.75 | 68 KB | no | yes |
 | `product/rcd-front-back.webp` | webp | 1600×2212 | 0.72 | 263 KB | no | yes |
+| `radio-accessories-cutout.png` | png | 1792×2400 | 0.75 | 1.9 MB | **yes** (cutout) | — |
+| `radio-in-hand-lit.webp` | webp | 1792×2400 | 0.75 | 2.8 MB | no | — |
+| `radio-macro-controls.webp` | webp | 1792×2400 | 0.75 | 2.9 MB | no | — |
+| `radio-macro-cutout.webp` | webp | 1792×2400 | 0.75 | 896 KB | **yes** (cutout) | — |
+| `radio-on-white.webp` | webp | 2752×1536 | 1.79 | 2.0 MB | no | — |
+| `radio-with-retail-box.webp` | webp | 2752×1536 | 1.79 | 2.7 MB | no | — |
+| `radios-floating-blue.webp` | webp | 2752×1536 | 1.79 | 2.7 MB | no | — |
+| `radios-four-aligned.webp` | webp | 2752×1536 | 1.79 | 2.2 MB | no | — |
+| `radios-four-arranged.webp` | webp | 1792×2400 | 0.75 | 2.4 MB | no | — |
+| `radios-lineup-seven.webp` | webp | 2400×1792 | 1.34 | 2.2 MB | no | — |
+| `radios-pair-angled-cutout.webp` | webp | 2048×2048 | 1:1 | 209 KB | **yes** (cutout) | — |
+| `radios-pair-crossed-cutout.webp` | webp | 1792×2400 | 0.75 | 493 KB | **yes** (cutout) | — |
+| `radios-pair-front-back-cutout.webp` | webp | 1792×2400 | 0.75 | 638 KB | **yes** (cutout) | — |
 | `service-tech-light.jpg` | jpg | 1264×848 | 1.49 | 151 KB | no | — |
 
 ## `@800` variants
