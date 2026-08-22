@@ -5,7 +5,7 @@ import { Section, SectionHead } from "@/components/Section";
 import { CompareTable, type CompareColumn } from "@/components/apple";
 import {
   formatPrice,
-  products,
+  visibleProducts,
   productsOfBrand,
   type BrandSlug,
   type Product,
@@ -54,13 +54,13 @@ export const routeOptions = {
     return {
       meta: pageMeta({
         lang: params.lang,
-        title: t("meta.compare.title", { count: products.length }),
+        title: t("meta.compare.title", { count: visibleProducts.length }),
         description: t("meta.compare.desc"),
         path,
       }),
       links: localeLinks(params.lang, path),
       scripts: [
-        jsonLd(itemListSchema(products, params.lang)),
+        jsonLd(itemListSchema(visibleProducts, params.lang)),
         jsonLd(
           breadcrumbSchema(
             [
@@ -125,14 +125,23 @@ function BrandTable({
   const list = productsOfBrand(brandSlug);
   if (list.length < 2) return null;
 
-  // Only keep rows at least one model in this table answers, so the table never
-  // renders a line of nothing but em dashes.
-  const rows = COMPARE_ROWS.filter((labelRu) =>
-    list.some((p) => specs[p.id]?.rows.some((r) => r.label.ru === labelRu)),
-  ).map((labelRu) => {
-    const sample = list.flatMap((p) => specs[p.id]?.rows ?? []).find((r) => r.label.ru === labelRu);
-    return { id: labelRu, label: sample ? pick(sample.label, lang) : labelRu };
-  });
+  // Keep a row only when at least half the models in the table answer it.
+  //
+  // The old threshold was "at least one", which is not a filter: one model
+  // carrying a battery figure kept the row, and the other seven rendered em
+  // dashes. A comparison row that is mostly blank does not inform a choice —
+  // it reads as missing data and undermines the rows that are complete.
+  const answers = (labelRu: string) =>
+    list.filter((p) => rowValue(p, labelRu, "ru") !== undefined).length;
+
+  const rows = COMPARE_ROWS.filter((labelRu) => answers(labelRu) * 2 >= list.length).map(
+    (labelRu) => {
+      const sample = list
+        .flatMap((p) => specs[p.id]?.rows ?? [])
+        .find((r) => r.label.ru === labelRu);
+      return { id: labelRu, label: sample ? pick(sample.label, lang) : rowLabel(labelRu, lang, t) };
+    },
+  );
 
   const columns: CompareColumn[] = list.map((p) => columnFor(p, rows, lang));
 
@@ -148,13 +157,65 @@ function BrandTable({
           to: brandSlug === "radiocom" ? "/radiocom" : "/motorola",
         }}
       />
-      <CompareTable columns={columns} rows={rows} caption={t(`brand.${brandSlug}_title`)} />
+      <CompareTable
+        columns={columns}
+        rows={rows}
+        caption={t(`brand.${brandSlug}_title`)}
+        rowHeaderLabel={t("px.spec_column")}
+      />
     </Section>
   );
 }
 
+function ColumnActions({ p }: { p: Product }) {
+  const { t } = useTranslation();
+  return (
+    <>
+      <LocaleLink
+        to="/$brand/$model"
+        params={{ brand: p.brandSlug, model: p.slug }}
+        className="pill pill-sm pill-primary"
+      >
+        {t("px.learn_more")}
+      </LocaleLink>
+      <LocaleLink
+        to="/$brand/$model/specs"
+        params={{ brand: p.brandSlug, model: p.slug }}
+        className="pill-link text-[13px]"
+      >
+        {t("px.specs_link")} <ChevronRight className="h-4 w-4" aria-hidden />
+      </LocaleLink>
+    </>
+  );
+}
+
+/**
+ * One cell's value, by the Russian spec label.
+ *
+ * "Радиус действия" is deliberately special-cased. Range is the single figure a
+ * two-way radio is chosen on, and it lives on the `Product` record as
+ * `rangeCity`/`rangeOpen` — not in `specs[].rows`, where only one model happens
+ * to repeat it. Reading only the spec rows left that row seven-eighths empty on
+ * the Radiocom table: the most important line in the comparison, blank for
+ * every model that has the data.
+ */
+function rowValue(p: Product, labelRu: string, lang: Lang): string | undefined {
+  if (labelRu === "Радиус действия") {
+    return pick(p.rangeCity, lang);
+  }
+  const row = specs[p.id]?.rows.find((r) => r.label.ru === labelRu);
+  return row ? pick(row.value, lang) : undefined;
+}
+
+/**
+ * Fallback heading for a row no spec sheet supplies a label for — currently
+ * only the synthesised range row, which takes the site's own wording.
+ */
+function rowLabel(labelRu: string, lang: Lang, t: (k: string) => string): string {
+  return labelRu === "Радиус действия" ? t("px.range_city") : labelRu;
+}
+
 function columnFor(p: Product, rows: { id: string }[], lang: Lang): CompareColumn {
-  const spec = specs[p.id];
   return {
     id: p.id,
     // The brand is already the table's heading, so repeating it in every
@@ -162,6 +223,7 @@ function columnFor(p: Product, rows: { id: string }[], lang: Lang): CompareColum
     name: p.name.replace(/^Radiocom |^Motorola /, ""),
     tagline: pick(p.blurb, lang),
     note: formatPrice(p.price, lang),
+    actions: <ColumnActions p={p} />,
     media: (
       <img
         src={p.image}
@@ -172,11 +234,6 @@ function columnFor(p: Product, rows: { id: string }[], lang: Lang): CompareColum
         className="h-24 w-auto object-contain mix-blend-multiply md:h-32"
       />
     ),
-    values: Object.fromEntries(
-      rows.map((r) => {
-        const row = spec?.rows.find((x) => x.label.ru === r.id);
-        return [r.id, row ? pick(row.value, lang) : undefined];
-      }),
-    ),
+    values: Object.fromEntries(rows.map((r) => [r.id, rowValue(p, r.id, lang)])),
   };
 }

@@ -75,6 +75,7 @@
   --color-cool: var(--cool);
   --color-crisp: var(--crisp);
   --color-signal: var(--signal);
+  --color-signal-text: var(--signal-text);
 
   --font-display: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -95,6 +96,17 @@
   --cool: #6e6e73;
   --crisp: #1d1d1f;
   --signal: #e30613;
+  /* The brand red is 4.88:1 on white but only 4.48:1 on the #f5f5f7 band —
+     0.02 under the 4.5:1 AA floor, which the accessibility scan flagged 19
+     times across the site, every one of them a `.pill-link`.
+
+     Darkening `--signal` itself would change every fill, border and icon on
+     the site to fix a text problem. This is the text-weight red instead:
+     5.16:1 on the band, 5.62:1 on white, and close enough to the brand red
+     that a solid red button and a red text link beside it still read as one
+     colour. `--signal` keeps its exact value for fills and graphics, where
+     the requirement is 3:1 and it clears easily. */
+  --signal-text: #d1050f;
 
   --background: var(--pitch);
   --foreground: var(--crisp);
@@ -252,7 +264,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  color: var(--signal);
+  /* `--signal-text`, not `--signal`: this is body-size text and it appears on
+     both white and the #f5f5f7 band, where the brand red misses AA by 0.02. */
+  color: var(--signal-text);
   font-weight: 400;
   font-size: 0.9375rem;
   letter-spacing: -0.01em;
@@ -353,6 +367,30 @@
 }
 
 /* Alternating neutral bands */
+/*
+ * `band-tint` — the product-hero band.
+ *
+ * apple.com does not stand a product hero on flat white. The MacBook Air page
+ * uses `linear-gradient(180deg,#D4EAF6,#F9F9F9 75%,#FFF)`: a soft colour wash
+ * at the top that resolves to white before the next section, so the product
+ * appears to sit *in* a space rather than on a sheet. The blue is chosen for
+ * the product; a cool neutral is the right equivalent for black professional
+ * radios, and a red tint at this scale would read as an alert rather than a
+ * brand cue.
+ *
+ * The wash resolves fully to `--pitch` by 78%, so whatever band follows starts
+ * from white and the seam is invisible.
+ */
+@utility band-tint {
+  background: linear-gradient(
+    180deg,
+    #eaeef2 0%,
+    #f4f6f8 42%,
+    var(--pitch) 78%,
+    var(--pitch) 100%
+  );
+}
+
 @utility band-plain { background: var(--pitch); }
 @utility band-soft  { background: var(--charcoal); }
 @utility band-dark {

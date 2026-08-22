@@ -3,6 +3,7 @@ import { notFound, useParams } from "@tanstack/react-router";
 import { Check, ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
 import { Section, SectionHead } from "@/components/Section";
+import { LeadInCaption, StatPanel, TintedHeadline } from "@/components/apple";
 import { openLead } from "@/components/LeadFormSheet";
 import { Magnetic } from "@/components/Magnetic";
 import {
@@ -14,7 +15,7 @@ import {
   type Product,
 } from "@/data/products";
 import { specs, RANGE_NOTE } from "@/data/specs";
-import { pick } from "@/data/spec-dict";
+import { pick, type Lang } from "@/data/spec-dict";
 import {
   breadcrumbSchema,
   brandPath,
@@ -133,7 +134,9 @@ export function ProductSpecsPage() {
 
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)]">
           <div>
-            <h1 className="type-headline text-crisp">{p.name}</h1>
+            <TintedHeadline as="h1" className="type-headline text-crisp">
+              {p.name}
+            </TintedHeadline>
             <p className="subhead mt-4 max-w-xl text-[17px]">{pick(p.blurb, lang)}</p>
 
             {/* At-a-glance only — deliberately *not* the first four rows of
@@ -211,6 +214,16 @@ export function ProductSpecsPage() {
       {spec?.rows?.length ? (
         <Section band="soft" tight>
           <SectionHead align="left" spacing="tight" title={t("px.spec_table")} />
+
+          {/* The two or three figures that decide the purchase, lifted out of
+              the table and stated at display size — apple.com's tech-specs
+              pages open the same way. They are not a summary of the table: a
+              spec sheet answers thirty questions with equal weight, and this
+              answers the three a buyer came with. Every value is read straight
+              out of the same rows rendered below, so the two can never
+              disagree. */}
+          <HeadlineFigures p={p} lang={lang} />
+
           <div className="overflow-x-auto">
             <table className="w-full min-w-[520px] border-collapse text-left">
               <caption className="sr-only">
@@ -274,6 +287,62 @@ export function ProductSpecsPage() {
           </div>
         </div>
       </Section>
+    </div>
+  );
+}
+
+/**
+ * Range, ingress rating and battery life, as three panels.
+ *
+ * Which rows appear is data-driven and matched on the Russian label, because
+ * that is the join key `specs.ts` is written against — matching on the rendered
+ * label would silently return nothing the moment the page is read in English.
+ * A model missing a row simply contributes no panel; nothing is substituted or
+ * estimated.
+ */
+function HeadlineFigures({ p, lang }: { p: Product; lang: Lang }) {
+  const { t } = useTranslation();
+  const rows = specs[p.id]?.rows ?? [];
+  const find = (re: RegExp) => rows.find((r) => re.test(r.label.ru));
+
+  const protection = find(/Класс защиты/i);
+  const battery = find(/Время работы от аккумулятора/i);
+
+  const panels = [
+    { key: "range", value: pick(p.rangeCity, lang), label: t("px.range_city") },
+    ...(p.rangeOpen
+      ? [{ key: "open", value: pick(p.rangeOpen, lang), label: t("px.range_open") }]
+      : []),
+    ...(protection
+      ? [
+          {
+            key: "ip",
+            value: pick(protection.value, lang),
+            label: pick(protection.label, lang),
+          },
+        ]
+      : []),
+    ...(battery
+      ? [{ key: "batt", value: pick(battery.value, lang), label: pick(battery.label, lang) }]
+      : []),
+  ].slice(0, 3);
+
+  if (panels.length < 2) return null;
+
+  return (
+    <div className="mb-12 md:mb-14">
+      <div
+        className={`grid grid-cols-1 gap-4 ${
+          panels.length === 3 ? "md:grid-cols-3" : "md:grid-cols-2"
+        }`}
+      >
+        {panels.map((s) => (
+          <StatPanel key={s.key} value={s.value} label={s.label} className="[&>div]:bg-pitch" />
+        ))}
+      </div>
+      <LeadInCaption className="mt-5 max-w-[62ch]" lead={t("px.range_lead")}>
+        {t("px.spec_note")}
+      </LeadInCaption>
     </div>
   );
 }

@@ -4,33 +4,40 @@ import { useTranslation } from "react-i18next";
 import { ChevronRight, Truck, Wrench, Package, Sparkles } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
 import { SignalPulse } from "@/components/SignalPulse";
-import heroImage from "@/assets/hero-rcd60-cutout.png";
+// The hero cutout was a 590 KB RGBA PNG and the LCP element on the home page —
+// on its own it was more than half the page's weight and held LCP at 6.3s.
+// WebP carries the same alpha at 68 KB, with a 316px candidate for phones.
+import heroImage from "@/assets/hero-rcd60-cutout.webp";
+import heroImage800 from "@/assets/hero-rcd60-cutout@800.webp";
 import kitWide from "@/assets/product/radio-kit-wide.webp";
 import kitWide800 from "@/assets/product/radio-kit-wide@800.webp";
 import macroWide from "@/assets/product/radio-macro-wide.webp";
 import macroWide800 from "@/assets/product/radio-macro-wide@800.webp";
 import radiosPair from "@/assets/product/radios-pair.webp";
 import radiosPair800 from "@/assets/product/radios-pair@800.webp";
-import bentoDetail from "@/assets/detail-grille-v11.jpg.asset.json";
+// The grille macro that used to be a CDN pointer. This cutout is the same
+// subject shot properly: alpha, so it can float on a tinted band.
+import bentoDetail from "@/assets/radio-macro-cutout.webp";
+import bentoDetail800 from "@/assets/radio-macro-cutout@800.webp";
 import horecaImg from "@/assets/industry-horeca.jpg";
 import constructionImg from "@/assets/industry-construction.jpg";
 import securityImg from "@/assets/industry-security.jpg";
-import { assetUrl } from "@/lib/asset";
 import { openLead } from "@/components/LeadFormSheet";
 import { Section, SectionHead } from "@/components/Section";
 import { BentoGrid, FeatureCard, StackedTile, ScrollRow, ScrollItem } from "@/components/apple";
 import { ProductShot } from "@/components/ProductShot";
 import { Magnetic } from "@/components/Magnetic";
-import { products } from "@/data/products";
+import { visibleProducts } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
 import { CountUp } from "@/components/CountUp";
 import { spring, fadeUpAt } from "@/lib/springs";
-import { gsap, useGsap } from "@/lib/motion";
+import { useGsap } from "@/lib/motion";
 import {
   SITE_SECTIONS,
   jsonLd,
   localeLinks,
   pageMeta,
+  preloadImage,
   siteNavigationSchema,
   type SeoLang,
 } from "@/lib/seo";
@@ -44,7 +51,17 @@ export const routeOptions = {
 
     return {
       meta: pageMeta({ lang: params.lang, title, description, path: "/" }),
-      links: localeLinks(params.lang, "/"),
+      links: [
+        ...localeLinks(params.lang, "/"),
+        // The hero cutout is the LCP element here. Candidate set and sizes must
+        // match the <img> below exactly, or the browser picks a different
+        // candidate and downloads the image twice.
+        preloadImage({
+          src: heroImage,
+          small: heroImage800,
+          sizes: "(min-width: 768px) 597px, 94vw",
+        }),
+      ],
       // The section graph lives on the homepage: it is the page Google reads
       // hierarchy from when it generates sitelinks, and only here can the URLs
       // be locale-correct (the root route's head() has no params).
@@ -94,7 +111,10 @@ function Hero() {
   const title = t("home.hero.title");
 
   useGsap(
-    () => {
+    // `gsap` arrives through the callback rather than a module import: it is
+    // loaded on demand, so a static import here would put it back in this
+    // page's chunk and undo the split.
+    ({ gsap }) => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: scope.current,
@@ -181,10 +201,14 @@ function Hero() {
         <div className="absolute inset-0 flex items-center justify-center px-6">
           <img
             src={heroImage}
+            srcSet={`${heroImage800} 316w, ${heroImage} 597w`}
+            sizes="(min-width: 768px) 597px, 94vw"
             alt="Radiocom RCD-60 professional two-way radios"
             loading="eager"
-            width={1600}
-            height={1200}
+            fetchPriority="high"
+            decoding="sync"
+            width={597}
+            height={753}
             className="h-full w-auto max-w-[94vw] object-contain"
           />
         </div>
@@ -380,7 +404,7 @@ function NetworkSplit() {
           className="relative aspect-[4/3] overflow-hidden rounded-[28px] bg-charcoal md:aspect-auto md:min-h-[440px]"
         >
           <img
-            src={assetUrl(bentoDetail)}
+            src={bentoDetail}
             alt=""
             loading="lazy"
             width={1400}
@@ -468,9 +492,9 @@ function FeaturedCatalog() {
   const { t, i18n } = useTranslation();
   const lang = (i18n.language.slice(0, 2) as "ru" | "en" | "uz") || "ru";
   const picked = ["rcd-60", "rcd-70", "m-t82-extreme", "m-xt420"]
-    .map((id) => products.find((p) => p.id === id))
-    .filter(Boolean) as typeof products;
-  const featured = picked.length >= 4 ? picked.slice(0, 4) : products.slice(0, 4);
+    .map((id) => visibleProducts.find((p) => p.id === id))
+    .filter(Boolean) as typeof visibleProducts;
+  const featured = picked.length >= 4 ? picked.slice(0, 4) : visibleProducts.slice(0, 4);
 
   return (
     <Section band="plain" tight>

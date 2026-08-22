@@ -85,7 +85,12 @@ export function Faq({
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-4 focus-visible:ring-offset-transparent",
                 )}
               >
-                <span>{item.q}</span>
+                {/* `data-faq-q`/`data-faq-a` are the `speakable` selectors in
+                    `faqSchema()`. They mark the question and answer text for a
+                    voice assistant reading the page aloud, so it reads the
+                    answer rather than the nav — and `verify-seo` asserts the
+                    two stay in step. */}
+                <span data-faq-q>{item.q}</span>
                 {/* One glyph, rotated 45° to become a minus. Swapping two
                     different icons cannot be animated and pops on toggle. */}
                 <Plus
@@ -111,7 +116,9 @@ export function Faq({
             )}
           >
             <div className="min-h-0 overflow-hidden">
-              <p className="pb-6 pr-10 text-[15px] leading-relaxed text-cool">{item.a}</p>
+              <p data-faq-a className="pb-6 pr-10 text-[15px] leading-relaxed text-cool">
+                {item.a}
+              </p>
             </div>
           </AccordionPrimitive.Content>
         </AccordionPrimitive.Item>

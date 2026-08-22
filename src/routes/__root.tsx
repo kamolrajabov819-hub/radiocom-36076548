@@ -12,54 +12,26 @@ import { MotionConfig } from "framer-motion";
 import { I18nextProvider, useTranslation } from "react-i18next";
 
 import appCss from "../styles.css?url";
-import { jsonLd, localBusinessSchema, organizationSchema, webSiteSchema } from "@/lib/seo";
+import {
+  jsonLd,
+  localBusinessSchema,
+  localePath,
+  organizationSchema,
+  webSiteSchema,
+} from "@/lib/seo";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { getI18n } from "@/lib/i18n";
 import { useLang } from "@/lib/locale";
 import { useSmoothScroll } from "@/lib/motion";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { LocaleProvider } from "@/components/LocaleProvider";
+import { NotFoundComponent } from "@/components/NotFound";
 
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { LeadFormSheet } from "../components/LeadFormSheet";
 import { StickyBottomCta } from "../components/StickyBottomCta";
 import { ContactBlock } from "../components/ContactBlock";
-
-/**
- * Puts a subtree inside the i18next instance for the language in the URL.
- *
- * react-i18next resolves `useTranslation()` through this provider only — no
- * instance is registered as a global default (see `src/lib/i18n.ts`) — so every
- * component that translates must render underneath one of these.
- */
-function LocaleProvider({ children }: { children: ReactNode }) {
-  const lang = useLang();
-  return <I18nextProvider i18n={getI18n(lang)}>{children}</I18nextProvider>;
-}
-
-function NotFoundComponent() {
-  return (
-    <LocaleProvider>
-      <NotFoundBody />
-    </LocaleProvider>
-  );
-}
-
-function NotFoundBody() {
-  const { t } = useTranslation();
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-pitch px-6">
-      <div className="max-w-md text-center">
-        <div className="text-signal text-sm mb-4">{t("error.nf_code")}</div>
-        <h1 className="headline text-5xl md:text-6xl text-crisp">{t("error.nf_title")}</h1>
-        <p className="mt-4 text-cool">{t("error.nf_sub")}</p>
-        <Link to="/" className="pill pill-primary mt-8 inline-flex">
-          {t("error.nf_home")}
-        </Link>
-      </div>
-    </div>
-  );
-}
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   return (

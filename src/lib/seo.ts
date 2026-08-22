@@ -10,6 +10,7 @@
  * for its own locale plus the full hreflang cluster — see `localeLinks`.
  */
 
+import type { LinkHTMLAttributes } from "react";
 import type { Product } from "@/data/products";
 import { pick } from "@/data/spec-dict";
 
@@ -130,6 +131,12 @@ export function pageMeta(opts: {
   path: string;
   image?: string;
   type?: "website" | "article" | "product";
+  /**
+   * Emits the Open Graph product namespace. Facebook, Telegram and VK read
+   * these to render a price in the link preview, which is most of how a shared
+   * product URL performs in the messaging apps this market actually uses.
+   */
+  product?: { price: number | null; currency?: string; availability?: "instock" | "oos" };
 }) {
   const url = absolute(localePath(opts.lang, opts.path));
   const type = opts.type ?? "website";
@@ -152,7 +159,70 @@ export function pageMeta(opts: {
     { name: "twitter:title", content: opts.title },
     { name: "twitter:description", content: opts.description },
     ...(opts.image ? [{ name: "twitter:image", content: absolute(opts.image) }] : []),
+
+    // Open Graph product namespace. Only emitted where there is a real number:
+    // `product:price:amount` with an empty or invented value is worse than
+    // absent, because a scraper will render it.
+    ...(opts.product?.price != null
+      ? [
+          { property: "product:price:amount", content: String(opts.product.price) },
+          { property: "product:price:currency", content: opts.product.currency ?? "UZS" },
+        ]
+      : []),
+    ...(opts.product
+      ? [{ property: "product:availability", content: opts.product.availability ?? "instock" }]
+      : []),
+
+    // Local intent. Every query this site competes for is geographically bound
+    // — «рации в Ташкенте», «ratsiya narxi Toshkent» — and the business has one
+    // physical counter. `geo.*` and `ICBM` are read by Yandex, which carries
+    // meaningful share in Uzbekistan and is not served by JSON-LD alone.
+    { name: "geo.region", content: `${BUSINESS.country}-TK` },
+    { name: "geo.placename", content: BUSINESS.city },
+    { name: "geo.position", content: `${BUSINESS.geo.lat};${BUSINESS.geo.lng}` },
+    { name: "ICBM", content: `${BUSINESS.geo.lat}, ${BUSINESS.geo.lng}` },
   ];
+}
+
+/**
+ * `<link rel="preload">` for a route's LCP image.
+ *
+ * On every product page the hero photograph *is* the Largest Contentful Paint.
+ * The browser cannot discover it until it has parsed the route's JS, built the
+ * component tree and hit the `<img>` — which on a 4G handset is most of a
+ * second after the HTML arrived. A preload in the document head starts that
+ * fetch in parallel with the JS instead of after it.
+ *
+ * `imageSrcSet`/`imageSizes` must mirror the `<img>` exactly. A preload whose
+ * candidate set differs from the element's makes the browser pick a different
+ * candidate and download the image twice — strictly worse than no preload.
+ */
+export function preloadImage(opts: { src: string; small?: string; sizes?: string }) {
+  // Relative, NOT `absolute()`. The browser matches a preload to the element
+  // that consumes it by resolved URL *and* by candidate set, and the `<img>`
+  // carries the bare `/assets/...` path vite emitted. An absolute
+  // `https://radiocom.uz/assets/...` preload resolves to the same bytes but is
+  // a different candidate string, so the preload goes unused and the image is
+  // fetched twice — strictly worse than no preload, which is exactly what the
+  // first version of this shipped.
+  //
+  // The literal return type matters too: TanStack types `head().links` as
+  // React's `LinkHTMLAttributes`, where `fetchPriority` is the union
+  // `"high" | "low" | "auto"`. Without the annotation TypeScript widens it to
+  // `string` and the whole head object stops assigning.
+  const tag: LinkHTMLAttributes<HTMLLinkElement> = {
+    rel: "preload",
+    as: "image",
+    href: opts.src,
+    ...(opts.small
+      ? {
+          imageSrcSet: `${opts.small} 800w, ${opts.src} 1600w`,
+          imageSizes: opts.sizes ?? "(min-width: 768px) 520px, 88vw",
+        }
+      : {}),
+    fetchPriority: "high",
+  };
+  return tag;
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -279,6 +349,60 @@ export function productSpecsPath(p: Pick<Product, "brandSlug" | "slug">): string
   return `/${p.brandSlug}/${p.slug}/specs`;
 }
 
+/**
+ * How long a quoted price is asserted to hold.
+ *
+ * Google requires `priceValidUntil` on an Offer to show a price in a merchant
+ * rich result, and treats an expired one as a stale price — which suppresses
+ * the result entirely. A fixed date in a source file would go stale the moment
+ * it passed, so this is derived: one year from build, rounded to the end of the
+ * month, which is both an honest horizon for a distributor's list price and
+ * self-renewing on every deploy.
+ */
+function priceValidUntil(): string {
+  const d = new Date();
+  // Day 0 of month+13 is the last day of month+12 — i.e. a year out, rounded up
+  // to a month boundary rather than landing on an arbitrary build date.
+  const end = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 13, 0));
+  return end.toISOString().slice(0, 10);
+}
+
+/**
+ * Delivery and returns, as schema.org sees them.
+ *
+ * Both are published policy on the site (free delivery across Uzbekistan; the
+ * 5-day return / 24-hour exchange terms in the footer), so emitting them is
+ * restating what is already on the page in a form Google can parse — not a new
+ * claim. Merchant listings that carry shipping and return details get richer
+ * treatment than those that don't, and neither can be inferred from prose.
+ */
+function shippingDetails() {
+  return {
+    "@type": "OfferShippingDetails",
+    shippingRate: { "@type": "MonetaryAmount", value: 0, currency: "UZS" },
+    shippingDestination: {
+      "@type": "DefinedRegion",
+      addressCountry: BUSINESS.country,
+    },
+    deliveryTime: {
+      "@type": "ShippingDeliveryTime",
+      handlingTime: { "@type": "QuantitativeValue", minValue: 0, maxValue: 1, unitCode: "DAY" },
+      transitTime: { "@type": "QuantitativeValue", minValue: 1, maxValue: 3, unitCode: "DAY" },
+    },
+  };
+}
+
+function returnPolicy() {
+  return {
+    "@type": "MerchantReturnPolicy",
+    applicableCountry: BUSINESS.country,
+    returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+    merchantReturnDays: 5,
+    returnMethod: "https://schema.org/ReturnInStore",
+    returnFees: "https://schema.org/FreeReturn",
+  };
+}
+
 export function productSchema(
   p: Product,
   lang: SeoLang,
@@ -291,10 +415,13 @@ export function productSchema(
     availability: "https://schema.org/InStock",
     itemCondition: "https://schema.org/NewCondition",
     seller: { "@id": `${SITE_URL}/#organization` },
+    shippingDetails: shippingDetails(),
+    hasMerchantReturnPolicy: returnPolicy(),
   };
   if (p.price != null) {
     offer.price = p.price;
     offer.priceCurrency = "UZS";
+    offer.priceValidUntil = priceValidUntil();
   }
 
   return {
@@ -309,6 +436,14 @@ export function productSchema(
     brand: { "@type": "Brand", name: p.brand },
     category:
       p.category === "professional" ? "Professional two-way radios" : "Consumer two-way radios",
+    // The specs page is the same product at a second URL. Declaring it as
+    // `subjectOf` rather than leaving it to be discovered stops Google reading
+    // the pair as duplicate product pages competing for one entity.
+    subjectOf: {
+      "@type": "WebPage",
+      "@id": `${absolute(localePath(lang, productSpecsPath(p)))}#webpage`,
+      url: absolute(localePath(lang, productSpecsPath(p))),
+    },
     offers: offer,
     ...(extra?.specs?.length
       ? {
@@ -351,6 +486,15 @@ export function faqSchema(items: { q: string; a: string }[], lang: SeoLang) {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     inLanguage: lang,
+    // A voice assistant reading this page aloud should read the answers, not
+    // the nav and the price pills. The CSS selectors point at the FAQ markup
+    // `Faq.tsx` emits — the same `data-faq` hook `qa-faq.mjs` scopes to, so a
+    // change to the component that broke this would fail QA rather than
+    // silently degrade to an assistant reading the wrong text.
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["[data-faq] [data-faq-q]", "[data-faq] [data-faq-a]"],
+    },
     mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.q,
@@ -441,5 +585,64 @@ export function itemListSchema(items: Product[], lang: SeoLang) {
       url: absolute(localePath(lang, productPath(p))),
       name: p.name,
     })),
+  };
+}
+
+/**
+ * The brand page as a `CollectionPage`, carrying its own price range.
+ *
+ * A bare `ItemList` tells Google the page contains twelve links. A
+ * `CollectionPage` whose `mainEntity` is that list, with an `AggregateOffer`
+ * spanning the family's real price floor and ceiling, tells it the page *is*
+ * the Motorola range and what that range costs — which is what a "Motorola
+ * рации цена" query is actually asking.
+ *
+ * `lowPrice`/`highPrice` are computed from the same `visibleProducts` the page
+ * renders, so a hidden model cannot leak a price into the range, and a model
+ * with no published price contributes nothing rather than a zero.
+ */
+export function collectionPageSchema(opts: {
+  items: Product[];
+  lang: SeoLang;
+  path: string;
+  name: string;
+  description: string;
+}) {
+  const url = absolute(localePath(opts.lang, opts.path));
+  const prices = opts.items.map((p) => p.price).filter((n): n is number => n != null);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${url}#collection`,
+    url,
+    name: opts.name,
+    description: opts.description,
+    inLanguage: opts.lang,
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    about: { "@id": `${SITE_URL}/#organization` },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: opts.items.length,
+      itemListElement: opts.items.map((p, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: absolute(localePath(opts.lang, productPath(p))),
+        name: p.name,
+      })),
+    },
+    ...(prices.length
+      ? {
+          offers: {
+            "@type": "AggregateOffer",
+            priceCurrency: "UZS",
+            lowPrice: Math.min(...prices),
+            highPrice: Math.max(...prices),
+            offerCount: opts.items.length,
+            availability: "https://schema.org/InStock",
+            seller: { "@id": `${SITE_URL}/#organization` },
+          },
+        }
+      : {}),
   };
 }

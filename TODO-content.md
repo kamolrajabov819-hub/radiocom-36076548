@@ -92,32 +92,40 @@ any more.
 
 # Phase 5 — the `/catalog` migration
 
-## ⚠ `netlify.toml` publish directory — needs your attention
+## `netlify.toml` publish directory — I got this wrong, and it is now corrected
 
-`netlify.toml` declares `publish = "dist"`. **`bun run build` never creates `dist/`** —
-it emits `.output/` (nitro). I verified this: after a clean build the repo root has
-`.output/` and no `dist/` at all.
+**`publish = "dist"` is correct. Do not change it.** An earlier version of this file
+said the opposite; that was wrong, and the correction is worth recording because it
+cost a broken deploy.
 
-That means Netlify is publishing a directory that does not exist, and — the reason it
-matters for this phase — **the `[[redirects]]` table in `netlify.toml` may never be
-applied**. I generated all 75 rules into it anyway, but I could not verify from here
-whether Netlify honours them, because this sandbox's network policy blocks
-`radiocomuz.netlify.app`.
+Nitro's output path is chosen by the preset:
 
-**The migration is safe regardless**: every 301 is also implemented in the router
-(`src/routes/**/catalog.*`), which is what actually runs. I verified all of them:
+| preset | where the public files land | used by |
+|---|---|---|
+| `netlify` | `dist/` | Netlify, which auto-detects it |
+| `cloudflare` | `.output/public` | a plain local `bun run build` |
+| `node-server` | `.output/public` | local QA in this repo |
 
-```
-/ru/catalog        301 -> /ru/radiocom          /catalog          301 -> /ru/radiocom
-/ru/catalog/rcd-60 301 -> /ru/radiocom/rcd-60   /catalog/rcd-60   301 -> /ru/radiocom/rcd-60
-/ru/catalog/m-t82  301 -> /ru/motorola/t82      /uz/catalog/rc-10 301 -> /uz/radiocom/rc-10
-```
+Every build I could run locally emitted `.output/` and never `dist/`, so `publish = "dist"`
+looked like an obvious mistake. It is not — Netlify picks its own preset, and that preset's
+`publicDir` is `dist/`. PR #13's deploy preview succeeded with exactly this config.
 
-All single-hop. The legacy unprefixed URLs resolve both the locale prefix and the brand
-move in one redirect rather than chaining.
+**What that mistaken belief actually broke.** `scripts/finalize-sitemap.ts` was written
+against a hardcoded `.output/public` and threw when the directory was absent. On Netlify it
+was absent, so the post-build step failed the deploy on PR #14. Nothing local could catch
+it: all three local presets put the files where the script expected.
 
-The likely fix is `publish = ".output/public"` with the nitro `netlify` preset, but that
-depends on how the site is configured on Netlify's side. Please check.
+Fixed two ways. `scripts/lib/output-dir.ts` discovers the directory instead of assuming
+one, and `finalize-sitemap` treats "no output directory" as non-fatal — the pre-build
+sitemap is already valid, it just carries no image entries, and an enrichment step should
+never fail a deploy. Gate 15 in `verify-seo.ts` now fails the build if any script in
+`scripts/` hardcodes `.output/public/` or `dist/` again.
+
+**The 301s are duplicated in the router regardless.** The generated `[[redirects]]` in
+`netlify.toml` only apply when Netlify serves the build; the router copies
+(`src/routes/**/catalog.*`) are preset-independent and are what actually run. All 96
+legacy URLs are verified single-hop 301 → 200 — including the three hidden models, which
+used to redirect to their own 404ing product pages.
 
 ## Product photography is CDN-only — I could not visually verify any product page
 
@@ -162,3 +170,181 @@ accessory SKUs with which models they fit.
 
 - **Product-page FAQ** — the shared `<Faq>` component is ready, but there are no
   per-model questions in the repo. Give me 3–5 questions per family and it drops in.
+
+
+---
+
+# Phase A — photography imported
+
+## ⚠ PRICE LIST vs SITE — 7 mismatches, all Radiocom. Your call.
+
+I extracted every price from «29.06.26 Прайс лист рус» and compared it to
+`src/data/products.ts`. **All 12 Motorola prices match exactly**, and so does RC-10. The
+Radiocom line does not:
+
+| Model | Site now | Price list | Difference |
+|---|---|---|---|
+| RC-20 | 1 400 000 | **1 600 000** | site 200 000 **under** |
+| RC-50 | 1 500 000 | **1 300 000** | site 200 000 over |
+| RCD-30 PRO | 2 200 000 | **1 800 000** | site 400 000 over |
+| RCD-40 PRO | 2 600 000 | **1 600 000** | site 1 000 000 over |
+| RCD-50 PRO | 3 100 000 | **1 800 000** | site 1 300 000 over |
+| RCD-60 PRO | 3 600 000 | **1 800 000** | site 1 800 000 over |
+| RCD-70 PRO | 4 200 000 | **1 900 000** | site 2 300 000 over — **2.2×** |
+
+**I have changed nothing.** Either the site has been quoting RCD radios at up to double your
+list price, or that PDF is superseded. Only you know which. Tell me and it is a one-line edit
+per model — the price is read from `products.ts` everywhere it appears.
+
+## The price list also covers products the site does not sell
+
+- **Hytera** — AP515 LF, BD505 LF, BP515 LF, AP525 LF, S10 mini LF and more, 900 000 –
+  2 300 000. An entire brand with no pages.
+- **Decross** (2 700 000) and **ALINCO** (1 700 000 – 2 400 000).
+- **Accessories** — batteries, chargers, headsets, belt clips, 250 000 – 500 000, including
+  parts for Samcom CP500/CP510/CP420/CP210P.
+
+That is a lot of sellable inventory with no indexable page. Worth a conversation once the
+current work lands.
+
+## Photography — what landed and what is still thin
+
+45 photographs imported, renamed from `Motorola T42 blue (3).webp` / `rcd 50 .webp` to
+`t42-blue-hero.webp` / `rcd-50-kit.webp`. Mapped by **looking at every photograph**: the
+`.asset.json` pointers stored the old generated names, so filename matching was impossible.
+
+**Two compositions per model** — a radios-alone hero and a retail-box or kit flat-lay. Heroes
+lead the product pages; box shots became gallery images, because an apple.com product hero is
+the product, not its packaging.
+
+**Five models have only a kit flat-lay, no single-product shot:** RCD-30, RCD-40, RC-10,
+RC-20, RC-50. On the lineup grid they read at a different scale from the models that do have
+a clean hero — a radio photographed alone fills the frame, a flat-lay of eight accessories
+does not. A single-product frame for each of those five would make the lineup consistent.
+
+**Four files are low resolution** (731×813 where everything else is 4032×3024 or larger):
+`t62-red-front`, `t62-red-back`, `tlkr-t92h2o-front`, `tlkr-t92h2o-side`. They are gallery
+shots, so it is not urgent, but they will look soft next to their siblings.
+
+## Weight
+
+The upload was camera originals — most Motorola frames 6500×4333, several top-level photos
+3 MB each. Re-encoded to a 1600px source plus an 800px `srcSet` candidate:
+
+- `src/assets/catalog/` — **19 MB → 5.0 MB**
+- top-level photography — **29 MB → 1.7 MB** (95% smaller)
+
+Originals remain in git history at commit `6f4237d` if a print-resolution copy is ever needed.
+
+## Three models hidden
+
+T82 Extreme RSM, CLP446 and CLK446 have no photograph **and do not appear in the price list**.
+They are flagged `hidden: true` rather than deleted, so their already-indexed
+`/catalog/m-clp446` URLs keep redirecting. Flip the flag when photos and prices arrive.
+
+---
+
+# SEO — things that are live but that you should know about
+
+## IndexNow is switched on
+
+`scripts/indexnow.ts` pings Bing and Yandex whenever the sitemap changes, so a new model gets
+crawled in minutes rather than days. Yandex is the reason it is there — it has real share in
+Uzbekistan, and Google does not participate in IndexNow at all, so this is additive to the
+sitemap rather than a replacement.
+
+Nothing to register. The key is self-issued and published at
+`/522cb0c8834b9e0950503fc0e99cbed8.txt`; hosting it is what proves control of the domain.
+
+**It only fires on a Netlify production deploy** (`CONTEXT=production`). Local and preview
+builds skip it, because announcing the site to two search engines on every `bun run build`
+would get the key throttled. Force one by hand with `INDEXNOW=1 bun scripts/indexnow.ts`.
+
+If it ever fails it logs and the deploy continues — a slow search engine must not fail a
+deploy.
+
+## The two search-console verifications are still yours to do
+
+Everything below works without them, but you cannot *see* any of it working until they exist:
+
+1. **Google Search Console** — verify `radiocom.uz`, submit `https://radiocom.uz/sitemap.xml`.
+   This is where the Product rich-result and image-indexing reports appear.
+2. **Yandex Webmaster** — same, and the more important of the two for this market.
+
+## What is emitted, so you can check it against the report
+
+Per product: `Product` with `Offer` carrying price, `priceValidUntil` (a rolling year, not a
+fixed date), free-delivery `shippingDetails` and your published 5-day `hasMerchantReturnPolicy`.
+Per brand page: `CollectionPage` with an `AggregateOffer` spanning that family's real price
+floor and ceiling. Plus `Organization`, `LocalBusiness`, `WebSite`, `BreadcrumbList`,
+`FAQPage` (with `speakable`), `Service` and `SiteNavigationElement`.
+
+**Deliberately absent: `aggregateRating` and `review`.** There are no real reviews behind
+them. Emitting either is a Google policy violation that risks a manual action on the whole
+domain, and it is exactly the invented data your brief rules out. If you collect real reviews,
+that is the moment to add it — `scripts/verify-seo.ts` currently *fails the build* if rating
+markup appears, so flip that gate at the same time.
+
+## Prices are still unreconciled
+
+Seven Radiocom prices differ between the PDF price list and `src/data/products.ts`. The
+largest is RCD-70: **4 200 000 on the site, 1 900 000 in the list** — a factor of 2.2. All
+twelve Motorola prices match exactly.
+
+I have changed no number. This now matters more than it did: the price is emitted as
+structured data with a validity window, so a wrong number is published to Google as a
+merchant offer rather than just displayed on a page.
+
+---
+
+# Performance — measured, and where the ceiling is
+
+Lighthouse, mobile, throttled, across seven page types:
+
+| page | Performance | Accessibility | Best Practices | SEO | LCP |
+|---|---|---|---|---|---|
+| home | 83 | 100 | 100 | 100 | 3.9 s |
+| brand | 84 | 100 | 100 | 100 | 3.8 s |
+| product story | 88 | 100 | 100 | 100 | 3.2 s |
+| specs | 89 | 100 | 100 | 100 | 3.1 s |
+| industry | 87 | 100 | 100 | 100 | 3.4 s |
+| compare | 95 | 100 | 100 | 100 | 2.4 s |
+| service | 81 | 100 | 100 | 100 | 4.6 s |
+
+**Measure it with compression or the number is meaningless.** The local nitro
+preview serves everything uncompressed, so Lighthouse sees an 818 KB script
+where Netlify's edge serves ~250 KB gzipped. Run against the raw preview, the
+same pages score 58–61 — roughly 25 points of pure measurement artifact. The
+table above was taken through a gzip proxy so it reflects what a visitor gets.
+
+## What was actually wrong, and is now fixed
+
+- **~600 KB of Supabase in every page's bundle.** `attachSupabaseAuth` is
+  registered as a global function middleware and imported the SDK at module
+  scope. There is not one `createServerFn` in this codebase — the lead form
+  posts to `/api/send-lead` with plain `fetch` — so it has never run in
+  production while costing every visitor the download. The import is dynamic
+  now; the middleware still works the day a serverFn is added.
+- **A 341 KB PNG logo**, 1793×313, rendered at 22 px tall, downloading ahead of
+  the stylesheet on every page. Now 19 KB of WebP with a 300 px candidate.
+- **A 590 KB PNG home hero** — on its own, more than half the home page's
+  weight, and its LCP element. Now 68 KB of WebP. Home LCP went 6.3 s → 3.9 s.
+- **250 KB of GSAP on every route.** Now loaded only where something animates,
+  which is the home page. `scripts/qa-console.mjs` asserts this per route.
+
+## The remaining gap to 90 is architectural, not a bug
+
+What is left is a ~250 KB gzipped entry chunk: TanStack Start, React,
+framer-motion, i18next with all three locales, and the product data. TanStack's
+`autoCodeSplitting` is already on by default, but it cannot split these routes —
+each route file is `createFileRoute(path)(importedRouteOptions)`, and the
+splitter can only lift a `component` it can see declared in the route file.
+
+Making it split means giving every route file an inline `component` with a lazy
+import and moving each page's `head()` into its own module — fourteen files,
+each one a chance to break the SSR meta that the whole SEO layer depends on. It
+is worth doing, but it is its own piece of work with its own verification, not
+something to slip into a QA pass. Expect it to buy roughly 5–8 points.
+
+Removing framer-motion or Lenis would buy more, but that is a design decision
+about how the site feels, not a performance fix — so it is yours to make.
