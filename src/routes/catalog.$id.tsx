@@ -16,9 +16,10 @@ import { legacyCatalogTarget } from "@/data/products";
  * and Google gives up entirely after a handful. These are the oldest indexed
  * URLs on the site, so they are precisely the ones worth landing in one jump.
  *
- * The redirect lives in the router rather than host config because
- * `netlify.toml` still declares `publish = "dist"` while the build emits to
- * `.output/`, so the host redirect table cannot be relied upon.
+ * The redirect lives in the router rather than host config so it holds under any
+ * nitro preset. The generated `[[redirects]]` in `netlify.toml` only apply when
+ * Netlify serves the build; a router redirect is preset-independent, and
+ * duplicating the rule costs nothing.
  */
 export const Route = createFileRoute("/catalog/$id")({
   beforeLoad: ({ params }) => {

@@ -1,13 +1,14 @@
-# ⚠ `publish` almost certainly needs changing, and I could not verify it from
-#   here. `bun run build` produces `.output/` (nitro) and never creates `dist/`
-#   at all — check the repo root after a build. A publish directory that does
-#   not exist means Netlify has nothing to serve and, more to the point here,
-#   that the [[redirects]] table below may never be applied.
+# `publish = "dist"` is correct — do not "fix" it to `.output/public`.
 #
-#   The likely fix is `publish = ".output/public"` together with the nitro
-#   `netlify` preset, but that depends on how the site is wired on Netlify's
-#   side, which is not visible from the repository. The 301s are duplicated in
-#   the router so the migration is safe either way — see src/routes/**.
+# Nitro's output path is set by the preset. Netlify auto-detects and uses its
+# own, whose `publicDir` is `{{ rootDir }}/dist/` (see nitro's netlify preset).
+# A local `bun run build` uses the cloudflare preset instead and emits
+# `.output/public`, which is why this looks wrong from a developer machine.
+#
+# An earlier version of this comment asserted the opposite, on the evidence of
+# local builds alone. It was wrong, and a post-build script written against
+# `.output/public` on the strength of it broke the Netlify deploy on PR #14.
+# `scripts/lib/output-dir.ts` now discovers the directory instead of assuming.
 [build]
   command = "bun run build"
   publish = "dist"

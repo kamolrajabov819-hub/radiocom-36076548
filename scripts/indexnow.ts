@@ -24,6 +24,7 @@
  */
 import { readFile } from "node:fs/promises";
 import { SITE_URL } from "../src/lib/seo";
+import { findPublicDir } from "./lib/output-dir";
 
 const KEY = "522cb0c8834b9e0950503fc0e99cbed8";
 const ENDPOINT = "https://api.indexnow.org/indexnow";
@@ -37,9 +38,12 @@ if (!forced && !isProductionDeploy) {
   process.exit(0);
 }
 
-const sitemap = await readFile(".output/public/sitemap.xml", "utf8").catch(() => null);
+// Same preset-dependent path as finalize-sitemap: `.output/public` locally,
+// `dist` under the netlify preset.
+const out = await findPublicDir();
+const sitemap = out ? await readFile(`${out}/sitemap.xml`, "utf8").catch(() => null) : null;
 if (!sitemap) {
-  console.log("indexnow: skipped — .output/public/sitemap.xml not found");
+  console.log("indexnow: skipped — no built sitemap found");
   process.exit(0);
 }
 

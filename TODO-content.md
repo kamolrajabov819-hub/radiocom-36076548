@@ -92,32 +92,40 @@ any more.
 
 # Phase 5 — the `/catalog` migration
 
-## ⚠ `netlify.toml` publish directory — needs your attention
+## `netlify.toml` publish directory — I got this wrong, and it is now corrected
 
-`netlify.toml` declares `publish = "dist"`. **`bun run build` never creates `dist/`** —
-it emits `.output/` (nitro). I verified this: after a clean build the repo root has
-`.output/` and no `dist/` at all.
+**`publish = "dist"` is correct. Do not change it.** An earlier version of this file
+said the opposite; that was wrong, and the correction is worth recording because it
+cost a broken deploy.
 
-That means Netlify is publishing a directory that does not exist, and — the reason it
-matters for this phase — **the `[[redirects]]` table in `netlify.toml` may never be
-applied**. I generated all 75 rules into it anyway, but I could not verify from here
-whether Netlify honours them, because this sandbox's network policy blocks
-`radiocomuz.netlify.app`.
+Nitro's output path is chosen by the preset:
 
-**The migration is safe regardless**: every 301 is also implemented in the router
-(`src/routes/**/catalog.*`), which is what actually runs. I verified all of them:
+| preset | where the public files land | used by |
+|---|---|---|
+| `netlify` | `dist/` | Netlify, which auto-detects it |
+| `cloudflare` | `.output/public` | a plain local `bun run build` |
+| `node-server` | `.output/public` | local QA in this repo |
 
-```
-/ru/catalog        301 -> /ru/radiocom          /catalog          301 -> /ru/radiocom
-/ru/catalog/rcd-60 301 -> /ru/radiocom/rcd-60   /catalog/rcd-60   301 -> /ru/radiocom/rcd-60
-/ru/catalog/m-t82  301 -> /ru/motorola/t82      /uz/catalog/rc-10 301 -> /uz/radiocom/rc-10
-```
+Every build I could run locally emitted `.output/` and never `dist/`, so `publish = "dist"`
+looked like an obvious mistake. It is not — Netlify picks its own preset, and that preset's
+`publicDir` is `dist/`. PR #13's deploy preview succeeded with exactly this config.
 
-All single-hop. The legacy unprefixed URLs resolve both the locale prefix and the brand
-move in one redirect rather than chaining.
+**What that mistaken belief actually broke.** `scripts/finalize-sitemap.ts` was written
+against a hardcoded `.output/public` and threw when the directory was absent. On Netlify it
+was absent, so the post-build step failed the deploy on PR #14. Nothing local could catch
+it: all three local presets put the files where the script expected.
 
-The likely fix is `publish = ".output/public"` with the nitro `netlify` preset, but that
-depends on how the site is configured on Netlify's side. Please check.
+Fixed two ways. `scripts/lib/output-dir.ts` discovers the directory instead of assuming
+one, and `finalize-sitemap` treats "no output directory" as non-fatal — the pre-build
+sitemap is already valid, it just carries no image entries, and an enrichment step should
+never fail a deploy. Gate 15 in `verify-seo.ts` now fails the build if any script in
+`scripts/` hardcodes `.output/public/` or `dist/` again.
+
+**The 301s are duplicated in the router regardless.** The generated `[[redirects]]` in
+`netlify.toml` only apply when Netlify serves the build; the router copies
+(`src/routes/**/catalog.*`) are preset-independent and are what actually run. All 96
+legacy URLs are verified single-hop 301 → 200 — including the three hidden models, which
+used to redirect to their own 404ing product pages.
 
 ## Product photography is CDN-only — I could not visually verify any product page
 

@@ -17,9 +17,7 @@
 import { readdir, writeFile } from "node:fs/promises";
 import { basename, extname } from "node:path";
 import { entries, renderSitemap } from "./lib/sitemap";
-
-const OUT = ".output/public";
-const ASSETS = `${OUT}/assets`;
+import { findPublicDir, OUTPUT_CANDIDATES } from "./lib/output-dir";
 
 /**
  * Vite emits `<name>-<hash><ext>`. The hash is base64url, 8 characters in
@@ -34,11 +32,23 @@ function stripHash(file: string): string {
   return m ? `${m[1]}${ext}` : file;
 }
 
-const built = await readdir(ASSETS).catch(() => {
-  throw new Error(
-    `finalize-sitemap: ${ASSETS} not found. This runs after \`vite build\` — check the build script order.`,
+const OUT = await findPublicDir();
+
+// Not fatal, and deliberately so. The pre-build sitemap `generate-seo.ts`
+// already wrote is complete and valid — it just carries no image entries. A
+// missing output directory means something changed about how this project
+// builds, and the right response is to ship a slightly thinner sitemap and say
+// so, not to fail a deploy over an enrichment step.
+if (!OUT) {
+  console.log(
+    `finalize-sitemap: no build output found (looked in ${OUTPUT_CANDIDATES.join(", ")}). ` +
+      `Sitemap ships without image entries.`,
   );
-});
+  process.exit(0);
+}
+
+const ASSETS = `${OUT}/assets`;
+const built = await readdir(ASSETS);
 
 const byName = new Map<string, string>();
 const collisions: string[] = [];

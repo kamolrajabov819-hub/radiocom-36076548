@@ -397,5 +397,31 @@ console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
     );
 }
 
+// 15. No build script may hardcode a nitro output directory.
+//
+//     Nitro's output path is preset-dependent: `.output/public` under
+//     cloudflare and node-server, `dist` under the netlify preset that Netlify
+//     itself picks. `finalize-sitemap.ts` was written against `.output/public`
+//     because every local build put it there — and it threw on Netlify, which
+//     failed the deploy. Nothing local could have caught that, so this gate is
+//     the thing that does.
+{
+  const problems: string[] = [];
+  for (const f of readdirSync("scripts").filter((n) => /\.(ts|mjs)$/.test(n))) {
+    const path = join("scripts", f);
+    const raw = readFileSync(path, "utf8");
+    // Comments explain *why* the paths differ; a gate that cannot tell an
+    // explanation from a live path would force those comments out.
+    const code = raw.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:])\/\/.*$/gm, "$1");
+    for (const m of code.matchAll(/["'`](\.output\/public|dist)\/[^"'`]*["'`]/g)) {
+      const line = raw.slice(0, m.index).split("\n").length;
+      problems.push(`${path}:~${line} hardcodes ${m[1]}/ — use scripts/lib/output-dir.ts`);
+    }
+  }
+  if (problems.length)
+    bad(`build scripts assume an output directory:\n     ${problems.join("\n     ")}`);
+  else console.log("ok  no build script hardcodes a preset-dependent output directory");
+}
+
 console.log(fail === 0 ? "\nALL SEO CHECKS PASSED" : `\n${fail} FAILURES`);
 process.exit(fail ? 1 : 0);
