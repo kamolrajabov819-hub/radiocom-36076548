@@ -8,7 +8,8 @@ import {
   jsonLd,
 } from "../src/lib/seo";
 import { products } from "../src/data/products";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
+import { join } from "node:path";
 
 let fail = 0;
 const bad = (m: string) => {
@@ -17,7 +18,7 @@ const bad = (m: string) => {
 };
 
 // 1. Every locale of a page must advertise the identical alternate set (reciprocity).
-for (const path of ["/", "/catalog", "/poc", "/catalog/rcd-60"]) {
+for (const path of ["/", "/radiocom", "/poc", "/radiocom/rcd-60", "/radiocom/rcd-60/specs"]) {
   const sets = LANGS.map((l) => {
     const links = localeLinks(l, path);
     const canon = links.filter((x) => x.rel === "canonical");
@@ -75,7 +76,8 @@ for (const l of LANGS) {
   const f = l === "ru" ? "public/llms.txt" : `public/llms.${l}.txt`;
   const text = readFileSync(f, "utf8");
   if ((text.match(/^- \[/gm) || []).length !== products.length) bad(`${f} product count drifted`);
-  if (!text.includes(`${SITE_URL}/${l}/catalog/`)) bad(`${f} links the wrong locale`);
+  if (!text.includes(`${SITE_URL}/${l}/radiocom/`) && !text.includes(`${SITE_URL}/${l}/motorola/`))
+    bad(`${f} links the wrong locale`);
 }
 console.log(`ok  robots.txt + llms.txt (x${LANGS.length}) consistent with catalogue`);
 
@@ -112,6 +114,52 @@ if (ld.type !== "application/ld+json")
 if ("attrs" in ld) bad("jsonLd() must be flat — a nested `attrs` renders as a literal attribute");
 if (typeof ld.children !== "string") bad("jsonLd() must carry the payload as a `children` string");
 console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
+
+// 8. Nothing may still point at /catalog.
+//    The route is gone and only exists as a 301. A surviving internal link
+//    would send a reader — and a crawler — through a redirect on every visit,
+//    which is exactly the crawl waste the migration was meant to remove. This
+//    walks the actual files rather than trusting that every reference was
+//    found by hand.
+//
+//    `src/routes/**` and `scripts/generate-seo.ts` are exempt: the redirect
+//    routes are *supposed* to name the old path, and this file has to name it
+//    to test for it.
+{
+  const offenders: string[] = [];
+  const skip = /node_modules|routeTree\.gen\.ts|\/routes\/|generate-seo\.ts|verify-seo\.ts/;
+  const walk = (dir: string) => {
+    for (const e of readdirSync(dir, { withFileTypes: true })) {
+      const full = join(dir, e.name);
+      if (skip.test(full)) continue;
+      if (e.isDirectory()) walk(full);
+      else if (/\.(ts|tsx|json|txt|xml|toml)$/.test(e.name)) {
+        const raw = readFileSync(full, "utf8");
+        // Comments are stripped first. Several files explain *why* /catalog is
+        // gone, and a gate that cannot tell an explanation from a live link
+        // would force those comments to be deleted — losing the reasoning to
+        // satisfy a lint.
+        //
+        // `src/assets/catalog/` is exempt separately: that is a directory of
+        // product photographs that happens to share the name, not a route.
+        const text = raw
+          .replace(/\/\*[\s\S]*?\*\//g, "")
+          .replace(/(^|[^:])\/\/.*$/gm, "$1")
+          .replace(/assets\/catalog\//g, "");
+        for (const m of text.matchAll(/\/catalog(?=["'`/\s<)]|$)/g)) {
+          const line = raw.slice(0, m.index).split("\n").length;
+          offenders.push(`${full}:~${line}`);
+        }
+      }
+    }
+  };
+  for (const root of ["src", "public"]) walk(root);
+  if (offenders.length)
+    bad(
+      `/catalog still referenced in ${offenders.length} place(s):\n     ${offenders.join("\n     ")}`,
+    );
+  else console.log("ok  no /catalog path survives in src/ or public/");
+}
 
 console.log(fail === 0 ? "\nALL SEO CHECKS PASSED" : `\n${fail} FAILURES`);
 process.exit(fail ? 1 : 0);

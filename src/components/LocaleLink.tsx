@@ -7,9 +7,14 @@ type LinkProps = ComponentProps<typeof Link>;
 /**
  * A `Link` that keeps the reader inside their language.
  *
- * Call it with the unprefixed path — `to="/catalog"` — and it resolves to the
+ * Call it with the unprefixed path — `to="/radiocom"` — and it resolves to the
  * locale route, injecting the current `lang` param. Without this every internal
  * link would drop the visitor back to Russian.
+ *
+ * The `to` union is deliberately closed rather than `string`: it is what makes
+ * a stale link a type error instead of a 404 found in production. Removing
+ * `/catalog` from it is what surfaced every internal reference during the
+ * migration to the brand-first tree.
  */
 export function LocaleLink({
   to,
@@ -17,7 +22,17 @@ export function LocaleLink({
   children,
   ...rest
 }: Omit<LinkProps, "to" | "params"> & {
-  to: "/" | "/catalog" | "/catalog/$id" | "/poc" | "/service" | "/industries" | "/industries/$slug";
+  to:
+    | "/"
+    | "/radiocom"
+    | "/motorola"
+    | "/$brand/$model"
+    | "/$brand/$model/specs"
+    | "/compare"
+    | "/poc"
+    | "/service"
+    | "/industries"
+    | "/industries/$slug";
   params?: Record<string, string>;
   children?: ReactNode;
 }) {

@@ -87,3 +87,78 @@ far better. If you can shoot four landscape (4:3 or wider) frames, they drop str
 modelled after apple.com was the specific risk the brief flagged. All 16 are renamed to
 `<subject>-<variant>.webp`; nothing in `src/assets/` matches "apple", "macbook" or "iphone"
 any more.
+
+---
+
+# Phase 5 — the `/catalog` migration
+
+## ⚠ `netlify.toml` publish directory — needs your attention
+
+`netlify.toml` declares `publish = "dist"`. **`bun run build` never creates `dist/`** —
+it emits `.output/` (nitro). I verified this: after a clean build the repo root has
+`.output/` and no `dist/` at all.
+
+That means Netlify is publishing a directory that does not exist, and — the reason it
+matters for this phase — **the `[[redirects]]` table in `netlify.toml` may never be
+applied**. I generated all 75 rules into it anyway, but I could not verify from here
+whether Netlify honours them, because this sandbox's network policy blocks
+`radiocomuz.netlify.app`.
+
+**The migration is safe regardless**: every 301 is also implemented in the router
+(`src/routes/**/catalog.*`), which is what actually runs. I verified all of them:
+
+```
+/ru/catalog        301 -> /ru/radiocom          /catalog          301 -> /ru/radiocom
+/ru/catalog/rcd-60 301 -> /ru/radiocom/rcd-60   /catalog/rcd-60   301 -> /ru/radiocom/rcd-60
+/ru/catalog/m-t82  301 -> /ru/motorola/t82      /uz/catalog/rc-10 301 -> /uz/radiocom/rc-10
+```
+
+All single-hop. The legacy unprefixed URLs resolve both the locale prefix and the brand
+move in one redirect rather than chaining.
+
+The likely fix is `publish = ".output/public"` with the nitro `netlify` preset, but that
+depends on how the site is configured on Netlify's side. Please check.
+
+## Product photography is CDN-only — I could not visually verify any product page
+
+Every product photograph is a `.asset.json` pointer to `radiocom.lovable.app`, which this
+sandbox blocks. On the brand page all 10 product images fail to load here. **This is a
+sandbox limitation, not a code fault** — the same pointers render on the live site today.
+
+But it does mean: **I have not been able to see a single product photo in context.** The
+brand lineup cards, the story-page hero, the specs-page buy card and the compare table
+columns are all laid out against a broken image in every screenshot I took. The layout is
+verified; the *look* of those pages with real photography is not.
+
+This is the strongest argument yet for localising those assets — see "CDN assets" above.
+
+## What the new pages are built from
+
+Nothing on the product pages is invented copy. Sources:
+
+| Section | Source |
+|---|---|
+| Hero blurb, price, range | `products.ts` — `blurb`, `price`, `rangeCity`, `rangeOpen` |
+| Highlights shelf | `specs.ts` `rows` + the range figures |
+| Feature bento | `specs.ts` `features` |
+| In the box | `specs.ts` `inBox` |
+| Where it's used | `products.ts` `industries` |
+| Spec table | `specs.ts` `rows` |
+| Compare tables | `specs.ts` `rows`, joined on the Russian label |
+
+## Still missing, and deliberately left empty
+
+The brief asked for two sections I could not build from existing data:
+
+- **"Built to go places" design section** — needs a short paragraph per model plus macro
+  photography. There is no per-model design copy in the repo and no macro shot per model.
+  Inventing either would be exactly the "generated catalogue" failure the brief warns
+  about, so the section is absent rather than padded.
+- **Compatible accessories** — there is no accessories dataset in the repo. `specs.ts`
+  `inBox` lists what ships *with* each radio, which is a different thing.
+
+To add either, I need from you: one paragraph per model (or per family), and a list of
+accessory SKUs with which models they fit.
+
+- **Product-page FAQ** — the shared `<Faq>` component is ready, but there are no
+  per-model questions in the repo. Give me 3–5 questions per family and it drops in.

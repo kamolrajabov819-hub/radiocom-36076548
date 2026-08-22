@@ -20,10 +20,15 @@ import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as CatalogIdRouteImport } from './routes/catalog.$id'
 import { Route as LangServiceRouteImport } from './routes/$lang/service'
 import { Route as LangPocRouteImport } from './routes/$lang/poc'
+import { Route as LangCompareRouteImport } from './routes/$lang/compare'
+import { Route as LangRadiocomIndexRouteImport } from './routes/$lang/radiocom.index'
+import { Route as LangMotorolaIndexRouteImport } from './routes/$lang/motorola.index'
 import { Route as LangIndustriesIndexRouteImport } from './routes/$lang/industries.index'
 import { Route as LangCatalogIndexRouteImport } from './routes/$lang/catalog.index'
 import { Route as LangIndustriesSlugRouteImport } from './routes/$lang/industries.$slug'
 import { Route as LangCatalogIdRouteImport } from './routes/$lang/catalog.$id'
+import { Route as LangBrandModelIndexRouteImport } from './routes/$lang/$brand.$model.index'
+import { Route as LangBrandModelSpecsRouteImport } from './routes/$lang/$brand.$model.specs'
 
 const ServiceRoute = ServiceRouteImport.update({
   id: '/service',
@@ -80,6 +85,21 @@ const LangPocRoute = LangPocRouteImport.update({
   path: '/poc',
   getParentRoute: () => LangRoute,
 } as any)
+const LangCompareRoute = LangCompareRouteImport.update({
+  id: '/compare',
+  path: '/compare',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangRadiocomIndexRoute = LangRadiocomIndexRouteImport.update({
+  id: '/radiocom/',
+  path: '/radiocom/',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangMotorolaIndexRoute = LangMotorolaIndexRouteImport.update({
+  id: '/motorola/',
+  path: '/motorola/',
+  getParentRoute: () => LangRoute,
+} as any)
 const LangIndustriesIndexRoute = LangIndustriesIndexRouteImport.update({
   id: '/industries/',
   path: '/industries/',
@@ -100,12 +120,23 @@ const LangCatalogIdRoute = LangCatalogIdRouteImport.update({
   path: '/catalog/$id',
   getParentRoute: () => LangRoute,
 } as any)
+const LangBrandModelIndexRoute = LangBrandModelIndexRouteImport.update({
+  id: '/$brand/$model/',
+  path: '/$brand/$model/',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangBrandModelSpecsRoute = LangBrandModelSpecsRouteImport.update({
+  id: '/$brand/$model/specs',
+  path: '/$brand/$model/specs',
+  getParentRoute: () => LangRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$lang': typeof LangRouteWithChildren
   '/poc': typeof PocRoute
   '/service': typeof ServiceRoute
+  '/$lang/compare': typeof LangCompareRoute
   '/$lang/poc': typeof LangPocRoute
   '/$lang/service': typeof LangServiceRoute
   '/catalog/$id': typeof CatalogIdRoute
@@ -117,11 +148,16 @@ export interface FileRoutesByFullPath {
   '/$lang/industries/$slug': typeof LangIndustriesSlugRoute
   '/$lang/catalog/': typeof LangCatalogIndexRoute
   '/$lang/industries/': typeof LangIndustriesIndexRoute
+  '/$lang/motorola/': typeof LangMotorolaIndexRoute
+  '/$lang/radiocom/': typeof LangRadiocomIndexRoute
+  '/$lang/$brand/$model/specs': typeof LangBrandModelSpecsRoute
+  '/$lang/$brand/$model/': typeof LangBrandModelIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/poc': typeof PocRoute
   '/service': typeof ServiceRoute
+  '/$lang/compare': typeof LangCompareRoute
   '/$lang/poc': typeof LangPocRoute
   '/$lang/service': typeof LangServiceRoute
   '/catalog/$id': typeof CatalogIdRoute
@@ -133,6 +169,10 @@ export interface FileRoutesByTo {
   '/$lang/industries/$slug': typeof LangIndustriesSlugRoute
   '/$lang/catalog': typeof LangCatalogIndexRoute
   '/$lang/industries': typeof LangIndustriesIndexRoute
+  '/$lang/motorola': typeof LangMotorolaIndexRoute
+  '/$lang/radiocom': typeof LangRadiocomIndexRoute
+  '/$lang/$brand/$model/specs': typeof LangBrandModelSpecsRoute
+  '/$lang/$brand/$model': typeof LangBrandModelIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -140,6 +180,7 @@ export interface FileRoutesById {
   '/$lang': typeof LangRouteWithChildren
   '/poc': typeof PocRoute
   '/service': typeof ServiceRoute
+  '/$lang/compare': typeof LangCompareRoute
   '/$lang/poc': typeof LangPocRoute
   '/$lang/service': typeof LangServiceRoute
   '/catalog/$id': typeof CatalogIdRoute
@@ -151,6 +192,10 @@ export interface FileRoutesById {
   '/$lang/industries/$slug': typeof LangIndustriesSlugRoute
   '/$lang/catalog/': typeof LangCatalogIndexRoute
   '/$lang/industries/': typeof LangIndustriesIndexRoute
+  '/$lang/motorola/': typeof LangMotorolaIndexRoute
+  '/$lang/radiocom/': typeof LangRadiocomIndexRoute
+  '/$lang/$brand/$model/specs': typeof LangBrandModelSpecsRoute
+  '/$lang/$brand/$model/': typeof LangBrandModelIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -159,6 +204,7 @@ export interface FileRouteTypes {
     | '/$lang'
     | '/poc'
     | '/service'
+    | '/$lang/compare'
     | '/$lang/poc'
     | '/$lang/service'
     | '/catalog/$id'
@@ -170,11 +216,16 @@ export interface FileRouteTypes {
     | '/$lang/industries/$slug'
     | '/$lang/catalog/'
     | '/$lang/industries/'
+    | '/$lang/motorola/'
+    | '/$lang/radiocom/'
+    | '/$lang/$brand/$model/specs'
+    | '/$lang/$brand/$model/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/poc'
     | '/service'
+    | '/$lang/compare'
     | '/$lang/poc'
     | '/$lang/service'
     | '/catalog/$id'
@@ -186,12 +237,17 @@ export interface FileRouteTypes {
     | '/$lang/industries/$slug'
     | '/$lang/catalog'
     | '/$lang/industries'
+    | '/$lang/motorola'
+    | '/$lang/radiocom'
+    | '/$lang/$brand/$model/specs'
+    | '/$lang/$brand/$model'
   id:
     | '__root__'
     | '/'
     | '/$lang'
     | '/poc'
     | '/service'
+    | '/$lang/compare'
     | '/$lang/poc'
     | '/$lang/service'
     | '/catalog/$id'
@@ -203,6 +259,10 @@ export interface FileRouteTypes {
     | '/$lang/industries/$slug'
     | '/$lang/catalog/'
     | '/$lang/industries/'
+    | '/$lang/motorola/'
+    | '/$lang/radiocom/'
+    | '/$lang/$brand/$model/specs'
+    | '/$lang/$brand/$model/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -295,6 +355,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangPocRouteImport
       parentRoute: typeof LangRoute
     }
+    '/$lang/compare': {
+      id: '/$lang/compare'
+      path: '/compare'
+      fullPath: '/$lang/compare'
+      preLoaderRoute: typeof LangCompareRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/radiocom/': {
+      id: '/$lang/radiocom/'
+      path: '/radiocom'
+      fullPath: '/$lang/radiocom/'
+      preLoaderRoute: typeof LangRadiocomIndexRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/motorola/': {
+      id: '/$lang/motorola/'
+      path: '/motorola'
+      fullPath: '/$lang/motorola/'
+      preLoaderRoute: typeof LangMotorolaIndexRouteImport
+      parentRoute: typeof LangRoute
+    }
     '/$lang/industries/': {
       id: '/$lang/industries/'
       path: '/industries'
@@ -323,10 +404,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangCatalogIdRouteImport
       parentRoute: typeof LangRoute
     }
+    '/$lang/$brand/$model/': {
+      id: '/$lang/$brand/$model/'
+      path: '/$brand/$model'
+      fullPath: '/$lang/$brand/$model/'
+      preLoaderRoute: typeof LangBrandModelIndexRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/$brand/$model/specs': {
+      id: '/$lang/$brand/$model/specs'
+      path: '/$brand/$model/specs'
+      fullPath: '/$lang/$brand/$model/specs'
+      preLoaderRoute: typeof LangBrandModelSpecsRouteImport
+      parentRoute: typeof LangRoute
+    }
   }
 }
 
 interface LangRouteChildren {
+  LangCompareRoute: typeof LangCompareRoute
   LangPocRoute: typeof LangPocRoute
   LangServiceRoute: typeof LangServiceRoute
   LangIndexRoute: typeof LangIndexRoute
@@ -334,9 +430,14 @@ interface LangRouteChildren {
   LangIndustriesSlugRoute: typeof LangIndustriesSlugRoute
   LangCatalogIndexRoute: typeof LangCatalogIndexRoute
   LangIndustriesIndexRoute: typeof LangIndustriesIndexRoute
+  LangMotorolaIndexRoute: typeof LangMotorolaIndexRoute
+  LangRadiocomIndexRoute: typeof LangRadiocomIndexRoute
+  LangBrandModelSpecsRoute: typeof LangBrandModelSpecsRoute
+  LangBrandModelIndexRoute: typeof LangBrandModelIndexRoute
 }
 
 const LangRouteChildren: LangRouteChildren = {
+  LangCompareRoute: LangCompareRoute,
   LangPocRoute: LangPocRoute,
   LangServiceRoute: LangServiceRoute,
   LangIndexRoute: LangIndexRoute,
@@ -344,6 +445,10 @@ const LangRouteChildren: LangRouteChildren = {
   LangIndustriesSlugRoute: LangIndustriesSlugRoute,
   LangCatalogIndexRoute: LangCatalogIndexRoute,
   LangIndustriesIndexRoute: LangIndustriesIndexRoute,
+  LangMotorolaIndexRoute: LangMotorolaIndexRoute,
+  LangRadiocomIndexRoute: LangRadiocomIndexRoute,
+  LangBrandModelSpecsRoute: LangBrandModelSpecsRoute,
+  LangBrandModelIndexRoute: LangBrandModelIndexRoute,
 }
 
 const LangRouteWithChildren = LangRoute._addFileChildren(LangRouteChildren)

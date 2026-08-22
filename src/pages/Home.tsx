@@ -168,7 +168,7 @@ function Hero() {
               {t("home.hero.cta_primary")}
             </button>
           </Magnetic>
-          <LocaleLink to="/catalog" className="pill-link">
+          <LocaleLink to="/radiocom" className="pill-link">
             {t("home.hero.cta_secondary")} <ChevronRight className="h-4 w-4" aria-hidden />
           </LocaleLink>
         </motion.div>
@@ -480,7 +480,7 @@ function FeaturedCatalog() {
           spacing="tight"
           eyebrow={t("home.featured.eyebrow")}
           title={t("home.featured.title")}
-          link={{ label: t("home.featured.link"), to: "/catalog" }}
+          link={{ label: t("home.featured.link"), to: "/radiocom" }}
         />
         <div className="grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-4">
           {featured.map((p, i) => (

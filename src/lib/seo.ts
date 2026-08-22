@@ -239,14 +239,13 @@ export function webSiteSchema() {
     name: SITE_NAME,
     inLanguage: ["ru", "uz", "en"],
     publisher: { "@id": `${SITE_URL}/#organization` },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${SITE_URL}/ru/catalog?q={search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
-    },
+    // No `potentialAction`/`SearchAction`. The old one advertised
+    // `/ru/catalog?q={search_term_string}`, but the catalogue only ever
+    // validated `cat` and `brand` params — there has never been a `q` search on
+    // this site, so the schema was describing an endpoint that does not exist.
+    // Google ignores a sitelinks searchbox it cannot exercise, and claiming a
+    // capability the site lacks is the kind of thing that costs trust in the
+    // rest of the graph. Reinstate this only alongside a real search route.
   };
 }
 
@@ -259,12 +258,33 @@ export function webSiteSchema() {
  * request"); Google rejects an Offer without a price, so those products get
  * availability and seller only, with no `priceSpecification`.
  */
+/**
+ * Canonical paths for the product architecture.
+ *
+ * `/catalog` and `/catalog/{id}` were replaced by a brand-first tree, and these
+ * three builders are the only place that knows the new shape. Schema, the
+ * sitemap generator, the redirect map, breadcrumbs and every internal link all
+ * resolve through them, so the URL structure cannot drift between what we tell
+ * Google and what the router actually serves.
+ */
+export function brandPath(brandSlug: string): string {
+  return `/${brandSlug}`;
+}
+
+export function productPath(p: Pick<Product, "brandSlug" | "slug">): string {
+  return `/${p.brandSlug}/${p.slug}`;
+}
+
+export function productSpecsPath(p: Pick<Product, "brandSlug" | "slug">): string {
+  return `/${p.brandSlug}/${p.slug}/specs`;
+}
+
 export function productSchema(
   p: Product,
   lang: SeoLang,
   extra?: { specs?: { name: string; value: string }[] },
 ) {
-  const url = absolute(localePath(lang, `/catalog/${p.id}`));
+  const url = absolute(localePath(lang, productPath(p)));
   const offer: Record<string, unknown> = {
     "@type": "Offer",
     url,
@@ -400,7 +420,9 @@ export function siteNavigationSchema(
  * the call site.
  */
 export const SITE_SECTIONS = [
-  { key: "catalog", path: "/catalog" },
+  { key: "radiocom", path: "/radiocom" },
+  { key: "motorola", path: "/motorola" },
+  { key: "compare", path: "/compare" },
   { key: "poc", path: "/poc" },
   { key: "service", path: "/service" },
   { key: "industries", path: "/industries" },
@@ -416,7 +438,7 @@ export function itemListSchema(items: Product[], lang: SeoLang) {
     itemListElement: items.map((p, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      url: absolute(localePath(lang, `/catalog/${p.id}`)),
+      url: absolute(localePath(lang, productPath(p))),
       name: p.name,
     })),
   };

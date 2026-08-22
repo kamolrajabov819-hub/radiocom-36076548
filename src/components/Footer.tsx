@@ -21,7 +21,9 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 border-b border-border pb-12">
           <FooterCol title={t("footer.nav_col")}>
             <FLink to="/">{t("nav.home")}</FLink>
-            <FLink to="/catalog">{t("nav.catalog")}</FLink>
+            <FLink to="/radiocom">{t("nav.radiocom")}</FLink>
+            <FLink to="/motorola">{t("nav.motorola")}</FLink>
+            <FLink to="/compare">{t("nav.compare")}</FLink>
             <FLink to="/poc">{t("nav.poc")}</FLink>
             <FLink to="/service">{t("nav.service")}</FLink>
             <FLink to="/industries">{t("nav.industries")}</FLink>
@@ -97,7 +99,7 @@ function FLink({
   to,
   children,
 }: {
-  to: "/" | "/catalog" | "/poc" | "/service" | "/industries";
+  to: "/" | "/radiocom" | "/motorola" | "/compare" | "/poc" | "/service" | "/industries";
   children: React.ReactNode;
 }) {
   return (

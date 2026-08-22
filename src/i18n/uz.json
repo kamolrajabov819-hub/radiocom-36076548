@@ -1,7 +1,6 @@
 {
   "nav": {
     "home": "Bosh sahifa",
-    "catalog": "Katalog",
     "poc": "PoC tizimlari",
     "service": "Servis",
     "industries": "Sohalar",
@@ -13,7 +12,10 @@
     "menu": "Menyu",
     "close": "Yopish",
     "get_quote": "Ariza qoldirish",
-    "skip_to_content": "Asosiy qismga o'tish"
+    "skip_to_content": "Asosiy qismga o'tish",
+    "radiocom": "Radiocom",
+    "motorola": "Motorola",
+    "compare": "Solishtirish"
   },
   "hero": {
     "eyebrow": "Rasmiy distribyutor · Toshkent",
@@ -634,12 +636,6 @@
       "title": "Toshkentda ratsiya va radiostansiyalar — Motorola, Radiocom | Radiocom",
       "desc": "O'zbekistondagi rasmiy radiostansiya yetkazib beruvchi: bozorda 11 yil, 10 000+ mijoz. Motorola, Hytera, PoC va Radiocom RC. Bepul sinov, kafolat, Toshkentda servis."
     },
-    "catalog": {
-      "title_one": "Ratsiyalar katalogi — {{count}} ta Motorola va Radiocom modeli | Radiocom",
-      "title_other": "Ratsiyalar katalogi — {{count}} ta Motorola va Radiocom modeli | Radiocom",
-      "desc_one": "Toshkentdagi to'liq radiostansiyalar katalogi: {{count}} ta Motorola Talkabout, TLKR, XT va Radiocom RC/RCD modeli. PMR va DMR, so'mdagi narxlar, rasmiy kafolat, xariddan oldin bepul sinov.",
-      "desc_other": "Toshkentdagi to'liq radiostansiyalar katalogi: {{count}} ta Motorola Talkabout, TLKR, XT va Radiocom RC/RCD modeli. PMR va DMR, so'mdagi narxlar, rasmiy kafolat, xariddan oldin bepul sinov."
-    },
     "poc": {
       "title": "PoC ratsiyalar: butun O'zbekiston bo'ylab LTE aloqa | Radiocom",
       "desc": "Push-to-Talk over Cellular — retranslyatorsiz butun mamlakat bo'ylab aloqa, GPS, guruhlar va dispetcherlik. Toshkentda tarmoq loyihalash va ratsiya ijarasi."
@@ -663,19 +659,80 @@
       "desc": "{{blurb}} Aloqa masofasi {{range}}. {{price}}. Rasmiy kafolat, bepul sinov, O'zbekiston bo'ylab yetkazib berish."
     },
     "crumb": {
-      "catalog": "Katalog",
       "industries": "Sohalar",
-      "service": "Servis"
+      "service": "Servis",
+      "radiocom": "Radiocom",
+      "motorola": "Motorola",
+      "compare": "Solishtirish",
+      "specs": "Xususiyatlar"
     },
     "section": {
-      "catalog_name": "Ratsiyalar katalogi",
-      "catalog_desc": "Motorola va Radiocom'ning barcha modellari narxlari, xususiyatlari va komplektatsiyasi bilan.",
       "poc_name": "PoC ratsiyalar",
       "poc_desc": "LTE orqali Push-to-Talk: retranslyatorsiz butun O'zbekiston bo'ylab aloqa.",
       "service_name": "Servis markazi",
       "service_desc": "Toshkentda ratsiyalarni kafolatli va kafolatdan keyingi ta'mirlash.",
       "industries_name": "Sohalar",
-      "industries_desc": "HoReCa, qurilish, qo'riqlash, kon qazish, transport va ishlab chiqarish uchun radioaloqa yechimlari."
+      "industries_desc": "HoReCa, qurilish, qo'riqlash, kon qazish, transport va ishlab chiqarish uchun radioaloqa yechimlari.",
+      "radiocom_name": "Radiocom ratsiyalari",
+      "radiocom_desc": "Analog RC va raqamli RCD DMR ratsiyalari, Toshkentda kafolat va servis bilan.",
+      "motorola_name": "Motorola ratsiyalari",
+      "motorola_desc": "Talkabout, XT, TLKR va CLP — jahon yetakchisidan litsenziyasiz PMR ratsiyalar.",
+      "compare_name": "Modellarni solishtirish",
+      "compare_desc": "Barcha ratsiyalar masofa, standart, himoya darajasi va narx bo'yicha bitta jadvalda."
+    },
+    "brand": {
+      "radiocom_title": "Radiocom RC va RCD ratsiyalari — Toshkentda sotib olish | Radiocom",
+      "radiocom_desc": "{{count}} ta Radiocom modeli: analog RC va raqamli RCD DMR ratsiyalari. Narxlar, xususiyatlar, 12 oy kafolat va O'zbekiston bo'ylab bepul sinov.",
+      "motorola_title": "Motorola ratsiyalari — Toshkentda sotib olish | Radiocom",
+      "motorola_desc": "{{count}} ta Motorola modeli: Talkabout, XT, TLKR va CLP. Litsenziyasiz PMR ratsiyalar, kafolat, yetkazib berish va bepul sinov bilan."
+    },
+    "specs": {
+      "title": "{{name}} — xususiyatlari va narxi | Radiocom",
+      "desc": "{{name}} to'liq xususiyatlari: {{price}}. To'plam, masofa, himoya darajasi. 12 oy kafolat, O'zbekiston bo'ylab bepul yetkazib berish."
+    },
+    "compare": {
+      "title": "Motorola va Radiocom ratsiyalarini solishtirish — {{count}} model | Radiocom",
+      "desc": "Barcha modellar masofa, standart, himoya darajasi va narx bo'yicha bitta jadvalda. Vazifaga mos ratsiyani tanlang."
     }
+  },
+  "brand": {
+    "eyebrow": "Rasmiy hamkor",
+    "headline": "Rasmiy distribyutsiya",
+    "sub": "Ishlab chiqaruvchilar bilan to'g'ridan-to'g'ri ishlaymiz: original qurilmalar, kafolat va Toshkentda servis.",
+    "view": "Modellarni ko'rish",
+    "models": "model",
+    "radiocom_title": "Radiocom RC va RCD",
+    "radiocom_desc": "O'z liniyamiz Radiocom: analog RC va raqamli RCD DMR ratsiyalari, kafolat va servis bilan.",
+    "motorola_title": "Motorola",
+    "motorola_desc": "Talkabout, XT va TLKR — jahon yetakchisidan litsenziyasiz PMR ratsiyalar.",
+    "lineup": "Model qatori",
+    "why_title": "Nega biz orqali",
+    "compare_cta": "Sizga qaysi ratsiya mos keladi?",
+    "compare_sub": "Modellarni masofa, himoya va narx bo'yicha solishtiring.",
+    "all_models": "Barcha modellar"
+  },
+  "px": {
+    "from": "dan",
+    "learn_more": "Batafsil",
+    "buy": "Ariza qoldirish",
+    "specs_link": "Xususiyatlar va narx",
+    "story_link": "Model haqida",
+    "highlights": "Asosiysi qisqacha",
+    "in_box": "To'plamda",
+    "features": "Imkoniyatlar",
+    "where_used": "Qayerda qo'llaniladi",
+    "accessories": "Mos aksessuarlar",
+    "spec_table": "Xususiyatlar",
+    "config": "Konfiguratsiya",
+    "warranty": "12 oy kafolat",
+    "delivery": "O'zbekiston bo'ylab bepul yetkazib berish",
+    "trial": "Bepul sinov: olib kelamiz, sozlaymiz, olib ketamiz",
+    "range_city": "Shaharda",
+    "range_open": "Ochiq joyda",
+    "price_on_request": "Narx so'rov bo'yicha",
+    "back_to_brand": "Barcha modellar",
+    "compare_title": "Modellarni solishtirish",
+    "compare_sub": "Radiocom va Motorolaning barcha modellari masofa, himoya va narx bo'yicha.",
+    "faq_title": "Ko'p so'raladigan savollar"
   }
 }

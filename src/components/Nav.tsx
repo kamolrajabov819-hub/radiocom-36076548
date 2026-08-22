@@ -68,7 +68,8 @@ export function Nav() {
 
   const links = [
     { to: "/", label: t("nav.home") },
-    { to: "/catalog", label: t("nav.catalog") },
+    { to: "/radiocom", label: t("nav.radiocom") },
+    { to: "/motorola", label: t("nav.motorola") },
     { to: "/poc", label: t("nav.poc") },
     { to: "/service", label: t("nav.service") },
   ] as const;

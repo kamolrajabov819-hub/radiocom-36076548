@@ -33,8 +33,8 @@ export function ProductCard({
     >
       <TiltCard className="h-full" max={5}>
         <LocaleLink
-          to="/catalog/$id"
-          params={{ id: p.id }}
+          to="/$brand/$model"
+          params={{ brand: p.brandSlug, model: p.slug }}
           aria-label={p.name}
           className="relative flex h-full w-full flex-col overflow-hidden rounded-[20px] bg-popover p-6 md:p-7 text-left shadow-[0_1px_3px_rgba(0,0,0,0.06)] ring-1 ring-border transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_24px_60px_-24px_rgba(0,0,0,0.35)]"
         >
