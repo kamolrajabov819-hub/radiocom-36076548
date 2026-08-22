@@ -75,6 +75,7 @@
   --color-cool: var(--cool);
   --color-crisp: var(--crisp);
   --color-signal: var(--signal);
+  --color-signal-text: var(--signal-text);
 
   --font-display: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -95,6 +96,17 @@
   --cool: #6e6e73;
   --crisp: #1d1d1f;
   --signal: #e30613;
+  /* The brand red is 4.88:1 on white but only 4.48:1 on the #f5f5f7 band —
+     0.02 under the 4.5:1 AA floor, which the accessibility scan flagged 19
+     times across the site, every one of them a `.pill-link`.
+
+     Darkening `--signal` itself would change every fill, border and icon on
+     the site to fix a text problem. This is the text-weight red instead:
+     5.16:1 on the band, 5.62:1 on white, and close enough to the brand red
+     that a solid red button and a red text link beside it still read as one
+     colour. `--signal` keeps its exact value for fills and graphics, where
+     the requirement is 3:1 and it clears easily. */
+  --signal-text: #d1050f;
 
   --background: var(--pitch);
   --foreground: var(--crisp);
@@ -252,7 +264,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
-  color: var(--signal);
+  /* `--signal-text`, not `--signal`: this is body-size text and it appears on
+     both white and the #f5f5f7 band, where the brand red misses AA by 0.02. */
+  color: var(--signal-text);
   font-weight: 400;
   font-size: 0.9375rem;
   letter-spacing: -0.01em;

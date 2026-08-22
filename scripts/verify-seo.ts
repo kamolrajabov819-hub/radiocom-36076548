@@ -6,6 +6,7 @@ import {
   SITE_URL,
   brandPath,
   collectionPageSchema,
+  productPath,
   faqSchema,
   preloadImage,
   productSchema,
@@ -14,7 +15,12 @@ import {
 } from "../src/lib/seo";
 // `visibleProducts` is what the site advertises; `products` is the full
 // record, which stays larger because hidden models keep their /catalog 301s.
-import { products, productsOfBrand, visibleProducts } from "../src/data/products";
+import {
+  legacyCatalogTarget,
+  products,
+  productsOfBrand,
+  visibleProducts,
+} from "../src/data/products";
 import { entries } from "./lib/sitemap";
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
@@ -346,8 +352,48 @@ console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
 
   if (problems.length) bad(`image sitemap / IndexNow wiring:\n     ${problems.join("\n     ")}`);
   else
+    console.log(`ok  image sitemap wired (${withImages.length} entries) + IndexNow key published`);
+}
+
+// 14. No 301 may point at a URL that 404s. A hidden model's product page 404s
+//     by design, so pointing its already-indexed /catalog URL there produced a
+//     301 -> 404 chain — which Google reports as a broken redirect and which
+//     throws away the signal the old URL still carries.
+{
+  const problems: string[] = [];
+  const liveProductPaths = new Set(visibleProducts.map(productPath));
+  const brandPaths = new Set(["radiocom", "motorola"].map(brandPath));
+
+  for (const p of products) {
+    const target = legacyCatalogTarget(p.id);
+    if (!target) {
+      problems.push(`${p.id}: legacyCatalogTarget returned null for a real product`);
+      continue;
+    }
+    const dest = "model" in target ? `/${target.brand}/${target.model}` : `/${target.brand}`;
+
+    if (p.hidden) {
+      if ("model" in target)
+        problems.push(`${p.id} is hidden but redirects to ${dest}, which 404s`);
+      else if (!brandPaths.has(dest)) problems.push(`${p.id}: ${dest} is not a brand page`);
+    } else if (!liveProductPaths.has(dest)) {
+      problems.push(`${p.id}: redirect target ${dest} is not a live product page`);
+    }
+  }
+
+  // The router and netlify.toml must agree. They only can by sharing the
+  // decision, so this checks that netlify.toml was generated from it.
+  const toml = readFileSync("netlify.toml", "utf8");
+  for (const p of products.filter((x) => x.hidden)) {
+    if (toml.includes(`/ru/catalog/${p.id}"`) && toml.includes(`to = "/ru/motorola/${p.slug}"`))
+      problems.push(`netlify.toml still sends hidden ${p.id} to its own product page`);
+  }
+
+  if (problems.length)
+    bad(`legacy redirects point at dead URLs:\n     ${problems.join("\n     ")}`);
+  else
     console.log(
-      `ok  image sitemap wired (${withImages.length} entries) + IndexNow key published`,
+      `ok  all ${products.length} legacy /catalog redirects resolve to a page that answers 200`,
     );
 }
 

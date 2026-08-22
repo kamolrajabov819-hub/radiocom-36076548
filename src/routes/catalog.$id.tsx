@@ -1,6 +1,6 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
 import { DEFAULT_LANG } from "@/lib/i18n";
-import { products } from "@/data/products";
+import { legacyCatalogTarget } from "@/data/products";
 
 /**
  * Legacy unprefixed product URL — `/catalog/{id}`.
@@ -22,16 +22,16 @@ import { products } from "@/data/products";
  */
 export const Route = createFileRoute("/catalog/$id")({
   beforeLoad: ({ params }) => {
-    const p = products.find((x) => x.id === params.id);
-    if (p) {
+    const target = legacyCatalogTarget(params.id);
+    if (target && "model" in target) {
       throw redirect({
         to: "/$lang/$brand/$model",
-        params: { lang: DEFAULT_LANG, brand: p.brandSlug, model: p.slug },
+        params: { lang: DEFAULT_LANG, brand: target.brand, model: target.model },
         statusCode: 301,
       });
     }
     throw redirect({
-      to: "/$lang/radiocom",
+      to: target?.brand === "motorola" ? "/$lang/motorola" : "/$lang/radiocom",
       params: { lang: DEFAULT_LANG },
       statusCode: 301,
     });

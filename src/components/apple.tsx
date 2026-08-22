@@ -394,10 +394,20 @@ export function CompareTable({
   columns,
   rows,
   caption,
+  rowHeaderLabel,
 }: {
   columns: CompareColumn[];
   rows: { id: string; label: string }[];
   caption?: string;
+  /**
+   * Accessible name for the top-left cell — the column of row labels.
+   *
+   * It has to be named. The cell is a `<th scope="col">` with no text, which is
+   * a WCAG failure (`empty-table-header`) because a screen reader announcing
+   * the table's columns reads a blank one and gives the listener nothing to
+   * anchor the row labels to. It stays visually empty; the label is `sr-only`.
+   */
+  rowHeaderLabel?: string;
 }) {
   return (
     <div className="no-scrollbar bleed-x overflow-x-auto md:mx-0 md:px-0">
@@ -405,7 +415,9 @@ export function CompareTable({
         {caption ? <caption className="sr-only">{caption}</caption> : null}
         <thead>
           <tr>
-            <th scope="col" className="w-[1%] whitespace-nowrap p-0 text-left" />
+            <th scope="col" className="w-[1%] whitespace-nowrap p-0 text-left">
+              <span className="sr-only">{rowHeaderLabel ?? "Specification"}</span>
+            </th>
             {columns.map((c) => (
               <th key={c.id} scope="col" className="px-3 pb-8 align-bottom md:px-5">
                 {c.media ? <div className="mb-4 flex justify-center">{c.media}</div> : null}

@@ -99,7 +99,7 @@
 
 [[redirects]]
   from = "/ru/catalog/m-t82-extreme-rsm"
-  to = "/ru/motorola/t82-extreme-rsm"
+  to = "/ru/motorola"
   status = 301
   force = true
 
@@ -171,13 +171,13 @@
 
 [[redirects]]
   from = "/ru/catalog/m-clp446"
-  to = "/ru/motorola/clp446"
+  to = "/ru/motorola"
   status = 301
   force = true
 
 [[redirects]]
   from = "/ru/catalog/m-clk446"
-  to = "/ru/motorola/clk446"
+  to = "/ru/motorola"
   status = 301
   force = true
 
@@ -243,7 +243,7 @@
 
 [[redirects]]
   from = "/en/catalog/m-t82-extreme-rsm"
-  to = "/en/motorola/t82-extreme-rsm"
+  to = "/en/motorola"
   status = 301
   force = true
 
@@ -315,13 +315,13 @@
 
 [[redirects]]
   from = "/en/catalog/m-clp446"
-  to = "/en/motorola/clp446"
+  to = "/en/motorola"
   status = 301
   force = true
 
 [[redirects]]
   from = "/en/catalog/m-clk446"
-  to = "/en/motorola/clk446"
+  to = "/en/motorola"
   status = 301
   force = true
 
@@ -387,7 +387,7 @@
 
 [[redirects]]
   from = "/uz/catalog/m-t82-extreme-rsm"
-  to = "/uz/motorola/t82-extreme-rsm"
+  to = "/uz/motorola"
   status = 301
   force = true
 
@@ -459,13 +459,13 @@
 
 [[redirects]]
   from = "/uz/catalog/m-clp446"
-  to = "/uz/motorola/clp446"
+  to = "/uz/motorola"
   status = 301
   force = true
 
 [[redirects]]
   from = "/uz/catalog/m-clk446"
-  to = "/uz/motorola/clk446"
+  to = "/uz/motorola"
   status = 301
   force = true
 

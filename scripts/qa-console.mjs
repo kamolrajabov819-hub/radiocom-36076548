@@ -51,7 +51,20 @@ for (const url of urls) {
     failed.push(`${r.url()} ${r.failure()?.errorText}`);
   });
 
-  await page.goto(url, { waitUntil: "networkidle", timeout: 45000 });
+  const response = await page.goto(url, { waitUntil: "networkidle", timeout: 45000 });
+  const status = response?.status() ?? 0;
+
+  // A 404 route is *supposed* to answer 404, and Chrome logs the document's own
+  // non-2xx status as a console error. Counting that would make the 404 page
+  // permanently red and the gate unusable on exactly the route whose status
+  // code matters most.
+  if (status >= 400) {
+    const own = `status of ${status}`;
+    for (let i = errors.length - 1; i >= 0; i--) {
+      if (errors[i].includes("Failed to load resource") && errors[i].includes(own))
+        errors.splice(i, 1);
+    }
+  }
   // Scroll: the deferred chunk is fetched from an effect, and ScrollTrigger
   // only does anything once the page has actually moved.
   await page.evaluate(() => window.scrollTo(0, 800));
@@ -67,7 +80,7 @@ for (const url of urls) {
 
   const label = url.replace(/^https?:\/\/[^/]+/, "") || "/";
   console.log(
-    `${label.padEnd(36)} errors=${errors.length} failedReq=${failed.length} ` +
+    `${label.padEnd(36)} http=${status} errors=${errors.length} failedReq=${failed.length} ` +
       `gsapChunk=${gsapChunk} doubleFetched=${doubled.length}`,
   );
   for (const [p, n] of doubled.slice(0, 4)) console.log(`    DUP x${n} ${p}`);

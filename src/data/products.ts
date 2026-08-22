@@ -622,6 +622,27 @@ export function productsOfBrand(brandSlug: BrandSlug): Product[] {
   return visibleProducts.filter((p) => p.brandSlug === brandSlug);
 }
 
+/**
+ * Where an old `/catalog/{id}` URL should land.
+ *
+ * A hidden model is the case this exists for. Its product page 404s by design
+ * (`productBySlug` is over `visibleProducts`), but its old catalogue URL is
+ * already indexed — so redirecting it to its own product page produced a
+ * 301 -> 404 chain, which Google reports as a broken redirect and which is
+ * strictly worse than either a plain 404 or a redirect to a live page. The
+ * brand page is the nearest thing that exists and answers 200.
+ *
+ * Returns `null` for an id that is not in `products` at all; the caller falls
+ * back to the default brand page.
+ */
+export function legacyCatalogTarget(
+  id: string,
+): { brand: BrandSlug; model: string } | { brand: BrandSlug } | null {
+  const p = products.find((x) => x.id === id);
+  if (!p) return null;
+  return p.hidden ? { brand: p.brandSlug } : { brand: p.brandSlug, model: p.slug };
+}
+
 export function productBySlug(brandSlug: BrandSlug, slug: string): Product | undefined {
   // Deliberately over `visibleProducts`: a hidden model must 404 as a product
   // page, not render one with an empty image slot.

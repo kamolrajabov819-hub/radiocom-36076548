@@ -2,7 +2,13 @@ import { useTranslation } from "react-i18next";
 import { LocaleLink } from "@/components/LocaleLink";
 import { Socials } from "./Socials";
 import { INDUSTRY_SLUGS } from "@/data/industries";
-import logoAsset from "@/assets/radiocom-logo.png";
+// The logo was a 1793x313 RGBA PNG at 341 KB, rendered at 22px tall. Lighthouse
+// caught it downloading ahead of the stylesheet on every page — roughly 1.7s of
+// a throttled mobile connection spent on a wordmark, before anything painted.
+// Re-encoded to WebP at 600px (3x the largest render, in the Footer) plus a
+// 300px srcSet candidate: 349 KB -> 18 KB + 7 KB, alpha preserved.
+import logoAsset from "@/assets/radiocom-logo.webp";
+import logoAsset300 from "@/assets/radiocom-logo@300.webp";
 
 export function Footer() {
   const { t } = useTranslation();
@@ -14,6 +20,8 @@ export function Footer() {
           alt="Radiocom"
           width={200}
           height={34}
+          srcSet={`${logoAsset300} 300w, ${logoAsset} 600w`}
+          sizes="200px"
           loading="lazy"
           className="h-7 w-auto mb-10"
         />

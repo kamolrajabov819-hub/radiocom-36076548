@@ -739,6 +739,7 @@
     "design": "Dizayn",
     "design_title": "Yaqindan ko'rib chiqing.",
     "range_lead": "Masofa relyef va binolarga bog'liq.",
-    "spec_note": "Ishlab chiqaruvchining to'liq xususiyatlari quyidagi jadvalda."
+    "spec_note": "Ishlab chiqaruvchining to'liq xususiyatlari quyidagi jadvalda.",
+    "spec_column": "Xususiyat"
   }
 }

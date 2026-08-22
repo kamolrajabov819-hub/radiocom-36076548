@@ -739,6 +739,7 @@
     "design": "Design",
     "design_title": "Take a closer look.",
     "range_lead": "Range depends on terrain and built-up area.",
-    "spec_note": "The manufacturer's full specification is in the table below."
+    "spec_note": "The manufacturer's full specification is in the table below.",
+    "spec_column": "Specification"
   }
 }

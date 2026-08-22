@@ -4,7 +4,11 @@ import { useTranslation } from "react-i18next";
 import { ChevronRight, Truck, Wrench, Package, Sparkles } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
 import { SignalPulse } from "@/components/SignalPulse";
-import heroImage from "@/assets/hero-rcd60-cutout.png";
+// The hero cutout was a 590 KB RGBA PNG and the LCP element on the home page —
+// on its own it was more than half the page's weight and held LCP at 6.3s.
+// WebP carries the same alpha at 68 KB, with a 316px candidate for phones.
+import heroImage from "@/assets/hero-rcd60-cutout.webp";
+import heroImage800 from "@/assets/hero-rcd60-cutout@800.webp";
 import kitWide from "@/assets/product/radio-kit-wide.webp";
 import kitWide800 from "@/assets/product/radio-kit-wide@800.webp";
 import macroWide from "@/assets/product/radio-macro-wide.webp";
@@ -33,6 +37,7 @@ import {
   jsonLd,
   localeLinks,
   pageMeta,
+  preloadImage,
   siteNavigationSchema,
   type SeoLang,
 } from "@/lib/seo";
@@ -46,7 +51,17 @@ export const routeOptions = {
 
     return {
       meta: pageMeta({ lang: params.lang, title, description, path: "/" }),
-      links: localeLinks(params.lang, "/"),
+      links: [
+        ...localeLinks(params.lang, "/"),
+        // The hero cutout is the LCP element here. Candidate set and sizes must
+        // match the <img> below exactly, or the browser picks a different
+        // candidate and downloads the image twice.
+        preloadImage({
+          src: heroImage,
+          small: heroImage800,
+          sizes: "(min-width: 768px) 597px, 94vw",
+        }),
+      ],
       // The section graph lives on the homepage: it is the page Google reads
       // hierarchy from when it generates sitelinks, and only here can the URLs
       // be locale-correct (the root route's head() has no params).
@@ -186,10 +201,14 @@ function Hero() {
         <div className="absolute inset-0 flex items-center justify-center px-6">
           <img
             src={heroImage}
+            srcSet={`${heroImage800} 316w, ${heroImage} 597w`}
+            sizes="(min-width: 768px) 597px, 94vw"
             alt="Radiocom RCD-60 professional two-way radios"
             loading="eager"
-            width={1600}
-            height={1200}
+            fetchPriority="high"
+            decoding="sync"
+            width={597}
+            height={753}
             className="h-full w-auto max-w-[94vw] object-contain"
           />
         </div>

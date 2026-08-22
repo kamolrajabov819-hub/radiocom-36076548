@@ -11,7 +11,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 // advertised as an indexable page. `products` (the full record) is still used
 // for the redirect map below, because a hidden model's old /catalog URL is
 // already indexed and must keep resolving.
-import { products, visibleProducts } from "../src/data/products";
+import { legacyCatalogTarget, products, visibleProducts } from "../src/data/products";
 import { SITE_URL, LANGS, localePath, productPath } from "../src/lib/seo";
 import { entries, renderSitemap } from "./lib/sitemap";
 
@@ -187,11 +187,21 @@ const REDIRECT_MARK = "# --- generated:catalog-301 ---";
 
 const redirectRules = [
   ...LANGS.map((l) => ({ from: `/${l}/catalog`, to: `/${l}/radiocom` })),
+  // `legacyCatalogTarget` decides the destination, shared with the two router
+  // redirect routes — a hidden model's product page 404s, so pointing its old
+  // catalogue URL there produced a 301 -> 404 chain. Both tables must agree,
+  // and they can only agree by asking the same function.
   ...LANGS.flatMap((l) =>
-    products.map((p) => ({
-      from: `/${l}/catalog/${p.id}`,
-      to: `/${l}${productPath(p)}`,
-    })),
+    products.map((p) => {
+      const target = legacyCatalogTarget(p.id);
+      return {
+        from: `/${l}/catalog/${p.id}`,
+        to:
+          target && "model" in target
+            ? `/${l}/${target.brand}/${target.model}`
+            : `/${l}/${target?.brand ?? "radiocom"}`,
+      };
+    }),
   ),
 ];
 

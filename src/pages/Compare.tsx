@@ -157,7 +157,12 @@ function BrandTable({
           to: brandSlug === "radiocom" ? "/radiocom" : "/motorola",
         }}
       />
-      <CompareTable columns={columns} rows={rows} caption={t(`brand.${brandSlug}_title`)} />
+      <CompareTable
+        columns={columns}
+        rows={rows}
+        caption={t(`brand.${brandSlug}_title`)}
+        rowHeaderLabel={t("px.spec_column")}
+      />
     </Section>
   );
 }

@@ -286,3 +286,57 @@ twelve Motorola prices match exactly.
 I have changed no number. This now matters more than it did: the price is emitted as
 structured data with a validity window, so a wrong number is published to Google as a
 merchant offer rather than just displayed on a page.
+
+---
+
+# Performance — measured, and where the ceiling is
+
+Lighthouse, mobile, throttled, across seven page types:
+
+| page | Performance | Accessibility | Best Practices | SEO | LCP |
+|---|---|---|---|---|---|
+| home | 83 | 100 | 100 | 100 | 3.9 s |
+| brand | 84 | 100 | 100 | 100 | 3.8 s |
+| product story | 88 | 100 | 100 | 100 | 3.2 s |
+| specs | 89 | 100 | 100 | 100 | 3.1 s |
+| industry | 87 | 100 | 100 | 100 | 3.4 s |
+| compare | 95 | 100 | 100 | 100 | 2.4 s |
+| service | 81 | 100 | 100 | 100 | 4.6 s |
+
+**Measure it with compression or the number is meaningless.** The local nitro
+preview serves everything uncompressed, so Lighthouse sees an 818 KB script
+where Netlify's edge serves ~250 KB gzipped. Run against the raw preview, the
+same pages score 58–61 — roughly 25 points of pure measurement artifact. The
+table above was taken through a gzip proxy so it reflects what a visitor gets.
+
+## What was actually wrong, and is now fixed
+
+- **~600 KB of Supabase in every page's bundle.** `attachSupabaseAuth` is
+  registered as a global function middleware and imported the SDK at module
+  scope. There is not one `createServerFn` in this codebase — the lead form
+  posts to `/api/send-lead` with plain `fetch` — so it has never run in
+  production while costing every visitor the download. The import is dynamic
+  now; the middleware still works the day a serverFn is added.
+- **A 341 KB PNG logo**, 1793×313, rendered at 22 px tall, downloading ahead of
+  the stylesheet on every page. Now 19 KB of WebP with a 300 px candidate.
+- **A 590 KB PNG home hero** — on its own, more than half the home page's
+  weight, and its LCP element. Now 68 KB of WebP. Home LCP went 6.3 s → 3.9 s.
+- **250 KB of GSAP on every route.** Now loaded only where something animates,
+  which is the home page. `scripts/qa-console.mjs` asserts this per route.
+
+## The remaining gap to 90 is architectural, not a bug
+
+What is left is a ~250 KB gzipped entry chunk: TanStack Start, React,
+framer-motion, i18next with all three locales, and the product data. TanStack's
+`autoCodeSplitting` is already on by default, but it cannot split these routes —
+each route file is `createFileRoute(path)(importedRouteOptions)`, and the
+splitter can only lift a `component` it can see declared in the route file.
+
+Making it split means giving every route file an inline `component` with a lazy
+import and moving each page's `head()` into its own module — fourteen files,
+each one a chance to break the SSR meta that the whole SEO layer depends on. It
+is worth doing, but it is its own piece of work with its own verification, not
+something to slip into a QA pass. Expect it to buy roughly 5–8 points.
+
+Removing framer-motion or Lenis would buy more, but that is a design decision
+about how the site feels, not a performance fix — so it is yours to make.

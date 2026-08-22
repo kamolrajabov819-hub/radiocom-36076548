@@ -7,7 +7,13 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { LangToggle } from "./LangToggle";
 import { openLead } from "./LeadFormSheet";
 import { INDUSTRY_SLUGS } from "@/data/industries";
-import logoAsset from "@/assets/radiocom-logo.png";
+// The logo was a 1793x313 RGBA PNG at 341 KB, rendered at 22px tall. Lighthouse
+// caught it downloading ahead of the stylesheet on every page — roughly 1.7s of
+// a throttled mobile connection spent on a wordmark, before anything painted.
+// Re-encoded to WebP at 600px (3x the largest render, in the Footer) plus a
+// 300px srcSet candidate: 349 KB -> 18 KB + 7 KB, alpha preserved.
+import logoAsset from "@/assets/radiocom-logo.webp";
+import logoAsset300 from "@/assets/radiocom-logo@300.webp";
 import { spring, springFast } from "@/lib/springs";
 
 export function Nav() {
@@ -162,6 +168,8 @@ export function Nav() {
               alt="Radiocom"
               width={180}
               height={32}
+              srcSet={`${logoAsset300} 300w, ${logoAsset} 600w`}
+              sizes="180px"
               className="h-[22px] w-auto"
             />
           </LocaleLink>
@@ -213,6 +221,8 @@ export function Nav() {
                 alt="Radiocom"
                 width={150}
                 height={26}
+                srcSet={`${logoAsset300} 300w, ${logoAsset} 600w`}
+                sizes="150px"
                 className="h-[20px] w-auto"
               />
               <button
