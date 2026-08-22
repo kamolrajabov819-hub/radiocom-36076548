@@ -1,7 +1,8 @@
 # Project skills
 
-Seventy-four skills — 16 design/UX, 26 SEO, 21 animation/3D, 5 accessibility and 6
-React/frontend engineering — plus 18 SEO sub-agents,
+One hundred and four skills — 29 design/UX and art direction, 26 SEO, 21 animation/3D,
+17 browser automation and GTM research, 5 accessibility and 6 React/frontend engineering —
+plus 18 SEO sub-agents,
 vendored into this repo as **project skills**. Claude Code discovers anything at `.claude/skills/<name>/SKILL.md`
 and `.claude/agents/*.md` automatically at session start — nothing to install per machine,
 and they travel with the repo (including to Lovable).
@@ -46,6 +47,35 @@ palette). Prefer extending those utilities over pasting new CSS.
 | `bencium-innovative-ux-designer` | Same brief, more experimental direction. |
 | `bencium-controlled-ux-designer` | Same brief, but asks before each visual decision — use when you want to stay in the loop. |
 | `renaissance-architecture` | First-principles UI/architecture thinking; anti-derivative-work check. |
+
+### Taste and art direction — 13 skills
+
+From [leonxlnx/taste-skill](https://github.com/leonxlnx/taste-skill). Anti-slop design skills:
+the premise is that a model left to its own devices produces templated, centred, gradient-on-white
+layouts, and each of these constrains it out of that. They overlap the `bencium-*` and
+`frontend-design` set above — reach for these when you want a *named aesthetic* enforced rather
+than general design judgement.
+
+| Skill | Use it for |
+| --- | --- |
+| `design-taste-frontend` | The default of the set (upstream v2, experimental). Reads the brief, infers a design language, tunes three dials — VARIANCE / MOTION / DENSITY — and ships landing pages, portfolios and redesigns. Carries a design-system map, GSAP skeletons and a hard-rules pre-flight check. The largest skill in the repo at ~87 KB. |
+| `design-taste-frontend-v1` | The preserved v1, for exact backward compatibility. Don't start here. |
+| `gpt-taste` | Awwwards-level direction: enforced layout randomisation, AIDA page structure, wide editorial type, gapless bento, strict ScrollTrigger pinning and scrubbing. |
+| `redesign-existing-projects` | Audit-then-upgrade an existing site: finds the generic AI patterns and replaces them without breaking behaviour. The closest match to work on *this* repo. |
+| `high-end-visual-design` | The "expensive" look — premium fonts, whitespace, depth, restrained motion. Blocks the defaults that read as cheap. |
+| `minimalist-ui` | Notion/Linear editorial register: warm monochrome, typographic contrast, flat bento, no gradients or heavy shadow. |
+| `industrial-brutalist-ui` | Swiss print × military terminal. Rigid grids, extreme scale contrast, analog degradation. Beta upstream. |
+| `stitch-design-taste` | Emits a `DESIGN.md` of semantic rules for Google Stitch and other AI UI generators to consume. |
+| `image-to-code` | Image-first loop: generate the design reference, analyse it, then implement to match. |
+| `imagegen-frontend-web` | Generates premium website reference images — one horizontal image *per section*. Writes no code. |
+| `imagegen-frontend-mobile` | Same, for mobile screens and flows in phone mockups. Writes no code. |
+| `brandkit` | Brand-guidelines boards: logo systems, palettes, type, mockups. Writes no code. |
+| `full-output-enforcement` | Not a design skill — a behavioural one. Bans `// ... rest of the code` placeholders and truncated output. Apply to any task that must come back complete. |
+
+The three `imagegen-*`/`brandkit` skills and `image-to-code` need an image-generation backend
+(Gemini/nanobanana or equivalent); none is wired up here, so they will describe prompts rather
+than produce files until one is. `taste-skill-llms.txt` is upstream's one-line index of the set.
+
 
 ## Accessibility — 5 skills
 
@@ -159,6 +189,51 @@ These are installed but inert until configured, and each requires an account:
 - `seo-backlinks` — degrades gracefully: free tiers (Moz, Bing Webmaster, Common Crawl) work
   standalone; the DataForSEO path needs the extension.
 
+## Browser automation and GTM research — 17 skills
+
+From [browserbase/skills](https://github.com/browserbase/skills) (MIT). Two clusters that share
+one dependency.
+
+**All of these need `BROWSERBASE_API_KEY` (most also `BROWSERBASE_PROJECT_ID`) and the `browse`
+CLI (`npm install -g browse`).** Neither is configured in this repo — the skills are installed
+but inert until you add credentials. `safe-browser` and `autobrowse` additionally want
+`ANTHROPIC_API_KEY`. Note that this project already has a local Playwright + Chromium setup
+(`shot.mjs`, `shot-el.mjs`, and the `webapp-testing` skill) that needs no account — prefer it
+for straightforward local screenshots and DOM checks, and reach for these when you need a
+remote browser, residential proxies, CAPTCHA handling or a persistent authenticated session.
+
+### Browser control
+
+| Skill | Use it for |
+| --- | --- |
+| `browser` | The core one: drive a page in natural language — navigate, click, fill, extract, screenshot. Remote Browserbase sessions with verified browsers, CAPTCHA solving and proxies. |
+| `fetch` | Retrieve a URL *without* a browser — HTML/JSON, status codes, headers, redirects. Cheaper than `browser` when nothing needs rendering. |
+| `search` | Web search returning structured results (title, URL, author, date). No page content. |
+| `cookie-sync` | Push local Chrome cookies into a Browserbase persistent context, so a remote session browses as you. Already written against this repo's `.claude/skills/` layout. |
+| `browser-trace` | Full CDP trace of a run — network, console, DOM dumps, screenshots — bisected into per-page buckets. The debugging companion to everything else here. |
+| `browser-to-api` | Turn a `browser-trace` capture into a best-effort OpenAPI 3.1 spec. Reverse-engineers a site's XHR surface. |
+| `ui-test` | Adversarial UI QA driven off a git diff — tests only what changed, covering correctness, a11y, responsive layout and UX heuristics. Works against `localhost`, so it is the most immediately usable of the set. |
+| `autobrowse` | Self-improving loop: run a task, read the trace, rewrite the navigation strategy, repeat until it passes reliably. |
+| `functions` | Deploy an automation to Browserbase as a scheduled/webhook cloud function. |
+| `safe-browser` | Build a constrained-browser agent: a `safe_browser` tool owns CDP and enforces a domain allowlist, so the runtime agent never gets raw shell or CDP. |
+| `browser-use-to-stagehand` | Port `browser-use` (Python) scripts to Stagehand v3 (TypeScript). |
+| `webmcp-gen` | Author and validate site-specific WebMCP init scripts from a target URL. |
+| `agent-experience` | Drop several subagents at a product, SDK, docs site or `SKILL.md` with only a thin prompt, capture their traces, and grade the onboarding A–F. Useful for auditing this repo's own skills. |
+| `optimize-agent-prompt` | Autobrowse-style outer loop for tuning a Browserbase Agent system prompt to convergence. |
+
+### GTM research
+
+| Skill | Use it for |
+| --- | --- |
+| `company-research` | Discover target companies, deep-research each, score ICP fit → HTML report + CSV. |
+| `competitor-analysis` | Auto-discover competitors, research on four lanes, compile an overview / deep-dive / feature-pricing matrix / mentions feed. |
+| `event-prospecting` | Take a conference speakers URL, filter the companies against your ICP, deep-research the fits. |
+
+These three are sales-prospecting tools rather than site-building tools; they are the least
+related to this project's day-to-day work, kept for completeness of the upstream set. Their
+output lands in a gitignored `gtm-reports/` at the project root (see modification 13 below).
+
+
 ## Sources
 
 | Source | Skills taken |
@@ -177,6 +252,8 @@ These are installed but inert until configured, and each requires an account:
 | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) (MIT) | `vercel-react-best-practices`, `vercel-composition-patterns`, `vercel-react-view-transitions`, `web-design-guidelines` |
 | [anthropics/skills](https://github.com/anthropics/skills) → `skills/` | `frontend-design`, `webapp-testing` |
 | [accesslint/claude-marketplace](https://github.com/accesslint/claude-marketplace) (MIT) → `plugins/accesslint/skills/` | the 5 `accessibility-*` skills + `accessibility-shared/` |
+| [leonxlnx/taste-skill](https://github.com/leonxlnx/taste-skill) (MIT) @ `843c8dd` → `skills/` | the 13 taste/art-direction skills + `taste-skill-llms.txt` |
+| [browserbase/skills](https://github.com/browserbase/skills) (MIT) @ `d15a21f` → `skills/` | the 17 browser-automation and GTM skills |
 
 ## Local modifications
 
@@ -271,6 +348,35 @@ Deliberately not installed from these four repos:
 - **accesslint**: `plugins/accesslint/.mcp.json` and `.claude-plugin/`. The skills call
   `npx @accesslint/*` directly and do not need the MCP server; installing it would add an MCP
   process to every session for no gain.
+
+Three more came with the taste-skill and browserbase sets:
+
+12. **Every `taste-skill` directory name disagreed with its own frontmatter.** Upstream ships
+    `skills/soft-skill/SKILL.md` declaring `name: high-end-visual-design`, and so on for 10 of
+    the 13. Claude Code keys a project skill on its directory, so each would have loaded under
+    the wrong name or not at all — Browserbase's own validator treats the same mismatch as a
+    hard error. Each is installed under its frontmatter name, which upstream's `CHANGELOG.md`
+    calls the "install name" anyway: `soft-skill` → `high-end-visual-design`, `taste-skill` →
+    `design-taste-frontend`, `output-skill` → `full-output-enforcement`, `brutalist-skill` →
+    `industrial-brutalist-ui`, `minimalist-skill` → `minimalist-ui`, `redesign-skill` →
+    `redesign-existing-projects`, `stitch-skill` → `stitch-design-taste`, `gpt-tasteskill` →
+    `gpt-taste`, `image-to-code-skill` → `image-to-code`, `taste-skill-v1` →
+    `design-taste-frontend-v1`. The other three already agreed. The repo's MIT `LICENSE` is
+    copied into each as `LICENSE.txt`, matching how the browserbase skills ship.
+13. **Three browserbase GTM skills wrote to somebody else's Desktop.** `event-prospecting`
+    hardcoded `OUTPUT_DIR=/Users/jay/Desktop/…`, which on any non-macOS machine `mkdir -p`s a
+    stranger's path at the filesystem root; `company-research` and `competitor-analysis` used
+    `~/Desktop/…`, which does not exist in a headless container. All three now resolve
+    `"$PWD/gtm-reports/…"` — a full literal path, which is what those skills require, without
+    the `~`/`$HOME` expansion they explicitly forbid. `gtm-reports/` is gitignored alongside
+    `seo-reports/`. The `{SKILL_DIR}` examples in `event-prospecting` were repointed off
+    `/Users/jay/skills/` as well.
+14. **`safe-browser` copied its template from a repo-root path.** Its quick-start ran
+    `cp -R skills/safe-browser/templates/…`, correct only inside the upstream checkout; it now
+    reads `.claude/skills/safe-browser/templates/…`, matching what `cookie-sync` already did.
+
+Upstream's `skills/llms.txt` from taste-skill is installed as `taste-skill-llms.txt` — the name
+`llms.txt` is already taken in this directory by the GSAP set's index.
 
 Four of the requested sources were already installed and were left untouched, since the
 local patches above would be lost by a re-clone: `nextlevelbuilder/ui-ux-pro-max-skill`,
