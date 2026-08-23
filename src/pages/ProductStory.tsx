@@ -594,10 +594,17 @@ function InBox({ p, lang }: { p: Product; lang: Lang }) {
           ))}
         </ul>
         {kit ? (
-          <div
-            data-parallax="0.06"
-            className="flex items-center justify-center overflow-hidden rounded-[28px] bg-charcoal p-8"
-          >
+          /* No `data-parallax` here, and `qa-blend` is why.
+          
+              The kit frames are studio shots on white, knocked out with
+              `mix-blend-multiply`. Multiply composites against the nearest
+              stacking context, and a transform opens one — so a parallax
+              wrapper leaves the blend with no backdrop to knock out. That was
+              harmless while this panel was white (multiply on white is a no-op)
+              and became a visible white box the moment the panel went grey to
+              stay legible on the now-white page. Drift on a static panel inside
+              a card is a small thing; the photograph rendering correctly is not. */
+          <div className="flex items-center justify-center overflow-hidden rounded-[28px] bg-charcoal p-8">
             <img
               src={kit}
               alt=""

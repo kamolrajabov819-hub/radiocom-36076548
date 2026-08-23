@@ -734,6 +734,77 @@
 }
 
 /* Reduced motion — respect user preference site-wide */
+/* ── Phone choreography ───────────────────────────────────────────────────
+ *
+ * The counterpart to `useMobileChoreography` in src/lib/motion.ts. GSAP is
+ * gated behind `(min-width: 768px)` — before the dynamic import, so a phone
+ * never downloads the 27 KB chunk — and that gate took the section motion with
+ * it. These rules give it back for zero bytes: the reveal is a class an
+ * `IntersectionObserver` toggles, and the drift is a scroll-driven animation
+ * the compositor runs with no JavaScript involved at all.
+ *
+ * Guarded by the same `max-width` the hook uses, so nothing here can compete
+ * with GSAP writing the same properties on a desktop.
+ */
+@media (max-width: 767.98px) {
+  .reveal {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+    /* `--reveal-i` is set per child by the stagger walk; a lone `[data-scrub-in]`
+       block never gets one, so it falls back to no delay. */
+    transition:
+      opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--reveal-i, 0) * 70ms),
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--reveal-i, 0) * 70ms);
+  }
+  /*
+   * `transform: none`, not `translate3d(0, 0, 0)`.
+   *
+   * An identity transform is still a transform, so it leaves a stacking context
+   * on the element forever — and `mix-blend-multiply` composites against the
+   * nearest stacking context, not the page. Every catalogue photograph on this
+   * site is a studio shot knocked out with multiply, so a permanent identity
+   * transform on a section wrapper would turn the images inside it into grey
+   * rectangles. Dropping the transform once the reveal is finished keeps the
+   * blend intact; `qa-blend` is the check that would have caught it.
+   */
+  .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /*
+   * Drift, with no script behind it.
+   *
+   * `animation-timeline: view()` ties the animation's progress to the element's
+   * own passage through the viewport, which is precisely what ScrollTrigger's
+   * `scrub` does on desktop — except the browser runs it off the main thread.
+   * Behind `@supports` because Firefox does not have it yet: there, a phone
+   * simply gets no drift, which is the least valuable of the three behaviours
+   * and the honest thing to degrade.
+   *
+   * The drift is a flat 3.5% rather than each call site's `data-parallax`
+   * depth. Reading that number would mean writing a custom property from JS on
+   * every marked element, and at phone scroll distances the difference between
+   * 0.05 and 0.18 is not visible — so this stays genuinely zero-JS.
+   */
+  @supports (animation-timeline: view()) {
+    [data-parallax] {
+      animation: phone-drift linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+  }
+}
+
+@keyframes phone-drift {
+  from {
+    transform: translate3d(0, 3.5%, 0);
+  }
+  to {
+    transform: translate3d(0, -3.5%, 0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -742,5 +813,22 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /*
+   * Belt and braces. `useMobileChoreography` bails before adding either class
+   * under this preference, so `.reveal` should never appear — but the rules
+   * above only collapse *durations*, and `.reveal`'s resting state is
+   * `opacity: 0`. If the class ever did land (a preference toggled after
+   * mount, a future call site applying it directly) the content would be
+   * invisible rather than merely un-animated. Failing to animate is a
+   * degradation; failing to render is a bug.
+   */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  [data-parallax] {
+    animation: none !important;
   }
 }

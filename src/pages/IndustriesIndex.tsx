@@ -1,5 +1,6 @@
 import { LocaleLink } from "@/components/LocaleLink";
 import { useScrollChoreography } from "@/lib/motion";
+import { Section } from "@/components/Section";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
@@ -63,8 +64,17 @@ export function IndustriesOverview() {
 
   return (
     <div ref={page}>
-      <section className="pt-32 md:pt-40 pb-14 md:pb-20 bg-pitch px-6 text-center">
-        <div className="max-w-3xl mx-auto">
+      {/* `Section`, not a hand-rolled `<section>`.
+      
+          This page was the last one still writing its own padding — `px-6`
+          against the site's `--gutter` of 1.375rem/3rem, and `pt-32 pb-14`
+          against the `section` rhythm token. So its left edge and its vertical
+          spacing both disagreed with every other page, which is the exact drift
+          the shared wrapper exists to prevent. It also meant the page never
+          received `data-reveal`, so it was the one route with no phone motion
+          at all — a gap `qa-motion` reported before this was fixed. */}
+      <Section band="plain" className="pt-32 text-center md:pt-40" tight>
+        <div className="mx-auto max-w-3xl">
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -82,10 +92,14 @@ export function IndustriesOverview() {
             {t("industries.overview_sub")}
           </motion.p>
         </div>
-      </section>
+      </Section>
 
-      <section className="bg-pitch pb-24">
-        <div data-scrub-in className="shell grid grid-cols-1 gap-4 md:grid-cols-2">
+      {/* `reveal={false}`: every card here is a `motion.div` that already fades
+          itself in, and a wrapper reveal on top of that reads as two beats
+          where the design wants one. Same rule as `data-stagger` — one library
+          per element. */}
+      <Section band="plain" reveal={false} tight>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {INDUSTRY_SLUGS.map((s, i) => (
             <motion.div
               key={s}
@@ -121,7 +135,7 @@ export function IndustriesOverview() {
             </motion.div>
           ))}
         </div>
-      </section>
+      </Section>
     </div>
   );
 }

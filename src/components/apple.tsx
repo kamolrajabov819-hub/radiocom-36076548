@@ -769,7 +769,19 @@ export function FilterPills<T extends string>({
                 // chip's centre is nearest.
                 "after:absolute after:inset-x-0 after:top-1/2 after:h-11 after:-translate-y-1/2 after:content-['']",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2",
-                active ? "bg-crisp text-pitch" : "text-cool hover:text-crisp",
+                // `text-crisp`, not `text-cool`.
+                //
+                // Lifting LangToggle's construction brought its `--cool` chip
+                // colour with it, and that colour is calibrated for a
+                // `--charcoal` track: #6e6e73 on #f5f5f7 is 4.61:1, which
+                // clears AA. This track is a 5% ink tint so it can survive a
+                // soft band, which composites darker — and at ~4.3:1 the same
+                // grey stops clearing it. axe caught 12 instances.
+                //
+                // Ink is also what apple.com actually uses here: the unselected
+                // options are dark text, and the *pill* is what marks the
+                // selection. Grey text was doing that job twice.
+                active ? "bg-crisp text-pitch" : "text-crisp hover:opacity-70",
               )}
             >
               {o.label}
