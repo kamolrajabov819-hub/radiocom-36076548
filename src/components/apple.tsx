@@ -27,7 +27,7 @@ export function FeatureCard({
   title,
   body,
   media,
-  backdrop,
+  figure,
   action,
   tone = "light",
   idx = 0,
@@ -42,11 +42,33 @@ export function FeatureCard({
   /** Sits below the copy, inside the card's padding. Icons, floating products. */
   media?: ReactNode;
   /**
-   * Sits behind the copy, ignoring the card's padding, so a photograph can run
-   * to the card's rounded edge. Position it yourself (`absolute inset-y-0
-   * right-0 w-1/2`); the card clips whatever overflows.
+   * A photograph beside the copy on a wide card, and beneath it on a narrow
+   * one. Pass the bare `<img>`/`<ProductShot>`; the card positions it.
+   *
+   * It replaces a `backdrop` slot that could not do this job. Three cards on
+   * the site used that slot with hand-tuned geometry — `w-[44%]`, `w-[48%]`, `top-[42%]` — against copy
+   * capped at `max-w-[52%]`. Those numbers work on a 900px card. At 390px the
+   * card is ~340px wide, so 44% is ~150px of photograph pressed against ~180px
+   * of text: the headline breaks mid-word ("Сертифицирован / ные техники"), the
+   * radios overlap the copy, and the space below both sits empty. Every one of
+   * the three failed the same way because every one of them was solving the
+   * same unsolvable problem with a different constant.
+   *
+   * Stacking below `sm` is what makes the geometry solvable at all: the phone
+   * gets one column and the full card width for each of copy and photograph,
+   * and the desktop keeps the side-by-side split. Call sites therefore write
+   * their copy constraint as `sm:max-w-[…]` rather than `max-w-[…]`, so the
+   * phone's copy is never narrowed for a photograph that is no longer beside it.
+   *
+   * **Placement follows `span`, and that is not a shortcut.** A `span={2}` card
+   * is two grid columns wide and has room for copy and photograph side by side.
+   * A single-column card does not: in this bento that column is ~250px at
+   * 1440, and half of it is ~125px — narrow enough that "Обменяй" breaks after
+   * "Обмен". So a narrow card stacks at *every* width, which is also what its
+   * `tall` proportion wants. Deriving this rather than passing it means a card
+   * cannot be given a layout its own geometry cannot carry.
    */
-  backdrop?: ReactNode;
+  figure?: ReactNode;
   action?: { label: string; onClick: () => void };
   tone?: "light" | "dark";
   idx?: number;
@@ -80,12 +102,6 @@ export function FeatureCard({
         className,
       )}
     >
-      {backdrop ? (
-        <div className="pointer-events-none absolute inset-0 [&_img]:transition-transform [&_img]:duration-700 [&_img]:ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[&_img]:scale-[1.04]">
-          {backdrop}
-        </div>
-      ) : null}
-
       <div className={cn("relative", copyClassName)}>
         {eyebrow ? (
           <div className={cn("text-[14px] font-medium", dark ? "text-white/60" : "text-cool")}>
@@ -103,6 +119,23 @@ export function FeatureCard({
           </p>
         ) : null}
       </div>
+
+      {figure ? (
+        <div
+          className={cn(
+            // Under the copy: a real layout child, full card width, its own
+            // height. Nothing overlaps anything. This is the phone layout for
+            // every card, and the only layout for a single-column card.
+            "pointer-events-none relative mt-6 flex w-full flex-1 items-end justify-center",
+            // Beside the copy, on a card wide enough to hold both.
+            span === 2 &&
+              "sm:absolute sm:inset-y-0 sm:right-0 sm:mt-0 sm:w-[46%] sm:flex-none sm:items-center sm:justify-center",
+            "[&_img]:transition-transform [&_img]:duration-700 [&_img]:ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[&_img]:scale-[1.04]",
+          )}
+        >
+          {figure}
+        </div>
+      ) : null}
 
       {media ? (
         <div className="relative mt-6 flex flex-1 items-end justify-center [&_img]:transition-transform [&_img]:duration-700 [&_img]:ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[&_img]:scale-[1.04]">
