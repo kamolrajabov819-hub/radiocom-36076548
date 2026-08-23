@@ -280,7 +280,13 @@ export function HighlightsShelf({
         aria-label={label}
         tabIndex={0}
         data-stagger={stagger || undefined}
-        className="no-scrollbar bleed-x flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal"
+        // `scroll-p-[--gutter]` is load-bearing: the snapport defaults to the
+        // padding box, so a `snap-start` card aligned to the track's content
+        // edge makes the browser scroll by exactly the re-pad amount — the
+        // first card then sits flush against the viewport edge and reads as a
+        // missing margin. Moving the snapport in by the gutter keeps the
+        // re-pad visible at rest.
+        className="no-scrollbar bleed-x flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth scroll-p-[var(--gutter)] pb-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal"
       >
         {children}
       </div>
@@ -344,7 +350,7 @@ export function BentoGrid({ children, cols = 3 }: { children: ReactNode; cols?: 
 export function ScrollRow({ children, cols = 4 }: { children: ReactNode; cols?: 3 | 4 }) {
   return (
     <div
-      className={`no-scrollbar bleed-x flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 lg:mx-0 lg:grid lg:snap-none lg:overflow-visible lg:px-0 ${
+      className={`no-scrollbar bleed-x flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-p-[var(--gutter)] pb-2 lg:mx-0 lg:grid lg:snap-none lg:overflow-visible lg:px-0 ${
         cols === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"
       }`}
     >

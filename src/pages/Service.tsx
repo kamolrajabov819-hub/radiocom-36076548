@@ -321,9 +321,14 @@ function Policy() {
   const rows = t("service.policy", { returnObjects: true }) as Array<{ q: string; a: string }>;
   return (
     <section className="band-soft section">
-      <div className="mx-auto max-w-3xl">
-        <SectionHead align="center" spacing="tight" title={t("service.policy_title")} />
-        <Faq items={rows} />
+      {/* `.shell` supplies the site's one horizontal inset. Without it the FAQ
+          rows ran edge-to-edge on mobile while the heading above them sat on
+          the normal grid. */}
+      <div className="shell">
+        <div className="mx-auto max-w-3xl">
+          <SectionHead align="center" spacing="tight" title={t("service.policy_title")} />
+          <Faq items={rows} />
+        </div>
       </div>
     </section>
   );

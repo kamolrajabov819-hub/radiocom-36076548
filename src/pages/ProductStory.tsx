@@ -201,9 +201,14 @@ function Hero({ p, lang }: { p: Product; lang: Lang }) {
         </p>
       </div>
 
+      {/* The stage used to reserve 54vh and let the photograph fit inside it,
+          which on a phone left a third of the viewport empty above and below a
+          small radio. It is now sized to the photograph — a capped, viewport
+          relative height with the image filling it — so the product is the
+          section rather than a speck in the middle of one. */}
       <div
         data-parallax="0.07"
-        className="stage relative mt-12 flex h-[54vh] max-h-[680px] items-center justify-center md:mt-14"
+        className="stage relative mt-8 flex h-[min(42vh,360px)] items-center justify-center md:mt-12 md:h-[min(56vh,560px)]"
       >
         <img
           src={p.image}
@@ -219,7 +224,7 @@ function Hero({ p, lang }: { p: Product; lang: Lang }) {
         />
       </div>
 
-      <div className="mt-12 md:mt-14">
+      <div className="mt-8 md:mt-12">
         <PricePill
           price={
             p.price != null
@@ -305,7 +310,7 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
               height={1024}
               loading="lazy"
               decoding="async"
-              className="h-[120px] w-auto max-w-[70%] object-contain mix-blend-multiply"
+              className="h-[160px] w-auto max-w-[80%] object-contain mix-blend-multiply md:h-[190px]"
             />
           </div>
           <div className="mt-6">
@@ -328,7 +333,9 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
             <div className={`text-[14px] font-medium ${c.lead ? "opacity-70" : "text-cool"}`}>
               {c.label}
             </div>
-            <div className="mt-8 text-[26px] font-semibold leading-[1.1] tracking-[-0.02em]">
+            {/* 26px held a value like «до 3 км, 8 Вт» hard against the card's
+                padding on a 78vw phone card. One step down below `sm`. */}
+            <div className="mt-8 text-[21px] font-semibold leading-[1.15] tracking-[-0.02em] sm:text-[26px]">
               {c.value}
             </div>
           </article>
@@ -555,7 +562,9 @@ function InBox({ p, lang }: { p: Product; lang: Lang }) {
       <div
         className={
           kit
-            ? "grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,440px)] lg:gap-16"
+            ? // `items-stretch`, so the kit panel matches the list's height
+              // instead of floating short beside it.
+              "grid grid-cols-1 items-stretch gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,440px)] lg:gap-16"
             : ""
         }
       >
@@ -577,7 +586,10 @@ function InBox({ p, lang }: { p: Product; lang: Lang }) {
           ))}
         </ul>
         {kit ? (
-          <div data-parallax="0.06" className="overflow-hidden rounded-[28px] bg-pitch p-8">
+          <div
+            data-parallax="0.06"
+            className="flex items-center justify-center overflow-hidden rounded-[28px] bg-pitch p-8"
+          >
             <img
               src={kit}
               alt=""
@@ -619,37 +631,57 @@ function WhereUsed({ p, lang }: { p: Product; lang: Lang }) {
   return (
     <Section band="plain">
       <SectionHead align="left" spacing="tight" title={t("px.where_used")} />
-      {/* Columns from the count, not a fixed four. A model is specified for
-          one to four industries, and a fixed 4-column grid rendered two cards
-          against two empty cells — the row read as broken rather than short.
-          apple.com never leaves a hole in a row; it changes the row. */}
-      <div
-        className={cn(
-          "grid gap-4",
-          slugs.length === 1 && "max-w-[320px] grid-cols-1",
-          slugs.length === 2 && "max-w-[660px] grid-cols-2",
-          slugs.length === 3 && "grid-cols-2 sm:grid-cols-3",
-          slugs.length >= 4 && "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4",
-        )}
-      >
-        {slugs.map((slug, i) => (
-          <PosterCard
-            key={slug}
-            idx={i}
-            image={INDUSTRY_POSTERS[slug]}
-            eyebrow={t(`industries.${slug}.short`)}
-            title={t(`industries.${slug}.name`)}
-            href={
-              <LocaleLink
-                to="/industries/$slug"
-                params={{ slug }}
-                className="absolute inset-0 z-20 rounded-[18px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
-                aria-label={t(`industries.${slug}.name`)}
-              />
-            }
-          />
-        ))}
-      </div>
+      {/* Three or more industries scroll sideways, the way every other card
+          row on the site does: two half-cards wedged into a phone-width grid
+          were unreadable posters. One or two stay a grid — a scroller with
+          nothing to scroll is worse than a short row. */}
+      {slugs.length >= 3 ? (
+        <HighlightsShelf label={t("px.where_used")}>
+          {slugs.map((slug, i) => (
+            <PosterCard
+              key={slug}
+              idx={i}
+              className="w-[62vw] shrink-0 snap-start sm:w-[38vw] lg:w-[calc((100%-3rem)/4)]"
+              image={INDUSTRY_POSTERS[slug]}
+              eyebrow={t(`industries.${slug}.short`)}
+              title={t(`industries.${slug}.name`)}
+              href={
+                <LocaleLink
+                  to="/industries/$slug"
+                  params={{ slug }}
+                  className="absolute inset-0 z-20 rounded-[18px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
+                  aria-label={t(`industries.${slug}.name`)}
+                />
+              }
+            />
+          ))}
+        </HighlightsShelf>
+      ) : (
+        <div
+          className={cn(
+            "grid gap-4",
+            slugs.length === 1 ? "max-w-[320px] grid-cols-1" : "max-w-[660px] grid-cols-2",
+          )}
+        >
+          {slugs.map((slug, i) => (
+            <PosterCard
+              key={slug}
+              idx={i}
+              image={INDUSTRY_POSTERS[slug]}
+              eyebrow={t(`industries.${slug}.short`)}
+              title={t(`industries.${slug}.name`)}
+              href={
+                <LocaleLink
+                  to="/industries/$slug"
+                  params={{ slug }}
+                  className="absolute inset-0 z-20 rounded-[18px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
+                  aria-label={t(`industries.${slug}.name`)}
+                />
+              }
+            />
+          ))}
+        </div>
+      )}
       <p className="sr-only">{pick(p.blurb, lang)}</p>
     </Section>
   );
