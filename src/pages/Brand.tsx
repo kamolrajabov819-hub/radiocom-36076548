@@ -44,6 +44,7 @@ import {
   localeLinks,
   pageMeta,
   preloadImage,
+  webPageSchema,
   type SeoLang,
 } from "@/lib/seo";
 import { tFor } from "@/lib/i18n";
@@ -95,6 +96,15 @@ export function brandRouteOptions(brandSlug: BrandSlug) {
             : []),
         ],
         scripts: [
+          jsonLd(
+            webPageSchema({
+              lang: params.lang,
+              path,
+              name: title,
+              description,
+              image: list[0]?.image,
+            }),
+          ),
           // `CollectionPage` rather than a bare `ItemList`: it carries the
           // family's real price range as an `AggregateOffer`, which is what a
           // "Motorola рации цена" query is asking and what an ItemList of

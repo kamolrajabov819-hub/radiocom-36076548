@@ -25,6 +25,7 @@ import {
   productPath,
   productSchema,
   productSpecsPath,
+  webPageSchema,
   type SeoLang,
 } from "@/lib/seo";
 import { tFor } from "@/lib/i18n";
@@ -55,20 +56,32 @@ export function productSpecsRouteOptions() {
       const path = productSpecsPath(p);
       const spec = specs[p.id];
 
+      const title = t("meta.specs.title", { name: p.name });
+      const description = t("meta.specs.desc", {
+        name: p.name,
+        price: formatPrice(p.price, params.lang),
+      });
+
       return {
         meta: pageMeta({
           lang: params.lang,
-          title: t("meta.specs.title", { name: p.name }),
-          description: t("meta.specs.desc", {
-            name: p.name,
-            price: formatPrice(p.price, params.lang),
-          }),
+          title,
+          description,
           path,
           image: p.image,
           type: "product",
         }),
         links: localeLinks(params.lang, path),
         scripts: [
+          jsonLd(
+            webPageSchema({
+              lang: params.lang,
+              path,
+              name: title,
+              description,
+              image: p.image,
+            }),
+          ),
           jsonLd(
             productSchema(p, params.lang, {
               specs: (spec?.rows ?? []).map((r) => ({

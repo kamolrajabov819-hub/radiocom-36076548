@@ -586,7 +586,10 @@ export function StatPanel({
   return (
     <figure className={cn("m-0", className)}>
       <div className="flex min-h-[220px] flex-col items-center justify-center rounded-[28px] bg-charcoal px-8 py-12 text-center">
-        <div className="text-[clamp(2.75rem,6vw,4rem)] font-semibold leading-[1] tracking-[-0.02em] text-crisp">
+        {/* `text-balance` and `hyphens-none`: a value like "up to 900 m" broke
+            across two lines at narrow panel widths, splitting the unit off the
+            number it belongs to. The figure is the whole point of the panel. */}
+        <div className="text-balance hyphens-none text-[clamp(2.5rem,5.5vw,4rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-crisp">
           {value}
         </div>
         {label ? <div className="mt-2 text-[17px] text-cool">{label}</div> : null}

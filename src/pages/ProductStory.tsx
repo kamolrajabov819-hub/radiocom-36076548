@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { cn } from "@/lib/utils";
 import { notFound, useParams } from "@tanstack/react-router";
 import { Check, ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
@@ -34,6 +35,7 @@ import {
   preloadImage,
   productPath,
   productSchema,
+  webPageSchema,
   type SeoLang,
 } from "@/lib/seo";
 import { tFor } from "@/lib/i18n";
@@ -96,6 +98,15 @@ export function productStoryRouteOptions() {
           }),
         ],
         scripts: [
+          jsonLd(
+            webPageSchema({
+              lang: params.lang,
+              path,
+              name: title,
+              description,
+              image: p.image,
+            }),
+          ),
           jsonLd(
             productSchema(p, params.lang, {
               specs: (spec?.rows ?? []).map((r) => ({
@@ -370,7 +381,14 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
             filling a whole viewport. The cap gives every model the same band
             depth, and `object-contain` means the crop never cuts equipment out
             of a flat-lay. */}
-        <div className="flex items-center justify-center overflow-hidden rounded-[28px] bg-charcoal p-6 md:p-10">
+        {/* The panel hugs the image instead of spanning the column.
+        
+            These frames are mostly 3:4 portrait product shots. A full-width
+            panel with a height-capped `contain` image left the radio small in
+            the middle of a wide grey field — the dead space you flagged. Sizing
+            the panel to the image and centring it keeps the photograph the
+            subject, which is what the reference does. */}
+        <div className="mx-auto flex w-fit max-w-full items-center justify-center overflow-hidden rounded-[28px] bg-charcoal px-10 py-8 md:px-16 md:py-10">
           <img
             src={wide}
             alt={`${p.name} — ${t("px.design")}`}
@@ -382,7 +400,7 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
             // site carries it: most of these frames are studio shots on white,
             // and without it a white rectangle sits inside the grey panel. On
             // the Motorola cutouts, which have real alpha, multiply is a no-op.
-            className="max-h-[460px] w-auto max-w-full object-contain mix-blend-multiply"
+            className="max-h-[420px] w-auto max-w-full object-contain mix-blend-multiply"
           />
         </div>
         <figcaption className="mt-6 max-w-[62ch]">
@@ -396,15 +414,46 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
         </figcaption>
       </figure>
 
-      {/* The figures, at the size their importance deserves. */}
-      <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2">
-        <StatPanel value={pick(p.rangeCity, lang)} label={t("px.range_city")} />
-        {p.rangeOpen ? (
-          <StatPanel value={pick(p.rangeOpen, lang)} label={t("px.range_open")} />
-        ) : protection ? (
-          <StatPanel value={pick(protection.value, lang)} label={pick(protection.label, lang)} />
-        ) : null}
-      </div>
+      {/* The figures, at the size their importance deserves.
+      
+          Built as a list first, then given a column count that matches it. The
+          fixed `md:grid-cols-2` put a single panel against an empty half on
+          every model that publishes neither an open-country range nor an
+          ingress rating — a lone box with a void beside it. */}
+      {(() => {
+        const panels = [
+          { key: "city", value: pick(p.rangeCity, lang), label: t("px.range_city") },
+          ...(p.rangeOpen
+            ? [{ key: "open", value: pick(p.rangeOpen, lang), label: t("px.range_open") }]
+            : []),
+          ...(protection
+            ? [
+                {
+                  key: "ip",
+                  value: pick(protection.value, lang),
+                  label: pick(protection.label, lang),
+                },
+              ]
+            : []),
+        ];
+        return (
+          <div
+            className={cn(
+              "mt-14 grid gap-6",
+              // A lone panel spans the column rather than sitting in a narrow
+              // box against an empty right half — that read as orphaned, and at
+              // 420px "up to 900 m" wrapped onto two lines inside it.
+              panels.length === 1 && "grid-cols-1",
+              panels.length === 2 && "grid-cols-1 md:grid-cols-2",
+              panels.length >= 3 && "grid-cols-1 sm:grid-cols-3",
+            )}
+          >
+            {panels.map((s) => (
+              <StatPanel key={s.key} value={s.value} label={s.label} />
+            ))}
+          </div>
+        );
+      })()}
       <LeadInCaption className="mt-6 max-w-[62ch]" lead={t("px.range_lead")}>
         {protection && p.rangeOpen
           ? `${pick(protection.label, lang)} — ${pick(protection.value, lang)}.`
@@ -414,11 +463,16 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
       {/* Remaining frames, in the uneven light-panel grid apple.com closes a
           design section with. */}
       {rest.length ? (
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div
+          className={cn(
+            "mt-14 grid gap-6",
+            rest.length === 1 ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2",
+          )}
+        >
           {rest.map((src, i) => (
             <div
               key={src}
-              className="flex items-center justify-center overflow-hidden rounded-[28px] bg-charcoal p-6"
+              className="mx-auto flex w-fit max-w-full items-center justify-center overflow-hidden rounded-[28px] bg-charcoal px-10 py-8"
             >
               <img
                 src={src}
@@ -427,7 +481,7 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
                 height={1067}
                 loading="lazy"
                 decoding="async"
-                className="max-h-[340px] w-auto max-w-full object-contain mix-blend-multiply"
+                className="max-h-[300px] w-auto max-w-full object-contain mix-blend-multiply"
               />
             </div>
           ))}
@@ -530,7 +584,19 @@ function WhereUsed({ p, lang }: { p: Product; lang: Lang }) {
   return (
     <Section band="plain" tight>
       <SectionHead align="left" spacing="tight" title={t("px.where_used")} />
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+      {/* Columns from the count, not a fixed four. A model is specified for
+          one to four industries, and a fixed 4-column grid rendered two cards
+          against two empty cells — the row read as broken rather than short.
+          apple.com never leaves a hole in a row; it changes the row. */}
+      <div
+        className={cn(
+          "grid gap-4",
+          slugs.length === 1 && "max-w-[320px] grid-cols-1",
+          slugs.length === 2 && "max-w-[660px] grid-cols-2",
+          slugs.length === 3 && "grid-cols-2 sm:grid-cols-3",
+          slugs.length >= 4 && "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4",
+        )}
+      >
         {slugs.map((slug, i) => (
           <PosterCard
             key={slug}
