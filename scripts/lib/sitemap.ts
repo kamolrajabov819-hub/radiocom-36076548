@@ -60,6 +60,14 @@ export const entries: Entry[] = [
   { path: "/poc", changefreq: "monthly", priority: "0.8" },
   { path: "/service", changefreq: "monthly", priority: "0.8" },
   { path: "/industries", changefreq: "monthly", priority: "0.7" },
+  // The HTML sitemap is the strongest honest lever on the algorithmic sitelinks
+  // block — one page linking every route by its real name. It is deliberately
+  // low priority: it is a map, not a destination.
+  { path: "/sitemap", changefreq: "monthly", priority: "0.3" },
+  // The empty search page. Result pages are noindex by nature (infinite,
+  // thin), but the search *form* is what the WebSite node's SearchAction
+  // points at, so Google has to be able to reach and render it.
+  { path: "/search", changefreq: "monthly", priority: "0.4" },
   ...INDUSTRY_SLUGS.map((slug) => ({
     path: `/industries/${slug}`,
     changefreq: "monthly",

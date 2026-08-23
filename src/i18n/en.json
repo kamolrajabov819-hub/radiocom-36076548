@@ -15,7 +15,8 @@
     "skip_to_content": "Skip to content",
     "radiocom": "Radiocom",
     "motorola": "Motorola",
-    "compare": "Compare"
+    "compare": "Compare",
+    "search": "Search"
   },
   "hero": {
     "eyebrow": "Authorized distributor · Tashkent",
@@ -666,7 +667,8 @@
       "radiocom": "Radiocom",
       "motorola": "Motorola",
       "compare": "Compare",
-      "specs": "Specs"
+      "specs": "Specs",
+      "search": "Search"
     },
     "section": {
       "poc_name": "PoC radios",
@@ -695,6 +697,10 @@
     "compare": {
       "title": "Compare Motorola and Radiocom radios — {{count}} models | Radiocom",
       "desc": "Every model by range, standard, ingress protection and price in one table. Find the radio that fits the job."
+    },
+    "search": {
+      "title": "Search the two-way radio catalogue — Radiocom",
+      "desc": "Find a radio by model, standard, ingress rating or range. 21 Radiocom RC and Motorola models, in stock in Tashkent."
     }
   },
   "brand": {
@@ -741,5 +747,24 @@
     "range_lead": "Range depends on terrain and built-up area.",
     "spec_note": "The manufacturer's full specification is in the table below.",
     "spec_column": "Specification"
+  },
+  "search": {
+    "title": "Search the catalogue",
+    "sub": "Model, standard, ingress rating, range — search however suits you.",
+    "placeholder": "Try: IP67, DMR, RCD-70",
+    "label": "Search query",
+    "submit": "Search",
+    "results": "{{count}} models found",
+    "empty_title": "Nothing found",
+    "empty_sub": "Check the spelling, or browse the full line-up.",
+    "prompt": "Type a query — it searches names, specifications and box contents.",
+    "all": "Full catalogue"
+  },
+  "sitemap": {
+    "title": "Sitemap",
+    "sub": "Every Radiocom page in one list.",
+    "pages": "Pages",
+    "models": "Models",
+    "industries": "Industries"
   }
 }

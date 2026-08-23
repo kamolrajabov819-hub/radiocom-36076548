@@ -13,6 +13,8 @@ import {
   productSpecsPath,
   webPageSchema,
   jsonLd,
+  webSiteSchema,
+  absolute,
 } from "../src/lib/seo";
 // `visibleProducts` is what the site advertises; `products` is the full
 // record, which stays larger because hidden models keep their /catalog 301s.
@@ -25,7 +27,7 @@ import {
 import { specs } from "../src/data/specs";
 import { SPEC } from "../src/data/spec-dict";
 import { entries } from "./lib/sitemap";
-import { readFileSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
 let fail = 0;
@@ -559,6 +561,78 @@ console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
   }
   if (problems.length) bad(`offer prices:\n     ${problems.join("\n     ")}`);
   else console.log("ok  every Offer price matches products.ts, in UZS");
+}
+
+// 19. The sitelinks searchbox must point at a route that exists.
+//
+// The previous `SearchAction` advertised `/ru/catalog?q=` while the catalogue
+// validated only `cat` and `brand` — it described an endpoint that was not
+// there, which is the kind of claim that costs trust in the rest of the graph.
+// It was removed with a note to reinstate it only alongside a real search
+// route. This gate is what keeps that promise honest: the target has to be a
+// path the sitemap ships, the route file has to exist, and the page has to
+// read the `q` parameter the template names.
+{
+  const problems: string[] = [];
+  const site = webSiteSchema() as {
+    potentialAction?: { target?: { urlTemplate?: string }; "query-input"?: string };
+  };
+  const template = site.potentialAction?.target?.urlTemplate ?? "";
+  const m = /^https:\/\/[^/]+(\/[a-z]{2}\/[a-z-]+)\?([a-z_]+)=\{search_term_string\}$/.exec(
+    template,
+  );
+  if (!m) {
+    problems.push(`urlTemplate is not a "<path>?<param>={search_term_string}" URL: ${template}`);
+  } else {
+    const [, path, param] = m;
+    const bare = path.replace(/^\/[a-z]{2}/, "");
+    if (!entries.some((e) => e.path === bare))
+      problems.push(`SearchAction targets ${bare}, which the sitemap does not ship`);
+    const routeFile = `src/routes/$lang${bare}.tsx`;
+    if (!existsSync(routeFile)) problems.push(`no route file at ${routeFile}`);
+    const pageSrc = readFileSync("src/pages/Search.tsx", "utf8");
+    if (!pageSrc.includes("validateSearch"))
+      problems.push("the search page does not validate its search params");
+    // Specifically: the parameter has to be read off the *search params*, not
+    // merely appear somewhere in the file. `name="q"` on an input satisfies a
+    // bare word match while the page ignores the URL entirely, which is the
+    // exact failure this gate exists to catch.
+    if (!new RegExp(`search\\.${param}\\b|search\\["${param}"\\]`).test(pageSrc))
+      problems.push(
+        `the search page never reads search.${param} — the parameter the template names`,
+      );
+    if (!new RegExp(`\\{\\s*${param}\\s*[},]`).test(pageSrc))
+      problems.push(`the search page never destructures "${param}" from its search params`);
+    if (!/role="search"/.test(pageSrc))
+      problems.push("the search page renders no role=search form for Google to find");
+  }
+  if (site.potentialAction && site["query-input" as keyof typeof site] === undefined) {
+    // `query-input` lives on the action, not the site node.
+    if (!site.potentialAction["query-input"]?.includes("search_term_string"))
+      problems.push("SearchAction is missing its query-input binding");
+  }
+  if (problems.length) bad(`sitelinks searchbox:\n     ${problems.join("\n     ")}`);
+  else console.log("ok  SearchAction points at a real, param-reading search route");
+}
+
+// 20. Related products must resolve to pages that exist and are not the model
+//     itself. A self-reference tells Google the entity is its own alternative,
+//     and a link to a hidden model points at a 404.
+{
+  const problems: string[] = [];
+  const visibleUrls = new Set(
+    visibleProducts.map((p) => `${absolute(localePath("ru", productPath(p)))}#product`),
+  );
+  for (const p of visibleProducts) {
+    const schema = productSchema(p, "ru") as { "@id"?: string; isRelatedTo?: { "@id": string }[] };
+    for (const rel of schema.isRelatedTo ?? []) {
+      if (rel["@id"] === schema["@id"]) problems.push(`${p.id}: isRelatedTo includes itself`);
+      if (!visibleUrls.has(rel["@id"]))
+        problems.push(`${p.id}: isRelatedTo points at ${rel["@id"]}, which is not a visible model`);
+    }
+  }
+  if (problems.length) bad(`isRelatedTo:\n     ${problems.join("\n     ")}`);
+  else console.log("ok  isRelatedTo resolves to visible sibling models only");
 }
 
 console.log(fail === 0 ? "\nALL SEO CHECKS PASSED" : `\n${fail} FAILURES`);

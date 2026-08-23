@@ -3,7 +3,7 @@ import { LocaleLink } from "@/components/LocaleLink";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Search } from "lucide-react";
 import { LangToggle } from "./LangToggle";
 import { openLead } from "./LeadFormSheet";
 import { INDUSTRY_SLUGS } from "@/data/industries";
@@ -180,6 +180,17 @@ export function Nav() {
 
           {/* Right actions */}
           <div className="hidden lg:flex items-center justify-end gap-3 flex-1">
+            {/* Search sits in the chrome, not only in the footer. It is the
+                route the WebSite node's SearchAction advertises to Google, and
+                a search a visitor cannot find is a search that does not exist —
+                for either audience. */}
+            <LocaleLink
+              to="/search"
+              aria-label={t("nav.search")}
+              className="flex h-11 w-11 items-center justify-center rounded-full text-crisp transition-colors hover:bg-charcoal"
+            >
+              <Search className="h-5 w-5" aria-hidden />
+            </LocaleLink>
             <LangToggle />
             <button
               onClick={() => openLead({ title: t("nav.get_quote") })}
@@ -249,6 +260,9 @@ export function Nav() {
                   {l.label}
                 </LocaleLink>
               ))}
+              <LocaleLink to="/search" className="headline text-4xl text-crisp">
+                {t("nav.search")}
+              </LocaleLink>
               <div className="pt-6 border-t border-border">
                 <div className="text-cool text-[13px] mb-4">{t("nav.industries")}</div>
                 <div className="flex flex-col gap-3">

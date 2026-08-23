@@ -34,6 +34,8 @@ export function Footer() {
             <FLink to="/poc">{t("nav.poc")}</FLink>
             <FLink to="/service">{t("nav.service")}</FLink>
             <FLink to="/industries">{t("nav.industries")}</FLink>
+            <FLink to="/search">{t("nav.search")}</FLink>
+            <FLink to="/sitemap">{t("sitemap.title")}</FLink>
           </FooterCol>
           <FooterCol title={t("nav.industries")}>
             {INDUSTRY_SLUGS.map((s) => (
@@ -112,7 +114,16 @@ function FLink({
   to,
   children,
 }: {
-  to: "/" | "/radiocom" | "/motorola" | "/compare" | "/poc" | "/service" | "/industries";
+  to:
+    | "/"
+    | "/radiocom"
+    | "/motorola"
+    | "/compare"
+    | "/poc"
+    | "/service"
+    | "/industries"
+    | "/search"
+    | "/sitemap";
   children: React.ReactNode;
 }) {
   return (

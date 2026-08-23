@@ -48,6 +48,8 @@
 - https://radiocom.uz/ru/poc
 - https://radiocom.uz/ru/service
 - https://radiocom.uz/ru/industries
+- https://radiocom.uz/ru/sitemap
+- https://radiocom.uz/ru/search
 - https://radiocom.uz/ru/industries/horeca
 - https://radiocom.uz/ru/industries/construction
 - https://radiocom.uz/ru/industries/security

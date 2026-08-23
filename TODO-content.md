@@ -316,6 +316,45 @@ markup appears, so flip that gate at the same time.
 
 ---
 
+## The sitelinks searchbox is live — and what it still cannot do
+
+`/{lang}/search` exists now, and `webSiteSchema()` carries the `SearchAction`
+that points at it. That markup was removed in an earlier phase with a note to
+reinstate it only alongside a real search route, because the previous version
+advertised `/ru/catalog?q=` against a catalogue that validated only `cat` and
+`brand` — it described an endpoint that was not there.
+
+Two things you should know about it:
+
+- **Sitelinks themselves are not markup.** Google generates the block of links
+  under a search result algorithmically, from site structure and internal
+  linking. Nothing forces them, and anyone offering to is wrong. What is
+  genuinely in our control is now done: an HTML sitemap at `/{lang}/sitemap`
+  linking every route by its real name, `SiteNavigationElement` on the main
+  sections, breadcrumbs on every page type, and search reachable from the nav
+  and the footer.
+- **The searchbox is a Russian target.** A `SearchAction` takes one URL
+  template, and `DEFAULT_SEO_LANG` is the locale the domain serves first.
+
+## Three SEO levers left, all needing data only you have
+
+These are the last things on the list, and none of them can be written from the
+repo:
+
+- **Reviews and ratings.** `aggregateRating` and `review` are the single
+  biggest remaining rich-result win for a product page — stars in the result
+  are worth more than any amount of schema tidying. They need real reviews from
+  real customers. `verify-seo.ts` currently *fails the build* if rating markup
+  appears, precisely so nobody is tempted; flip that gate when the reviews are
+  real.
+- **GTINs.** `sku` ships (the model id) and `mpn` could follow, but a `gtin13`
+  needs the actual barcode from each box. Twenty-one numbers, and Google
+  weights merchant listings that carry them.
+- **Video.** `VideoObject` is the other format that changes how a result looks.
+  There is no video, so there is no markup.
+
+---
+
 # Performance — measured, and where the ceiling is
 
 Lighthouse, mobile, throttled, across seven page types:

@@ -10,6 +10,15 @@ export const getRouter = () => {
     routeTree,
     context: { queryClient },
     scrollRestoration: true,
+    // Prefetch a route's chunk and loader when the pointer or keyboard focus
+    // lands on a link to it, so the click itself has nothing left to wait for.
+    //
+    // This rather than a `<script type="speculationrules">` prefetch. The two
+    // do the same job by different routes — Speculation Rules prefetches the
+    // *document*, TanStack prefetches the route module — and after hydration
+    // this site navigates as an SPA, so the document fetch would be discarded
+    // work on every hover. Running both would fetch each route twice.
+    defaultPreload: "intent",
     defaultPreloadStaleTime: 0,
     // The root route's `notFoundComponent` only covers a `notFound()` thrown
     // from inside a route that matched. A path matching no route at all falls

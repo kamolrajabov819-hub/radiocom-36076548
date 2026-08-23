@@ -15,7 +15,8 @@
     "skip_to_content": "Asosiy qismga o'tish",
     "radiocom": "Radiocom",
     "motorola": "Motorola",
-    "compare": "Solishtirish"
+    "compare": "Solishtirish",
+    "search": "Qidiruv"
   },
   "hero": {
     "eyebrow": "Rasmiy distribyutor · Toshkent",
@@ -666,7 +667,8 @@
       "radiocom": "Radiocom",
       "motorola": "Motorola",
       "compare": "Solishtirish",
-      "specs": "Xususiyatlar"
+      "specs": "Xususiyatlar",
+      "search": "Qidiruv"
     },
     "section": {
       "poc_name": "PoC ratsiyalar",
@@ -695,6 +697,10 @@
     "compare": {
       "title": "Motorola va Radiocom ratsiyalarini solishtirish — {{count}} model | Radiocom",
       "desc": "Barcha modellar masofa, standart, himoya darajasi va narx bo'yicha bitta jadvalda. Vazifaga mos ratsiyani tanlang."
+    },
+    "search": {
+      "title": "Ratsiyalar katalogi bo'yicha qidiruv — Radiocom",
+      "desc": "Ratsiyani model, standart, himoya klassi yoki masofa bo'yicha toping. Toshkentda 21 ta Radiocom RC va Motorola modeli mavjud."
     }
   },
   "brand": {
@@ -741,5 +747,24 @@
     "range_lead": "Masofa relyef va binolarga bog'liq.",
     "spec_note": "Ishlab chiqaruvchining to'liq xususiyatlari quyidagi jadvalda.",
     "spec_column": "Xususiyat"
+  },
+  "search": {
+    "title": "Katalog bo'yicha qidiruv",
+    "sub": "Model, standart, himoya klassi, masofa — o'zingizga qulay tarzda qidiring.",
+    "placeholder": "Masalan: IP67, DMR, RCD-70",
+    "label": "Qidiruv so'rovi",
+    "submit": "Topish",
+    "results": "{{count}} ta model topildi",
+    "empty_title": "Hech narsa topilmadi",
+    "empty_sub": "Yozilishini tekshiring yoki butun model qatorini ko'ring.",
+    "prompt": "So'rov kiriting — qidiruv nomlar, xususiyatlar va komplekt bo'yicha ishlaydi.",
+    "all": "Butun katalog"
+  },
+  "sitemap": {
+    "title": "Sayt xaritasi",
+    "sub": "Radiocom'ning barcha sahifalari bitta ro'yxatda.",
+    "pages": "Sahifalar",
+    "models": "Modellar",
+    "industries": "Tarmoqlar"
   }
 }
