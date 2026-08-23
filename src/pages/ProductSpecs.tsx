@@ -234,7 +234,7 @@ export function ProductSpecsPage() {
 
       {/* ── Full specification table ──────────────────────── */}
       {spec?.rows?.length ? (
-        <Section band="soft" tight>
+        <Section band="soft">
           <SectionHead align="left" spacing="tight" title={t("px.spec_table")} />
 
           {/* The two or three figures that decide the purchase, lifted out of
@@ -274,7 +274,7 @@ export function ProductSpecsPage() {
 
       {/* ── In the box ────────────────────────────────────── */}
       {spec?.inBox?.length ? (
-        <Section band="plain" tight>
+        <Section band="plain">
           <SectionHead align="left" spacing="tight" title={t("px.in_box")} />
           <ul className="grid grid-cols-1 gap-x-10 border-t border-border sm:grid-cols-2 lg:grid-cols-3">
             {spec.inBox.map((line) => (
@@ -293,7 +293,7 @@ export function ProductSpecsPage() {
       ) : null}
 
       {/* ── Closing CTA ───────────────────────────────────── */}
-      <Section band="soft" tight>
+      <Section band="soft">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="type-headline text-crisp">{t("px.buy")}</h2>
           <p className="subhead mt-4 text-[17px]">{t("px.trial")}</p>

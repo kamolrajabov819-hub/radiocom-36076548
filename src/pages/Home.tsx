@@ -299,7 +299,7 @@ function ValueShelf() {
   const openTest = () => openLead({ title: t("home.bento.tradein.title") });
 
   return (
-    <Section band="soft" tight>
+    <Section band="soft">
       <SectionHead
         align="left"
         spacing="tight"
@@ -444,7 +444,7 @@ function ValueShelf() {
 function NetworkSplit() {
   const { t } = useTranslation();
   return (
-    <Section band="plain" tight>
+    <Section band="plain">
       <div className="grid gap-4 md:grid-cols-2">
         <motion.div
           {...fadeUpAt(0)}
@@ -489,7 +489,7 @@ function IndustriesTeaser() {
     { slug: "security" as const, img: securityImg },
   ];
   return (
-    <Section band="soft" tight>
+    <Section band="soft">
       <div>
         <SectionHead
           align="left"
@@ -544,7 +544,7 @@ function FeaturedCatalog() {
   const featured = picked.length >= 4 ? picked.slice(0, 4) : visibleProducts.slice(0, 4);
 
   return (
-    <Section band="plain" tight>
+    <Section band="plain">
       <div>
         <SectionHead
           align="left"

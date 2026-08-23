@@ -175,11 +175,11 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
   return (
     <div className="page-anim">
       {/* ── Family name + model strip ──────────────────────── */}
-      <Section band="plain" tight>
-        <h1 className="text-[34px] font-semibold leading-[1.1] tracking-[-0.02em] text-crisp md:text-[40px]">
+      <Section band="plain">
+        <h1 className="type-display text-crisp">
           {t(`brand.${brandSlug}_title`)}
         </h1>
-        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-cool md:text-[17px]">
+        <p className="subhead measure mt-5 text-[17px] leading-relaxed md:text-[21px]">
           {t(`brand.${brandSlug}_desc`)}
         </p>
 
@@ -193,8 +193,8 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
                   className="group block rounded-[12px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-4"
                 >
                   <ModelStripItem
-                    image={p.image}
-                    imageSmall={p.imageSmall}
+                    image={p.strip ?? p.image}
+                    imageSmall={p.strip ? undefined : p.imageSmall}
                     label={shortName(p.name)}
                   />
                 </LocaleLink>
@@ -205,13 +205,13 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
                 to="/compare"
                 className="group block rounded-[12px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-4"
               >
-                <span className="flex w-[76px] flex-col items-center gap-2 text-center">
-                  <span className="flex h-[52px] items-end justify-center">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-charcoal text-crisp transition-transform duration-500 group-hover:scale-110">
-                      <ChevronRight className="h-4 w-4" aria-hidden />
+                <span className="flex w-[104px] flex-col items-center gap-3 text-center">
+                  <span className="flex h-[96px] items-end justify-center">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-full bg-charcoal text-crisp transition-transform duration-500 group-hover:scale-110">
+                      <ChevronRight className="h-5 w-5" aria-hidden />
                     </span>
                   </span>
-                  <span className="text-[11px] leading-tight text-crisp">{t("nav.compare")}</span>
+                  <span className="text-[12px] leading-tight text-crisp">{t("nav.compare")}</span>
                 </span>
               </LocaleLink>
             </li>
@@ -220,9 +220,9 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
       </Section>
 
       {/* ── The line-up ────────────────────────────────────── */}
-      <Section band="soft" tight>
+      <Section band="soft">
         <div className="mb-8 flex flex-wrap items-baseline justify-between gap-4 md:mb-10">
-          <h2 className="text-[28px] font-semibold leading-tight tracking-[-0.02em] text-crisp md:text-[32px]">
+          <h2 className="type-headline text-crisp">
             {t("brand.lineup")}
           </h2>
           {floor != null ? (
@@ -277,8 +277,8 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
       </Section>
 
       {/* ── Why buy from us ────────────────────────────────── */}
-      <Section band="plain" tight>
-        <h2 className="mb-8 max-w-xl text-[28px] font-semibold leading-tight tracking-[-0.02em] text-crisp md:mb-10 md:text-[32px]">
+      <Section band="plain">
+        <h2 className="type-headline mb-10 max-w-2xl text-crisp md:mb-12">
           {t("brand.why_title")}
         </h2>
 
@@ -329,8 +329,8 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
           out — so it is fed from the six industries instead: a real photograph,
           the real sector name, the real one-line description, each card a link
           to a page that already exists. Same device, no fiction. */}
-      <Section band="plain" tight>
-        <h2 className="mb-8 text-[28px] font-semibold leading-tight tracking-[-0.02em] text-crisp md:mb-10 md:text-[32px]">
+      <Section band="plain">
+        <h2 className="type-headline mb-10 text-crisp md:mb-12">
           {t("px.where_used")}
         </h2>
         <HighlightsShelf label={t("px.where_used")}>
@@ -359,7 +359,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
       </Section>
 
       {/* ── The closing pair — apple.com's "Switch to Mac" ────── */}
-      <Section band="soft" tight>
+      <Section band="soft">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <DuoCard
             idx={0}
@@ -413,7 +413,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
       </Section>
 
       {/* ── Compare invitation ─────────────────────────────── */}
-      <Section band="soft" tight>
+      <Section band="soft">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="type-headline text-crisp">{t("brand.compare_cta")}</h2>
           <p className="subhead mt-4 text-[17px]">{t("brand.compare_sub")}</p>

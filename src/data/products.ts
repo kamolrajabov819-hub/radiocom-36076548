@@ -21,6 +21,16 @@ import rcd60Kit from "@/assets/catalog/rcd-60-kit.webp";
 import rcd50Hero from "@/assets/catalog/rcd-50-hero.webp";
 import rcd50Hero800 from "@/assets/catalog/rcd-50-hero@800.webp";
 import rcd50Kit from "@/assets/catalog/rcd-50-kit.webp";
+// Device-only crops, for the model strip. Five Radiocom models have no
+// standalone product shot — only a kit flat-lay — so the strip was showing a
+// charger and two cables where the other three showed a radio. These are the
+// radio cropped out of that same flat-lay by `scripts/crop-device-shots.ts`,
+// not new photography.
+import rcd40Device from "@/assets/catalog/rcd-40-device.webp";
+import rcd30Device from "@/assets/catalog/rcd-30-device.webp";
+import rc50Device from "@/assets/catalog/rc-50-device.webp";
+import rc20Device from "@/assets/catalog/rc-20-device.webp";
+import rc10Device from "@/assets/catalog/rc-10-device.webp";
 import rcd40Kit from "@/assets/catalog/rcd-40-kit.webp";
 import rcd40Kit800 from "@/assets/catalog/rcd-40-kit@800.webp";
 import rcd30Kit from "@/assets/catalog/rcd-30-kit.webp";
@@ -113,6 +123,15 @@ export type Product = {
   image: string;
   /** The `@800` sibling — a real import, never derived from `image`. */
   imageSmall?: string;
+  /**
+   * A device-only shot for the model strip, where `image` is a kit flat-lay.
+   *
+   * apple.com's chip row shows one device per chip; that is what makes the row
+   * scannable. A flat-lay in the same slot renders as an unreadable scatter of
+   * accessories at 96px. Falls back to `image` when the hero already is the
+   * device alone.
+   */
+  strip?: string;
   gallery?: string[];
   /**
    * Kept in the data but absent from the site: no photograph exists, and the
@@ -200,6 +219,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "professional",
     image: rcd40Kit,
     imageSmall: rcd40Kit800,
+    strip: rcd40Device,
     tags: ["DMR", "Long range"],
     price: 1_600_000,
     rangeCity: upToKm("2"),
@@ -218,6 +238,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "professional",
     image: rcd30Kit,
     imageSmall: rcd30Kit800,
+    strip: rcd30Device,
     tags: ["DMR", "Compact"],
     price: 1_800_000,
     rangeCity: upToKm("1,5"),
@@ -238,6 +259,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "professional",
     image: rc50Kit,
     imageSmall: rc50Kit800,
+    strip: rc50Device,
     tags: ["Long range"],
     price: 1_300_000,
     rangeCity: upToKmRange("2", "2,5"),
@@ -256,6 +278,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "amateur",
     image: rc20Kit,
     imageSmall: rc20Kit800,
+    strip: rc20Device,
     tags: ["Compact", "License-free"],
     price: 1_600_000,
     rangeCity: upToKm("1,5"),
@@ -274,6 +297,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "amateur",
     image: rc10Kit,
     imageSmall: rc10Kit800,
+    strip: rc10Device,
     tags: ["Compact"],
     price: 1_300_000,
     rangeCity: upToKm("1"),

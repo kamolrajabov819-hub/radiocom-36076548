@@ -189,7 +189,7 @@ function Flow() {
   ];
 
   return (
-    <section className="band-soft section-tight">
+    <section className="band-soft section">
       <div className="shell">
         <SectionHead align="left" spacing="tight" title={t("service.flow_title")} />
         <HighlightsShelf label={t("service.flow_title")}>
@@ -243,7 +243,7 @@ function Advantages() {
   const adv = t("service.advantages", { returnObjects: true }) as Record<string, FlowStep>;
 
   return (
-    <section className="band-plain section-tight">
+    <section className="band-plain section">
       <div className="shell">
         <SectionHead align="left" spacing="tight" title={t("service.advantages_title")} />
         <BentoGrid>

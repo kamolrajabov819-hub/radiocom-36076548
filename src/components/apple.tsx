@@ -93,7 +93,7 @@ export function FeatureCard({
           </div>
         ) : null}
 
-        <h3 className="mt-1.5 hyphens-auto break-words text-[22px] font-semibold leading-[1.15] tracking-[-0.02em] md:text-[26px]">
+        <h3 className="type-title mt-2 hyphens-auto break-words">
           {title}
         </h3>
 
@@ -177,7 +177,7 @@ export function StackedTile({
     >
       <div className={cn("relative", centred && "text-center")}>
         {eyebrow ? <div className="text-[14px] font-medium text-cool">{eyebrow}</div> : null}
-        <h3 className="mt-1.5 hyphens-auto break-words text-[22px] font-semibold leading-[1.15] tracking-[-0.02em] md:text-[26px]">
+        <h3 className="type-title mt-2 hyphens-auto break-words">
           {title}
         </h3>
         {body ? (
@@ -693,7 +693,14 @@ export function FilterPills<T extends string>({
 export function ModelStrip({ children, label }: { children: ReactNode; label: string }) {
   return (
     <nav aria-label={label} className="bleed-x">
-      <ul className="no-scrollbar flex gap-6 overflow-x-auto pb-1 md:gap-8">{children}</ul>
+      {/* gap-6, not gap-8. At 1440 the Radiocom row is nine chips wide and
+          needs 1192px against the 1164px the shell gives it — a 28px overflow,
+          just enough to clip the last label's final letter. The row is a
+          scroller and longer families (Motorola has fifteen) scroll properly,
+          but a row that almost fits and clips one glyph reads as a bug rather
+          than as an invitation to scroll. `pr-2` keeps the last chip off the
+          clip edge when it does scroll. */}
+      <ul className="no-scrollbar flex gap-5 overflow-x-auto pb-1 pr-2 md:gap-6">{children}</ul>
     </nav>
   );
 }
@@ -715,21 +722,25 @@ export function ModelStripItem({
   label: string;
 }) {
   return (
-    <span className="flex w-[76px] flex-col items-center gap-2 text-center">
-      <span className="flex h-[52px] items-end justify-center">
+    <span className="flex w-[104px] flex-col items-center gap-3 text-center">
+      {/* 96px, not 52. apple.com/mac's chip row renders each model around 110px
+          tall — big enough to tell an Air from a Pro at a glance, which is the
+          row's entire job. At 52px these were indistinguishable black
+          rectangles and the row read as decoration. */}
+      <span className="flex h-[96px] items-end justify-center">
         <img
           src={image}
           srcSet={imageSmall ? `${imageSmall} 800w, ${image} 1600w` : undefined}
-          sizes={imageSmall ? "76px" : undefined}
+          sizes={imageSmall ? "104px" : undefined}
           alt=""
           width={152}
           height={104}
           loading="lazy"
           decoding="async"
-          className="max-h-[52px] w-auto object-contain mix-blend-multiply transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
+          className="max-h-[96px] w-auto object-contain mix-blend-multiply transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
         />
       </span>
-      <span className="text-[11px] leading-tight text-crisp">{label}</span>
+      <span className="text-[12px] leading-tight text-crisp">{label}</span>
     </span>
   );
 }
@@ -952,7 +963,7 @@ export function DuoCard({
       )}
     >
       <div className="px-7 md:px-9">
-        <h3 className="mx-auto max-w-[22ch] text-[21px] font-semibold leading-[1.15] tracking-[-0.02em] md:text-[24px]">
+        <h3 className="type-title mx-auto max-w-[22ch]">
           {title}
         </h3>
         {body ? (
