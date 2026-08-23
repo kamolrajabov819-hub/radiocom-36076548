@@ -11,10 +11,14 @@ import heroImage from "@/assets/hero-rcd60-cutout.webp";
 import heroImage800 from "@/assets/hero-rcd60-cutout@800.webp";
 import kitWide from "@/assets/product/radio-kit-wide.webp";
 import kitWide800 from "@/assets/product/radio-kit-wide@800.webp";
-import macroWide from "@/assets/product/radio-macro-wide.webp";
-import macroWide800 from "@/assets/product/radio-macro-wide@800.webp";
-import radiosPair from "@/assets/product/radios-pair.webp";
-import radiosPair800 from "@/assets/product/radios-pair@800.webp";
+import macroWide from "@/assets/radio-macro-display.webp";
+import macroWide800 from "@/assets/radio-macro-display@800.webp";
+// Recovered from git (`76765ce^` and `de79d62^`) — earlier phases deleted them.
+// Both are 3:4 portrait, which is why the cards below put them beside the copy
+// rather than behind it: a portrait photograph in a wide backdrop slot can only
+// be made to fill by cropping, and cropping is what made these unreadable.
+import radiosPair from "@/assets/radios-floating-pair.webp";
+import radiosPair800 from "@/assets/radios-floating-pair@800.webp";
 // The grille macro that used to be a CDN pointer. This cutout is the same
 // subject shot properly: alpha, so it can float on a tinted band.
 import bentoDetail from "@/assets/radio-macro-cutout.webp";
@@ -284,7 +288,10 @@ function FeatureDark() {
  */
 function ValueShelf() {
   const { t } = useTranslation();
-  const openTest = () => openLead({ title: t("lead.title") });
+  // `lead.title` does not exist — this rendered the literal string "lead.title"
+  // as the card's button label on the live home page. The sheet takes the
+  // card's own subject; the button takes the site-wide CTA string.
+  const openTest = () => openLead({ title: t("home.bento.tradein.title") });
 
   return (
     <Section band="soft" tight>
@@ -306,16 +313,28 @@ function ValueShelf() {
           title={t("home.bento.warranty.sub")}
           className="col-span-1 sm:col-span-2"
         >
-          <ProductShot
-            src={kitWide}
-            srcSmall={kitWide800}
-            alt=""
-            width={1600}
-            height={900}
-            sizes="(max-width: 640px) 86vw, (max-width: 1024px) 88vw, 700px"
-            className="w-full self-end"
-            imgClassName="object-bottom"
-          />
+          {/* A framed tile, not a floating cutout.
+              
+              Two problems solved by one change. At `w-full` the flat-lay ran
+              the card's whole width and read as a band rather than a product
+              shot — that is the "too big". And its studio background is
+              #f9f9f9, not white, so on a white card `mix-blend-multiply` left
+              a visibly grey rectangle looking pasted on. Sitting it on a
+              deliberate grey panel makes that tone the frame instead of an
+              artifact, and fills the dead space the smaller image opened up.
+              Nothing is cropped: `contain` throughout. */}
+          <div className="flex w-full flex-1 items-center justify-center rounded-[18px] bg-charcoal p-6">
+            <ProductShot
+              src={kitWide}
+              srcSmall={kitWide800}
+              alt=""
+              width={1600}
+              height={900}
+              sizes="(max-width: 640px) 70vw, (max-width: 1024px) 60vw, 520px"
+              className="w-full max-w-[520px]"
+              imgClassName="max-h-[230px]"
+            />
+          </div>
         </StackedTile>
 
         {/* Rows 1-2, col 3 — the tall trade-in card. The vertical pair shot
@@ -327,18 +346,23 @@ function ValueShelf() {
           title={t("home.bento.tradein.sub")}
           className="min-h-[260px]"
           copyClassName="pr-10"
-          action={{ label: t("lead.title"), onClick: openTest }}
+          action={{ label: t("px.buy"), onClick: openTest }}
           backdrop={
+            /* `contain`, and the slot is given the image's own 3:4 proportion
+               so there is nothing to crop. The previous version passed
+               `fit="cover"` into a slot starting at `top-[52%]` — roughly half
+               the height the photograph needed — so the radios were sliced
+               through the middle. */
             <ProductShot
               src={radiosPair}
               srcSmall={radiosPair800}
               alt=""
-              width={1226}
-              height={1632}
-              fit="cover"
-              sizes="(max-width: 1024px) 88vw, 380px"
-              className="absolute inset-x-0 bottom-0 top-[52%]"
-              imgClassName="object-top"
+              width={1195}
+              height={1600}
+              fit="contain"
+              sizes="(max-width: 1024px) 60vw, 300px"
+              className="pointer-events-none absolute inset-x-0 bottom-4 top-[46%]"
+              imgClassName="object-bottom"
             />
           }
         />
@@ -373,19 +397,29 @@ function ValueShelf() {
           span={2}
           eyebrow={t("home.feature.title")}
           title={t("home.feature.sub")}
-          className="min-h-[260px]"
+          // Taller than the 260px row default: the macro is 3:4 portrait, and at
+          // 260px a contained portrait shrinks to a thumbnail. Giving the card
+          // the height the photograph wants is what lets it read as the detail
+          // shot it is.
+          className="min-h-[340px]"
           copyClassName="max-w-[52%] lg:max-w-[46%]"
           backdrop={
-            <ProductShot
-              src={macroWide}
-              srcSmall={macroWide800}
-              alt=""
-              width={1600}
-              height={900}
-              fit="cover"
-              sizes="(max-width: 1024px) 88vw, 620px"
-              className="absolute inset-y-0 right-0 w-[52%]"
-            />
+            /* `cover` in a full-height 52% column cropped this to a vertical
+               sliver. `contain` inside a grey panel shows the whole frame and
+               makes the studio background part of the composition rather than
+               a pasted rectangle. */
+            <div className="pointer-events-none absolute inset-y-5 right-5 flex w-[42%] items-center justify-center overflow-hidden rounded-[18px] bg-charcoal">
+              <ProductShot
+                src={macroWide}
+                srcSmall={macroWide800}
+                alt=""
+                width={1195}
+                height={1600}
+                fit="contain"
+                sizes="(max-width: 1024px) 42vw, 280px"
+                className="h-full w-full"
+              />
+            </div>
           }
         />
       </BentoGrid>

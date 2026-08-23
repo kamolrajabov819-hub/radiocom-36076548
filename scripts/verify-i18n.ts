@@ -18,7 +18,8 @@
  * Run: bun scripts/verify-i18n.ts
  */
 
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
+import { join } from "node:path";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { I18nextProvider, useTranslation } from "react-i18next";
@@ -218,6 +219,114 @@ for (const l of LANGS) {
     bad(`${l}: product schema description is not this locale's blurb`);
 }
 console.log("ok  og:locale, canonical URLs and JSON-LD are locale-correct");
+
+/* ─────────────────────────────────────────────────────────────
+   Every literal key a component asks for must exist.
+   ───────────────────────────────────────────────────────────── */
+// The existing checks compare the three locale files against each other, so a
+// key that is missing from *all* of them passes: parity holds at zero. That is
+// how `service.hero.sub` reached the brand page twice — i18next renders an
+// unknown key as the key itself, so the page displayed the literal string
+// "service.hero.sub" to visitors and no gate objected.
+//
+// Only literal `t("...")` calls can be checked. Template keys built at runtime
+// (`t(\`industries.${slug}.name\`)) are skipped rather than guessed at.
+{
+  const ru = JSON.parse(readFileSync("src/i18n/ru.json", "utf8")) as Record<string, unknown>;
+  const has = (dotted: string) => {
+    let node: unknown = ru;
+    for (const part of dotted.split(".")) {
+      if (typeof node !== "object" || node === null) return false;
+      node = (node as Record<string, unknown>)[part];
+      if (node === undefined) return false;
+    }
+    return true;
+  };
+
+  const missing: string[] = [];
+  const walk = (dir: string) => {
+    for (const e of readdirSync(dir, { withFileTypes: true })) {
+      const full = join(dir, e.name);
+      if (e.isDirectory()) walk(full);
+      else if (/\.tsx?$/.test(e.name)) {
+        const src = readFileSync(full, "utf8");
+        for (const m of src.matchAll(/\bt\(\s*"([a-z][\w.]*?)"([^)]*)/gi)) {
+          const key = m[1];
+          // A namespace prefix with no dot is not an i18n path.
+          if (!key.includes(".")) continue;
+          // A call that supplies its own `defaultValue` renders that, not the
+          // key, so a missing entry is intentional rather than a bug —
+          // `poc.design.step_label` falls back to a zero-padded index.
+          if (m[2].includes("defaultValue")) continue;
+          if (!has(key)) {
+            const line = src.slice(0, m.index).split("\n").length;
+            missing.push(`${full}:${line} t("${key}")`);
+          }
+        }
+      }
+    }
+  };
+  walk("src");
+
+  // Template keys: `t(`industries.${slug}.name`)`. The variable cannot be
+  // resolved statically, but the shape can: every sibling under the prefix must
+  // carry the suffix. That is what catches `industries.${slug}.title` — no
+  // industry has a `title`, they have `name` — which the literal check above
+  // cannot see and which shipped as visible raw text on every product page.
+  const templateMissing: string[] = [];
+  const walkTemplates = (dir: string) => {
+    for (const e of readdirSync(dir, { withFileTypes: true })) {
+      const full = join(dir, e.name);
+      if (e.isDirectory()) walkTemplates(full);
+      else if (/\.tsx?$/.test(e.name)) {
+        const src = readFileSync(full, "utf8");
+        for (const m of src.matchAll(/\bt\(\s*`([\w.]+)\.\$\{[^}]+\}\.([\w.]+)`/g)) {
+          const [, prefix, suffix] = m;
+          let node: unknown = ru;
+          for (const part of prefix.split(".")) {
+            node = typeof node === "object" && node !== null
+              ? (node as Record<string, unknown>)[part]
+              : undefined;
+          }
+          if (typeof node !== "object" || node === null) continue; // prefix not a namespace
+          const siblings = Object.values(node as Record<string, unknown>).filter(
+            (v) => typeof v === "object" && v !== null,
+          ) as Record<string, unknown>[];
+          if (!siblings.length) continue;
+          const without = siblings.filter((sib) => {
+            let cur: unknown = sib;
+            for (const part of suffix.split(".")) {
+              cur = typeof cur === "object" && cur !== null
+                ? (cur as Record<string, unknown>)[part]
+                : undefined;
+            }
+            return cur === undefined;
+          });
+          // A majority rule, not "every sibling". The namespace can hold an
+          // object that is not one of the interpolated entries — `industries`
+          // also contains `offers`, which happens to have a `title` — so
+          // demanding that *no* sibling carries the suffix let
+          // `industries.${slug}.title` through even though none of the six
+          // actual industries has one. Fewer than half carrying it means the
+          // key is wrong for the set being iterated.
+          if (without.length * 2 > siblings.length) {
+            const line = src.slice(0, m.index).split("\n").length;
+            templateMissing.push(`${full}:${line} t(\`${prefix}.\${...}.${suffix}\`) — no entry under ${prefix} has "${suffix}"`);
+          }
+        }
+      }
+    }
+  };
+  walkTemplates("src");
+  missing.push(...templateMissing);
+
+  if (missing.length)
+    bad(
+      `${missing.length} t() call(s) reference a key absent from ru.json — these render as the raw key:\n     ` +
+        missing.join("\n     "),
+    );
+  else console.log("ok  every literal t() key resolves against ru.json");
+}
 
 console.log(fail === 0 ? "\nALL I18N CHECKS PASSED" : `\n${fail} FAILURES`);
 process.exit(fail ? 1 : 0);

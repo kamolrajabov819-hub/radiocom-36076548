@@ -432,7 +432,17 @@ export function productSchema(
     sku: p.id,
     description: pick(p.blurb, lang),
     inLanguage: lang,
-    image: [absolute(p.image), ...(p.gallery ?? []).map(absolute)],
+    // `ImageObject` rather than bare URLs. Both are valid, but the object form
+    // carries `caption` and marks the hero as the representative frame, which
+    // is what Google Images uses to decide which of a product's photographs to
+    // show. The bare-URL form gives it no way to tell them apart.
+    image: [p.image, ...(p.gallery ?? [])].map((src, i) => ({
+      "@type": "ImageObject",
+      url: absolute(src),
+      contentUrl: absolute(src),
+      caption: i === 0 ? p.name : `${p.name} — ${i + 1}`,
+      representativeOfPage: i === 0,
+    })),
     brand: { "@type": "Brand", name: p.brand },
     category:
       p.category === "professional" ? "Professional two-way radios" : "Consumer two-way radios",
@@ -585,6 +595,46 @@ export function itemListSchema(items: Product[], lang: SeoLang) {
       url: absolute(localePath(lang, productPath(p))),
       name: p.name,
     })),
+  };
+}
+
+/**
+ * The page itself, as an entity.
+ *
+ * `Product` describes the thing for sale; nothing described the *page*. Without
+ * a `WebPage` node the breadcrumb, the FAQ and the product all float
+ * unattached, and `primaryImageOfPage` — which is how Google picks a thumbnail
+ * for a result — has nowhere to live.
+ *
+ * `isPartOf` points at the `WebSite` node the root already emits, so the graph
+ * connects rather than repeating itself.
+ */
+export function webPageSchema(opts: {
+  lang: SeoLang;
+  path: string;
+  name: string;
+  description: string;
+  image?: string;
+}) {
+  const url = absolute(localePath(opts.lang, opts.path));
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${url}#webpage`,
+    url,
+    name: opts.name,
+    description: opts.description,
+    inLanguage: opts.lang,
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    ...(opts.image
+      ? {
+          primaryImageOfPage: {
+            "@type": "ImageObject",
+            url: absolute(opts.image),
+            contentUrl: absolute(opts.image),
+          },
+        }
+      : {}),
   };
 }
 

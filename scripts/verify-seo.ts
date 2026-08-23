@@ -11,6 +11,7 @@ import {
   preloadImage,
   productSchema,
   productSpecsPath,
+  webPageSchema,
   jsonLd,
 } from "../src/lib/seo";
 // `visibleProducts` is what the site advertises; `products` is the full
@@ -75,7 +76,19 @@ console.log(`ok  sitemap ${locs.length} urls, all unique, ${alts} alternates`);
 for (const p of products) {
   const s = JSON.parse(JSON.stringify(productSchema(p, "ru")));
   if (s["@type"] !== "Product" || !s.name || !s.sku || !s.offers) bad(`product ${p.id}`);
-  for (const img of s.image) if (!img.startsWith("https://")) bad(`product ${p.id} relative image`);
+  // `image` is an array of ImageObject now, not bare URLs — the object form
+  // carries a caption and marks the representative frame. The assertion this
+  // gate exists for is unchanged: every URL must be absolute, because a
+  // relative one in JSON-LD resolves against Google's crawler, not the site.
+  for (const img of s.image) {
+    if (img["@type"] !== "ImageObject") bad(`product ${p.id} image is not an ImageObject`);
+    for (const field of ["url", "contentUrl"]) {
+      if (typeof img[field] !== "string" || !img[field].startsWith("https://"))
+        bad(`product ${p.id} ImageObject.${field} is not an absolute URL`);
+    }
+  }
+  if (s.image[0] && s.image[0].representativeOfPage !== true)
+    bad(`product ${p.id} hero is not marked representativeOfPage`);
 }
 console.log(
   `ok  ${products.length} products produce valid Product schema (${visibleProducts.length} visible)`,
@@ -421,6 +434,50 @@ console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
   if (problems.length)
     bad(`build scripts assume an output directory:\n     ${problems.join("\n     ")}`);
   else console.log("ok  no build script hardcodes a preset-dependent output directory");
+}
+
+// 16. Every page type emits a WebPage node tied to the site and to its image.
+//     Without it the Product, the breadcrumb and the FAQ float unattached and
+//     `primaryImageOfPage` — how Google picks a result thumbnail — has nowhere
+//     to live.
+{
+  const problems: string[] = [];
+  const sample = visibleProducts[0];
+  const cases = [
+    { what: "product", path: productPath(sample), image: sample.image },
+    { what: "specs", path: productSpecsPath(sample), image: sample.image },
+    { what: "brand", path: brandPath("radiocom"), image: sample.image },
+  ];
+  for (const c of cases) {
+    const w = webPageSchema({
+      lang: "ru",
+      path: c.path,
+      name: "n",
+      description: "d",
+      image: c.image,
+    }) as Record<string, unknown>;
+    if (w["@type"] !== "WebPage") problems.push(`${c.what}: not a WebPage`);
+    if (!String(w.url ?? "").startsWith(SITE_URL)) problems.push(`${c.what}: url not absolute`);
+    const isPartOf = w.isPartOf as { "@id"?: string } | undefined;
+    if (isPartOf?.["@id"] !== `${SITE_URL}/#website`)
+      problems.push(`${c.what}: isPartOf does not point at the WebSite node`);
+    const primary = w.primaryImageOfPage as { url?: string } | undefined;
+    if (!primary?.url?.startsWith("https://"))
+      problems.push(`${c.what}: primaryImageOfPage missing or relative`);
+  }
+
+  // No FAQPage on product pages. Structured data must describe content the
+  // visitor can see, and these pages render no FAQ — emitting one would be a
+  // policy violation, not an optimisation. Adding a real FAQ means writing real
+  // questions, which is copy this repo does not have.
+  const storySrc = readFileSync("src/pages/ProductStory.tsx", "utf8");
+  if (/faqSchema\(/.test(storySrc))
+    problems.push(
+      "ProductStory emits FAQPage but renders no FAQ — schema must match visible content",
+    );
+
+  if (problems.length) bad(`WebPage graph:\n     ${problems.join("\n     ")}`);
+  else console.log("ok  WebPage node on product, specs and brand pages, tied to the site graph");
 }
 
 console.log(fail === 0 ? "\nALL SEO CHECKS PASSED" : `\n${fail} FAILURES`);

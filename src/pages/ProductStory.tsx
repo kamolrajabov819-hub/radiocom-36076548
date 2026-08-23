@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
+import { cn } from "@/lib/utils";
 import { notFound, useParams } from "@tanstack/react-router";
-import { ChevronRight } from "lucide-react";
+import { Check, ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
 import { Section, SectionHead } from "@/components/Section";
 import {
@@ -8,6 +9,7 @@ import {
   FeatureCard,
   HighlightsShelf,
   LeadInCaption,
+  PosterCard,
   PricePill,
   StatPanel,
   TintedHeadline,
@@ -21,7 +23,8 @@ import {
   type Product,
 } from "@/data/products";
 import { specs } from "@/data/specs";
-import { INDUSTRY_SLUGS } from "@/data/industries";
+import { INDUSTRY_SLUGS, type IndustrySlug } from "@/data/industries";
+import { INDUSTRY_POSTERS } from "@/data/industry-images";
 import { pick, type Lang } from "@/data/spec-dict";
 import {
   breadcrumbSchema,
@@ -32,6 +35,7 @@ import {
   preloadImage,
   productPath,
   productSchema,
+  webPageSchema,
   type SeoLang,
 } from "@/lib/seo";
 import { tFor } from "@/lib/i18n";
@@ -94,6 +98,15 @@ export function productStoryRouteOptions() {
           }),
         ],
         scripts: [
+          jsonLd(
+            webPageSchema({
+              lang: params.lang,
+              path,
+              name: title,
+              description,
+              image: p.image,
+            }),
+          ),
           jsonLd(
             productSchema(p, params.lang, {
               specs: (spec?.rows ?? []).map((r) => ({
@@ -337,10 +350,14 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
  */
 function Design({ p, lang }: { p: Product; lang: Lang }) {
   const { t } = useTranslation();
+  // Nine of the twenty-one visible models have no gallery frames, and for those
+  // the whole section used to disappear — the page went from a shelf of numbers
+  // straight to the closing CTA and ended abruptly. The hero shot is the one
+  // frame every model has, so those pages get the same section built around it:
+  // one photograph, the same caption, the same stat panels. Fewer frames, not a
+  // missing section.
   const gallery = p.gallery ?? [];
-  if (!gallery.length) return null;
-
-  const [wide, ...rest] = gallery;
+  const [wide, ...rest] = gallery.length ? gallery : [p.image];
   const spec = specs[p.id];
   const protection = spec?.rows.find((r) => /Класс защиты/i.test(r.label.ru));
 
@@ -364,7 +381,14 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
             filling a whole viewport. The cap gives every model the same band
             depth, and `object-contain` means the crop never cuts equipment out
             of a flat-lay. */}
-        <div className="flex items-center justify-center overflow-hidden rounded-[28px] bg-charcoal p-6 md:p-10">
+        {/* The panel hugs the image instead of spanning the column.
+        
+            These frames are mostly 3:4 portrait product shots. A full-width
+            panel with a height-capped `contain` image left the radio small in
+            the middle of a wide grey field — the dead space you flagged. Sizing
+            the panel to the image and centring it keeps the photograph the
+            subject, which is what the reference does. */}
+        <div className="mx-auto flex w-fit max-w-full items-center justify-center overflow-hidden rounded-[28px] bg-charcoal px-10 py-8 md:px-16 md:py-10">
           <img
             src={wide}
             alt={`${p.name} — ${t("px.design")}`}
@@ -376,7 +400,7 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
             // site carries it: most of these frames are studio shots on white,
             // and without it a white rectangle sits inside the grey panel. On
             // the Motorola cutouts, which have real alpha, multiply is a no-op.
-            className="max-h-[460px] w-auto max-w-full object-contain mix-blend-multiply"
+            className="max-h-[420px] w-auto max-w-full object-contain mix-blend-multiply"
           />
         </div>
         <figcaption className="mt-6 max-w-[62ch]">
@@ -390,15 +414,46 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
         </figcaption>
       </figure>
 
-      {/* The figures, at the size their importance deserves. */}
-      <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2">
-        <StatPanel value={pick(p.rangeCity, lang)} label={t("px.range_city")} />
-        {p.rangeOpen ? (
-          <StatPanel value={pick(p.rangeOpen, lang)} label={t("px.range_open")} />
-        ) : protection ? (
-          <StatPanel value={pick(protection.value, lang)} label={pick(protection.label, lang)} />
-        ) : null}
-      </div>
+      {/* The figures, at the size their importance deserves.
+      
+          Built as a list first, then given a column count that matches it. The
+          fixed `md:grid-cols-2` put a single panel against an empty half on
+          every model that publishes neither an open-country range nor an
+          ingress rating — a lone box with a void beside it. */}
+      {(() => {
+        const panels = [
+          { key: "city", value: pick(p.rangeCity, lang), label: t("px.range_city") },
+          ...(p.rangeOpen
+            ? [{ key: "open", value: pick(p.rangeOpen, lang), label: t("px.range_open") }]
+            : []),
+          ...(protection
+            ? [
+                {
+                  key: "ip",
+                  value: pick(protection.value, lang),
+                  label: pick(protection.label, lang),
+                },
+              ]
+            : []),
+        ];
+        return (
+          <div
+            className={cn(
+              "mt-14 grid gap-6",
+              // A lone panel spans the column rather than sitting in a narrow
+              // box against an empty right half — that read as orphaned, and at
+              // 420px "up to 900 m" wrapped onto two lines inside it.
+              panels.length === 1 && "grid-cols-1",
+              panels.length === 2 && "grid-cols-1 md:grid-cols-2",
+              panels.length >= 3 && "grid-cols-1 sm:grid-cols-3",
+            )}
+          >
+            {panels.map((s) => (
+              <StatPanel key={s.key} value={s.value} label={s.label} />
+            ))}
+          </div>
+        );
+      })()}
       <LeadInCaption className="mt-6 max-w-[62ch]" lead={t("px.range_lead")}>
         {protection && p.rangeOpen
           ? `${pick(protection.label, lang)} — ${pick(protection.value, lang)}.`
@@ -408,11 +463,16 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
       {/* Remaining frames, in the uneven light-panel grid apple.com closes a
           design section with. */}
       {rest.length ? (
-        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div
+          className={cn(
+            "mt-14 grid gap-6",
+            rest.length === 1 ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2",
+          )}
+        >
           {rest.map((src, i) => (
             <div
               key={src}
-              className="flex items-center justify-center overflow-hidden rounded-[28px] bg-charcoal p-6"
+              className="mx-auto flex w-fit max-w-full items-center justify-center overflow-hidden rounded-[28px] bg-charcoal px-10 py-8"
             >
               <img
                 src={src}
@@ -421,7 +481,7 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
                 height={1067}
                 loading="lazy"
                 decoding="async"
-                className="max-h-[340px] w-auto max-w-full object-contain mix-blend-multiply"
+                className="max-h-[300px] w-auto max-w-full object-contain mix-blend-multiply"
               />
             </div>
           ))}
@@ -443,26 +503,32 @@ function Features({ p, lang }: { p: Product; lang: Lang }) {
   const features = specs[p.id]?.features ?? [];
   if (!features.length) return null;
 
-  // With a 3-column grid, a remainder of 1 leaves two holes and a remainder of
-  // 2 leaves one. Widening the lead tile shifts the remainder by one column,
-  // which closes both cases without dropping or inventing a feature.
-  const wideLead = features.length % 3 === 2;
-
   return (
     <Section band="plain" tight>
       <SectionHead align="left" spacing="tight" title={t("px.features")} />
-      <BentoGrid>
-        {features.map((f, i) => (
-          <FeatureCard
+      {/* A capability list, sized to its content.
+      
+          This was a bento of `min-h-[200px]` cards each holding one line of
+          text, so every card was mostly empty and a model with eleven features
+          produced a wall of near-blank boxes. A feature here is a single phrase
+          off the manufacturer's sheet — it does not need a card the size of a
+          product tile, it needs to be readable and countable.
+          
+          Auto-flowing rows with a leading rule per item give the list rhythm
+          without pretending each line is a section. The dark accent tile is
+          gone with the bento: it was drawing the eye to whichever feature
+          happened to be second. */}
+      <ul className="grid grid-cols-1 gap-x-10 border-t border-border sm:grid-cols-2 lg:grid-cols-3">
+        {features.map((f) => (
+          <li
             key={pick(f, lang)}
-            idx={i}
-            span={wideLead && i === 0 ? 2 : 1}
-            tone={i === 1 ? "dark" : "light"}
-            title={pick(f, lang)}
-            className="min-h-[200px]"
-          />
+            className="flex items-start gap-3 border-b border-border py-5 text-[15px] leading-relaxed text-crisp"
+          >
+            <Check className="mt-1 h-4 w-4 shrink-0 text-signal" strokeWidth={2.5} aria-hidden />
+            <span>{pick(f, lang)}</span>
+          </li>
         ))}
-      </BentoGrid>
+      </ul>
     </Section>
   );
 }
@@ -494,25 +560,59 @@ function InBox({ p, lang }: { p: Product; lang: Lang }) {
 }
 
 /* ── Where it is used ─────────────────────────────────────── */
+/**
+ * The industries this model is specified for, as poster cards.
+ *
+ * This was a row of two grey pills — the thinnest section on the page, and one
+ * that gave a reader deciding between models nothing to look at. It is the same
+ * `PosterCard` shelf the brand pages use, so a reader meets one visual language
+ * for "where this works" wherever they hit it.
+ *
+ * It also carried a real bug: the pills read `industries.${slug}.title`, and
+ * that key does not exist — the correct one is `.name`. Visitors saw the
+ * literal string "industries.horeca.title". `verify-i18n`'s new key check could
+ * not catch it because the key is built from a template, so that check now
+ * resolves template keys against the slugs they interpolate.
+ */
 function WhereUsed({ p, lang }: { p: Product; lang: Lang }) {
   const { t } = useTranslation();
-  const slugs = p.industries.filter((s) => (INDUSTRY_SLUGS as readonly string[]).includes(s));
+  const slugs = p.industries.filter((s): s is IndustrySlug =>
+    (INDUSTRY_SLUGS as readonly string[]).includes(s),
+  );
   if (!slugs.length) return null;
 
   return (
     <Section band="plain" tight>
       <SectionHead align="left" spacing="tight" title={t("px.where_used")} />
-      <div className="flex flex-wrap gap-3">
-        {slugs.map((slug) => (
-          <LocaleLink
+      {/* Columns from the count, not a fixed four. A model is specified for
+          one to four industries, and a fixed 4-column grid rendered two cards
+          against two empty cells — the row read as broken rather than short.
+          apple.com never leaves a hole in a row; it changes the row. */}
+      <div
+        className={cn(
+          "grid gap-4",
+          slugs.length === 1 && "max-w-[320px] grid-cols-1",
+          slugs.length === 2 && "max-w-[660px] grid-cols-2",
+          slugs.length === 3 && "grid-cols-2 sm:grid-cols-3",
+          slugs.length >= 4 && "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4",
+        )}
+      >
+        {slugs.map((slug, i) => (
+          <PosterCard
             key={slug}
-            to="/industries/$slug"
-            params={{ slug }}
-            className="pill pill-ghost"
-          >
-            {t(`industries.${slug}.title`)}
-            <ChevronRight className="h-4 w-4" aria-hidden />
-          </LocaleLink>
+            idx={i}
+            image={INDUSTRY_POSTERS[slug]}
+            eyebrow={t(`industries.${slug}.short`)}
+            title={t(`industries.${slug}.name`)}
+            href={
+              <LocaleLink
+                to="/industries/$slug"
+                params={{ slug }}
+                className="absolute inset-0 z-20 rounded-[18px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
+                aria-label={t(`industries.${slug}.name`)}
+              />
+            }
+          />
         ))}
       </div>
       <p className="sr-only">{pick(p.blurb, lang)}</p>
