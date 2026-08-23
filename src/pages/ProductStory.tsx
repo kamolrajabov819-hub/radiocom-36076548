@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useScrollChoreography } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 import { notFound, useParams } from "@tanstack/react-router";
 import { Check, ChevronRight } from "lucide-react";
@@ -146,8 +147,10 @@ export function ProductStoryPage() {
   if (!p) throw notFound();
   const spec = specs[p.id];
 
+  const page = useScrollChoreography();
+
   return (
-    <div className="page-anim">
+    <div ref={page} className="page-anim">
       <Hero p={p} lang={lang} />
       <Highlights p={p} lang={lang} />
       <Design p={p} lang={lang} />
@@ -198,7 +201,10 @@ function Hero({ p, lang }: { p: Product; lang: Lang }) {
         </p>
       </div>
 
-      <div className="stage relative mt-12 flex h-[54vh] max-h-[680px] items-center justify-center md:mt-14">
+      <div
+        data-parallax="0.07"
+        className="stage relative mt-12 flex h-[54vh] max-h-[680px] items-center justify-center md:mt-14"
+      >
         <img
           src={p.image}
           srcSet={p.imageSmall ? `${p.imageSmall} 800w, ${p.image} 1600w` : undefined}
@@ -365,10 +371,7 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
     <Section band="plain">
       <div className="mb-10 md:mb-12">
         <div className="mb-3 text-[14px] font-medium text-cool">{t("px.design")}</div>
-        <TintedHeadline
-          as="h2"
-          className="type-display text-crisp"
-        >
+        <TintedHeadline as="h2" className="type-display text-crisp">
           {t("px.design_title")}
         </TintedHeadline>
       </div>
@@ -574,7 +577,7 @@ function InBox({ p, lang }: { p: Product; lang: Lang }) {
           ))}
         </ul>
         {kit ? (
-          <div className="overflow-hidden rounded-[28px] bg-pitch p-8">
+          <div data-parallax="0.06" className="overflow-hidden rounded-[28px] bg-pitch p-8">
             <img
               src={kit}
               alt=""

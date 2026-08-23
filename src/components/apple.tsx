@@ -93,9 +93,7 @@ export function FeatureCard({
           </div>
         ) : null}
 
-        <h3 className="type-title mt-2 hyphens-auto break-words">
-          {title}
-        </h3>
+        <h3 className="type-title mt-2 hyphens-auto break-words">{title}</h3>
 
         {body ? (
           <p
@@ -177,9 +175,7 @@ export function StackedTile({
     >
       <div className={cn("relative", centred && "text-center")}>
         {eyebrow ? <div className="text-[14px] font-medium text-cool">{eyebrow}</div> : null}
-        <h3 className="type-title mt-2 hyphens-auto break-words">
-          {title}
-        </h3>
+        <h3 className="type-title mt-2 hyphens-auto break-words">{title}</h3>
         {body ? (
           <p
             className={cn(
@@ -224,10 +220,20 @@ export function StackedTile({
 export function HighlightsShelf({
   children,
   label,
+  stagger = false,
 }: {
   children: ReactNode;
   /** Accessible name for the scrollable region and its controls. */
   label: string;
+  /**
+   * Mark the track for `useScrollChoreography`, so the cards visible on first
+   * paint enter as one staggered gesture rather than all at once.
+   *
+   * Opt-in, because several shelves hold `motion` components that already
+   * animate themselves — two libraries writing opacity on one node is a
+   * flicker. Only set this where the cards are plain elements.
+   */
+  stagger?: boolean;
 }) {
   const track = useRef<HTMLDivElement>(null);
   const [atStart, setAtStart] = useState(true);
@@ -273,6 +279,7 @@ export function HighlightsShelf({
         role="group"
         aria-label={label}
         tabIndex={0}
+        data-stagger={stagger || undefined}
         className="no-scrollbar bleed-x flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal"
       >
         {children}
@@ -971,9 +978,7 @@ export function DuoCard({
       )}
     >
       <div className="px-7 md:px-9">
-        <h3 className="type-title mx-auto max-w-[22ch]">
-          {title}
-        </h3>
+        <h3 className="type-title mx-auto max-w-[22ch]">{title}</h3>
         {body ? (
           <p
             className={cn(

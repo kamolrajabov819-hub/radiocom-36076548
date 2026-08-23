@@ -284,9 +284,10 @@ console.log("ok  og:locale, canonical URLs and JSON-LD are locale-correct");
           const [, prefix, suffix] = m;
           let node: unknown = ru;
           for (const part of prefix.split(".")) {
-            node = typeof node === "object" && node !== null
-              ? (node as Record<string, unknown>)[part]
-              : undefined;
+            node =
+              typeof node === "object" && node !== null
+                ? (node as Record<string, unknown>)[part]
+                : undefined;
           }
           if (typeof node !== "object" || node === null) continue; // prefix not a namespace
           const siblings = Object.values(node as Record<string, unknown>).filter(
@@ -296,9 +297,10 @@ console.log("ok  og:locale, canonical URLs and JSON-LD are locale-correct");
           const without = siblings.filter((sib) => {
             let cur: unknown = sib;
             for (const part of suffix.split(".")) {
-              cur = typeof cur === "object" && cur !== null
-                ? (cur as Record<string, unknown>)[part]
-                : undefined;
+              cur =
+                typeof cur === "object" && cur !== null
+                  ? (cur as Record<string, unknown>)[part]
+                  : undefined;
             }
             return cur === undefined;
           });
@@ -311,7 +313,9 @@ console.log("ok  og:locale, canonical URLs and JSON-LD are locale-correct");
           // key is wrong for the set being iterated.
           if (without.length * 2 > siblings.length) {
             const line = src.slice(0, m.index).split("\n").length;
-            templateMissing.push(`${full}:${line} t(\`${prefix}.\${...}.${suffix}\`) — no entry under ${prefix} has "${suffix}"`);
+            templateMissing.push(
+              `${full}:${line} t(\`${prefix}.\${...}.${suffix}\`) — no entry under ${prefix} has "${suffix}"`,
+            );
           }
         }
       }

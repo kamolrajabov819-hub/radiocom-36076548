@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useScrollChoreography } from "@/lib/motion";
 import { useTranslation } from "react-i18next";
 import { Search, Cog, ClipboardCheck } from "lucide-react";
 import serviceLight from "@/assets/service-tech-light.jpg";
@@ -86,8 +87,10 @@ export const routeOptions = {
 };
 
 export function ServicePage() {
+  const page = useScrollChoreography();
+
   return (
-    <div className="page-anim">
+    <div ref={page} className="page-anim">
       <Hero />
       <BenchStrip />
       <Flow />
@@ -108,7 +111,8 @@ function BenchStrip() {
             loading="lazy"
             width={1400}
             height={1000}
-            className="absolute inset-0 h-full w-full object-cover"
+            data-parallax="0.16"
+            className="absolute inset-0 h-full w-full scale-110 object-cover"
           />
         </div>
       </div>
@@ -192,7 +196,7 @@ function Flow() {
     <section className="band-soft section">
       <div className="shell">
         <SectionHead align="left" spacing="tight" title={t("service.flow_title")} />
-        <HighlightsShelf label={t("service.flow_title")}>
+        <HighlightsShelf label={t("service.flow_title")} stagger>
           {steps.map((step, i) => {
             const shot = shots[i] ?? shots[0];
             return (

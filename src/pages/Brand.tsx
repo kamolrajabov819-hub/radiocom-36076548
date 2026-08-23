@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
+import { useScrollChoreography } from "@/lib/motion";
 import { Section } from "@/components/Section";
 import {
   DuoCard,
@@ -173,13 +174,13 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
 
   const shown = facet === "all" ? list : list.filter((p) => p.category === facet);
 
+  const page = useScrollChoreography();
+
   return (
-    <div className="page-anim">
+    <div ref={page} className="page-anim">
       {/* ── Family name + model strip ──────────────────────── */}
       <Section band="plain">
-        <h1 className="type-display text-crisp">
-          {t(`brand.${brandSlug}_title`)}
-        </h1>
+        <h1 className="type-display text-crisp">{t(`brand.${brandSlug}_title`)}</h1>
         <p className="subhead measure mt-5 text-[17px] leading-relaxed md:text-[21px]">
           {t(`brand.${brandSlug}_desc`)}
         </p>
@@ -223,9 +224,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
       {/* ── The line-up ────────────────────────────────────── */}
       <Section band="soft">
         <div className="mb-8 flex flex-wrap items-baseline justify-between gap-4 md:mb-10">
-          <h2 className="type-headline text-crisp">
-            {t("brand.lineup")}
-          </h2>
+          <h2 className="type-headline text-crisp">{t("brand.lineup")}</h2>
           {floor != null ? (
             <p className="text-[14px] text-cool">
               {list.length} {t("brand.models")} · {t("px.from")}{" "}
@@ -252,7 +251,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
             that escape hatch in place the shelf is the better container: it
             keeps the lineup one screen tall however many models a brand has,
             and it is what the reference actually does. */}
-        <HighlightsShelf label={t("brand.lineup")}>
+        <HighlightsShelf label={t("brand.lineup")} stagger>
           {shown.map((p, i) => (
             <div
               key={p.id}
@@ -331,9 +330,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
           the real sector name, the real one-line description, each card a link
           to a page that already exists. Same device, no fiction. */}
       <Section band="plain">
-        <h2 className="type-headline mb-10 text-crisp md:mb-12">
-          {t("px.where_used")}
-        </h2>
+        <h2 className="type-headline mb-10 text-crisp md:mb-12">{t("px.where_used")}</h2>
         <HighlightsShelf label={t("px.where_used")}>
           {INDUSTRY_SLUGS.map((slug, i) => (
             <div

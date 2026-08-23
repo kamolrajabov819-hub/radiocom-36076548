@@ -46,8 +46,15 @@ for (const width of WIDTHS) {
       for (const el of document.querySelectorAll("*")) {
         const r = el.getBoundingClientRect();
         if (r.width > 0 && r.right > vw + 1 && (!worst || r.right > worst.right)) {
-          const cls = String(el.className || "").split(/\s+/).filter(Boolean).slice(0, 3).join(".");
-          worst = { sel: el.tagName.toLowerCase() + (cls ? "." + cls : ""), right: Math.round(r.right) };
+          const cls = String(el.className || "")
+            .split(/\s+/)
+            .filter(Boolean)
+            .slice(0, 3)
+            .join(".");
+          worst = {
+            sel: el.tagName.toLowerCase() + (cls ? "." + cls : ""),
+            right: Math.round(r.right),
+          };
         }
       }
       return { scrollWidth: doc.scrollWidth, worst };

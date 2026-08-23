@@ -50,12 +50,18 @@ export function Footer() {
           </FooterCol>
           <FooterCol title={t("footer.contact_col")}>
             <li>
-              <a href="tel:+998781131618" className="inline-flex min-h-11 items-center text-[13px] text-crisp/70 hover:text-crisp">
+              <a
+                href="tel:+998781131618"
+                className="inline-flex min-h-11 items-center text-[13px] text-crisp/70 hover:text-crisp"
+              >
                 +998 78 113-16-18
               </a>
             </li>
             <li>
-              <a href="tel:+998933890710" className="inline-flex min-h-11 items-center text-[13px] text-crisp/70 hover:text-crisp">
+              <a
+                href="tel:+998933890710"
+                className="inline-flex min-h-11 items-center text-[13px] text-crisp/70 hover:text-crisp"
+              >
                 +998 93 389-07-10
               </a>
             </li>

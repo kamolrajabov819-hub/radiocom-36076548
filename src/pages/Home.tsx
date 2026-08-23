@@ -40,7 +40,7 @@ import { visibleProducts } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
 import { CountUp } from "@/components/CountUp";
 import { spring, fadeUpAt } from "@/lib/springs";
-import { DESKTOP, useGsap } from "@/lib/motion";
+import { DESKTOP, useGsap, useScrollChoreography } from "@/lib/motion";
 import {
   SITE_SECTIONS,
   jsonLd,
@@ -92,8 +92,10 @@ export const routeOptions = {
 };
 
 export function HomePage() {
+  const page = useScrollChoreography();
+
   return (
-    <div className="page-anim">
+    <div ref={page} className="page-anim">
       <Hero />
       <Proof />
       <FeatureDark />
@@ -148,6 +150,10 @@ function Hero() {
     },
     scope,
     [],
+    // Gate the *download*, not just the trigger. `matchMedia` inside the
+    // callback still costs a phone the 27 KB chunk before deciding it wants
+    // none of it; this was the one route still fetching GSAP at 390px.
+    DESKTOP,
   );
 
   return (
@@ -336,7 +342,7 @@ function ValueShelf() {
               what apple.com does with a product, and what the card wanted all
               along. `contain`, so nothing is cropped; the soft contact shadow
               gives it a surface to stand on rather than leaving it floating. */}
-          <div className="flex w-full flex-1 items-center justify-center pt-2">
+          <div data-parallax="0.05" className="flex w-full flex-1 items-center justify-center pt-2">
             <ProductShot
               src={kitWide}
               cutout
@@ -425,7 +431,10 @@ function ValueShelf() {
                the display corner, cut off at the bottom — so it bleeds off the
                card's lower edge instead of floating in the middle of a box,
                which is how apple.com uses a detail shot. */
-            <div className="pointer-events-none absolute -bottom-2 right-4 flex w-[44%] items-end justify-center">
+            <div
+              data-parallax="0.08"
+              className="pointer-events-none absolute -bottom-2 right-4 flex w-[44%] items-end justify-center"
+            >
               <ProductShot
                 src={macroWide}
                 cutout

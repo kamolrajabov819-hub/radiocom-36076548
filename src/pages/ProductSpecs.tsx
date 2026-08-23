@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useScrollChoreography } from "@/lib/motion";
 import { notFound, useParams } from "@tanstack/react-router";
 import { Check, ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
@@ -118,8 +119,10 @@ export function ProductSpecsPage() {
 
   const spec = specs[p.id];
 
+  const page = useScrollChoreography();
+
   return (
-    <div className="page-anim">
+    <div ref={page} className="page-anim">
       {/* ── Configuration summary + price ─────────────────── */}
       <Section band="plain">
         <nav aria-label="Breadcrumb" className="mb-8 text-[14px] text-cool">
@@ -354,6 +357,7 @@ function HeadlineFigures({ p, lang }: { p: Product; lang: Lang }) {
   return (
     <div className="mb-12 md:mb-14">
       <div
+        data-stagger
         className={`grid grid-cols-1 gap-4 ${
           panels.length === 3 ? "md:grid-cols-3" : "md:grid-cols-2"
         }`}

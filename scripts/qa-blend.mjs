@@ -22,8 +22,16 @@ import { chromium } from "playwright-core";
 
 const BASE = process.argv[2] ?? "http://127.0.0.1:4173";
 const ROUTES = [
-  "", "/radiocom", "/motorola", "/poc", "/radiocom/rcd-70", "/radiocom/rcd-70/specs",
-  "/service", "/compare", "/industries", "/industries/construction",
+  "",
+  "/radiocom",
+  "/motorola",
+  "/poc",
+  "/radiocom/rcd-70",
+  "/radiocom/rcd-70/specs",
+  "/service",
+  "/compare",
+  "/industries",
+  "/industries/construction",
 ];
 
 const browser = await chromium.launch({
@@ -56,7 +64,11 @@ for (const route of ROUTES) {
       for (let el = img.parentElement; el && el !== document.body; el = el.parentElement) {
         const why = opens(el);
         if (why) {
-          const cls = String(el.className || "").split(/\s+/).filter(Boolean).slice(0, 2).join(".");
+          const cls = String(el.className || "")
+            .split(/\s+/)
+            .filter(Boolean)
+            .slice(0, 2)
+            .join(".");
           cause = { why, sel: el.tagName.toLowerCase() + (cls ? "." + cls : "") };
           break;
         }
@@ -67,10 +79,18 @@ for (const route of ROUTES) {
       let band = "";
       for (let el = img.parentElement; el; el = el.parentElement) {
         const bg = getComputedStyle(el).backgroundColor;
-        if (bg && bg !== "rgba(0, 0, 0, 0)") { band = bg; break; }
+        if (bg && bg !== "rgba(0, 0, 0, 0)") {
+          band = bg;
+          break;
+        }
       }
-      out.push({ src: (img.currentSrc || img.src).split("/").pop(), mode, ...cause, band,
-                 size: `${Math.round(r.width)}x${Math.round(r.height)}` });
+      out.push({
+        src: (img.currentSrc || img.src).split("/").pop(),
+        mode,
+        ...cause,
+        band,
+        size: `${Math.round(r.width)}x${Math.round(r.height)}`,
+      });
     }
     return out;
   });

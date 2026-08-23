@@ -1,4 +1,5 @@
 import { notFound, useParams } from "@tanstack/react-router";
+import { useScrollChoreography } from "@/lib/motion";
 import { LocaleLink } from "@/components/LocaleLink";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
@@ -98,8 +99,10 @@ export function IndustryPage() {
   const faq = (t(`industries.${s}.faq`, { returnObjects: true }) as FAQ[]) || [];
   const industryName = t(`industries.${s}.name`);
 
+  const page = useScrollChoreography();
+
   return (
-    <div className="page-anim">
+    <div ref={page} className="page-anim">
       {/* ── Cinematic hero ─────────────────────────────────── */}
       <section className="relative min-h-[78vh] overflow-hidden">
         <motion.div
@@ -115,7 +118,8 @@ export function IndustryPage() {
             height={1067}
             fetchPriority="high"
             decoding="sync"
-            className="absolute inset-0 h-full w-full object-cover"
+            data-parallax="0.18"
+            className="absolute inset-0 h-full w-full scale-110 object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/25" />
         </motion.div>

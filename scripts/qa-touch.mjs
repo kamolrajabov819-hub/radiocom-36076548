@@ -31,8 +31,16 @@ import { chromium } from "playwright-core";
 
 const BASE = process.argv[2] ?? "http://127.0.0.1:4173";
 const ROUTES = [
-  "", "/radiocom", "/motorola", "/poc", "/radiocom/rcd-70", "/radiocom/rcd-70/specs",
-  "/service", "/compare", "/industries", "/industries/construction",
+  "",
+  "/radiocom",
+  "/motorola",
+  "/poc",
+  "/radiocom/rcd-70",
+  "/radiocom/rcd-70/specs",
+  "/service",
+  "/compare",
+  "/industries",
+  "/industries/construction",
 ];
 
 const browser = await chromium.launch({
@@ -109,7 +117,12 @@ for (const route of ROUTES) {
     for (const f of fails) console.log(`     ${f.what}`);
   }
   if (noteList.length) {
-    console.log(`note /ru${route || "/"}  ${noteList.length}: ${noteList.slice(0, 4).map((n) => n.what).join(" · ")}`);
+    console.log(
+      `note /ru${route || "/"}  ${noteList.length}: ${noteList
+        .slice(0, 4)
+        .map((n) => n.what)
+        .join(" · ")}`,
+    );
   }
 }
 await browser.close();

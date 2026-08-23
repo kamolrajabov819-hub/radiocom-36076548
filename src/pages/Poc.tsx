@@ -1,4 +1,5 @@
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { useScrollChoreography } from "@/lib/motion";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Check, Radio, MapPin, MessagesSquare, Layers, Coins, Wifi } from "lucide-react";
@@ -71,7 +72,11 @@ export const routeOptions = {
         // so the preload has to advertise the same candidate set the <img>
         // chooses from — otherwise the browser preloads one file and fetches
         // another. Gate 12 checks exactly this.
-        preloadImage({ src: heroPair, small: heroPair800, sizes: "(max-width: 768px) 86vw, 720px" }),
+        preloadImage({
+          src: heroPair,
+          small: heroPair800,
+          sizes: "(max-width: 768px) 86vw, 720px",
+        }),
       ],
       // /poc was the only page on the site emitting no structured data at all,
       // despite being a named product line with its own service offer.
@@ -102,8 +107,10 @@ export const routeOptions = {
 };
 
 export function PoCPage() {
+  const page = useScrollChoreography();
+
   return (
-    <div className="page-anim">
+    <div ref={page} className="page-anim">
       <PocHero />
       <StatBand />
       <FeatureSequence />
@@ -245,11 +252,16 @@ function StatBand() {
 
   return (
     <Section band="plain" tight>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        {stats.map((id, i) => (
-          <motion.div key={id} {...fadeUpAt(i)}>
-            <StatPanel value={t(`poc.poc_vals.${id}`)} label={t(`poc.rows.${id}`)} />
-          </motion.div>
+      {/* GSAP owns this row, not Framer.
+      
+          `data-stagger` batches every panel that crosses the fold in one frame
+          into a single staggered gesture, which is what apple.com's stat bands
+          do. Layering it over a Framer `fadeUpAt` would have both libraries
+          writing opacity and transform on the same node, which is a flicker
+          rather than a richer animation — so the Framer wrapper is gone. */}
+      <div data-stagger className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        {stats.map((id) => (
+          <StatPanel key={id} value={t(`poc.poc_vals.${id}`)} label={t(`poc.rows.${id}`)} />
         ))}
       </div>
     </Section>
@@ -300,7 +312,7 @@ function FeatureSequence() {
                 PMR / DMR — {t(`poc.pmr_vals.${f.id}`)}
               </p>
             </div>
-            <div className={i % 2 === 1 ? "md:order-1" : ""}>
+            <div className={i % 2 === 1 ? "md:order-1" : ""} data-parallax="0.09">
               <ProductShot
                 src={f.src}
                 srcSmall={f.small}
@@ -458,7 +470,7 @@ function Rental() {
           </button>
         </motion.div>
 
-        <motion.div {...fadeUpAt(1)} className="order-1 md:order-2">
+        <motion.div {...fadeUpAt(1)} className="order-1 md:order-2" data-parallax="0.08">
           <ProductShot
             src={radioInHand}
             srcSmall={radioInHand800}

@@ -88,7 +88,15 @@ import xt185Kit from "@/assets/catalog/xt185-kit.webp";
 import xt420Hero from "@/assets/catalog/xt420-hero.webp";
 import xt420Hero800 from "@/assets/catalog/xt420-hero@800.webp";
 
-import { inCity, upToFloors, upToKm, upToKmRange, upToM, type L, type Lang } from "@/data/spec-dict";
+import {
+  inCity,
+  upToFloors,
+  upToKm,
+  upToKmRange,
+  upToM,
+  type L,
+  type Lang,
+} from "@/data/spec-dict";
 
 export type Category = "amateur" | "professional";
 

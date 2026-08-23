@@ -1,4 +1,11 @@
-import { useEffect, useLayoutEffect, useRef, type RefObject } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useSyncExternalStore,
+  type RefObject,
+} from "react";
 import type * as gsapNs from "gsap";
 import type { ScrollTrigger as ScrollTriggerType } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
@@ -125,6 +132,31 @@ export function useSmoothScroll() {
 }
 
 /**
+ * `true` when the query matches, `true` always when no query is given.
+ *
+ * `useSyncExternalStore` rather than an effect-plus-state pair: it gives the
+ * server and the first client render the same answer (`false`, so nothing
+ * loads during hydration) and subscribes to the query without a second render
+ * pass.
+ */
+function useMediaQuery(query?: string): boolean {
+  const subscribe = useCallback(
+    (onChange: () => void) => {
+      if (!query || typeof window === "undefined") return () => {};
+      const mq = window.matchMedia(query);
+      mq.addEventListener("change", onChange);
+      return () => mq.removeEventListener("change", onChange);
+    },
+    [query],
+  );
+  return useSyncExternalStore(
+    subscribe,
+    () => (query ? window.matchMedia(query).matches : true),
+    () => false,
+  );
+}
+
+/**
  * Runs GSAP setup scoped to a container, cleaned up on unmount.
  *
  * `gsap.context()` records every tween and ScrollTrigger created inside the
@@ -132,13 +164,28 @@ export function useSmoothScroll() {
  * survive navigation and stack up on the next page.
  */
 export function useGsap(
-  setup: (ctx: { scope: HTMLElement; gsap: Gsap }) => void,
+  setup: (ctx: { scope: HTMLElement; gsap: Gsap; ScrollTrigger: typeof ScrollTriggerType }) => void,
   scopeRef: RefObject<HTMLElement | null>,
   deps: unknown[] = [],
+  /**
+   * A media query that must match before GSAP is fetched at all.
+   *
+   * `gsap.matchMedia()` inside `setup` is the right tool for building triggers
+   * conditionally, but it runs *after* the chunk has downloaded — so a phone
+   * would still pay 27 KB to decide it wants none of it. Passing the query here
+   * moves the decision in front of the network request.
+   *
+   * `useMediaQuery` keeps it live, so resizing a window past the breakpoint
+   * re-runs the effect and loads GSAP then.
+   */
+  when?: string,
 ) {
+  const active = useMediaQuery(when);
+
   useIsomorphicLayoutEffect(() => {
     const scope = scopeRef.current;
     if (!scope || typeof window === "undefined" || prefersReducedMotion()) return;
+    if (!active) return;
 
     let cancelled = false;
     let ctx: ReturnType<Gsap["context"]> | undefined;
@@ -146,14 +193,17 @@ export function useGsap(
     void loadGsap().then((loaded) => {
       if (cancelled) return;
       driveWithGsap(loaded);
-      ctx = loaded.gsap.context(() => setup({ scope, gsap: loaded.gsap }), scope);
+      ctx = loaded.gsap.context(
+        () => setup({ scope, gsap: loaded.gsap, ScrollTrigger: loaded.ScrollTrigger }),
+        scope,
+      );
     });
 
     return () => {
       cancelled = true;
       ctx?.revert();
     };
-  }, deps);
+  }, [...deps, active]);
 }
 
 /**
@@ -204,6 +254,118 @@ export function usePinnedScrub(
  * single-column.
  */
 export const DESKTOP = "(min-width: 768px)";
+
+/* ─────────────────────────────────────────────────────────────
+   The scroll choreography
+   ───────────────────────────────────────────────────────────── */
+
+/**
+ * One hook, applied per page, that reads its motion off the markup.
+ *
+ * Every page but the home page animated with Framer Motion alone, which does
+ * one thing: fade a block in once as it enters. That is an *appearance*, and
+ * apple.com's pages do not feel the way they do because things appear — they
+ * feel that way because things keep moving with the scrollbar after they have
+ * arrived. This is the missing half.
+ *
+ * Three behaviours, opted into with data attributes rather than by threading
+ * refs through every section:
+ *
+ *   `data-parallax="0.1"` — the element drifts against its band as the band
+ *     passes. The number is how far, as a fraction of its own height. Product
+ *     shots want 0.06-0.12; a full-bleed backdrop can take 0.2.
+ *
+ *   `data-scrub-in` — the element advances from slightly low and soft into
+ *     place across the first third of its band, tied to the scrollbar rather
+ *     than to a timer, so scrolling back up runs it backwards.
+ *
+ *   `data-stagger` on a container — its element children enter in sequence as
+ *     the row crosses the fold, via `ScrollTrigger.batch` so the whole visible
+ *     run animates together instead of each card firing its own trigger.
+ *
+ * **One library per element.** Framer owns the one-shot entrance; GSAP owns
+ * everything tied to scroll position. Both write `opacity` and `transform`, so
+ * an element carrying a Framer `fadeUpAt` *and* a `data-stagger` parent gets
+ * two libraries fighting over the same properties — which reads as a flicker,
+ * not as a richer animation. Four containers were marked and then unmarked for
+ * exactly this: `DuoCard` and `PosterCard` are `motion.article` at the root, so
+ * any grid of them already animates item by item.
+ *
+ * Before adding `data-stagger` to a container, check that its children are not
+ * motion components.
+ *
+ * **Desktop only, including the download.** The whole hook is behind a
+ * `(min-width: 768px)` check that runs *before* `loadGsap`, so a phone never
+ * fetches the 27 KB chunk at all. Parallax on a short viewport spends most of
+ * its life mid-drift, and a scrubbed reveal competes with the momentum of the
+ * flick that triggered it — so there is nothing on a phone for that 27 KB to
+ * buy. Framer's entrances still run there, as they always did.
+ */
+export function useScrollChoreography<T extends HTMLElement = HTMLDivElement>() {
+  const scopeRef = useRef<T>(null);
+  useGsap(
+    ({ scope, gsap, ScrollTrigger }) => {
+      const mm = gsap.matchMedia();
+
+      mm.add(DESKTOP, () => {
+        for (const el of scope.querySelectorAll<HTMLElement>("[data-parallax]")) {
+          const depth = Number(el.dataset.parallax) || 0.1;
+          const band = el.closest("section") ?? el.parentElement ?? el;
+          gsap.fromTo(
+            el,
+            { yPercent: -depth * 50 },
+            {
+              yPercent: depth * 50,
+              ease: "none",
+              scrollTrigger: { trigger: band, start: "top bottom", end: "bottom top", scrub: true },
+            },
+          );
+        }
+
+        for (const el of scope.querySelectorAll<HTMLElement>("[data-scrub-in]")) {
+          gsap.fromTo(
+            el,
+            { y: 48, opacity: 0.25 },
+            {
+              y: 0,
+              opacity: 1,
+              ease: "none",
+              scrollTrigger: { trigger: el, start: "top bottom", end: "top 62%", scrub: 0.5 },
+            },
+          );
+        }
+
+        for (const row of scope.querySelectorAll<HTMLElement>("[data-stagger]")) {
+          const items = Array.from(row.children) as HTMLElement[];
+          if (!items.length) continue;
+          gsap.set(items, { y: 28, opacity: 0 });
+          // `batch` collects every element crossing the fold within one frame and
+          // hands them to a single callback, so a four-card row animates as one
+          // gesture. Four independent triggers fire microseconds apart and read
+          // as four separate events.
+          ScrollTrigger.batch(items, {
+            start: "top 88%",
+            once: true,
+            onEnter: (batch) =>
+              gsap.to(batch, {
+                y: 0,
+                opacity: 1,
+                duration: 0.7,
+                stagger: 0.08,
+                ease: "power2.out",
+                overwrite: true,
+              }),
+          });
+        }
+      });
+    },
+    scopeRef,
+    [],
+    DESKTOP,
+  );
+
+  return scopeRef;
+}
 
 /**
  * Deliberately no `export { gsap }`. A re-export would let a call site write
