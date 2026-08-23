@@ -76,6 +76,7 @@ export const routeOptions = {
         title: t("meta.compare.title", { count: visibleProducts.length }),
         description: t("meta.compare.desc"),
         path,
+        ogCard: "compare",
       }),
       links: localeLinks(params.lang, path),
       scripts: [

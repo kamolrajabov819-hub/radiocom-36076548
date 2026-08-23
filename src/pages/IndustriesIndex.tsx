@@ -40,6 +40,7 @@ export const routeOptions = {
         title: t("meta.industries.title"),
         description: t("meta.industries.desc"),
         path: "/industries",
+        ogCard: "industries",
       }),
       links: localeLinks(params.lang, "/industries"),
       scripts: [

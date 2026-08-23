@@ -83,7 +83,7 @@ export function productStoryRouteOptions() {
           title,
           description,
           path,
-          image: p.image,
+          ogCard: `product-${p.slug}`,
           type: "product",
           product: { price: p.price },
         }),

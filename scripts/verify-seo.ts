@@ -25,6 +25,8 @@ import {
   visibleProducts,
 } from "../src/data/products";
 import { specs } from "../src/data/specs";
+import { INDUSTRY_SLUGS } from "../src/data/industries";
+import { tFor } from "../src/lib/i18n";
 import { SPEC } from "../src/data/spec-dict";
 import { entries } from "./lib/sitemap";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
@@ -633,6 +635,124 @@ console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
   }
   if (problems.length) bad(`isRelatedTo:\n     ${problems.join("\n     ")}`);
   else console.log("ok  isRelatedTo resolves to visible sibling models only");
+}
+
+// 21. Every route's social card must exist, and be the size it claims to be.
+//
+//     `pageMeta` emits `og:image:width` 1200 and `og:image:height` 630 next to
+//     every `og:image`, because a scraper told the wrong dimensions either
+//     letterboxes the card or drops it. That pairing is only honest while the
+//     file on disk actually is 1200x630 — and the file is a build artifact from
+//     `scripts/build-og-images.ts`, generated from photography and catalogue
+//     filenames, so a renamed image or a new model silently breaks it.
+//
+//     Reads the JPEG's own SOF marker rather than trusting the filename. There
+//     is no image library in this toolchain (deliberately — see the note in
+//     build-og-images.ts), and a JPEG's dimensions are four bytes at a known
+//     offset, so parsing is cheaper than a dependency.
+{
+  const jpegSize = (file: string): [number, number] | null => {
+    const b = readFileSync(file);
+    if (b[0] !== 0xff || b[1] !== 0xd8) return null;
+    let i = 2;
+    while (i < b.length - 9) {
+      if (b[i] !== 0xff) {
+        i++;
+        continue;
+      }
+      const marker = b[i + 1];
+      // SOF0/1/2/3 and 5-7, 9-11, 13-15 all carry height/width at the same
+      // offset. DHT (c4), DAC (cc) and RSTn (d0-d7) share the range and do not.
+      const isSof =
+        marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc;
+      if (isSof) return [b.readUInt16BE(i + 7), b.readUInt16BE(i + 5)];
+      i += 2 + b.readUInt16BE(i + 2);
+    }
+    return null;
+  };
+
+  // Every card a route can ask for, derived the same way the pages derive it.
+  const wanted = new Set<string>([
+    "home",
+    "radiocom",
+    "motorola",
+    "compare",
+    "poc",
+    "service",
+    "industries",
+    "search",
+    "sitemap",
+    ...INDUSTRY_SLUGS.map((s) => `industries-${s}`),
+    ...visibleProducts.map((p) => `product-${p.slug}`),
+  ]);
+
+  const problems: string[] = [];
+  for (const slug of wanted) {
+    const file = join("public/og", `${slug}.jpg`);
+    if (!existsSync(file)) {
+      problems.push(`${slug}.jpg is missing — run: bun scripts/build-og-images.ts`);
+      continue;
+    }
+    const size = jpegSize(file);
+    if (!size) problems.push(`${slug}.jpg is not a readable JPEG`);
+    else if (size[0] !== 1200 || size[1] !== 630)
+      problems.push(`${slug}.jpg is ${size[0]}x${size[1]}, but every page declares 1200x630`);
+  }
+  if (problems.length) bad(`social cards:\n     ${problems.join("\n     ")}`);
+  else console.log(`ok  all ${wanted.size} social cards exist at the 1200x630 they declare`);
+}
+
+// 22. Titles and descriptions must be unique within a locale, and the right
+//     length.
+//
+//     Two pages sharing a <title> is how Google decides one of them is not
+//     worth indexing separately, and it is easy to do by accident here because
+//     every title is an i18n key and several read alike. Length matters for a
+//     duller reason: a title past ~60 characters is truncated in the result,
+//     so the part that distinguishes it from its siblings is the part that
+//     disappears.
+//
+//     Descriptions are bounded but not failed on the upper end alone — Google
+//     rewrites long ones rather than penalising them. An *empty* or near-empty
+//     one is the real defect, because then it writes its own from the page.
+{
+  const problems: string[] = [];
+  for (const lang of LANGS) {
+    const t = tFor(lang);
+    const seen = new Map<string, string>();
+    const check = (label: string, title: string, description: string) => {
+      const prevT = seen.get(`t:${title}`);
+      if (prevT) problems.push(`${lang}: "${title}" is the title of both ${prevT} and ${label}`);
+      else seen.set(`t:${title}`, label);
+
+      const prevD = seen.get(`d:${description}`);
+      if (prevD) problems.push(`${lang}: ${label} and ${prevD} share a description word for word`);
+      else seen.set(`d:${description}`, label);
+
+      if (title.length > 65) problems.push(`${lang}: ${label} title is ${title.length} chars`);
+      if (description.length < 70)
+        problems.push(`${lang}: ${label} description is only ${description.length} chars`);
+    };
+
+    check("/", t("meta.home.title"), t("meta.home.desc"));
+    check(
+      "/compare",
+      t("meta.compare.title", { count: visibleProducts.length }),
+      t("meta.compare.desc"),
+    );
+    check("/poc", t("meta.poc.title"), t("meta.poc.desc"));
+    check("/service", t("meta.service.title"), t("meta.service.desc"));
+    check("/industries", t("meta.industries.title"), t("meta.industries.desc"));
+    check("/search", t("meta.search.title"), t("meta.search.desc"));
+    for (const b of ["radiocom", "motorola"] as const)
+      check(
+        `/${b}`,
+        t(`meta.brand.${b}_title`),
+        t(`meta.brand.${b}_desc`, { count: productsOfBrand(b).length }),
+      );
+  }
+  if (problems.length) bad(`meta uniqueness/length:\n     ${problems.join("\n     ")}`);
+  else console.log("ok  every page title and description is distinct and correctly sized");
 }
 
 console.log(fail === 0 ? "\nALL SEO CHECKS PASSED" : `\n${fail} FAILURES`);

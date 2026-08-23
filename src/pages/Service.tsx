@@ -48,6 +48,7 @@ export const routeOptions = {
         title: t("meta.service.title"),
         description: t("meta.service.desc"),
         path: "/service",
+        ogCard: "service",
       }),
       links: localeLinks(params.lang, "/service"),
       scripts: [

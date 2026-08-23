@@ -97,7 +97,7 @@ export function brandRouteOptions(brandSlug: BrandSlug) {
       const path = brandPath(brandSlug);
 
       return {
-        meta: pageMeta({ lang: params.lang, title, description, path }),
+        meta: pageMeta({ lang: params.lang, title, description, path, ogCard: brandSlug }),
         links: [
           ...localeLinks(params.lang, path),
           // The first lineup card is the LCP element on this page at every

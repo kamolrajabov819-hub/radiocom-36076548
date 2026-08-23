@@ -636,7 +636,7 @@
   },
   "meta": {
     "home": {
-      "title": "Toshkentda ratsiya va radiostansiyalar — Motorola, Radiocom | Radiocom",
+      "title": "Toshkentda ratsiyalar — Motorola va Radiocom | Radiocom",
       "desc": "O'zbekistondagi rasmiy radiostansiya yetkazib beruvchi: bozorda 11 yil, 10 000+ mijoz. Motorola, Hytera, PoC va Radiocom RC. Bepul sinov, kafolat, Toshkentda servis."
     },
     "poc": {
@@ -650,7 +650,7 @@
       "schema_desc": "Toshkentda Motorola, Hytera va Vertex Standard radiostansiyalarini kafolatli va kafolatdan keyingi ta'mirlash."
     },
     "industries": {
-      "title": "Biznes uchun ratsiyalar: HoReCa, qurilish, qo'riqlash, transport | Radiocom",
+      "title": "Biznes uchun ratsiyalar — HoReCa, qurilish, transport | Radiocom",
       "desc": "Olti soha uchun tayyor radioaloqa yechimlari: HoReCa, qurilish, qo'riqlash, kon qazish, transport va ishlab chiqarish. Model tanlash va bepul sinov."
     },
     "industry": {
@@ -685,7 +685,7 @@
       "compare_desc": "Barcha ratsiyalar masofa, standart, himoya darajasi va narx bo'yicha bitta jadvalda."
     },
     "brand": {
-      "radiocom_title": "Radiocom RC va RCD ratsiyalari — Toshkentda sotib olish | Radiocom",
+      "radiocom_title": "Radiocom RC va RCD ratsiyalari — Toshkentda sotib olish",
       "radiocom_desc": "{{count}} ta Radiocom modeli: analog RC va raqamli RCD DMR ratsiyalari. Narxlar, xususiyatlar, 12 oy kafolat va O'zbekiston bo'ylab bepul sinov.",
       "motorola_title": "Motorola ratsiyalari — Toshkentda sotib olish | Radiocom",
       "motorola_desc": "{{count}} ta Motorola modeli: Talkabout, XT, TLKR va CLP. Litsenziyasiz PMR ratsiyalar, kafolat, yetkazib berish va bepul sinov bilan."
@@ -695,7 +695,7 @@
       "desc": "{{name}} to'liq xususiyatlari: {{price}}. To'plam, masofa, himoya darajasi. 12 oy kafolat, O'zbekiston bo'ylab bepul yetkazib berish."
     },
     "compare": {
-      "title": "Motorola va Radiocom ratsiyalarini solishtirish — {{count}} model | Radiocom",
+      "title": "Ratsiyalarni solishtirish — {{count}} model | Radiocom",
       "desc": "Barcha modellar masofa, standart, himoya darajasi va narx bo'yicha bitta jadvalda. Vazifaga mos ratsiyani tanlang."
     },
     "search": {

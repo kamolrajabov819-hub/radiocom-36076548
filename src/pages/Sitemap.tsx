@@ -40,6 +40,7 @@ export const routeOptions = {
         title: `${t("sitemap.title")} — Radiocom`,
         description: t("sitemap.sub"),
         path,
+        ogCard: "sitemap",
       }),
       links: localeLinks(params.lang, path),
       scripts: [

@@ -59,7 +59,7 @@ export const routeOptions = {
     const description = t("meta.home.desc");
 
     return {
-      meta: pageMeta({ lang: params.lang, title, description, path: "/" }),
+      meta: pageMeta({ lang: params.lang, title, description, path: "/", ogCard: "home" }),
       links: [
         ...localeLinks(params.lang, "/"),
         // The hero cutout is the LCP element here. Candidate set and sizes must

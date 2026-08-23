@@ -69,7 +69,7 @@ export function productSpecsRouteOptions() {
           title,
           description,
           path,
-          image: p.image,
+          ogCard: `product-${p.slug}`,
           type: "product",
         }),
         links: localeLinks(params.lang, path),

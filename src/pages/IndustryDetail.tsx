@@ -62,6 +62,7 @@ export const routeOptions = {
         description,
         path,
         type: "article",
+        ogCard: `industries-${slug}`,
       }),
       links: localeLinks(params.lang, path),
       scripts: [
