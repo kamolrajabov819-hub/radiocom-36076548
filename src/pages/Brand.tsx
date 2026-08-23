@@ -14,17 +14,22 @@ import {
   TintTag,
 } from "@/components/apple";
 import { INDUSTRY_SLUGS } from "@/data/industries";
-import { INDUSTRY_IMAGES } from "@/data/industry-images";
+import { INDUSTRY_POSTERS } from "@/data/industry-images";
 import { openLead } from "@/components/LeadFormSheet";
 import priceListPdf from "@/assets/radiocom-price-list.pdf";
 // apple.com's "Why Apple is the best place to shop Mac" cards each carry a
 // photograph at the bottom; ours were text with an empty half. These are the
 // frames the repo already has that actually depict each claim.
-import whyWarranty from "@/assets/radio-with-retail-box.webp";
-import whyDelivery from "@/assets/radios-floating-pair.webp";
-import whyService from "@/assets/radio-macro-display.webp";
-import whyTest from "@/assets/hands-two-radios-front.webp";
-import whyTradein from "@/assets/hands-tradein-pair.webp";
+//
+// The `@800` variants deliberately. These render at 130px tall — Lighthouse
+// caught the full-size files costing 315 KB on this page for images displayed
+// at a tenth of their width. The small candidates are 95 KB for the set and
+// still oversampled at DPR 2.
+import whyWarranty from "@/assets/radio-with-retail-box@800.webp";
+import whyDelivery from "@/assets/radios-floating-pair@800.webp";
+import whyService from "@/assets/radio-macro-display@800.webp";
+import whyTest from "@/assets/hands-two-radios-front@800.webp";
+import whyTradein from "@/assets/hands-tradein-pair@800.webp";
 import {
   products,
   productsOfBrand,
@@ -330,7 +335,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
             >
               <PosterCard
                 idx={i}
-                image={INDUSTRY_IMAGES[slug]}
+                image={INDUSTRY_POSTERS[slug]}
                 eyebrow={t(`industries.${slug}.short`)}
                 title={t(`industries.${slug}.name`)}
                 href={

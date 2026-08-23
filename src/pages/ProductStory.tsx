@@ -24,7 +24,7 @@ import {
 } from "@/data/products";
 import { specs } from "@/data/specs";
 import { INDUSTRY_SLUGS, type IndustrySlug } from "@/data/industries";
-import { INDUSTRY_IMAGES } from "@/data/industry-images";
+import { INDUSTRY_POSTERS } from "@/data/industry-images";
 import { pick, type Lang } from "@/data/spec-dict";
 import {
   breadcrumbSchema,
@@ -601,7 +601,7 @@ function WhereUsed({ p, lang }: { p: Product; lang: Lang }) {
           <PosterCard
             key={slug}
             idx={i}
-            image={INDUSTRY_IMAGES[slug]}
+            image={INDUSTRY_POSTERS[slug]}
             eyebrow={t(`industries.${slug}.short`)}
             title={t(`industries.${slug}.name`)}
             href={

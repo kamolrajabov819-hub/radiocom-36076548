@@ -890,6 +890,9 @@ export function PosterCard({
         alt=""
         loading="lazy"
         decoding="async"
+        width={600}
+        height={900}
+        sizes="(min-width: 1024px) 220px, 54vw"
         className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
       />
       {/* The scrim is not decoration — it is what makes the copy legible over
