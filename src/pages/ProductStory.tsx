@@ -626,37 +626,57 @@ function WhereUsed({ p, lang }: { p: Product; lang: Lang }) {
   return (
     <Section band="plain">
       <SectionHead align="left" spacing="tight" title={t("px.where_used")} />
-      {/* Columns from the count, not a fixed four. A model is specified for
-          one to four industries, and a fixed 4-column grid rendered two cards
-          against two empty cells — the row read as broken rather than short.
-          apple.com never leaves a hole in a row; it changes the row. */}
-      <div
-        className={cn(
-          "grid gap-4",
-          slugs.length === 1 && "max-w-[320px] grid-cols-1",
-          slugs.length === 2 && "max-w-[660px] grid-cols-2",
-          slugs.length === 3 && "grid-cols-2 sm:grid-cols-3",
-          slugs.length >= 4 && "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4",
-        )}
-      >
-        {slugs.map((slug, i) => (
-          <PosterCard
-            key={slug}
-            idx={i}
-            image={INDUSTRY_POSTERS[slug]}
-            eyebrow={t(`industries.${slug}.short`)}
-            title={t(`industries.${slug}.name`)}
-            href={
-              <LocaleLink
-                to="/industries/$slug"
-                params={{ slug }}
-                className="absolute inset-0 z-20 rounded-[18px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
-                aria-label={t(`industries.${slug}.name`)}
-              />
-            }
-          />
-        ))}
-      </div>
+      {/* Three or more industries scroll sideways, the way every other card
+          row on the site does: two half-cards wedged into a phone-width grid
+          were unreadable posters. One or two stay a grid — a scroller with
+          nothing to scroll is worse than a short row. */}
+      {slugs.length >= 3 ? (
+        <HighlightsShelf label={t("px.where_used")}>
+          {slugs.map((slug, i) => (
+            <PosterCard
+              key={slug}
+              idx={i}
+              className="w-[62vw] shrink-0 snap-start sm:w-[38vw] lg:w-[calc((100%-3rem)/4)]"
+              image={INDUSTRY_POSTERS[slug]}
+              eyebrow={t(`industries.${slug}.short`)}
+              title={t(`industries.${slug}.name`)}
+              href={
+                <LocaleLink
+                  to="/industries/$slug"
+                  params={{ slug }}
+                  className="absolute inset-0 z-20 rounded-[18px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
+                  aria-label={t(`industries.${slug}.name`)}
+                />
+              }
+            />
+          ))}
+        </HighlightsShelf>
+      ) : (
+        <div
+          className={cn(
+            "grid gap-4",
+            slugs.length === 1 ? "max-w-[320px] grid-cols-1" : "max-w-[660px] grid-cols-2",
+          )}
+        >
+          {slugs.map((slug, i) => (
+            <PosterCard
+              key={slug}
+              idx={i}
+              image={INDUSTRY_POSTERS[slug]}
+              eyebrow={t(`industries.${slug}.short`)}
+              title={t(`industries.${slug}.name`)}
+              href={
+                <LocaleLink
+                  to="/industries/$slug"
+                  params={{ slug }}
+                  className="absolute inset-0 z-20 rounded-[18px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
+                  aria-label={t(`industries.${slug}.name`)}
+                />
+              }
+            />
+          ))}
+        </div>
+      )}
       <p className="sr-only">{pick(p.blurb, lang)}</p>
     </Section>
   );
