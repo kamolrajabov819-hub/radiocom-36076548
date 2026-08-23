@@ -350,7 +350,7 @@ export function BentoGrid({ children, cols = 3 }: { children: ReactNode; cols?: 
 export function ScrollRow({ children, cols = 4 }: { children: ReactNode; cols?: 3 | 4 }) {
   return (
     <div
-      className={`no-scrollbar bleed-x flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 lg:mx-0 lg:grid lg:snap-none lg:overflow-visible lg:px-0 ${
+      className={`no-scrollbar bleed-x flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-p-[var(--gutter)] pb-2 lg:mx-0 lg:grid lg:snap-none lg:overflow-visible lg:px-0 ${
         cols === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"
       }`}
     >
