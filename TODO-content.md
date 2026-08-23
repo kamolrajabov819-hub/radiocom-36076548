@@ -355,6 +355,37 @@ repo:
 
 ---
 
+## The QA suite — `bun run qa`
+
+`bun run verify` checks the source and the JSON: 20 SEO gates, 10 i18n gates,
+the asset manifest. It runs in the build and takes a second.
+
+`bun run qa` is the other half, and it needs a server: it drives a real browser
+against a `node-server` build and checks the things that only fail at render
+time. Start the server first (`NITRO_PRESET=node-server bun run build` then
+`node .output/server/index.mjs`), then:
+
+| script | what only it can catch |
+|---|---|
+| `qa-images` | an `<img>` in the broken state — 1896 elements across 132 page loads |
+| `qa-overflow` | a page that scrolls sideways, at six widths from 390 to 1920 |
+| `qa-touch` | a tap target under 24px, with touch emulation on |
+| `qa-blend` | a `mix-blend` image stranded inside a stacking context, which renders as a white box on a tinted band |
+| `qa-motion` | a page with no scroll choreography, a phone downloading GSAP, or an element left invisible by a stagger that never fired |
+| `qa-search` | the route the `SearchAction` advertises returning nothing |
+| `qa-i18n-rendered` | a raw key or stray Cyrillic on the rendered page — this is how `tradein.sub` was found after every JSON check passed |
+| `qa-a11y` | WCAG 2.2 A/AA, 12 routes × 3 locales |
+
+Two of these exist because a static check let something through to production.
+`qa-blend` was written after the PoC hero rendered as a white rectangle, and
+then immediately caught the same mistake being made again on the compare table.
+`qa-i18n-rendered` was written after `tradein.sub` shipped as visible text on
+both brand pages in all three locales, having passed every key-parity check —
+because the key was stored as data in a card table rather than written as a
+literal `t("...")`. `verify-i18n` now catches that class too.
+
+---
+
 # Performance — measured, and where the ceiling is
 
 Lighthouse, mobile, throttled, across seven page types:

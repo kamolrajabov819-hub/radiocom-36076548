@@ -324,6 +324,51 @@ console.log("ok  og:locale, canonical URLs and JSON-LD are locale-correct");
   walkTemplates("src");
   missing.push(...templateMissing);
 
+  /*
+   * Keys stored as data, not written as `t("...")`.
+   *
+   * `Brand.tsx` keeps its five "why us" cards as a table of `{ eyebrow, title,
+   * detail }` triples whose values are key *strings*, then renders them with
+   * `t(c.detail)`. That is the right shape — it stops a card's heading and its
+   * disclosure text drifting apart — but it puts the key out of reach of the
+   * literal check above, and `detail: "tradein.sub"` shipped to production on
+   * both brand pages in all three locales. The reader saw the characters
+   * "tradein.sub"; the real key is `tradein.desc`.
+   *
+   * The heuristic: a string literal that looks like a dotted key path, in a
+   * file that calls `t()`, must resolve. Deliberately conservative — it wants
+   * at least one dot and only lowercase segments, so CSS classes, file paths
+   * and sentences are not candidates.
+   */
+  const KEY_SHAPE = /^[a-z][a-z0-9_]*(?:\.[a-z][a-z0-9_]*){1,3}$/;
+  const walkDataKeys = (dir: string) => {
+    for (const e of readdirSync(dir, { withFileTypes: true })) {
+      const full = join(dir, e.name);
+      if (e.isDirectory()) {
+        walkDataKeys(full);
+        continue;
+      }
+      if (!/\.tsx?$/.test(e.name)) continue;
+      const src = readFileSync(full, "utf8");
+      if (!/\bt\(/.test(src)) continue;
+      for (const m of src.matchAll(/"([a-z][a-z0-9_.]{4,60})"/g)) {
+        const key = m[1];
+        if (!KEY_SHAPE.test(key)) continue;
+        // Only strings that sit in a `key:`-style position — a bare dotted
+        // string elsewhere is far more likely to be a path or a MIME type.
+        const before = src.slice(Math.max(0, m.index - 40), m.index);
+        if (!/[:=]\s*$/.test(before)) continue;
+        if (has(key)) continue;
+        // A namespace prefix used with template interpolation resolves at
+        // runtime; those are the template check's business, not this one.
+        if (new RegExp("`" + key.split(".")[0] + "\\.").test(src)) continue;
+        const line = src.slice(0, m.index).split("\n").length;
+        missing.push(`${full}:${line} "${key}" is stored as a key but is absent from ru.json`);
+      }
+    }
+  };
+  walkDataKeys("src");
+
   if (missing.length)
     bad(
       `${missing.length} t() call(s) reference a key absent from ru.json — these render as the raw key:\n     ` +

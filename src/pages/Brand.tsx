@@ -485,7 +485,7 @@ const WHY_CARDS = [
     key: "tradein",
     eyebrow: "home.bento.tradein.title",
     title: "home.bento.tradein.sub",
-    detail: "tradein.sub",
+    detail: "tradein.desc",
     image: whyTradein,
     w: 800,
     h: 447,
