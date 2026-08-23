@@ -310,7 +310,7 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
               height={1024}
               loading="lazy"
               decoding="async"
-              className="h-[120px] w-auto max-w-[70%] object-contain mix-blend-multiply"
+              className="h-[160px] w-auto max-w-[80%] object-contain mix-blend-multiply md:h-[190px]"
             />
           </div>
           <div className="mt-6">
@@ -333,7 +333,9 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
             <div className={`text-[14px] font-medium ${c.lead ? "opacity-70" : "text-cool"}`}>
               {c.label}
             </div>
-            <div className="mt-8 text-[26px] font-semibold leading-[1.1] tracking-[-0.02em]">
+            {/* 26px held a value like «до 3 км, 8 Вт» hard against the card's
+                padding on a 78vw phone card. One step down below `sm`. */}
+            <div className="mt-8 text-[21px] font-semibold leading-[1.15] tracking-[-0.02em] sm:text-[26px]">
               {c.value}
             </div>
           </article>
