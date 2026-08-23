@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { ChevronRight, FileDown, Check, Quote, Radio, Repeat, Wrench } from "lucide-react";
 import { INDUSTRY_SLUGS, industryPicks, type IndustrySlug } from "@/data/industries";
+import { INDUSTRY_IMAGES as IMAGES } from "@/data/industry-images";
 import { visibleProducts } from "@/data/products";
 import { openLead } from "@/components/LeadFormSheet";
 import { CountUp } from "@/components/CountUp";
@@ -15,12 +16,6 @@ import { BentoGrid, FeatureCard } from "@/components/apple";
 // The client's own price list, dated 29.06.26. Replaces a CDN pointer to a
 // catalogue PDF that only existed on radiocom.lovable.app.
 import priceListPdf from "@/assets/radiocom-price-list.pdf";
-import horecaImg from "@/assets/industry-horeca.jpg";
-import constructionImg from "@/assets/industry-construction.jpg";
-import securityImg from "@/assets/industry-security.jpg";
-import miningImg from "@/assets/industry-mining.jpg";
-import transportImg from "@/assets/industry-transport.jpg";
-import manufacturingImg from "@/assets/industry-manufacturing.jpg";
 import { fadeUpAt, spring } from "@/lib/springs";
 import {
   SITE_NAME,
@@ -32,15 +27,6 @@ import {
   type SeoLang,
 } from "@/lib/seo";
 import { tFor } from "@/lib/i18n";
-
-const IMAGES: Record<string, string> = {
-  horeca: horecaImg,
-  construction: constructionImg,
-  security: securityImg,
-  mining: miningImg,
-  transport: transportImg,
-  manufacturing: manufacturingImg,
-};
 
 export const routeOptions = {
   beforeLoad: ({ params }: { params: { lang: string; slug: string } }) => {

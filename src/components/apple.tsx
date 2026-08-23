@@ -844,3 +844,128 @@ export function ExpandCard({
 export function TintTag({ children }: { children: ReactNode }) {
   return <span className="font-medium text-crisp">{children}</span>;
 }
+
+/**
+ * The tall poster card from apple.com/mac's "Get to know Mac" shelf.
+ *
+ * A 2:3 portrait frame filled edge to edge by a photograph, with a small
+ * eyebrow and a two-line headline set over the top-left corner and an optional
+ * `+` bottom-right. Apple runs eight of them in a scrolling row, and they are
+ * what stops a long page from being an unbroken sequence of white cards.
+ *
+ * The headline sits on the photograph, so legibility cannot be left to luck: a
+ * top-down scrim runs under the copy on every card regardless of how light the
+ * frame is. Without it a headline over a bright sky is unreadable, and the
+ * failure only shows up on the one photograph nobody checked.
+ */
+export function PosterCard({
+  eyebrow,
+  title,
+  image,
+  href,
+  idx = 0,
+  className = "",
+}: {
+  eyebrow?: string;
+  title: string;
+  image: string;
+  /** The whole card is the link target; the caller supplies the element. */
+  href?: ReactNode;
+  idx?: number;
+  className?: string;
+}) {
+  return (
+    <motion.article
+      {...fadeUpAt(Math.min(idx, 6))}
+      className={cn(
+        "group relative isolate flex aspect-[2/3] flex-col overflow-hidden rounded-[18px] bg-charcoal",
+        className,
+      )}
+    >
+      <img
+        src={image}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+      />
+      {/* The scrim is not decoration — it is what makes the copy legible over
+          an arbitrary photograph. Top-weighted, because that is where the copy
+          is, and it fades out before the middle so the subject stays clear. */}
+      <div
+        aria-hidden
+        className="absolute inset-x-0 top-0 h-2/5 bg-gradient-to-b from-black/70 to-transparent"
+      />
+      <div className="relative z-10 p-5">
+        {eyebrow ? (
+          <div className="text-[11px] font-medium leading-tight text-white/80">{eyebrow}</div>
+        ) : null}
+        <h3 className="mt-1 max-w-[15ch] text-[17px] font-semibold leading-[1.2] tracking-[-0.01em] text-white">
+          {title}
+        </h3>
+      </div>
+      {href}
+    </motion.article>
+  );
+}
+
+/**
+ * The 2-up card from apple.com/mac's "Switch to Mac" and "Mac essentials".
+ *
+ * Centred copy at the top — title, one line of body, a text link — and a
+ * photograph filling the bottom half. Apple uses it for the two or three
+ * things it wants to say after the lineup has done its work, and the centring
+ * is what separates it from the left-aligned cards above: it reads as a
+ * closing pair rather than more of the same list.
+ */
+export function DuoCard({
+  title,
+  body,
+  link,
+  media,
+  idx = 0,
+  tone = "light",
+  className = "",
+}: {
+  title: string;
+  body?: string;
+  link?: ReactNode;
+  media?: ReactNode;
+  idx?: number;
+  tone?: "light" | "dark";
+  className?: string;
+}) {
+  const dark = tone === "dark";
+  return (
+    <motion.article
+      {...fadeUpAt(Math.min(idx, 6))}
+      className={cn(
+        "group card-interactive flex flex-col overflow-hidden rounded-[28px] pt-9 text-center md:pt-11",
+        dark ? "is-dark bg-black text-[#f5f5f7]" : "bg-pitch text-crisp",
+        className,
+      )}
+    >
+      <div className="px-7 md:px-9">
+        <h3 className="mx-auto max-w-[22ch] text-[21px] font-semibold leading-[1.15] tracking-[-0.02em] md:text-[24px]">
+          {title}
+        </h3>
+        {body ? (
+          <p
+            className={cn(
+              "mx-auto mt-3 max-w-[38ch] text-[14px] leading-relaxed",
+              dark ? "text-white/60" : "text-cool",
+            )}
+          >
+            {body}
+          </p>
+        ) : null}
+        {link ? <div className="mt-4 flex justify-center">{link}</div> : null}
+      </div>
+      {media ? (
+        <div className="mt-7 flex min-h-0 flex-1 items-end justify-center overflow-hidden">
+          {media}
+        </div>
+      ) : null}
+    </motion.article>
+  );
+}

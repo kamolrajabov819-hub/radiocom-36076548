@@ -18,7 +18,8 @@
  * Run: bun scripts/verify-i18n.ts
  */
 
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
+import { join } from "node:path";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { I18nextProvider, useTranslation } from "react-i18next";
@@ -218,6 +219,62 @@ for (const l of LANGS) {
     bad(`${l}: product schema description is not this locale's blurb`);
 }
 console.log("ok  og:locale, canonical URLs and JSON-LD are locale-correct");
+
+/* ─────────────────────────────────────────────────────────────
+   Every literal key a component asks for must exist.
+   ───────────────────────────────────────────────────────────── */
+// The existing checks compare the three locale files against each other, so a
+// key that is missing from *all* of them passes: parity holds at zero. That is
+// how `service.hero.sub` reached the brand page twice — i18next renders an
+// unknown key as the key itself, so the page displayed the literal string
+// "service.hero.sub" to visitors and no gate objected.
+//
+// Only literal `t("...")` calls can be checked. Template keys built at runtime
+// (`t(\`industries.${slug}.name\`)) are skipped rather than guessed at.
+{
+  const ru = JSON.parse(readFileSync("src/i18n/ru.json", "utf8")) as Record<string, unknown>;
+  const has = (dotted: string) => {
+    let node: unknown = ru;
+    for (const part of dotted.split(".")) {
+      if (typeof node !== "object" || node === null) return false;
+      node = (node as Record<string, unknown>)[part];
+      if (node === undefined) return false;
+    }
+    return true;
+  };
+
+  const missing: string[] = [];
+  const walk = (dir: string) => {
+    for (const e of readdirSync(dir, { withFileTypes: true })) {
+      const full = join(dir, e.name);
+      if (e.isDirectory()) walk(full);
+      else if (/\.tsx?$/.test(e.name)) {
+        const src = readFileSync(full, "utf8");
+        for (const m of src.matchAll(/\bt\(\s*"([a-z][\w.]*?)"([^)]*)/gi)) {
+          const key = m[1];
+          // A namespace prefix with no dot is not an i18n path.
+          if (!key.includes(".")) continue;
+          // A call that supplies its own `defaultValue` renders that, not the
+          // key, so a missing entry is intentional rather than a bug —
+          // `poc.design.step_label` falls back to a zero-padded index.
+          if (m[2].includes("defaultValue")) continue;
+          if (!has(key)) {
+            const line = src.slice(0, m.index).split("\n").length;
+            missing.push(`${full}:${line} t("${key}")`);
+          }
+        }
+      }
+    }
+  };
+  walk("src");
+
+  if (missing.length)
+    bad(
+      `${missing.length} t() call(s) reference a key absent from ru.json — these render as the raw key:\n     ` +
+        missing.join("\n     "),
+    );
+  else console.log("ok  every literal t() key resolves against ru.json");
+}
 
 console.log(fail === 0 ? "\nALL I18N CHECKS PASSED" : `\n${fail} FAILURES`);
 process.exit(fail ? 1 : 0);

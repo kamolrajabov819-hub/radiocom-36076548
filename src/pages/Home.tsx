@@ -288,7 +288,10 @@ function FeatureDark() {
  */
 function ValueShelf() {
   const { t } = useTranslation();
-  const openTest = () => openLead({ title: t("lead.title") });
+  // `lead.title` does not exist — this rendered the literal string "lead.title"
+  // as the card's button label on the live home page. The sheet takes the
+  // card's own subject; the button takes the site-wide CTA string.
+  const openTest = () => openLead({ title: t("home.bento.tradein.title") });
 
   return (
     <Section band="soft" tight>
@@ -343,7 +346,7 @@ function ValueShelf() {
           title={t("home.bento.tradein.sub")}
           className="min-h-[260px]"
           copyClassName="pr-10"
-          action={{ label: t("lead.title"), onClick: openTest }}
+          action={{ label: t("px.buy"), onClick: openTest }}
           backdrop={
             /* `contain`, and the slot is given the image's own 3:4 proportion
                so there is nothing to crop. The previous version passed

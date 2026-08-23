@@ -4,15 +4,27 @@ import { ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
 import { Section } from "@/components/Section";
 import {
+  DuoCard,
   ExpandCard,
   FilterPills,
   HighlightsShelf,
   ModelStrip,
   ModelStripItem,
+  PosterCard,
   TintTag,
 } from "@/components/apple";
+import { INDUSTRY_SLUGS } from "@/data/industries";
+import { INDUSTRY_IMAGES } from "@/data/industry-images";
 import { openLead } from "@/components/LeadFormSheet";
 import priceListPdf from "@/assets/radiocom-price-list.pdf";
+// apple.com's "Why Apple is the best place to shop Mac" cards each carry a
+// photograph at the bottom; ours were text with an empty half. These are the
+// frames the repo already has that actually depict each claim.
+import whyWarranty from "@/assets/radio-with-retail-box.webp";
+import whyDelivery from "@/assets/radios-floating-pair.webp";
+import whyService from "@/assets/radio-macro-display.webp";
+import whyTest from "@/assets/hands-two-radios-front.webp";
+import whyTradein from "@/assets/hands-tradein-pair.webp";
 import {
   products,
   productsOfBrand,
@@ -211,21 +223,23 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
           </div>
         ) : null}
 
-        {/* 1 / 2 / 4 columns, deliberately skipping 3. Radiocom has 8 models
-            and Motorola 13: 8 divides exactly by 2 and by 4, and a three-column
-            lineup leaves a hole in the last row of both brand pages. Column
-            counts are a function of the data here, not a default.
-
-            apple.com/mac scrolls its lineup horizontally, which works for its
-            eight products; at thirteen it would bury the tail behind six arrow
-            clicks. Apple grids the same cards on /shop/buy-mac for exactly that
-            reason, so the card anatomy below is theirs and only the container
-            differs. */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        {/* A horizontal scroll row, as apple.com/mac has it — not the grid this
+            replaced. The grid was chosen because thirteen Motorola models would
+            sit behind several arrow presses; the model strip at the top of the
+            page answers that, since it reaches any model in one click. With
+            that escape hatch in place the shelf is the better container: it
+            keeps the lineup one screen tall however many models a brand has,
+            and it is what the reference actually does. */}
+        <HighlightsShelf label={t("brand.lineup")}>
           {shown.map((p, i) => (
-            <LineupCard key={p.id} p={p} lang={lang} idx={i} />
+            <div
+              key={p.id}
+              className="w-[74vw] shrink-0 snap-start sm:w-[44vw] lg:w-[calc((100%-3rem)/4)]"
+            >
+              <LineupCard p={p} lang={lang} idx={i} />
+            </div>
           ))}
-        </div>
+        </HighlightsShelf>
 
         <p className="mt-10 text-[14px] text-cool">
           <a
@@ -267,14 +281,114 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
             >
               <ExpandCard
                 idx={i}
-                className="h-full"
+                className="h-full min-h-[300px]"
                 eyebrow={t(c.eyebrow)}
                 title={t(c.title)}
                 detail={t(c.detail)}
+                media={
+                  <img
+                    src={c.image}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    width={800}
+                    height={600}
+                    className="max-h-[130px] w-auto object-contain mix-blend-multiply"
+                  />
+                }
               />
             </div>
           ))}
         </HighlightsShelf>
+      </Section>
+
+      {/* ── Where these radios work — apple.com's poster shelf ─ */}
+      {/* Apple fills this row with bespoke art and marketing claims. We have
+          neither, and inventing product copy is exactly what the brief rules
+          out — so it is fed from the six industries instead: a real photograph,
+          the real sector name, the real one-line description, each card a link
+          to a page that already exists. Same device, no fiction. */}
+      <Section band="plain" tight>
+        <h2 className="mb-8 text-[28px] font-semibold leading-tight tracking-[-0.02em] text-crisp md:mb-10 md:text-[32px]">
+          {t("px.where_used")}
+        </h2>
+        <HighlightsShelf label={t("px.where_used")}>
+          {INDUSTRY_SLUGS.map((slug, i) => (
+            <div
+              key={slug}
+              className="w-[54vw] shrink-0 snap-start sm:w-[32vw] lg:w-[calc((100%-4rem)/5)]"
+            >
+              <PosterCard
+                idx={i}
+                image={INDUSTRY_IMAGES[slug]}
+                eyebrow={t(`industries.${slug}.short`)}
+                title={t(`industries.${slug}.name`)}
+                href={
+                  <LocaleLink
+                    to="/industries/$slug"
+                    params={{ slug }}
+                    className="absolute inset-0 z-20 rounded-[18px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
+                    aria-label={t(`industries.${slug}.name`)}
+                  />
+                }
+              />
+            </div>
+          ))}
+        </HighlightsShelf>
+      </Section>
+
+      {/* ── The closing pair — apple.com's "Switch to Mac" ────── */}
+      <Section band="soft" tight>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <DuoCard
+            idx={0}
+            className="min-h-[300px]"
+            title={t("home.bento.service.sub")}
+            body={t("service.sub")}
+            link={
+              <LocaleLink to="/service" className="pill-link text-[13px]">
+                {t("nav.service")} <ChevronRight className="h-4 w-4" aria-hidden />
+              </LocaleLink>
+            }
+            media={
+              <img
+                src={whyService}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                width={800}
+                height={1071}
+                className="max-h-[150px] w-auto object-contain mix-blend-multiply"
+              />
+            }
+          />
+          <DuoCard
+            idx={1}
+            className="min-h-[300px]"
+            title={t("home.bento.tradein.sub")}
+            body={t("px.trial")}
+            link={
+              <button
+                type="button"
+                onClick={() => openLead({ title: t("home.bento.tradein.title") })}
+                className="pill-link text-[13px]"
+              >
+                {t("px.buy")} <ChevronRight className="h-4 w-4" aria-hidden />
+              </button>
+            }
+            media={
+              <img
+                src={whyTradein}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                width={800}
+                height={600}
+                className="max-h-[150px] w-auto object-contain mix-blend-multiply"
+              />
+            }
+          />
+        </div>
       </Section>
 
       {/* ── Compare invitation ─────────────────────────────── */}
@@ -313,25 +427,35 @@ const WHY_CARDS = [
     eyebrow: "home.bento.warranty.title",
     title: "home.bento.warranty.sub",
     detail: "brand.sub",
+    image: whyWarranty,
   },
-  { key: "delivery", eyebrow: "px.delivery", title: "px.trial", detail: "brand.compare_sub" },
+  {
+    key: "delivery",
+    eyebrow: "px.delivery",
+    title: "px.trial",
+    detail: "brand.compare_sub",
+    image: whyDelivery,
+  },
   {
     key: "service",
     eyebrow: "home.bento.service.title",
     title: "home.bento.service.sub",
-    detail: "service.hero.sub",
+    detail: "service.sub",
+    image: whyService,
   },
   {
     key: "test",
     eyebrow: "home.bento.test.title",
     title: "home.bento.test.sub",
     detail: "px.trial",
+    image: whyTest,
   },
   {
     key: "tradein",
     eyebrow: "home.bento.tradein.title",
     title: "home.bento.tradein.sub",
     detail: "tradein.sub",
+    image: whyTradein,
   },
 ] as const;
 
@@ -349,7 +473,10 @@ function LineupCard({ p, lang, idx }: { p: Product; lang: Lang; idx: number }) {
   const { t } = useTranslation();
   return (
     <article
-      className="group card-interactive flex flex-col rounded-[18px] bg-pitch p-6 md:p-7"
+      // `h-full` plus `mt-auto` on the action row: without both, a model with a
+      // two-line tagline sits its buttons higher than its neighbours and the
+      // shelf reads as ragged. apple.com aligns them across the row.
+      className="group card-interactive flex h-full flex-col rounded-[18px] bg-pitch p-6 md:p-7"
       style={{ animationDelay: `${Math.min(idx, 8) * 40}ms` }}
     >
       <div className="mb-6 flex min-h-[180px] flex-1 items-center justify-center">
@@ -389,7 +516,7 @@ function LineupCard({ p, lang, idx }: { p: Product; lang: Lang; idx: number }) {
         {p.tags.length ? <li>{p.tags.slice(0, 3).join(" · ")}</li> : null}
       </ul>
 
-      <div className="mt-5 text-[13px] text-cool">
+      <div className="mt-auto pt-5 text-[13px] text-cool">
         {p.price != null ? (
           <>
             {t("px.from")} <TintTag>{formatPrice(p.price, lang)}</TintTag>
@@ -399,17 +526,17 @@ function LineupCard({ p, lang, idx }: { p: Product; lang: Lang; idx: number }) {
         )}
       </div>
 
-      {/* apple.com's pairing — a solid button to the product page and a text
-          link to the store — but in ink rather than the brand red. Eight cards
-          × two accent-coloured controls put sixteen reds on one screen, which
-          spends the accent before the page reaches a single call to action.
-          The red is kept for the controls that actually convert: the nav
-          button, the lead form, and each page's closing CTA. */}
+      {/* apple.com's exact pairing: a solid accent button to the product page
+          and an accent text link to buy.
+
+          An earlier version made the solid button ink, to avoid sixteen reds on
+          one screen. The shelf removes that objection — four cards are visible
+          at a time, not eight — and matching the reference was the ask. */}
       <div className="mt-5 flex flex-wrap items-center gap-4 text-[13px]">
         <LocaleLink
           to="/$brand/$model"
           params={{ brand: p.brandSlug, model: p.slug }}
-          className="pill pill-sm pill-primary"
+          className="pill pill-sm pill-accent"
         >
           {t("px.learn_more")}
         </LocaleLink>
