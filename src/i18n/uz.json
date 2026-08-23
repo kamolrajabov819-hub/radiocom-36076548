@@ -57,8 +57,8 @@
     "horeca": {
       "name": "HoReCa",
       "short": "HoReCa",
-      "desc": "Mehmonxona, restoran, tadbirlar.",
-      "problem": "Xodimlar shovqinli zallarda va qavatlar orasida aloqani yo'qotadi.",
+      "desc": "Mehmonxona, restoran, tadbirlar. Yashirin garnituralar, toza efir.",
+      "problem": "Xodimlar shovqinli zallarda va qavatlar orasida aloqani yo'qotadi. Mehmonlar xizmat suhbatlarini eshitadi.",
       "solution": "Kompakt PMR ratsiyalari va yashirin garnituralar. Shovqinsiz va litsenziyasiz tezkor koordinatsiya.",
       "pains": [
         "Ofitsiantlar cho'qqi vaqtlarida oshxonani eshitmaydi",
@@ -87,7 +87,7 @@
       "faq": [
         {
           "q": "PMR uchun litsenziya kerakmi?",
-          "a": "Yo'q. PMR446 modellari bepul chastotalarda ishlaydi."
+          "a": "Yo'q. PMR446 modellari litsenziyasiz, ochiq chastotalarda ishlaydi."
         },
         {
           "q": "Restoranga nechta ratsiya kerak?",
@@ -104,8 +104,8 @@
       "name": "Qurilish",
       "short": "Qurilish",
       "desc": "Yirik ob'ektlar. IP67 himoya, uzoq masofa.",
-      "problem": "Chang, tebranish, brigadalar orasida kilometrlar. Oddiy telefonlar dosh bermaydi.",
-      "solution": "IP67/IP68 himoyali DMR ratsiyalar va retranslyatorlar bilan to'liq qamrov.",
+      "problem": "Chang, tebranish, brigadalar orasida kilometrlar. Oddiy telefonlar dosh bermaydi va ob'ektni qamrab ololmaydi.",
+      "solution": "IP67/IP68 himoyali zarbaga chidamli DMR ratsiyalar va maydonni to'liq qamrash uchun retranslyatorlar.",
       "pains": [
         "Brigadir kran va montajchilarga yeta olmaydi",
         "Telefonlar yorilib, cho'kib, changdan buziladi",
@@ -137,11 +137,11 @@
         },
         {
           "q": "Retranslyator kerakmi?",
-          "a": "Faqat ob'ekt 500 m dan katta bo'lsa. Kelib baholaymiz."
+          "a": "Faqat ob'ekt 500 m dan katta bo'lsa yoki og'ir konstruksiyalar bo'lsa. Kelib baholaymiz."
         },
         {
-          "q": "Betonga tushib ketsa-chi?",
-          "a": "IP68 suvga tushishga chidaydi. Kafolat bo'yicha almashtiramiz."
+          "q": "Ratsiya ho'l betonga tushib ketsa-chi?",
+          "a": "IP68 suvga botishga chidaydi. Kafolat doirasida tiklaymiz yoki almashtiramiz."
         }
       ],
       "seo": "Qurilish"
@@ -149,9 +149,9 @@
     "security": {
       "name": "Xavfsizlik",
       "short": "Xavfsizlik",
-      "desc": "Xususiy qo'riqlash, davlat.",
-      "problem": "Shifrlangan aloqa, GPS-monitoring va tugma kerak.",
-      "solution": "Shifrlash, tugma va GPS bilan DMR ratsiyalar. Dispetcher hammasini ko'rib turadi.",
+      "desc": "Xususiy qo'riqlash, ob'ekt himoyasi, davlat xavfsizligi.",
+      "problem": "Smenalarni GPS orqali kuzatish va favqulodda tugmasi bilan himoyalangan, shifrlangan aloqa kerak.",
+      "solution": "Shifrlash, favqulodda tugmasi va GPS bilan DMR ratsiyalar. Hammasi dispetcher nazoratida.",
       "pains": [
         "Xodimlar radardan yo'qoladi — hech kim qayerdaligini bilmaydi",
         "Ochiq chastotalarni har kim eshitishi mumkin",
@@ -166,7 +166,7 @@
         {
           "n": "GPS",
           "u": "",
-          "l": "Har bir post xaritada"
+          "l": "Har bir postning joylashuvi xaritada onlayn"
         },
         {
           "n": "1",
@@ -183,10 +183,10 @@
         },
         {
           "q": "GPS ichkarida ishlaydimi?",
-          "a": "Ochiq havoda ha. Ichkarida oxirgi joylashuv saqlanadi."
+          "a": "Ochiq postlarda — ha. Ichkarida oxirgi ma'lum joylashuv ishlatiladi."
         },
         {
-          "q": "Tugma qayerga signal yuboradi?",
+          "q": "Favqulodda tugmasi signalni qayerga yuboradi?",
           "a": "Kanaldagi hammaga va dispetcher konsoliga koordinatlar bilan."
         }
       ],
@@ -197,7 +197,7 @@
       "short": "Kon",
       "desc": "Karyerlar, konlar, neft-gaz infratuzilmasi.",
       "problem": "Katta hududlar, portlash xavfli zonalar, aniq uchqun xavfsizligi talablari.",
-      "solution": "ATEX mos DP4800/DP4600 ratsiyalar va SLR8000 retranslyatorlar. To'liq qamrov.",
+      "solution": "ATEX mos DP4800/DP4600 ratsiyalar va SLR8000 retranslyatorlar. Karyerning to'liq qamrovi va dispetcher bilan aloqa.",
       "pains": [
         "3 km karyer — oddiy ratsiya yetmaydi",
         "Xavfli zonalarda oddiy elektronika taqiqlangan",
@@ -224,8 +224,8 @@
       "quote_author": "Bosh muhandis, kon korxonasi",
       "faq": [
         {
-          "q": "ATEX sertifikatli modellar bormi?",
-          "a": "Ha, Motorola DP4801 Ex versiyasi."
+          "q": "Portlash xavfli zonalar uchun sertifikat bormi?",
+          "a": "Ha, Motorola DP4801 Ex ATEX versiyalarini yetkazib beramiz."
         },
         {
           "q": "Chastota kelishuvini o'zingiz qilasizmi?",
@@ -233,7 +233,7 @@
         },
         {
           "q": "Sanoat modellariga qanday kafolat?",
-          "a": "3 yil, har yili servisda TO bilan."
+          "a": "3 yil, servis markazimizda har yilgi texnik ko'rik bilan."
         }
       ],
       "seo": "Kon, neft va gaz"
@@ -246,8 +246,8 @@
       "solution": "Butun mamlakat bo'ylab LTE qamrovli PoC qurilmalari PoC ratsiyalari va Radiocom RCD avtomobil stansiyalari.",
       "pains": [
         "Haydovchi Buxoroda — Toshkentdagi dispetcher aloqasiz",
-        "Mobil tarif marja yeydi",
-        "Kolonnadagi aloqa faqat telefonning karnayida"
+        "Mobil tariflar tashish marjasini yeb qo'yadi",
+        "Kolonna bilan guruh aloqasi faqat telefon karnayi orqali"
       ],
       "outcomes": [
         {
@@ -258,7 +258,7 @@
         {
           "n": "1",
           "u": "tarif",
-          "l": "Fikslangan to'lov"
+          "l": "Fiks to'lov — daqiqa hisobisiz"
         },
         {
           "n": "∞",
@@ -267,7 +267,7 @@
         }
       ],
       "quote": "Butun parkni PoC ga o'tkazdik — aloqa xarajatlari 40% kamaydi, dispetcher hammani xaritada ko'radi.",
-      "quote_author": "Avtopark boshlig'i, logistika",
+      "quote_author": "Avtopark boshlig'i, logistika kompaniyasi",
       "faq": [
         {
           "q": "Tog' va trassalarda ishlaydimi?",
@@ -289,7 +289,7 @@
       "short": "Zavod",
       "desc": "Zavodlar, sexlar, distribyutsiya markazlari.",
       "problem": "Turli uchastkalardagi smenalar, sanoat shovqini, brigadirlar tezkor koordinatsiyaga muhtoj.",
-      "solution": "Retranslyator va guruh chaqiruvlari bilan DMR tizim. Ombor uchun sanoat KPK.",
+      "solution": "Retranslyator va guruh chaqiruvlari bilan DMR tizim. Ombor hisobi uchun sanoat KPK'lari.",
       "pains": [
         "Brigadirlar sex shovqinida bir-birini eshitmaydi",
         "Omborchilar stellajlar orasida qog'oz bilan yuguradi",
@@ -299,7 +299,7 @@
         {
           "n": "40%",
           "u": "",
-          "l": "Kamroq vaqt sarflanadi"
+          "l": "Smenani muvofiqlashtirishga kamroq vaqt"
         },
         {
           "n": "60dB",
@@ -313,7 +313,7 @@
         }
       ],
       "quote": "DMR va KPK ni bir haftada o'rnatdik. Omborchilar qog'ozdan voz kechdi, komplektatsiya deyarli 2 barobar tezlashdi.",
-      "quote_author": "Operatsion direktor, qadoq zavodi",
+      "quote_author": "Operatsion direktor, qadoqlash zavodi",
       "faq": [
         {
           "q": "Shovqinli sexda ishlaydimi?",
@@ -321,11 +321,11 @@
         },
         {
           "q": "KPK 1C bilan integratsiyalashadimi?",
-          "a": "Ha, tayyor va zarur bo'lsa kastom versiyalar."
+          "a": "Ha, tayyor integratsiyalar bor, zarur bo'lsa alohida ishlab chiqamiz."
         },
         {
           "q": "Qancha vaqtda o'rnatasiz?",
-          "a": "2 dan 7 kungacha, hajmga qarab."
+          "a": "Ishlab chiqarish hajmiga qarab 2 dan 7 kungacha."
         }
       ],
       "seo": "Ishlab chiqarish va omborlar"
@@ -411,7 +411,7 @@
   },
   "form": {
     "title": "Taklif so'rash",
-    "sub": "Kontaktlaringizni qoldiring — menejer 15 daqiqada bog'lanadi.",
+    "sub": "Kontaktlaringizni qoldiring — ish vaqtida menejer 15 daqiqa ichida bog'lanadi.",
     "name": "Ismingiz",
     "company": "Kompaniya",
     "phone": "Telefon",
@@ -428,7 +428,7 @@
     "title_b": "Retranslyatorsiz.",
     "sub": "LTE va WiFi orqali Push-to-Talk. Infratuzilma qurmasdan bir zumda aloqa — guruh chaqiruvlari, GPS va multimedia bilan.",
     "vs_title": "PoC va PMR",
-    "vs_sub": "Marketing emas, haqiqiy parametrlar.",
+    "vs_sub": "Marketing emas, haqiqiy parametrlar bo'yicha taqqoslash.",
     "rows": {
       "coverage": "Qamrov",
       "infra": "Infratuzilma",
@@ -459,7 +459,7 @@
       "steps": [
         "O'rnatish joyini tekshirish",
         "Ma'lumot yig'ish va loyiha hujjatlari",
-        "Parametrlar bo'yicha jihoz tanlash",
+        "Buyurtmachi parametrlari bo'yicha jihoz tanlash",
         "O'zbekiston Aloqa qo'mitasi bilan chastotani kelishish",
         "Ishga tushirish va topshiruv hujjatlari"
       ]
@@ -468,7 +468,7 @@
       "kicker": "IJARA",
       "title": "1 kundan 5+ yilgacha.",
       "desc": "Motorola aksessuarlari, zaxira akkumulyatorlar va Radiocom ning butun respublika bo'ylab litsenziyalangan chastotalariga sozlangan.",
-      "cta": "Ijaraga so'rov"
+      "cta": "Ijaraga ariza qoldirish"
     },
     "compare": {
       "poc": {
@@ -485,7 +485,7 @@
     "kicker": "VAKOLATLI SERVIS MARKAZI",
     "title_a": "Ishonchli",
     "title_b": "ta'mirlash.",
-    "sub": "Motorola, Radiocom va Vertex Standard ratsiyalari uchun kafolat va kafolatdan keyingi xizmat. Original ehtiyot qismlar.",
+    "sub": "Motorola, Radiocom va Vertex Standard ratsiyalari uchun kafolat va kafolatdan keyingi xizmat. Original ehtiyot qismlar, qat'iy narxlar, maxsus uskunada diagnostika.",
     "request_repair": "Ta'mirlashga ariza",
     "advantages": {
       "certified": {
@@ -494,7 +494,7 @@
       },
       "parts": {
         "t": "Original ehtiyot qismlar",
-        "d": "Faqat zavod qismlari — analog va tiklangan detallarsiz."
+        "d": "Faqat zavod komplektlari — analog va tiklangan detallarsiz."
       },
       "fast": {
         "t": "Tez ta'mirlash 24/7",

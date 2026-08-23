@@ -377,5 +377,53 @@ console.log("ok  og:locale, canonical URLs and JSON-LD are locale-correct");
   else console.log("ok  every literal t() key resolves against ru.json");
 }
 
+/* ─────────────────────────────────────────────────────────────
+   11. A translation must not be materially shorter than its source.
+
+   Key parity is green and always was, which is exactly why this went
+   unnoticed: every key existed in all three files, and 54 of the Uzbek values
+   had quietly dropped a clause or a whole sentence. "Отели, рестораны,
+   события. Скрытые гарнитуры, чистый эфир." shipped as "Mehmonxona, restoran,
+   tadbirlar." — the second sentence, and the actual product claim, simply gone.
+   A reader in Uzbek got a thinner page than a reader in Russian, on a site
+   where Uzbek is the national language.
+
+   Uzbek and English both run *longer* than Russian for the same meaning, so a
+   translation coming out at well under its source's length is not compression —
+   it is missing text.
+
+   The threshold is measured, not guessed, and the first attempt at it was too
+   lax to catch the very string that motivated the check: 0.55 passed the
+   truncated horeca line at 0.561. Across the corrected file the shortest
+   *legitimate* case is 0.636 ("Главный инженер, горнодобывающее предприятие" →
+   "Bosh muhandis, kon korxonasi", where Uzbek really is that much tighter), and
+   the truncation sat at 0.561, so 0.60 separates them with headroom on both
+   sides. Strings under 40 characters are skipped entirely — those are labels,
+   where one word against three says nothing about completeness.
+   ───────────────────────────────────────────────────────────── */
+{
+  const RATIO = 0.6;
+  const problems: string[] = [];
+  for (const lang of ["en", "uz"] as const) {
+    for (const [key, ru] of byLang.ru) {
+      // Short strings are labels, where a single word in one language against
+      // three in another is normal and says nothing about completeness.
+      if (ru.length < 40) continue;
+      const other = byLang[lang].get(key);
+      if (!other) continue;
+      const ratio = other.length / ru.length;
+      if (ratio < RATIO)
+        problems.push(
+          `${lang}.${key} is ${Math.round(ratio * 100)}% the length of the Russian — a clause is probably missing\n` +
+            `       ru: ${ru}\n` +
+            `       ${lang}: ${other}`,
+        );
+    }
+  }
+  if (problems.length)
+    bad(`${problems.length} translation(s) look truncated:\n     ` + problems.join("\n     "));
+  else console.log("ok  no translation is materially shorter than its Russian source");
+}
+
 console.log(fail === 0 ? "\nALL I18N CHECKS PASSED" : `\n${fail} FAILURES`);
 process.exit(fail ? 1 : 0);
