@@ -18,7 +18,19 @@ import { chromium } from "playwright-core";
 const BASE = process.argv[2] ?? "http://localhost:4173";
 const CHROME = "/opt/pw-browsers/chromium-1194/chrome-linux/chrome";
 
-const ROUTES = ["", "/catalog", "/poc", "/service", "/industries", "/industries/horeca"];
+const ROUTES = [
+  "",
+  "/radiocom",
+  "/motorola",
+  "/compare",
+  "/radiocom/rcd-60",
+  "/radiocom/rcd-60/specs",
+  "/motorola/t82/specs",
+  "/poc",
+  "/service",
+  "/industries",
+  "/industries/horeca",
+];
 const LOCALES = ["ru", "en", "uz"];
 const VIEWPORTS = [
   { width: 390, height: 844, dpr: 2, label: "390@2x" },

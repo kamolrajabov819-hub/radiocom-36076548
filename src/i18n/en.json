@@ -629,7 +629,9 @@
     "err_title": "We hit a snag.",
     "err_sub": "Try again, or head back home.",
     "err_retry": "Retry",
-    "err_home": "Home"
+    "err_home": "Home",
+    "nf_where": "Where to next",
+    "nf_search_hint": "Or write to us — we will match a model to your task."
   },
   "meta": {
     "home": {
@@ -652,7 +654,7 @@
     },
     "industry": {
       "title": "Two-Way Radios for {{name}} — Selection and Rollout | Radiocom",
-      "desc": "Radio communication solutions for {{name}} in Uzbekistan."
+      "desc": "Two-way radios for {{name}} in Tashkent and across Uzbekistan: models matched to the job, a free on-site trial, a 12-month warranty and our own service centre."
     },
     "product": {
       "title": "{{name}} — buy in Tashkent | Radiocom",
@@ -733,6 +735,11 @@
     "back_to_brand": "All models",
     "compare_title": "Compare models",
     "compare_sub": "Every Radiocom and Motorola model by range, protection and price.",
-    "faq_title": "Frequently asked questions"
+    "faq_title": "Frequently asked questions",
+    "design": "Design",
+    "design_title": "Take a closer look.",
+    "range_lead": "Range depends on terrain and built-up area.",
+    "spec_note": "The manufacturer's full specification is in the table below.",
+    "spec_column": "Specification"
   }
 }

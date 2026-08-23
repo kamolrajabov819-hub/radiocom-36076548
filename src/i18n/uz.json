@@ -629,7 +629,9 @@
     "err_title": "Xatolik yuz berdi.",
     "err_sub": "Qayta urinib ko'ring yoki bosh sahifaga qayting.",
     "err_retry": "Qayta urinish",
-    "err_home": "Bosh sahifa"
+    "err_home": "Bosh sahifa",
+    "nf_where": "Keyingi qadam",
+    "nf_search_hint": "Yoki bizga yozing — vazifangizga mos modelni tanlaymiz."
   },
   "meta": {
     "home": {
@@ -652,7 +654,7 @@
     },
     "industry": {
       "title": "{{name}} uchun ratsiyalar — tanlov va joriy etish | Radiocom",
-      "desc": "O'zbekistonda {{name}} uchun radioaloqa yechimlari."
+      "desc": "Toshkent va O'zbekiston bo'ylab {{name}} uchun ratsiyalar: vazifaga mos model tanlash, obyektda bepul sinov, 12 oy kafolat va o'z servis markazimiz."
     },
     "product": {
       "title": "{{name}} — Toshkentda sotib olish | Radiocom",
@@ -733,6 +735,11 @@
     "back_to_brand": "Barcha modellar",
     "compare_title": "Modellarni solishtirish",
     "compare_sub": "Radiocom va Motorolaning barcha modellari masofa, himoya va narx bo'yicha.",
-    "faq_title": "Ko'p so'raladigan savollar"
+    "faq_title": "Ko'p so'raladigan savollar",
+    "design": "Dizayn",
+    "design_title": "Yaqindan ko'rib chiqing.",
+    "range_lead": "Masofa relyef va binolarga bog'liq.",
+    "spec_note": "Ishlab chiqaruvchining to'liq xususiyatlari quyidagi jadvalda.",
+    "spec_column": "Xususiyat"
   }
 }

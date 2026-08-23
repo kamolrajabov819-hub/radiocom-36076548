@@ -82,6 +82,20 @@ for (const file of walk(SRC)) {
     }
   }
 
+  // Check 3 — no image may come back as a CDN pointer.
+  //
+  // Every product photograph used to be a `.asset.json` file resolving to
+  // radiocom.lovable.app. That made the whole catalogue depend on a host
+  // outside this repository, and it made responsive variants impossible,
+  // because the bytes were somewhere else. They are all real files now. An
+  // import of a `.asset.json` would silently reintroduce both problems.
+  if (/from\s+["'][^"']*\.asset\.json["']/.test(text)) {
+    const line = text.split("\n").findIndex((l) => /\.asset\.json/.test(l)) + 1;
+    errors.push(
+      `${rel}:${line} — imports a .asset.json CDN pointer; commit the real image instead`,
+    );
+  }
+
   // Check 3 — srcSmall must be an identifier, never an expression.
   const ss = /srcSmall=\{([^}]*)\}/g;
   while ((m = ss.exec(text))) {

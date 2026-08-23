@@ -1,52 +1,83 @@
-import rc10 from "@/assets/catalog/rc-10.jpg.asset.json";
-import rc20 from "@/assets/catalog/rc-20.jpg.asset.json";
-import rc50 from "@/assets/catalog/rc-50.jpg.asset.json";
-import rcd30 from "@/assets/catalog/rcd-30.jpg.asset.json";
-import rcd40 from "@/assets/catalog/rcd-40.jpg.asset.json";
-import rcd50 from "@/assets/catalog/rcd-50.jpg.asset.json";
-import rcd60 from "@/assets/catalog/rcd-60.jpg.asset.json";
-import rcd70 from "@/assets/catalog/rcd-70.jpg.asset.json";
-import t42red from "@/assets/catalog/t42-red.png.asset.json";
-import t42blue from "@/assets/catalog/t42-blue.png.asset.json";
-import t42triple from "@/assets/catalog/t42-triple.png.asset.json";
-import t42quad from "@/assets/catalog/t42-quad.png.asset.json";
-import t62red from "@/assets/catalog/t62-red.png.asset.json";
-import t62blue from "@/assets/catalog/t62-blue.png.asset.json";
-import t72 from "@/assets/catalog/t72.png.asset.json";
-import t82 from "@/assets/catalog/t82.png.asset.json";
-import t82extreme from "@/assets/catalog/t82-extreme.png.asset.json";
-import t82extremeQuad from "@/assets/catalog/t82-extreme-quad.png.asset.json";
-import xt185 from "@/assets/catalog/xt185.png.asset.json";
-import xt420 from "@/assets/catalog/xt420.png.asset.json";
-import tlkrT92 from "@/assets/catalog/tlkr-t92h2o.png.asset.json";
+/*
+ * Product photography — real files, not CDN pointers.
+ *
+ * Every one of these used to be a `.asset.json` pointer resolving to
+ * radiocom.lovable.app: a single point of failure outside this repository, and
+ * one that could never receive responsive variants because the bytes lived
+ * somewhere else. They are now imported files, so Vite fingerprints them,
+ * emits them, and the `@800` sibling beside each one becomes a real `srcSet`
+ * candidate rather than the 404 that Phase 1 had to fix.
+ *
+ * Naming is `<model>-<variant>`: `hero` is the radios alone, `kit`/`box` is the
+ * retail packaging or accessory flat-lay. Heroes lead the product pages —
+ * an apple.com product hero is the product, never its box.
+ */
+import rcd70Hero from "@/assets/catalog/rcd-70-hero.webp";
+import rcd70Hero800 from "@/assets/catalog/rcd-70-hero@800.webp";
+import rcd70Kit from "@/assets/catalog/rcd-70-kit.webp";
+import rcd60Hero from "@/assets/catalog/rcd-60-hero.webp";
+import rcd60Hero800 from "@/assets/catalog/rcd-60-hero@800.webp";
+import rcd60Kit from "@/assets/catalog/rcd-60-kit.webp";
+import rcd50Hero from "@/assets/catalog/rcd-50-hero.webp";
+import rcd50Hero800 from "@/assets/catalog/rcd-50-hero@800.webp";
+import rcd50Kit from "@/assets/catalog/rcd-50-kit.webp";
+import rcd40Kit from "@/assets/catalog/rcd-40-kit.webp";
+import rcd40Kit800 from "@/assets/catalog/rcd-40-kit@800.webp";
+import rcd30Kit from "@/assets/catalog/rcd-30-kit.webp";
+import rcd30Kit800 from "@/assets/catalog/rcd-30-kit@800.webp";
+import rc50Kit from "@/assets/catalog/rc-50-kit.webp";
+import rc50Kit800 from "@/assets/catalog/rc-50-kit@800.webp";
+import rc20Kit from "@/assets/catalog/rc-20-kit.webp";
+import rc20Kit800 from "@/assets/catalog/rc-20-kit@800.webp";
+import rc10Kit from "@/assets/catalog/rc-10-kit.webp";
+import rc10Kit800 from "@/assets/catalog/rc-10-kit@800.webp";
 
-import rcd60b from "@/assets/catalog/rcd-60-2.jpg.asset.json";
-import rcd70b from "@/assets/catalog/rcd-70-2.jpg.asset.json";
-import t82e2 from "@/assets/catalog/t82-extreme-2.jpg.asset.json";
-import t82e3 from "@/assets/catalog/t82-extreme-3.jpg.asset.json";
-import t72b from "@/assets/catalog/t72-2.jpg.asset.json";
-import t72c from "@/assets/catalog/t72-3.jpg.asset.json";
-import t62r2 from "@/assets/catalog/t62-red-2.jpg.asset.json";
-import t62r3 from "@/assets/catalog/t62-red-3.jpg.asset.json";
-import t62b2 from "@/assets/catalog/t62-blue-2.jpg.asset.json";
-import t42tri2 from "@/assets/catalog/t42-triple-2.jpg.asset.json";
-import t42tri3 from "@/assets/catalog/t42-triple-3.jpg.asset.json";
-import t42q2 from "@/assets/catalog/t42-quad-2.jpg.asset.json";
-import t42q3 from "@/assets/catalog/t42-quad-3.jpg.asset.json";
-import t42r2 from "@/assets/catalog/t42-red-2.jpg.asset.json";
-import t42r3 from "@/assets/catalog/t42-red-3.jpg.asset.json";
-import t42r4 from "@/assets/catalog/t42-red-4.jpg.asset.json";
-import t42b2 from "@/assets/catalog/t42-blue-2.jpg.asset.json";
-import t42b3 from "@/assets/catalog/t42-blue-3.jpg.asset.json";
-import t42b4 from "@/assets/catalog/t42-blue-4.jpg.asset.json";
-import tlkr2 from "@/assets/catalog/tlkr-t92h2o-2.jpg.asset.json";
-import tlkr3 from "@/assets/catalog/tlkr-t92h2o-3.jpg.asset.json";
-import xt185b from "@/assets/catalog/xt185-2.jpg.asset.json";
-import xt185c from "@/assets/catalog/xt185-3.jpg.asset.json";
-// Stand-in shot for the two on-site models that have no catalogue photo yet.
-// Replace with real CLP 446 / CLK 446 renders when they arrive.
-import genericMotorola from "@/assets/product-motorola.jpg";
-import { assetUrl } from "@/lib/asset";
+import t82ExtremeHero from "@/assets/catalog/t82-extreme-hero.webp";
+import t82ExtremeHero800 from "@/assets/catalog/t82-extreme-hero@800.webp";
+import t82ExtremePair from "@/assets/catalog/t82-extreme-pair.webp";
+import t82ExtremeKit from "@/assets/catalog/t82-extreme-kit.webp";
+import t82ExtremeQuadHero from "@/assets/catalog/t82-extreme-quad-hero.webp";
+import t82ExtremeQuadHero800 from "@/assets/catalog/t82-extreme-quad-hero@800.webp";
+import t82Hero from "@/assets/catalog/t82-hero.webp";
+import t82Hero800 from "@/assets/catalog/t82-hero@800.webp";
+import t72Hero from "@/assets/catalog/t72-hero.webp";
+import t72Hero800 from "@/assets/catalog/t72-hero@800.webp";
+import t72Alt from "@/assets/catalog/t72-alt.webp";
+import t72Box from "@/assets/catalog/t72-box.webp";
+import t62RedHero from "@/assets/catalog/t62-red-hero.webp";
+import t62RedHero800 from "@/assets/catalog/t62-red-hero@800.webp";
+import t62RedFront from "@/assets/catalog/t62-red-front.webp";
+import t62RedBack from "@/assets/catalog/t62-red-back.webp";
+import t62BlueHero from "@/assets/catalog/t62-blue-hero.webp";
+import t62BlueHero800 from "@/assets/catalog/t62-blue-hero@800.webp";
+import t62BlueBox from "@/assets/catalog/t62-blue-box.webp";
+import t42TripleHero from "@/assets/catalog/t42-triple-hero.webp";
+import t42TripleHero800 from "@/assets/catalog/t42-triple-hero@800.webp";
+import t42TripleAlt from "@/assets/catalog/t42-triple-alt.webp";
+import t42TripleBox from "@/assets/catalog/t42-triple-box.webp";
+import t42QuadHero from "@/assets/catalog/t42-quad-hero.webp";
+import t42QuadHero800 from "@/assets/catalog/t42-quad-hero@800.webp";
+import t42QuadAlt from "@/assets/catalog/t42-quad-alt.webp";
+import t42QuadBox from "@/assets/catalog/t42-quad-box.webp";
+import t42RedHero from "@/assets/catalog/t42-red-hero.webp";
+import t42RedHero800 from "@/assets/catalog/t42-red-hero@800.webp";
+import t42RedPair from "@/assets/catalog/t42-red-pair.webp";
+import t42RedBox from "@/assets/catalog/t42-red-box.webp";
+import t42BlueHero from "@/assets/catalog/t42-blue-hero.webp";
+import t42BlueHero800 from "@/assets/catalog/t42-blue-hero@800.webp";
+import t42BluePair from "@/assets/catalog/t42-blue-pair.webp";
+import t42BlueBox from "@/assets/catalog/t42-blue-box.webp";
+import tlkrHero from "@/assets/catalog/tlkr-t92h2o-hero.webp";
+import tlkrHero800 from "@/assets/catalog/tlkr-t92h2o-hero@800.webp";
+import tlkrFront from "@/assets/catalog/tlkr-t92h2o-front.webp";
+import tlkrSide from "@/assets/catalog/tlkr-t92h2o-side.webp";
+import xt185Hero from "@/assets/catalog/xt185-hero.webp";
+import xt185Hero800 from "@/assets/catalog/xt185-hero@800.webp";
+import xt185Alt from "@/assets/catalog/xt185-alt.webp";
+import xt185Kit from "@/assets/catalog/xt185-kit.webp";
+import xt420Hero from "@/assets/catalog/xt420-hero.webp";
+import xt420Hero800 from "@/assets/catalog/xt420-hero@800.webp";
+
 import { upToFloors, upToKm, upToM, type L, type Lang } from "@/data/spec-dict";
 
 export type Category = "amateur" | "professional";
@@ -80,7 +111,15 @@ export type Product = {
   brand: Brand;
   category: Category;
   image: string;
+  /** The `@800` sibling — a real import, never derived from `image`. */
+  imageSmall?: string;
   gallery?: string[];
+  /**
+   * Kept in the data but absent from the site: no photograph exists, and the
+   * model is not in the current price list. It still needs to be here so the
+   * generated `/catalog/{id}` 301 keeps working for URLs Google has indexed.
+   */
+  hidden?: true;
   tags: string[];
   price: number | null; // in сум; null = договорная
   rangeCity: L;
@@ -102,8 +141,9 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Radiocom RCD-70",
     brand: RC,
     category: "professional",
-    image: assetUrl(rcd70),
-    gallery: [assetUrl(rcd70b)],
+    image: rcd70Hero,
+    imageSmall: rcd70Hero800,
+    gallery: [rcd70Kit],
     tags: ["DMR", "GPS", "IP67"],
     price: 4_200_000,
     rangeCity: upToKm("4"),
@@ -120,8 +160,9 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Radiocom RCD-60",
     brand: RC,
     category: "professional",
-    image: assetUrl(rcd60),
-    gallery: [assetUrl(rcd60b)],
+    image: rcd60Hero,
+    imageSmall: rcd60Hero800,
+    gallery: [rcd60Kit],
     tags: ["DMR", "Display", "Keypad"],
     price: 3_600_000,
     rangeCity: upToKm("3,5"),
@@ -138,7 +179,9 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Radiocom RCD-50",
     brand: RC,
     category: "professional",
-    image: assetUrl(rcd50),
+    image: rcd50Hero,
+    imageSmall: rcd50Hero800,
+    gallery: [rcd50Kit],
     tags: ["DMR", "Display"],
     price: 3_100_000,
     rangeCity: upToKm("3"),
@@ -155,7 +198,8 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Radiocom RCD-40",
     brand: RC,
     category: "professional",
-    image: assetUrl(rcd40),
+    image: rcd40Kit,
+    imageSmall: rcd40Kit800,
     tags: ["DMR", "Long range"],
     price: 2_600_000,
     rangeCity: upToKm("2,5"),
@@ -172,7 +216,8 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Radiocom RCD-30",
     brand: RC,
     category: "professional",
-    image: assetUrl(rcd30),
+    image: rcd30Kit,
+    imageSmall: rcd30Kit800,
     tags: ["DMR", "Compact"],
     price: 2_200_000,
     rangeCity: upToKm("2"),
@@ -191,7 +236,8 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Radiocom RC-50",
     brand: RC,
     category: "professional",
-    image: assetUrl(rc50),
+    image: rc50Kit,
+    imageSmall: rc50Kit800,
     tags: ["Long range"],
     price: 1_500_000,
     rangeCity: upToKm("2,5"),
@@ -208,7 +254,8 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Radiocom RC-20",
     brand: RC,
     category: "amateur",
-    image: assetUrl(rc20),
+    image: rc20Kit,
+    imageSmall: rc20Kit800,
     tags: ["Compact", "License-free"],
     price: 1_400_000,
     rangeCity: upToKm("1,5"),
@@ -225,7 +272,8 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Radiocom RC-10",
     brand: RC,
     category: "amateur",
-    image: assetUrl(rc10),
+    image: rc10Kit,
+    imageSmall: rc10Kit800,
     tags: ["Compact"],
     price: 1_300_000,
     rangeCity: upToKm("1"),
@@ -244,8 +292,9 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Motorola Talkabout T82 Extreme",
     brand: MOT,
     category: "amateur",
-    image: assetUrl(t82extreme),
-    gallery: [assetUrl(t82e2), assetUrl(t82e3)],
+    image: t82ExtremeHero,
+    imageSmall: t82ExtremeHero800,
+    gallery: [t82ExtremePair, t82ExtremeKit],
     tags: [...TALK, "IPx4"],
     price: 1_700_000,
     rangeCity: upToKm("1,5"),
@@ -261,7 +310,8 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Motorola Talkabout T82 Extreme Quad",
     brand: MOT,
     category: "amateur",
-    image: assetUrl(t82extremeQuad),
+    image: t82ExtremeQuadHero,
+    imageSmall: t82ExtremeQuadHero800,
     tags: [...TALK, "Quad", "IPx4"],
     price: 3_100_000,
     rangeCity: upToKm("1,5"),
@@ -277,8 +327,12 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Motorola Talkabout T82 Extreme RSM",
     brand: MOT,
     category: "amateur",
-    image: assetUrl(t82extreme),
-    gallery: [assetUrl(t82e2), assetUrl(t82e3)],
+    // No photograph exists for this model, and it is absent from the
+    // 29.06.26 price list as well. Hidden rather than deleted: the
+    // /catalog/m-t82-extreme-rsm 301 is generated from this array and points at a
+    // URL Google has already indexed. Flip `hidden` when a shot lands.
+    hidden: true,
+    image: "",
     tags: [...TALK, "RSM", "IPx4"],
     price: 2_100_000,
     rangeCity: upToKm("1,5"),
@@ -294,7 +348,8 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Motorola Talkabout T82",
     brand: MOT,
     category: "amateur",
-    image: assetUrl(t82),
+    image: t82Hero,
+    imageSmall: t82Hero800,
     tags: TALK,
     price: 1_500_000,
     rangeCity: upToKm("1,5"),
@@ -310,8 +365,9 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Motorola Talkabout T72 Go Active",
     brand: MOT,
     category: "amateur",
-    image: assetUrl(t72),
-    gallery: [assetUrl(t72b), assetUrl(t72c)],
+    image: t72Hero,
+    imageSmall: t72Hero800,
+    gallery: [t72Alt, t72Box],
     tags: [...TALK, "IPx4"],
     price: 1_300_000,
     rangeCity: upToKm("1"),
@@ -327,8 +383,9 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Motorola Talkabout T62 Red",
     brand: MOT,
     category: "amateur",
-    image: assetUrl(t62red),
-    gallery: [assetUrl(t62r2), assetUrl(t62r3)],
+    image: t62RedHero,
+    imageSmall: t62RedHero800,
+    gallery: [t62RedFront, t62RedBack],
     tags: TALK,
     price: 1_100_000,
     rangeCity: upToM("900"),
@@ -344,8 +401,9 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Motorola Talkabout T62 Blue",
     brand: MOT,
     category: "amateur",
-    image: assetUrl(t62blue),
-    gallery: [assetUrl(t62b2)],
+    image: t62BlueHero,
+    imageSmall: t62BlueHero800,
+    gallery: [t62BlueBox],
     tags: TALK,
     price: 1_100_000,
     rangeCity: upToM("900"),
@@ -361,8 +419,9 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Motorola Talkabout T42 Triple",
     brand: MOT,
     category: "amateur",
-    image: assetUrl(t42triple),
-    gallery: [assetUrl(t42tri2), assetUrl(t42tri3)],
+    image: t42TripleHero,
+    imageSmall: t42TripleHero800,
+    gallery: [t42TripleAlt, t42TripleBox],
     tags: [...TALK, "Triple"],
     price: 700_000,
     rangeCity: upToM("300"),
@@ -378,8 +437,9 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Motorola Talkabout T42 Quad",
     brand: MOT,
     category: "amateur",
-    image: assetUrl(t42quad),
-    gallery: [assetUrl(t42q2), assetUrl(t42q3)],
+    image: t42QuadHero,
+    imageSmall: t42QuadHero800,
+    gallery: [t42QuadAlt, t42QuadBox],
     tags: [...TALK, "Quad"],
     price: 900_000,
     rangeCity: upToM("300"),
@@ -395,8 +455,9 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Motorola Talkabout T42 Red",
     brand: MOT,
     category: "amateur",
-    image: assetUrl(t42red),
-    gallery: [assetUrl(t42r2), assetUrl(t42r3), assetUrl(t42r4)],
+    image: t42RedHero,
+    imageSmall: t42RedHero800,
+    gallery: [t42RedPair, t42RedBox],
     tags: TALK,
     price: 600_000,
     rangeCity: upToM("300"),
@@ -412,8 +473,9 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Motorola Talkabout T42 Blue",
     brand: MOT,
     category: "amateur",
-    image: assetUrl(t42blue),
-    gallery: [assetUrl(t42b2), assetUrl(t42b3), assetUrl(t42b4)],
+    image: t42BlueHero,
+    imageSmall: t42BlueHero800,
+    gallery: [t42BluePair, t42BlueBox],
     tags: TALK,
     price: 600_000,
     rangeCity: upToM("300"),
@@ -429,8 +491,9 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Motorola TLKR-T92 H2O",
     brand: MOT,
     category: "amateur",
-    image: assetUrl(tlkrT92),
-    gallery: [assetUrl(tlkr2), assetUrl(tlkr3)],
+    image: tlkrHero,
+    imageSmall: tlkrHero800,
+    gallery: [tlkrFront, tlkrSide],
     tags: [...TALK, "IP67", "Float"],
     price: 1_800_000,
     rangeCity: upToKm("1,5"),
@@ -446,8 +509,9 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Motorola XT185",
     brand: MOT,
     category: "amateur",
-    image: assetUrl(xt185),
-    gallery: [assetUrl(xt185b), assetUrl(xt185c)],
+    image: xt185Hero,
+    imageSmall: xt185Hero800,
+    gallery: [xt185Alt, xt185Kit],
     tags: TALK,
     price: 1_500_000,
     rangeCity: upToKm("1"),
@@ -463,7 +527,8 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Motorola XT420",
     brand: MOT,
     category: "professional",
-    image: assetUrl(xt420),
+    image: xt420Hero,
+    imageSmall: xt420Hero800,
     tags: [...TALK, "IP55"],
     price: 2_200_000,
     rangeCity: upToKm("2"),
@@ -482,7 +547,10 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Motorola CLP 446",
     brand: MOT,
     category: "professional",
-    image: genericMotorola,
+    // See m-t82-extreme-rsm: no photograph, absent from the price list,
+    // hidden rather than deleted so its /catalog 301 keeps resolving.
+    hidden: true,
+    image: "",
     tags: [...TALK, "Antibacterial"],
     price: 2_400_000,
     rangeCity: upToFloors("6"),
@@ -498,7 +566,10 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Motorola CLK 446",
     brand: MOT,
     category: "professional",
-    image: genericMotorola,
+    // See m-t82-extreme-rsm: no photograph, absent from the price list,
+    // hidden rather than deleted so its /catalog 301 keeps resolving.
+    hidden: true,
+    image: "",
     tags: [...TALK, "Antimicrobial", "Display"],
     price: 2_600_000,
     rangeCity: upToFloors("6"),
@@ -529,6 +600,17 @@ export const products: Product[] = rawProducts.map((p) => ({
   slug: p.id.replace(/^m-/, ""),
 }));
 
+/**
+ * What the site actually shows.
+ *
+ * `products` is the full record — it has to stay complete because the
+ * `/catalog/{id}` redirect map is generated from it, and a hidden model's old
+ * URL is still indexed. `visibleProducts` is what every page, the lineup, the
+ * compare tables and the sitemap iterate over. Anything that renders a product
+ * to a visitor uses this; only the redirect generator uses `products`.
+ */
+export const visibleProducts: Product[] = products.filter((p) => !p.hidden);
+
 export const BRAND_SLUGS: readonly BrandSlug[] = ["radiocom", "motorola"];
 
 /** Narrows a raw route param to a real brand, so unknown segments can 404. */
@@ -537,11 +619,34 @@ export function isBrandSlug(v: string): v is BrandSlug {
 }
 
 export function productsOfBrand(brandSlug: BrandSlug): Product[] {
-  return products.filter((p) => p.brandSlug === brandSlug);
+  return visibleProducts.filter((p) => p.brandSlug === brandSlug);
+}
+
+/**
+ * Where an old `/catalog/{id}` URL should land.
+ *
+ * A hidden model is the case this exists for. Its product page 404s by design
+ * (`productBySlug` is over `visibleProducts`), but its old catalogue URL is
+ * already indexed — so redirecting it to its own product page produced a
+ * 301 -> 404 chain, which Google reports as a broken redirect and which is
+ * strictly worse than either a plain 404 or a redirect to a live page. The
+ * brand page is the nearest thing that exists and answers 200.
+ *
+ * Returns `null` for an id that is not in `products` at all; the caller falls
+ * back to the default brand page.
+ */
+export function legacyCatalogTarget(
+  id: string,
+): { brand: BrandSlug; model: string } | { brand: BrandSlug } | null {
+  const p = products.find((x) => x.id === id);
+  if (!p) return null;
+  return p.hidden ? { brand: p.brandSlug } : { brand: p.brandSlug, model: p.slug };
 }
 
 export function productBySlug(brandSlug: BrandSlug, slug: string): Product | undefined {
-  return products.find((p) => p.brandSlug === brandSlug && p.slug === slug);
+  // Deliberately over `visibleProducts`: a hidden model must 404 as a product
+  // page, not render one with an empty image slot.
+  return visibleProducts.find((p) => p.brandSlug === brandSlug && p.slug === slug);
 }
 
 /** Cheapest price in a brand's line-up, for the "from N сум" on brand cards. */

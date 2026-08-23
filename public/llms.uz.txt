@@ -14,7 +14,7 @@ Tillar: rus, ingliz, o'zbek. Kanonik til — rus tili.
 - Telefon: +998 78 113-16-18
 - Ish vaqti: Du-Ju 09:00-18:00
 
-## Katalog (24 model)
+## Katalog (21 model)
 ### Radiocom RC
 - [Radiocom RCD-70](https://radiocom.uz/uz/radiocom/rcd-70) — RCD liniyasining flagmani: raqamli DMR, GPS va IP67 himoyasi. Masofa 4 km gacha.
 - [Radiocom RCD-60](https://radiocom.uz/uz/radiocom/rcd-60) — Displey va klaviaturali raqamli radiostansiya, to'liq komplektda. Masofa 3,5 km gacha.
@@ -28,7 +28,6 @@ Tillar: rus, ingliz, o'zbek. Kanonik til — rus tili.
 ### Motorola
 - [Motorola Talkabout T82 Extreme](https://radiocom.uz/uz/motorola/t82-extreme) — Ochiq havodagi vazifalar uchun himoyalangan, litsenziyasiz radiostansiya. Masofa 1,5 km gacha.
 - [Motorola Talkabout T82 Extreme Quad](https://radiocom.uz/uz/motorola/t82-extreme-quad) — Uyushgan brigadalar uchun 4 ta radiostansiyadan iborat to'plam. Masofa 1,5 km gacha.
-- [Motorola Talkabout T82 Extreme RSM](https://radiocom.uz/uz/motorola/t82-extreme-rsm) — Shovqinli joylarda ishlash uchun RSM tashqi mikrofonlari bilan T82 Extreme. Masofa 1,5 km gacha.
 - [Motorola Talkabout T82](https://radiocom.uz/uz/motorola/t82) — Jamoalar va tadbirlar uchun ixcham PMR radiostansiya. Masofa 1,5 km gacha.
 - [Motorola Talkabout T72 Go Active](https://radiocom.uz/uz/motorola/t72) — Ochiq havoda faol foydalanish uchun zamonaviy PMR. Masofa 1 km gacha.
 - [Motorola Talkabout T62 Red](https://radiocom.uz/uz/motorola/t62-red) — Ishonchli qabulga ega qizil korpusdagi nafis PMR. Masofa 900 m gacha.
@@ -40,8 +39,6 @@ Tillar: rus, ingliz, o'zbek. Kanonik til — rus tili.
 - [Motorola TLKR-T92 H2O](https://radiocom.uz/uz/motorola/tlkr-t92h2o) — Suzadi va IP67 suvdan himoyalangan — suv va qurilish uchun. Masofa 1,5 km gacha.
 - [Motorola XT185](https://radiocom.uz/uz/motorola/xt185) — Chakana savdo, HoReCa va jamoat joylari uchun PMR. Masofa 1 km gacha.
 - [Motorola XT420](https://radiocom.uz/uz/motorola/xt420) — HoReCa va obyekt qo'riqlash uchun litsenziyasiz PMR. Masofa 2 km gacha.
-- [Motorola CLP 446](https://radiocom.uz/uz/motorola/clp446) — Zal xodimlari uchun antennasiz yassi radiostansiya — antibakterial korpus. Masofa 6 qavatgacha.
-- [Motorola CLK 446](https://radiocom.uz/uz/motorola/clk446) — Eng nozik CL: 14 mm, antimikrob qoplama, displey. Masofa 6 qavatgacha.
 
 ## Bo'limlar
 - https://radiocom.uz/uz

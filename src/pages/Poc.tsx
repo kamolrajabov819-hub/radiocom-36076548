@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Check, Radio, MapPin, MessagesSquare, Layers, Coins, Wifi } from "lucide-react";
-import pocHero from "@/assets/poc-hero-v13.png.asset.json";
+import pocHero from "@/assets/poc-hero-v13.png";
 import radioInHand from "@/assets/product/radio-in-hand.webp";
 import radioInHand800 from "@/assets/product/radio-in-hand@800.webp";
 import { openLead } from "@/components/LeadFormSheet";
@@ -10,7 +10,6 @@ import { Section, SectionHead } from "@/components/Section";
 import { CompareTable, type CompareColumn } from "@/components/apple";
 import { ProductShot } from "@/components/ProductShot";
 import { spring, fadeUpAt } from "@/lib/springs";
-import { assetUrl } from "@/lib/asset";
 import {
   breadcrumbSchema,
   jsonLd,
@@ -141,7 +140,7 @@ function PocHero() {
           className="stage relative mx-auto mt-10 max-w-[820px] md:mt-16"
         >
           <img
-            src={assetUrl(pocHero)}
+            src={pocHero}
             alt="Radiocom RCD-60 PoC push-to-talk radio"
             loading="eager"
             width={1400}
@@ -216,7 +215,12 @@ function Compare() {
           sub={t("poc.vs_sub")}
         />
         <motion.div {...fadeUpAt(1)}>
-          <CompareTable columns={columns} rows={rows} caption={t("poc.vs_title")} />
+          <CompareTable
+            columns={columns}
+            rows={rows}
+            caption={t("poc.vs_title")}
+            rowHeaderLabel={t("px.spec_column")}
+          />
         </motion.div>
       </div>
     </section>
@@ -248,44 +252,64 @@ function NetworkDesign() {
         title={t("poc.design.title")}
       />
 
-      <ol className="no-scrollbar bleed-x flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4">
-        {steps.map((step, i) => {
-          const Icon = icons[i] ?? Check;
-          return (
-            <motion.li
-              key={step}
-              {...fadeUpAt(Math.min(i, 4))}
-              className="card-interactive group relative flex min-h-[340px] w-[78vw] shrink-0 snap-start flex-col overflow-hidden rounded-[28px] bg-pitch p-7 sm:w-[46vw] md:w-[32vw] lg:w-[23vw] lg:min-w-[260px]"
-            >
-              {/* The step number, at a scale you read as position, not as text. */}
-              <span
-                aria-hidden
-                className="pointer-events-none absolute -bottom-8 -right-3 select-none text-[150px] font-semibold leading-none tracking-[-0.05em] text-crisp/[0.05] transition-colors duration-500 group-hover:text-signal/[0.09]"
+      {/* The scroll container is a focusable `role="group"` wrapper, not the
+          `<ol>` itself.
+
+          It has to be focusable: the row scrolls horizontally and its cards
+          hold no focusable elements, so a keyboard user could reach the content
+          above and below but never the middle of the row (WCAG 2.1.1). Putting
+          `tabindex` straight on the `<ol>` fixes that but trips
+          `focus-order` — a non-interactive element in the tab order with no
+          role tells a screen reader nothing about why it stopped there. Giving
+          the `<ol>` a role instead would cost the list semantics.
+
+          A labelled `group` wrapper satisfies both, and is the same shape
+          `HighlightsShelf` uses for its shelves. */}
+      <div
+        role="group"
+        tabIndex={0}
+        aria-label={t("poc.design.title")}
+        className="no-scrollbar bleed-x overflow-x-auto pb-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-4"
+      >
+        <ol className="flex snap-x snap-mandatory gap-4">
+          {steps.map((step, i) => {
+            const Icon = icons[i] ?? Check;
+            return (
+              <motion.li
+                key={step}
+                {...fadeUpAt(Math.min(i, 4))}
+                className="card-interactive group relative flex min-h-[340px] w-[78vw] shrink-0 snap-start flex-col overflow-hidden rounded-[28px] bg-pitch p-7 sm:w-[46vw] md:w-[32vw] lg:w-[23vw] lg:min-w-[260px]"
               >
-                {i + 1}
-              </span>
+                {/* The step number, at a scale you read as position, not as text. */}
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute -bottom-8 -right-3 select-none text-[150px] font-semibold leading-none tracking-[-0.05em] text-crisp/[0.05] transition-colors duration-500 group-hover:text-signal/[0.09]"
+                >
+                  {i + 1}
+                </span>
 
-              <Icon
-                className="relative h-8 w-8 text-signal transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
-                strokeWidth={1.5}
-                aria-hidden
-              />
+                <Icon
+                  className="relative h-8 w-8 text-signal transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
+                  strokeWidth={1.5}
+                  aria-hidden
+                />
 
-              <div className="relative mt-auto">
-                <div className="text-[13px] font-medium uppercase tracking-[0.16em] text-cool">
-                  {t("poc.design.step_label", {
-                    defaultValue: String(i + 1).padStart(2, "0"),
-                    n: i + 1,
-                  })}
+                <div className="relative mt-auto">
+                  <div className="text-[13px] font-medium uppercase tracking-[0.16em] text-cool">
+                    {t("poc.design.step_label", {
+                      defaultValue: String(i + 1).padStart(2, "0"),
+                      n: i + 1,
+                    })}
+                  </div>
+                  <h3 className="mt-2 hyphens-auto break-words text-[21px] font-semibold leading-[1.2] tracking-[-0.02em] text-crisp">
+                    {step}
+                  </h3>
                 </div>
-                <h3 className="mt-2 hyphens-auto break-words text-[21px] font-semibold leading-[1.2] tracking-[-0.02em] text-crisp">
-                  {step}
-                </h3>
-              </div>
-            </motion.li>
-          );
-        })}
-      </ol>
+              </motion.li>
+            );
+          })}
+        </ol>
+      </div>
     </Section>
   );
 }
