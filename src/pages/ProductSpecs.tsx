@@ -132,8 +132,17 @@ export function ProductSpecsPage() {
           <span className="text-crisp">{t("meta.crumb.specs")}</span>
         </nav>
 
-        <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)]">
-          <div>
+        {/* Buy card left, specification right.
+        
+            The DOM order is deliberately unchanged: the `<h1>` and the summary
+            still come first in source, so a screen reader and the crawler both
+            meet the product's name before its price. Only the *visual* order
+            moves, via `lg:order-*` — reordering the source to achieve this
+            would have put a price card ahead of the page's heading. Below `lg`
+            the columns stack and source order governs, which is the order that
+            reads correctly on a phone. */}
+        <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)]">
+          <div className="lg:order-2">
             <TintedHeadline as="h1" className="type-headline text-crisp">
               {p.name}
             </TintedHeadline>
@@ -158,7 +167,7 @@ export function ProductSpecsPage() {
 
           {/* Buy card. Sticky on desktop so the price stays with the reader
               while they scroll the full table below. */}
-          <aside className="lg:sticky lg:top-24">
+          <aside className="lg:order-1 lg:sticky lg:top-24">
             <div className="rounded-[28px] bg-charcoal p-7 md:p-8">
               <div className="flex justify-center">
                 <img
