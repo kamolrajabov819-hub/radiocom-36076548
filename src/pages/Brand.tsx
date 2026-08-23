@@ -233,8 +233,13 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
           ) : null}
         </div>
 
+        {/* Centred, the way apple.com centres the segmented control under the
+            family name. This wrapper was `justify-start` while the component's
+            own root was `justify-center` — the classic pair of alignment rules
+            that cancel each other out, leaving the row wherever it happened to
+            land. The track now owns its own centring. */}
         {facets.length ? (
-          <div className="mb-8 flex justify-start">
+          <div className="mb-8 flex justify-center">
             <FilterPills
               label={t("catalog.categories")}
               options={facets}
@@ -416,7 +421,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
           <h2 className="type-headline text-crisp">{t("brand.compare_cta")}</h2>
           <p className="subhead mt-4 text-[17px]">{t("brand.compare_sub")}</p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <LocaleLink to="/compare" className="pill pill-primary">
+            <LocaleLink to="/compare" className="pill pill-accent">
               {t("px.compare_title")}
             </LocaleLink>
             <LocaleLink

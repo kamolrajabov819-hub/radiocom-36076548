@@ -78,7 +78,7 @@ function NotFoundBody() {
         </div>
 
         <div className="mt-12 flex flex-col items-center gap-4">
-          <Link to={localePath(lang, "/")} className="pill pill-primary">
+          <Link to={localePath(lang, "/")} className="pill pill-accent">
             {t("error.nf_home")}
           </Link>
           <p className="max-w-sm text-[14px] text-cool">{t("error.nf_search_hint")}</p>

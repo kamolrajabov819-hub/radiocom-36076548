@@ -61,7 +61,7 @@ function ErrorBody({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="pill pill-primary"
+            className="pill pill-accent"
           >
             {t("error.err_retry")}
           </button>

@@ -703,7 +703,7 @@ function Closing({ p, lang }: { p: Product; lang: Lang }) {
           <LocaleLink
             to="/$brand/$model/specs"
             params={{ brand: p.brandSlug, model: p.slug }}
-            className="pill pill-primary"
+            className="pill pill-accent"
           >
             {t("px.spec_table")}
           </LocaleLink>

@@ -103,7 +103,7 @@ export function ComparePage() {
           <h2 className="type-headline text-crisp">{t("brand.compare_cta")}</h2>
           <p className="subhead mt-4 text-[17px]">{t("px.trial")}</p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <LocaleLink to="/radiocom" className="pill pill-primary">
+            <LocaleLink to="/radiocom" className="pill pill-accent">
               {t("brand.radiocom_title")}
             </LocaleLink>
             <LocaleLink to="/motorola" className="pill-link">
@@ -189,7 +189,7 @@ function ColumnActions({ p }: { p: Product }) {
       <LocaleLink
         to="/$brand/$model"
         params={{ brand: p.brandSlug, model: p.slug }}
-        className="pill pill-sm pill-primary"
+        className="pill pill-sm pill-accent"
       >
         {t("px.learn_more")}
       </LocaleLink>

@@ -598,8 +598,7 @@ function FinalCta() {
           <Magnetic>
             <button
               onClick={() => openLead({ title: t("home.final_cta.button") })}
-              className="pill"
-              style={{ background: "#fff", color: "#000" }}
+              className="pill pill-invert"
             >
               {t("home.final_cta.button")}
             </button>

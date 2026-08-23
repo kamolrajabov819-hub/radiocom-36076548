@@ -642,49 +642,108 @@ export function LeadInCaption({
  * The segmented filter above apple.com/mac's lineup ("All products · Laptops ·
  * Desktops · Displays").
  *
- * Deliberately not a `<select>` and not links: the set is small, every option
- * is worth showing, and the filtering is instant. Rendered as real radio inputs
- * so arrow keys move between options and a screen reader announces the group
- * and the selected state — a row of buttons gives neither.
+ * The chips were already right — a solid dark pill for the selection, plain
+ * text for the rest, because a row of grey pills with one darker one takes a
+ * second look to parse. What was missing is the **track**: on apple.com the
+ * whole row sits inside one pill-shaped light-grey container, and that
+ * container is the control's entire visual signature. Without it the chips
+ * float on the band and the group reads as four unrelated buttons.
+ *
+ * `LangToggle` already had this exact construction, including the trick that
+ * makes it work: the chip stays compact (34px, 13px text — a 44px-tall filter
+ * row would out-shout the lineup it filters) while a transparent `::after`
+ * overlay extends the tap target to the 44px a thumb needs. Painting the chip
+ * at 44px and extending nothing is what made the previous version chunky.
+ *
+ * One row, scrolling rather than wrapping. `no-scrollbar` and `mask-fade-x`
+ * were written for precisely this and had been orphaned since the row became
+ * `flex-wrap` — a wrapped second row of chips breaks the track's pill shape.
+ *
+ * Still `role="radiogroup"` over buttons rather than real `<input type=radio>`:
+ * the filtering is instant and the set is small. Arrow-key navigation is
+ * implemented explicitly below, because `role="radio"` promises it and a bare
+ * button group does not deliver it.
  */
 export function FilterPills<T extends string>({
   options,
   value,
   onChange,
   label,
+  className,
 }: {
   options: { value: T; label: string }[];
   value: T;
   onChange: (v: T) => void;
   /** Accessible name for the group. */
   label: string;
+  className?: string;
 }) {
+  // Roving tabindex: only the selected chip is tabbable, and the arrow keys
+  // move the selection. That is the contract `role="radiogroup"` advertises,
+  // and the previous version advertised it without honouring it — Tab stepped
+  // through all four chips and the arrows did nothing.
+  const move = (delta: number) => {
+    const i = options.findIndex((o) => o.value === value);
+    if (i < 0) return;
+    const next = options[(i + delta + options.length) % options.length];
+    onChange(next.value);
+  };
+
   return (
-    <div role="radiogroup" aria-label={label} className="flex flex-wrap justify-center gap-2">
-      {options.map((o) => {
-        const active = o.value === value;
-        return (
-          <button
-            key={o.value}
-            role="radio"
-            aria-checked={active}
-            onClick={() => onChange(o.value)}
-            className={cn(
-              "inline-flex min-h-11 items-center rounded-full px-4 py-2 text-[14px] font-medium transition-colors duration-200",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2",
-              // Only the selected option wears a pill. apple.com/mac leaves the
-              // rest as plain text on the band, which is what makes the
-              // selection readable at a glance — a row of grey pills with one
-              // darker one takes a second look to parse.
-              active
-                ? "bg-crisp text-pitch"
-                : "text-crisp hover:bg-[color-mix(in_oklab,var(--crisp)_6%,transparent)]",
-            )}
-          >
-            {o.label}
-          </button>
-        );
-      })}
+    /* `no-scrollbar` on the *scrolling* element, and deliberately no
+       `mask-fade-x`: the track is a discrete rounded object, and fading its
+       edges would dissolve the very corners that give it its pill shape. */
+    <div className={cn("no-scrollbar max-w-full overflow-x-auto", className)}>
+      <div
+        role="radiogroup"
+        aria-label={label}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+            e.preventDefault();
+            move(1);
+          } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+            e.preventDefault();
+            move(-1);
+          }
+        }}
+        // A translucent ink tint, not `bg-charcoal`. The lineup sits on the
+        // `soft` band, which *is* `--charcoal` — so a charcoal track was
+        // #f5f5f7 on #f5f5f7 and the container disappeared entirely, which is
+        // the whole reason the row read as loose chips in the first place. A
+        // 5% tint darkens whatever it is placed on, so the track survives a
+        // section moving between white and soft.
+        className={cn(
+          "inline-flex w-max items-center gap-1 rounded-full p-1",
+          "bg-[color-mix(in_oklab,var(--crisp)_5%,transparent)]",
+        )}
+      >
+        {options.map((o) => {
+          const active = o.value === value;
+          return (
+            <button
+              key={o.value}
+              type="button"
+              role="radio"
+              aria-checked={active}
+              tabIndex={active ? 0 : -1}
+              onClick={() => onChange(o.value)}
+              className={cn(
+                "relative flex items-center justify-center whitespace-nowrap rounded-full px-4 py-1.5",
+                "text-[13px] font-medium leading-[1.4] transition-colors duration-200",
+                // The tap target, not the chip. `::after` paints nothing and
+                // sits outside the track's 4px padding, so three of these
+                // overlapping is harmless — a touch still lands on whichever
+                // chip's centre is nearest.
+                "after:absolute after:inset-x-0 after:top-1/2 after:h-11 after:-translate-y-1/2 after:content-['']",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2",
+                active ? "bg-crisp text-pitch" : "text-cool hover:text-crisp",
+              )}
+            >
+              {o.label}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }
