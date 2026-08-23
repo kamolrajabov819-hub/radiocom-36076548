@@ -28,7 +28,12 @@ export function LangToggle() {
 
   const hrefFor = (l: Lang) => {
     const rest = pathname.replace(/^\/(ru|en|uz)(?=\/|$)/, "");
-    return `/${l}${rest || "/"}`;
+    // `` `/${l}` ``, not `` `/${l}/` ``. On the home page `rest` is empty, and
+    // the old fallback produced `/ru/` — which the router 307s to `/ru`. That
+    // put a redirect hop on the single most-used control in a three-language
+    // market, on the site's most-linked page, and it is the canonical URL the
+    // rest of the SEO layer emits everywhere else.
+    return `/${l}${rest}`;
   };
 
   return (
