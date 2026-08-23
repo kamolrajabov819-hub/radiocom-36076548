@@ -14,6 +14,15 @@ import type { CSSProperties } from "react";
  * re-derives, and `tone="dark"` switches to `screen`, which is multiply's
  * counterpart for dark grounds.
  *
+ * `cutout` is the third case, and the one to reach for with the files in
+ * `src/assets/cutout/`: a source that carries a real alpha channel. Those need
+ * no blend at all — there is no sweep to knock out — and blending one is not
+ * merely redundant. Multiply darkens the contact shadow into a smudge, and on
+ * a dark card either mode erases the subject outright: multiply keeps the dark
+ * pixels of a black radio and drops it into the black card, screen turns it
+ * white. `cutout` switches the blend off and turns the contact shadow on,
+ * which is the pair that actually belongs together.
+ *
  * `fit` picks between the two ways a photo can sit in a card:
  *   - `"contain"` floats the product on the card's own background. Needs the
  *     source's sweep to be near-pure white, or multiply leaves a grey box.
@@ -43,6 +52,7 @@ export function ProductShot({
   className = "",
   imgClassName = "",
   blend,
+  cutout = false,
   fit = "contain",
   shadow = false,
   tone = "light",
@@ -65,6 +75,12 @@ export function ProductShot({
   imgClassName?: string;
   /** Defaults to true for `contain`, false for `cover`. */
   blend?: boolean;
+  /**
+   * The source carries an alpha channel. Switches the blend off and the
+   * contact shadow on — see the note above on why blending a cutout is not
+   * merely a no-op.
+   */
+  cutout?: boolean;
   fit?: "contain" | "cover";
   /** Adds the `stage` contact shadow. Only for a product floating on a band. */
   shadow?: boolean;
@@ -75,7 +91,8 @@ export function ProductShot({
   style?: CSSProperties;
 }) {
   const cover = fit === "cover";
-  const shouldBlend = blend ?? !cover;
+  const shouldBlend = blend ?? (!cover && !cutout);
+  const withShadow = shadow || cutout;
   const blendClass = shouldBlend
     ? tone === "dark"
       ? "mix-blend-screen"
@@ -98,7 +115,7 @@ export function ProductShot({
 
   return (
     <div className={`${frame} ${positioned ? "" : "relative"} ${className}`} style={style}>
-      {shadow ? (
+      {withShadow ? (
         <div
           aria-hidden
           className="pointer-events-none absolute bottom-[6%] left-1/2 h-[5%] w-[46%] -translate-x-1/2 rounded-[50%] bg-black/20 blur-[26px]"

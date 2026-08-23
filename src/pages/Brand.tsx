@@ -21,15 +21,21 @@ import priceListPdf from "@/assets/radiocom-price-list.pdf";
 // photograph at the bottom; ours were text with an empty half. These are the
 // frames the repo already has that actually depict each claim.
 //
-// The `@800` variants deliberately. These render at 130px tall — Lighthouse
+// The `@800` variants deliberately. These render at 130-190px tall — Lighthouse
 // caught the full-size files costing 315 KB on this page for images displayed
 // at a tenth of their width. The small candidates are 95 KB for the set and
 // still oversampled at DPR 2.
-import whyWarranty from "@/assets/radio-with-retail-box@800.webp";
-import whyDelivery from "@/assets/radios-floating-pair@800.webp";
-import whyService from "@/assets/radio-macro-display@800.webp";
-import whyTest from "@/assets/hands-two-radios-front@800.webp";
-import whyTradein from "@/assets/hands-tradein-pair@800.webp";
+//
+// All five are cutouts now, so none of them carries `mix-blend-multiply` any
+// more. Two of the five previously did and should not have: the retail-box
+// shot sat on #f8f8f8 and the trade-in pair on #f5f3fb, and multiply cannot
+// remove a tone that is not white — both showed a visible panel edge against
+// the card.
+import whyWarranty from "@/assets/cutout/hand-retail-box-cutout@800.webp";
+import whyDelivery from "@/assets/cutout/pair-floating-cutout@800.webp";
+import whyService from "@/assets/cutout/macro-display-cutout@800.webp";
+import whyTest from "@/assets/cutout/hands-compare-cutout@800.webp";
+import whyTradein from "@/assets/cutout/hands-tradein-cutout@800.webp";
 import {
   products,
   productsOfBrand,
@@ -306,9 +312,9 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
                     alt=""
                     loading="lazy"
                     decoding="async"
-                    width={800}
-                    height={600}
-                    className="max-h-[130px] w-auto object-contain mix-blend-multiply"
+                    width={c.w}
+                    height={c.h}
+                    className="max-h-[170px] w-auto object-contain drop-shadow-[0_14px_22px_rgba(0,0,0,0.12)]"
                   />
                 }
               />
@@ -371,9 +377,9 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
                 alt=""
                 loading="lazy"
                 decoding="async"
-                width={800}
-                height={1071}
-                className="max-h-[150px] w-auto object-contain mix-blend-multiply"
+                width={731}
+                height={800}
+                className="max-h-[190px] w-auto object-contain drop-shadow-[0_16px_24px_rgba(0,0,0,0.12)]"
               />
             }
           />
@@ -398,8 +404,8 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
                 loading="lazy"
                 decoding="async"
                 width={800}
-                height={600}
-                className="max-h-[150px] w-auto object-contain mix-blend-multiply"
+                height={447}
+                className="max-h-[190px] w-auto object-contain drop-shadow-[0_16px_24px_rgba(0,0,0,0.12)]"
               />
             }
           />
@@ -435,6 +441,10 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
  * Kept as data rather than five inline `<ExpandCard>`s so the `+` detail and
  * its heading cannot drift apart, and so adding a sixth reason is a row here
  * rather than a copy-paste of eleven lines of JSX.
+ *
+ * `w`/`h` are the image's real intrinsic size. They were a shared 800x600 —
+ * the aspect of none of the five — so the browser reserved the wrong box for
+ * each and the shelf shifted as the images decoded.
  */
 const WHY_CARDS = [
   {
@@ -443,6 +453,8 @@ const WHY_CARDS = [
     title: "home.bento.warranty.sub",
     detail: "brand.sub",
     image: whyWarranty,
+    w: 800,
+    h: 372,
   },
   {
     key: "delivery",
@@ -450,6 +462,8 @@ const WHY_CARDS = [
     title: "px.trial",
     detail: "brand.compare_sub",
     image: whyDelivery,
+    w: 574,
+    h: 800,
   },
   {
     key: "service",
@@ -457,6 +471,8 @@ const WHY_CARDS = [
     title: "home.bento.service.sub",
     detail: "service.sub",
     image: whyService,
+    w: 731,
+    h: 800,
   },
   {
     key: "test",
@@ -464,6 +480,8 @@ const WHY_CARDS = [
     title: "home.bento.test.sub",
     detail: "px.trial",
     image: whyTest,
+    w: 800,
+    h: 800,
   },
   {
     key: "tradein",
@@ -471,6 +489,8 @@ const WHY_CARDS = [
     title: "home.bento.tradein.sub",
     detail: "tradein.sub",
     image: whyTradein,
+    w: 800,
+    h: 447,
   },
 ] as const;
 

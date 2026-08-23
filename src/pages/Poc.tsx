@@ -2,12 +2,34 @@ import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Check, Radio, MapPin, MessagesSquare, Layers, Coins, Wifi } from "lucide-react";
-import pocHero from "@/assets/poc-hero-v13.png";
-import radioInHand from "@/assets/product/radio-in-hand.webp";
-import radioInHand800 from "@/assets/product/radio-in-hand@800.webp";
+// The hero — the pair shot you asked for, as its cutout rather than as
+// `product/radios-pair.webp`.
+//
+// They are the same photograph; I compared them side by side before swapping.
+// The difference matters here because the hero sits on a tinted band, and the
+// white-sweep version cannot blend into one: `mix-blend-multiply` composites
+// against the nearest stacking context, and the parallax wrapper around this
+// image has a `transform`, which creates one. Inside it the backdrop is
+// transparent, so the blend has nothing to multiply against and the sweep
+// renders as a hard white rectangle on the tint. The cutout has no sweep, so
+// there is nothing to blend and nothing to go wrong.
+//
+// `poc-hero-v13.png`, which this replaces, was a 1.19 MB opaque PNG rendered
+// at 560 CSS px — the heaviest single file on the site and this page's LCP.
+import heroPair from "@/assets/cutout/pair-crossed-cutout.webp";
+import heroPair800 from "@/assets/cutout/pair-crossed-cutout@800.webp";
+// Three more cutouts for the feature sequence, one for the rental close.
+import shotMedia from "@/assets/cutout/pair-displayed-cutout.webp";
+import shotMedia800 from "@/assets/cutout/pair-displayed-cutout@800.webp";
+import shotGps from "@/assets/cutout/hand-radio-lit-cutout.webp";
+import shotGps800 from "@/assets/cutout/hand-radio-lit-cutout@800.webp";
+import shotScale from "@/assets/cutout/radios-fan-cutout.webp";
+import shotScale800 from "@/assets/cutout/radios-fan-cutout@800.webp";
+import radioInHand from "@/assets/cutout/hand-radio-cutout.webp";
+import radioInHand800 from "@/assets/cutout/hand-radio-cutout@800.webp";
 import { openLead } from "@/components/LeadFormSheet";
 import { Section, SectionHead } from "@/components/Section";
-import { CompareTable, type CompareColumn } from "@/components/apple";
+import { CompareTable, HighlightsShelf, StatPanel, type CompareColumn } from "@/components/apple";
 import { ProductShot } from "@/components/ProductShot";
 import { spring, fadeUpAt } from "@/lib/springs";
 import {
@@ -15,10 +37,23 @@ import {
   jsonLd,
   localeLinks,
   pageMeta,
+  preloadImage,
   serviceSchema,
   type SeoLang,
 } from "@/lib/seo";
 import { tFor } from "@/lib/i18n";
+
+/**
+ * The six rows of the PoC-vs-PMR matrix.
+ *
+ * This page has exactly one body of real copy — `poc.rows.*` paired with
+ * `poc.poc_vals.*` and `poc.pmr_vals.*` — and the page is built from it. Every
+ * apple.com product page carries bespoke prose per section; inventing that here
+ * is what the brief rules out, so the same six facts do three jobs instead:
+ * three become the stat band, three become the feature sequence, and all six
+ * stay in the comparison table where a buyer can read down one axis.
+ */
+const ROW_IDS = ["coverage", "infra", "media", "gps", "scale", "cost"] as const;
 
 export const routeOptions = {
   head: ({ params }: { params: { lang: SeoLang } }) => {
@@ -30,7 +65,14 @@ export const routeOptions = {
         description: t("meta.poc.desc"),
         path: "/poc",
       }),
-      links: localeLinks(params.lang, "/poc"),
+      links: [
+        ...localeLinks(params.lang, "/poc"),
+        // The hero is this page's LCP element and now ships a real srcset pair,
+        // so the preload has to advertise the same candidate set the <img>
+        // chooses from — otherwise the browser preloads one file and fetches
+        // another. Gate 12 checks exactly this.
+        preloadImage({ src: heroPair, small: heroPair800, sizes: "(max-width: 768px) 86vw, 720px" }),
+      ],
       // /poc was the only page on the site emitting no structured data at all,
       // despite being a named product line with its own service offer.
       scripts: [
@@ -63,6 +105,8 @@ export function PoCPage() {
   return (
     <div className="page-anim">
       <PocHero />
+      <StatBand />
+      <FeatureSequence />
       <Compare />
       <NetworkDesign />
       <Rental />
@@ -70,6 +114,20 @@ export function PoCPage() {
   );
 }
 
+/* ─── Hero — a device on a tinted stage ───────────────────── */
+/**
+ * `band-tint` rather than `band-plain`.
+ *
+ * apple.com does not stand a product hero on flat white — the MacBook Air page
+ * washes the top of the band with colour that resolves to white before the next
+ * section, so the product appears to sit *in* a space rather than on a sheet.
+ * This page was the last one still on the flat treatment, which is much of why
+ * it read as a different site from the product pages.
+ *
+ * The stage is also far larger. A 560px cap on a 1440 display is a thumbnail by
+ * apple.com's standards; `min(78vw, 1080px)` is the proportion a product hero
+ * actually wants, and it is what you asked for.
+ */
 function PocHero() {
   const { t } = useTranslation();
   const ref = useRef<HTMLElement>(null);
@@ -79,11 +137,8 @@ function PocHero() {
   const deviceScale = useTransform(scrollYProgress, [0, 1], [1, reduced ? 1 : 1.04]);
 
   return (
-    <section
-      ref={ref}
-      className="relative overflow-hidden band-plain pt-32 pb-20 md:pt-44 md:pb-28"
-    >
-      <div className="relative shell px-6 text-center md:px-10">
+    <section ref={ref} className="relative overflow-hidden band-tint pt-32 pb-20 md:pt-44 md:pb-28">
+      <div className="relative shell text-center">
         <motion.div
           initial={{ opacity: 0, y: -6 }}
           animate={{ opacity: 1, y: 0 }}
@@ -112,7 +167,7 @@ function PocHero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...spring, delay: 0.26 }}
-          className="subhead type-body mx-auto mt-5 max-w-2xl font-light"
+          className="subhead type-body measure mx-auto mt-5 font-light"
         >
           {t("poc.sub")}
         </motion.p>
@@ -131,21 +186,24 @@ function PocHero() {
           </a>
         </motion.div>
 
-        {/* Product stage — seamless white, soft contact shadow */}
         <motion.div
           style={{ y: deviceY, scale: deviceScale }}
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...spring, delay: 0.2 }}
-          className="stage relative mx-auto mt-10 max-w-[820px] md:mt-16"
+          className="relative mx-auto mt-10 w-[min(78vw,1080px)] md:mt-14"
         >
-          <img
-            src={pocHero}
-            alt="Radiocom RCD-60 PoC push-to-talk radio"
-            loading="eager"
-            width={1400}
-            height={1400}
-            className={`relative z-10 h-auto w-[74%] max-w-[560px] object-contain md:w-[86%] ${reduced ? "" : "float-slow"}`}
+          <ProductShot
+            src={heroPair}
+            srcSmall={heroPair800}
+            cutout
+            alt={t("poc.title_a")}
+            width={889}
+            height={1380}
+            priority
+            sizes="(max-width: 768px) 86vw, 720px"
+            className={`w-full ${reduced ? "" : "float-slow"}`}
+            imgClassName="max-h-[62vh]"
           />
         </motion.div>
 
@@ -164,7 +222,7 @@ function PocHero() {
               transition={{ ...spring, delay: i * 0.06 }}
               className="inline-flex items-center gap-2"
             >
-              <c.Icon className="h-4 w-4 shrink-0 text-signal" />
+              <c.Icon className="h-4 w-4 shrink-0 text-signal" aria-hidden />
               {c.label}
             </motion.span>
           ))}
@@ -174,7 +232,94 @@ function PocHero() {
   );
 }
 
-/* PoC vs PMR — two quiet equal-height panels */
+/* ─── The three headline figures ──────────────────────────── */
+/**
+ * apple.com's stat band, fed from the comparison matrix rather than from
+ * invented numbers. Coverage, scale and infrastructure are the three rows where
+ * PoC differs from PMR by a category rather than a degree, so they are the
+ * three worth stating at size.
+ */
+function StatBand() {
+  const { t } = useTranslation();
+  const stats = ["coverage", "scale", "infra"] as const;
+
+  return (
+    <Section band="plain" tight>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        {stats.map((id, i) => (
+          <motion.div key={id} {...fadeUpAt(i)}>
+            <StatPanel value={t(`poc.poc_vals.${id}`)} label={t(`poc.rows.${id}`)} />
+          </motion.div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+/* ─── Feature sequence — alternating copy and product ─────── */
+/**
+ * Three full-width beats, image and copy swapping sides.
+ *
+ * The lucide icons this replaces were the section's whole visual content: a
+ * 40px glyph in a card, five times. apple.com gives each claim a photograph at
+ * a scale you can read, and alternates the side so the page has a rhythm rather
+ * than a column.
+ *
+ * The copy is the matrix again — the row label as the eyebrow, the PoC value as
+ * the headline, the PMR value as the counterpoint underneath. Those values are
+ * already written as short declaratives, which is the shape an Apple section
+ * headline takes.
+ */
+const FEATURES = [
+  { id: "media", src: shotMedia, small: shotMedia800, w: 955, h: 1600 },
+  { id: "gps", src: shotGps, small: shotGps800, w: 1195, h: 1600 },
+  { id: "scale", src: shotScale, small: shotScale800, w: 1600, h: 1072 },
+] as const;
+
+function FeatureSequence() {
+  const { t } = useTranslation();
+
+  return (
+    <Section band="soft">
+      <div className="flex flex-col gap-20 md:gap-28">
+        {FEATURES.map((f, i) => (
+          <motion.div
+            key={f.id}
+            {...fadeUpAt(0)}
+            className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-16"
+          >
+            <div className={i % 2 === 1 ? "md:order-2" : ""}>
+              <div className="text-[13px] font-medium uppercase tracking-[0.16em] text-signal">
+                {t(`poc.rows.${f.id}`)}
+              </div>
+              <h2 className="type-headline mt-3 text-crisp">{t(`poc.poc_vals.${f.id}`)}</h2>
+              {/* The counterpoint, from the same matrix. "PMR / DMR" is the
+                  standard's own name — the literal the compare table's column
+                  header uses — so it carries across all three locales as is. */}
+              <p className="subhead measure mt-5 text-[17px]">
+                PMR / DMR — {t(`poc.pmr_vals.${f.id}`)}
+              </p>
+            </div>
+            <div className={i % 2 === 1 ? "md:order-1" : ""}>
+              <ProductShot
+                src={f.src}
+                srcSmall={f.small}
+                cutout
+                alt=""
+                width={f.w}
+                height={f.h}
+                sizes="(max-width: 768px) 84vw, 520px"
+                className="mx-auto w-full max-w-[480px]"
+                imgClassName="max-h-[420px]"
+              />
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
 /* ─────────────────────────────────────────────────────────────
    PoC vs PMR — apple.com's "which one is right for you?" table
 
@@ -184,9 +329,8 @@ function PocHero() {
    ───────────────────────────────────────────────────────────── */
 function Compare() {
   const { t } = useTranslation();
-  const rowIds = ["coverage", "infra", "media", "gps", "scale", "cost"] as const;
 
-  const rows = rowIds.map((id) => ({ id, label: t(`poc.rows.${id}`) }));
+  const rows = ROW_IDS.map((id) => ({ id, label: t(`poc.rows.${id}`) }));
   const columns: CompareColumn[] = [
     {
       id: "poc",
@@ -194,26 +338,21 @@ function Compare() {
       tagline: t("poc.compare.poc.title"),
       highlight: true,
       media: <Wifi className="h-8 w-8 text-signal" strokeWidth={1.5} aria-hidden />,
-      values: Object.fromEntries(rowIds.map((id) => [id, t(`poc.poc_vals.${id}`)])),
+      values: Object.fromEntries(ROW_IDS.map((id) => [id, t(`poc.poc_vals.${id}`)])),
     },
     {
       id: "pmr",
       name: "PMR / DMR",
       tagline: t("poc.compare.pmr.title"),
       media: <Radio className="h-8 w-8 text-cool" strokeWidth={1.5} aria-hidden />,
-      values: Object.fromEntries(rowIds.map((id) => [id, t(`poc.pmr_vals.${id}`)])),
+      values: Object.fromEntries(ROW_IDS.map((id) => [id, t(`poc.pmr_vals.${id}`)])),
     },
   ];
 
   return (
-    <section id="poc-compare" className="band-soft section-tight">
+    <section id="poc-compare" className="band-plain section">
       <div className="shell">
-        <SectionHead
-          align="center"
-          spacing="tight"
-          title={t("poc.vs_title")}
-          sub={t("poc.vs_sub")}
-        />
+        <SectionHead align="center" title={t("poc.vs_title")} sub={t("poc.vs_sub")} />
         <motion.div {...fadeUpAt(1)}>
           <CompareTable
             columns={columns}
@@ -237,6 +376,10 @@ function Compare() {
  * cards run off the right edge and scroll, so the layout never has to resolve
  * into rows at all. Each card carries its step number as a large ghost numeral
  * behind the copy, which is the sequence made visible rather than stated.
+ *
+ * It uses `HighlightsShelf` now rather than a hand-rolled `overflow-x-auto`:
+ * that component already owns the arrows, the scroll-position sync, the
+ * focusable region and the accessible name this row was reimplementing.
  */
 function NetworkDesign() {
   const { t } = useTranslation();
@@ -244,72 +387,43 @@ function NetworkDesign() {
   const icons = [MapPin, Layers, Radio, Check, Coins];
 
   return (
-    <Section band="soft" tight>
-      <SectionHead
-        align="left"
-        spacing="tight"
-        eyebrow={t("poc.design.kicker")}
-        title={t("poc.design.title")}
-      />
-
-      {/* The scroll container is a focusable `role="group"` wrapper, not the
-          `<ol>` itself.
-
-          It has to be focusable: the row scrolls horizontally and its cards
-          hold no focusable elements, so a keyboard user could reach the content
-          above and below but never the middle of the row (WCAG 2.1.1). Putting
-          `tabindex` straight on the `<ol>` fixes that but trips
-          `focus-order` — a non-interactive element in the tab order with no
-          role tells a screen reader nothing about why it stopped there. Giving
-          the `<ol>` a role instead would cost the list semantics.
-
-          A labelled `group` wrapper satisfies both, and is the same shape
-          `HighlightsShelf` uses for its shelves. */}
-      <div
-        role="group"
-        tabIndex={0}
-        aria-label={t("poc.design.title")}
-        className="no-scrollbar bleed-x overflow-x-auto pb-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-4"
-      >
-        <ol className="flex snap-x snap-mandatory gap-4">
-          {steps.map((step, i) => {
-            const Icon = icons[i] ?? Check;
-            return (
-              <motion.li
-                key={step}
-                {...fadeUpAt(Math.min(i, 4))}
-                className="card-interactive group relative flex min-h-[340px] w-[78vw] shrink-0 snap-start flex-col overflow-hidden rounded-[28px] bg-pitch p-7 sm:w-[46vw] md:w-[32vw] lg:w-[23vw] lg:min-w-[260px]"
+    <Section band="soft">
+      <SectionHead align="left" eyebrow={t("poc.design.kicker")} title={t("poc.design.title")} />
+      <HighlightsShelf label={t("poc.design.title")}>
+        {steps.map((step, i) => {
+          const Icon = icons[i] ?? Check;
+          return (
+            <article
+              key={step}
+              className="card-interactive group relative flex min-h-[360px] w-[78vw] shrink-0 snap-start flex-col overflow-hidden rounded-[28px] bg-pitch p-8 sm:w-[46vw] lg:w-[calc((100%-3rem)/4)]"
+            >
+              {/* The step number, at a scale you read as position, not as text. */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -bottom-8 -right-3 select-none text-[150px] font-semibold leading-none tracking-[-0.05em] text-crisp/[0.05] transition-colors duration-500 group-hover:text-signal/[0.09]"
               >
-                {/* The step number, at a scale you read as position, not as text. */}
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute -bottom-8 -right-3 select-none text-[150px] font-semibold leading-none tracking-[-0.05em] text-crisp/[0.05] transition-colors duration-500 group-hover:text-signal/[0.09]"
-                >
-                  {i + 1}
-                </span>
+                {i + 1}
+              </span>
 
-                <Icon
-                  className="relative h-8 w-8 text-signal transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
-                  strokeWidth={1.5}
-                  aria-hidden
-                />
+              <Icon
+                className="relative h-9 w-9 text-signal transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
+                strokeWidth={1.5}
+                aria-hidden
+              />
 
-                <div className="relative mt-auto">
-                  <div className="text-[13px] font-medium uppercase tracking-[0.16em] text-cool">
-                    {t("poc.design.step_label", {
-                      defaultValue: String(i + 1).padStart(2, "0"),
-                      n: i + 1,
-                    })}
-                  </div>
-                  <h3 className="mt-2 hyphens-auto break-words text-[21px] font-semibold leading-[1.2] tracking-[-0.02em] text-crisp">
-                    {step}
-                  </h3>
+              <div className="relative mt-auto">
+                <div className="text-[13px] font-medium uppercase tracking-[0.16em] text-cool">
+                  {t("poc.design.step_label", {
+                    defaultValue: String(i + 1).padStart(2, "0"),
+                    n: i + 1,
+                  })}
                 </div>
-              </motion.li>
-            );
-          })}
-        </ol>
-      </div>
+                <h3 className="type-title mt-2 hyphens-auto break-words text-crisp">{step}</h3>
+              </div>
+            </article>
+          );
+        })}
+      </HighlightsShelf>
     </Section>
   );
 }
@@ -319,43 +433,42 @@ function NetworkDesign() {
  * The image here used to be rendered with `mix-blend-multiply` inside a
  * `bg-pitch` card — and `--pitch` is white, despite the name. Multiply removes
  * white and keeps black, so a dark-background source came through as a hard
- * black rectangle sitting in a white box. That is the "black image on white
- * background" in the brief.
+ * black rectangle sitting in a white box.
  *
- * It now uses a studio shot on a light stage, the same treatment the hero at
- * the top of this page already applied correctly.
+ * It is a cutout now, so there is no sweep to knock out and no blend at all —
+ * see the note on `ProductShot`'s `cutout` prop for why blending one is worse
+ * than leaving it alone.
  */
 function Rental() {
   const { t } = useTranslation();
   return (
-    <Section band="soft" tight>
-      <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-12">
+    <Section band="plain">
+      <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-16">
         <motion.div {...fadeUpAt(0)} className="order-2 md:order-1">
-          <div className="text-[13px] font-medium tracking-tight text-signal">
+          <div className="text-[13px] font-medium uppercase tracking-[0.16em] text-signal">
             {t("poc.rental.kicker")}
           </div>
           <h2 className="type-headline mt-3 text-crisp">{t("poc.rental.title")}</h2>
-          <p className="subhead mt-5 max-w-md text-[15px] md:text-base">{t("poc.rental.desc")}</p>
+          <p className="subhead measure mt-5 text-[17px]">{t("poc.rental.desc")}</p>
           <button
             onClick={() => openLead({ title: t("poc.rental.cta") })}
-            className="pill pill-accent mt-7"
+            className="pill pill-accent mt-8"
           >
             {t("poc.rental.cta")}
           </button>
         </motion.div>
 
-        <motion.div
-          {...fadeUpAt(1)}
-          className="order-1 overflow-hidden rounded-[28px] bg-pitch md:order-2"
-        >
+        <motion.div {...fadeUpAt(1)} className="order-1 md:order-2">
           <ProductShot
             src={radioInHand}
             srcSmall={radioInHand800}
+            cutout
             alt={t("poc.rental.title")}
-            width={1600}
-            height={2143}
-            sizes="(max-width: 768px) 90vw, 520px"
-            className="aspect-[4/3] w-full p-6"
+            width={1195}
+            height={1600}
+            sizes="(max-width: 768px) 84vw, 520px"
+            className="mx-auto w-full max-w-[440px]"
+            imgClassName="max-h-[460px]"
           />
         </motion.div>
       </div>
