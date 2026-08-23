@@ -562,7 +562,9 @@ function InBox({ p, lang }: { p: Product; lang: Lang }) {
       <div
         className={
           kit
-            ? "grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,440px)] lg:gap-16"
+            ? // `items-stretch`, so the kit panel matches the list's height
+              // instead of floating short beside it.
+              "grid grid-cols-1 items-stretch gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,440px)] lg:gap-16"
             : ""
         }
       >
@@ -584,7 +586,10 @@ function InBox({ p, lang }: { p: Product; lang: Lang }) {
           ))}
         </ul>
         {kit ? (
-          <div data-parallax="0.06" className="overflow-hidden rounded-[28px] bg-pitch p-8">
+          <div
+            data-parallax="0.06"
+            className="flex items-center justify-center overflow-hidden rounded-[28px] bg-pitch p-8"
+          >
             <img
               src={kit}
               alt=""
