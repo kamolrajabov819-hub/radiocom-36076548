@@ -55,16 +55,16 @@ export function ContactBlock() {
             <Row Icon={MapPin}>{t("footer.address")}</Row>
             <Row Icon={Clock}>{t("footer.hours")}</Row>
             <Row Icon={Phone}>
-              <a href="tel:+998781131618" className="hover:text-signal">
+              <a href="tel:+998781131618" className="inline-flex min-h-11 items-center hover:text-signal">
                 +998 78 113-16-18
               </a>
               <span className="mx-2 text-cool">·</span>
-              <a href="tel:+998933890710" className="hover:text-signal">
+              <a href="tel:+998933890710" className="inline-flex min-h-11 items-center hover:text-signal">
                 +998 93 389-07-10
               </a>
             </Row>
             <Row Icon={Mail}>
-              <a href="mailto:sales@radiocom.uz" className="hover:text-signal">
+              <a href="mailto:sales@radiocom.uz" className="inline-flex min-h-11 items-center hover:text-signal">
                 sales@radiocom.uz
               </a>
             </Row>

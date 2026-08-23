@@ -39,6 +39,7 @@ import whyTradein from "@/assets/cutout/hands-tradein-cutout@800.webp";
 import {
   products,
   productsOfBrand,
+  shortName,
   priceFrom,
   formatPrice,
   categoryLabels,
@@ -530,11 +531,22 @@ function LineupCard({ p, lang, idx }: { p: Product; lang: Lang; idx: number }) {
         />
       </div>
 
-      <h3 className="text-[17px] font-semibold leading-[1.2] tracking-[-0.01em] text-crisp">
+      {/* The title link stays a title link.
+      
+          Making the whole card clickable would give a 400px target, but the
+          card holds two more controls and stacking them over a card-wide link
+          is the nested-interactive trap the comment above records — it was
+          removed on purpose and is not worth reintroducing for a target size.
+      
+          `py-1` with a matching negative margin lifts it from 20px to 28px
+          without moving anything, which clears WCAG 2.5.8's 24px bar. The 44px
+          version of this exact destination is the "Подробнее" button four lines
+          below, which is the equivalent-target case 2.5.8 explicitly allows. */}
+      <h3 className="-my-1 text-[17px] font-semibold leading-[1.2] tracking-[-0.01em] text-crisp">
         <LocaleLink
           to="/$brand/$model"
           params={{ brand: p.brandSlug, model: p.slug }}
-          className="rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
+          className="inline-block rounded-sm py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
         >
           {p.name}
         </LocaleLink>
@@ -544,7 +556,7 @@ function LineupCard({ p, lang, idx }: { p: Product; lang: Lang; idx: number }) {
       {/* apple.com puts three or four bare spec lines here, unbulleted and
           unlabelled. They are not a spec sheet — they are the axes buyers
           actually compare on, which for a two-way radio is range first. */}
-      <ul className="mt-4 space-y-1 text-[12px] leading-snug text-cool">
+      <ul className="mt-4 space-y-1 text-[13px] leading-snug text-cool">
         <li>
           {t("px.range_city")}: {pick(p.rangeCity, lang)}
         </li>
@@ -582,15 +594,6 @@ function LineupCard({ p, lang, idx }: { p: Product; lang: Lang; idx: number }) {
       </div>
     </article>
   );
-}
-
-/**
- * "Motorola TLKR T92 H2O" -> "TLKR T92". The strip cells are 76px wide, so the
- * brand prefix — already the page's `h1` — would push the model number onto a
- * third line or truncate it away.
- */
-function shortName(name: string): string {
-  return name.replace(/^Radiocom |^Motorola /, "").replace(/\s+H2O$/, "");
 }
 
 /** Both brand routes share one component; this keeps the export surface small. */

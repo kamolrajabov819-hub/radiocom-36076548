@@ -158,9 +158,13 @@ export function Nav() {
           </nav>
 
           {/* Center wordmark */}
+          {/* `min-h-11`: the wordmark renders 22px tall, so the link that wraps
+              it was a 126x22 tap target — half the height a thumb needs, on the
+              control every visitor uses to get home. The extra height is
+              padding on the link, not on the mark. */}
           <LocaleLink
             to="/"
-            className="flex items-center lg:absolute lg:left-1/2 lg:-translate-x-1/2"
+            className="flex min-h-11 items-center lg:absolute lg:left-1/2 lg:-translate-x-1/2"
             aria-label="Radiocom"
           >
             <img
@@ -191,12 +195,12 @@ export function Nav() {
             <button
               ref={menuBtnRef}
               onClick={() => setMobileOpen(true)}
-              className="h-9 w-9 flex items-center justify-center text-crisp"
+              className="-mr-2 flex h-11 w-11 items-center justify-center text-crisp"
               aria-label={t("nav.menu")}
               aria-expanded={mobileOpen}
               aria-controls="nav-mobile-sheet"
             >
-              <Menu className="w-5 h-5" />
+              <Menu className="h-6 w-6" />
             </button>
           </div>
         </div>
@@ -238,7 +242,7 @@ export function Nav() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...spring, delay: 0.06 }}
-              className="px-6 pt-8 pb-10 flex flex-col gap-6 overflow-y-auto h-[calc(100vh-3rem)]"
+              className="px-6 pt-8 pb-10 flex flex-col gap-6 overflow-y-auto h-[calc(100dvh-3rem)]"
             >
               {links.map((l) => (
                 <LocaleLink key={l.to} to={l.to} className="headline text-4xl text-crisp">

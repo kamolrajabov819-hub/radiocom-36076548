@@ -13,6 +13,13 @@ import { useLang } from "@/lib/locale";
  *
  * Rendered as real anchors so the alternates are crawlable and open-in-new-tab
  * works, with the click intercepted for client-side navigation.
+ *
+ * Each chip is a 44px tap target on touch. The visible pill stays the same
+ * compact size — a 44px-tall toggle would dominate the header — so the target
+ * is extended with vertical padding that the pill's own background does not
+ * paint. WCAG 2.5.8 asks for 24px minimum and Apple's own guidance for 44pt;
+ * this was 37x26, which fails the second and passes the first only by a
+ * whisker, on the one control every visitor in a three-language market needs.
  */
 export function LangToggle() {
   const router = useRouter();
@@ -25,7 +32,7 @@ export function LangToggle() {
   };
 
   return (
-    <div className="text-[12px] flex items-center rounded-full bg-charcoal p-0.5">
+    <div className="flex items-center rounded-full bg-charcoal p-0.5 text-[13px]">
       {LANGS.map((l) => {
         const href = hrefFor(l);
         return (
@@ -39,7 +46,7 @@ export function LangToggle() {
               e.preventDefault();
               router.navigate({ href });
             }}
-            className={`px-2.5 py-1 rounded-full transition-colors ${
+            className={`relative flex min-w-[40px] items-center justify-center rounded-full px-3 py-1.5 transition-colors after:absolute after:inset-x-0 after:top-1/2 after:h-11 after:-translate-y-1/2 after:content-[''] ${
               current === l ? "bg-pitch text-crisp shadow-sm" : "text-cool hover:text-crisp"
             }`}
           >

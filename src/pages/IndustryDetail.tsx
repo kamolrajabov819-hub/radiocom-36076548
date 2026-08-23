@@ -123,7 +123,7 @@ export function IndustryPage() {
         <div className="shell relative pb-24 pt-40 text-white md:pt-56">
           <LocaleLink
             to="/industries"
-            className="text-[13px] text-white/70 transition-colors hover:text-white"
+            className="-ml-1 inline-flex min-h-11 items-center px-1 text-[13px] text-white/70 transition-colors hover:text-white"
           >
             ← {t("industries.view_all")}
           </LocaleLink>

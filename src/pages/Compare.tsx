@@ -3,13 +3,7 @@ import { ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
 import { Section, SectionHead } from "@/components/Section";
 import { CompareTable, type CompareColumn } from "@/components/apple";
-import {
-  formatPrice,
-  visibleProducts,
-  productsOfBrand,
-  type BrandSlug,
-  type Product,
-} from "@/data/products";
+import { formatPrice, productsOfBrand, shortName, type BrandSlug, type Product, visibleProducts } from "@/data/products";
 import { specs } from "@/data/specs";
 import { pick, type Lang } from "@/data/spec-dict";
 import {
@@ -220,7 +214,7 @@ function columnFor(p: Product, rows: { id: string }[], lang: Lang): CompareColum
     id: p.id,
     // The brand is already the table's heading, so repeating it in every
     // column just eats horizontal room that the specs need.
-    name: p.name.replace(/^Radiocom |^Motorola /, ""),
+    name: shortName(p.name),
     tagline: pick(p.blurb, lang),
     note: formatPrice(p.price, lang),
     actions: <ColumnActions p={p} />,

@@ -179,7 +179,7 @@ function Hero({ p, lang }: { p: Product; lang: Lang }) {
       <nav aria-label="Breadcrumb" className="mb-8 text-[14px] text-cool">
         <LocaleLink
           to={p.brandSlug === "radiocom" ? "/radiocom" : "/motorola"}
-          className="hover:text-crisp"
+          className="inline-flex min-h-11 items-center hover:text-crisp"
         >
           {t(`meta.crumb.${p.brandSlug}`)}
         </LocaleLink>

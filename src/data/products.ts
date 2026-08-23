@@ -680,6 +680,23 @@ export function legacyCatalogTarget(
   return p.hidden ? { brand: p.brandSlug } : { brand: p.brandSlug, model: p.slug };
 }
 
+/**
+ * The model name with everything the surrounding context already says removed.
+ *
+ * For a chip in a brand page's model strip or a column head in the compare
+ * table, the brand is redundant — the page or the row above states it — and so
+ * is `Talkabout`, which every Motorola on the page shares and which therefore
+ * distinguishes nothing. Left in, "Motorola Talkabout T82 Extreme Quad" wraps
+ * to three lines in a 104px chip and a 210px table column, where the whole
+ * point is to read a model at a glance.
+ */
+export function shortName(name: string): string {
+  return name
+    .replace(/^Radiocom |^Motorola /, "")
+    .replace(/^Talkabout /, "")
+    .replace(/\s+H2O$/, "");
+}
+
 export function productBySlug(brandSlug: BrandSlug, slug: string): Product | undefined {
   // Deliberately over `visibleProducts`: a hidden model must 404 as a product
   // page, not render one with an empty image slot.

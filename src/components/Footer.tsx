@@ -41,7 +41,7 @@ export function Footer() {
                 <LocaleLink
                   to="/industries/$slug"
                   params={{ slug: s }}
-                  className="text-[13px] text-crisp/70 hover:text-crisp"
+                  className="inline-flex min-h-11 items-center text-[13px] text-crisp/70 hover:text-crisp"
                 >
                   {t(`industries.${s}.name`)}
                 </LocaleLink>
@@ -50,19 +50,19 @@ export function Footer() {
           </FooterCol>
           <FooterCol title={t("footer.contact_col")}>
             <li>
-              <a href="tel:+998781131618" className="text-[13px] text-crisp/70 hover:text-crisp">
+              <a href="tel:+998781131618" className="inline-flex min-h-11 items-center text-[13px] text-crisp/70 hover:text-crisp">
                 +998 78 113-16-18
               </a>
             </li>
             <li>
-              <a href="tel:+998933890710" className="text-[13px] text-crisp/70 hover:text-crisp">
+              <a href="tel:+998933890710" className="inline-flex min-h-11 items-center text-[13px] text-crisp/70 hover:text-crisp">
                 +998 93 389-07-10
               </a>
             </li>
             <li>
               <a
                 href="mailto:info@radiocom.uz"
-                className="text-[13px] text-crisp/70 hover:text-crisp"
+                className="inline-flex min-h-11 items-center text-[13px] text-crisp/70 hover:text-crisp"
               >
                 info@radiocom.uz
               </a>
@@ -70,7 +70,7 @@ export function Footer() {
             <li>
               <a
                 href="mailto:sales@radiocom.uz"
-                className="text-[13px] text-crisp/70 hover:text-crisp"
+                className="inline-flex min-h-11 items-center text-[13px] text-crisp/70 hover:text-crisp"
               >
                 sales@radiocom.uz
               </a>
@@ -97,7 +97,7 @@ function FooterCol({ title, children }: { title: string; children: React.ReactNo
   return (
     <div>
       <div className="text-[12px] font-semibold text-crisp mb-4">{title}</div>
-      <ul className="space-y-2.5">{children}</ul>
+      <ul className="-my-1.5">{children}</ul>
     </div>
   );
 }
@@ -111,7 +111,14 @@ function FLink({
 }) {
   return (
     <li>
-      <LocaleLink to={to} className="text-[13px] text-crisp/70 hover:text-crisp transition-colors">
+      {/* `min-h-11`: at 16px tall these were the smallest tap targets on the
+          site, in the one place a visitor scrolls to when the nav has already
+          scrolled away. The list's `space-y` shrinks to compensate so the
+          column does not grow. */}
+      <LocaleLink
+        to={to}
+        className="inline-flex min-h-11 items-center text-[13px] text-crisp/70 transition-colors hover:text-crisp"
+      >
         {children}
       </LocaleLink>
     </li>

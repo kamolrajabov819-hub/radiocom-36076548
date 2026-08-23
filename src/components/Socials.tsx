@@ -22,7 +22,7 @@ export function Socials() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`${t("footer.follow")} ${l.label}`}
-          className="h-9 w-9 flex items-center justify-center rounded-full bg-pitch text-crisp/70 hover:text-signal transition-colors"
+          className="flex h-11 w-11 items-center justify-center rounded-full bg-pitch text-crisp/70 hover:text-signal transition-colors"
         >
           <l.Icon className="w-4 h-4" />
         </a>

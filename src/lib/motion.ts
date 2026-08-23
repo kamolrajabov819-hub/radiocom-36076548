@@ -159,6 +159,17 @@ export function useGsap(
 /**
  * Apple's signature move: a section that holds still while its contents advance
  * with the scrollbar. Returns the ref to attach to the pinned section.
+ *
+ * **Desktop only.** A pin is a promise that the scroll is doing something; on a
+ * phone it reads as a broken page. The home hero pinned for `+=90%` of the
+ * viewport, which on a 844px screen is 760px of thumb-scrolling that leaves the
+ * page apparently still — and the pin-spacer renders as 760px of blank band in
+ * any full-page capture. apple.com pins on desktop and does not on a phone, for
+ * the same reason.
+ *
+ * `gsap.matchMedia()` is what makes that conditional safe: it creates the
+ * ScrollTrigger only while the query matches and reverts everything the moment
+ * it stops, so rotating a tablet does not leave a stranded pin behind.
  */
 export function usePinnedScrub(
   build: (tl: ReturnType<Gsap["timeline"]>, scope: HTMLElement) => void,
@@ -167,23 +178,32 @@ export function usePinnedScrub(
   const ref = useRef<HTMLElement>(null);
   useGsap(
     ({ scope, gsap }) => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: scope,
-          start: "top top",
-          end: opts.end ?? "+=120%",
-          pin: true,
-          scrub: 0.6,
-          anticipatePin: 1,
-        },
+      gsap.matchMedia().add(DESKTOP, () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: scope,
+            start: "top top",
+            end: opts.end ?? "+=120%",
+            pin: true,
+            scrub: 0.6,
+            anticipatePin: 1,
+          },
+        });
+        build(tl, scope);
       });
-      build(tl, scope);
     },
     ref,
     opts.deps ?? [],
   );
   return ref;
 }
+
+/**
+ * The breakpoint pinning is allowed above — the same 768px `md:` the layout
+ * uses, so a section never pins at a width where the layout has already gone
+ * single-column.
+ */
+export const DESKTOP = "(min-width: 768px)";
 
 /**
  * Deliberately no `export { gsap }`. A re-export would let a call site write

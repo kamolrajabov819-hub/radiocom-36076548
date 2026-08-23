@@ -49,7 +49,7 @@ function NotFoundBody() {
   const lang = useLang();
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-pitch px-6 py-24">
+    <div className="flex min-h-dvh items-center justify-center bg-pitch px-6 py-24">
       <div className="w-full max-w-2xl text-center">
         <div className="mb-4 text-sm text-signal">{t("error.nf_code")}</div>
         <h1 className="headline text-5xl text-crisp md:text-6xl">{t("error.nf_title")}</h1>

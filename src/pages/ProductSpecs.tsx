@@ -125,7 +125,7 @@ export function ProductSpecsPage() {
         <nav aria-label="Breadcrumb" className="mb-8 text-[14px] text-cool">
           <LocaleLink
             to={brandSlug === "radiocom" ? "/radiocom" : "/motorola"}
-            className="hover:text-crisp"
+            className="inline-flex min-h-11 items-center hover:text-crisp"
           >
             {t(`meta.crumb.${brandSlug}`)}
           </LocaleLink>
@@ -135,7 +135,7 @@ export function ProductSpecsPage() {
           <LocaleLink
             to="/$brand/$model"
             params={{ brand: p.brandSlug, model: p.slug }}
-            className="hover:text-crisp"
+            className="inline-flex min-h-11 items-center hover:text-crisp"
           >
             {p.name}
           </LocaleLink>

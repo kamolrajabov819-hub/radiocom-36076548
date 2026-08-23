@@ -40,7 +40,7 @@ export function ProductCard({
         >
           <span className="pointer-events-none absolute inset-x-0 -top-1/2 h-[200%] translate-x-[-120%] rotate-12 bg-[linear-gradient(90deg,transparent,color-mix(in_oklab,var(--signal)_10%,transparent),transparent)] transition-transform duration-[900ms] ease-out group-hover:translate-x-[120%]" />
 
-          <span className="inline-flex w-fit items-center rounded-full bg-charcoal px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider text-cool">
+          <span className="inline-flex w-fit items-center rounded-full bg-charcoal px-2.5 py-1 text-[12px] font-medium uppercase tracking-wider text-cool">
             {p.brand}
           </span>
 
@@ -84,7 +84,14 @@ export function ProductCard({
             ) : null}
           </div>
 
-          <div className="mt-auto flex items-end justify-between gap-3">
+          {/* Stacked below `sm`, side by side above it.
+          
+              Side by side at 390px the pill takes ~150 of the card's 258px of
+              inner width, leaving 108px for a range figure and a price — and
+              the price list's city figures are long ("до 2 км в городе"), so
+              both wrapped to two lines each and the card's foot turned into
+              four cramped rows. Stacking gives each the full width. */}
+          <div className="mt-auto flex flex-col items-start gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div className="min-w-0">
               <div className="text-[13px] leading-snug text-cool">{pick(p.rangeCity, lang)}</div>
               <div className="mt-1 text-[15px] font-medium text-crisp">

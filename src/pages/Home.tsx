@@ -40,7 +40,7 @@ import { visibleProducts } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
 import { CountUp } from "@/components/CountUp";
 import { spring, fadeUpAt } from "@/lib/springs";
-import { useGsap } from "@/lib/motion";
+import { DESKTOP, useGsap } from "@/lib/motion";
 import {
   SITE_SECTIONS,
   jsonLd,
@@ -124,21 +124,27 @@ function Hero() {
     // loaded on demand, so a static import here would put it back in this
     // page's chunk and undo the split.
     ({ gsap }) => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: scope.current,
-          start: "top top",
-          end: "+=90%",
-          pin: true,
-          scrub: 0.6,
-          anticipatePin: 1,
-        },
+      // Desktop only. On a phone this pinned for 90% of the viewport — 760px of
+      // thumb-scrolling during which the page appears not to move, and 760px of
+      // blank pin-spacer in any full-page capture. `matchMedia` builds the
+      // trigger only above 768px and reverts it cleanly on rotation.
+      gsap.matchMedia().add(DESKTOP, () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: scope.current,
+            start: "top top",
+            end: "+=90%",
+            pin: true,
+            scrub: 0.6,
+            anticipatePin: 1,
+          },
+        });
+        tl.to("[data-hero-copy]", { y: -70, opacity: 0.15, ease: "none" }, 0).to(
+          "[data-hero-art]",
+          { scale: 1.18, y: -40, ease: "none" },
+          0,
+        );
       });
-      tl.to("[data-hero-copy]", { y: -70, opacity: 0.15, ease: "none" }, 0).to(
-        "[data-hero-art]",
-        { scale: 1.18, y: -40, ease: "none" },
-        0,
-      );
     },
     scope,
     [],

@@ -81,7 +81,7 @@ export function LeadFormSheet() {
                 </div>
                 <button
                   onClick={closeLead}
-                  className="h-9 w-9 flex items-center justify-center rounded-full bg-charcoal text-crisp hover:opacity-70"
+                  className="flex h-11 w-11 items-center justify-center rounded-full bg-charcoal text-crisp hover:opacity-70"
                   aria-label={t("nav.close")}
                 >
                   <X className="w-4 h-4" />
