@@ -214,22 +214,36 @@ export function ProductSpecsPage() {
                 ))}
               </ul>
 
-              <Magnetic>
-                <button
-                  onClick={() => openLead({ title: p.name })}
-                  className="pill pill-accent mt-7 w-full justify-center py-3.5"
-                >
-                  {t("px.buy")}
-                </button>
-              </Magnetic>
+              {/* Side by side, not stacked.
+              
+                  `Magnetic` renders an `inline-flex` span, so *it* is the flex
+                  item this row sees — a `flex-1` on the button inside would
+                  resolve against a shrink-wrapped parent and do nothing. That
+                  is why the class is on the wrapper.
+              
+                  `flex-wrap` rather than a breakpoint: the card is capped at
+                  420px on desktop and goes full width below `lg`, so the pair
+                  fits at both. If a locale's wording ever outgrows the row —
+                  Uzbek runs longest — it wraps to the old stacked layout on its
+                  own instead of overflowing the card. */}
+              <div className="mt-7 flex flex-wrap items-center gap-3">
+                <Magnetic className="flex-1">
+                  <button
+                    onClick={() => openLead({ title: p.name })}
+                    className="pill pill-accent w-full justify-center py-3.5"
+                  >
+                    {t("px.buy")}
+                  </button>
+                </Magnetic>
 
-              <LocaleLink
-                to="/$brand/$model"
-                params={{ brand: p.brandSlug, model: p.slug }}
-                className="pill-link mt-4 w-full justify-center"
-              >
-                {t("px.story_link")} <ChevronRight className="h-4 w-4" aria-hidden />
-              </LocaleLink>
+                <LocaleLink
+                  to="/$brand/$model"
+                  params={{ brand: p.brandSlug, model: p.slug }}
+                  className="pill-link shrink-0"
+                >
+                  {t("px.story_link")} <ChevronRight className="h-4 w-4" aria-hidden />
+                </LocaleLink>
+              </div>
             </div>
           </aside>
         </div>
@@ -237,7 +251,7 @@ export function ProductSpecsPage() {
 
       {/* ── Full specification table ──────────────────────── */}
       {spec?.rows?.length ? (
-        <Section band="soft">
+        <Section band="plain">
           <SectionHead align="left" spacing="tight" title={t("px.spec_table")} />
 
           {/* The two or three figures that decide the purchase, lifted out of
@@ -296,7 +310,7 @@ export function ProductSpecsPage() {
       ) : null}
 
       {/* ── Closing CTA ───────────────────────────────────── */}
-      <Section band="soft">
+      <Section band="plain">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="type-headline text-crisp">{t("px.buy")}</h2>
           <p className="subhead mt-4 text-[17px]">{t("px.trial")}</p>
@@ -363,7 +377,7 @@ function HeadlineFigures({ p, lang }: { p: Product; lang: Lang }) {
         }`}
       >
         {panels.map((s) => (
-          <StatPanel key={s.key} value={s.value} label={s.label} className="[&>div]:bg-pitch" />
+          <StatPanel key={s.key} value={s.value} label={s.label} />
         ))}
       </div>
       <LeadInCaption className="mt-5 max-w-[62ch]" lead={t("px.range_lead")}>
