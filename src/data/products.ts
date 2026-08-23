@@ -78,7 +78,7 @@ import xt185Kit from "@/assets/catalog/xt185-kit.webp";
 import xt420Hero from "@/assets/catalog/xt420-hero.webp";
 import xt420Hero800 from "@/assets/catalog/xt420-hero@800.webp";
 
-import { upToFloors, upToKm, upToM, type L, type Lang } from "@/data/spec-dict";
+import { inCity, upToFloors, upToKm, upToKmRange, upToM, type L, type Lang } from "@/data/spec-dict";
 
 export type Category = "amateur" | "professional";
 
@@ -138,16 +138,16 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
   // ─── Radiocom RCD (digital / professional) ───
   {
     id: "rcd-70",
-    name: "Radiocom RCD-70",
+    name: "Radiocom RCD-70 PRO",
     brand: RC,
     category: "professional",
     image: rcd70Hero,
     imageSmall: rcd70Hero800,
     gallery: [rcd70Kit],
     tags: ["DMR", "GPS", "IP67"],
-    price: 4_200_000,
-    rangeCity: upToKm("4"),
-    rangeOpen: upToKm("12"),
+    price: 1_900_000,
+    rangeCity: upToKm("3"),
+    rangeOpen: upToKm("10"),
     industries: ["mining", "construction", "security", "transport"],
     blurb: {
       ru: "Флагман линейки RCD: цифровой DMR, GPS и защита IP67.",
@@ -157,15 +157,15 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
   },
   {
     id: "rcd-60",
-    name: "Radiocom RCD-60",
+    name: "Radiocom RCD-60 PRO",
     brand: RC,
     category: "professional",
     image: rcd60Hero,
     imageSmall: rcd60Hero800,
     gallery: [rcd60Kit],
     tags: ["DMR", "Display", "Keypad"],
-    price: 3_600_000,
-    rangeCity: upToKm("3,5"),
+    price: 1_800_000,
+    rangeCity: upToKm("2,5"),
     rangeOpen: upToKm("10"),
     industries: ["construction", "security", "mining", "transport"],
     blurb: {
@@ -176,16 +176,16 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
   },
   {
     id: "rcd-50",
-    name: "Radiocom RCD-50",
+    name: "Radiocom RCD-50 PRO",
     brand: RC,
     category: "professional",
     image: rcd50Hero,
     imageSmall: rcd50Hero800,
     gallery: [rcd50Kit],
     tags: ["DMR", "Display"],
-    price: 3_100_000,
-    rangeCity: upToKm("3"),
-    rangeOpen: upToKm("8"),
+    price: 1_800_000,
+    rangeCity: upToKm("2,5"),
+    rangeOpen: upToKm("10"),
     industries: ["construction", "security", "manufacturing"],
     blurb: {
       ru: "Рабочая лошадка бригад: чистый цифровой звук и дисплей.",
@@ -195,15 +195,15 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
   },
   {
     id: "rcd-40",
-    name: "Radiocom RCD-40",
+    name: "Radiocom RCD-40 PRO",
     brand: RC,
     category: "professional",
     image: rcd40Kit,
     imageSmall: rcd40Kit800,
     tags: ["DMR", "Long range"],
-    price: 2_600_000,
-    rangeCity: upToKm("2,5"),
-    rangeOpen: upToKm("7"),
+    price: 1_600_000,
+    rangeCity: upToKm("2"),
+    rangeOpen: upToKm("6"),
     industries: ["construction", "security", "transport"],
     blurb: {
       ru: "Средний класс RCD с усиленным приёмом и долгим циклом работы.",
@@ -213,15 +213,15 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
   },
   {
     id: "rcd-30",
-    name: "Radiocom RCD-30",
+    name: "Radiocom RCD-30 PRO",
     brand: RC,
     category: "professional",
     image: rcd30Kit,
     imageSmall: rcd30Kit800,
     tags: ["DMR", "Compact"],
-    price: 2_200_000,
-    rangeCity: upToKm("2"),
-    rangeOpen: upToKm("6"),
+    price: 1_800_000,
+    rangeCity: upToKm("1,5"),
+    rangeOpen: upToKm("4"),
     industries: ["horeca", "security", "construction"],
     blurb: {
       ru: "Компактная цифровая рация для входа в профессиональный сегмент.",
@@ -239,8 +239,8 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     image: rc50Kit,
     imageSmall: rc50Kit800,
     tags: ["Long range"],
-    price: 1_500_000,
-    rangeCity: upToKm("2,5"),
+    price: 1_300_000,
+    rangeCity: upToKmRange("2", "2,5"),
     rangeOpen: upToKm("5"),
     industries: ["construction", "security", "transport"],
     blurb: {
@@ -257,7 +257,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     image: rc20Kit,
     imageSmall: rc20Kit800,
     tags: ["Compact", "License-free"],
-    price: 1_400_000,
+    price: 1_600_000,
     rangeCity: upToKm("1,5"),
     rangeOpen: upToKm("4"),
     industries: ["horeca", "security"],
@@ -298,6 +298,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     tags: [...TALK, "IPx4"],
     price: 1_700_000,
     rangeCity: upToKm("1,5"),
+    rangeOpen: upToKm("10"),
     industries: ["horeca", "security", "construction"],
     blurb: {
       ru: "Защищённая безлицензионная рация для outdoor задач.",
@@ -315,6 +316,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     tags: [...TALK, "Quad", "IPx4"],
     price: 3_100_000,
     rangeCity: upToKm("1,5"),
+    rangeOpen: upToKm("10"),
     industries: ["horeca", "security", "construction"],
     blurb: {
       ru: "Комплект из 4 раций для организованных бригад.",
@@ -334,8 +336,9 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     hidden: true,
     image: "",
     tags: [...TALK, "RSM", "IPx4"],
-    price: 2_100_000,
+    price: 1_700_000,
     rangeCity: upToKm("1,5"),
+    rangeOpen: upToKm("10"),
     industries: ["horeca", "security", "construction"],
     blurb: {
       ru: "T82 Extreme в комплекте с выносными микрофонами RSM для работы в шуме.",
@@ -353,6 +356,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     tags: TALK,
     price: 1_500_000,
     rangeCity: upToKm("1,5"),
+    rangeOpen: upToKm("10"),
     industries: ["horeca", "security"],
     blurb: {
       ru: "Компактная PMR-рация для команд и мероприятий.",
@@ -362,7 +366,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
   },
   {
     id: "m-t72",
-    name: "Motorola Talkabout T72 Go Active",
+    name: "Motorola Talkabout T72",
     brand: MOT,
     category: "amateur",
     image: t72Hero,
@@ -371,6 +375,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     tags: [...TALK, "IPx4"],
     price: 1_300_000,
     rangeCity: upToKm("1"),
+    rangeOpen: upToKm("8"),
     industries: ["horeca", "security", "construction"],
     blurb: {
       ru: "Актуальная PMR для активного использования вне помещений.",
@@ -389,6 +394,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     tags: TALK,
     price: 1_100_000,
     rangeCity: upToM("900"),
+    rangeOpen: upToKm("8"),
     industries: ["horeca"],
     blurb: {
       ru: "Стильная PMR в красном корпусе с надёжным приёмом.",
@@ -407,6 +413,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     tags: TALK,
     price: 1_100_000,
     rangeCity: upToM("900"),
+    rangeOpen: upToKm("8"),
     industries: ["horeca"],
     blurb: {
       ru: "Та же T62 в синем корпусе — для команд и семьи.",
@@ -425,6 +432,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     tags: [...TALK, "Triple"],
     price: 700_000,
     rangeCity: upToM("300"),
+    rangeOpen: upToKm("4"),
     industries: ["horeca"],
     blurb: {
       ru: "Комплект из 3 раций для малых команд.",
@@ -443,6 +451,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     tags: [...TALK, "Quad"],
     price: 900_000,
     rangeCity: upToM("300"),
+    rangeOpen: upToKm("4"),
     industries: ["horeca"],
     blurb: {
       ru: "Комплект из 4 раций T42.",
@@ -461,6 +470,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     tags: TALK,
     price: 600_000,
     rangeCity: upToM("300"),
+    rangeOpen: upToKm("4"),
     industries: ["horeca"],
     blurb: {
       ru: "Начальная PMR для семей и малого бизнеса.",
@@ -479,6 +489,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     tags: TALK,
     price: 600_000,
     rangeCity: upToM("300"),
+    rangeOpen: upToKm("4"),
     industries: ["horeca"],
     blurb: {
       ru: "T42 в синем корпусе — просто, доступно, надёжно.",
@@ -497,6 +508,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     tags: [...TALK, "IP67", "Float"],
     price: 1_800_000,
     rangeCity: upToKm("1,5"),
+    rangeOpen: upToKm("10"),
     industries: ["horeca", "construction", "security"],
     blurb: {
       ru: "Плавает, водозащищена IP67 — для воды и стройки.",
@@ -515,6 +527,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     tags: TALK,
     price: 1_500_000,
     rangeCity: upToKm("1"),
+    rangeOpen: upToKm("8"),
     industries: ["horeca"],
     blurb: {
       ru: "PMR для розницы, HoReCa и общественных заведений.",
@@ -531,7 +544,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     imageSmall: xt420Hero800,
     tags: [...TALK, "IP55"],
     price: 2_200_000,
-    rangeCity: upToKm("2"),
+    rangeCity: inCity(upToKm("2")),
     industries: ["horeca", "security", "construction", "manufacturing"],
     blurb: {
       ru: "Безлицензионная PMR для HoReCa и объектной охраны.",
@@ -552,7 +565,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     hidden: true,
     image: "",
     tags: [...TALK, "Antibacterial"],
-    price: 2_400_000,
+    price: 2_300_000,
     rangeCity: upToFloors("6"),
     industries: ["horeca", "security"],
     blurb: {
@@ -571,7 +584,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     hidden: true,
     image: "",
     tags: [...TALK, "Antimicrobial", "Display"],
-    price: 2_600_000,
+    price: 2_500_000,
     rangeCity: upToFloors("6"),
     industries: ["horeca", "security"],
     blurb: {

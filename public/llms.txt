@@ -16,12 +16,12 @@
 
 ## Каталог (21 моделей)
 ### Radiocom RC
-- [Radiocom RCD-70](https://radiocom.uz/ru/radiocom/rcd-70) — Флагман линейки RCD: цифровой DMR, GPS и защита IP67. Дальность до 4 км.
-- [Radiocom RCD-60](https://radiocom.uz/ru/radiocom/rcd-60) — Цифровая рация с дисплеем и клавиатурой в полном комплекте. Дальность до 3,5 км.
-- [Radiocom RCD-50](https://radiocom.uz/ru/radiocom/rcd-50) — Рабочая лошадка бригад: чистый цифровой звук и дисплей. Дальность до 3 км.
-- [Radiocom RCD-40](https://radiocom.uz/ru/radiocom/rcd-40) — Средний класс RCD с усиленным приёмом и долгим циклом работы. Дальность до 2,5 км.
-- [Radiocom RCD-30](https://radiocom.uz/ru/radiocom/rcd-30) — Компактная цифровая рация для входа в профессиональный сегмент. Дальность до 2 км.
-- [Radiocom RC-50](https://radiocom.uz/ru/radiocom/rc-50) — Универсальная модель для среднего радиуса действия. Дальность до 2,5 км.
+- [Radiocom RCD-70 PRO](https://radiocom.uz/ru/radiocom/rcd-70) — Флагман линейки RCD: цифровой DMR, GPS и защита IP67. Дальность до 3 км.
+- [Radiocom RCD-60 PRO](https://radiocom.uz/ru/radiocom/rcd-60) — Цифровая рация с дисплеем и клавиатурой в полном комплекте. Дальность до 2,5 км.
+- [Radiocom RCD-50 PRO](https://radiocom.uz/ru/radiocom/rcd-50) — Рабочая лошадка бригад: чистый цифровой звук и дисплей. Дальность до 2,5 км.
+- [Radiocom RCD-40 PRO](https://radiocom.uz/ru/radiocom/rcd-40) — Средний класс RCD с усиленным приёмом и долгим циклом работы. Дальность до 2 км.
+- [Radiocom RCD-30 PRO](https://radiocom.uz/ru/radiocom/rcd-30) — Компактная цифровая рация для входа в профессиональный сегмент. Дальность до 1,5 км.
+- [Radiocom RC-50](https://radiocom.uz/ru/radiocom/rc-50) — Универсальная модель для среднего радиуса действия. Дальность до 2–2,5 км.
 - [Radiocom RC-20](https://radiocom.uz/ru/radiocom/rc-20) — Лёгкая рация для персонала — комплект с зарядкой и гарнитурой. Дальность до 1,5 км.
 - [Radiocom RC-10](https://radiocom.uz/ru/radiocom/rc-10) — Начальный уровень линейки — надёжно и просто. Дальность до 1 км.
 
@@ -29,7 +29,7 @@
 - [Motorola Talkabout T82 Extreme](https://radiocom.uz/ru/motorola/t82-extreme) — Защищённая безлицензионная рация для outdoor задач. Дальность до 1,5 км.
 - [Motorola Talkabout T82 Extreme Quad](https://radiocom.uz/ru/motorola/t82-extreme-quad) — Комплект из 4 раций для организованных бригад. Дальность до 1,5 км.
 - [Motorola Talkabout T82](https://radiocom.uz/ru/motorola/t82) — Компактная PMR-рация для команд и мероприятий. Дальность до 1,5 км.
-- [Motorola Talkabout T72 Go Active](https://radiocom.uz/ru/motorola/t72) — Актуальная PMR для активного использования вне помещений. Дальность до 1 км.
+- [Motorola Talkabout T72](https://radiocom.uz/ru/motorola/t72) — Актуальная PMR для активного использования вне помещений. Дальность до 1 км.
 - [Motorola Talkabout T62 Red](https://radiocom.uz/ru/motorola/t62-red) — Стильная PMR в красном корпусе с надёжным приёмом. Дальность до 900 м.
 - [Motorola Talkabout T62 Blue](https://radiocom.uz/ru/motorola/t62-blue) — Та же T62 в синем корпусе — для команд и семьи. Дальность до 900 м.
 - [Motorola Talkabout T42 Triple](https://radiocom.uz/ru/motorola/t42-triple) — Комплект из 3 раций для малых команд. Дальность до 300 м.
@@ -38,7 +38,7 @@
 - [Motorola Talkabout T42 Blue](https://radiocom.uz/ru/motorola/t42-blue) — T42 в синем корпусе — просто, доступно, надёжно. Дальность до 300 м.
 - [Motorola TLKR-T92 H2O](https://radiocom.uz/ru/motorola/tlkr-t92h2o) — Плавает, водозащищена IP67 — для воды и стройки. Дальность до 1,5 км.
 - [Motorola XT185](https://radiocom.uz/ru/motorola/xt185) — PMR для розницы, HoReCa и общественных заведений. Дальность до 1 км.
-- [Motorola XT420](https://radiocom.uz/ru/motorola/xt420) — Безлицензионная PMR для HoReCa и объектной охраны. Дальность до 2 км.
+- [Motorola XT420](https://radiocom.uz/ru/motorola/xt420) — Безлицензионная PMR для HoReCa и объектной охраны. Дальность до 2 км в городе.
 
 ## Разделы
 - https://radiocom.uz/ru

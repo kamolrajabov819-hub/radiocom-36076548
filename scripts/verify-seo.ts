@@ -22,6 +22,8 @@ import {
   productsOfBrand,
   visibleProducts,
 } from "../src/data/products";
+import { specs } from "../src/data/specs";
+import { SPEC } from "../src/data/spec-dict";
 import { entries } from "./lib/sitemap";
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
@@ -478,6 +480,85 @@ console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
 
   if (problems.length) bad(`WebPage graph:\n     ${problems.join("\n     ")}`);
   else console.log("ok  WebPage node on product, specs and brand pages, tied to the site graph");
+}
+
+// 17. Coverage must agree between the two files that state it.
+//
+// `products.ts` holds `rangeCity` / `rangeOpen` — what the card, the schema and
+// the compare table quote. `specs.ts` holds the `Радиус действия` row on the
+// spec sheet. They are authored separately and, until the price list was
+// applied, disagreed on eleven models: the spec sheets mostly quoted the
+// open-country figure alone, which is the flattering half of the pair, and
+// three of them quoted a distance the price list does not support at all.
+//
+// Nothing in the type system connects the two, so this gate does: every model
+// with a coverage figure must state the same one in both places, and any model
+// quoting a range must carry the line-of-sight disclaimer with it.
+{
+  const problems: string[] = [];
+  for (const p of products) {
+    const spec = specs[p.id];
+    if (!spec) {
+      problems.push(`${p.id}: no spec sheet`);
+      continue;
+    }
+    const row = spec.rows.find((r) => r.label.ru === SPEC.range.ru);
+    if (!row) {
+      problems.push(`${p.id}: spec sheet quotes no coverage figure`);
+      continue;
+    }
+    // The spec row is built from the same builders as the product fields, so
+    // the product's own strings must appear inside it verbatim.
+    for (const [field, value] of [
+      ["rangeCity", p.rangeCity],
+      ["rangeOpen", p.rangeOpen],
+    ] as const) {
+      if (!value) continue;
+      for (const lang of LANGS) {
+        // `inCity()` wraps the city figure, so compare on the bare number.
+        const needle = value[lang];
+        if (!row.value[lang].includes(needle))
+          problems.push(`${p.id}.${field}[${lang}]: "${needle}" absent from the spec row`);
+      }
+    }
+    if (!spec.rangeNote)
+      problems.push(`${p.id}: quotes coverage but omits the line-of-sight disclaimer`);
+  }
+  if (problems.length) bad(`coverage:\n     ${problems.join("\n     ")}`);
+  else console.log("ok  coverage agrees between products.ts and specs.ts on all 24 models");
+}
+
+// 18. Every price the site shows must be the price the schema emits.
+//
+// What this catches is a regression in `productSchema` — a dropped `price`, a
+// currency typo, an Offer growing a price on a model whose price is "on
+// request". All three are silent in the browser and expensive in search: a
+// merchant result advertising a figure the page does not show gets the whole
+// result suppressed once Google notices.
+//
+// What it cannot catch is a wrong number in `products.ts` itself, because the
+// Offer is generated from exactly that. Nothing in the repo can. The price list
+// is the only authority for those, and `TODO-content.md` records which figures
+// came from where.
+{
+  const problems: string[] = [];
+  for (const p of visibleProducts) {
+    const schema = productSchema(p, "ru") as {
+      offers?: { price?: unknown; priceCurrency?: unknown };
+    };
+    const offer = schema.offers;
+    if (p.price === null) {
+      if (offer && "price" in offer)
+        problems.push(`${p.id}: price is "on request" but the Offer carries one`);
+      continue;
+    }
+    if (Number(offer?.price) !== p.price)
+      problems.push(`${p.id}: Offer price ${String(offer?.price)} != products.ts ${p.price}`);
+    if (offer?.priceCurrency !== "UZS")
+      problems.push(`${p.id}: Offer currency is ${String(offer?.priceCurrency)}, expected UZS`);
+  }
+  if (problems.length) bad(`offer prices:\n     ${problems.join("\n     ")}`);
+  else console.log("ok  every Offer price matches products.ts, in UZS");
 }
 
 console.log(fail === 0 ? "\nALL SEO CHECKS PASSED" : `\n${fail} FAILURES`);

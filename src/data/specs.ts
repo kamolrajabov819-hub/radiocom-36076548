@@ -19,10 +19,12 @@ import {
   V,
   aaa,
   audioConnector,
+  cityOpen,
   box,
   callTones,
   channels,
   channelsCodes,
+  inCity,
   cm,
   grams,
   hours,
@@ -35,6 +37,8 @@ import {
   toneCodes,
   upToHours,
   upToKm,
+  upToKmRange,
+  upToM,
   watts,
   type BoxLine,
   type L,
@@ -76,7 +80,7 @@ const pmr446 = (range: L): SpecRow[] => [
 
 /** T82 family — T82, T82 Extreme, Extreme Quad, Extreme RSM share one sheet. */
 const t82Rows: SpecRow[] = [
-  ...pmr446(upToKm("10")),
+  ...pmr446(cityOpen(upToKm("1,5"), upToKm("10"))),
   row(SPEC.ingress, ip("IPX4")),
   row(SPEC.channels, channelsCodes("8", "121")),
   row(SPEC.callTones, callTones("20")),
@@ -110,11 +114,7 @@ const t42Features: L[] = [F.freeCalls, F.lcdBacklit, F.keypadLock, F.batteryIndi
 
 /** T62 family. */
 const t62Rows: SpecRow[] = [
-  ...pmr446({
-    ru: "до 8 км на открытой местности, 700–800 м в городских условиях",
-    en: "up to 8 km in the open, 700–800 m in built-up areas",
-    uz: "ochiq joyda 8 km gacha, shahar sharoitida 700–800 m",
-  }),
+  ...pmr446(cityOpen(upToM("900"), upToKm("8"))),
   row(SPEC.channels, channelsCodes("8", "121")),
   row(SPEC.callTones, callTones("5")),
   row(SPEC.power, watts("0,5")),
@@ -253,13 +253,13 @@ export const specs: Record<string, ProductSpec> = {
       box(BOX.radio, 2),
       box(BOX.beltClip, 2),
       box(BOX.batteryNiMh, 2),
-      box(BOX.usbCarCharger, 1),
+      box(BOX.typeCCable, 1),
       box(BOX.usbCable, 2),
       box(BOX.carryCase),
       box(BOX.manual),
     ],
     rows: [
-      ...pmr446(upToKm("10")),
+      ...pmr446(cityOpen(upToKm("1,5"), upToKm("10"))),
       row(SPEC.ingress, {
         ru: "IP67 — пыле- и влагозащита",
         en: "IP67 — dust and water protection",
@@ -303,14 +303,16 @@ export const specs: Record<string, ProductSpec> = {
       row(SPEC.standard, V.pmr),
       row(SPEC.mode, V.analog),
       row(SPEC.freq, V.freq446),
+      row(SPEC.range, inCity(upToKm("2"))),
       row(SPEC.power, watts("0,5")),
-      row(SPEC.batteryType, liIon("2150")),
-      row(SPEC.batteryCapacity, mah("2150")),
+      row(SPEC.batteryType, liIon("2100")),
+      row(SPEC.batteryCapacity, mah("2100")),
       row(SPEC.batteryLife, hours("12")),
       row(SPEC.channels, channels("16")),
       row(SPEC.ingress, ip("IP55")),
     ],
     features: [F.vox, F.scanMonitor, F.noiseSuppression, F.tot],
+    rangeNote: true,
   },
 
   "m-xt185": {
@@ -332,7 +334,7 @@ export const specs: Record<string, ProductSpec> = {
     rows: [
       row(SPEC.standard, V.pmr),
       row(SPEC.freq, V.freq446),
-      row(SPEC.range, upToKm("8")),
+      row(SPEC.range, cityOpen(upToKm("1"), upToKm("8"))),
       row(SPEC.channels, channels("16")),
       row(SPEC.kit, radios("2")),
       row(SPEC.batteryType, liIon("1130")),
@@ -361,7 +363,7 @@ export const specs: Record<string, ProductSpec> = {
         en: "PMR446 — licence-free band",
         uz: "PMR446 — litsenziyasiz diapazon",
       }),
-      row(SPEC.range, upToKm("8")),
+      row(SPEC.range, cityOpen(upToKm("1"), upToKm("8"))),
       row(SPEC.channels, channelsCodes("16", "121")),
       row(SPEC.batteryType, liIon("1130")),
       row(SPEC.batteryCapacity, mah("1130")),
@@ -411,11 +413,7 @@ export const specs: Record<string, ProductSpec> = {
   "m-t42-red": {
     colour: { ru: "Красный", en: "Red", uz: "Qizil" },
     inBox: [box(BOX.radio, 2), box(BOX.beltClip, 2), box(BOX.manual)],
-    rows: t42Rows({
-      ru: "до 4 км на открытой местности, 200–300 м в городских условиях",
-      en: "up to 4 km in the open, 200–300 m in built-up areas",
-      uz: "ochiq joyda 4 km gacha, shahar sharoitida 200–300 m",
-    }),
+    rows: t42Rows(cityOpen(upToM("300"), upToKm("4"))),
     features: t42Features,
     rangeNote: true,
   },
@@ -423,25 +421,21 @@ export const specs: Record<string, ProductSpec> = {
   "m-t42-blue": {
     colour: { ru: "Синий", en: "Blue", uz: "Ko'k" },
     inBox: [box(BOX.radio, 2), box(BOX.beltClip, 2), box(BOX.manual)],
-    rows: t42Rows({
-      ru: "до 4 км на открытой местности, 200–300 м в городских условиях",
-      en: "up to 4 km in the open, 200–300 m in built-up areas",
-      uz: "ochiq joyda 4 km gacha, shahar sharoitida 200–300 m",
-    }),
+    rows: t42Rows(cityOpen(upToM("300"), upToKm("4"))),
     features: t42Features,
     rangeNote: true,
   },
 
   "m-t42-triple": {
     inBox: [box(BOX.radio, 3), box(BOX.beltClip, 3), box(BOX.manual)],
-    rows: t42Rows(upToKm("4")),
+    rows: t42Rows(cityOpen(upToM("300"), upToKm("4"))),
     features: t42Features,
     rangeNote: true,
   },
 
   "m-t42-quad": {
     inBox: [box(BOX.radio, 4), box(BOX.beltClip, 4), box(BOX.manual)],
-    rows: t42Rows(upToKm("4")),
+    rows: t42Rows(cityOpen(upToM("300"), upToKm("4"))),
     features: t42Features,
     rangeNote: true,
   },
@@ -495,6 +489,7 @@ export const specs: Record<string, ProductSpec> = {
       row(SPEC.standard, V.dmr),
       row(SPEC.mode, V.analogDigital),
       row(SPEC.ingress, ip("IP67")),
+      row(SPEC.range, cityOpen(upToKm("3"), upToKm("10"))),
       row(SPEC.power, watts("0,5")),
       row(SPEC.batteryType, liPo("3600")),
       row(SPEC.batteryCapacity, mah("3600")),
@@ -513,6 +508,7 @@ export const specs: Record<string, ProductSpec> = {
       audioConnector("Motorola M5"),
       F.usbCProgramming,
     ]),
+    rangeNote: true,
   },
 
   "rcd-60": {
@@ -528,6 +524,7 @@ export const specs: Record<string, ProductSpec> = {
       row(SPEC.standard, V.pmr),
       row(SPEC.mode, V.analogDigital),
       row(SPEC.ingress, ip("IP55")),
+      row(SPEC.range, cityOpen(upToKm("2,5"), upToKm("10"))),
       row(SPEC.power, watts("0,5")),
       row(SPEC.batteryType, liIon("2200")),
       row(SPEC.batteryCapacity, mah("2200")),
@@ -543,6 +540,7 @@ export const specs: Record<string, ProductSpec> = {
       }),
     ],
     features: rcdDigitalFeatures(pfbFeature("2"), [audioConnector("Motorola 2-pin")]),
+    rangeNote: true,
   },
 
   "rcd-50": {
@@ -562,7 +560,7 @@ export const specs: Record<string, ProductSpec> = {
         en: "IP67 — dust and water protection",
         uz: "IP67 — suv va changdan himoya",
       }),
-      row(SPEC.range, upToKm("8")),
+      row(SPEC.range, cityOpen(upToKm("2,5"), upToKm("10"))),
       row(SPEC.batteryType, liPo("3600")),
       row(SPEC.batteryCapacity, mah("3600")),
       row(SPEC.zones, {
@@ -593,6 +591,7 @@ export const specs: Record<string, ProductSpec> = {
       row(SPEC.standard, V.pmr),
       row(SPEC.mode, V.analogDigital),
       row(SPEC.freq, V.freq4460),
+      row(SPEC.range, cityOpen(upToKm("2"), upToKm("6"))),
       row(SPEC.power, watts("0,5")),
       row(SPEC.batteryType, liIon("2200")),
       row(SPEC.batteryCapacity, mah("2200")),
@@ -602,6 +601,7 @@ export const specs: Record<string, ProductSpec> = {
       row(SPEC.ingress, ip("IP55")),
     ],
     features: [F.vox, F.scanMonitor],
+    rangeNote: true,
   },
 
   "rcd-30": {
@@ -617,6 +617,7 @@ export const specs: Record<string, ProductSpec> = {
       row(SPEC.standard, V.pmr),
       row(SPEC.mode, V.analogDigital),
       row(SPEC.freq, V.freq4460),
+      row(SPEC.range, cityOpen(upToKm("1,5"), upToKm("4"))),
       row(SPEC.power, watts("0,5")),
       row(SPEC.batteryType, liIon("2200")),
       row(SPEC.batteryCapacity, mah("2200")),
@@ -633,6 +634,7 @@ export const specs: Record<string, ProductSpec> = {
       }),
     ],
     features: [F.tdma, F.voiceAnnounce, F.callsAll, F.radioManagement, F.loneWorker],
+    rangeNote: true,
   },
 
   /* ── Radiocom RC — analogue ────────────────────────────── */
@@ -650,6 +652,7 @@ export const specs: Record<string, ProductSpec> = {
       row(SPEC.standard, V.pmr),
       row(SPEC.mode, V.analog),
       row(SPEC.freq, V.freq4460),
+      row(SPEC.range, cityOpen(upToKmRange("2", "2,5"), upToKm("5"))),
       row(SPEC.power, watts("0,5")),
       row(SPEC.batteryType, liIon("2200")),
       row(SPEC.batteryCapacity, mah("2200")),
@@ -662,7 +665,8 @@ export const specs: Record<string, ProductSpec> = {
       }),
       row(SPEC.ingress, ip("IP55")),
     ],
-    features: [F.vfoMr, F.lcdBacklit, F.batteryIndicator],
+    features: [F.vfoMr, F.lcdBacklit, F.batteryIndicator, F.fmRadio],
+    rangeNote: true,
   },
 
   "rc-20": {
@@ -678,8 +682,9 @@ export const specs: Record<string, ProductSpec> = {
       row(SPEC.standard, V.pmr),
       row(SPEC.mode, V.analog),
       row(SPEC.freq, V.freq4460),
+      row(SPEC.range, cityOpen(upToKm("1,5"), upToKm("4"))),
       row(SPEC.power, watts("0,5")),
-      row(SPEC.batteryType, liIon("1700")),
+      row(SPEC.batteryType, liIon("1800")),
       row(SPEC.batteryCapacity, mah("1800")),
       row(SPEC.batteryLife, hours("12")),
       row(SPEC.channels, channels("99")),
@@ -687,6 +692,7 @@ export const specs: Record<string, ProductSpec> = {
       row(SPEC.ingress, ip("IP54")),
     ],
     features: [F.lcd3Backlight, F.batteryIndicator, F.vox, F.scanMonitor],
+    rangeNote: true,
   },
 
   "rc-10": {
@@ -702,6 +708,7 @@ export const specs: Record<string, ProductSpec> = {
       row(SPEC.standard, V.pmr),
       row(SPEC.mode, V.analog),
       row(SPEC.freq, V.freq4460),
+      row(SPEC.range, cityOpen(upToKm("1"), upToKm("3"))),
       row(SPEC.power, watts("0,5")),
       row(SPEC.batteryType, liIon("1700")),
       row(SPEC.batteryCapacity, mah("1700")),
@@ -711,6 +718,7 @@ export const specs: Record<string, ProductSpec> = {
       row(SPEC.ingress, ip("IP54")),
     ],
     features: [F.lcdBacklit, F.batteryIndicator, F.vox, F.torchLed],
+    rangeNote: true,
   },
 };
 
