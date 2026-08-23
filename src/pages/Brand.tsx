@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
+import { useScrollChoreography } from "@/lib/motion";
 import { Section } from "@/components/Section";
 import {
   DuoCard,
@@ -21,18 +22,25 @@ import priceListPdf from "@/assets/radiocom-price-list.pdf";
 // photograph at the bottom; ours were text with an empty half. These are the
 // frames the repo already has that actually depict each claim.
 //
-// The `@800` variants deliberately. These render at 130px tall — Lighthouse
+// The `@800` variants deliberately. These render at 130-190px tall — Lighthouse
 // caught the full-size files costing 315 KB on this page for images displayed
 // at a tenth of their width. The small candidates are 95 KB for the set and
 // still oversampled at DPR 2.
-import whyWarranty from "@/assets/radio-with-retail-box@800.webp";
-import whyDelivery from "@/assets/radios-floating-pair@800.webp";
-import whyService from "@/assets/radio-macro-display@800.webp";
-import whyTest from "@/assets/hands-two-radios-front@800.webp";
-import whyTradein from "@/assets/hands-tradein-pair@800.webp";
+//
+// All five are cutouts now, so none of them carries `mix-blend-multiply` any
+// more. Two of the five previously did and should not have: the retail-box
+// shot sat on #f8f8f8 and the trade-in pair on #f5f3fb, and multiply cannot
+// remove a tone that is not white — both showed a visible panel edge against
+// the card.
+import whyWarranty from "@/assets/cutout/hand-retail-box-cutout@800.webp";
+import whyDelivery from "@/assets/cutout/pair-floating-cutout@800.webp";
+import whyService from "@/assets/cutout/macro-display-cutout@800.webp";
+import whyTest from "@/assets/cutout/hands-compare-cutout@800.webp";
+import whyTradein from "@/assets/cutout/hands-tradein-cutout@800.webp";
 import {
   products,
   productsOfBrand,
+  shortName,
   priceFrom,
   formatPrice,
   categoryLabels,
@@ -166,14 +174,14 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
 
   const shown = facet === "all" ? list : list.filter((p) => p.category === facet);
 
+  const page = useScrollChoreography();
+
   return (
-    <div className="page-anim">
+    <div ref={page} className="page-anim">
       {/* ── Family name + model strip ──────────────────────── */}
-      <Section band="plain" tight>
-        <h1 className="text-[34px] font-semibold leading-[1.1] tracking-[-0.02em] text-crisp md:text-[40px]">
-          {t(`brand.${brandSlug}_title`)}
-        </h1>
-        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-cool md:text-[17px]">
+      <Section band="plain">
+        <h1 className="type-display text-crisp">{t(`brand.${brandSlug}_title`)}</h1>
+        <p className="subhead measure mt-5 text-[17px] leading-relaxed md:text-[21px]">
           {t(`brand.${brandSlug}_desc`)}
         </p>
 
@@ -187,8 +195,8 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
                   className="group block rounded-[12px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-4"
                 >
                   <ModelStripItem
-                    image={p.image}
-                    imageSmall={p.imageSmall}
+                    image={p.strip ?? p.image}
+                    imageSmall={p.strip ? undefined : p.imageSmall}
                     label={shortName(p.name)}
                   />
                 </LocaleLink>
@@ -199,13 +207,13 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
                 to="/compare"
                 className="group block rounded-[12px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-4"
               >
-                <span className="flex w-[76px] flex-col items-center gap-2 text-center">
-                  <span className="flex h-[52px] items-end justify-center">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-charcoal text-crisp transition-transform duration-500 group-hover:scale-110">
-                      <ChevronRight className="h-4 w-4" aria-hidden />
+                <span className="flex w-[104px] flex-col items-center gap-3 text-center">
+                  <span className="flex h-[96px] items-end justify-center">
+                    <span className="flex h-12 w-12 items-center justify-center rounded-full bg-charcoal text-crisp transition-transform duration-500 group-hover:scale-110">
+                      <ChevronRight className="h-5 w-5" aria-hidden />
                     </span>
                   </span>
-                  <span className="text-[11px] leading-tight text-crisp">{t("nav.compare")}</span>
+                  <span className="text-[12px] leading-tight text-crisp">{t("nav.compare")}</span>
                 </span>
               </LocaleLink>
             </li>
@@ -214,11 +222,9 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
       </Section>
 
       {/* ── The line-up ────────────────────────────────────── */}
-      <Section band="soft" tight>
+      <Section band="soft">
         <div className="mb-8 flex flex-wrap items-baseline justify-between gap-4 md:mb-10">
-          <h2 className="text-[28px] font-semibold leading-tight tracking-[-0.02em] text-crisp md:text-[32px]">
-            {t("brand.lineup")}
-          </h2>
+          <h2 className="type-headline text-crisp">{t("brand.lineup")}</h2>
           {floor != null ? (
             <p className="text-[14px] text-cool">
               {list.length} {t("brand.models")} · {t("px.from")}{" "}
@@ -245,7 +251,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
             that escape hatch in place the shelf is the better container: it
             keeps the lineup one screen tall however many models a brand has,
             and it is what the reference actually does. */}
-        <HighlightsShelf label={t("brand.lineup")}>
+        <HighlightsShelf label={t("brand.lineup")} stagger>
           {shown.map((p, i) => (
             <div
               key={p.id}
@@ -271,8 +277,8 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
       </Section>
 
       {/* ── Why buy from us ────────────────────────────────── */}
-      <Section band="plain" tight>
-        <h2 className="mb-8 max-w-xl text-[28px] font-semibold leading-tight tracking-[-0.02em] text-crisp md:mb-10 md:text-[32px]">
+      <Section band="plain">
+        <h2 className="type-headline mb-10 max-w-2xl text-crisp md:mb-12">
           {t("brand.why_title")}
         </h2>
 
@@ -306,9 +312,9 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
                     alt=""
                     loading="lazy"
                     decoding="async"
-                    width={800}
-                    height={600}
-                    className="max-h-[130px] w-auto object-contain mix-blend-multiply"
+                    width={c.w}
+                    height={c.h}
+                    className="max-h-[170px] w-auto object-contain drop-shadow-[0_14px_22px_rgba(0,0,0,0.12)]"
                   />
                 }
               />
@@ -323,10 +329,8 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
           out — so it is fed from the six industries instead: a real photograph,
           the real sector name, the real one-line description, each card a link
           to a page that already exists. Same device, no fiction. */}
-      <Section band="plain" tight>
-        <h2 className="mb-8 text-[28px] font-semibold leading-tight tracking-[-0.02em] text-crisp md:mb-10 md:text-[32px]">
-          {t("px.where_used")}
-        </h2>
+      <Section band="plain">
+        <h2 className="type-headline mb-10 text-crisp md:mb-12">{t("px.where_used")}</h2>
         <HighlightsShelf label={t("px.where_used")}>
           {INDUSTRY_SLUGS.map((slug, i) => (
             <div
@@ -353,7 +357,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
       </Section>
 
       {/* ── The closing pair — apple.com's "Switch to Mac" ────── */}
-      <Section band="soft" tight>
+      <Section band="soft">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <DuoCard
             idx={0}
@@ -371,9 +375,9 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
                 alt=""
                 loading="lazy"
                 decoding="async"
-                width={800}
-                height={1071}
-                className="max-h-[150px] w-auto object-contain mix-blend-multiply"
+                width={731}
+                height={800}
+                className="max-h-[190px] w-auto object-contain drop-shadow-[0_16px_24px_rgba(0,0,0,0.12)]"
               />
             }
           />
@@ -398,8 +402,8 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
                 loading="lazy"
                 decoding="async"
                 width={800}
-                height={600}
-                className="max-h-[150px] w-auto object-contain mix-blend-multiply"
+                height={447}
+                className="max-h-[190px] w-auto object-contain drop-shadow-[0_16px_24px_rgba(0,0,0,0.12)]"
               />
             }
           />
@@ -407,7 +411,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
       </Section>
 
       {/* ── Compare invitation ─────────────────────────────── */}
-      <Section band="soft" tight>
+      <Section band="soft">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="type-headline text-crisp">{t("brand.compare_cta")}</h2>
           <p className="subhead mt-4 text-[17px]">{t("brand.compare_sub")}</p>
@@ -435,6 +439,10 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
  * Kept as data rather than five inline `<ExpandCard>`s so the `+` detail and
  * its heading cannot drift apart, and so adding a sixth reason is a row here
  * rather than a copy-paste of eleven lines of JSX.
+ *
+ * `w`/`h` are the image's real intrinsic size. They were a shared 800x600 —
+ * the aspect of none of the five — so the browser reserved the wrong box for
+ * each and the shelf shifted as the images decoded.
  */
 const WHY_CARDS = [
   {
@@ -443,6 +451,8 @@ const WHY_CARDS = [
     title: "home.bento.warranty.sub",
     detail: "brand.sub",
     image: whyWarranty,
+    w: 800,
+    h: 372,
   },
   {
     key: "delivery",
@@ -450,6 +460,8 @@ const WHY_CARDS = [
     title: "px.trial",
     detail: "brand.compare_sub",
     image: whyDelivery,
+    w: 574,
+    h: 800,
   },
   {
     key: "service",
@@ -457,6 +469,8 @@ const WHY_CARDS = [
     title: "home.bento.service.sub",
     detail: "service.sub",
     image: whyService,
+    w: 731,
+    h: 800,
   },
   {
     key: "test",
@@ -464,13 +478,17 @@ const WHY_CARDS = [
     title: "home.bento.test.sub",
     detail: "px.trial",
     image: whyTest,
+    w: 800,
+    h: 800,
   },
   {
     key: "tradein",
     eyebrow: "home.bento.tradein.title",
     title: "home.bento.tradein.sub",
-    detail: "tradein.sub",
+    detail: "tradein.desc",
     image: whyTradein,
+    w: 800,
+    h: 447,
   },
 ] as const;
 
@@ -510,11 +528,22 @@ function LineupCard({ p, lang, idx }: { p: Product; lang: Lang; idx: number }) {
         />
       </div>
 
-      <h3 className="text-[17px] font-semibold leading-[1.2] tracking-[-0.01em] text-crisp">
+      {/* The title link stays a title link.
+      
+          Making the whole card clickable would give a 400px target, but the
+          card holds two more controls and stacking them over a card-wide link
+          is the nested-interactive trap the comment above records — it was
+          removed on purpose and is not worth reintroducing for a target size.
+      
+          `py-1` with a matching negative margin lifts it from 20px to 28px
+          without moving anything, which clears WCAG 2.5.8's 24px bar. The 44px
+          version of this exact destination is the "Подробнее" button four lines
+          below, which is the equivalent-target case 2.5.8 explicitly allows. */}
+      <h3 className="-my-1 text-[17px] font-semibold leading-[1.2] tracking-[-0.01em] text-crisp">
         <LocaleLink
           to="/$brand/$model"
           params={{ brand: p.brandSlug, model: p.slug }}
-          className="rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
+          className="inline-block rounded-sm py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
         >
           {p.name}
         </LocaleLink>
@@ -524,7 +553,7 @@ function LineupCard({ p, lang, idx }: { p: Product; lang: Lang; idx: number }) {
       {/* apple.com puts three or four bare spec lines here, unbulleted and
           unlabelled. They are not a spec sheet — they are the axes buyers
           actually compare on, which for a two-way radio is range first. */}
-      <ul className="mt-4 space-y-1 text-[12px] leading-snug text-cool">
+      <ul className="mt-4 space-y-1 text-[13px] leading-snug text-cool">
         <li>
           {t("px.range_city")}: {pick(p.rangeCity, lang)}
         </li>
@@ -562,15 +591,6 @@ function LineupCard({ p, lang, idx }: { p: Product; lang: Lang; idx: number }) {
       </div>
     </article>
   );
-}
-
-/**
- * "Motorola TLKR T92 H2O" -> "TLKR T92". The strip cells are 76px wide, so the
- * brand prefix — already the page's `h1` — would push the model number onto a
- * third line or truncate it away.
- */
-function shortName(name: string): string {
-  return name.replace(/^Radiocom |^Motorola /, "").replace(/\s+H2O$/, "");
 }
 
 /** Both brand routes share one component; this keeps the export surface small. */

@@ -34,6 +34,7 @@ export const BOX = {
     en: "USB car charger",
     uz: "USB avtomobil quvvatlagichi",
   },
+  typeCCable: { ru: "Type-C кабель", en: "Type-C cable", uz: "Type-C kabel" },
   charger: { ru: "Зарядное устройство", en: "Charger", uz: "Quvvatlash qurilmasi" },
   chargingCup: { ru: "Зарядная чаша", en: "Charging cup", uz: "Quvvatlash uyasi" },
   chargingCupSingle: {
@@ -301,6 +302,37 @@ export const upToFloors = (n: string): L => ({
   uz: `${n} qavatgacha`,
 });
 
+/** A span rather than a single figure — the price list quotes RC-50 as "2–2,5 км". */
+export const upToKmRange = (a: string, b: string): L => ({
+  ru: `до ${a}–${b} км`,
+  en: `up to ${num(a, "en")}–${num(b, "en")} km`,
+  uz: `${a}–${b} km gacha`,
+});
+
+/**
+ * Coverage as the price list actually quotes it: a city figure *and* an
+ * open-country figure, in one row.
+ *
+ * The spec sheets carried at most one of the two, and where they carried one it
+ * was almost always the open-country number — the flattering one. A buyer
+ * choosing a radio for a warehouse needs the city figure, and the price list
+ * gives both for every model, so quoting the pair is the honest reading. It is
+ * also what `products.ts` already stores as `rangeCity` / `rangeOpen`, so the
+ * spec row and the product card can no longer drift apart.
+ */
+export const cityOpen = (city: L, open: L): L => ({
+  ru: `${city.ru} в городе, ${open.ru} на открытой местности`,
+  en: `${city.en} in built-up areas, ${open.en} in the open`,
+  uz: `shaharda ${city.uz}, ochiq joyda ${open.uz}`,
+});
+
+/** City coverage alone — the XT 420 is the one model the list quotes that way. */
+export const inCity = (v: L): L => ({
+  ru: `${v.ru} в городе`,
+  en: `${v.en} in built-up areas`,
+  uz: `shaharda ${v.uz}`,
+});
+
 export const watts = (n: string): L => ({ ru: `${n} Вт`, en: `${n} W`, uz: `${n} Vt` });
 
 export const mah = (n: string): L => ({
@@ -500,6 +532,11 @@ export const F = {
     ru: "Режим работы VFO / MR",
     en: "VFO / MR operating modes",
     uz: "VFO / MR ishlash rejimi",
+  },
+  fmRadio: {
+    ru: "FM-радиоприёмник",
+    en: "FM radio receiver",
+    uz: "FM radiopriyomnik",
   },
   tdma: {
     ru: "Поддержка TDMA Tier II в конвенциональном режиме и режим прямой связи TDMA",

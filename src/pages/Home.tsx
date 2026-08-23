@@ -9,16 +9,21 @@ import { SignalPulse } from "@/components/SignalPulse";
 // WebP carries the same alpha at 68 KB, with a 316px candidate for phones.
 import heroImage from "@/assets/hero-rcd60-cutout.webp";
 import heroImage800 from "@/assets/hero-rcd60-cutout@800.webp";
-import kitWide from "@/assets/product/radio-kit-wide.webp";
-import kitWide800 from "@/assets/product/radio-kit-wide@800.webp";
-import macroWide from "@/assets/radio-macro-display.webp";
-import macroWide800 from "@/assets/radio-macro-display@800.webp";
-// Recovered from git (`76765ce^` and `de79d62^`) — earlier phases deleted them.
-// Both are 3:4 portrait, which is why the cards below put them beside the copy
-// rather than behind it: a portrait photograph in a wide backdrop slot can only
-// be made to fill by cropping, and cropping is what made these unreadable.
-import radiosPair from "@/assets/radios-floating-pair.webp";
-import radiosPair800 from "@/assets/radios-floating-pair@800.webp";
+// The cutout set. Every one of these was previously a studio photograph with a
+// backdrop — #f9f9f9 on the kit flat-lay, #dae3e7 on the macro — which is why
+// the cards around them needed grey panels and blend modes to stop the
+// backdrop reading as a pasted-on rectangle. With real alpha the panels go and
+// the product sits on the band directly.
+//
+// They are also cropped to their subject: the source frames carried up to 75%
+// transparent margin, so a radio that looked small in its slot was small in the
+// file, not in the layout.
+import kitWide from "@/assets/cutout/kit-flatlay-cutout.webp";
+import kitWide800 from "@/assets/cutout/kit-flatlay-cutout@800.webp";
+import macroWide from "@/assets/cutout/macro-display-cutout.webp";
+import macroWide800 from "@/assets/cutout/macro-display-cutout@800.webp";
+import radiosPair from "@/assets/cutout/pair-floating-cutout.webp";
+import radiosPair800 from "@/assets/cutout/pair-floating-cutout@800.webp";
 // The grille macro that used to be a CDN pointer. This cutout is the same
 // subject shot properly: alpha, so it can float on a tinted band.
 import bentoDetail from "@/assets/radio-macro-cutout.webp";
@@ -35,7 +40,7 @@ import { visibleProducts } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
 import { CountUp } from "@/components/CountUp";
 import { spring, fadeUpAt } from "@/lib/springs";
-import { useGsap } from "@/lib/motion";
+import { DESKTOP, useGsap, useScrollChoreography } from "@/lib/motion";
 import {
   SITE_SECTIONS,
   jsonLd,
@@ -87,8 +92,10 @@ export const routeOptions = {
 };
 
 export function HomePage() {
+  const page = useScrollChoreography();
+
   return (
-    <div className="page-anim">
+    <div ref={page} className="page-anim">
       <Hero />
       <Proof />
       <FeatureDark />
@@ -119,24 +126,34 @@ function Hero() {
     // loaded on demand, so a static import here would put it back in this
     // page's chunk and undo the split.
     ({ gsap }) => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: scope.current,
-          start: "top top",
-          end: "+=90%",
-          pin: true,
-          scrub: 0.6,
-          anticipatePin: 1,
-        },
+      // Desktop only. On a phone this pinned for 90% of the viewport — 760px of
+      // thumb-scrolling during which the page appears not to move, and 760px of
+      // blank pin-spacer in any full-page capture. `matchMedia` builds the
+      // trigger only above 768px and reverts it cleanly on rotation.
+      gsap.matchMedia().add(DESKTOP, () => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: scope.current,
+            start: "top top",
+            end: "+=90%",
+            pin: true,
+            scrub: 0.6,
+            anticipatePin: 1,
+          },
+        });
+        tl.to("[data-hero-copy]", { y: -70, opacity: 0.15, ease: "none" }, 0).to(
+          "[data-hero-art]",
+          { scale: 1.18, y: -40, ease: "none" },
+          0,
+        );
       });
-      tl.to("[data-hero-copy]", { y: -70, opacity: 0.15, ease: "none" }, 0).to(
-        "[data-hero-art]",
-        { scale: 1.18, y: -40, ease: "none" },
-        0,
-      );
     },
     scope,
     [],
+    // Gate the *download*, not just the trigger. `matchMedia` inside the
+    // callback still costs a phone the 27 KB chunk before deciding it wants
+    // none of it; this was the one route still fetching GSAP at 390px.
+    DESKTOP,
   );
 
   return (
@@ -294,7 +311,7 @@ function ValueShelf() {
   const openTest = () => openLead({ title: t("home.bento.tradein.title") });
 
   return (
-    <Section band="soft" tight>
+    <Section band="soft">
       <SectionHead
         align="left"
         spacing="tight"
@@ -313,26 +330,29 @@ function ValueShelf() {
           title={t("home.bento.warranty.sub")}
           className="col-span-1 sm:col-span-2"
         >
-          {/* A framed tile, not a floating cutout.
+          {/* The grey panel this used to sit on is gone.
               
-              Two problems solved by one change. At `w-full` the flat-lay ran
-              the card's whole width and read as a band rather than a product
-              shot — that is the "too big". And its studio background is
-              #f9f9f9, not white, so on a white card `mix-blend-multiply` left
-              a visibly grey rectangle looking pasted on. Sitting it on a
-              deliberate grey panel makes that tone the frame instead of an
-              artifact, and fills the dead space the smaller image opened up.
-              Nothing is cropped: `contain` throughout. */}
-          <div className="flex w-full flex-1 items-center justify-center rounded-[18px] bg-charcoal p-6">
+              It existed for one reason: the old flat-lay's studio backdrop was
+              #f9f9f9 rather than white, so on a white card it read as a grey
+              rectangle pasted on, and `mix-blend-multiply` could not remove a
+              tone that is not white. Making the panel deliberate was the least
+              bad answer available to a photograph with a background.
+              
+              This file has none, so the kit sits on the card itself — which is
+              what apple.com does with a product, and what the card wanted all
+              along. `contain`, so nothing is cropped; the soft contact shadow
+              gives it a surface to stand on rather than leaving it floating. */}
+          <div data-parallax="0.05" className="flex w-full flex-1 items-center justify-center pt-2">
             <ProductShot
               src={kitWide}
+              cutout
               srcSmall={kitWide800}
               alt=""
               width={1600}
-              height={900}
-              sizes="(max-width: 640px) 70vw, (max-width: 1024px) 60vw, 520px"
-              className="w-full max-w-[520px]"
-              imgClassName="max-h-[230px]"
+              height={1111}
+              sizes="(max-width: 640px) 78vw, (max-width: 1024px) 62vw, 560px"
+              className="w-full max-w-[560px]"
+              imgClassName="max-h-[300px] drop-shadow-[0_18px_28px_rgba(0,0,0,0.10)]"
             />
           </div>
         </StackedTile>
@@ -355,14 +375,15 @@ function ValueShelf() {
                through the middle. */
             <ProductShot
               src={radiosPair}
+              cutout
               srcSmall={radiosPair800}
               alt=""
-              width={1195}
+              width={1149}
               height={1600}
               fit="contain"
-              sizes="(max-width: 1024px) 60vw, 300px"
-              className="pointer-events-none absolute inset-x-0 bottom-4 top-[46%]"
-              imgClassName="object-bottom"
+              sizes="(max-width: 1024px) 60vw, 320px"
+              className="pointer-events-none absolute inset-x-0 bottom-3 top-[42%]"
+              imgClassName="object-bottom drop-shadow-[0_16px_24px_rgba(0,0,0,0.12)]"
             />
           }
         />
@@ -404,20 +425,27 @@ function ValueShelf() {
           className="min-h-[340px]"
           copyClassName="max-w-[52%] lg:max-w-[46%]"
           backdrop={
-            /* `cover` in a full-height 52% column cropped this to a vertical
-               sliver. `contain` inside a grey panel shows the whole frame and
-               makes the studio background part of the composition rather than
-               a pasted rectangle. */
-            <div className="pointer-events-none absolute inset-y-5 right-5 flex w-[42%] items-center justify-center overflow-hidden rounded-[18px] bg-charcoal">
+            /* The grey panel here is gone for the same reason as the lead
+               tile's: it was framing a #dae3e7 studio backdrop that could not
+               be blended away. The macro is a crop rather than a whole object —
+               the display corner, cut off at the bottom — so it bleeds off the
+               card's lower edge instead of floating in the middle of a box,
+               which is how apple.com uses a detail shot. */
+            <div
+              data-parallax="0.08"
+              className="pointer-events-none absolute -bottom-2 right-4 flex w-[44%] items-end justify-center"
+            >
               <ProductShot
                 src={macroWide}
+                cutout
                 srcSmall={macroWide800}
                 alt=""
-                width={1195}
+                width={1463}
                 height={1600}
                 fit="contain"
-                sizes="(max-width: 1024px) 42vw, 280px"
-                className="h-full w-full"
+                sizes="(max-width: 1024px) 44vw, 320px"
+                className="w-full"
+                imgClassName="drop-shadow-[0_20px_30px_rgba(0,0,0,0.14)]"
               />
             </div>
           }
@@ -431,7 +459,7 @@ function ValueShelf() {
 function NetworkSplit() {
   const { t } = useTranslation();
   return (
-    <Section band="plain" tight>
+    <Section band="plain">
       <div className="grid gap-4 md:grid-cols-2">
         <motion.div
           {...fadeUpAt(0)}
@@ -476,7 +504,7 @@ function IndustriesTeaser() {
     { slug: "security" as const, img: securityImg },
   ];
   return (
-    <Section band="soft" tight>
+    <Section band="soft">
       <div>
         <SectionHead
           align="left"
@@ -531,7 +559,7 @@ function FeaturedCatalog() {
   const featured = picked.length >= 4 ? picked.slice(0, 4) : visibleProducts.slice(0, 4);
 
   return (
-    <Section band="plain" tight>
+    <Section band="plain">
       <div>
         <SectionHead
           align="left"

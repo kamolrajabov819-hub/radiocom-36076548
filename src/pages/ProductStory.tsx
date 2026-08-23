@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useScrollChoreography } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 import { notFound, useParams } from "@tanstack/react-router";
 import { Check, ChevronRight } from "lucide-react";
@@ -146,8 +147,10 @@ export function ProductStoryPage() {
   if (!p) throw notFound();
   const spec = specs[p.id];
 
+  const page = useScrollChoreography();
+
   return (
-    <div className="page-anim">
+    <div ref={page} className="page-anim">
       <Hero p={p} lang={lang} />
       <Highlights p={p} lang={lang} />
       <Design p={p} lang={lang} />
@@ -179,7 +182,7 @@ function Hero({ p, lang }: { p: Product; lang: Lang }) {
       <nav aria-label="Breadcrumb" className="mb-8 text-[14px] text-cool">
         <LocaleLink
           to={p.brandSlug === "radiocom" ? "/radiocom" : "/motorola"}
-          className="hover:text-crisp"
+          className="inline-flex min-h-11 items-center hover:text-crisp"
         >
           {t(`meta.crumb.${p.brandSlug}`)}
         </LocaleLink>
@@ -198,7 +201,10 @@ function Hero({ p, lang }: { p: Product; lang: Lang }) {
         </p>
       </div>
 
-      <div className="stage relative mt-12 flex h-[42vh] max-h-[520px] items-center justify-center md:mt-14">
+      <div
+        data-parallax="0.07"
+        className="stage relative mt-12 flex h-[54vh] max-h-[680px] items-center justify-center md:mt-14"
+      >
         <img
           src={p.image}
           srcSet={p.imageSmall ? `${p.imageSmall} 800w, ${p.image} 1600w` : undefined}
@@ -272,7 +278,7 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
   const width = "w-[64vw] sm:w-[38vw] lg:w-[calc((100%-3rem)/4)]";
 
   return (
-    <Section band="soft" tight>
+    <Section band="soft">
       <SectionHead align="left" spacing="tight" title={t("px.highlights")} />
       <HighlightsShelf label={t("px.highlights")}>
         {/* Photographic lead card. It gives the row an anchor and re-states the
@@ -362,13 +368,10 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
   const protection = spec?.rows.find((r) => /Класс защиты/i.test(r.label.ru));
 
   return (
-    <Section band="plain" tight>
+    <Section band="plain">
       <div className="mb-10 md:mb-12">
         <div className="mb-3 text-[14px] font-medium text-cool">{t("px.design")}</div>
-        <TintedHeadline
-          as="h2"
-          className="text-[34px] font-semibold leading-[1.08] tracking-[-0.02em] text-crisp md:text-[48px]"
-        >
+        <TintedHeadline as="h2" className="type-display text-crisp">
           {t("px.design_title")}
         </TintedHeadline>
       </div>
@@ -504,7 +507,7 @@ function Features({ p, lang }: { p: Product; lang: Lang }) {
   if (!features.length) return null;
 
   return (
-    <Section band="plain" tight>
+    <Section band="plain">
       <SectionHead align="left" spacing="tight" title={t("px.features")} />
       {/* A capability list, sized to its content.
       
@@ -539,22 +542,54 @@ function InBox({ p, lang }: { p: Product; lang: Lang }) {
   const inBox = specs[p.id]?.inBox ?? [];
   if (!inBox.length) return null;
 
+  // The kit shot, where one exists. This section names what is in the box and
+  // had nothing to show for it — three columns of hairline-ruled text, the
+  // thinnest band on the page. The gallery's last frame is the kit flat-lay
+  // for every model that has one, which is the photograph of precisely this
+  // list.
+  const kit = p.gallery?.[p.gallery.length - 1];
+
   return (
-    <Section band="soft" tight>
+    <Section band="soft">
       <SectionHead align="left" spacing="tight" title={t("px.in_box")} />
-      <ul className="grid grid-cols-1 gap-x-10 border-t border-border sm:grid-cols-2 lg:grid-cols-3">
-        {inBox.map((line) => (
-          <li
-            key={pick(line.item, lang)}
-            className="flex items-baseline justify-between gap-4 border-b border-border py-5"
-          >
-            <span className="text-[17px] text-crisp">{pick(line.item, lang)}</span>
-            {(line.qty ?? 1) > 1 ? (
-              <span className="shrink-0 text-[15px] tabular-nums text-cool">×{line.qty}</span>
-            ) : null}
-          </li>
-        ))}
-      </ul>
+      <div
+        className={
+          kit
+            ? "grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,440px)] lg:gap-16"
+            : ""
+        }
+      >
+        <ul
+          className={`grid grid-cols-1 gap-x-10 border-t border-border sm:grid-cols-2 ${
+            kit ? "" : "lg:grid-cols-3"
+          }`}
+        >
+          {inBox.map((line) => (
+            <li
+              key={pick(line.item, lang)}
+              className="flex items-baseline justify-between gap-4 border-b border-border py-5"
+            >
+              <span className="text-[17px] text-crisp">{pick(line.item, lang)}</span>
+              {(line.qty ?? 1) > 1 ? (
+                <span className="shrink-0 text-[15px] tabular-nums text-cool">×{line.qty}</span>
+              ) : null}
+            </li>
+          ))}
+        </ul>
+        {kit ? (
+          <div data-parallax="0.06" className="overflow-hidden rounded-[28px] bg-pitch p-8">
+            <img
+              src={kit}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              width={1080}
+              height={1080}
+              className="mx-auto h-auto w-full max-w-[380px] object-contain mix-blend-multiply"
+            />
+          </div>
+        ) : null}
+      </div>
     </Section>
   );
 }
@@ -582,7 +617,7 @@ function WhereUsed({ p, lang }: { p: Product; lang: Lang }) {
   if (!slugs.length) return null;
 
   return (
-    <Section band="plain" tight>
+    <Section band="plain">
       <SectionHead align="left" spacing="tight" title={t("px.where_used")} />
       {/* Columns from the count, not a fixed four. A model is specified for
           one to four industries, and a fixed 4-column grid rendered two cards
@@ -624,7 +659,7 @@ function WhereUsed({ p, lang }: { p: Product; lang: Lang }) {
 function Closing({ p, lang }: { p: Product; lang: Lang }) {
   const { t } = useTranslation();
   return (
-    <Section band="soft" tight>
+    <Section band="soft">
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="type-headline text-crisp">{t("px.specs_link")}</h2>
         <p className="subhead mt-4 text-[17px]">

@@ -1,4 +1,5 @@
 import { LocaleLink } from "@/components/LocaleLink";
+import { useScrollChoreography } from "@/lib/motion";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
@@ -58,8 +59,10 @@ export const routeOptions = {
 
 export function IndustriesOverview() {
   const { t } = useTranslation();
+  const page = useScrollChoreography();
+
   return (
-    <>
+    <div ref={page}>
       <section className="pt-32 md:pt-40 pb-14 md:pb-20 bg-pitch px-6 text-center">
         <div className="max-w-3xl mx-auto">
           <motion.h1
@@ -82,7 +85,7 @@ export function IndustriesOverview() {
       </section>
 
       <section className="bg-pitch pb-24">
-        <div className="shell grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div data-scrub-in className="shell grid grid-cols-1 gap-4 md:grid-cols-2">
           {INDUSTRY_SLUGS.map((s, i) => (
             <motion.div
               key={s}
@@ -119,6 +122,6 @@ export function IndustriesOverview() {
           ))}
         </div>
       </section>
-    </>
+    </div>
   );
 }

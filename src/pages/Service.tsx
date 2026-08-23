@@ -1,15 +1,21 @@
 import { motion } from "framer-motion";
+import { useScrollChoreography } from "@/lib/motion";
 import { useTranslation } from "react-i18next";
 import { Search, Cog, ClipboardCheck } from "lucide-react";
 import serviceLight from "@/assets/service-tech-light.jpg";
 // One distinct photograph per repair stage — the brief's rule is never to
 // reuse a shot for two slots on the same page, and a lucide icon alone in
 // white space is what these cards looked like before.
-import stageIntake from "@/assets/radio-on-white.webp";
-import stageAnalysis from "@/assets/radios-lineup-seven.webp";
-import stageRepair from "@/assets/radios-four-aligned.webp";
-import stageTest from "@/assets/hands-tradein-pair.webp";
-import advCertified from "@/assets/hands-two-radios-front.webp";
+import stageIntake from "@/assets/cutout/radio-single-cutout.webp";
+import stageIntake800 from "@/assets/cutout/radio-single-cutout@800.webp";
+import stageAnalysis from "@/assets/cutout/lineup-seven-cutout.webp";
+import stageAnalysis800 from "@/assets/cutout/lineup-seven-cutout@800.webp";
+import stageRepair from "@/assets/cutout/four-aligned-cutout.webp";
+import stageRepair800 from "@/assets/cutout/four-aligned-cutout@800.webp";
+import stageTest from "@/assets/cutout/hands-tradein-cutout.webp";
+import stageTest800 from "@/assets/cutout/hands-tradein-cutout@800.webp";
+import advCertified from "@/assets/cutout/hands-compare-cutout.webp";
+import advCertified800 from "@/assets/cutout/hands-compare-cutout@800.webp";
 import { openLead } from "@/components/LeadFormSheet";
 import { spring } from "@/lib/springs";
 import { ProductShot } from "@/components/ProductShot";
@@ -81,8 +87,10 @@ export const routeOptions = {
 };
 
 export function ServicePage() {
+  const page = useScrollChoreography();
+
   return (
-    <div className="page-anim">
+    <div ref={page} className="page-anim">
       <Hero />
       <BenchStrip />
       <Flow />
@@ -103,7 +111,8 @@ function BenchStrip() {
             loading="lazy"
             width={1400}
             height={1000}
-            className="absolute inset-0 h-full w-full object-cover"
+            data-parallax="0.16"
+            className="absolute inset-0 h-full w-full scale-110 object-cover"
           />
         </div>
       </div>
@@ -171,18 +180,23 @@ function Hero() {
 function Flow() {
   const { t } = useTranslation();
   const steps = (t("service.flow", { returnObjects: true }) as FlowStep[]) || [];
+  // Four cutouts of four different proportions — a single radio at 990x1104,
+  // a seven-wide lineup at 1600x758. `cover` would crop each of them
+  // differently in the same 4:3 slot, which is what made the row read as
+  // inconsistent. `contain` on a shared soft panel lets each shot keep its own
+  // shape while the panels stay identical.
   const shots = [
-    { src: stageIntake, alt: "" },
-    { src: stageAnalysis, alt: "" },
-    { src: stageRepair, alt: "" },
-    { src: stageTest, alt: "" },
+    { src: stageIntake, small: stageIntake800, alt: "" },
+    { src: stageAnalysis, small: stageAnalysis800, alt: "" },
+    { src: stageRepair, small: stageRepair800, alt: "" },
+    { src: stageTest, small: stageTest800, alt: "" },
   ];
 
   return (
-    <section className="band-soft section-tight">
+    <section className="band-soft section">
       <div className="shell">
         <SectionHead align="left" spacing="tight" title={t("service.flow_title")} />
-        <HighlightsShelf label={t("service.flow_title")}>
+        <HighlightsShelf label={t("service.flow_title")} stagger>
           {steps.map((step, i) => {
             const shot = shots[i] ?? shots[0];
             return (
@@ -190,14 +204,16 @@ function Flow() {
                 key={step.t}
                 className="group card-interactive relative flex w-[78vw] shrink-0 snap-start flex-col overflow-hidden rounded-[28px] bg-pitch sm:w-[46vw] lg:w-[calc((100%-3rem)/4)]"
               >
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-charcoal">
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-charcoal p-5">
                   <ProductShot
                     src={shot.src}
+                    cutout
+                    srcSmall={shot.small}
                     alt={shot.alt}
                     width={1600}
                     height={1200}
-                    fit="cover"
-                    sizes="(max-width: 640px) 78vw, (max-width: 1024px) 46vw, 300px"
+                    fit="contain"
+                    sizes="(max-width: 640px) 78vw, (max-width: 1024px) 46vw, 320px"
                     className="absolute inset-0 [&_img]:transition-transform [&_img]:duration-700 [&_img]:ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[&_img]:scale-[1.04]"
                   />
                   <div
@@ -231,7 +247,7 @@ function Advantages() {
   const adv = t("service.advantages", { returnObjects: true }) as Record<string, FlowStep>;
 
   return (
-    <section className="band-plain section-tight">
+    <section className="band-plain section">
       <div className="shell">
         <SectionHead align="left" spacing="tight" title={t("service.advantages_title")} />
         <BentoGrid>
@@ -247,12 +263,15 @@ function Advantages() {
             backdrop={
               <ProductShot
                 src={advCertified}
+                cutout
+                srcSmall={advCertified800}
                 alt=""
                 width={1600}
-                height={1200}
-                fit="cover"
+                height={1600}
+                fit="contain"
                 sizes="(max-width: 1024px) 90vw, 620px"
-                className="absolute inset-y-0 right-0 w-[52%]"
+                className="absolute inset-y-4 right-2 w-[48%]"
+                imgClassName="drop-shadow-[0_18px_28px_rgba(0,0,0,0.12)]"
               />
             }
           />

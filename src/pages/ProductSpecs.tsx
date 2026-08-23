@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useScrollChoreography } from "@/lib/motion";
 import { notFound, useParams } from "@tanstack/react-router";
 import { Check, ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
@@ -118,14 +119,16 @@ export function ProductSpecsPage() {
 
   const spec = specs[p.id];
 
+  const page = useScrollChoreography();
+
   return (
-    <div className="page-anim">
+    <div ref={page} className="page-anim">
       {/* ── Configuration summary + price ─────────────────── */}
       <Section band="plain">
         <nav aria-label="Breadcrumb" className="mb-8 text-[14px] text-cool">
           <LocaleLink
             to={brandSlug === "radiocom" ? "/radiocom" : "/motorola"}
-            className="hover:text-crisp"
+            className="inline-flex min-h-11 items-center hover:text-crisp"
           >
             {t(`meta.crumb.${brandSlug}`)}
           </LocaleLink>
@@ -135,7 +138,7 @@ export function ProductSpecsPage() {
           <LocaleLink
             to="/$brand/$model"
             params={{ brand: p.brandSlug, model: p.slug }}
-            className="hover:text-crisp"
+            className="inline-flex min-h-11 items-center hover:text-crisp"
           >
             {p.name}
           </LocaleLink>
@@ -234,7 +237,7 @@ export function ProductSpecsPage() {
 
       {/* ── Full specification table ──────────────────────── */}
       {spec?.rows?.length ? (
-        <Section band="soft" tight>
+        <Section band="soft">
           <SectionHead align="left" spacing="tight" title={t("px.spec_table")} />
 
           {/* The two or three figures that decide the purchase, lifted out of
@@ -274,7 +277,7 @@ export function ProductSpecsPage() {
 
       {/* ── In the box ────────────────────────────────────── */}
       {spec?.inBox?.length ? (
-        <Section band="plain" tight>
+        <Section band="plain">
           <SectionHead align="left" spacing="tight" title={t("px.in_box")} />
           <ul className="grid grid-cols-1 gap-x-10 border-t border-border sm:grid-cols-2 lg:grid-cols-3">
             {spec.inBox.map((line) => (
@@ -293,7 +296,7 @@ export function ProductSpecsPage() {
       ) : null}
 
       {/* ── Closing CTA ───────────────────────────────────── */}
-      <Section band="soft" tight>
+      <Section band="soft">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="type-headline text-crisp">{t("px.buy")}</h2>
           <p className="subhead mt-4 text-[17px]">{t("px.trial")}</p>
@@ -354,6 +357,7 @@ function HeadlineFigures({ p, lang }: { p: Product; lang: Lang }) {
   return (
     <div className="mb-12 md:mb-14">
       <div
+        data-stagger
         className={`grid grid-cols-1 gap-4 ${
           panels.length === 3 ? "md:grid-cols-3" : "md:grid-cols-2"
         }`}

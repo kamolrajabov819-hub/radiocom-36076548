@@ -50,7 +50,7 @@ function ErrorBody({ error, reset }: { error: Error; reset: () => void }) {
   }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-pitch px-6">
+    <div className="flex min-h-dvh items-center justify-center bg-pitch px-6">
       <div className="max-w-md text-center">
         <div className="text-signal text-sm mb-4">{t("error.err_code")}</div>
         <h1 className="headline text-5xl text-crisp">{t("error.err_title")}</h1>
@@ -194,7 +194,7 @@ function SiteChrome() {
       CSS animation, so without this the JS-driven motion ignored the setting.
     */
     <MotionConfig reducedMotion="user">
-      <div className="min-h-screen bg-pitch text-crisp">
+      <div className="min-h-dvh bg-pitch text-crisp">
         {/*
           Skip link: the first tab stop on every page, visually hidden until
           focused. Without it, keyboard and screen-reader users tab through the

@@ -93,9 +93,7 @@ export function FeatureCard({
           </div>
         ) : null}
 
-        <h3 className="mt-1.5 hyphens-auto break-words text-[22px] font-semibold leading-[1.15] tracking-[-0.02em] md:text-[26px]">
-          {title}
-        </h3>
+        <h3 className="type-title mt-2 hyphens-auto break-words">{title}</h3>
 
         {body ? (
           <p
@@ -116,7 +114,7 @@ export function FeatureCard({
         <button
           onClick={action.onClick}
           aria-label={action.label}
-          className={`absolute bottom-6 right-6 flex h-9 w-9 items-center justify-center rounded-full transition-transform duration-200 hover:scale-110 active:scale-95 ${
+          className={`absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full transition-transform duration-200 hover:scale-110 active:scale-95 ${
             dark ? "bg-white/15 text-white" : "bg-charcoal text-crisp"
           }`}
         >
@@ -177,9 +175,7 @@ export function StackedTile({
     >
       <div className={cn("relative", centred && "text-center")}>
         {eyebrow ? <div className="text-[14px] font-medium text-cool">{eyebrow}</div> : null}
-        <h3 className="mt-1.5 hyphens-auto break-words text-[22px] font-semibold leading-[1.15] tracking-[-0.02em] md:text-[26px]">
-          {title}
-        </h3>
+        <h3 className="type-title mt-2 hyphens-auto break-words">{title}</h3>
         {body ? (
           <p
             className={cn(
@@ -224,10 +220,20 @@ export function StackedTile({
 export function HighlightsShelf({
   children,
   label,
+  stagger = false,
 }: {
   children: ReactNode;
   /** Accessible name for the scrollable region and its controls. */
   label: string;
+  /**
+   * Mark the track for `useScrollChoreography`, so the cards visible on first
+   * paint enter as one staggered gesture rather than all at once.
+   *
+   * Opt-in, because several shelves hold `motion` components that already
+   * animate themselves — two libraries writing opacity on one node is a
+   * flicker. Only set this where the cards are plain elements.
+   */
+  stagger?: boolean;
 }) {
   const track = useRef<HTMLDivElement>(null);
   const [atStart, setAtStart] = useState(true);
@@ -273,6 +279,7 @@ export function HighlightsShelf({
         role="group"
         aria-label={label}
         tabIndex={0}
+        data-stagger={stagger || undefined}
         className="no-scrollbar bleed-x flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal"
       >
         {children}
@@ -657,7 +664,7 @@ export function FilterPills<T extends string>({
             aria-checked={active}
             onClick={() => onChange(o.value)}
             className={cn(
-              "rounded-full px-4 py-2 text-[14px] font-medium transition-colors duration-200",
+              "inline-flex min-h-11 items-center rounded-full px-4 py-2 text-[14px] font-medium transition-colors duration-200",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2",
               // Only the selected option wears a pill. apple.com/mac leaves the
               // rest as plain text on the band, which is what makes the
@@ -693,7 +700,14 @@ export function FilterPills<T extends string>({
 export function ModelStrip({ children, label }: { children: ReactNode; label: string }) {
   return (
     <nav aria-label={label} className="bleed-x">
-      <ul className="no-scrollbar flex gap-6 overflow-x-auto pb-1 md:gap-8">{children}</ul>
+      {/* gap-6, not gap-8. At 1440 the Radiocom row is nine chips wide and
+          needs 1192px against the 1164px the shell gives it — a 28px overflow,
+          just enough to clip the last label's final letter. The row is a
+          scroller and longer families (Motorola has fifteen) scroll properly,
+          but a row that almost fits and clips one glyph reads as a bug rather
+          than as an invitation to scroll. `pr-2` keeps the last chip off the
+          clip edge when it does scroll. */}
+      <ul className="no-scrollbar flex gap-5 overflow-x-auto pb-1 pr-2 md:gap-6">{children}</ul>
     </nav>
   );
 }
@@ -715,21 +729,25 @@ export function ModelStripItem({
   label: string;
 }) {
   return (
-    <span className="flex w-[76px] flex-col items-center gap-2 text-center">
-      <span className="flex h-[52px] items-end justify-center">
+    <span className="flex w-[104px] flex-col items-center gap-3 text-center">
+      {/* 96px, not 52. apple.com/mac's chip row renders each model around 110px
+          tall — big enough to tell an Air from a Pro at a glance, which is the
+          row's entire job. At 52px these were indistinguishable black
+          rectangles and the row read as decoration. */}
+      <span className="flex h-[96px] items-end justify-center">
         <img
           src={image}
           srcSet={imageSmall ? `${imageSmall} 800w, ${image} 1600w` : undefined}
-          sizes={imageSmall ? "76px" : undefined}
+          sizes={imageSmall ? "104px" : undefined}
           alt=""
           width={152}
           height={104}
           loading="lazy"
           decoding="async"
-          className="max-h-[52px] w-auto object-contain mix-blend-multiply transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
+          className="max-h-[96px] w-auto object-contain mix-blend-multiply transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
         />
       </span>
-      <span className="text-[11px] leading-tight text-crisp">{label}</span>
+      <span className="text-[12px] leading-tight text-crisp">{label}</span>
     </span>
   );
 }
@@ -902,11 +920,19 @@ export function PosterCard({
         aria-hidden
         className="absolute inset-x-0 top-0 h-2/5 bg-gradient-to-b from-black/70 to-transparent"
       />
-      <div className="relative z-10 p-5">
+      {/* `p-4` below `sm`. On a phone these sit two to a row, so the card is
+          165px wide and 20px of padding each side left 125px for the title —
+          "Добыча · Нефть · Газ" broke across two 93px lines. 16px of padding
+          gives it the width to sit on one. */}
+      <div className="relative z-10 p-4 sm:p-5">
         {eyebrow ? (
-          <div className="text-[11px] font-medium leading-tight text-white/80">{eyebrow}</div>
+          <div className="text-[12px] font-medium leading-tight text-white/85">{eyebrow}</div>
         ) : null}
-        <h3 className="mt-1 max-w-[15ch] text-[17px] font-semibold leading-[1.2] tracking-[-0.01em] text-white">
+        {/* `max-w-[15ch]` from `sm` up only. It exists to stop a long sector
+            name running a desktop card's full width, but on a 210px phone card
+            15ch is ~130px — narrower than the card — so "Добыча · Нефть · Газ"
+            broke across two 93px lines for no reason. */}
+        <h3 className="mt-1 text-[15px] font-semibold leading-[1.2] tracking-[-0.01em] text-white sm:max-w-[15ch] sm:text-[17px]">
           {title}
         </h3>
       </div>
@@ -952,9 +978,7 @@ export function DuoCard({
       )}
     >
       <div className="px-7 md:px-9">
-        <h3 className="mx-auto max-w-[22ch] text-[21px] font-semibold leading-[1.15] tracking-[-0.02em] md:text-[24px]">
-          {title}
-        </h3>
+        <h3 className="type-title mx-auto max-w-[22ch]">{title}</h3>
         {body ? (
           <p
             className={cn(

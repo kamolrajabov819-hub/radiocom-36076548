@@ -176,25 +176,54 @@ accessory SKUs with which models they fit.
 
 # Phase A — photography imported
 
-## ⚠ PRICE LIST vs SITE — 7 mismatches, all Radiocom. Your call.
+## ✅ PRICE LIST APPLIED — «прайс-лист RADIOCOM от 29.06.2026»
 
-I extracted every price from «29.06.26 Прайс лист рус» and compared it to
-`src/data/products.ts`. **All 12 Motorola prices match exactly**, and so does RC-10. The
-Radiocom line does not:
+You supplied `final.md` (the 29.06.2026 price list plus the radiocom.uz product cards)
+and told me to apply it everywhere. Done. Every figure below now comes from that
+document; nothing is inferred.
 
-| Model | Site now | Price list | Difference |
+**Prices changed — 10 of 24 models.**
+
+| Model | Was | Now | Δ |
 |---|---|---|---|
-| RC-20 | 1 400 000 | **1 600 000** | site 200 000 **under** |
-| RC-50 | 1 500 000 | **1 300 000** | site 200 000 over |
-| RCD-30 PRO | 2 200 000 | **1 800 000** | site 400 000 over |
-| RCD-40 PRO | 2 600 000 | **1 600 000** | site 1 000 000 over |
-| RCD-50 PRO | 3 100 000 | **1 800 000** | site 1 300 000 over |
-| RCD-60 PRO | 3 600 000 | **1 800 000** | site 1 800 000 over |
-| RCD-70 PRO | 4 200 000 | **1 900 000** | site 2 300 000 over — **2.2×** |
+| Radiocom RCD-70 PRO | 4 200 000 | **1 900 000** | −2 300 000 |
+| Radiocom RCD-60 PRO | 3 600 000 | **1 800 000** | −1 800 000 |
+| Radiocom RCD-50 PRO | 3 100 000 | **1 800 000** | −1 300 000 |
+| Radiocom RCD-40 PRO | 2 600 000 | **1 600 000** | −1 000 000 |
+| Radiocom RCD-30 PRO | 2 200 000 | **1 800 000** | −400 000 |
+| Radiocom RC-50 | 1 500 000 | **1 300 000** | −200 000 |
+| Radiocom RC-20 | 1 400 000 | **1 600 000** | +200 000 |
+| Motorola T82 Extreme RSM ⚠ | 2 100 000 | **1 700 000** | −400 000 |
+| Motorola CLP 446 ⚠ | 2 400 000 | **2 300 000** | −100 000 |
+| Motorola CLK 446 ⚠ | 2 600 000 | **2 500 000** | −100 000 |
 
-**I have changed nothing.** Either the site has been quoting RCD radios at up to double your
-list price, or that PDF is superseded. Only you know which. Tell me and it is a one-line edit
-per model — the price is read from `products.ts` everywhere it appears.
+Radiocom RC-10 and the twelve visible Motorola models already matched.
+
+**⚠ marks the three models priced from the radiocom.uz card rather than the price
+list** — `final.md` says they are absent from the 29.06.2026 list and that their
+prices "требуют подтверждения". They stay hidden on the site (no photography), so
+nothing is published, but the number in `products.ts` is unconfirmed. Confirm or
+correct those three when you can.
+
+**Names.** RCD-30/40/50/60/70 all take the `PRO` suffix the price list uses. The
+site had them bare. `Motorola Talkabout T72 Go Active` → `Motorola Talkabout T72`.
+URLs are unaffected — the slug comes from the id, not the name.
+
+**Coverage.** Every one of the 24 models now quotes both figures the price list
+gives, city and open country. Previously eight Radiocom sheets quoted none at all,
+thirteen Motorola sheets quoted only the open-country number, and three quoted a
+distance the list does not support (RCD-50 said 8 km against a listed 2,5/10; T42
+said 200–300 m against 300 m; T62 said 700–800 m against 900 m). `verify-seo.ts`
+gate 17 now fails the build if `products.ts` and `specs.ts` ever disagree again.
+
+**Two figures corrected from the price list.** XT 420 battery 2150 → **2100 мА·ч**.
+RC-20 contradicted itself — a 1700 mAh battery type against an 1800 mAh capacity —
+and is now 1800 throughout.
+
+**One kit line still open.** `final.md` flags that the price list ships the TLKR-T92
+H2O with a **Type-C кабель** while the site card says a USB car charger, and asks
+for the current kit to be confirmed. I have followed the price list. Tell me if the
+card is right and it is a one-word change.
 
 ## The price list also covers products the site does not sell
 
@@ -285,15 +314,75 @@ domain, and it is exactly the invented data your brief rules out. If you collect
 that is the moment to add it — `scripts/verify-seo.ts` currently *fails the build* if rating
 markup appears, so flip that gate at the same time.
 
-## Prices are still unreconciled
+---
 
-Seven Radiocom prices differ between the PDF price list and `src/data/products.ts`. The
-largest is RCD-70: **4 200 000 on the site, 1 900 000 in the list** — a factor of 2.2. All
-twelve Motorola prices match exactly.
+## The sitelinks searchbox is live — and what it still cannot do
 
-I have changed no number. This now matters more than it did: the price is emitted as
-structured data with a validity window, so a wrong number is published to Google as a
-merchant offer rather than just displayed on a page.
+`/{lang}/search` exists now, and `webSiteSchema()` carries the `SearchAction`
+that points at it. That markup was removed in an earlier phase with a note to
+reinstate it only alongside a real search route, because the previous version
+advertised `/ru/catalog?q=` against a catalogue that validated only `cat` and
+`brand` — it described an endpoint that was not there.
+
+Two things you should know about it:
+
+- **Sitelinks themselves are not markup.** Google generates the block of links
+  under a search result algorithmically, from site structure and internal
+  linking. Nothing forces them, and anyone offering to is wrong. What is
+  genuinely in our control is now done: an HTML sitemap at `/{lang}/sitemap`
+  linking every route by its real name, `SiteNavigationElement` on the main
+  sections, breadcrumbs on every page type, and search reachable from the nav
+  and the footer.
+- **The searchbox is a Russian target.** A `SearchAction` takes one URL
+  template, and `DEFAULT_SEO_LANG` is the locale the domain serves first.
+
+## Three SEO levers left, all needing data only you have
+
+These are the last things on the list, and none of them can be written from the
+repo:
+
+- **Reviews and ratings.** `aggregateRating` and `review` are the single
+  biggest remaining rich-result win for a product page — stars in the result
+  are worth more than any amount of schema tidying. They need real reviews from
+  real customers. `verify-seo.ts` currently *fails the build* if rating markup
+  appears, precisely so nobody is tempted; flip that gate when the reviews are
+  real.
+- **GTINs.** `sku` ships (the model id) and `mpn` could follow, but a `gtin13`
+  needs the actual barcode from each box. Twenty-one numbers, and Google
+  weights merchant listings that carry them.
+- **Video.** `VideoObject` is the other format that changes how a result looks.
+  There is no video, so there is no markup.
+
+---
+
+## The QA suite — `bun run qa`
+
+`bun run verify` checks the source and the JSON: 20 SEO gates, 10 i18n gates,
+the asset manifest. It runs in the build and takes a second.
+
+`bun run qa` is the other half, and it needs a server: it drives a real browser
+against a `node-server` build and checks the things that only fail at render
+time. Start the server first (`NITRO_PRESET=node-server bun run build` then
+`node .output/server/index.mjs`), then:
+
+| script | what only it can catch |
+|---|---|
+| `qa-images` | an `<img>` in the broken state — 1896 elements across 132 page loads |
+| `qa-overflow` | a page that scrolls sideways, at six widths from 390 to 1920 |
+| `qa-touch` | a tap target under 24px, with touch emulation on |
+| `qa-blend` | a `mix-blend` image stranded inside a stacking context, which renders as a white box on a tinted band |
+| `qa-motion` | a page with no scroll choreography, a phone downloading GSAP, or an element left invisible by a stagger that never fired |
+| `qa-search` | the route the `SearchAction` advertises returning nothing |
+| `qa-i18n-rendered` | a raw key or stray Cyrillic on the rendered page — this is how `tradein.sub` was found after every JSON check passed |
+| `qa-a11y` | WCAG 2.2 A/AA, 12 routes × 3 locales |
+
+Two of these exist because a static check let something through to production.
+`qa-blend` was written after the PoC hero rendered as a white rectangle, and
+then immediately caught the same mistake being made again on the compare table.
+`qa-i18n-rendered` was written after `tradein.sub` shipped as visible text on
+both brand pages in all three locales, having passed every key-parity check —
+because the key was stored as data in a card table rather than written as a
+literal `t("...")`. `verify-i18n` now catches that class too.
 
 ---
 

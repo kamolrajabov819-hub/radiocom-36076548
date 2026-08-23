@@ -3,7 +3,7 @@ import { LocaleLink } from "@/components/LocaleLink";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Search } from "lucide-react";
 import { LangToggle } from "./LangToggle";
 import { openLead } from "./LeadFormSheet";
 import { INDUSTRY_SLUGS } from "@/data/industries";
@@ -158,9 +158,13 @@ export function Nav() {
           </nav>
 
           {/* Center wordmark */}
+          {/* `min-h-11`: the wordmark renders 22px tall, so the link that wraps
+              it was a 126x22 tap target — half the height a thumb needs, on the
+              control every visitor uses to get home. The extra height is
+              padding on the link, not on the mark. */}
           <LocaleLink
             to="/"
-            className="flex items-center lg:absolute lg:left-1/2 lg:-translate-x-1/2"
+            className="flex min-h-11 items-center lg:absolute lg:left-1/2 lg:-translate-x-1/2"
             aria-label="Radiocom"
           >
             <img
@@ -176,6 +180,17 @@ export function Nav() {
 
           {/* Right actions */}
           <div className="hidden lg:flex items-center justify-end gap-3 flex-1">
+            {/* Search sits in the chrome, not only in the footer. It is the
+                route the WebSite node's SearchAction advertises to Google, and
+                a search a visitor cannot find is a search that does not exist —
+                for either audience. */}
+            <LocaleLink
+              to="/search"
+              aria-label={t("nav.search")}
+              className="flex h-11 w-11 items-center justify-center rounded-full text-crisp transition-colors hover:bg-charcoal"
+            >
+              <Search className="h-5 w-5" aria-hidden />
+            </LocaleLink>
             <LangToggle />
             <button
               onClick={() => openLead({ title: t("nav.get_quote") })}
@@ -191,12 +206,12 @@ export function Nav() {
             <button
               ref={menuBtnRef}
               onClick={() => setMobileOpen(true)}
-              className="h-9 w-9 flex items-center justify-center text-crisp"
+              className="-mr-2 flex h-11 w-11 items-center justify-center text-crisp"
               aria-label={t("nav.menu")}
               aria-expanded={mobileOpen}
               aria-controls="nav-mobile-sheet"
             >
-              <Menu className="w-5 h-5" />
+              <Menu className="h-6 w-6" />
             </button>
           </div>
         </div>
@@ -238,13 +253,16 @@ export function Nav() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...spring, delay: 0.06 }}
-              className="px-6 pt-8 pb-10 flex flex-col gap-6 overflow-y-auto h-[calc(100vh-3rem)]"
+              className="px-6 pt-8 pb-10 flex flex-col gap-6 overflow-y-auto h-[calc(100dvh-3rem)]"
             >
               {links.map((l) => (
                 <LocaleLink key={l.to} to={l.to} className="headline text-4xl text-crisp">
                   {l.label}
                 </LocaleLink>
               ))}
+              <LocaleLink to="/search" className="headline text-4xl text-crisp">
+                {t("nav.search")}
+              </LocaleLink>
               <div className="pt-6 border-t border-border">
                 <div className="text-cool text-[13px] mb-4">{t("nav.industries")}</div>
                 <div className="flex flex-col gap-3">

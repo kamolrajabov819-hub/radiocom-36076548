@@ -18,7 +18,9 @@ import { Route as CatalogIndexRouteImport } from './routes/catalog.index'
 import { Route as LangIndexRouteImport } from './routes/$lang/index'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as CatalogIdRouteImport } from './routes/catalog.$id'
+import { Route as LangSitemapRouteImport } from './routes/$lang/sitemap'
 import { Route as LangServiceRouteImport } from './routes/$lang/service'
+import { Route as LangSearchRouteImport } from './routes/$lang/search'
 import { Route as LangPocRouteImport } from './routes/$lang/poc'
 import { Route as LangCompareRouteImport } from './routes/$lang/compare'
 import { Route as LangRadiocomIndexRouteImport } from './routes/$lang/radiocom.index'
@@ -75,9 +77,19 @@ const CatalogIdRoute = CatalogIdRouteImport.update({
   path: '/catalog/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LangSitemapRoute = LangSitemapRouteImport.update({
+  id: '/sitemap',
+  path: '/sitemap',
+  getParentRoute: () => LangRoute,
+} as any)
 const LangServiceRoute = LangServiceRouteImport.update({
   id: '/service',
   path: '/service',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangSearchRoute = LangSearchRouteImport.update({
+  id: '/search',
+  path: '/search',
   getParentRoute: () => LangRoute,
 } as any)
 const LangPocRoute = LangPocRouteImport.update({
@@ -138,7 +150,9 @@ export interface FileRoutesByFullPath {
   '/service': typeof ServiceRoute
   '/$lang/compare': typeof LangCompareRoute
   '/$lang/poc': typeof LangPocRoute
+  '/$lang/search': typeof LangSearchRoute
   '/$lang/service': typeof LangServiceRoute
+  '/$lang/sitemap': typeof LangSitemapRoute
   '/catalog/$id': typeof CatalogIdRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/$lang/': typeof LangIndexRoute
@@ -159,7 +173,9 @@ export interface FileRoutesByTo {
   '/service': typeof ServiceRoute
   '/$lang/compare': typeof LangCompareRoute
   '/$lang/poc': typeof LangPocRoute
+  '/$lang/search': typeof LangSearchRoute
   '/$lang/service': typeof LangServiceRoute
+  '/$lang/sitemap': typeof LangSitemapRoute
   '/catalog/$id': typeof CatalogIdRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/$lang': typeof LangIndexRoute
@@ -182,7 +198,9 @@ export interface FileRoutesById {
   '/service': typeof ServiceRoute
   '/$lang/compare': typeof LangCompareRoute
   '/$lang/poc': typeof LangPocRoute
+  '/$lang/search': typeof LangSearchRoute
   '/$lang/service': typeof LangServiceRoute
+  '/$lang/sitemap': typeof LangSitemapRoute
   '/catalog/$id': typeof CatalogIdRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/$lang/': typeof LangIndexRoute
@@ -206,7 +224,9 @@ export interface FileRouteTypes {
     | '/service'
     | '/$lang/compare'
     | '/$lang/poc'
+    | '/$lang/search'
     | '/$lang/service'
+    | '/$lang/sitemap'
     | '/catalog/$id'
     | '/industries/$slug'
     | '/$lang/'
@@ -227,7 +247,9 @@ export interface FileRouteTypes {
     | '/service'
     | '/$lang/compare'
     | '/$lang/poc'
+    | '/$lang/search'
     | '/$lang/service'
+    | '/$lang/sitemap'
     | '/catalog/$id'
     | '/industries/$slug'
     | '/$lang'
@@ -249,7 +271,9 @@ export interface FileRouteTypes {
     | '/service'
     | '/$lang/compare'
     | '/$lang/poc'
+    | '/$lang/search'
     | '/$lang/service'
+    | '/$lang/sitemap'
     | '/catalog/$id'
     | '/industries/$slug'
     | '/$lang/'
@@ -341,11 +365,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CatalogIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$lang/sitemap': {
+      id: '/$lang/sitemap'
+      path: '/sitemap'
+      fullPath: '/$lang/sitemap'
+      preLoaderRoute: typeof LangSitemapRouteImport
+      parentRoute: typeof LangRoute
+    }
     '/$lang/service': {
       id: '/$lang/service'
       path: '/service'
       fullPath: '/$lang/service'
       preLoaderRoute: typeof LangServiceRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/search': {
+      id: '/$lang/search'
+      path: '/search'
+      fullPath: '/$lang/search'
+      preLoaderRoute: typeof LangSearchRouteImport
       parentRoute: typeof LangRoute
     }
     '/$lang/poc': {
@@ -424,7 +462,9 @@ declare module '@tanstack/react-router' {
 interface LangRouteChildren {
   LangCompareRoute: typeof LangCompareRoute
   LangPocRoute: typeof LangPocRoute
+  LangSearchRoute: typeof LangSearchRoute
   LangServiceRoute: typeof LangServiceRoute
+  LangSitemapRoute: typeof LangSitemapRoute
   LangIndexRoute: typeof LangIndexRoute
   LangCatalogIdRoute: typeof LangCatalogIdRoute
   LangIndustriesSlugRoute: typeof LangIndustriesSlugRoute
@@ -439,7 +479,9 @@ interface LangRouteChildren {
 const LangRouteChildren: LangRouteChildren = {
   LangCompareRoute: LangCompareRoute,
   LangPocRoute: LangPocRoute,
+  LangSearchRoute: LangSearchRoute,
   LangServiceRoute: LangServiceRoute,
+  LangSitemapRoute: LangSitemapRoute,
   LangIndexRoute: LangIndexRoute,
   LangCatalogIdRoute: LangCatalogIdRoute,
   LangIndustriesSlugRoute: LangIndustriesSlugRoute,

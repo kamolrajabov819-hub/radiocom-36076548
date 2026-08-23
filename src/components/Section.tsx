@@ -68,7 +68,15 @@ export function SectionHead({
   link?: {
     label: string;
     /** Internal route, locale-resolved. Prefer this over href for site links. */
-    to?: "/radiocom" | "/motorola" | "/compare" | "/poc" | "/service" | "/industries";
+    to?:
+      | "/radiocom"
+      | "/motorola"
+      | "/compare"
+      | "/poc"
+      | "/service"
+      | "/industries"
+      | "/search"
+      | "/sitemap";
     href?: string;
     onClick?: () => void;
   };

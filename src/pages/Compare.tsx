@@ -1,14 +1,16 @@
 import { useTranslation } from "react-i18next";
+import { useScrollChoreography } from "@/lib/motion";
 import { ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
 import { Section, SectionHead } from "@/components/Section";
 import { CompareTable, type CompareColumn } from "@/components/apple";
 import {
   formatPrice,
-  visibleProducts,
   productsOfBrand,
+  shortName,
   type BrandSlug,
   type Product,
+  visibleProducts,
 } from "@/data/products";
 import { specs } from "@/data/specs";
 import { pick, type Lang } from "@/data/spec-dict";
@@ -80,8 +82,10 @@ export function ComparePage() {
   const { t } = useTranslation();
   const lang = useLang();
 
+  const page = useScrollChoreography();
+
   return (
-    <div className="page-anim">
+    <div ref={page} className="page-anim">
       <Section band="plain">
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="headline-hero text-crisp">{t("px.compare_title")}</h1>
@@ -147,16 +151,27 @@ function BrandTable({
 
   return (
     <Section band={band} tight>
-      <SectionHead
-        align="left"
-        spacing="tight"
-        title={t(`brand.${brandSlug}_title`)}
-        sub={t(`brand.${brandSlug}_desc`)}
-        link={{
-          label: t("brand.all_models"),
-          to: brandSlug === "radiocom" ? "/radiocom" : "/motorola",
-        }}
-      />
+      <div data-scrub-in>
+        <SectionHead
+          align="left"
+          spacing="tight"
+          title={t(`brand.${brandSlug}_title`)}
+          sub={t(`brand.${brandSlug}_desc`)}
+          link={{
+            label: t("brand.all_models"),
+            to: brandSlug === "radiocom" ? "/radiocom" : "/motorola",
+          }}
+        />
+      </div>
+      {/* Deliberately no `data-scrub-in` on the table.
+      
+          Every cell in it holds a catalogue photograph rendered with
+          `mix-blend-multiply` to knock its white sweep out against the band,
+          and a scrub animates `transform`, which opens a stacking context —
+          inside one, the blend has no backdrop to multiply against and eight
+          product shots turn into white rectangles on the #f5f5f7 band.
+          `qa-blend.mjs` caught it. The heading above carries the motion
+          instead; the table arrives with it. */}
       <CompareTable
         columns={columns}
         rows={rows}
@@ -220,7 +235,7 @@ function columnFor(p: Product, rows: { id: string }[], lang: Lang): CompareColum
     id: p.id,
     // The brand is already the table's heading, so repeating it in every
     // column just eats horizontal room that the specs need.
-    name: p.name.replace(/^Radiocom |^Motorola /, ""),
+    name: shortName(p.name),
     tagline: pick(p.blurb, lang),
     note: formatPrice(p.price, lang),
     actions: <ColumnActions p={p} />,

@@ -11,7 +11,7 @@
  */
 
 import type { LinkHTMLAttributes } from "react";
-import type { Product } from "@/data/products";
+import { visibleProducts, type Product } from "@/data/products";
 import { pick } from "@/data/spec-dict";
 
 export const LANGS = ["ru", "en", "uz"] as const;
@@ -309,13 +309,26 @@ export function webSiteSchema() {
     name: SITE_NAME,
     inLanguage: ["ru", "uz", "en"],
     publisher: { "@id": `${SITE_URL}/#organization` },
-    // No `potentialAction`/`SearchAction`. The old one advertised
-    // `/ru/catalog?q={search_term_string}`, but the catalogue only ever
-    // validated `cat` and `brand` params — there has never been a `q` search on
-    // this site, so the schema was describing an endpoint that does not exist.
-    // Google ignores a sitelinks searchbox it cannot exercise, and claiming a
-    // capability the site lacks is the kind of thing that costs trust in the
-    // rest of the graph. Reinstate this only alongside a real search route.
+    // The sitelinks searchbox, reinstated — this time against a search that
+    // exists.
+    //
+    // The previous one advertised `/ru/catalog?q={search_term_string}` while
+    // the catalogue only ever validated `cat` and `brand`, so it described an
+    // endpoint that was not there. It was removed with a note to bring it back
+    // only alongside a real search route, and `/{lang}/search` is that route:
+    // a GET form whose every result set has its own URL, which is exactly the
+    // contract this markup promises Google it can exercise.
+    //
+    // Russian, because `DEFAULT_SEO_LANG` is the locale the domain serves
+    // first and the searchbox takes one target.
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${SITE_URL}/${DEFAULT_SEO_LANG}/search?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   };
 }
 
@@ -403,6 +416,16 @@ function returnPolicy() {
   };
 }
 
+/**
+ * The models a buyer would cross-shop against this one: same brand, same tier,
+ * capped at four so the node stays a hint rather than a dump of the catalogue.
+ */
+function relatedProducts(p: Product): Product[] {
+  return visibleProducts
+    .filter((o) => o.id !== p.id && o.brandSlug === p.brandSlug && o.category === p.category)
+    .slice(0, 4);
+}
+
 export function productSchema(
   p: Product,
   lang: SeoLang,
@@ -455,6 +478,20 @@ export function productSchema(
       url: absolute(localePath(lang, productSpecsPath(p))),
     },
     offers: offer,
+    // The rest of the family, as `isRelatedTo`.
+    //
+    // Google resolves a catalogue into entities and needs to know which of 21
+    // product pages are alternatives to each other. Without this it infers the
+    // grouping from breadcrumbs and internal links, which gets the brand right
+    // and the tier wrong — an RC-10 and an RCD-70 PRO share a brand page but
+    // answer different queries. Related within a category, not within a brand,
+    // is the grouping a buyer actually shops.
+    isRelatedTo: relatedProducts(p).map((r) => ({
+      "@type": "Product",
+      "@id": `${absolute(localePath(lang, productPath(r)))}#product`,
+      name: r.name,
+      url: absolute(localePath(lang, productPath(r))),
+    })),
     ...(extra?.specs?.length
       ? {
           additionalProperty: extra.specs.map(({ name, value }) => ({
@@ -580,6 +617,7 @@ export const SITE_SECTIONS = [
   { key: "poc", path: "/poc" },
   { key: "service", path: "/service" },
   { key: "industries", path: "/industries" },
+  { key: "search", path: "/search" },
 ] as const;
 
 /** ItemList for the catalogue grid — helps Google understand the collection page. */

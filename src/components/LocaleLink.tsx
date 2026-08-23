@@ -32,7 +32,9 @@ export function LocaleLink({
     | "/poc"
     | "/service"
     | "/industries"
-    | "/industries/$slug";
+    | "/industries/$slug"
+    | "/search"
+    | "/sitemap";
   params?: Record<string, string>;
   children?: ReactNode;
 }) {
