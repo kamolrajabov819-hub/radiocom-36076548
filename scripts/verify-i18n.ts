@@ -268,6 +268,58 @@ console.log("ok  og:locale, canonical URLs and JSON-LD are locale-correct");
   };
   walk("src");
 
+  // Template keys: `t(`industries.${slug}.name`)`. The variable cannot be
+  // resolved statically, but the shape can: every sibling under the prefix must
+  // carry the suffix. That is what catches `industries.${slug}.title` — no
+  // industry has a `title`, they have `name` — which the literal check above
+  // cannot see and which shipped as visible raw text on every product page.
+  const templateMissing: string[] = [];
+  const walkTemplates = (dir: string) => {
+    for (const e of readdirSync(dir, { withFileTypes: true })) {
+      const full = join(dir, e.name);
+      if (e.isDirectory()) walkTemplates(full);
+      else if (/\.tsx?$/.test(e.name)) {
+        const src = readFileSync(full, "utf8");
+        for (const m of src.matchAll(/\bt\(\s*`([\w.]+)\.\$\{[^}]+\}\.([\w.]+)`/g)) {
+          const [, prefix, suffix] = m;
+          let node: unknown = ru;
+          for (const part of prefix.split(".")) {
+            node = typeof node === "object" && node !== null
+              ? (node as Record<string, unknown>)[part]
+              : undefined;
+          }
+          if (typeof node !== "object" || node === null) continue; // prefix not a namespace
+          const siblings = Object.values(node as Record<string, unknown>).filter(
+            (v) => typeof v === "object" && v !== null,
+          ) as Record<string, unknown>[];
+          if (!siblings.length) continue;
+          const without = siblings.filter((sib) => {
+            let cur: unknown = sib;
+            for (const part of suffix.split(".")) {
+              cur = typeof cur === "object" && cur !== null
+                ? (cur as Record<string, unknown>)[part]
+                : undefined;
+            }
+            return cur === undefined;
+          });
+          // A majority rule, not "every sibling". The namespace can hold an
+          // object that is not one of the interpolated entries — `industries`
+          // also contains `offers`, which happens to have a `title` — so
+          // demanding that *no* sibling carries the suffix let
+          // `industries.${slug}.title` through even though none of the six
+          // actual industries has one. Fewer than half carrying it means the
+          // key is wrong for the set being iterated.
+          if (without.length * 2 > siblings.length) {
+            const line = src.slice(0, m.index).split("\n").length;
+            templateMissing.push(`${full}:${line} t(\`${prefix}.\${...}.${suffix}\`) — no entry under ${prefix} has "${suffix}"`);
+          }
+        }
+      }
+    }
+  };
+  walkTemplates("src");
+  missing.push(...templateMissing);
+
   if (missing.length)
     bad(
       `${missing.length} t() call(s) reference a key absent from ru.json — these render as the raw key:\n     ` +

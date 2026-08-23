@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { notFound, useParams } from "@tanstack/react-router";
-import { ChevronRight } from "lucide-react";
+import { Check, ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
 import { Section, SectionHead } from "@/components/Section";
 import {
@@ -8,6 +8,7 @@ import {
   FeatureCard,
   HighlightsShelf,
   LeadInCaption,
+  PosterCard,
   PricePill,
   StatPanel,
   TintedHeadline,
@@ -21,7 +22,8 @@ import {
   type Product,
 } from "@/data/products";
 import { specs } from "@/data/specs";
-import { INDUSTRY_SLUGS } from "@/data/industries";
+import { INDUSTRY_SLUGS, type IndustrySlug } from "@/data/industries";
+import { INDUSTRY_IMAGES } from "@/data/industry-images";
 import { pick, type Lang } from "@/data/spec-dict";
 import {
   breadcrumbSchema,
@@ -337,10 +339,14 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
  */
 function Design({ p, lang }: { p: Product; lang: Lang }) {
   const { t } = useTranslation();
+  // Nine of the twenty-one visible models have no gallery frames, and for those
+  // the whole section used to disappear — the page went from a shelf of numbers
+  // straight to the closing CTA and ended abruptly. The hero shot is the one
+  // frame every model has, so those pages get the same section built around it:
+  // one photograph, the same caption, the same stat panels. Fewer frames, not a
+  // missing section.
   const gallery = p.gallery ?? [];
-  if (!gallery.length) return null;
-
-  const [wide, ...rest] = gallery;
+  const [wide, ...rest] = gallery.length ? gallery : [p.image];
   const spec = specs[p.id];
   const protection = spec?.rows.find((r) => /Класс защиты/i.test(r.label.ru));
 
@@ -443,26 +449,32 @@ function Features({ p, lang }: { p: Product; lang: Lang }) {
   const features = specs[p.id]?.features ?? [];
   if (!features.length) return null;
 
-  // With a 3-column grid, a remainder of 1 leaves two holes and a remainder of
-  // 2 leaves one. Widening the lead tile shifts the remainder by one column,
-  // which closes both cases without dropping or inventing a feature.
-  const wideLead = features.length % 3 === 2;
-
   return (
     <Section band="plain" tight>
       <SectionHead align="left" spacing="tight" title={t("px.features")} />
-      <BentoGrid>
-        {features.map((f, i) => (
-          <FeatureCard
+      {/* A capability list, sized to its content.
+      
+          This was a bento of `min-h-[200px]` cards each holding one line of
+          text, so every card was mostly empty and a model with eleven features
+          produced a wall of near-blank boxes. A feature here is a single phrase
+          off the manufacturer's sheet — it does not need a card the size of a
+          product tile, it needs to be readable and countable.
+          
+          Auto-flowing rows with a leading rule per item give the list rhythm
+          without pretending each line is a section. The dark accent tile is
+          gone with the bento: it was drawing the eye to whichever feature
+          happened to be second. */}
+      <ul className="grid grid-cols-1 gap-x-10 border-t border-border sm:grid-cols-2 lg:grid-cols-3">
+        {features.map((f) => (
+          <li
             key={pick(f, lang)}
-            idx={i}
-            span={wideLead && i === 0 ? 2 : 1}
-            tone={i === 1 ? "dark" : "light"}
-            title={pick(f, lang)}
-            className="min-h-[200px]"
-          />
+            className="flex items-start gap-3 border-b border-border py-5 text-[15px] leading-relaxed text-crisp"
+          >
+            <Check className="mt-1 h-4 w-4 shrink-0 text-signal" strokeWidth={2.5} aria-hidden />
+            <span>{pick(f, lang)}</span>
+          </li>
         ))}
-      </BentoGrid>
+      </ul>
     </Section>
   );
 }
@@ -494,25 +506,47 @@ function InBox({ p, lang }: { p: Product; lang: Lang }) {
 }
 
 /* ── Where it is used ─────────────────────────────────────── */
+/**
+ * The industries this model is specified for, as poster cards.
+ *
+ * This was a row of two grey pills — the thinnest section on the page, and one
+ * that gave a reader deciding between models nothing to look at. It is the same
+ * `PosterCard` shelf the brand pages use, so a reader meets one visual language
+ * for "where this works" wherever they hit it.
+ *
+ * It also carried a real bug: the pills read `industries.${slug}.title`, and
+ * that key does not exist — the correct one is `.name`. Visitors saw the
+ * literal string "industries.horeca.title". `verify-i18n`'s new key check could
+ * not catch it because the key is built from a template, so that check now
+ * resolves template keys against the slugs they interpolate.
+ */
 function WhereUsed({ p, lang }: { p: Product; lang: Lang }) {
   const { t } = useTranslation();
-  const slugs = p.industries.filter((s) => (INDUSTRY_SLUGS as readonly string[]).includes(s));
+  const slugs = p.industries.filter((s): s is IndustrySlug =>
+    (INDUSTRY_SLUGS as readonly string[]).includes(s),
+  );
   if (!slugs.length) return null;
 
   return (
     <Section band="plain" tight>
       <SectionHead align="left" spacing="tight" title={t("px.where_used")} />
-      <div className="flex flex-wrap gap-3">
-        {slugs.map((slug) => (
-          <LocaleLink
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        {slugs.map((slug, i) => (
+          <PosterCard
             key={slug}
-            to="/industries/$slug"
-            params={{ slug }}
-            className="pill pill-ghost"
-          >
-            {t(`industries.${slug}.title`)}
-            <ChevronRight className="h-4 w-4" aria-hidden />
-          </LocaleLink>
+            idx={i}
+            image={INDUSTRY_IMAGES[slug]}
+            eyebrow={t(`industries.${slug}.short`)}
+            title={t(`industries.${slug}.name`)}
+            href={
+              <LocaleLink
+                to="/industries/$slug"
+                params={{ slug }}
+                className="absolute inset-0 z-20 rounded-[18px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
+                aria-label={t(`industries.${slug}.name`)}
+              />
+            }
+          />
         ))}
       </div>
       <p className="sr-only">{pick(p.blurb, lang)}</p>
