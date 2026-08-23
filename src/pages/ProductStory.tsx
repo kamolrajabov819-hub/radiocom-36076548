@@ -201,9 +201,14 @@ function Hero({ p, lang }: { p: Product; lang: Lang }) {
         </p>
       </div>
 
+      {/* The stage used to reserve 54vh and let the photograph fit inside it,
+          which on a phone left a third of the viewport empty above and below a
+          small radio. It is now sized to the photograph — a capped, viewport
+          relative height with the image filling it — so the product is the
+          section rather than a speck in the middle of one. */}
       <div
         data-parallax="0.07"
-        className="stage relative mt-12 flex h-[54vh] max-h-[680px] items-center justify-center md:mt-14"
+        className="stage relative mt-8 flex h-[min(42vh,360px)] items-center justify-center md:mt-12 md:h-[min(56vh,560px)]"
       >
         <img
           src={p.image}
@@ -219,7 +224,7 @@ function Hero({ p, lang }: { p: Product; lang: Lang }) {
         />
       </div>
 
-      <div className="mt-12 md:mt-14">
+      <div className="mt-8 md:mt-12">
         <PricePill
           price={
             p.price != null
