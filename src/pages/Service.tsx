@@ -136,7 +136,7 @@ function Hero() {
         >
           {t("service.title_a")}
           <br />
-          {t("service.title_b")}
+          <span className="whitespace-nowrap">{t("service.title_b")}</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 16 }}
