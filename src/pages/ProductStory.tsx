@@ -598,9 +598,10 @@ function InBox({ p, lang }: { p: Product; lang: Lang }) {
               className="flex items-baseline justify-between gap-4 border-b border-border py-5"
             >
               <span className="text-[17px] text-crisp">{pick(line.item, lang)}</span>
-              {(line.qty ?? 1) > 1 ? (
-                <span className="shrink-0 text-[15px] tabular-nums text-cool">×{line.qty}</span>
-              ) : null}
+              {/* Always shown, including ×1 — a kit line with no count read as
+                  an omission, not as "obviously one," and the twin-radio
+                  packs on this same list already carry a ×2 right beside it. */}
+              <span className="shrink-0 text-[15px] tabular-nums text-cool">×{line.qty ?? 1}</span>
             </li>
           ))}
         </ul>

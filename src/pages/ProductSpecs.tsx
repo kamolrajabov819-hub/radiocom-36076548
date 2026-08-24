@@ -300,9 +300,9 @@ export function ProductSpecsPage() {
                 className="flex items-baseline justify-between gap-4 border-b border-border py-5"
               >
                 <span className="text-[17px] text-crisp">{pick(line.item, lang)}</span>
-                {(line.qty ?? 1) > 1 ? (
-                  <span className="shrink-0 text-[15px] tabular-nums text-cool">×{line.qty}</span>
-                ) : null}
+                {/* Always shown, including ×1 — see ProductStory.tsx's InBox
+                    for why: an omitted count read as ambiguous, not as one. */}
+                <span className="shrink-0 text-[15px] tabular-nums text-cool">×{line.qty ?? 1}</span>
               </li>
             ))}
           </ul>
