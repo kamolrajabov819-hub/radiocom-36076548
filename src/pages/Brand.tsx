@@ -237,13 +237,10 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
           ) : null}
         </div>
 
-        {/* Centred, the way apple.com centres the segmented control under the
-            family name. This wrapper was `justify-start` while the component's
-            own root was `justify-center` — the classic pair of alignment rules
-            that cancel each other out, leaving the row wherever it happened to
-            land. The track now owns its own centring. */}
+        {/* Left-aligned filter tabs, so the control reads as part of the
+            section's start edge rather than a floating centred element. */}
         {facets.length ? (
-          <div className="mb-8 flex justify-center">
+          <div className="mb-8 flex justify-start">
             <FilterPills
               label={t("catalog.categories")}
               options={facets}
