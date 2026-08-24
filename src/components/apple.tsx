@@ -27,7 +27,7 @@ export function FeatureCard({
   title,
   body,
   media,
-  backdrop,
+  figure,
   action,
   tone = "light",
   idx = 0,
@@ -42,11 +42,33 @@ export function FeatureCard({
   /** Sits below the copy, inside the card's padding. Icons, floating products. */
   media?: ReactNode;
   /**
-   * Sits behind the copy, ignoring the card's padding, so a photograph can run
-   * to the card's rounded edge. Position it yourself (`absolute inset-y-0
-   * right-0 w-1/2`); the card clips whatever overflows.
+   * A photograph beside the copy on a wide card, and beneath it on a narrow
+   * one. Pass the bare `<img>`/`<ProductShot>`; the card positions it.
+   *
+   * It replaces a `backdrop` slot that could not do this job. Three cards on
+   * the site used that slot with hand-tuned geometry — `w-[44%]`, `w-[48%]`, `top-[42%]` — against copy
+   * capped at `max-w-[52%]`. Those numbers work on a 900px card. At 390px the
+   * card is ~340px wide, so 44% is ~150px of photograph pressed against ~180px
+   * of text: the headline breaks mid-word ("Сертифицирован / ные техники"), the
+   * radios overlap the copy, and the space below both sits empty. Every one of
+   * the three failed the same way because every one of them was solving the
+   * same unsolvable problem with a different constant.
+   *
+   * Stacking below `sm` is what makes the geometry solvable at all: the phone
+   * gets one column and the full card width for each of copy and photograph,
+   * and the desktop keeps the side-by-side split. Call sites therefore write
+   * their copy constraint as `sm:max-w-[…]` rather than `max-w-[…]`, so the
+   * phone's copy is never narrowed for a photograph that is no longer beside it.
+   *
+   * **Placement follows `span`, and that is not a shortcut.** A `span={2}` card
+   * is two grid columns wide and has room for copy and photograph side by side.
+   * A single-column card does not: in this bento that column is ~250px at
+   * 1440, and half of it is ~125px — narrow enough that "Обменяй" breaks after
+   * "Обмен". So a narrow card stacks at *every* width, which is also what its
+   * `tall` proportion wants. Deriving this rather than passing it means a card
+   * cannot be given a layout its own geometry cannot carry.
    */
-  backdrop?: ReactNode;
+  figure?: ReactNode;
   action?: { label: string; onClick: () => void };
   tone?: "light" | "dark";
   idx?: number;
@@ -80,12 +102,6 @@ export function FeatureCard({
         className,
       )}
     >
-      {backdrop ? (
-        <div className="pointer-events-none absolute inset-0 [&_img]:transition-transform [&_img]:duration-700 [&_img]:ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[&_img]:scale-[1.04]">
-          {backdrop}
-        </div>
-      ) : null}
-
       <div className={cn("relative", copyClassName)}>
         {eyebrow ? (
           <div className={cn("text-[14px] font-medium", dark ? "text-white/60" : "text-cool")}>
@@ -103,6 +119,23 @@ export function FeatureCard({
           </p>
         ) : null}
       </div>
+
+      {figure ? (
+        <div
+          className={cn(
+            // Under the copy: a real layout child, full card width, its own
+            // height. Nothing overlaps anything. This is the phone layout for
+            // every card, and the only layout for a single-column card.
+            "pointer-events-none relative mt-6 flex w-full flex-1 items-end justify-center",
+            // Beside the copy, on a card wide enough to hold both.
+            span === 2 &&
+              "sm:absolute sm:inset-y-0 sm:right-0 sm:mt-0 sm:w-[46%] sm:flex-none sm:items-center sm:justify-center",
+            "[&_img]:transition-transform [&_img]:duration-700 [&_img]:ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[&_img]:scale-[1.04]",
+          )}
+        >
+          {figure}
+        </div>
+      ) : null}
 
       {media ? (
         <div className="relative mt-6 flex flex-1 items-end justify-center [&_img]:transition-transform [&_img]:duration-700 [&_img]:ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:[&_img]:scale-[1.04]">
@@ -642,49 +675,120 @@ export function LeadInCaption({
  * The segmented filter above apple.com/mac's lineup ("All products · Laptops ·
  * Desktops · Displays").
  *
- * Deliberately not a `<select>` and not links: the set is small, every option
- * is worth showing, and the filtering is instant. Rendered as real radio inputs
- * so arrow keys move between options and a screen reader announces the group
- * and the selected state — a row of buttons gives neither.
+ * The chips were already right — a solid dark pill for the selection, plain
+ * text for the rest, because a row of grey pills with one darker one takes a
+ * second look to parse. What was missing is the **track**: on apple.com the
+ * whole row sits inside one pill-shaped light-grey container, and that
+ * container is the control's entire visual signature. Without it the chips
+ * float on the band and the group reads as four unrelated buttons.
+ *
+ * `LangToggle` already had this exact construction, including the trick that
+ * makes it work: the chip stays compact (34px, 13px text — a 44px-tall filter
+ * row would out-shout the lineup it filters) while a transparent `::after`
+ * overlay extends the tap target to the 44px a thumb needs. Painting the chip
+ * at 44px and extending nothing is what made the previous version chunky.
+ *
+ * One row, scrolling rather than wrapping. `no-scrollbar` and `mask-fade-x`
+ * were written for precisely this and had been orphaned since the row became
+ * `flex-wrap` — a wrapped second row of chips breaks the track's pill shape.
+ *
+ * Still `role="radiogroup"` over buttons rather than real `<input type=radio>`:
+ * the filtering is instant and the set is small. Arrow-key navigation is
+ * implemented explicitly below, because `role="radio"` promises it and a bare
+ * button group does not deliver it.
  */
 export function FilterPills<T extends string>({
   options,
   value,
   onChange,
   label,
+  className,
 }: {
   options: { value: T; label: string }[];
   value: T;
   onChange: (v: T) => void;
   /** Accessible name for the group. */
   label: string;
+  className?: string;
 }) {
+  // Roving tabindex: only the selected chip is tabbable, and the arrow keys
+  // move the selection. That is the contract `role="radiogroup"` advertises,
+  // and the previous version advertised it without honouring it — Tab stepped
+  // through all four chips and the arrows did nothing.
+  const move = (delta: number) => {
+    const i = options.findIndex((o) => o.value === value);
+    if (i < 0) return;
+    const next = options[(i + delta + options.length) % options.length];
+    onChange(next.value);
+  };
+
   return (
-    <div role="radiogroup" aria-label={label} className="flex flex-wrap justify-center gap-2">
-      {options.map((o) => {
-        const active = o.value === value;
-        return (
-          <button
-            key={o.value}
-            role="radio"
-            aria-checked={active}
-            onClick={() => onChange(o.value)}
-            className={cn(
-              "inline-flex min-h-11 items-center rounded-full px-4 py-2 text-[14px] font-medium transition-colors duration-200",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2",
-              // Only the selected option wears a pill. apple.com/mac leaves the
-              // rest as plain text on the band, which is what makes the
-              // selection readable at a glance — a row of grey pills with one
-              // darker one takes a second look to parse.
-              active
-                ? "bg-crisp text-pitch"
-                : "text-crisp hover:bg-[color-mix(in_oklab,var(--crisp)_6%,transparent)]",
-            )}
-          >
-            {o.label}
-          </button>
-        );
-      })}
+    /* `no-scrollbar` on the *scrolling* element, and deliberately no
+       `mask-fade-x`: the track is a discrete rounded object, and fading its
+       edges would dissolve the very corners that give it its pill shape. */
+    <div className={cn("no-scrollbar max-w-full overflow-x-auto", className)}>
+      <div
+        role="radiogroup"
+        aria-label={label}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+            e.preventDefault();
+            move(1);
+          } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+            e.preventDefault();
+            move(-1);
+          }
+        }}
+        // A translucent ink tint, not `bg-charcoal`. The lineup sits on the
+        // `soft` band, which *is* `--charcoal` — so a charcoal track was
+        // #f5f5f7 on #f5f5f7 and the container disappeared entirely, which is
+        // the whole reason the row read as loose chips in the first place. A
+        // 5% tint darkens whatever it is placed on, so the track survives a
+        // section moving between white and soft.
+        className={cn(
+          "inline-flex w-max items-center gap-1 rounded-full p-1",
+          "bg-[color-mix(in_oklab,var(--crisp)_5%,transparent)]",
+        )}
+      >
+        {options.map((o) => {
+          const active = o.value === value;
+          return (
+            <button
+              key={o.value}
+              type="button"
+              role="radio"
+              aria-checked={active}
+              tabIndex={active ? 0 : -1}
+              onClick={() => onChange(o.value)}
+              className={cn(
+                "relative flex items-center justify-center whitespace-nowrap rounded-full px-4 py-1.5",
+                "text-[13px] font-medium leading-[1.4] transition-colors duration-200",
+                // The tap target, not the chip. `::after` paints nothing and
+                // sits outside the track's 4px padding, so three of these
+                // overlapping is harmless — a touch still lands on whichever
+                // chip's centre is nearest.
+                "after:absolute after:inset-x-0 after:top-1/2 after:h-11 after:-translate-y-1/2 after:content-['']",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2",
+                // `text-crisp`, not `text-cool`.
+                //
+                // Lifting LangToggle's construction brought its `--cool` chip
+                // colour with it, and that colour is calibrated for a
+                // `--charcoal` track: #6e6e73 on #f5f5f7 is 4.61:1, which
+                // clears AA. This track is a 5% ink tint so it can survive a
+                // soft band, which composites darker — and at ~4.3:1 the same
+                // grey stops clearing it. axe caught 12 instances.
+                //
+                // Ink is also what apple.com actually uses here: the unselected
+                // options are dark text, and the *pill* is what marks the
+                // selection. Grey text was doing that job twice.
+                active ? "bg-crisp text-pitch" : "text-crisp hover:opacity-70",
+              )}
+            >
+              {o.label}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 }

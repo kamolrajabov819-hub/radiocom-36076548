@@ -75,6 +75,7 @@ export function Nav() {
     { to: "/", label: t("nav.home") },
     { to: "/radiocom", label: t("nav.radiocom") },
     { to: "/motorola", label: t("nav.motorola") },
+    { to: "/compare", label: t("nav.compare") },
     { to: "/poc", label: t("nav.poc") },
     { to: "/service", label: t("nav.service") },
   ] as const;

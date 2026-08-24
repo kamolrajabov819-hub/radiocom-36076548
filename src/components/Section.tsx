@@ -14,6 +14,17 @@ import { WordReveal } from "@/components/WordReveal";
  *
  * `bleed` drops the inset for full-width media, but still publishes `--gutter`
  * so children can re-pad themselves with `.shell` or `.bleed-x`.
+ *
+ * The inner shell carries `data-reveal`, which is how phones get their section
+ * motion. GSAP is gated behind `(min-width: 768px)` *before* its dynamic import
+ * so a phone never downloads the 27 KB chunk, and that gate left phones with
+ * nothing but Framer's per-card entrances — which is why the site read as
+ * motionless on a phone. `data-reveal` is read only by the CSS/observer layer
+ * in `src/lib/motion.ts`, so marking it here changes nothing on a desktop.
+ *
+ * Marking it once, here, rather than per section is deliberate: a section that
+ * has to be remembered is a section that gets forgotten, and the pages that
+ * measured most static were the ones nobody had marked.
  */
 export function Section({
   children,
@@ -22,6 +33,7 @@ export function Section({
   tight = false,
   bleed = false,
   wide = false,
+  reveal = true,
   style,
   id,
 }: {
@@ -31,6 +43,12 @@ export function Section({
   tight?: boolean;
   bleed?: boolean;
   wide?: boolean;
+  /**
+   * Opt out of the phone reveal. For a section whose own children already
+   * animate as the section's entrance, where a wrapper fade on top would read
+   * as two beats instead of one.
+   */
+  reveal?: boolean;
   style?: CSSProperties;
   id?: string;
 }) {
@@ -38,7 +56,12 @@ export function Section({
   const bandClass = band ? `band-${band}` : "";
   return (
     <section id={id} style={style} className={`${bandClass} ${rhythm} ${className}`}>
-      <div className={bleed ? "shell !px-0" : `shell ${wide ? "shell-wide" : ""}`}>{children}</div>
+      <div
+        data-reveal={reveal ? "" : undefined}
+        className={bleed ? "shell !px-0" : `shell ${wide ? "shell-wide" : ""}`}
+      >
+        {children}
+      </div>
     </section>
   );
 }

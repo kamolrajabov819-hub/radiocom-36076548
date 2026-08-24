@@ -254,6 +254,8 @@ export function usePinnedScrub(
  * single-column.
  */
 export const DESKTOP = "(min-width: 768px)";
+/** Everything below `DESKTOP`. `.98` so the two never both match at 768px. */
+export const PHONE = "(max-width: 767.98px)";
 
 /* ─────────────────────────────────────────────────────────────
    The scroll choreography
@@ -294,15 +296,141 @@ export const DESKTOP = "(min-width: 768px)";
  * Before adding `data-stagger` to a container, check that its children are not
  * motion components.
  *
- * **Desktop only, including the download.** The whole hook is behind a
- * `(min-width: 768px)` check that runs *before* `loadGsap`, so a phone never
- * fetches the 27 KB chunk at all. Parallax on a short viewport spends most of
- * its life mid-drift, and a scrubbed reveal competes with the momentum of the
- * flick that triggered it — so there is nothing on a phone for that 27 KB to
- * buy. Framer's entrances still run there, as they always did.
+ * **GSAP is desktop only, including the download.** The GSAP half of this hook
+ * is behind a `(min-width: 768px)` check that runs *before* `loadGsap`, so a
+ * phone never fetches the 27 KB chunk. It does not go without motion, though:
+ * `useMobileChoreography` below reads the same three attributes and plays them
+ * with an `IntersectionObserver` and CSS, which costs nothing beyond what the
+ * page already ships. Framer's entrances still run on both, as they always did.
  */
+/**
+ * The same choreography on a phone, for no additional JavaScript.
+ *
+ * Phones had section motion removed on purpose: the whole GSAP layer sits
+ * behind `(min-width: 768px)`, checked *before* the dynamic import, so a phone
+ * never fetches the 27 KB chunk. That was the right call for parallax — a short
+ * viewport spends most of its life mid-drift — but it took the headline reveals
+ * and the shelf stagger with it, and the result is a page where nothing moves.
+ *
+ * Giving that back does not require giving the 27 KB back. An
+ * `IntersectionObserver` is a browser primitive, the animation itself is a CSS
+ * class, and the drift is a scroll-driven CSS animation — so this is bytes we
+ * already ship. Concretely, a phone gets:
+ *
+ *   `data-scrub-in`  → the block rises and fades in as it crosses the fold.
+ *   `data-reveal`    → the same, but read *only* here. Desktop's GSAP scrub is
+ *                      a heavier treatment that was applied to three places on
+ *                      purpose, and its transform persists on the element —
+ *                      which opens a stacking context and would break the
+ *                      `mix-blend-multiply` the catalogue images depend on. A
+ *                      phone-only marker lets a section animate on the device
+ *                      that needed it without touching either.
+ *   `data-stagger`   → its children do the same, one after another, via a
+ *                      `--reveal-i` index the CSS turns into a delay.
+ *   `data-parallax`  → drift, from `animation-timeline: view()` in the
+ *                      stylesheet. No JS at all, and no observer entry.
+ *
+ * Two things are deliberately *not* mirrored. The scrub is one-way here rather
+ * than tied to the scrollbar: reversing on scroll-up fights the momentum of the
+ * flick that triggered it, which is the thing that makes scrubbed mobile pages
+ * feel sticky. And elements are unobserved once they have played, so a long
+ * page is not paying for a live observer on everything it has already shown.
+ *
+ * The same "one library per element" rule holds as on desktop. `data-stagger`
+ * is opt-in on `HighlightsShelf` precisely because some shelves hold Framer
+ * `motion` children, and two libraries writing `opacity` on one node reads as
+ * a flicker. Nothing here changes that constraint — it inherits it.
+ */
+function useMobileChoreography<T extends HTMLElement>(scopeRef: RefObject<T | null>) {
+  const isPhone = useMediaQuery(PHONE);
+
+  useIsomorphicLayoutEffect(() => {
+    if (!isPhone || prefersReducedMotion()) return;
+    const scope = scopeRef.current;
+    if (!scope) return;
+
+    // Every element that will be hidden until revealed, so teardown can put the
+    // page back into its finished state rather than its initial one.
+    const hidden: HTMLElement[] = [];
+    // What the observer actually watches, and what each watch reveals. For a
+    // plain block those are the same element; for a shelf they are not — see
+    // below.
+    const watches = new Map<HTMLElement, HTMLElement[]>();
+
+    // Anything already on screen when this runs is left alone.
+    //
+    // `.reveal` starts at `opacity: 0`, and the largest contentful element on
+    // most of these pages is inside the first section. Hiding it for even one
+    // observer tick plus a 550ms fade would push LCP out by that much on the
+    // device where LCP is hardest to win — to animate something the reader is
+    // already looking at, which is not motion they can perceive as motion.
+    // Below-the-fold blocks are the only ones a reveal can actually be seen on.
+    const belowFold = (el: HTMLElement) => el.getBoundingClientRect().top > window.innerHeight;
+
+    for (const el of scope.querySelectorAll<HTMLElement>("[data-scrub-in], [data-reveal]")) {
+      if (!belowFold(el)) continue;
+      el.classList.add("reveal");
+      hidden.push(el);
+      watches.set(el, [el]);
+    }
+
+    for (const row of scope.querySelectorAll<HTMLElement>("[data-stagger]")) {
+      const items = Array.from(row.children).filter(
+        (c): c is HTMLElement => c instanceof HTMLElement,
+      );
+      if (!items.length || !belowFold(row)) continue;
+      items.forEach((el, i) => {
+        el.classList.add("reveal");
+        // Capped at 8. Uncapped, the twelfth card in a shelf waits 720ms after
+        // the first — long enough to read as a page that is still loading.
+        el.style.setProperty("--reveal-i", String(Math.min(i, 8)));
+        hidden.push(el);
+      });
+      // The **row** is watched, not the cards.
+      //
+      // Most `data-stagger` containers are horizontal scroll tracks, and an
+      // IntersectionObserver measures against the viewport in both axes. A card
+      // sitting off to the right inside its track never intersects, so it never
+      // gained `is-in` and stayed at `opacity: 0` — on a 13-model shelf that is
+      // eleven invisible cards, and swiping the track does not fix it because
+      // by then the observer has moved on. Watching the row and revealing all
+      // of its children together is both correct and closer to the desktop
+      // behaviour, where `ScrollTrigger.batch` also fires on vertical position
+      // alone. The CSS delay still plays them in sequence.
+      watches.set(row, items);
+    }
+
+    if (!watches.size) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const target = entry.target as HTMLElement;
+          for (const el of watches.get(target) ?? []) el.classList.add("is-in");
+          io.unobserve(target);
+        }
+      },
+      // A little inside the fold, so the motion is something the reader watches
+      // arrive rather than something that has already finished by the time the
+      // element is properly on screen.
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.05 },
+    );
+
+    for (const el of watches.keys()) io.observe(el);
+
+    return () => {
+      io.disconnect();
+      // On a resize across the breakpoint this effect tears down; without this
+      // every element still waiting its turn would be left at `opacity: 0`.
+      for (const el of hidden) el.classList.add("is-in");
+    };
+  }, [isPhone, scopeRef]);
+}
+
 export function useScrollChoreography<T extends HTMLElement = HTMLDivElement>() {
   const scopeRef = useRef<T>(null);
+  useMobileChoreography(scopeRef);
   useGsap(
     ({ scope, gsap, ScrollTrigger }) => {
       const mm = gsap.matchMedia();

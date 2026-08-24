@@ -59,7 +59,7 @@ export const routeOptions = {
     const description = t("meta.home.desc");
 
     return {
-      meta: pageMeta({ lang: params.lang, title, description, path: "/" }),
+      meta: pageMeta({ lang: params.lang, title, description, path: "/", ogCard: "home" }),
       links: [
         ...localeLinks(params.lang, "/"),
         // The hero cutout is the LCP element here. Candidate set and sizes must
@@ -365,14 +365,20 @@ function ValueShelf() {
           eyebrow={t("home.bento.tradein.title")}
           title={t("home.bento.tradein.sub")}
           className="min-h-[260px]"
-          copyClassName="pr-10"
+          // `pr-14` clears the circular action button in the bottom-right
+          // corner. No width cap: this is a single-column card, so the
+          // photograph is below the copy at every width and the copy gets the
+          // whole column. Capping it here is what broke "Обменяй" after
+          // "Обмен" on a ~250px column.
+          copyClassName="pr-14"
           action={{ label: t("px.buy"), onClick: openTest }}
-          backdrop={
-            /* `contain`, and the slot is given the image's own 3:4 proportion
-               so there is nothing to crop. The previous version passed
-               `fit="cover"` into a slot starting at `top-[52%]` — roughly half
-               the height the photograph needed — so the radios were sliced
-               through the middle. */
+          figure={
+            /* You flagged this one on desktop as well as on a phone, and the
+               desktop fault was separate: the slot started at `top-[42%]` and
+               ran to the card's bottom edge, which is less height than a 3:4
+               portrait needs, so `object-bottom` pinned the radios and let the
+               antennae fall out of the top of the frame. Sizing by height and
+               letting width follow is what keeps a portrait whole. */
             <ProductShot
               src={radiosPair}
               cutout
@@ -381,9 +387,9 @@ function ValueShelf() {
               width={1149}
               height={1600}
               fit="contain"
-              sizes="(max-width: 1024px) 60vw, 320px"
-              className="pointer-events-none absolute inset-x-0 bottom-3 top-[42%]"
-              imgClassName="object-bottom drop-shadow-[0_16px_24px_rgba(0,0,0,0.12)]"
+              sizes="(max-width: 640px) 62vw, (max-width: 1024px) 40vw, 260px"
+              className="w-full max-w-[240px] sm:max-w-none"
+              imgClassName="max-h-[230px] sm:max-h-[280px] drop-shadow-[0_16px_24px_rgba(0,0,0,0.12)]"
             />
           }
         />
@@ -423,17 +429,22 @@ function ValueShelf() {
           // the height the photograph wants is what lets it read as the detail
           // shot it is.
           className="min-h-[340px]"
-          copyClassName="max-w-[52%] lg:max-w-[46%]"
-          backdrop={
+          copyClassName="sm:max-w-[52%] lg:max-w-[46%]"
+          figure={
             /* The grey panel here is gone for the same reason as the lead
                tile's: it was framing a #dae3e7 studio backdrop that could not
                be blended away. The macro is a crop rather than a whole object —
                the display corner, cut off at the bottom — so it bleeds off the
                card's lower edge instead of floating in the middle of a box,
-               which is how apple.com uses a detail shot. */
+               which is how apple.com uses a detail shot.
+            
+               The parallax stays on this wrapper rather than moving into the
+               card: `data-parallax` is read by the page's scroll choreography
+               and applies a transform, and a transform on the card itself would
+               open a stacking context around every child. */
             <div
               data-parallax="0.08"
-              className="pointer-events-none absolute -bottom-2 right-4 flex w-[44%] items-end justify-center"
+              className="flex w-full items-end justify-center self-end sm:-mb-8 sm:-mr-2"
             >
               <ProductShot
                 src={macroWide}
@@ -443,9 +454,9 @@ function ValueShelf() {
                 width={1463}
                 height={1600}
                 fit="contain"
-                sizes="(max-width: 1024px) 44vw, 320px"
-                className="w-full"
-                imgClassName="drop-shadow-[0_20px_30px_rgba(0,0,0,0.14)]"
+                sizes="(max-width: 640px) 62vw, (max-width: 1024px) 44vw, 300px"
+                className="w-full max-w-[240px] sm:max-w-none"
+                imgClassName="max-h-[240px] sm:max-h-[320px] drop-shadow-[0_20px_30px_rgba(0,0,0,0.14)]"
               />
             </div>
           }
@@ -598,8 +609,7 @@ function FinalCta() {
           <Magnetic>
             <button
               onClick={() => openLead({ title: t("home.final_cta.button") })}
-              className="pill"
-              style={{ background: "#fff", color: "#000" }}
+              className="pill pill-invert"
             >
               {t("home.final_cta.button")}
             </button>

@@ -213,7 +213,39 @@
   border-bottom: 1px solid var(--border);
 }
 
-/* Pill buttons */
+/* ── Buttons ──────────────────────────────────────────────────────────────
+ *
+ * There are four, and there is no fifth.
+ *
+ *   .pill .pill-accent   the call to action. Brand red, white text. Every
+ *                        "buy", "request a quote", "learn more" on the site.
+ *   .pill .pill-ghost    a filled but quiet action — the second button in a
+ *                        pair, never on its own.
+ *   .pill .pill-invert   white on ink. Only on a dark band or a photograph.
+ *   .pill-link           the text action with a chevron. Not a button; do not
+ *                        give it a fill.
+ *
+ * plus `.pill-sm`, which is a size and not a variant.
+ *
+ * This list is short on purpose. The site previously rendered **thirteen**
+ * visually distinct interactive controls: two different solid colours for the
+ * identical "Подробнее" card action (red on the brand page, ink on the compare
+ * page), a `pill-ghost` used exactly once, and three separate hand-rolled
+ * spellings of "white button on a dark band" — one of them an inline `style`
+ * attribute. apple.com/mac's lineup section uses two.
+ *
+ * A `src/components/Pill.tsx` existed to prevent exactly this and **no file
+ * ever imported it**, so every call site retyped the class string and they
+ * drifted. It has been deleted rather than revived: a React wrapper that
+ * duplicates these utilities is a second source of truth to keep in sync, and
+ * the drift was never caused by the absence of a component — it was caused by
+ * there being two solid variants with no rule about which one to use. There is
+ * now one, so a call site cannot pick wrong.
+ *
+ * The focus ring lives here too, for the same reason. Every ring on the site
+ * used to be retyped per call site, which meant a site that forgot one had no
+ * ring at all.
+ */
 /*
  * `min-height: 44px` on every pill.
  *
@@ -239,8 +271,25 @@
               background-color 0.2s, color 0.2s, opacity 0.2s;
   white-space: nowrap;
 }
-.pill:hover { transform: translateY(-1px); }
-.pill:active { transform: translateY(0); }
+/*
+ * No lift on hover.
+ *
+ * apple.com changes a button's *background* on hover and never moves it. The
+ * `translateY(-1px)` here read as a nudge on every CTA on the site, and a
+ * control that shifts under the cursor is also the one thing that makes a
+ * pointer user miss it. `:active` keeps a press, because a press should be
+ * felt — that one is a scale, so it cannot displace the hit area.
+ */
+.pill:active { transform: scale(0.98); }
+.pill:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--pitch), 0 0 0 4px var(--signal);
+}
+/* On a black band the inner ring must be the band, not white-on-white. */
+.band-dark .pill:focus-visible,
+.is-dark .pill:focus-visible {
+  box-shadow: 0 0 0 2px #000000, 0 0 0 4px var(--pitch);
+}
 
 @utility pill-sm {
   min-height: 2.25rem;
@@ -257,12 +306,6 @@
   .pill-sm { min-height: 2.75rem; }
 }
 
-@utility pill-primary {
-  background: var(--crisp);
-  color: var(--pitch);
-}
-.pill-primary:hover { background: color-mix(in oklab, var(--crisp) 88%, var(--signal)); }
-
 @utility pill-ghost {
   background: color-mix(in oklab, var(--crisp) 6%, transparent);
   color: var(--crisp);
@@ -273,6 +316,20 @@
   background: var(--signal);
   color: #ffffff;
 }
+
+/*
+ * The button that sits on a black band or a photograph.
+ *
+ * Three call sites were hand-rolling this — one with an inline `style`
+ * attribute, two with `bg-white text-black` — for a render every one of them
+ * agreed on. A utility means the hover state exists (none of the three had
+ * one) and the next dark section cannot invent a fourth spelling.
+ */
+@utility pill-invert {
+  background: #ffffff;
+  color: var(--crisp);
+}
+.pill-invert:hover { background: color-mix(in oklab, #ffffff 92%, var(--crisp)); }
 .pill-accent:hover { background: color-mix(in oklab, var(--signal) 88%, #000); }
 
 /* Signal red on black is 4.19:1 — fine for a graphic, short of AA for a link. */
@@ -302,6 +359,12 @@
   transition: opacity 0.2s;
 }
 .pill-link:hover { opacity: 0.75; }
+.pill-link:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.band-dark .pill-link:focus-visible { outline-color: var(--pitch); }
 
 /* Bento card */
 @utility bento-card {
@@ -671,6 +734,77 @@
 }
 
 /* Reduced motion — respect user preference site-wide */
+/* ── Phone choreography ───────────────────────────────────────────────────
+ *
+ * The counterpart to `useMobileChoreography` in src/lib/motion.ts. GSAP is
+ * gated behind `(min-width: 768px)` — before the dynamic import, so a phone
+ * never downloads the 27 KB chunk — and that gate took the section motion with
+ * it. These rules give it back for zero bytes: the reveal is a class an
+ * `IntersectionObserver` toggles, and the drift is a scroll-driven animation
+ * the compositor runs with no JavaScript involved at all.
+ *
+ * Guarded by the same `max-width` the hook uses, so nothing here can compete
+ * with GSAP writing the same properties on a desktop.
+ */
+@media (max-width: 767.98px) {
+  .reveal {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+    /* `--reveal-i` is set per child by the stagger walk; a lone `[data-scrub-in]`
+       block never gets one, so it falls back to no delay. */
+    transition:
+      opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--reveal-i, 0) * 70ms),
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--reveal-i, 0) * 70ms);
+  }
+  /*
+   * `transform: none`, not `translate3d(0, 0, 0)`.
+   *
+   * An identity transform is still a transform, so it leaves a stacking context
+   * on the element forever — and `mix-blend-multiply` composites against the
+   * nearest stacking context, not the page. Every catalogue photograph on this
+   * site is a studio shot knocked out with multiply, so a permanent identity
+   * transform on a section wrapper would turn the images inside it into grey
+   * rectangles. Dropping the transform once the reveal is finished keeps the
+   * blend intact; `qa-blend` is the check that would have caught it.
+   */
+  .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /*
+   * Drift, with no script behind it.
+   *
+   * `animation-timeline: view()` ties the animation's progress to the element's
+   * own passage through the viewport, which is precisely what ScrollTrigger's
+   * `scrub` does on desktop — except the browser runs it off the main thread.
+   * Behind `@supports` because Firefox does not have it yet: there, a phone
+   * simply gets no drift, which is the least valuable of the three behaviours
+   * and the honest thing to degrade.
+   *
+   * The drift is a flat 3.5% rather than each call site's `data-parallax`
+   * depth. Reading that number would mean writing a custom property from JS on
+   * every marked element, and at phone scroll distances the difference between
+   * 0.05 and 0.18 is not visible — so this stays genuinely zero-JS.
+   */
+  @supports (animation-timeline: view()) {
+    [data-parallax] {
+      animation: phone-drift linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+  }
+}
+
+@keyframes phone-drift {
+  from {
+    transform: translate3d(0, 3.5%, 0);
+  }
+  to {
+    transform: translate3d(0, -3.5%, 0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -679,5 +813,22 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /*
+   * Belt and braces. `useMobileChoreography` bails before adding either class
+   * under this preference, so `.reveal` should never appear — but the rules
+   * above only collapse *durations*, and `.reveal`'s resting state is
+   * `opacity: 0`. If the class ever did land (a preference toggled after
+   * mount, a future call site applying it directly) the content would be
+   * invisible rather than merely un-animated. Failing to animate is a
+   * degradation; failing to render is a bug.
+   */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  [data-parallax] {
+    animation: none !important;
   }
 }

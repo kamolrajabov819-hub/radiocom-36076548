@@ -32,9 +32,13 @@ import priceListPdf from "@/assets/radiocom-price-list.pdf";
 // shot sat on #f8f8f8 and the trade-in pair on #f5f3fb, and multiply cannot
 // remove a tone that is not white — both showed a visible panel edge against
 // the card.
+//
+// `whyWarranty` is used twice on this page: on its own why-card and, at your
+// request, as the first of the two closing cards. That is deliberate rather
+// than an oversight — worth knowing before someone "fixes" the duplicate.
 import whyWarranty from "@/assets/cutout/hand-retail-box-cutout@800.webp";
 import whyDelivery from "@/assets/cutout/pair-floating-cutout@800.webp";
-import whyService from "@/assets/cutout/macro-display-cutout@800.webp";
+import whyService from "@/assets/cutout/radios-fan-cutout@800.webp";
 import whyTest from "@/assets/cutout/hands-compare-cutout@800.webp";
 import whyTradein from "@/assets/cutout/hands-tradein-cutout@800.webp";
 import {
@@ -93,7 +97,7 @@ export function brandRouteOptions(brandSlug: BrandSlug) {
       const path = brandPath(brandSlug);
 
       return {
-        meta: pageMeta({ lang: params.lang, title, description, path }),
+        meta: pageMeta({ lang: params.lang, title, description, path, ogCard: brandSlug }),
         links: [
           ...localeLinks(params.lang, path),
           // The first lineup card is the LCP element on this page at every
@@ -233,8 +237,13 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
           ) : null}
         </div>
 
+        {/* Centred, the way apple.com centres the segmented control under the
+            family name. This wrapper was `justify-start` while the component's
+            own root was `justify-center` — the classic pair of alignment rules
+            that cancel each other out, leaving the row wherever it happened to
+            land. The track now owns its own centring. */}
         {facets.length ? (
-          <div className="mb-8 flex justify-start">
+          <div className="mb-8 flex justify-center">
             <FilterPills
               label={t("catalog.categories")}
               options={facets}
@@ -371,12 +380,16 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
             }
             media={
               <img
-                src={whyService}
+                // You asked for the retail-box frame here. `whyWarranty` is
+                // already that exact file, so this reuses the binding rather
+                // than importing the same asset a second time under another
+                // name — which would emit it twice through Vite.
+                src={whyWarranty}
                 alt=""
                 loading="lazy"
                 decoding="async"
-                width={731}
-                height={800}
+                width={800}
+                height={372}
                 className="max-h-[190px] w-auto object-contain drop-shadow-[0_16px_24px_rgba(0,0,0,0.12)]"
               />
             }
@@ -416,7 +429,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
           <h2 className="type-headline text-crisp">{t("brand.compare_cta")}</h2>
           <p className="subhead mt-4 text-[17px]">{t("brand.compare_sub")}</p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <LocaleLink to="/compare" className="pill pill-primary">
+            <LocaleLink to="/compare" className="pill pill-accent">
               {t("px.compare_title")}
             </LocaleLink>
             <LocaleLink
@@ -469,8 +482,8 @@ const WHY_CARDS = [
     title: "home.bento.service.sub",
     detail: "service.sub",
     image: whyService,
-    w: 731,
-    h: 800,
+    w: 800,
+    h: 536,
   },
   {
     key: "test",

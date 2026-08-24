@@ -83,7 +83,7 @@ export function productStoryRouteOptions() {
           title,
           description,
           path,
-          image: p.image,
+          ogCard: `product-${p.slug}`,
           type: "product",
           product: { price: p.price },
         }),
@@ -178,7 +178,7 @@ export function ProductStoryPage() {
 function Hero({ p, lang }: { p: Product; lang: Lang }) {
   const { t } = useTranslation();
   return (
-    <Section band="tint">
+    <Section band="plain">
       <nav aria-label="Breadcrumb" className="mb-8 text-[14px] text-cool">
         <LocaleLink
           to={p.brandSlug === "radiocom" ? "/radiocom" : "/motorola"}
@@ -283,7 +283,7 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
   const width = "w-[64vw] sm:w-[38vw] lg:w-[calc((100%-3rem)/4)]";
 
   return (
-    <Section band="soft">
+    <Section band="plain">
       <SectionHead align="left" spacing="tight" title={t("px.highlights")} />
       <HighlightsShelf label={t("px.highlights")}>
         {/* Photographic lead card. It gives the row an anchor and re-states the
@@ -298,7 +298,7 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
             renders both correctly under one blend mode, and the two dark range
             cards beside it still give the shelf its mix. */}
         <article
-          className={`flex ${width} shrink-0 snap-start flex-col justify-between rounded-[28px] bg-pitch p-7 text-crisp`}
+          className={`flex ${width} shrink-0 snap-start flex-col justify-between rounded-[28px] bg-charcoal p-7 text-crisp`}
         >
           <div className="flex flex-1 items-center justify-center">
             <img
@@ -327,7 +327,7 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
           <article
             key={c.label + c.value}
             className={`flex ${width} shrink-0 snap-start flex-col justify-between rounded-[28px] p-7 ${
-              c.lead ? "bg-black text-[#f5f5f7]" : "bg-pitch text-crisp"
+              c.lead ? "bg-black text-[#f5f5f7]" : "bg-charcoal text-crisp"
             }`}
           >
             <div className={`text-[14px] font-medium ${c.lead ? "opacity-70" : "text-cool"}`}>
@@ -385,20 +385,25 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
 
       {/* Full-bleed lead frame, the way apple.com opens a design section. */}
       <figure className="m-0">
-        {/* Height-capped, not `h-auto`. The gallery is a mix of 1080-square
-            studio frames and 3:2 camera files, and letting each set its own
-            height made a square kit shot 1000px tall on desktop — one image
-            filling a whole viewport. The cap gives every model the same band
-            depth, and `object-contain` means the crop never cuts equipment out
-            of a flat-lay. */}
-        {/* The panel hugs the image instead of spanning the column.
+        {/* The panel spans the column: heading's left edge to the shell's right
+            edge, which is how apple.com opens a design section and what the
+            annotated screenshot asked for.
         
-            These frames are mostly 3:4 portrait product shots. A full-width
-            panel with a height-capped `contain` image left the radio small in
-            the middle of a wide grey field — the dead space you flagged. Sizing
-            the panel to the image and centring it keeps the photograph the
-            subject, which is what the reference does. */}
-        <div className="mx-auto flex w-fit max-w-full items-center justify-center overflow-hidden rounded-[28px] bg-charcoal px-10 py-8 md:px-16 md:py-10">
+            An earlier revision did the opposite — `mx-auto w-fit` shrink-wrapped
+            the panel to its content — to answer a different complaint, that the
+            radio looked small in a wide grey field. That fix traded one problem
+            for another: a 3:4 portrait capped at 420px tall is about 315px wide,
+            so the panel came out ~443px inside a ~1288px column and left 420px
+            of empty white on each side.
+        
+            Spanning the column *and* dropping the height cap solves both at
+            once. The image box is now the panel, so `object-contain` makes a
+            wide 3:2 flat-lay fill the panel's width and a 3:4 portrait fill its
+            height — strictly larger than before in both cases, and still never
+            cropped. The panel height is what keeps a square kit shot from
+            becoming a 1000px-tall image filling a whole viewport, which is the
+            failure the original cap existed to prevent. */}
+        <div className="flex w-full items-center justify-center overflow-hidden rounded-[28px] bg-charcoal px-6 py-10 md:px-16 md:py-14">
           <img
             src={wide}
             alt={`${p.name} — ${t("px.design")}`}
@@ -410,7 +415,7 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
             // site carries it: most of these frames are studio shots on white,
             // and without it a white rectangle sits inside the grey panel. On
             // the Motorola cutouts, which have real alpha, multiply is a no-op.
-            className="max-h-[420px] w-auto max-w-full object-contain mix-blend-multiply"
+            className="h-[clamp(280px,48vw,600px)] w-full object-contain mix-blend-multiply"
           />
         </div>
         <figcaption className="mt-6 max-w-[62ch]">
@@ -480,9 +485,12 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
           )}
         >
           {rest.map((src, i) => (
+            /* Same construction as the lead frame: the panel fills its grid
+               cell rather than shrink-wrapping and floating in the middle of
+               it, so a two-up row reads as two panels and not two islands. */
             <div
               key={src}
-              className="mx-auto flex w-fit max-w-full items-center justify-center overflow-hidden rounded-[28px] bg-charcoal px-10 py-8"
+              className="flex w-full items-center justify-center overflow-hidden rounded-[28px] bg-charcoal px-6 py-8 md:px-10"
             >
               <img
                 src={src}
@@ -491,7 +499,7 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
                 height={1067}
                 loading="lazy"
                 decoding="async"
-                className="max-h-[300px] w-auto max-w-full object-contain mix-blend-multiply"
+                className="h-[clamp(220px,26vw,340px)] w-full object-contain mix-blend-multiply"
               />
             </div>
           ))}
@@ -557,7 +565,7 @@ function InBox({ p, lang }: { p: Product; lang: Lang }) {
   const kit = p.gallery?.[p.gallery.length - 1];
 
   return (
-    <Section band="soft">
+    <Section band="plain">
       <SectionHead align="left" spacing="tight" title={t("px.in_box")} />
       <div
         className={
@@ -586,10 +594,17 @@ function InBox({ p, lang }: { p: Product; lang: Lang }) {
           ))}
         </ul>
         {kit ? (
-          <div
-            data-parallax="0.06"
-            className="flex items-center justify-center overflow-hidden rounded-[28px] bg-pitch p-8"
-          >
+          /* No `data-parallax` here, and `qa-blend` is why.
+          
+              The kit frames are studio shots on white, knocked out with
+              `mix-blend-multiply`. Multiply composites against the nearest
+              stacking context, and a transform opens one — so a parallax
+              wrapper leaves the blend with no backdrop to knock out. That was
+              harmless while this panel was white (multiply on white is a no-op)
+              and became a visible white box the moment the panel went grey to
+              stay legible on the now-white page. Drift on a static panel inside
+              a card is a small thing; the photograph rendering correctly is not. */
+          <div className="flex items-center justify-center overflow-hidden rounded-[28px] bg-charcoal p-8">
             <img
               src={kit}
               alt=""
@@ -691,7 +706,7 @@ function WhereUsed({ p, lang }: { p: Product; lang: Lang }) {
 function Closing({ p, lang }: { p: Product; lang: Lang }) {
   const { t } = useTranslation();
   return (
-    <Section band="soft">
+    <Section band="plain">
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="type-headline text-crisp">{t("px.specs_link")}</h2>
         <p className="subhead mt-4 text-[17px]">
@@ -703,7 +718,7 @@ function Closing({ p, lang }: { p: Product; lang: Lang }) {
           <LocaleLink
             to="/$brand/$model/specs"
             params={{ brand: p.brandSlug, model: p.slug }}
-            className="pill pill-primary"
+            className="pill pill-accent"
           >
             {t("px.spec_table")}
           </LocaleLink>

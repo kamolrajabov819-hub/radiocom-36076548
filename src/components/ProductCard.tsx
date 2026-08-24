@@ -98,7 +98,7 @@ export function ProductCard({
                 {formatPrice(p.price, lang)}
               </div>
             </div>
-            <span className="pill pill-accent pill-sm shrink-0">{t("product.more")}</span>
+            <span className="pill pill-sm pill-accent shrink-0">{t("product.more")}</span>
           </div>
         </LocaleLink>
       </TiltCard>

@@ -48,6 +48,7 @@ export const routeOptions = {
         title: t("meta.service.title"),
         description: t("meta.service.desc"),
         path: "/service",
+        ogCard: "service",
       }),
       links: localeLinks(params.lang, "/service"),
       scripts: [
@@ -259,8 +260,11 @@ function Advantages() {
             title={adv.certified?.t}
             body={adv.certified?.d}
             className="min-h-[300px]"
-            copyClassName="max-w-[56%] lg:max-w-[48%]"
-            backdrop={
+            // `sm:` prefixed. Below that the photograph is under the copy, so
+            // narrowing the copy for it would break the headline mid-word for
+            // no reason — which is exactly what the unprefixed version did.
+            copyClassName="sm:max-w-[56%] lg:max-w-[48%]"
+            figure={
               <ProductShot
                 src={advCertified}
                 cutout
@@ -269,9 +273,9 @@ function Advantages() {
                 width={1600}
                 height={1600}
                 fit="contain"
-                sizes="(max-width: 1024px) 90vw, 620px"
-                className="absolute inset-y-4 right-2 w-[48%]"
-                imgClassName="drop-shadow-[0_18px_28px_rgba(0,0,0,0.12)]"
+                sizes="(max-width: 640px) 78vw, (max-width: 1024px) 44vw, 300px"
+                className="w-full max-w-[300px] sm:max-w-none"
+                imgClassName="max-h-[220px] sm:max-h-[260px] drop-shadow-[0_18px_28px_rgba(0,0,0,0.12)]"
               />
             }
           />

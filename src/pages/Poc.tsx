@@ -65,6 +65,7 @@ export const routeOptions = {
         title: t("meta.poc.title"),
         description: t("meta.poc.desc"),
         path: "/poc",
+        ogCard: "poc",
       }),
       links: [
         ...localeLinks(params.lang, "/poc"),

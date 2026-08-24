@@ -39,7 +39,7 @@
   "industries": {
     "title": "Industries",
     "kicker": "Turnkey solutions",
-    "overview_sub": "We designed and tuned radio systems for six key industries in Uzbekistan. Pick yours — we'll show what fits.",
+    "overview_sub": "We designed and tuned radio systems for six key industries in Uzbekistan. Pick yours — we’ll show what fits.",
     "view_all": "All industries",
     "problem_title": "The problem",
     "solution_title": "Our solution",
@@ -61,7 +61,7 @@
       "problem": "Staff loses contact across noisy floors and between levels. Guests overhear crew chatter.",
       "solution": "Compact PMR radios plus discreet earpieces. Instant coordination — no noise, no license required.",
       "pains": [
-        "Waiters can't hear the kitchen at peak hours",
+        "Waiters can’t hear the kitchen at peak hours",
         "Guests overhear internal staff chatter",
         "Regular phones die halfway through a shift"
       ],
@@ -82,7 +82,7 @@
           "l": "Motorola warranty"
         }
       ],
-      "quote": "Guests no longer hear what's happening in the kitchen. Shifts got calmer and turnover went up — the team clears tables faster.",
+      "quote": "Guests no longer hear what’s happening in the kitchen. Shifts got calmer and turnover went up — the team clears tables faster.",
       "quote_author": "Restaurant group operator, Tashkent",
       "faq": [
         {
@@ -91,7 +91,7 @@
         },
         {
           "q": "How many radios for a restaurant?",
-          "a": "Usually 4–6: host, floor manager, chef, bar, waiter, storeroom. We'll count on-site for free."
+          "a": "Usually 4–6: host, floor manager, chef, bar, waiter, storeroom. We’ll count on-site for free."
         },
         {
           "q": "Can I try before I buy?",
@@ -104,10 +104,10 @@
       "name": "Construction",
       "short": "Construction",
       "desc": "Massive sites. IP67 ruggedness, long-range coverage.",
-      "problem": "Dust, vibration, kilometers between crews. Regular phones don't survive and don't cover the site.",
+      "problem": "Dust, vibration, kilometers between crews. Regular phones don’t survive and don’t cover the site.",
       "solution": "Rugged DMR radios with IP67/IP68 protection and repeaters for full site coverage.",
       "pains": [
-        "Foreman can't reach crane ops or fitters",
+        "Foreman can’t reach crane ops or fitters",
         "Phones crack, drown, die in dust",
         "Cell signal vanishes past concrete walls"
       ],
@@ -199,7 +199,7 @@
       "problem": "Huge areas, hazardous zones, strict intrinsic-safety requirements.",
       "solution": "ATEX-compatible DP4800/DP4600 radios with SLR8000 repeaters. Full pit coverage plus dispatcher link.",
       "pains": [
-        "3 km pit — regular radios can't reach across",
+        "3 km pit — regular radios can’t reach across",
         "Standard electronics banned in Ex zones",
         "Underground crew loses contact with surface"
       ],
@@ -245,7 +245,7 @@
       "problem": "The dispatcher loses drivers outside the city. Cellular is expensive and drops.",
       "solution": "PoC radios (PoC devices) with nationwide LTE coverage plus in-vehicle Radiocom RCD base stations.",
       "pains": [
-        "Driver in Bukhara — Tashkent dispatch can't reach",
+        "Driver in Bukhara — Tashkent dispatch can’t reach",
         "Cellular tariffs eat freight margin",
         "Convoy comms via phone speakerphone only"
       ],
@@ -274,7 +274,7 @@
           "a": "Anywhere with LTE — 97% coverage across UZ."
         },
         {
-          "q": "What's the monthly cost?",
+          "q": "What’s the monthly cost?",
           "a": "From 45,000 UZS/device on a 10-unit pack."
         },
         {
@@ -291,9 +291,9 @@
       "problem": "Shifts across many zones, industrial noise, foremen need instant coordination.",
       "solution": "DMR system with a repeater and group calls. Rugged PDAs for warehouse operations.",
       "pains": [
-        "Foremen can't hear each other over machine noise",
+        "Foremen can’t hear each other over machine noise",
         "Warehouse ops walk paper between shelves",
-        "Shift doesn't know what happened at another zone"
+        "Shift doesn’t know what happened at another zone"
       ],
       "outcomes": [
         {
@@ -418,7 +418,7 @@
     "qty": "Quantity",
     "message": "Message",
     "submit": "Send request",
-    "success": "Request sent. We'll be in touch.",
+    "success": "Request sent. We’ll be in touch.",
     "test_title": "Free on-site test",
     "trust_line": "We reply in 15 min · Mon–Fri 9:00–18:00"
   },
@@ -467,12 +467,12 @@
     "rental": {
       "kicker": "RENTAL",
       "title": "From 1 day to 5+ years.",
-      "desc": "Motorola with accessories, spare batteries and pre-tuning on Radiocom's own licensed nationwide frequencies.",
+      "desc": "Motorola with accessories, spare batteries and pre-tuning on Radiocom’s own licensed nationwide frequencies.",
       "cta": "Request rental"
     },
     "compare": {
       "poc": {
-        "title": "Anywhere there's LTE."
+        "title": "Anywhere there’s LTE."
       },
       "pmr": {
         "title": "Where you own the frequency."
@@ -520,7 +520,7 @@
       },
       {
         "t": "Testing",
-        "d": "We verify the link and the transmitter's parameters before the unit goes back."
+        "d": "We verify the link and the transmitter’s parameters before the unit goes back."
       }
     ],
     "policy_title": "Returns & exchanges",
@@ -650,7 +650,7 @@
       "schema_desc": "Warranty and post-warranty repair of Motorola, Hytera and Vertex Standard two-way radios in Tashkent."
     },
     "industries": {
-      "title": "Radios for Business: HoReCa, Construction, Security, Transport | Radiocom",
+      "title": "Business radios in Tashkent — HoReCa, construction, security",
       "desc": "Ready-made radio communication solutions for six industries: HoReCa, construction, security, mining, transport and manufacturing. Model selection and a free trial."
     },
     "industry": {
@@ -745,7 +745,7 @@
     "design": "Design",
     "design_title": "Take a closer look.",
     "range_lead": "Range depends on terrain and built-up area.",
-    "spec_note": "The manufacturer's full specification is in the table below.",
+    "spec_note": "The manufacturer’s full specification is in the table below.",
     "spec_column": "Specification"
   },
   "search": {

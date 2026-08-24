@@ -89,6 +89,7 @@ export const routeOptions = {
         title: t("meta.search.title"),
         description: t("meta.search.desc"),
         path,
+        ogCard: "search",
       }),
       links: localeLinks(params.lang, path),
       scripts: [

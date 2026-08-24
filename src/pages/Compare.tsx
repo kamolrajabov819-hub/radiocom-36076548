@@ -38,11 +38,28 @@ import { useLang } from "@/lib/locale";
  * spec sheets are written against; the *rendered* label comes from whichever
  * locale the reader is in. Keying by display text would break the join the
  * moment the page is viewed in English.
+ *
+ * The two ids beginning `__` are the exception, and the prefix is doing real
+ * work. Range is the figure a two-way radio is actually chosen on, and it is
+ * published as two separate numbers — in a city and on open ground — that the
+ * price list quotes separately because they differ by a factor of three or
+ * four. A single "Радиус действия" row can only show one of them.
+ *
+ * They cannot be keyed by their Russian labels like the rest, because both
+ * live on the `Product` record rather than in `specs[].rows`, and because
+ * "Радиус действия" *is* a real spec label: keying the city row that way makes
+ * the label resolver find the generic spec-sheet heading and title both rows
+ * "Радиус действия". The `__` prefix guarantees no sample can ever match, so
+ * both rows fall through to the explicit labels in `rowLabel`.
  */
+const RANGE_CITY = "__range_city";
+const RANGE_OPEN = "__range_open";
+
 const COMPARE_ROWS = [
   "Стандарт",
   "Режим работы",
-  "Радиус действия",
+  RANGE_CITY,
+  RANGE_OPEN,
   "Количество каналов",
   "Класс защиты",
   "Время работы от аккумулятора",
@@ -59,6 +76,7 @@ export const routeOptions = {
         title: t("meta.compare.title", { count: visibleProducts.length }),
         description: t("meta.compare.desc"),
         path,
+        ogCard: "compare",
       }),
       links: localeLinks(params.lang, path),
       scripts: [
@@ -103,7 +121,7 @@ export function ComparePage() {
           <h2 className="type-headline text-crisp">{t("brand.compare_cta")}</h2>
           <p className="subhead mt-4 text-[17px]">{t("px.trial")}</p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <LocaleLink to="/radiocom" className="pill pill-primary">
+            <LocaleLink to="/radiocom" className="pill pill-accent">
               {t("brand.radiocom_title")}
             </LocaleLink>
             <LocaleLink to="/motorola" className="pill-link">
@@ -135,17 +153,18 @@ function BrandTable({
   // carrying a battery figure kept the row, and the other seven rendered em
   // dashes. A comparison row that is mostly blank does not inform a choice —
   // it reads as missing data and undermines the rows that are complete.
-  const answers = (labelRu: string) =>
-    list.filter((p) => rowValue(p, labelRu, "ru") !== undefined).length;
+  const answers = (rowId: string) =>
+    list.filter((p) => rowValue(p, rowId, "ru") !== undefined).length;
 
-  const rows = COMPARE_ROWS.filter((labelRu) => answers(labelRu) * 2 >= list.length).map(
-    (labelRu) => {
-      const sample = list
-        .flatMap((p) => specs[p.id]?.rows ?? [])
-        .find((r) => r.label.ru === labelRu);
-      return { id: labelRu, label: sample ? pick(sample.label, lang) : rowLabel(labelRu, lang, t) };
-    },
-  );
+  // `sample` looks the heading up from whichever model actually publishes the
+  // row, so the table speaks the spec sheets' own wording. The two `__` range
+  // ids can never match a real `label.ru`, which is exactly what routes them to
+  // `rowLabel` — a bare "Радиус действия" id would have matched here and given
+  // both range rows the same generic heading.
+  const rows = COMPARE_ROWS.filter((rowId) => answers(rowId) * 2 >= list.length).map((rowId) => {
+    const sample = list.flatMap((p) => specs[p.id]?.rows ?? []).find((r) => r.label.ru === rowId);
+    return { id: rowId, label: sample ? pick(sample.label, lang) : rowLabel(rowId, lang, t) };
+  });
 
   const columns: CompareColumn[] = list.map((p) => columnFor(p, rows, lang));
 
@@ -189,7 +208,7 @@ function ColumnActions({ p }: { p: Product }) {
       <LocaleLink
         to="/$brand/$model"
         params={{ brand: p.brandSlug, model: p.slug }}
-        className="pill pill-sm pill-primary"
+        className="pill pill-sm pill-accent"
       >
         {t("px.learn_more")}
       </LocaleLink>
@@ -205,29 +224,39 @@ function ColumnActions({ p }: { p: Product }) {
 }
 
 /**
- * One cell's value, by the Russian spec label.
+ * One cell's value, by row id.
  *
- * "Радиус действия" is deliberately special-cased. Range is the single figure a
- * two-way radio is chosen on, and it lives on the `Product` record as
- * `rangeCity`/`rangeOpen` — not in `specs[].rows`, where only one model happens
- * to repeat it. Reading only the spec rows left that row seven-eighths empty on
- * the Radiocom table: the most important line in the comparison, blank for
- * every model that has the data.
+ * The two range rows are special-cased because their data lives on the
+ * `Product` record as `rangeCity`/`rangeOpen`, not in `specs[].rows` — where
+ * only one model happens to repeat it. Reading only the spec rows left range
+ * seven-eighths empty on the Radiocom table: the most important line in the
+ * comparison, blank for every model that has the data.
+ *
+ * `rangeOpen` is optional and stays optional here. Returning `undefined` is
+ * what makes a model without one render an em dash *and* what correctly
+ * excludes it from the half-coverage filter — the two behaviours a hardcoded
+ * fallback string would both get wrong.
  */
-function rowValue(p: Product, labelRu: string, lang: Lang): string | undefined {
-  if (labelRu === "Радиус действия") {
-    return pick(p.rangeCity, lang);
-  }
-  const row = specs[p.id]?.rows.find((r) => r.label.ru === labelRu);
+function rowValue(p: Product, rowId: string, lang: Lang): string | undefined {
+  if (rowId === RANGE_CITY) return pick(p.rangeCity, lang);
+  if (rowId === RANGE_OPEN) return p.rangeOpen ? pick(p.rangeOpen, lang) : undefined;
+  const row = specs[p.id]?.rows.find((r) => r.label.ru === rowId);
   return row ? pick(row.value, lang) : undefined;
 }
 
 /**
- * Fallback heading for a row no spec sheet supplies a label for — currently
- * only the synthesised range row, which takes the site's own wording.
+ * Heading for a row no spec sheet supplies a label for — the two range rows.
+ *
+ * These take `product.range_*` ("Дальность в городе") rather than the short
+ * `px.range_*` ("В городе") used on the stat panels. A panel label is read
+ * directly under the figure it belongs to, so "В городе" is unambiguous there;
+ * a table row heading is read on its own down the left-hand column, where "В
+ * городе" does not say what is being measured.
  */
-function rowLabel(labelRu: string, lang: Lang, t: (k: string) => string): string {
-  return labelRu === "Радиус действия" ? t("px.range_city") : labelRu;
+function rowLabel(rowId: string, lang: Lang, t: (k: string) => string): string {
+  if (rowId === RANGE_CITY) return t("product.range_city");
+  if (rowId === RANGE_OPEN) return t("product.range_open");
+  return rowId;
 }
 
 function columnFor(p: Product, rows: { id: string }[], lang: Lang): CompareColumn {

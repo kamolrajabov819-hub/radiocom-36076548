@@ -62,6 +62,7 @@ export const routeOptions = {
         description,
         path,
         type: "article",
+        ogCard: `industries-${slug}`,
       }),
       links: localeLinks(params.lang, path),
       scripts: [
@@ -155,7 +156,7 @@ export function IndustryPage() {
           >
             <button
               onClick={() => openLead({ title: `${t("industries.cta")} · ${industryName}` })}
-              className="pill bg-white text-black"
+              className="pill pill-invert"
             >
               {t("industries.cta")}
             </button>
@@ -332,7 +333,7 @@ export function IndustryPage() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <button
               onClick={() => openLead({ title: `${t("industries.cta")} · ${industryName}` })}
-              className="pill bg-white text-black"
+              className="pill pill-invert"
             >
               {t("industries.cta")}
             </button>

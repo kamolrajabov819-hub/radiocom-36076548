@@ -129,7 +129,23 @@ export function pageMeta(opts: {
   description: string;
   /** Language-neutral path, e.g. "/catalog". */
   path: string;
-  image?: string;
+  /**
+   * The page's social preview card, by slug — a file under `public/og/`, built
+   * by `scripts/build-og-images.ts`.
+   *
+   * Required, deliberately. Before this every route inherited one shared
+   * `og-radiocom.jpg` from the root, so a shared product link and a shared
+   * service link rendered identically in Telegram and WhatsApp — which is how
+   * a catalogue URL actually travels in this market. The two page types that
+   * *did* override it pointed at a raw 1024x1024 catalogue `.webp` while the
+   * root still declared `og:image:width` 1200 and `height` 630, so scrapers
+   * were told dimensions the file does not have.
+   *
+   * Making it a required argument rather than an optional one is the whole
+   * point: a new page cannot quietly fall back to the generic card, because it
+   * will not compile until someone has decided what it should share as.
+   */
+  ogCard: string;
   type?: "website" | "article" | "product";
   /**
    * Emits the Open Graph product namespace. Facebook, Telegram and VK read
@@ -154,11 +170,20 @@ export function pageMeta(opts: {
       property: "og:locale:alternate",
       content: OG_LOCALE[l],
     })),
-    ...(opts.image ? [{ property: "og:image", content: absolute(opts.image) }] : []),
+    // Width, height and alt travel *with* the image, never separately. The root
+    // sets a site-wide default for all four; emitting only the URL here would
+    // leave the root's dimensions describing a different file, and a scraper
+    // told the wrong size letterboxes the card or drops it.
+    { property: "og:image", content: absolute(`/og/${opts.ogCard}.jpg`) },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
+    { property: "og:image:type", content: "image/jpeg" },
+    { property: "og:image:alt", content: opts.title },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: opts.title },
     { name: "twitter:description", content: opts.description },
-    ...(opts.image ? [{ name: "twitter:image", content: absolute(opts.image) }] : []),
+    { name: "twitter:image", content: absolute(`/og/${opts.ogCard}.jpg`) },
+    { name: "twitter:image:alt", content: opts.title },
 
     // Open Graph product namespace. Only emitted where there is a real number:
     // `product:price:amount` with an empty or invented value is worse than
