@@ -84,10 +84,50 @@ export function Nav() {
     <>
       <header className="frost-nav fixed top-0 left-0 right-0 z-40">
         <div className="shell shell-wide h-12 flex items-center justify-between gap-4">
-          {/* Left nav */}
+          {/* Wordmark — leftmost, in normal flow, at every width.
+          
+              It used to be `lg:absolute lg:left-1/2 lg:-translate-x-1/2`,
+              centred between the two `flex-1` siblings below regardless of
+              their own content width. apple.com's own glyph sits at the true
+              left edge of the bar, not centred over it — this moved the mark
+              here, first in document order, so flex places it there without
+              needing `position` at all. `shrink-0` keeps it from being
+              squeezed once the middle nav below is also fighting for room. */}
+          <LocaleLink
+            to="/"
+            className="flex min-h-11 shrink-0 items-center"
+            aria-label="Radiocom"
+          >
+            <img
+              src={logoAsset}
+              alt="Radiocom"
+              width={180}
+              height={32}
+              srcSet={`${logoAsset300} 300w, ${logoAsset} 600w`}
+              sizes="180px"
+              className="h-[22px] w-auto"
+            />
+          </LocaleLink>
+
+          {/* Desktop nav links — fills exactly the space between the wordmark
+              and the icon cluster, and `justify-between` spreads its own
+              children across that whole width rather than clustering them at
+              the box's own left edge, which is what happened when this `nav`
+              was `flex-1` with no justification of its own.
+          
+              The desktop/mobile switch is `xl` (1280px), not Tailwind's `lg`
+              (1024px). Measured directly: at 1024-1150px the six links, the
+              Industries dropdown, three icons and the CTA together need more
+              room than the shell has, so "PoC системы" wraps to two lines and
+              the CTA's own text clips against the viewport edge — `header` is
+              `position: fixed`, which excludes it from the document's own
+              `scrollWidth`, so this overflow produces no scrollbar and is
+              silent unless you measure the shell's content width directly, as
+              I did to find it. `xl` is the first breakpoint where everything
+              in this row genuinely fits on one line with no shrinking. */}
           <nav
             aria-label={t("footer.nav_col")}
-            className="hidden lg:flex items-center gap-6 flex-1"
+            className="hidden xl:flex flex-1 items-center justify-between gap-6"
           >
             {links.map((l) => {
               const active = l.to === "/" ? pathname === "/" : pathname.startsWith(l.to);
@@ -158,29 +198,16 @@ export function Nav() {
             </div>
           </nav>
 
-          {/* Center wordmark */}
-          {/* `min-h-11`: the wordmark renders 22px tall, so the link that wraps
-              it was a 126x22 tap target — half the height a thumb needs, on the
-              control every visitor uses to get home. The extra height is
-              padding on the link, not on the mark. */}
-          <LocaleLink
-            to="/"
-            className="flex min-h-11 items-center lg:absolute lg:left-1/2 lg:-translate-x-1/2"
-            aria-label="Radiocom"
-          >
-            <img
-              src={logoAsset}
-              alt="Radiocom"
-              width={180}
-              height={32}
-              srcSet={`${logoAsset300} 300w, ${logoAsset} 600w`}
-              sizes="180px"
-              className="h-[22px] w-auto"
-            />
-          </LocaleLink>
-
-          {/* Right actions */}
-          <div className="hidden lg:flex items-center justify-end gap-3 flex-1">
+          {/* Right actions — icon-sized, not a growing box.
+          
+              This used to be `flex-1` too, which split the remaining width
+              50/50 with the nav above and let `justify-end` push its content
+              to that box's right edge — the same visual result, but by
+              accident. Dropping `flex-1` here means the nav's `flex-1` above
+              consumes *all* the leftover space, and this cluster is exactly
+              as wide as its three icons — closer to what apple.com's chrome
+              actually is (content-sized, not a phantom half-width box). */}
+          <div className="hidden xl:flex shrink-0 items-center justify-end gap-3">
             {/* Search sits in the chrome, not only in the footer. It is the
                 route the WebSite node's SearchAction advertises to Google, and
                 a search a visitor cannot find is a search that does not exist —
@@ -193,16 +220,22 @@ export function Nav() {
               <Search className="h-5 w-5" aria-hidden />
             </LocaleLink>
             <LangToggle />
+            {/* `px-3`, a call-site override on top of `pill-sm` — already the
+                smallest tier the button system has (styles.css:294-298).
+                apple.com's own chrome carries no button here at all, just two
+                plain icons; this keeps the action but tightens it so it sits
+                quietly last in the icon cluster instead of visually competing
+                with search and the language toggle for the same 44px row. */}
             <button
               onClick={() => openLead({ title: t("nav.get_quote") })}
-              className="pill pill-sm pill-accent"
+              className="pill pill-sm pill-accent px-3"
             >
               {t("nav.get_quote")}
             </button>
           </div>
 
           {/* Mobile */}
-          <div className="lg:hidden flex items-center gap-2">
+          <div className="xl:hidden flex items-center gap-2">
             <LangToggle />
             <button
               ref={menuBtnRef}
@@ -229,7 +262,7 @@ export function Nav() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={spring}
-            className="fixed inset-0 z-50 lg:hidden bg-pitch"
+            className="fixed inset-0 z-50 xl:hidden bg-pitch"
           >
             <div className="flex items-center justify-between px-5 h-12 border-b border-border">
               <img
