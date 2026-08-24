@@ -112,7 +112,9 @@ export function SectionHead({
   const heading = (
     <div className={centred ? "text-center mx-auto max-w-3xl" : "text-left"}>
       {eyebrow && (
-        <div className="eyebrow-sweep text-[13px] tracking-wide font-medium mb-4">{brandCase(eyebrow)}</div>
+        <div className="eyebrow-sweep text-[13px] tracking-wide font-medium mb-4">
+          {brandCase(eyebrow)}
+        </div>
       )}
       {/*
         `headline` carries weight, tracking and leading but deliberately no

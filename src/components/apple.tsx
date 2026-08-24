@@ -216,7 +216,9 @@ export function StackedTile({
       )}
     >
       <div className={cn("relative", centred && "text-center")}>
-        {eyebrow ? <div className="text-[14px] font-medium text-cool">{brandCase(eyebrow)}</div> : null}
+        {eyebrow ? (
+          <div className="text-[14px] font-medium text-cool">{brandCase(eyebrow)}</div>
+        ) : null}
         <h3 className="type-title mt-2 hyphens-auto break-words">{brandCase(title)}</h3>
         {body ? (
           <p
@@ -1061,12 +1063,16 @@ export function ExpandCard({
       )}
     >
       {eyebrow ? (
-        <div className="mb-2 text-[12px] font-medium leading-tight text-cool">{brandCase(eyebrow)}</div>
+        <div className="mb-2 text-[12px] font-medium leading-tight text-cool">
+          {brandCase(eyebrow)}
+        </div>
       ) : null}
       <h3 className="text-[17px] font-semibold leading-[1.25] tracking-[-0.01em] text-crisp">
         {brandCase(title)}
       </h3>
-      {body ? <p className="mt-2 text-[13px] leading-relaxed text-cool">{brandCase(body)}</p> : null}
+      {body ? (
+        <p className="mt-2 text-[13px] leading-relaxed text-cool">{brandCase(body)}</p>
+      ) : null}
 
       {detail ? (
         <div
@@ -1192,7 +1198,9 @@ export function PosterCard({
           gives it the width to sit on one. */}
       <div className="relative z-10 p-4 sm:p-5">
         {eyebrow ? (
-          <div className="text-[12px] font-medium leading-tight text-white/85">{brandCase(eyebrow)}</div>
+          <div className="text-[12px] font-medium leading-tight text-white/85">
+            {brandCase(eyebrow)}
+          </div>
         ) : null}
         {/* `max-w-[15ch]` from `sm` up only. It exists to stop a long sector
             name running a desktop card's full width, but on a 210px phone card

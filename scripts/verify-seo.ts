@@ -932,7 +932,8 @@ console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
     // asserted. It does not need to be: when the define is missing, both the
     // sitemap and the page fall back to the build date, which is exactly the
     // behaviour that shipped before any of this existed.
-    if (!modified) problems.push(`${slug}: og:type is article but article:modified_time is missing`);
+    if (!modified)
+      problems.push(`${slug}: og:type is article but article:modified_time is missing`);
     else if (!/^\d{4}-\d{2}-\d{2}$/.test(modified))
       problems.push(`${slug}: article:modified_time "${modified}" is not an ISO date`);
     else if (modified !== CONTENT_DATE)
