@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { type ReactNode, useCallback, useEffect, useRef, useState } from "react";
+import { type ReactNode, type RefObject, useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { fadeUpAt } from "@/lib/springs";
 import { cn } from "@/lib/utils";
@@ -250,6 +250,111 @@ export function StackedTile({
  * `scrollBy` respects `prefers-reduced-motion` by asking for `auto` behaviour
  * when the user has asked for less movement.
  */
+/**
+ * Prev/next paging for a horizontal scroll track, shared by every shelf on
+ * the site so the behaviour — bottom-right placement, disable at each end,
+ * and disappearing entirely when there is nothing to scroll — lives in one
+ * place instead of three copies quietly drifting apart.
+ *
+ * `HighlightsShelf` used to own this outright, centred *below* the row. Two
+ * problems with that: apple.com's own lineup puts the pair bottom-right,
+ * tucked close to the row rather than spanning under it; and a shelf with
+ * only one or two cards — a product's "where used" section naming a single
+ * industry — showed two permanently-disabled buttons under a row that never
+ * needed them, which reads as broken chrome rather than as "nothing to do
+ * here." `canScroll` is what fixes the second problem: the pair renders only
+ * when the track's content is actually wider than the track itself.
+ */
+function useScrollArrows(track: RefObject<HTMLElement | null>) {
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(true);
+  const [canScroll, setCanScroll] = useState(false);
+
+  const sync = useCallback(() => {
+    const el = track.current;
+    if (!el) return;
+    // 2px of slack: sub-pixel layout means scrollLeft rarely hits the exact
+    // maximum, and without it the trailing arrow never disables.
+    setCanScroll(el.scrollWidth > el.clientWidth + 2);
+    setAtStart(el.scrollLeft <= 2);
+    setAtEnd(el.scrollLeft >= el.scrollWidth - el.clientWidth - 2);
+  }, [track]);
+
+  useEffect(() => {
+    const el = track.current;
+    if (!el) return;
+    sync();
+    el.addEventListener("scroll", sync, { passive: true });
+    const ro = new ResizeObserver(sync);
+    ro.observe(el);
+    return () => {
+      el.removeEventListener("scroll", sync);
+      ro.disconnect();
+    };
+  }, [sync, track]);
+
+  const page = useCallback(
+    (dir: -1 | 1) => {
+      const el = track.current;
+      if (!el) return;
+      const card = el.firstElementChild as HTMLElement | null;
+      // Advance by one card plus the gap, so a page lands on a snap point
+      // instead of halfway across two cards.
+      const step = card ? card.offsetWidth + 16 : el.clientWidth * 0.8;
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      el.scrollBy({ left: dir * step, behavior: reduced ? "auto" : "smooth" });
+    },
+    [track],
+  );
+
+  return { atStart, atEnd, canScroll, page };
+}
+
+function ScrollArrows({
+  label,
+  atStart,
+  atEnd,
+  canScroll,
+  page,
+  className = "",
+}: {
+  /** Accessible name for the pair — "<shelf label>: previous/next". */
+  label: string;
+  atStart: boolean;
+  atEnd: boolean;
+  canScroll: boolean;
+  page: (dir: -1 | 1) => void;
+  className?: string;
+}) {
+  if (!canScroll) return null;
+  return (
+    <div className={cn("mt-4 flex items-center justify-end gap-2", className)}>
+      {([-1, 1] as const).map((dir) => {
+        const disabled = dir === -1 ? atStart : atEnd;
+        const Icon = dir === -1 ? ChevronLeft : ChevronRight;
+        return (
+          <button
+            key={dir}
+            type="button"
+            onClick={() => page(dir)}
+            disabled={disabled}
+            aria-label={`${label}: ${dir === -1 ? "previous" : "next"}`}
+            className={cn(
+              "flex h-11 w-11 items-center justify-center rounded-full bg-charcoal text-crisp",
+              "transition-[opacity,transform] duration-200",
+              "hover:scale-105 active:scale-95",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2",
+              disabled && "pointer-events-none opacity-30",
+            )}
+          >
+            <Icon className="h-5 w-5" aria-hidden />
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 export function HighlightsShelf({
   children,
   label,
@@ -269,41 +374,7 @@ export function HighlightsShelf({
   stagger?: boolean;
 }) {
   const track = useRef<HTMLDivElement>(null);
-  const [atStart, setAtStart] = useState(true);
-  const [atEnd, setAtEnd] = useState(false);
-
-  const sync = useCallback(() => {
-    const el = track.current;
-    if (!el) return;
-    // 2px of slack: sub-pixel layout means scrollLeft rarely hits the exact
-    // maximum, and without it the trailing arrow never disables.
-    setAtStart(el.scrollLeft <= 2);
-    setAtEnd(el.scrollLeft >= el.scrollWidth - el.clientWidth - 2);
-  }, []);
-
-  useEffect(() => {
-    const el = track.current;
-    if (!el) return;
-    sync();
-    el.addEventListener("scroll", sync, { passive: true });
-    const ro = new ResizeObserver(sync);
-    ro.observe(el);
-    return () => {
-      el.removeEventListener("scroll", sync);
-      ro.disconnect();
-    };
-  }, [sync]);
-
-  const page = (dir: -1 | 1) => {
-    const el = track.current;
-    if (!el) return;
-    const card = el.firstElementChild as HTMLElement | null;
-    // Advance by one card plus the gap, so a page lands on a snap point
-    // instead of halfway across two cards.
-    const step = card ? card.offsetWidth + 16 : el.clientWidth * 0.8;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    el.scrollBy({ left: dir * step, behavior: reduced ? "auto" : "smooth" });
-  };
+  const arrows = useScrollArrows(track);
 
   return (
     <div>
@@ -324,30 +395,7 @@ export function HighlightsShelf({
         {children}
       </div>
 
-      <div className="mt-8 flex items-center justify-center gap-3">
-        {([-1, 1] as const).map((dir) => {
-          const disabled = dir === -1 ? atStart : atEnd;
-          const Icon = dir === -1 ? ChevronLeft : ChevronRight;
-          return (
-            <button
-              key={dir}
-              type="button"
-              onClick={() => page(dir)}
-              disabled={disabled}
-              aria-label={`${label}: ${dir === -1 ? "previous" : "next"}`}
-              className={cn(
-                "flex h-11 w-11 items-center justify-center rounded-full bg-charcoal text-crisp",
-                "transition-[opacity,transform] duration-200",
-                "hover:scale-105 active:scale-95",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2",
-                disabled && "pointer-events-none opacity-30",
-              )}
-            >
-              <Icon className="h-5 w-5" aria-hidden />
-            </button>
-          );
-        })}
-      </div>
+      <ScrollArrows label={label} {...arrows} />
     </div>
   );
 }
@@ -455,72 +503,81 @@ export function CompareTable({
    */
   rowHeaderLabel?: string;
 }) {
+  const track = useRef<HTMLDivElement>(null);
+  const arrows = useScrollArrows(track);
+
   return (
-    <div className="no-scrollbar bleed-x overflow-x-auto md:mx-0 md:px-0">
-      <table className="w-full min-w-[640px] border-collapse text-center">
-        {caption ? <caption className="sr-only">{caption}</caption> : null}
-        <thead>
-          <tr>
-            <th scope="col" className="w-[1%] whitespace-nowrap p-0 text-left">
-              <span className="sr-only">{rowHeaderLabel ?? "Specification"}</span>
-            </th>
-            {columns.map((c) => (
-              <th key={c.id} scope="col" className="px-3 pb-8 align-bottom md:px-5">
-                {c.media ? <div className="mb-4 flex justify-center">{c.media}</div> : null}
-                <div
-                  className={`text-[19px] font-semibold tracking-[-0.02em] md:text-[21px] ${
-                    c.highlight ? "text-signal" : "text-crisp"
-                  }`}
-                >
-                  {c.name}
-                </div>
-                {c.tagline ? (
-                  <div className="mx-auto mt-1.5 max-w-[15rem] text-[13px] font-normal leading-snug text-cool">
-                    {c.tagline}
+    <div>
+      <div ref={track} className="no-scrollbar bleed-x overflow-x-auto md:mx-0 md:px-0">
+        <table className="w-full min-w-[640px] border-collapse text-center">
+          {caption ? <caption className="sr-only">{caption}</caption> : null}
+          <thead>
+            <tr>
+              <th scope="col" className="w-[1%] whitespace-nowrap p-0 text-left">
+                <span className="sr-only">{rowHeaderLabel ?? "Specification"}</span>
+              </th>
+              {columns.map((c) => (
+                <th key={c.id} scope="col" className="px-3 pb-8 align-bottom md:px-5">
+                  {c.media ? <div className="mb-4 flex justify-center">{c.media}</div> : null}
+                  <div
+                    className={`text-[19px] font-semibold tracking-[-0.02em] md:text-[21px] ${
+                      c.highlight ? "text-signal" : "text-crisp"
+                    }`}
+                  >
+                    {c.name}
                   </div>
-                ) : null}
-                {c.note ? (
-                  <div className="mt-2 text-[13px] font-normal text-cool">{c.note}</div>
-                ) : null}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r) => (
-            <tr key={r.id} className="border-t border-border">
-              <th
-                scope="row"
-                className="whitespace-nowrap py-5 pr-6 text-left text-[13px] font-normal text-cool"
-              >
-                {r.label}
-              </th>
-              {columns.map((c) => (
-                <td
-                  key={c.id}
-                  className="px-3 py-5 align-top text-[15px] leading-snug text-crisp md:px-5"
-                >
-                  {c.values[r.id] ?? <span className="text-cool">—</span>}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-        {columns.some((c) => c.actions) ? (
-          <tfoot>
-            <tr className="border-t border-border">
-              <td className="p-0" />
-              {columns.map((c) => (
-                <td key={c.id} className="px-3 pt-8 align-top md:px-5">
-                  {c.actions ? (
-                    <div className="flex flex-col items-center gap-3">{c.actions}</div>
+                  {c.tagline ? (
+                    <div className="mx-auto mt-1.5 max-w-[15rem] text-[13px] font-normal leading-snug text-cool">
+                      {c.tagline}
+                    </div>
                   ) : null}
-                </td>
+                  {c.note ? (
+                    <div className="mt-2 text-[13px] font-normal text-cool">{c.note}</div>
+                  ) : null}
+                </th>
               ))}
             </tr>
-          </tfoot>
-        ) : null}
-      </table>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr key={r.id} className="border-t border-border">
+                <th
+                  scope="row"
+                  className="whitespace-nowrap py-5 pr-6 text-left text-[13px] font-normal text-cool"
+                >
+                  {r.label}
+                </th>
+                {columns.map((c) => (
+                  <td
+                    key={c.id}
+                    className="px-3 py-5 align-top text-[15px] leading-snug text-crisp md:px-5"
+                  >
+                    {c.values[r.id] ?? <span className="text-cool">—</span>}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+          {columns.some((c) => c.actions) ? (
+            <tfoot>
+              <tr className="border-t border-border">
+                <td className="p-0" />
+                {columns.map((c) => (
+                  <td key={c.id} className="px-3 pt-8 align-top md:px-5">
+                    {c.actions ? (
+                      <div className="flex flex-col items-center gap-3">{c.actions}</div>
+                    ) : null}
+                  </td>
+                ))}
+              </tr>
+            </tfoot>
+          ) : null}
+        </table>
+      </div>
+      {/* `caption` doubles as the arrow pair's accessible name — both call
+          sites already pass one for the table's own sr-only caption, so this
+          adds no new required prop. */}
+      <ScrollArrows label={caption ?? "Comparison"} {...arrows} className="mr-1" />
     </div>
   );
 }
@@ -808,6 +865,9 @@ export function FilterPills<T extends string>({
  * the crawler a dense in-page link mesh to the model URLs.
  */
 export function ModelStrip({ children, label }: { children: ReactNode; label: string }) {
+  const track = useRef<HTMLUListElement>(null);
+  const arrows = useScrollArrows(track);
+
   return (
     <nav aria-label={label} className="bleed-x">
       {/* gap-6, not gap-8. At 1440 the Radiocom row is nine chips wide and
@@ -817,7 +877,10 @@ export function ModelStrip({ children, label }: { children: ReactNode; label: st
           but a row that almost fits and clips one glyph reads as a bug rather
           than as an invitation to scroll. `pr-2` keeps the last chip off the
           clip edge when it does scroll. */}
-      <ul className="no-scrollbar flex gap-5 overflow-x-auto pb-1 pr-2 md:gap-6">{children}</ul>
+      <ul ref={track} className="no-scrollbar flex gap-5 overflow-x-auto pb-1 pr-2 md:gap-6">
+        {children}
+      </ul>
+      <ScrollArrows label={label} {...arrows} />
     </nav>
   );
 }
