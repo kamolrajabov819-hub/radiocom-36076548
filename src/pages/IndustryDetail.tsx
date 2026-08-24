@@ -64,6 +64,10 @@ export const routeOptions = {
         path,
         type: "article",
         ogCard: `industries-${slug}`,
+        // `name`, not `inTitle`. The section is a label a scraper files the
+        // page under, so it wants the industry as it is displayed — the `.seo`
+        // variant exists only to read correctly inside a Russian sentence.
+        article: { section: name },
       }),
       links: localeLinks(params.lang, path),
       scripts: [

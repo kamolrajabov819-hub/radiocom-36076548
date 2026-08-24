@@ -19,6 +19,8 @@ import {
   localBusinessSchema,
   ORG_LOGO,
   BUSINESS_IMAGE,
+  ORG_DESCRIPTION,
+  CONTENT_DATE,
 } from "../src/lib/seo";
 // `visibleProducts` is what the site advertises; `products` is the full
 // record, which stays larger because hidden models keep their /catalog 301s.
@@ -36,6 +38,7 @@ import { entries } from "./lib/sitemap";
 // The real search route, so the indexability gate below exercises the code
 // that actually ships rather than the helper it calls.
 import { routeOptions as searchRoute } from "../src/pages/Search";
+import { routeOptions as industryRoute } from "../src/pages/IndustryDetail";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
@@ -883,6 +886,86 @@ console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
 
   if (problems.length) bad(`search indexability:\n     ${problems.join("\n     ")}`);
   else console.log("ok  /search form indexable and in the sitemap, ?q= results noindex, follow");
+}
+
+// 25. A page that calls itself an article must carry the article namespace.
+//
+//     The industry pages have declared `og:type: article` since they were
+//     built, and emitted nothing else from that namespace — a content type
+//     announced with no section to file it under and no date to sort it by.
+//     Either half is a decision: the type could have been dropped instead. It
+//     was not, because these pages carry real editorial content (the pain
+//     list, the outcomes, a per-industry FAQ), so the fix is to finish the
+//     declaration rather than retract it.
+//
+//     Driven through the route's own `head()`, for the reason check 24
+//     documents at length: asserting that `pageMeta` *can* emit the tags proves
+//     nothing about whether any page asks it to.
+{
+  const problems: string[] = [];
+  for (const slug of INDUSTRY_SLUGS) {
+    const head = industryRoute.head({ params: { lang: "ru" as const, slug } }) as {
+      meta: { property?: string; content?: string }[];
+    };
+    const prop = (k: string) => head.meta.find((m) => m.property === k)?.content;
+
+    if (prop("og:type") !== "article") continue; // not an article; nothing owed.
+
+    const section = prop("article:section");
+    const modified = prop("article:modified_time");
+    const name = tFor("ru")(`industries.${slug}.name`);
+
+    if (!section) problems.push(`${slug}: og:type is article but article:section is missing`);
+    else if (section !== name)
+      problems.push(`${slug}: article:section is "${section}", the page is titled "${name}"`);
+
+    // What this can and cannot see, stated plainly rather than implied.
+    //
+    // The shipped value is injected by the vite define in `vite.config.ts`.
+    // This script runs under Bun with no define, so `CONTENT_DATE` here is the
+    // fallback in `src/lib/seo.ts` — which means the comparison below pins the
+    // *plumbing*, not the date: it proves the page emits the one shared
+    // constant instead of computing a date of its own, which is the mistake
+    // that would let `article:modified_time` and `<lastmod>` drift apart.
+    //
+    // That the define itself lands is not assertable from here and is not
+    // asserted. It does not need to be: when the define is missing, both the
+    // sitemap and the page fall back to the build date, which is exactly the
+    // behaviour that shipped before any of this existed.
+    if (!modified) problems.push(`${slug}: og:type is article but article:modified_time is missing`);
+    else if (!/^\d{4}-\d{2}-\d{2}$/.test(modified))
+      problems.push(`${slug}: article:modified_time "${modified}" is not an ISO date`);
+    else if (modified !== CONTENT_DATE)
+      problems.push(
+        `${slug}: article:modified_time is ${modified}, not the shared CONTENT_DATE (${CONTENT_DATE}) the sitemap's lastmod also comes from`,
+      );
+  }
+  if (problems.length) bad(`article metadata:\n     ${problems.join("\n     ")}`);
+  else console.log("ok  every article page carries article:section and a real modified_time");
+}
+
+// 26. The Organization description must be the site's own published words.
+//
+//     Google cross-checks a knowledge-panel description against what the page
+//     says about itself, so a schema description written separately from the
+//     home meta is two claims about one business. Pinning the constant to
+//     `meta.home.desc` means the copywriter can rewrite the description without
+//     knowing the schema exists, and the build tells them if the two drift.
+{
+  const problems: string[] = [];
+  const org = organizationSchema() as { description?: string };
+  const published = tFor("ru")("meta.home.desc");
+
+  if (!org.description) problems.push("Organization has no description");
+  else if (org.description !== published)
+    problems.push(
+      `Organization.description does not match meta.home.desc\n       schema: ${org.description}\n       ru.json: ${published}`,
+    );
+  if (ORG_DESCRIPTION !== published)
+    problems.push("ORG_DESCRIPTION has drifted from ru.json's meta.home.desc");
+
+  if (problems.length) bad(`organization description:\n     ${problems.join("\n     ")}`);
+  else console.log("ok  Organization.description is the published home description, verbatim");
 }
 
 console.log(fail === 0 ? "\nALL SEO CHECKS PASSED" : `\n${fail} FAILURES`);
