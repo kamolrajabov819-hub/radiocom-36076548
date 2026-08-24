@@ -41,6 +41,8 @@ const ROUTES = [
   "/compare",
   "/industries",
   "/industries/construction",
+  "/sitemap",
+  "/search?q=RCD",
 ];
 
 const CASES = [

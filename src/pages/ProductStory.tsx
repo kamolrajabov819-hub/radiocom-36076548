@@ -13,6 +13,7 @@ import {
   PosterCard,
   PricePill,
   StatPanel,
+  statSizeTier,
   TintedHeadline,
 } from "@/components/apple";
 import { openLead } from "@/components/LeadFormSheet";
@@ -323,23 +324,33 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
           </div>
         </article>
 
-        {facts.map((c) => (
-          <article
-            key={c.label + c.value}
-            className={`flex ${width} shrink-0 snap-start flex-col justify-between rounded-[28px] p-7 ${
-              c.lead ? "bg-black text-[#f5f5f7]" : "bg-charcoal text-crisp"
-            }`}
-          >
-            <div className={`text-[14px] font-medium ${c.lead ? "opacity-70" : "text-cool"}`}>
-              {c.label}
-            </div>
-            {/* 26px held a value like «до 3 км, 8 Вт» hard against the card's
-                padding on a 78vw phone card. One step down below `sm`. */}
-            <div className="mt-8 text-[21px] font-semibold leading-[1.15] tracking-[-0.02em] sm:text-[26px]">
-              {c.value}
-            </div>
-          </article>
-        ))}
+        {facts.map((c) => {
+          // Same length-aware tiering `StatPanel` uses, at this card's own
+          // smaller scale — a spec row can carry any string a model's data
+          // happens to have, with no guarantee it is as short as "до 3 км".
+          const sizeClass = {
+            lg: "text-[21px] sm:text-[26px]",
+            md: "text-[17px] sm:text-[20px]",
+            sm: "text-[14px] sm:text-[16px]",
+          }[statSizeTier(c.value)];
+          return (
+            <article
+              key={c.label + c.value}
+              className={`flex ${width} shrink-0 snap-start flex-col justify-between rounded-[28px] p-7 ${
+                c.lead ? "bg-black text-[#f5f5f7]" : "bg-charcoal text-crisp"
+              }`}
+            >
+              <div className={`text-[14px] font-medium ${c.lead ? "opacity-70" : "text-cool"}`}>
+                {c.label}
+              </div>
+              {/* 26px held a value like «до 3 км, 8 Вт» hard against the card's
+                  padding on a 78vw phone card. One step down below `sm`. */}
+              <div className={cn("mt-8 font-semibold leading-[1.15] tracking-[-0.02em]", sizeClass)}>
+                {c.value}
+              </div>
+            </article>
+          );
+        })}
       </HighlightsShelf>
     </Section>
   );
@@ -587,9 +598,10 @@ function InBox({ p, lang }: { p: Product; lang: Lang }) {
               className="flex items-baseline justify-between gap-4 border-b border-border py-5"
             >
               <span className="text-[17px] text-crisp">{pick(line.item, lang)}</span>
-              {(line.qty ?? 1) > 1 ? (
-                <span className="shrink-0 text-[15px] tabular-nums text-cool">×{line.qty}</span>
-              ) : null}
+              {/* Always shown, including ×1 — a kit line with no count read as
+                  an omission, not as "obviously one," and the twin-radio
+                  packs on this same list already carry a ×2 right beside it. */}
+              <span className="shrink-0 text-[15px] tabular-nums text-cool">×{line.qty ?? 1}</span>
             </li>
           ))}
         </ul>
@@ -646,57 +658,35 @@ function WhereUsed({ p, lang }: { p: Product; lang: Lang }) {
   return (
     <Section band="plain">
       <SectionHead align="left" spacing="tight" title={t("px.where_used")} />
-      {/* Three or more industries scroll sideways, the way every other card
-          row on the site does: two half-cards wedged into a phone-width grid
-          were unreadable posters. One or two stay a grid — a scroller with
-          nothing to scroll is worse than a short row. */}
-      {slugs.length >= 3 ? (
-        <HighlightsShelf label={t("px.where_used")}>
-          {slugs.map((slug, i) => (
-            <PosterCard
-              key={slug}
-              idx={i}
-              className="w-[62vw] shrink-0 snap-start sm:w-[38vw] lg:w-[calc((100%-3rem)/4)]"
-              image={INDUSTRY_POSTERS[slug]}
-              eyebrow={t(`industries.${slug}.short`)}
-              title={t(`industries.${slug}.name`)}
-              href={
-                <LocaleLink
-                  to="/industries/$slug"
-                  params={{ slug }}
-                  className="absolute inset-0 z-20 rounded-[18px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
-                  aria-label={t(`industries.${slug}.name`)}
-                />
-              }
-            />
-          ))}
-        </HighlightsShelf>
-      ) : (
-        <div
-          className={cn(
-            "grid gap-4",
-            slugs.length === 1 ? "max-w-[320px] grid-cols-1" : "max-w-[660px] grid-cols-2",
-          )}
-        >
-          {slugs.map((slug, i) => (
-            <PosterCard
-              key={slug}
-              idx={i}
-              image={INDUSTRY_POSTERS[slug]}
-              eyebrow={t(`industries.${slug}.short`)}
-              title={t(`industries.${slug}.name`)}
-              href={
-                <LocaleLink
-                  to="/industries/$slug"
-                  params={{ slug }}
-                  className="absolute inset-0 z-20 rounded-[18px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
-                  aria-label={t(`industries.${slug}.name`)}
-                />
-              }
-            />
-          ))}
-        </div>
-      )}
+      {/* Always the scrolling shelf, the way every other card row on the site
+          works — one or two industries no longer fall back to a plain grid.
+          That branch existed because a shelf whose arrows are permanently
+          disabled reads as broken chrome, but `HighlightsShelf` now hides its
+          own arrow pair whenever the track has nothing to scroll (see
+          `useScrollArrows`'s `canScroll`), so a one-card shelf and a six-card
+          shelf both render correctly with no branch needed here — the card
+          shape, spacing and shelf chrome stay identical regardless of count,
+          which is what "make it like the others" actually asked for. */}
+      <HighlightsShelf label={t("px.where_used")}>
+        {slugs.map((slug, i) => (
+          <PosterCard
+            key={slug}
+            idx={i}
+            className="w-[62vw] shrink-0 snap-start sm:w-[38vw] lg:w-[calc((100%-3rem)/4)]"
+            image={INDUSTRY_POSTERS[slug]}
+            eyebrow={t(`industries.${slug}.short`)}
+            title={t(`industries.${slug}.name`)}
+            href={
+              <LocaleLink
+                to="/industries/$slug"
+                params={{ slug }}
+                className="absolute inset-0 z-20 rounded-[18px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
+                aria-label={t(`industries.${slug}.name`)}
+              />
+            }
+          />
+        ))}
+      </HighlightsShelf>
       <p className="sr-only">{pick(p.blurb, lang)}</p>
     </Section>
   );

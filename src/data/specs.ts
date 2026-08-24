@@ -260,11 +260,7 @@ export const specs: Record<string, ProductSpec> = {
     ],
     rows: [
       ...pmr446(cityOpen(upToKm("1,5"), upToKm("10"))),
-      row(SPEC.ingress, {
-        ru: "IP67 — пыле- и влагозащита",
-        en: "IP67 — dust and water protection",
-        uz: "IP67 — chang va suvdan himoya",
-      }),
+      row(SPEC.ingress, ip("IP67")),
       row(SPEC.channels, channelsCodes("8", "121")),
       row(SPEC.callTones, callTones("20")),
       row(SPEC.power, watts("0,5")),
@@ -555,11 +551,7 @@ export const specs: Record<string, ProductSpec> = {
     rows: [
       row(SPEC.standard, V.dmr),
       row(SPEC.mode, V.analogDigital),
-      row(SPEC.ingress, {
-        ru: "IP67 — защита от воды и пыли",
-        en: "IP67 — dust and water protection",
-        uz: "IP67 — suv va changdan himoya",
-      }),
+      row(SPEC.ingress, ip("IP67")),
       row(SPEC.range, cityOpen(upToKm("2,5"), upToKm("10"))),
       row(SPEC.batteryType, liPo("3600")),
       row(SPEC.batteryCapacity, mah("3600")),

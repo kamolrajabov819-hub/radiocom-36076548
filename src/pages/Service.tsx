@@ -196,7 +196,9 @@ function Flow() {
   return (
     <section className="band-soft section">
       <div className="shell">
-        <SectionHead align="left" spacing="tight" title={t("service.flow_title")} />
+        <div data-scrub-in>
+          <SectionHead align="left" spacing="tight" title={t("service.flow_title")} />
+        </div>
         <HighlightsShelf label={t("service.flow_title")} stagger>
           {steps.map((step, i) => {
             const shot = shots[i] ?? shots[0];
@@ -250,7 +252,9 @@ function Advantages() {
   return (
     <section className="band-plain section">
       <div className="shell">
-        <SectionHead align="left" spacing="tight" title={t("service.advantages_title")} />
+        <div data-scrub-in>
+          <SectionHead align="left" spacing="tight" title={t("service.advantages_title")} />
+        </div>
         <BentoGrid>
           {/* Wide photographic tile — the authorised-centre claim, which is the
               one worth showing rather than stating. */}
@@ -265,18 +269,20 @@ function Advantages() {
             // no reason — which is exactly what the unprefixed version did.
             copyClassName="sm:max-w-[56%] lg:max-w-[48%]"
             figure={
-              <ProductShot
-                src={advCertified}
-                cutout
-                srcSmall={advCertified800}
-                alt=""
-                width={1600}
-                height={1600}
-                fit="contain"
-                sizes="(max-width: 640px) 78vw, (max-width: 1024px) 44vw, 300px"
-                className="w-full max-w-[300px] sm:max-w-none"
-                imgClassName="max-h-[220px] sm:max-h-[260px] drop-shadow-[0_18px_28px_rgba(0,0,0,0.12)]"
-              />
+              <div data-parallax="0.06" className="flex h-full w-full items-center justify-center">
+                <ProductShot
+                  src={advCertified}
+                  cutout
+                  srcSmall={advCertified800}
+                  alt=""
+                  width={1600}
+                  height={1600}
+                  fit="contain"
+                  sizes="(max-width: 640px) 78vw, (max-width: 1024px) 44vw, 300px"
+                  className="w-full max-w-[300px] sm:max-w-none"
+                  imgClassName="max-h-[220px] sm:max-h-[260px] drop-shadow-[0_18px_28px_rgba(0,0,0,0.12)]"
+                />
+              </div>
             }
           />
 
@@ -330,7 +336,9 @@ function Policy() {
           the normal grid. */}
       <div className="shell">
         <div className="mx-auto max-w-3xl">
-          <SectionHead align="center" spacing="tight" title={t("service.policy_title")} />
+          <div data-scrub-in>
+            <SectionHead align="center" spacing="tight" title={t("service.policy_title")} />
+          </div>
           <Faq items={rows} />
         </div>
       </div>

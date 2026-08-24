@@ -88,14 +88,6 @@ export type BoxLine = { item: L; qty?: number };
 
 export const box = (item: L, qty?: number): BoxLine => ({ item, qty });
 
-/** "Клипса на пояс — 2 шт" / "Belt clip — 2 pcs" / "Kamarga qisqich — 2 dona" */
-export function formatBoxLine(line: BoxLine, lang: Lang): string {
-  const name = pick(line.item, lang);
-  if (!line.qty) return name;
-  const unit = lang === "en" ? "pcs" : lang === "uz" ? "dona" : "шт";
-  return `${name} — ${line.qty} ${unit}`;
-}
-
 /* ─────────────────────────────────────────────────────────────
    Spec row labels
    ───────────────────────────────────────────────────────────── */

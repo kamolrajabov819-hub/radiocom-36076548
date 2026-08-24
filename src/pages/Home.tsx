@@ -29,8 +29,11 @@ import radiosPair800 from "@/assets/cutout/pair-floating-cutout@800.webp";
 import bentoDetail from "@/assets/radio-macro-cutout.webp";
 import bentoDetail800 from "@/assets/radio-macro-cutout@800.webp";
 import horecaImg from "@/assets/industry-horeca.jpg";
+import horecaImg800 from "@/assets/industry-horeca@800.jpg";
 import constructionImg from "@/assets/industry-construction.jpg";
+import constructionImg800 from "@/assets/industry-construction@800.jpg";
 import securityImg from "@/assets/industry-security.jpg";
+import securityImg800 from "@/assets/industry-security@800.jpg";
 import { openLead } from "@/components/LeadFormSheet";
 import { Section, SectionHead } from "@/components/Section";
 import { BentoGrid, FeatureCard, StackedTile, ScrollRow, ScrollItem } from "@/components/apple";
@@ -478,10 +481,12 @@ function NetworkSplit() {
         >
           <img
             src={bentoDetail}
+            srcSet={`${bentoDetail800} 597w, ${bentoDetail} 1195w`}
+            sizes="(min-width: 768px) 692px, 94vw"
             alt=""
             loading="lazy"
-            width={1400}
-            height={1400}
+            width={1195}
+            height={1600}
             className="absolute inset-0 h-full w-full object-cover"
           />
         </motion.div>
@@ -510,9 +515,9 @@ function NetworkSplit() {
 function IndustriesTeaser() {
   const { t } = useTranslation();
   const items = [
-    { slug: "horeca" as const, img: horecaImg },
-    { slug: "construction" as const, img: constructionImg },
-    { slug: "security" as const, img: securityImg },
+    { slug: "horeca" as const, img: horecaImg, img800: horecaImg800 },
+    { slug: "construction" as const, img: constructionImg, img800: constructionImg800 },
+    { slug: "security" as const, img: securityImg, img800: securityImg800 },
   ];
   return (
     <Section band="soft">
@@ -535,10 +540,12 @@ function IndustriesTeaser() {
               >
                 <img
                   src={it.img}
+                  srcSet={`${it.img800} 800w, ${it.img} 1400w`}
+                  sizes="(min-width: 768px) 456px, 92vw"
                   alt=""
                   loading="lazy"
-                  width={1200}
-                  height={1600}
+                  width={1400}
+                  height={900}
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />

@@ -1,7 +1,9 @@
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 import { LocaleLink } from "@/components/LocaleLink";
 import { Section, SectionHead } from "@/components/Section";
 import { useScrollChoreography } from "@/lib/motion";
+import { spring } from "@/lib/springs";
 import { productsOfBrand } from "@/data/products";
 import { INDUSTRY_SLUGS } from "@/data/industries";
 import { useLang } from "@/lib/locale";
@@ -86,14 +88,20 @@ export function SitemapPage() {
   return (
     <div ref={page} className="page-anim">
       <Section band="plain">
-        <SectionHead align="left" title={t("sitemap.title")} sub={t("sitemap.sub")} />
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={spring}
+        >
+          <SectionHead align="left" title={t("sitemap.title")} sub={t("sitemap.sub")} />
+        </motion.div>
 
         <div className="grid grid-cols-1 gap-x-12 gap-y-14 md:grid-cols-3">
           <nav aria-labelledby="sm-pages">
             <h2 id="sm-pages" className="type-title mb-5 text-crisp">
               {t("sitemap.pages")}
             </h2>
-            <ul className="space-y-1">
+            <ul data-stagger className="space-y-1">
               {PAGES.map((p) => (
                 <li key={p.to}>
                   <LocaleLink
@@ -116,7 +124,7 @@ export function SitemapPage() {
                 <h3 className="mb-2 text-[13px] font-medium uppercase tracking-[0.14em] text-cool">
                   {t(`nav.${brand}`)}
                 </h3>
-                <ul className="space-y-1">
+                <ul data-stagger className="space-y-1">
                   {productsOfBrand(brand).map((p) => (
                     <li key={p.id}>
                       <LocaleLink
@@ -137,7 +145,7 @@ export function SitemapPage() {
             <h2 id="sm-industries" className="type-title mb-5 text-crisp">
               {t("sitemap.industries")}
             </h2>
-            <ul className="space-y-1">
+            <ul data-stagger className="space-y-1">
               {INDUSTRY_SLUGS.map((slug) => (
                 <li key={slug}>
                   <LocaleLink
