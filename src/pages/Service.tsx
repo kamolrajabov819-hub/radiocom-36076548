@@ -131,12 +131,10 @@ function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={spring}
-          className="headline text-crisp"
-          style={{ fontSize: "clamp(2.75rem, 8vw, 6rem)" }}
+          className="headline text-crisp md:text-nowrap"
+          style={{ fontSize: "clamp(1.5rem, 4vw, 2.5rem)" }}
         >
-          {t("service.title_a")}
-          <br />
-          <span className="whitespace-nowrap">{t("service.title_b")}</span>
+          {t("service.title_a")} {t("service.title_b")}
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 16 }}
