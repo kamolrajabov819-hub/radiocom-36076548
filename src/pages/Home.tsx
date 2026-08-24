@@ -28,6 +28,10 @@ import radiosPair800 from "@/assets/cutout/pair-floating-cutout@800.webp";
 // subject shot properly: alpha, so it can float on a tinted band.
 import bentoDetail from "@/assets/radio-macro-cutout.webp";
 import bentoDetail800 from "@/assets/radio-macro-cutout@800.webp";
+// Hands presenting a sealed RCD-70 PRO box, plus a hand offering the radio —
+// the delivery claim, photographed. Shared with the brand pages, which use the
+// same frame for the warranty card.
+import retailBox from "@/assets/cutout/hand-retail-box-cutout@800.webp";
 import horecaImg from "@/assets/industry-horeca.jpg";
 import horecaImg800 from "@/assets/industry-horeca@800.jpg";
 import constructionImg from "@/assets/industry-construction.jpg";
@@ -397,9 +401,17 @@ function ValueShelf() {
           }
         />
 
-        {/* Row 3 — three equal tiles. */}
+        {/* Row 3 — three equal tiles.
+
+            `delivery` carries a photograph where the other two carry an icon,
+            and that asymmetry is deliberate: the claim is that a boxed radio
+            arrives at your door, and the repo has the frame of exactly that —
+            one hand offering a radio, two presenting the sealed RCD-70 box. An
+            icon of a lorry is a pictogram of the idea; this is the thing
+            itself. The other two claims ("free test", "35+ models") have no
+            equivalent frame, and inventing one is what the brief rules out. */}
         {[
-          { key: "delivery", Icon: Truck },
+          { key: "delivery", Icon: Truck, photo: retailBox },
           { key: "test", Icon: Sparkles },
           { key: "models", Icon: Package },
         ].map((it, i) => (
@@ -409,7 +421,21 @@ function ValueShelf() {
             eyebrow={t(`home.bento.${it.key}.title`)}
             title={t(`home.bento.${it.key}.sub`)}
             className="min-h-[260px]"
-            media={<it.Icon className="h-10 w-10 text-signal" strokeWidth={1.5} aria-hidden />}
+            media={
+              it.photo ? (
+                <img
+                  src={it.photo}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  width={800}
+                  height={372}
+                  className="max-h-[130px] w-auto object-contain drop-shadow-[0_14px_22px_rgba(0,0,0,0.12)]"
+                />
+              ) : (
+                <it.Icon className="h-10 w-10 text-signal" strokeWidth={1.5} aria-hidden />
+              )
+            }
           />
         ))}
 

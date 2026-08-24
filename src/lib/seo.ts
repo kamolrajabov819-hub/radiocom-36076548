@@ -38,6 +38,19 @@ export const BUSINESS = {
   sameAs: ["https://t.me/radiocom_uz", "https://www.instagram.com/radiocom_uzb"],
 } as const;
 
+/**
+ * The two images the identity graph points at, named rather than inlined.
+ *
+ * Both used to be `/favicon.png`, and both broke when the icon set was rebuilt
+ * around the cropped signal mark: the favicon went from a 64x64 wordmark to a
+ * 32x32 glyph, which is under Google's documented 112x112 floor for an
+ * Organization logo and far under anything usable as a LocalBusiness photo.
+ * Naming them here means the size contract is stated in one place and
+ * `verify-seo` can assert it — see the "identity images are big enough" gate.
+ */
+export const ORG_LOGO = "/icon-512.png";
+export const BUSINESS_IMAGE = "/og-radiocom.jpg";
+
 /** Absolute URL for a site-relative path. */
 export function absolute(path: string): string {
   if (/^https?:\/\//.test(path)) return path;
@@ -153,6 +166,16 @@ export function pageMeta(opts: {
    * product URL performs in the messaging apps this market actually uses.
    */
   product?: { price: number | null; currency?: string; availability?: "instock" | "oos" };
+  /**
+   * Keep the page out of the index while still following its links.
+   *
+   * For internal search results, which is the one page type Google's own
+   * guidance singles out: `/search?q=…` answers 200 for any query anyone ever
+   * types, so left indexable it is an unbounded set of thin, near-duplicate
+   * URLs competing with the catalogue pages they link to. `follow` because the
+   * links on it are real product links worth crawling.
+   */
+  noindex?: boolean;
 }) {
   const url = absolute(localePath(opts.lang, opts.path));
   const type = opts.type ?? "website";
@@ -160,6 +183,7 @@ export function pageMeta(opts: {
   return [
     { title: opts.title },
     { name: "description", content: opts.description },
+    ...(opts.noindex ? [{ name: "robots", content: "noindex, follow" }] : []),
     { property: "og:type", content: type },
     { property: "og:title", content: opts.title },
     { property: "og:description", content: opts.description },
@@ -262,7 +286,16 @@ export function organizationSchema() {
     name: SITE_NAME,
     legalName: BUSINESS.legalName,
     url: SITE_URL,
-    logo: absolute("/favicon.png"),
+    // `/icon-512.png`, not `/favicon.png`.
+    //
+    // Google documents a hard floor for the Organization logo — the image must
+    // be at least 112x112px — and `favicon.png` stopped clearing it the moment
+    // the icon set was rebuilt: it used to be a 64x64 wordmark and is now the
+    // cropped 32x32 signal mark, which is a third of the required size. A logo
+    // below the minimum is dropped from the knowledge panel silently, so
+    // nothing about the page would have told us. The 512 is the same mark at
+    // the size the manifest already ships.
+    logo: absolute(ORG_LOGO),
     // All three lines, not just the first — a caller who finds the business
     // through a knowledge panel should see the number they'd actually reach.
     telephone: BUSINESS.phones[0],
@@ -297,7 +330,12 @@ export function localBusinessSchema() {
     "@id": `${SITE_URL}/#localbusiness`,
     name: SITE_NAME,
     url: SITE_URL,
-    image: absolute("/favicon.png"),
+    // A 32x32 icon is not a business photograph. Google's LocalBusiness
+    // guidance asks for an image "representative of the business", and the
+    // map pack renders it at a size a favicon has no pixels for. The social
+    // card is the largest real 1200x630 image the site owns and is what every
+    // other surface already shares this business as.
+    image: absolute(BUSINESS_IMAGE),
     telephone: BUSINESS.phones[0],
     priceRange: "$$",
     currenciesAccepted: "UZS",

@@ -495,6 +495,42 @@
   .section-lg { padding-top: 12.5rem; padding-bottom: 12.5rem; }
 }
 
+/*
+ * `page-tight` — the denser rhythm the reference pages run at.
+ *
+ * The steps above are tuned for the home page, which is a marketing page: a
+ * handful of big claims that each want a screen to themselves. A product page
+ * is not that. It is eleven sections of spec, kit, industries and CTA that a
+ * reader is *comparing*, and at 160px top and bottom two adjacent bands put
+ * 320px of empty white between one fact and the next — enough that the range
+ * figures and the box contents never share a screen, which is exactly when a
+ * reader wants both.
+ *
+ * Scoped rather than global: dropping the tokens themselves would take the air
+ * out of the home page too, where it is doing its job. Applied on the page
+ * wrapper of the product and dedicated pages, so a section keeps naming its own
+ * rhythm step and the page decides the scale that step is drawn at.
+ *
+ * Roughly a third off, both steps, both breakpoints — 320px between bands
+ * becomes 208px, which is still inside apple.com's own 100-140px-per-side range
+ * rather than under it.
+ */
+.page-tight .section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+@media (min-width: 768px) {
+  .page-tight .section { padding-top: 6.5rem; padding-bottom: 6.5rem; }
+}
+
+.page-tight .section-tight {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+@media (min-width: 768px) {
+  .page-tight .section-tight { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+}
+
 /* Alternating neutral bands */
 /*
  * `band-tint` — the product-hero band.

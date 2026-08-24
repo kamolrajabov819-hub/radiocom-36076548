@@ -30,7 +30,13 @@ import radioInHand from "@/assets/cutout/hand-radio-cutout.webp";
 import radioInHand800 from "@/assets/cutout/hand-radio-cutout@800.webp";
 import { openLead } from "@/components/LeadFormSheet";
 import { Section, SectionHead } from "@/components/Section";
-import { CompareTable, HighlightsShelf, StatPanel, type CompareColumn } from "@/components/apple";
+import {
+  CompareTable,
+  HighlightsShelf,
+  StatPanel,
+  statRowTier,
+  type CompareColumn,
+} from "@/components/apple";
 import { ProductShot } from "@/components/ProductShot";
 import { spring, fadeUpAt } from "@/lib/springs";
 import {
@@ -111,7 +117,7 @@ export function PoCPage() {
   const page = useScrollChoreography();
 
   return (
-    <div ref={page} className="page-anim">
+    <div ref={page} className="page-anim page-tight">
       <PocHero />
       <StatBand />
       <FeatureSequence />
@@ -250,6 +256,10 @@ function PocHero() {
 function StatBand() {
   const { t } = useTranslation();
   const stats = ["coverage", "scale", "infra"] as const;
+  // One size for the row, from its longest value. These three differ enough in
+  // length ("Не требуется" against "Глобальная (LTE / WiFi)") to land in three
+  // different tiers if each panel sized itself.
+  const size = statRowTier(stats.map((id) => t(`poc.poc_vals.${id}`)));
 
   return (
     <Section band="plain" tight>
@@ -262,7 +272,12 @@ function StatBand() {
           rather than a richer animation — so the Framer wrapper is gone. */}
       <div data-stagger className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         {stats.map((id) => (
-          <StatPanel key={id} value={t(`poc.poc_vals.${id}`)} label={t(`poc.rows.${id}`)} />
+          <StatPanel
+            key={id}
+            value={t(`poc.poc_vals.${id}`)}
+            label={t(`poc.rows.${id}`)}
+            size={size}
+          />
         ))}
       </div>
     </Section>

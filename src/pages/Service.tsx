@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useScrollChoreography } from "@/lib/motion";
 import { useTranslation } from "react-i18next";
-import { Search, Cog, ClipboardCheck } from "lucide-react";
+import { Search, Cog } from "lucide-react";
 import serviceLight from "@/assets/service-tech-light.jpg";
 // One distinct photograph per repair stage — the brief's rule is never to
 // reuse a shot for two slots on the same page, and a lucide icon alone in
@@ -16,6 +16,7 @@ import stageTest from "@/assets/cutout/hands-tradein-cutout.webp";
 import stageTest800 from "@/assets/cutout/hands-tradein-cutout@800.webp";
 import advCertified from "@/assets/cutout/hands-compare-cutout.webp";
 import advCertified800 from "@/assets/cutout/hands-compare-cutout@800.webp";
+import partsRetailBox from "@/assets/cutout/hand-retail-box-cutout@800.webp";
 import { openLead } from "@/components/LeadFormSheet";
 import { spring } from "@/lib/springs";
 import { ProductShot } from "@/components/ProductShot";
@@ -91,7 +92,7 @@ export function ServicePage() {
   const page = useScrollChoreography();
 
   return (
-    <div ref={page} className="page-anim">
+    <div ref={page} className="page-anim page-tight">
       <Hero />
       <BenchStrip />
       <Flow />
@@ -296,12 +297,28 @@ function Advantages() {
             media={<Cog className="h-9 w-9 text-white" strokeWidth={1.5} aria-hidden />}
           />
 
+          {/* The parts claim is "factory components, no analogues and nothing
+              refurbished" — and a sealed retail box is what factory-supplied
+              looks like. Same frame the brand pages use for warranty; it is
+              the one photograph on the site that shows packaging rather than
+              a bare device, which is precisely the distinction this card is
+              making. Replaces a clipboard pictogram. */}
           <FeatureCard
             idx={2}
             title={adv.parts?.t}
             body={adv.parts?.d}
             className="min-h-[240px]"
-            media={<ClipboardCheck className="h-9 w-9 text-signal" strokeWidth={1.5} aria-hidden />}
+            media={
+              <img
+                src={partsRetailBox}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                width={800}
+                height={372}
+                className="max-h-[120px] w-auto object-contain drop-shadow-[0_14px_22px_rgba(0,0,0,0.12)]"
+              />
+            }
           />
           <FeatureCard
             idx={3}

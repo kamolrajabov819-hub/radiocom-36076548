@@ -64,9 +64,17 @@ export const entries: Entry[] = [
   // block — one page linking every route by its real name. It is deliberately
   // low priority: it is a map, not a destination.
   { path: "/sitemap", changefreq: "monthly", priority: "0.3" },
-  // The empty search page. Result pages are noindex by nature (infinite,
-  // thin), but the search *form* is what the WebSite node's SearchAction
-  // points at, so Google has to be able to reach and render it.
+  // The empty search page — the *form*, which is a single real destination and
+  // the URL the WebSite node's SearchAction points at, so Google has to be
+  // able to reach and render it.
+  //
+  // Only the results view is kept out of the index, and it is kept out where
+  // that actually belongs: a `noindex, follow` meta tag emitted by the route
+  // when `?q=` is present (see `Search.tsx`). The note that used to stand here
+  // said result pages were "noindex by nature" — that was the intent, but
+  // nothing emitted a robots tag, so every `/search?q=…` a crawler found was
+  // fully indexable. Listing the bare form here and noindexing only the
+  // parameterised view is the pair that is actually consistent.
   { path: "/search", changefreq: "monthly", priority: "0.4" },
   ...INDUSTRY_SLUGS.map((slug) => ({
     path: `/industries/${slug}`,

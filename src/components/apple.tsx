@@ -673,16 +673,42 @@ export function PricePill({
  * short code every other model uses, and it wrapped four lines at 64px next to
  * two-word neighbours in the same row.
  *
- * Three tiers, thresholds chosen from what is actually in the catalogue: every
- * real figure ("до 3 км", "до 2–2,5 км", "~14 часов", "3600 мА·ч") is at or
- * under 12 characters, so that tier keeps the current full size untouched: this
- * is a guard against the next long string, not a redesign of the common case.
+ * Three tiers, thresholds chosen from what is actually in the catalogue.
+ *
+ * `lg` is capped at 10 characters, not 12. 12 was set from the assumption that
+ * every real figure fits at full size, and two do not: "до 2–2,5 км" (11) and
+ * "до 20 этажей" (12) both wrap at `clamp(…,4rem)` in a three-up row. The
+ * English and Uzbek forms of that same range — "up to 2–2.5 km", "2–2,5 km
+ * gacha", both 14 — were already stepping down, so the Russian panel was the
+ * only one in the set rendering its value on two lines. Every other figure the
+ * catalogue produces ("до 10 км", "до 1,5 км", "~14 часов", "3600 мА·ч",
+ * "IP67") is 9 or fewer and keeps the full size untouched.
  */
 export type StatSizeTier = "lg" | "md" | "sm";
 export function statSizeTier(value: string): StatSizeTier {
-  if (value.length <= 12) return "lg";
+  if (value.length <= 10) return "lg";
   if (value.length <= 22) return "md";
   return "sm";
+}
+
+/**
+ * One tier for a whole row, taken from its longest value.
+ *
+ * Sizing each panel from its own string is right in isolation and wrong in a
+ * row: "Не требуется" (lg), "Тысячи абонентов" (md) and "Глобальная (LTE /
+ * WiFi)" (sm) sat side by side on the PoC stat band at three different sizes,
+ * which reads as three unrelated cards rather than one comparison. A row is a
+ * set of like quantities and has to be set like one.
+ *
+ * The longest value decides, because that is the one that would wrap: a tier
+ * that fits it fits every shorter sibling too.
+ */
+const TIER_ORDER: StatSizeTier[] = ["lg", "md", "sm"];
+export function statRowTier(values: string[]): StatSizeTier {
+  return values.reduce<StatSizeTier>((worst, v) => {
+    const tier = statSizeTier(v);
+    return TIER_ORDER.indexOf(tier) > TIER_ORDER.indexOf(worst) ? tier : worst;
+  }, "lg");
 }
 
 const STAT_PANEL_SIZE: Record<StatSizeTier, string> = {
@@ -705,6 +731,7 @@ export function StatPanel({
   value,
   label,
   caption,
+  size,
   className = "",
   children,
 }: {
@@ -712,12 +739,26 @@ export function StatPanel({
   label?: string;
   /** Sits below the panel, outside it — apple.com's caption position. */
   caption?: ReactNode;
+  /**
+   * Overrides the tier this panel's own value would earn, so a row can be set
+   * at one size. Pass `statRowTier([...])` computed over every value in the
+   * row; omit it and the panel sizes from its own string.
+   */
+  size?: StatSizeTier;
   className?: string;
   children?: ReactNode;
 }) {
   return (
-    <figure className={cn("m-0", className)}>
-      <div className="flex min-h-[220px] flex-col items-center justify-center rounded-[28px] bg-charcoal px-8 py-12 text-center">
+    // `flex h-full flex-col` with a `flex-1` panel below.
+    //
+    // A grid stretches its items by default, so the `figure` already filled the
+    // row's height — but the panel inside it was a plain block sized to its own
+    // content, so it stopped short and the row rendered ragged: on the PoC band
+    // and the RC-50 range row a value that wrapped to two lines stood visibly
+    // taller than its neighbours. `min-h` set a floor and nothing set the
+    // ceiling. Now the figure carries the stretch through to the panel.
+    <figure className={cn("m-0 flex h-full flex-col", className)}>
+      <div className="flex min-h-[220px] flex-1 flex-col items-center justify-center rounded-[28px] bg-charcoal px-8 py-12 text-center">
         {/* `text-balance` and `hyphens-none`: a value like "up to 900 m" broke
             across two lines at narrow panel widths, splitting the unit off the
             number it belongs to. The figure is the whole point of the panel.
@@ -728,7 +769,7 @@ export function StatPanel({
         <div
           className={cn(
             "text-balance hyphens-none font-semibold leading-[1.05] tracking-[-0.02em] text-crisp",
-            STAT_PANEL_SIZE[statSizeTier(value)],
+            STAT_PANEL_SIZE[size ?? statSizeTier(value)],
           )}
         >
           {value}
