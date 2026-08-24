@@ -6,7 +6,7 @@ import { notFound, useParams } from "@tanstack/react-router";
 import { Check, ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
 import { Section, SectionHead } from "@/components/Section";
-import { LeadInCaption, StatPanel, TintedHeadline } from "@/components/apple";
+import { LeadInCaption, StatPanel, statRowTier, TintedHeadline } from "@/components/apple";
 import { openLead } from "@/components/LeadFormSheet";
 import { Magnetic } from "@/components/Magnetic";
 import {
@@ -124,7 +124,7 @@ export function ProductSpecsPage() {
   const page = useScrollChoreography();
 
   return (
-    <div ref={page} className="page-anim">
+    <div ref={page} className="page-anim page-tight">
       {/* ── Configuration summary + price ─────────────────── */}
       <Section band="plain">
         <nav aria-label="Breadcrumb" className="mb-8 text-[14px] text-cool">
@@ -382,6 +382,11 @@ function HeadlineFigures({ p, lang }: { p: Product; lang: Lang }) {
 
   if (panels.length < 2) return null;
 
+  // One size across the row. RC-50 is the case that showed why: "до 2–2,5 км"
+  // is long enough to wrap at the `lg` tier while its neighbour "до 5 км" is
+  // not, so the two panels rendered at different sizes and different heights.
+  const size = statRowTier(panels.map((s) => s.value));
+
   return (
     <div className="mb-12 md:mb-14">
       <div
@@ -391,7 +396,7 @@ function HeadlineFigures({ p, lang }: { p: Product; lang: Lang }) {
         }`}
       >
         {panels.map((s) => (
-          <StatPanel key={s.key} value={s.value} label={s.label} />
+          <StatPanel key={s.key} value={s.value} label={s.label} size={size} />
         ))}
       </div>
       <LeadInCaption className="mt-5 max-w-[62ch]" lead={t("px.range_lead")}>

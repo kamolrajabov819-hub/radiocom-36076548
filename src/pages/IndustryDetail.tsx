@@ -103,7 +103,7 @@ export function IndustryPage() {
   const page = useScrollChoreography();
 
   return (
-    <div ref={page} className="page-anim">
+    <div ref={page} className="page-anim page-tight">
       {/* ── Cinematic hero ─────────────────────────────────── */}
       <section className="relative min-h-[78vh] overflow-hidden">
         <motion.div

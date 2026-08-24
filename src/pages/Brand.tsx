@@ -183,7 +183,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
   const page = useScrollChoreography();
 
   return (
-    <div ref={page} className="page-anim">
+    <div ref={page} className="page-anim page-tight">
       {/* ── Family name + model strip ──────────────────────── */}
       <Section band="plain">
         <motion.div

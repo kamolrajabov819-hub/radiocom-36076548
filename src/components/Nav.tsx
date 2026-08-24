@@ -109,12 +109,24 @@ export function Nav() {
             />
           </LocaleLink>
 
-          {/* Desktop nav links — fills exactly the space between the wordmark
-              and the icon cluster, and `justify-between` spreads its own
-              children across that whole width rather than clustering them at
-              the box's own left edge, which is what happened when this `nav`
-              was `flex-1` with no justification of its own.
-          
+          {/* Desktop nav links — one centred group, not an edge-to-edge spread.
+
+              This was `justify-between`, which hands the six links and the
+              Industries trigger the *entire* width between wordmark and icons
+              and pushes them to its two edges. Measured across the range that
+              produces a gap of 28px at 1280 and 112px at 1920 — the same seven
+              items reading as a tight row on a laptop and as seven unrelated
+              words scattered across the bar on a desktop. A rhythm that
+              quadruples with viewport width is not a rhythm.
+
+              `justify-center` with a fixed gap holds one spacing everywhere and
+              lets the leftover space fall outside the group, which is what
+              makes the links read as a set. The two steps are bounded by
+              measurement, not taste: the seven items are 429px of text, and the
+              space between wordmark and icons is 596px at 1280 — so 24px gaps
+              (429 + 6x24 = 573) is the widest that still fits there, and the
+              step to 32px waits for `2xl`, where there is 832px to work with.
+
               The desktop/mobile switch is `xl` (1280px), not Tailwind's `lg`
               (1024px). Measured directly: at 1024-1150px the six links, the
               Industries dropdown, three icons and the CTA together need more
@@ -127,7 +139,7 @@ export function Nav() {
               in this row genuinely fits on one line with no shrinking. */}
           <nav
             aria-label={t("footer.nav_col")}
-            className="hidden xl:flex flex-1 items-center justify-between gap-6"
+            className="hidden xl:flex flex-1 items-center justify-center gap-6 2xl:gap-8"
           >
             {links.map((l) => {
               const active = l.to === "/" ? pathname === "/" : pathname.startsWith(l.to);
@@ -135,7 +147,23 @@ export function Nav() {
                 <LocaleLink
                   key={l.to}
                   to={l.to}
-                  className={`text-[13px] font-normal transition-opacity ${active ? "text-crisp" : "text-crisp/80 hover:text-crisp"}`}
+                  aria-current={active ? "page" : undefined}
+                  // `text-cool` for the resting state, not `text-crisp/80`.
+                  // 80% of #1d1d1f composites to roughly #4a4a4c, which is a
+                  // step away from the #1d1d1f active state that nobody can
+                  // actually see — the bar read as seven equally-current links.
+                  // `--cool` (#6e6e73) is Apple's own secondary grey and the
+                  // exact pairing their nav uses, and it still clears AA on
+                  // this surface at 5.3:1.
+                  //
+                  // No horizontal padding: the seven items are measured at
+                  // 429px total against 596px of room at 1280, and padding
+                  // would spend 56px of the 167px of headroom that keeps the
+                  // row on one line. The focus ring is offset instead, so it
+                  // draws outside the text without occupying layout.
+                  className={`rounded-sm text-[13px] font-normal transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2 ${
+                    active ? "text-crisp" : "text-cool hover:text-crisp"
+                  }`}
                 >
                   {l.label}
                 </LocaleLink>
@@ -148,10 +176,8 @@ export function Nav() {
                 aria-expanded={industriesOpen}
                 aria-haspopup="menu"
                 aria-controls="nav-industries-menu"
-                className={`text-[13px] flex items-center gap-0.5 transition-opacity ${
-                  pathname.startsWith("/industries")
-                    ? "text-crisp"
-                    : "text-crisp/80 hover:text-crisp"
+                className={`flex items-center gap-0.5 rounded-sm text-[13px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2 ${
+                  pathname.startsWith("/industries") ? "text-crisp" : "text-cool hover:text-crisp"
                 }`}
               >
                 {t("nav.industries")}
@@ -207,7 +233,7 @@ export function Nav() {
               consumes *all* the leftover space, and this cluster is exactly
               as wide as its three icons — closer to what apple.com's chrome
               actually is (content-sized, not a phantom half-width box). */}
-          <div className="hidden xl:flex shrink-0 items-center justify-end gap-3">
+          <div className="hidden xl:flex shrink-0 items-center justify-end gap-2">
             {/* Search sits in the chrome, not only in the footer. It is the
                 route the WebSite node's SearchAction advertises to Google, and
                 a search a visitor cannot find is a search that does not exist —
@@ -215,9 +241,9 @@ export function Nav() {
             <LocaleLink
               to="/search"
               aria-label={t("nav.search")}
-              className="flex h-11 w-11 items-center justify-center rounded-full text-crisp transition-colors hover:bg-charcoal"
+              className="flex h-11 w-11 items-center justify-center rounded-full text-cool transition-colors hover:bg-charcoal hover:text-crisp focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal"
             >
-              <Search className="h-5 w-5" aria-hidden />
+              <Search className="h-[18px] w-[18px]" aria-hidden />
             </LocaleLink>
             <LangToggle />
             {/* `px-3`, a call-site override on top of `pill-sm` — already the

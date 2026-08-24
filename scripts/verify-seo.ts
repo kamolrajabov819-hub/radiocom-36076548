@@ -15,6 +15,10 @@ import {
   jsonLd,
   webSiteSchema,
   absolute,
+  organizationSchema,
+  localBusinessSchema,
+  ORG_LOGO,
+  BUSINESS_IMAGE,
 } from "../src/lib/seo";
 // `visibleProducts` is what the site advertises; `products` is the full
 // record, which stays larger because hidden models keep their /catalog 301s.
@@ -29,6 +33,9 @@ import { INDUSTRY_SLUGS } from "../src/data/industries";
 import { tFor } from "../src/lib/i18n";
 import { SPEC } from "../src/data/spec-dict";
 import { entries } from "./lib/sitemap";
+// The real search route, so the indexability gate below exercises the code
+// that actually ships rather than the helper it calls.
+import { routeOptions as searchRoute } from "../src/pages/Search";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
@@ -753,6 +760,129 @@ console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
   }
   if (problems.length) bad(`meta uniqueness/length:\n     ${problems.join("\n     ")}`);
   else console.log("ok  every page title and description is distinct and correctly sized");
+}
+
+// 23. The two identity images have to be big enough for the surfaces that
+//     render them.
+//
+//     Both used to point at `/favicon.png`, and both silently fell below spec
+//     when the icon set was rebuilt around the cropped signal mark: the favicon
+//     went from a 64x64 wordmark to a 32x32 glyph. Google documents 112x112 as
+//     the floor for an Organization logo and drops anything smaller without
+//     saying so, and a LocalBusiness image at 32px is unusable in the map pack.
+//     Nothing on the page changes when this breaks, which is exactly why it
+//     needs a gate rather than a review.
+{
+  const problems: string[] = [];
+  const pngSize = (buf: Buffer) => ({
+    // IHDR width/height live at fixed offsets in every PNG.
+    w: buf.readUInt32BE(16),
+    h: buf.readUInt32BE(20),
+  });
+  const jpegSize = (buf: Buffer) => {
+    let i = 2;
+    while (i < buf.length) {
+      if (buf[i] !== 0xff) {
+        i++;
+        continue;
+      }
+      const marker = buf[i + 1];
+      // SOF0/1/2 carry the dimensions; skip the other segments by their length.
+      if (marker >= 0xc0 && marker <= 0xc2)
+        return { h: buf.readUInt16BE(i + 5), w: buf.readUInt16BE(i + 7) };
+      i += 2 + buf.readUInt16BE(i + 2);
+    }
+    return { w: 0, h: 0 };
+  };
+  const measure = (rel: string) => {
+    const file = join("public", rel.replace(/^\//, ""));
+    if (!existsSync(file)) return null;
+    const buf = readFileSync(file);
+    return rel.endsWith(".png") ? pngSize(buf) : jpegSize(buf);
+  };
+
+  // Google's documented minimum for an Organization logo.
+  const LOGO_MIN = 112;
+  // A business photo below this is too small for the surfaces that render it.
+  const IMAGE_MIN = 320;
+
+  const org = organizationSchema() as { logo?: string };
+  const biz = localBusinessSchema() as { image?: string };
+
+  if (org.logo !== absolute(ORG_LOGO))
+    problems.push(`Organization.logo is ${org.logo}, expected ${absolute(ORG_LOGO)}`);
+  if (biz.image !== absolute(BUSINESS_IMAGE))
+    problems.push(`LocalBusiness.image is ${biz.image}, expected ${absolute(BUSINESS_IMAGE)}`);
+
+  const logo = measure(ORG_LOGO);
+  if (!logo) problems.push(`${ORG_LOGO} is missing from public/`);
+  else if (Math.min(logo.w, logo.h) < LOGO_MIN)
+    problems.push(
+      `Organization.logo ${ORG_LOGO} is ${logo.w}x${logo.h}, under Google's ${LOGO_MIN}px floor`,
+    );
+
+  const image = measure(BUSINESS_IMAGE);
+  if (!image) problems.push(`${BUSINESS_IMAGE} is missing from public/`);
+  else if (Math.min(image.w, image.h) < IMAGE_MIN)
+    problems.push(`LocalBusiness.image ${BUSINESS_IMAGE} is only ${image.w}x${image.h}`);
+
+  if (problems.length) bad(`identity images:\n     ${problems.join("\n     ")}`);
+  else
+    console.log(
+      `ok  Organization.logo (${logo?.w}x${logo?.h}) and LocalBusiness.image ` +
+        `(${image?.w}x${image?.h}) clear their minimums`,
+    );
+}
+
+// 24. Internal search results are noindexed; the search form is not.
+//
+//     `/search?q=…` answers 200 for any string anyone types, so left indexable
+//     it is an unbounded set of thin near-duplicates of the catalogue — the
+//     case Google's guidance on internal search results is written about. The
+//     bare form is the opposite: one real page, linked from the chrome, and the
+//     URL the SearchAction advertises, so it stays indexable and stays in the
+//     sitemap. Getting either half backwards is invisible on the page.
+{
+  const problems: string[] = [];
+  const robotsOf = (meta: { name?: string; content?: string }[]) =>
+    meta.find((m) => m.name === "robots")?.content;
+
+  // Drive the *route's own* head(), not `pageMeta` directly.
+  //
+  // The first version of this gate called `pageMeta({noindex:true})` and
+  // asserted the tag came back — which only proves the helper works. Mutating
+  // `Search.tsx` to `noindex: false` left the gate green while every results
+  // page went indexable again, so it was testing the wrong thing entirely.
+  // Calling the real `head()` is what ties the check to the behaviour.
+  const headFor = (q?: string) => {
+    const head = searchRoute.head({
+      params: { lang: "ru" as const },
+      match: { search: q ? { q } : {} },
+    }) as { meta: { name?: string; content?: string }[] };
+    return robotsOf(head.meta);
+  };
+  const form = headFor();
+  const results = headFor("rcd");
+
+  if (form !== undefined) problems.push(`the bare /search form emits robots="${form}"`);
+  if (results !== "noindex, follow")
+    problems.push(`/search?q= emits robots="${results ?? "(none)"}", expected "noindex, follow"`);
+
+  // The form must stay in the sitemap; a noindex results page must never be
+  // listed. Both halves of that pairing are asserted, not assumed.
+  const listed = entries.some((e) => e.path === "/search");
+  if (!listed) problems.push("the /search form is missing from the sitemap");
+
+  // A robots.txt disallow would hide the noindex from the crawler that needs
+  // to read it — the classic way this fix gets undone.
+  const robotsTxt = existsSync("public/robots.txt")
+    ? readFileSync("public/robots.txt", "utf8")
+    : "";
+  if (/^\s*Disallow:\s*\/(?:\w+\/)?search/im.test(robotsTxt))
+    problems.push("robots.txt disallows /search, so its noindex can never be read");
+
+  if (problems.length) bad(`search indexability:\n     ${problems.join("\n     ")}`);
+  else console.log("ok  /search form indexable and in the sitemap, ?q= results noindex, follow");
 }
 
 console.log(fail === 0 ? "\nALL SEO CHECKS PASSED" : `\n${fail} FAILURES`);

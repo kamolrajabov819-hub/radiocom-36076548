@@ -103,7 +103,7 @@ export function ComparePage() {
   const page = useScrollChoreography();
 
   return (
-    <div ref={page} className="page-anim">
+    <div ref={page} className="page-anim page-tight">
       <Section band="plain">
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="headline-hero text-crisp">{t("px.compare_title")}</h1>

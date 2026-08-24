@@ -13,7 +13,7 @@ import {
   PosterCard,
   PricePill,
   StatPanel,
-  statSizeTier,
+  statRowTier,
   TintedHeadline,
 } from "@/components/apple";
 import { openLead } from "@/components/LeadFormSheet";
@@ -151,7 +151,7 @@ export function ProductStoryPage() {
   const page = useScrollChoreography();
 
   return (
-    <div ref={page} className="page-anim">
+    <div ref={page} className="page-anim page-tight">
       <Hero p={p} lang={lang} />
       <Highlights p={p} lang={lang} />
       <Design p={p} lang={lang} />
@@ -281,6 +281,7 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
 
   if (!facts.length) return null;
 
+  const factTier = statRowTier(facts.map((c) => c.value));
   const width = "w-[64vw] sm:w-[38vw] lg:w-[calc((100%-3rem)/4)]";
 
   return (
@@ -328,11 +329,13 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
           // Same length-aware tiering `StatPanel` uses, at this card's own
           // smaller scale — a spec row can carry any string a model's data
           // happens to have, with no guarantee it is as short as "до 3 км".
+          // Taken across the whole shelf rather than per card, so the facts in
+          // one row are set alike; see `statRowTier`.
           const sizeClass = {
             lg: "text-[21px] sm:text-[26px]",
             md: "text-[17px] sm:text-[20px]",
             sm: "text-[14px] sm:text-[16px]",
-          }[statSizeTier(c.value)];
+          }[factTier];
           return (
             <article
               key={c.label + c.value}
@@ -462,6 +465,9 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
               ]
             : []),
         ];
+        // One tier for the row — see `statRowTier`. Mixed sizes across a set of
+        // like quantities read as unrelated cards rather than one comparison.
+        const size = statRowTier(panels.map((s) => s.value));
         return (
           <div
             className={cn(
@@ -475,7 +481,7 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
             )}
           >
             {panels.map((s) => (
-              <StatPanel key={s.key} value={s.value} label={s.label} />
+              <StatPanel key={s.key} value={s.value} label={s.label} size={size} />
             ))}
           </div>
         );
