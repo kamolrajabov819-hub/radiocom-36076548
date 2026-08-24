@@ -1,8 +1,10 @@
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
 import { useScrollChoreography } from "@/lib/motion";
+import { spring } from "@/lib/springs";
 import { Section } from "@/components/Section";
 import {
   DuoCard,
@@ -184,10 +186,16 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
     <div ref={page} className="page-anim">
       {/* ── Family name + model strip ──────────────────────── */}
       <Section band="plain">
-        <h1 className="type-display text-crisp">{t(`brand.${brandSlug}_title`)}</h1>
-        <p className="subhead measure mt-5 text-[17px] leading-relaxed md:text-[21px]">
-          {t(`brand.${brandSlug}_desc`)}
-        </p>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={spring}
+        >
+          <h1 className="type-display text-crisp">{t(`brand.${brandSlug}_title`)}</h1>
+          <p className="subhead measure mt-5 text-[17px] leading-relaxed md:text-[21px]">
+            {t(`brand.${brandSlug}_desc`)}
+          </p>
+        </motion.div>
 
         <div className="mt-8">
           <ModelStrip label={t("brand.lineup")}>
@@ -227,7 +235,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
 
       {/* ── The line-up ────────────────────────────────────── */}
       <Section band="soft">
-        <div className="mb-8 flex flex-wrap items-baseline justify-between gap-4 md:mb-10">
+        <div data-scrub-in className="mb-8 flex flex-wrap items-baseline justify-between gap-4 md:mb-10">
           <h2 className="type-headline text-crisp">{t("brand.lineup")}</h2>
           {floor != null ? (
             <p className="text-[14px] text-cool">
@@ -287,7 +295,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
 
       {/* ── Why buy from us ────────────────────────────────── */}
       <Section band="plain">
-        <h2 className="type-headline mb-10 max-w-2xl text-crisp md:mb-12">
+        <h2 data-scrub-in className="type-headline mb-10 max-w-2xl text-crisp md:mb-12">
           {t("brand.why_title")}
         </h2>
 
@@ -339,7 +347,9 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
           the real sector name, the real one-line description, each card a link
           to a page that already exists. Same device, no fiction. */}
       <Section band="plain">
-        <h2 className="type-headline mb-10 text-crisp md:mb-12">{t("px.where_used")}</h2>
+        <h2 data-scrub-in className="type-headline mb-10 text-crisp md:mb-12">
+          {t("px.where_used")}
+        </h2>
         <HighlightsShelf label={t("px.where_used")}>
           {INDUSTRY_SLUGS.map((slug, i) => (
             <div
@@ -425,7 +435,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
 
       {/* ── Compare invitation ─────────────────────────────── */}
       <Section band="soft">
-        <div className="mx-auto max-w-2xl text-center">
+        <div data-scrub-in className="mx-auto max-w-2xl text-center">
           <h2 className="type-headline text-crisp">{t("brand.compare_cta")}</h2>
           <p className="subhead mt-4 text-[17px]">{t("brand.compare_sub")}</p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">

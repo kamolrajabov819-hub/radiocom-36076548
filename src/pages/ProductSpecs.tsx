@@ -1,5 +1,7 @@
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 import { useScrollChoreography } from "@/lib/motion";
+import { spring } from "@/lib/springs";
 import { notFound, useParams } from "@tanstack/react-router";
 import { Check, ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
@@ -157,7 +159,12 @@ export function ProductSpecsPage() {
             would have put a price card ahead of the page's heading. Below `lg`
             the columns stack and source order governs, which is the order that
             reads correctly on a phone. */}
-        <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)]">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={spring}
+          className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)]"
+        >
           <div className="lg:order-2">
             <TintedHeadline as="h1" className="type-headline text-crisp">
               {p.name}
@@ -246,13 +253,15 @@ export function ProductSpecsPage() {
               </div>
             </div>
           </aside>
-        </div>
+        </motion.div>
       </Section>
 
       {/* ── Full specification table ──────────────────────── */}
       {spec?.rows?.length ? (
         <Section band="plain">
-          <SectionHead align="left" spacing="tight" title={t("px.spec_table")} />
+          <div data-scrub-in>
+            <SectionHead align="left" spacing="tight" title={t("px.spec_table")} />
+          </div>
 
           {/* The two or three figures that decide the purchase, lifted out of
               the table and stated at display size — apple.com's tech-specs
@@ -292,8 +301,13 @@ export function ProductSpecsPage() {
       {/* ── In the box ────────────────────────────────────── */}
       {spec?.inBox?.length ? (
         <Section band="plain">
-          <SectionHead align="left" spacing="tight" title={t("px.in_box")} />
-          <ul className="grid grid-cols-1 gap-x-10 border-t border-border sm:grid-cols-2 lg:grid-cols-3">
+          <div data-scrub-in>
+            <SectionHead align="left" spacing="tight" title={t("px.in_box")} />
+          </div>
+          <ul
+            data-stagger
+            className="grid grid-cols-1 gap-x-10 border-t border-border sm:grid-cols-2 lg:grid-cols-3"
+          >
             {spec.inBox.map((line) => (
               <li
                 key={pick(line.item, lang)}
@@ -311,7 +325,7 @@ export function ProductSpecsPage() {
 
       {/* ── Closing CTA ───────────────────────────────────── */}
       <Section band="plain">
-        <div className="mx-auto max-w-2xl text-center">
+        <div data-scrub-in className="mx-auto max-w-2xl text-center">
           <h2 className="type-headline text-crisp">{t("px.buy")}</h2>
           <p className="subhead mt-4 text-[17px]">{t("px.trial")}</p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">

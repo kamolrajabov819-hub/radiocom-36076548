@@ -179,7 +179,9 @@ export function IndustryPage() {
       */}
       {outcomes.length > 0 && (
         <Section band="plain" tight>
-          <SectionHead align="left" spacing="tight" title={t("industries.outcomes_title")} />
+          <div data-scrub-in>
+            <SectionHead align="left" spacing="tight" title={t("industries.outcomes_title")} />
+          </div>
           <dl className="grid grid-cols-1 gap-x-10 gap-y-12 sm:grid-cols-3">
             {outcomes.map((o, i) => (
               <motion.div key={o.l} {...fadeUpAt(i)}>
@@ -231,7 +233,9 @@ export function IndustryPage() {
 
       {/* ── What you get ─────────────────────────────────────── */}
       <Section band="plain" tight>
-        <SectionHead align="left" spacing="tight" title={t("industries.offers.title")} />
+        <div data-scrub-in>
+          <SectionHead align="left" spacing="tight" title={t("industries.offers.title")} />
+        </div>
         <BentoGrid>
           {(
             [
@@ -266,12 +270,19 @@ export function IndustryPage() {
 
       {/* ── Recommended models ───────────────────────────────── */}
       <Section band="soft" tight>
-        <SectionHead
-          align="left"
-          spacing="tight"
-          title={t("industries.recommended")}
-          link={{ label: t("industries.compare_all"), to: "/compare" }}
-        />
+        <div data-scrub-in>
+          <SectionHead
+            align="left"
+            spacing="tight"
+            title={t("industries.recommended")}
+            link={{ label: t("industries.compare_all"), to: "/compare" }}
+          />
+        </div>
+        {/* No `data-stagger` here — `ProductCard` is `motion.div`-rooted with its
+            own `whileInView` fade keyed on `idx`, so it already staggers itself.
+            A GSAP stagger on this grid would fight that same element's opacity
+            every frame — the exact flicker `data-stagger`'s doc comment warns
+            against. */}
         <div className="grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-3">
           {picks.slice(0, 6).map((p, i) => (
             <ProductCard key={p.id} p={p} lang={lang} idx={i} />
@@ -294,7 +305,7 @@ export function IndustryPage() {
 
       {/* ── Testimonial ──────────────────────────────────────── */}
       <Section band="plain" tight>
-        <figure className="mx-auto max-w-3xl text-center">
+        <figure data-scrub-in className="mx-auto max-w-3xl text-center">
           <Quote className="mx-auto mb-6 h-9 w-9 text-signal" strokeWidth={1.5} aria-hidden />
           <div className="type-caption mb-6 uppercase tracking-[0.18em]">
             {t("industries.quote_kicker")}
@@ -312,7 +323,9 @@ export function IndustryPage() {
       {faq.length > 0 && (
         <Section band="soft" tight>
           <div className="mx-auto max-w-3xl">
-            <SectionHead align="center" spacing="tight" title={t("industries.faq_title")} />
+            <div data-scrub-in>
+              <SectionHead align="center" spacing="tight" title={t("industries.faq_title")} />
+            </div>
             <Faq items={faq} />
           </div>
         </Section>
@@ -320,7 +333,7 @@ export function IndustryPage() {
 
       {/* ── Closing CTA ──────────────────────────────────────── */}
       <Section band="dark" tight>
-        <div className="text-center">
+        <div data-scrub-in className="text-center">
           <h2
             className="headline mx-auto max-w-3xl text-white"
             style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}

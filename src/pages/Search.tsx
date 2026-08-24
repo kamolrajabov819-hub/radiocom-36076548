@@ -1,11 +1,13 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 import { useNavigate, useSearch } from "@tanstack/react-router";
 import { ChevronRight, Search as SearchIcon } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
 import { Section, SectionHead } from "@/components/Section";
 import { ProductCard } from "@/components/ProductCard";
 import { useScrollChoreography } from "@/lib/motion";
+import { fadeUp, spring } from "@/lib/springs";
 import { visibleProducts, type Product } from "@/data/products";
 import { specs } from "@/data/specs";
 import { pick, type Lang } from "@/data/spec-dict";
@@ -135,7 +137,13 @@ export function SearchPage() {
   return (
     <div ref={page} className="page-anim">
       <Section band="plain">
-        <SectionHead align="left" title={t("search.title")} sub={t("search.sub")} />
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={spring}
+        >
+          <SectionHead align="left" title={t("search.title")} sub={t("search.sub")} />
+        </motion.div>
 
         {/* A real GET form, not a controlled input.
         
@@ -200,13 +208,13 @@ export function SearchPage() {
               </div>
             </>
           ) : (
-            <div className="measure">
+            <motion.div {...fadeUp} className="measure">
               <h2 className="type-title text-crisp">{t("search.empty_title")}</h2>
               <p className="subhead mt-3 text-[17px]">{t("search.empty_sub")}</p>
               <LocaleLink to="/compare" className="pill-link mt-4">
                 {t("search.all")} <ChevronRight className="h-4 w-4" aria-hidden />
               </LocaleLink>
-            </div>
+            </motion.div>
           )}
         </div>
       </Section>
