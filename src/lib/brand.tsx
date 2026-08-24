@@ -14,9 +14,10 @@ import { Fragment, type ReactNode } from "react";
  *    on the page it describes; a DOM that said RADIOCOM while the JSON-LD said
  *    Radiocom would be two different claims about one product. `text-transform`
  *    leaves the text node identical to the markup and changes only the glyphs.
- *  - **Screen readers.** An all-caps token in the DOM is read letter by letter
- *    by several voice engines — "R, A, D, I, O, C, O, M". The accessible name
- *    here stays "Radiocom" and is spoken as a word.
+ *  - **Screen readers.** How a voice engine speaks an all-caps token varies by
+ *    engine and by the reader's verbosity setting — some announce the case,
+ *    some spell short ones out. Leaving the DOM in ordinary case means the
+ *    question never arises: the accessible name is "Radiocom" either way.
  *  - **Selecting and searching.** Copy pastes as "Radiocom"; find-in-page for
  *    "Radiocom" still matches.
  *
