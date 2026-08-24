@@ -11,6 +11,7 @@ import {
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { fadeUpAt } from "@/lib/springs";
 import { cn } from "@/lib/utils";
+import { brandCase } from "@/lib/brand";
 
 /**
  * Apple.com section primitives.
@@ -113,17 +114,17 @@ export function FeatureCard({
       <div className={cn("relative", copyClassName)}>
         {eyebrow ? (
           <div className={cn("text-[14px] font-medium", dark ? "text-white/60" : "text-cool")}>
-            {eyebrow}
+            {brandCase(eyebrow)}
           </div>
         ) : null}
 
-        <h3 className="type-title mt-2 hyphens-auto break-words">{title}</h3>
+        <h3 className="type-title mt-2 hyphens-auto break-words">{brandCase(title)}</h3>
 
         {body ? (
           <p
             className={cn("mt-3 text-[15px] leading-relaxed", dark ? "text-white/70" : "text-cool")}
           >
-            {body}
+            {brandCase(body)}
           </p>
         ) : null}
       </div>
@@ -215,8 +216,8 @@ export function StackedTile({
       )}
     >
       <div className={cn("relative", centred && "text-center")}>
-        {eyebrow ? <div className="text-[14px] font-medium text-cool">{eyebrow}</div> : null}
-        <h3 className="type-title mt-2 hyphens-auto break-words">{title}</h3>
+        {eyebrow ? <div className="text-[14px] font-medium text-cool">{brandCase(eyebrow)}</div> : null}
+        <h3 className="type-title mt-2 hyphens-auto break-words">{brandCase(title)}</h3>
         {body ? (
           <p
             className={cn(
@@ -224,7 +225,7 @@ export function StackedTile({
               centred && "mx-auto max-w-[46ch]",
             )}
           >
-            {body}
+            {brandCase(body)}
           </p>
         ) : null}
       </div>
@@ -645,47 +646,6 @@ export function CompareTable({
    ══════════════════════════════════════════════════════════════ */
 
 /**
- * A headline whose closing phrase takes a lighter tint.
- *
- * "Might takes *flight*." "Get the *highlights*." "Built to go *places*."
- * apple.com does this on almost every section head, and it is doing real work:
- * the tint marks where the claim turns from subject to promise, so the eye
- * lands on the verb rather than reading a flat line of bold text.
- *
- * `tintFrom` counts words from the END, because that is where the device
- * always sits and counting backwards survives translation — Russian and Uzbek
- * reorder the sentence but keep the payload late.
- *
- * The tint is `--cool` (#6e6e73), Apple's own secondary grey, not the brand
- * red: red at headline size reads as an error state, and the accent is spent
- * on actions.
- */
-export function TintedHeadline({
-  children,
-  tintFrom = 1,
-  as: Tag = "h2",
-  className = "",
-}: {
-  children: string;
-  /** How many trailing words take the tint. */
-  tintFrom?: number;
-  as?: "h1" | "h2" | "h3";
-  className?: string;
-}) {
-  const words = children.trim().split(/\s+/);
-  const split = Math.max(0, words.length - Math.max(1, tintFrom));
-  const lead = words.slice(0, split).join(" ");
-  const tail = words.slice(split).join(" ");
-
-  return (
-    <Tag className={cn("text-balance", className)}>
-      {lead ? `${lead} ` : null}
-      <span className="text-cool">{tail}</span>
-    </Tag>
-  );
-}
-
-/**
  * The price-and-buy pair from the MacBook Air hero.
  *
  * A grey pill carrying the price sits immediately left of a solid accent
@@ -826,9 +786,9 @@ export function StatPanel({
             STAT_PANEL_SIZE[size ?? statSizeTier(value)],
           )}
         >
-          {value}
+          {brandCase(value)}
         </div>
-        {label ? <div className="mt-2 text-[17px] text-cool">{label}</div> : null}
+        {label ? <div className="mt-2 text-[17px] text-cool">{brandCase(label)}</div> : null}
         {children}
       </div>
       {caption ? <figcaption className="mt-5 max-w-[52ch]">{caption}</figcaption> : null}
@@ -1053,7 +1013,7 @@ export function ModelStripItem({
           className="max-h-[96px] w-auto object-contain mix-blend-multiply transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
         />
       </span>
-      <span className="text-[12px] leading-tight text-crisp">{label}</span>
+      <span className="text-[12px] leading-tight text-crisp">{brandCase(label)}</span>
     </span>
   );
 }
@@ -1101,12 +1061,12 @@ export function ExpandCard({
       )}
     >
       {eyebrow ? (
-        <div className="mb-2 text-[12px] font-medium leading-tight text-cool">{eyebrow}</div>
+        <div className="mb-2 text-[12px] font-medium leading-tight text-cool">{brandCase(eyebrow)}</div>
       ) : null}
       <h3 className="text-[17px] font-semibold leading-[1.25] tracking-[-0.01em] text-crisp">
-        {title}
+        {brandCase(title)}
       </h3>
-      {body ? <p className="mt-2 text-[13px] leading-relaxed text-cool">{body}</p> : null}
+      {body ? <p className="mt-2 text-[13px] leading-relaxed text-cool">{brandCase(body)}</p> : null}
 
       {detail ? (
         <div
@@ -1119,7 +1079,7 @@ export function ExpandCard({
               the row floors at the content's min-content height and the card
               never closes. */}
           <div className="min-h-0 overflow-hidden">
-            <p className="mt-3 text-[13px] leading-relaxed text-cool">{detail}</p>
+            <p className="mt-3 text-[13px] leading-relaxed text-cool">{brandCase(detail)}</p>
           </div>
         </div>
       ) : null}
@@ -1232,14 +1192,14 @@ export function PosterCard({
           gives it the width to sit on one. */}
       <div className="relative z-10 p-4 sm:p-5">
         {eyebrow ? (
-          <div className="text-[12px] font-medium leading-tight text-white/85">{eyebrow}</div>
+          <div className="text-[12px] font-medium leading-tight text-white/85">{brandCase(eyebrow)}</div>
         ) : null}
         {/* `max-w-[15ch]` from `sm` up only. It exists to stop a long sector
             name running a desktop card's full width, but on a 210px phone card
             15ch is ~130px — narrower than the card — so "Добыча · Нефть · Газ"
             broke across two 93px lines for no reason. */}
         <h3 className="mt-1 text-[15px] font-semibold leading-[1.2] tracking-[-0.01em] text-white sm:max-w-[15ch] sm:text-[17px]">
-          {title}
+          {brandCase(title)}
         </h3>
       </div>
       {href}
@@ -1284,7 +1244,7 @@ export function DuoCard({
       )}
     >
       <div className="px-7 md:px-9">
-        <h3 className="type-title mx-auto max-w-[22ch]">{title}</h3>
+        <h3 className="type-title mx-auto max-w-[22ch]">{brandCase(title)}</h3>
         {body ? (
           <p
             className={cn(
@@ -1292,7 +1252,7 @@ export function DuoCard({
               dark ? "text-white/60" : "text-cool",
             )}
           >
-            {body}
+            {brandCase(body)}
           </p>
         ) : null}
         {link ? <div className="mt-4 flex justify-center">{link}</div> : null}

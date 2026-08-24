@@ -2,6 +2,7 @@ import { notFound, useParams } from "@tanstack/react-router";
 import { useScrollChoreography } from "@/lib/motion";
 import { LocaleLink } from "@/components/LocaleLink";
 import { useTranslation } from "react-i18next";
+import { brandCase } from "@/lib/brand";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { ChevronRight, FileDown, Check, Quote, Radio, Repeat, Wrench } from "lucide-react";
@@ -295,7 +296,7 @@ export function IndustryPage() {
             authority on only to the models they happen to recommend. */}
         <div className="mt-10 flex flex-wrap items-center gap-4 text-[14px]">
           <LocaleLink to="/radiocom" className="pill-link">
-            {t("brand.radiocom_title")} <ChevronRight className="h-4 w-4" aria-hidden />
+            {brandCase(t("brand.radiocom_title"))} <ChevronRight className="h-4 w-4" aria-hidden />
           </LocaleLink>
           <LocaleLink to="/motorola" className="pill-link">
             {t("brand.motorola_title")} <ChevronRight className="h-4 w-4" aria-hidden />

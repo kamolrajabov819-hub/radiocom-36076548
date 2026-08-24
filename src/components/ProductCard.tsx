@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { LocaleLink } from "@/components/LocaleLink";
+import { brandCase } from "@/lib/brand";
 import { useTranslation } from "react-i18next";
 import { formatPrice, type Product } from "@/data/products";
 import { pick } from "@/data/spec-dict";
@@ -45,7 +46,7 @@ export function ProductCard({
           </span>
 
           <h3 className="mt-3 line-clamp-2 text-[19px] md:text-[21px] font-semibold leading-tight tracking-tight text-crisp">
-            {p.name}
+            {brandCase(p.name)}
           </h3>
 
           <div className="relative my-7 flex flex-1 items-center justify-center">

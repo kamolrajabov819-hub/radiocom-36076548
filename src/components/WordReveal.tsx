@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { spring } from "@/lib/springs";
+import { brandCase } from "@/lib/brand";
 
 /** Reveals a headline word by word as it scrolls into view. */
 export function WordReveal({
@@ -33,7 +34,7 @@ export function WordReveal({
             }}
             transition={{ ...spring, delay: delay + i * 0.05 }}
           >
-            {w}
+            {brandCase(w)}
           </motion.span>
         </span>
       ))}

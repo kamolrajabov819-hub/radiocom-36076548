@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { useScrollChoreography } from "@/lib/motion";
 import { cn } from "@/lib/utils";
+import { brandCase } from "@/lib/brand";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Check, Radio, MapPin, MessagesSquare, Layers, Coins, Wifi } from "lucide-react";
@@ -496,7 +497,7 @@ function Rental() {
             {t("poc.rental.kicker")}
           </div>
           <h2 className="type-headline mt-3 text-crisp">{t("poc.rental.title")}</h2>
-          <p className="subhead measure mt-5 text-[17px]">{t("poc.rental.desc")}</p>
+          <p className="subhead measure mt-5 text-[17px]">{brandCase(t("poc.rental.desc"))}</p>
           <button
             onClick={() => openLead({ title: t("poc.rental.cta") })}
             className="pill pill-accent mt-8"

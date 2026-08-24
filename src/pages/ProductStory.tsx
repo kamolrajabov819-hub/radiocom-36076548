@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useScrollChoreography } from "@/lib/motion";
 import { cn } from "@/lib/utils";
+import { brandCase } from "@/lib/brand";
 import { notFound, useParams } from "@tanstack/react-router";
 import { Check, ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
@@ -14,7 +15,6 @@ import {
   PricePill,
   StatPanel,
   statRowTier,
-  TintedHeadline,
 } from "@/components/apple";
 import { openLead } from "@/components/LeadFormSheet";
 import {
@@ -185,18 +185,16 @@ function Hero({ p, lang }: { p: Product; lang: Lang }) {
           to={p.brandSlug === "radiocom" ? "/radiocom" : "/motorola"}
           className="inline-flex min-h-11 items-center hover:text-crisp"
         >
-          {t(`meta.crumb.${p.brandSlug}`)}
+          {brandCase(t(`meta.crumb.${p.brandSlug}`))}
         </LocaleLink>
         <span className="mx-2" aria-hidden>
           /
         </span>
-        <span className="text-crisp">{p.name}</span>
+        <span className="text-crisp">{brandCase(p.name)}</span>
       </nav>
 
       <div className="mx-auto max-w-3xl text-center">
-        <TintedHeadline as="h1" className="headline-hero text-crisp">
-          {p.name}
-        </TintedHeadline>
+        <h1 className="headline-hero text-balance text-crisp">{brandCase(p.name)}</h1>
         <p className="subhead mx-auto mt-6 max-w-2xl text-[17px] md:text-[21px]">
           {pick(p.blurb, lang)}
         </p>
@@ -317,10 +315,10 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
           </div>
           <div className="mt-6">
             <div className="text-[13px] font-medium text-cool">
-              {t(`brand.${p.brandSlug}_title`)}
+              {brandCase(t(`brand.${p.brandSlug}_title`))}
             </div>
             <div className="mt-1 text-[22px] font-semibold leading-[1.15] tracking-[-0.02em]">
-              {p.name}
+              {brandCase(p.name)}
             </div>
           </div>
         </article>
@@ -392,9 +390,7 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
     <Section band="plain">
       <div className="mb-10 md:mb-12">
         <div className="mb-3 text-[14px] font-medium text-cool">{t("px.design")}</div>
-        <TintedHeadline as="h2" className="type-display text-crisp">
-          {t("px.design_title")}
-        </TintedHeadline>
+        <h2 className="type-display text-balance text-crisp">{t("px.design_title")}</h2>
       </div>
 
       {/* Full-bleed lead frame, the way apple.com opens a design section. */}

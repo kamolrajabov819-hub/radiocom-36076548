@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { ChevronRight, Truck, Wrench, Package, Sparkles } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
+import { brandCase } from "@/lib/brand";
 import { SignalPulse } from "@/components/SignalPulse";
 // The hero cutout was a 590 KB RGBA PNG and the LCP element on the home page —
 // on its own it was more than half the page's weight and held LCP at 6.3s.
@@ -199,7 +200,7 @@ function Hero() {
           transition={{ ...spring, delay: 0.35 }}
           className="subhead mx-auto mt-6 max-w-3xl text-lg md:text-2xl"
         >
-          {t("home.hero.sub")}
+          {brandCase(t("home.hero.sub"))}
         </motion.p>
 
         <motion.div
