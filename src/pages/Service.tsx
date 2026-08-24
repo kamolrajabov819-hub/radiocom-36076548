@@ -134,7 +134,9 @@ function Hero() {
           className="headline text-crisp"
           style={{ fontSize: "clamp(2.75rem, 8vw, 6rem)" }}
         >
-          {t("service.title_a")} {t("service.title_b")}
+          {t("service.title_a")}
+          <br />
+          {t("service.title_b")}
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 16 }}
