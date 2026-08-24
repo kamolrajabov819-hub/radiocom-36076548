@@ -1,5 +1,13 @@
 import { motion } from "framer-motion";
-import { type ReactNode, type RefObject, useCallback, useEffect, useRef, useState } from "react";
+import {
+  type ComponentProps,
+  type ReactNode,
+  type RefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { fadeUpAt } from "@/lib/springs";
 import { cn } from "@/lib/utils";
@@ -287,9 +295,18 @@ function useScrollArrows(track: RefObject<HTMLElement | null>) {
     el.addEventListener("scroll", sync, { passive: true });
     const ro = new ResizeObserver(sync);
     ro.observe(el);
+    // The card count can change without the track ever resizing — the brand
+    // pages' category filter swaps eight models for two inside a box whose
+    // width never moves — and a `ResizeObserver` on the track alone never
+    // fires for it. `canScroll` then stayed at whatever the previous facet
+    // left it: two cards that fit, under a live "next" arrow that scrolled
+    // nowhere. Watching `childList` is what actually models the input.
+    const mo = new MutationObserver(sync);
+    mo.observe(el, { childList: true });
     return () => {
       el.removeEventListener("scroll", sync);
       ro.disconnect();
+      mo.disconnect();
     };
   }, [sync, track]);
 
@@ -355,14 +372,51 @@ function ScrollArrows({
   );
 }
 
+/**
+ * The row beneath a shelf: a page action on the left, the arrows on the right.
+ *
+ * The row belongs to the shelf rather than to `ScrollArrows`, and that is the
+ * whole reason it exists. `ScrollArrows` renders nothing when the track already
+ * fits — right for a control that would otherwise sit there permanently
+ * disabled — but the brand pages put the price-list download on this line, and
+ * a download is not a scroll control. Hanging it off the arrows would delete it
+ * on exactly the wide viewports where every model is already visible.
+ */
+function ShelfFooter({
+  leading,
+  ...arrows
+}: { leading?: ReactNode } & ComponentProps<typeof ScrollArrows>) {
+  if (!leading && !arrows.canScroll) return null;
+  return (
+    <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-3">
+      {leading}
+      {/* `ml-auto`, not `justify-between`: when the row wraps on a phone the
+          arrows still finish at the right edge, where they sit on every other
+          shelf, instead of dropping to the left under the link. */}
+      <ScrollArrows {...arrows} className="ml-auto mt-0" />
+    </div>
+  );
+}
+
 export function HighlightsShelf({
   children,
   label,
   stagger = false,
+  leading,
 }: {
   children: ReactNode;
   /** Accessible name for the scrollable region and its controls. */
   label: string;
+  /**
+   * An action rendered on the arrows' line, at the left of it.
+   *
+   * The brand pages' price-list link used to sit in its own paragraph below the
+   * shelf, which left two horizontal rules of chrome stacked under one row of
+   * cards and put the only download on the page furthest from the eye. On the
+   * arrows' line it shares their baseline and their margin, and the section
+   * ends on one row instead of two.
+   */
+  leading?: ReactNode;
   /**
    * Mark the track for `useScrollChoreography`, so the cards visible on first
    * paint enter as one staggered gesture rather than all at once.
@@ -395,7 +449,7 @@ export function HighlightsShelf({
         {children}
       </div>
 
-      <ScrollArrows label={label} {...arrows} />
+      <ShelfFooter leading={leading} label={label} {...arrows} />
     </div>
   );
 }

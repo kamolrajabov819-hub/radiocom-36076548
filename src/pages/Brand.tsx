@@ -265,7 +265,22 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
             that escape hatch in place the shelf is the better container: it
             keeps the lineup one screen tall however many models a brand has,
             and it is what the reference actually does. */}
-        <HighlightsShelf label={t("brand.lineup")} stagger>
+        <HighlightsShelf
+          label={t("brand.lineup")}
+          stagger
+          leading={
+            <a
+              href={priceListPdf}
+              className="pill-link text-[14px]"
+              target="_blank"
+              rel="noopener"
+              download="radiocom-price-list.pdf"
+            >
+              {t("catalog.download")}
+              <ChevronRight className="h-4 w-4" aria-hidden />
+            </a>
+          }
+        >
           {shown.map((p, i) => (
             <div
               key={p.id}
@@ -275,19 +290,6 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
             </div>
           ))}
         </HighlightsShelf>
-
-        <p className="mt-10 text-[14px] text-cool">
-          <a
-            href={priceListPdf}
-            className="pill-link"
-            target="_blank"
-            rel="noopener"
-            download={`radiocom-price-list.pdf`}
-          >
-            {t("catalog.download")}
-            <ChevronRight className="h-4 w-4" aria-hidden />
-          </a>
-        </p>
       </Section>
 
       {/* ── Why buy from us ────────────────────────────────── */}
