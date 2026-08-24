@@ -1,6 +1,34 @@
 import { useRouter, useRouterState } from "@tanstack/react-router";
-import { LANGS, type Lang } from "@/lib/i18n";
+import { type Lang } from "@/lib/i18n";
 import { useLang } from "@/lib/locale";
+
+/**
+ * Display order for the chips, which is deliberately not `LANGS`.
+ *
+ * `LANGS` is a canonical set, not a presentation list: it drives the hreflang
+ * cluster on every page, the `<xhtml:link>` alternates in `sitemap.xml`, and
+ * three `verify-seo` gates that count them. Reordering it to move a chip in the
+ * header would rewrite the sitemap and change what every page advertises to a
+ * crawler — a large, invisible diff in service of a small, visible one.
+ *
+ * RU, then UZ, then EN is the order the audience arrives in: Russian is the
+ * working language of the trade in Tashkent, Uzbek is the state language, and
+ * English is third.
+ */
+const DISPLAY_ORDER = ["ru", "uz", "en"] as const satisfies readonly Lang[];
+
+/**
+ * Every `Lang` must appear above.
+ *
+ * `satisfies` alone only proves each chip is a real locale; it says nothing
+ * about a locale that has no chip. This resolves to `never` when the two agree,
+ * and to the missing locale otherwise — so adding a fourth language to `LANGS`
+ * and forgetting the header is a compile error naming the language, rather than
+ * one that silently stops being reachable.
+ */
+type Unshown = Exclude<Lang, (typeof DISPLAY_ORDER)[number]>;
+const _everyLangHasAChip: [Unshown] extends [never] ? true : Unshown = true;
+void _everyLangHasAChip;
 
 /**
  * Language switcher.
@@ -38,7 +66,7 @@ export function LangToggle() {
 
   return (
     <div className="flex items-center rounded-full bg-charcoal p-0.5 text-[13px]">
-      {LANGS.map((l) => {
+      {DISPLAY_ORDER.map((l) => {
         const href = hrefFor(l);
         return (
           <a
