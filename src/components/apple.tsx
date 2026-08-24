@@ -663,6 +663,35 @@ export function PricePill({
 }
 
 /**
+ * Which size tier a stat value's own length earns it.
+ *
+ * `StatPanel` and `Highlights()`'s fact cards (`ProductStory.tsx`) both state a
+ * figure at display size with no cap tied to the string itself, so a short code
+ * like "IP67" and a full descriptive clause rendered at the identical huge size.
+ * That was harmless while every value in the catalogue happened to be short —
+ * until an ingress row inlined "IP67 — защита от воды и пыли" instead of the
+ * short code every other model uses, and it wrapped four lines at 64px next to
+ * two-word neighbours in the same row.
+ *
+ * Three tiers, thresholds chosen from what is actually in the catalogue: every
+ * real figure ("до 3 км", "до 2–2,5 км", "~14 часов", "3600 мА·ч") is at or
+ * under 12 characters, so that tier keeps the current full size untouched: this
+ * is a guard against the next long string, not a redesign of the common case.
+ */
+export type StatSizeTier = "lg" | "md" | "sm";
+export function statSizeTier(value: string): StatSizeTier {
+  if (value.length <= 12) return "lg";
+  if (value.length <= 22) return "md";
+  return "sm";
+}
+
+const STAT_PANEL_SIZE: Record<StatSizeTier, string> = {
+  lg: "text-[clamp(2.5rem,5.5vw,4rem)]",
+  md: "text-[clamp(1.75rem,4vw,2.75rem)]",
+  sm: "text-[clamp(1.25rem,2.75vw,1.75rem)]",
+};
+
+/**
  * A figure stated at display size on its own panel.
  *
  * The MacBook Air design section renders `13"` / `15"` as 64px numerals on a
@@ -691,8 +720,17 @@ export function StatPanel({
       <div className="flex min-h-[220px] flex-col items-center justify-center rounded-[28px] bg-charcoal px-8 py-12 text-center">
         {/* `text-balance` and `hyphens-none`: a value like "up to 900 m" broke
             across two lines at narrow panel widths, splitting the unit off the
-            number it belongs to. The figure is the whole point of the panel. */}
-        <div className="text-balance hyphens-none text-[clamp(2.5rem,5.5vw,4rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-crisp">
+            number it belongs to. The figure is the whole point of the panel.
+            `STAT_PANEL_SIZE` is the second line of defence for the same
+            problem — a value long enough to want more than two lines steps
+            down in size instead, rather than growing the panel past its
+            siblings in the same row. */}
+        <div
+          className={cn(
+            "text-balance hyphens-none font-semibold leading-[1.05] tracking-[-0.02em] text-crisp",
+            STAT_PANEL_SIZE[statSizeTier(value)],
+          )}
+        >
           {value}
         </div>
         {label ? <div className="mt-2 text-[17px] text-cool">{label}</div> : null}

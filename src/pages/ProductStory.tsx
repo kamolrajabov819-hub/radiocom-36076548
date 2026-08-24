@@ -13,6 +13,7 @@ import {
   PosterCard,
   PricePill,
   StatPanel,
+  statSizeTier,
   TintedHeadline,
 } from "@/components/apple";
 import { openLead } from "@/components/LeadFormSheet";
@@ -323,23 +324,33 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
           </div>
         </article>
 
-        {facts.map((c) => (
-          <article
-            key={c.label + c.value}
-            className={`flex ${width} shrink-0 snap-start flex-col justify-between rounded-[28px] p-7 ${
-              c.lead ? "bg-black text-[#f5f5f7]" : "bg-charcoal text-crisp"
-            }`}
-          >
-            <div className={`text-[14px] font-medium ${c.lead ? "opacity-70" : "text-cool"}`}>
-              {c.label}
-            </div>
-            {/* 26px held a value like «до 3 км, 8 Вт» hard against the card's
-                padding on a 78vw phone card. One step down below `sm`. */}
-            <div className="mt-8 text-[21px] font-semibold leading-[1.15] tracking-[-0.02em] sm:text-[26px]">
-              {c.value}
-            </div>
-          </article>
-        ))}
+        {facts.map((c) => {
+          // Same length-aware tiering `StatPanel` uses, at this card's own
+          // smaller scale — a spec row can carry any string a model's data
+          // happens to have, with no guarantee it is as short as "до 3 км".
+          const sizeClass = {
+            lg: "text-[21px] sm:text-[26px]",
+            md: "text-[17px] sm:text-[20px]",
+            sm: "text-[14px] sm:text-[16px]",
+          }[statSizeTier(c.value)];
+          return (
+            <article
+              key={c.label + c.value}
+              className={`flex ${width} shrink-0 snap-start flex-col justify-between rounded-[28px] p-7 ${
+                c.lead ? "bg-black text-[#f5f5f7]" : "bg-charcoal text-crisp"
+              }`}
+            >
+              <div className={`text-[14px] font-medium ${c.lead ? "opacity-70" : "text-cool"}`}>
+                {c.label}
+              </div>
+              {/* 26px held a value like «до 3 км, 8 Вт» hard against the card's
+                  padding on a 78vw phone card. One step down below `sm`. */}
+              <div className={cn("mt-8 font-semibold leading-[1.15] tracking-[-0.02em]", sizeClass)}>
+                {c.value}
+              </div>
+            </article>
+          );
+        })}
       </HighlightsShelf>
     </Section>
   );
