@@ -44,6 +44,7 @@ import { entries } from "./lib/sitemap";
 import { head as searchHead } from "../src/pages/Search.meta";
 import { head as industryHead } from "../src/pages/IndustryDetail.meta";
 import { head as homeHead } from "../src/pages/Home.meta";
+import { head as sitemapHead } from "../src/pages/Sitemap.meta";
 import { head as serviceHead } from "../src/pages/Service.meta";
 import { head as pocHead } from "../src/pages/Poc.meta";
 import { head as compareHead } from "../src/pages/Compare.meta";
@@ -1030,6 +1031,13 @@ console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
     cases.push({
       label: `${lang} /industries`,
       head: industriesIndexHead({ params: { lang } }) as Head,
+    });
+    cases.push({ label: `${lang} /sitemap`, head: sitemapHead({ params: { lang } }) as Head });
+    // The bare /search form, not a results page — `?q=` results are
+    // noindex and have no snippet to size.
+    cases.push({
+      label: `${lang} /search`,
+      head: searchHead({ params: { lang }, match: { search: {} } }) as Head,
     });
     for (const slug of INDUSTRY_SLUGS)
       cases.push({

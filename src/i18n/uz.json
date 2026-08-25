@@ -719,6 +719,9 @@
     "search": {
       "title": "Ratsiyalar katalogi bo'yicha qidiruv — Radiocom",
       "desc": "Ratsiyani model, standart, himoya klassi yoki masofa bo'yicha toping. Toshkentda 21 ta Radiocom RC va Motorola modeli mavjud."
+    },
+    "sitemap": {
+      "desc": "Radiocom'ning barcha sahifalari bitta ro'yxatda: Motorola va Radiocom RC ratsiyalari, xususiyatlar va narxlar, sohalar, Toshkentda ta'mir."
     }
   },
   "brand": {

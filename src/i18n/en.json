@@ -725,6 +725,9 @@
     "search": {
       "title": "Search the two-way radio catalogue — Radiocom",
       "desc": "Find a radio by model, standard, ingress rating or range. 21 Radiocom RC and Motorola models, in stock in Tashkent."
+    },
+    "sitemap": {
+      "desc": "Every Radiocom page in one list: Motorola and Radiocom RC two-way radios, specs and prices, industry pages, and repair service in Tashkent."
     }
   },
   "brand": {
