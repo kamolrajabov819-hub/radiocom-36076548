@@ -56,18 +56,6 @@ import {
   type Product,
 } from "@/data/products";
 import { pick, type Lang } from "@/data/spec-dict";
-import {
-  breadcrumbSchema,
-  brandPath,
-  collectionPageSchema,
-  jsonLd,
-  localeLinks,
-  pageMeta,
-  preloadImage,
-  webPageSchema,
-  type SeoLang,
-} from "@/lib/seo";
-import { tFor } from "@/lib/i18n";
 import { useLang } from "@/lib/locale";
 
 /**

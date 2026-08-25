@@ -12,15 +12,6 @@ import miningImg from "@/assets/industry-mining.jpg";
 import transportImg from "@/assets/industry-transport.jpg";
 import manufacturingImg from "@/assets/industry-manufacturing.jpg";
 import { spring } from "@/lib/springs";
-import {
-  SITE_NAME,
-  breadcrumbSchema,
-  jsonLd,
-  localeLinks,
-  pageMeta,
-  type SeoLang,
-} from "@/lib/seo";
-import { tFor } from "@/lib/i18n";
 
 const IMAGES: Record<string, string> = {
   horeca: horecaImg,

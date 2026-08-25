@@ -12,26 +12,12 @@ import { Magnetic } from "@/components/Magnetic";
 import {
   categoryLabels,
   formatPrice,
-  isBrandSlug,
   productBySlug,
   type BrandSlug,
   type Product,
 } from "@/data/products";
 import { specs, RANGE_NOTE } from "@/data/specs";
 import { pick, type Lang } from "@/data/spec-dict";
-import {
-  breadcrumbSchema,
-  brandPath,
-  jsonLd,
-  localeLinks,
-  pageMeta,
-  productPath,
-  productSchema,
-  productSpecsPath,
-  webPageSchema,
-  type SeoLang,
-} from "@/lib/seo";
-import { tFor } from "@/lib/i18n";
 import { brandCase } from "@/lib/brand";
 import { useLang } from "@/lib/locale";
 
@@ -252,7 +238,9 @@ export function ProductSpecsPage() {
                 <span className="text-[17px] text-crisp">{pick(line.item, lang)}</span>
                 {/* Always shown, including ×1 — see ProductStory.tsx's InBox
                     for why: an omitted count read as ambiguous, not as one. */}
-                <span className="shrink-0 text-[15px] tabular-nums text-cool">×{line.qty ?? 1}</span>
+                <span className="shrink-0 text-[15px] tabular-nums text-cool">
+                  ×{line.qty ?? 1}
+                </span>
               </li>
             ))}
           </ul>

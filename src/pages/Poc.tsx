@@ -46,16 +46,6 @@ import {
 } from "@/components/apple";
 import { ProductShot } from "@/components/ProductShot";
 import { spring, fadeUpAt } from "@/lib/springs";
-import {
-  breadcrumbSchema,
-  jsonLd,
-  localeLinks,
-  pageMeta,
-  preloadImage,
-  serviceSchema,
-  type SeoLang,
-} from "@/lib/seo";
-import { tFor } from "@/lib/i18n";
 
 /**
  * The six rows of the PoC-vs-PMR matrix.

@@ -7,8 +7,6 @@ import { Check, ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
 import { Section, SectionHead } from "@/components/Section";
 import {
-  BentoGrid,
-  FeatureCard,
   HighlightsShelf,
   LeadInCaption,
   PosterCard,
@@ -17,30 +15,11 @@ import {
   statRowTier,
 } from "@/components/apple";
 import { openLead } from "@/components/LeadFormSheet";
-import {
-  formatPrice,
-  isBrandSlug,
-  productBySlug,
-  type BrandSlug,
-  type Product,
-} from "@/data/products";
+import { formatPrice, productBySlug, type BrandSlug, type Product } from "@/data/products";
 import { specs } from "@/data/specs";
 import { INDUSTRY_SLUGS, type IndustrySlug } from "@/data/industries";
 import { INDUSTRY_POSTERS } from "@/data/industry-images";
 import { pick, type Lang } from "@/data/spec-dict";
-import {
-  breadcrumbSchema,
-  brandPath,
-  jsonLd,
-  localeLinks,
-  pageMeta,
-  preloadImage,
-  productPath,
-  productSchema,
-  webPageSchema,
-  type SeoLang,
-} from "@/lib/seo";
-import { tFor } from "@/lib/i18n";
 import { useLang } from "@/lib/locale";
 
 /**
@@ -273,7 +252,9 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
               </div>
               {/* 26px held a value like «до 3 км, 8 Вт» hard against the card's
                   padding on a 78vw phone card. One step down below `sm`. */}
-              <div className={cn("mt-8 font-semibold leading-[1.15] tracking-[-0.02em]", sizeClass)}>
+              <div
+                className={cn("mt-8 font-semibold leading-[1.15] tracking-[-0.02em]", sizeClass)}
+              >
                 {c.value}
               </div>
             </article>

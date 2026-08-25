@@ -9,7 +9,6 @@ import {
   productPath,
   faqSchema,
   preloadImage,
-  productSchema,
   productSpecsPath,
   webPageSchema,
   jsonLd,
@@ -22,6 +21,7 @@ import {
   ORG_DESCRIPTION,
   CONTENT_DATE,
 } from "../src/lib/seo";
+import { productSchema } from "../src/lib/seo-product";
 // `visibleProducts` is what the site advertises; `products` is the full
 // record, which stays larger because hidden models keep their /catalog 301s.
 import {

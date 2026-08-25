@@ -17,11 +17,11 @@ import {
   localeLinks,
   pageMeta,
   productPath,
-  productSchema,
   productSpecsPath,
   type SeoLang,
   webPageSchema,
 } from "@/lib/seo";
+import { productSchema } from "@/lib/seo-product";
 
 export const head = ({ params }: { params: { lang: SeoLang; brand: string; model: string } }) => {
   if (!isBrandSlug(params.brand)) return {};

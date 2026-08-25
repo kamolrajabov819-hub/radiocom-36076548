@@ -41,7 +41,7 @@ import securityImg from "@/assets/industry-security.jpg";
 import securityImg800 from "@/assets/industry-security@800.jpg";
 import { openLead } from "@/components/LeadFormSheet";
 import { Section, SectionHead } from "@/components/Section";
-import { BentoGrid, FeatureCard, StackedTile, ScrollRow, ScrollItem } from "@/components/apple";
+import { BentoGrid, FeatureCard, StackedTile } from "@/components/apple";
 import { ProductShot } from "@/components/ProductShot";
 import { Magnetic } from "@/components/Magnetic";
 import { visibleProducts } from "@/data/products";
@@ -49,16 +49,6 @@ import { ProductCard } from "@/components/ProductCard";
 import { CountUp } from "@/components/CountUp";
 import { spring, fadeUpAt } from "@/lib/springs";
 import { DESKTOP, useGsap, useScrollChoreography } from "@/lib/motion";
-import {
-  SITE_SECTIONS,
-  jsonLd,
-  localeLinks,
-  pageMeta,
-  preloadImage,
-  siteNavigationSchema,
-  type SeoLang,
-} from "@/lib/seo";
-import { tFor } from "@/lib/i18n";
 
 export function HomePage() {
   const page = useScrollChoreography();

@@ -1,12 +1,11 @@
-import { notFound, useParams } from "@tanstack/react-router";
+import { useParams } from "@tanstack/react-router";
 import { useScrollChoreography } from "@/lib/motion";
 import { LocaleLink } from "@/components/LocaleLink";
 import { useTranslation } from "react-i18next";
 import { brandCase } from "@/lib/brand";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { ChevronRight, FileDown, Check, Quote, Radio, Repeat, Wrench } from "lucide-react";
-import { INDUSTRY_SLUGS, industryPicks, type IndustrySlug } from "@/data/industries";
+import { industryPicks, type IndustrySlug } from "@/data/industries";
 import { INDUSTRY_IMAGES as IMAGES } from "@/data/industry-images";
 import { visibleProducts } from "@/data/products";
 import { openLead } from "@/components/LeadFormSheet";
@@ -19,16 +18,6 @@ import { BentoGrid, FeatureCard } from "@/components/apple";
 // catalogue PDF that only existed on radiocom.lovable.app.
 import priceListPdf from "@/assets/radiocom-price-list.pdf";
 import { fadeUpAt, spring } from "@/lib/springs";
-import {
-  SITE_NAME,
-  breadcrumbSchema,
-  faqSchema,
-  jsonLd,
-  localeLinks,
-  pageMeta,
-  type SeoLang,
-} from "@/lib/seo";
-import { tFor } from "@/lib/i18n";
 
 type Outcome = { n: string; u: string; l: string };
 type FAQ = { q: string; a: string };

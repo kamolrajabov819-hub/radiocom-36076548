@@ -8,15 +8,6 @@ import { spring } from "@/lib/springs";
 import { productsOfBrand } from "@/data/products";
 import { INDUSTRY_SLUGS } from "@/data/industries";
 import { useLang } from "@/lib/locale";
-import {
-  breadcrumbSchema,
-  jsonLd,
-  localeLinks,
-  pageMeta,
-  webPageSchema,
-  type SeoLang,
-} from "@/lib/seo";
-import { tFor } from "@/lib/i18n";
 
 /**
  * The HTML sitemap.

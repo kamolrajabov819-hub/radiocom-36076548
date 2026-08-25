@@ -11,19 +11,9 @@ import {
   shortName,
   type BrandSlug,
   type Product,
-  visibleProducts,
 } from "@/data/products";
 import { specs } from "@/data/specs";
 import { pick, type Lang } from "@/data/spec-dict";
-import {
-  breadcrumbSchema,
-  itemListSchema,
-  jsonLd,
-  localeLinks,
-  pageMeta,
-  type SeoLang,
-} from "@/lib/seo";
-import { tFor } from "@/lib/i18n";
 import { useLang } from "@/lib/locale";
 
 /**
