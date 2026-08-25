@@ -43,14 +43,6 @@ import { entries } from "./lib/sitemap";
 // React page components just to check their meta tags.
 import { head as searchHead } from "../src/pages/Search.meta";
 import { head as industryHead } from "../src/pages/IndustryDetail.meta";
-import { head as homeHead } from "../src/pages/Home.meta";
-import { head as sitemapHead } from "../src/pages/Sitemap.meta";
-import { head as serviceHead } from "../src/pages/Service.meta";
-import { head as pocHead } from "../src/pages/Poc.meta";
-import { head as compareHead } from "../src/pages/Compare.meta";
-import { head as industriesIndexHead } from "../src/pages/IndustriesIndex.meta";
-import { brandHead } from "../src/pages/Brand.meta";
-import { head as productHead } from "../src/pages/ProductStory.meta";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
@@ -988,101 +980,15 @@ console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
   else console.log("ok  Organization.description is the published home description, verbatim");
 }
 
-// N. Every page's <title> and meta description must be a length Google will
-//     actually display.
+// N. Snippet lengths — titles and meta descriptions — live in
+//     `scripts/verify-snippets.ts`, not here.
 //
-//     This gate exists because its absence shipped a real defect. All six
-//     industry pages carried a 37-character description — «Крупные объекты.
-//     IP67, дальняя связь.» — because `IndustryDetail.meta` preferred the card
-//     blurb over the longer template beneath it. Nothing caught it: every
-//     other SEO check here asks whether a tag is *present* and *consistent*,
-//     and that one was both.
-//
-//     The bounds are display limits, not style rules. Google truncates titles
-//     around 580-600px and descriptions around 155-160 characters; a 37
-//     character description is not truncated, it is simply a snippet Google
-//     will usually discard and rewrite from the page body. Titles are allowed
-//     to 65 because the pixel limit is what binds and a Cyrillic title of 62
-//     narrow characters still fits.
-//
-//     Driven through each route's real `head()`, for the same reason as the
-//     checks above: asserting the helper *can* produce a good description
-//     proves nothing about what any page asks it for.
-{
-  const TITLE_MAX = 65;
-  const DESC_MIN = 70;
-  const DESC_MAX = 160;
-
-  type Head = { meta?: { name?: string; property?: string; content?: string }[] };
-  const read = (h: Head) => {
-    const m = h.meta ?? [];
-    return {
-      title: m.find((x) => x.property === "og:title")?.content ?? "",
-      desc: m.find((x) => x.name === "description")?.content ?? "",
-    };
-  };
-
-  const cases: { label: string; head: Head }[] = [];
-  for (const lang of LANGS) {
-    cases.push({ label: `${lang} /`, head: homeHead({ params: { lang } }) as Head });
-    cases.push({ label: `${lang} /service`, head: serviceHead({ params: { lang } }) as Head });
-    cases.push({ label: `${lang} /poc`, head: pocHead({ params: { lang } }) as Head });
-    cases.push({ label: `${lang} /compare`, head: compareHead({ params: { lang } }) as Head });
-    cases.push({
-      label: `${lang} /industries`,
-      head: industriesIndexHead({ params: { lang } }) as Head,
-    });
-    cases.push({ label: `${lang} /sitemap`, head: sitemapHead({ params: { lang } }) as Head });
-    // The bare /search form, not a results page — `?q=` results are
-    // noindex and have no snippet to size.
-    cases.push({
-      label: `${lang} /search`,
-      head: searchHead({ params: { lang }, match: { search: {} } }) as Head,
-    });
-    for (const slug of INDUSTRY_SLUGS)
-      cases.push({
-        label: `${lang} /industries/${slug}`,
-        head: industryHead({ params: { lang, slug } }) as Head,
-      });
-    // `brandHead` is curried by brand, unlike the others.
-    for (const brand of ["radiocom", "motorola"] as const)
-      cases.push({
-        label: `${lang} /${brand}`,
-        head: brandHead(brand)({ params: { lang } }) as Head,
-      });
-    // Two per brand rather than the whole catalogue: the title and description
-    // both come from one template each, so a fifth model tests nothing a
-    // second does not. `p.brand` is the display name — the route takes the
-    // slug, which is what `productsOfBrand` is keyed by.
-    for (const brand of ["radiocom", "motorola"] as const)
-      for (const p of productsOfBrand(brand).slice(0, 2))
-        cases.push({
-          label: `${lang} /${brand}/${p.slug}`,
-          head: productHead({ params: { lang, brand, model: p.slug } }) as Head,
-        });
-  }
-
-  const problems: string[] = [];
-  for (const { label, head } of cases) {
-    const { title, desc } = read(head);
-    if (!title) problems.push(`${label}: no og:title`);
-    else if ([...title].length > TITLE_MAX)
-      problems.push(`${label}: title is ${[...title].length} chars (max ${TITLE_MAX}) — "${title}"`);
-    if (!desc) problems.push(`${label}: no meta description`);
-    else if ([...desc].length < DESC_MIN)
-      problems.push(
-        `${label}: description is only ${[...desc].length} chars (min ${DESC_MIN}) — "${desc}"`,
-      );
-    else if ([...desc].length > DESC_MAX)
-      problems.push(`${label}: description is ${[...desc].length} chars (max ${DESC_MAX})`);
-  }
-
-  if (problems.length) bad(`snippet lengths:\n     ${problems.join("\n     ")}`);
-  else
-    console.log(
-      `ok  title <= ${TITLE_MAX} and description ${DESC_MIN}-${DESC_MAX} chars across ${cases.length} page/locale pairs`,
-    );
-}
+//     Not a matter of taste: adding that gate to this file pushed its import
+//     graph past a threshold Bun 1.3.11 does not survive, and the process died
+//     before any check ran, trying to parse `rcd-70-hero.webp` as JavaScript.
+//     The graph is what does it — replacing one of the eight page-meta imports
+//     with a comment of exactly the same byte length fixed it, same file size
+//     and one fewer module. That script documents the whole diagnosis.
 
 console.log(fail === 0 ? "\nALL SEO CHECKS PASSED" : `\n${fail} FAILURES`);
 process.exit(fail ? 1 : 0);
