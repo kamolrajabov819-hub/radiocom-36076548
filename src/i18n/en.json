@@ -578,7 +578,8 @@
   },
   "home": {
     "hero": {
-      "title": "Professional two-way radios. Unbreakable.",
+      "title_a": "Unbreakable,",
+      "title_b": "Professional two-way radios.",
       "sub": "Motorola and Radiocom — authorized service, free testing and nationwide delivery.",
       "cta_primary": "Book Free Test",
       "cta_secondary": "Learn more",
@@ -736,7 +737,7 @@
     "sub": "We work directly with manufacturers: genuine devices, warranty and service in Tashkent.",
     "view": "View models",
     "models": "models",
-    "radiocom_title": "Radiocom RC and RCD radios",
+    "radiocom_title": "Radiocom RC and RCD",
     "radiocom_desc": "Our own Radiocom line: analog RC handhelds and digital RCD DMR radios with warranty and service.",
     "motorola_title": "Motorola radios",
     "motorola_desc": "Talkabout, XT and TLKR — license-free PMR radios from the global market leader.",

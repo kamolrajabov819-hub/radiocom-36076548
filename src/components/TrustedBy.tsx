@@ -60,8 +60,13 @@ export function TrustedBy() {
 
   return (
     <Section band="plain" tight>
-      <h2 className="type-title text-center text-crisp">{t("clients.title")}</h2>
-      <p className="subhead mx-auto mt-3 max-w-2xl text-center text-[15px]">{t("clients.sub")}</p>
+      {/* `type-headline`, the scale every other section heading on the site
+          uses through `SectionHead`. This was `type-title` — the scale meant
+          for a card heading — so «Нам доверяют» read at roughly half the size
+          of the section above it and the strip looked like a footnote rather
+          than a section. */}
+      <h2 className="type-headline text-center text-crisp">{t("clients.title")}</h2>
+      <p className="subhead mx-auto mt-4 max-w-2xl text-center text-lg">{t("clients.sub")}</p>
 
       {/* `tabIndex={0}`, matching `HighlightsShelf`.
           

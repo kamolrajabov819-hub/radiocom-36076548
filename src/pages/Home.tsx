@@ -82,7 +82,11 @@ export function HomePage() {
 function Hero() {
   const { t } = useTranslation();
   const scope = useRef<HTMLElement>(null);
-  const title = t("home.hero.title");
+  // Two lines, in this order, because that is the reading the client asked
+  // for: the adjective lands first and the product follows it. Two keys
+  // rather than one string with a separator, so a translator can see where
+  // the break falls instead of having to encode it.
+  const lines = [t("home.hero.title_a"), t("home.hero.title_b")];
 
   useGsap(
     // `gsap` arrives through the callback rather than a module import: it is
@@ -136,16 +140,23 @@ function Hero() {
         </motion.div>
 
         <h1 className="headline-hero text-crisp">
-          {title.split(" ").map((w, i) => (
-            <motion.span
-              key={i}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ...spring, delay: 0.1 + i * 0.04 }}
-              className="mr-[0.25em] inline-block"
-            >
-              {w}
-            </motion.span>
+          {lines.map((line, li) => (
+            // `block`, so the second line always starts on its own row rather
+            // than wherever the first happens to run out. The word spans stay
+            // per-line so the reveal still plays left to right across both.
+            <span key={li} className="block">
+              {line.split(" ").map((w, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ ...spring, delay: 0.1 + (li * 2 + i) * 0.04 }}
+                  className="mr-[0.25em] inline-block"
+                >
+                  {w}
+                </motion.span>
+              ))}
+            </span>
           ))}
         </h1>
 

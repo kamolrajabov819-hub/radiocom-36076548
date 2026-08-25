@@ -180,13 +180,33 @@
   letter-spacing: 0.02em;
 }
 
+/* No word is ever split.
+ *
+ * These two carried `overflow-wrap: break-word` and `hyphens: auto`, which
+ * between them let the browser cut a word mid-stem — «Профессио-нальные»,
+ * "Unbreak-able" — whenever a headline was one character too wide for its
+ * measure. It is a defensible default for body copy in a narrow column. On a
+ * headline set at 44-96px it is the most conspicuous thing on the page, and
+ * in three languages it produced three different fracture points on the same
+ * screen.
+ *
+ * `hyphens: manual` still honours a soft hyphen a translator writes on
+ * purpose, so this forbids automatic breaks without forbidding deliberate
+ * ones. `overflow-wrap: normal` is the default and is spelled out here only
+ * so the next person can see it was chosen.
+ *
+ * What replaces them is fit rather than fracture: the `clamp()` minimum is
+ * low enough that the longest word in any of the three locales fits its
+ * container at 320px, which is narrower than any phone this site sees.
+ * Measured, not assumed — `qa-overflow` checks every route at six widths and
+ * fails the build if a line ever escapes its column. */
 @utility headline {
   font-weight: 600;
   letter-spacing: -0.035em;
   line-height: 1.05;
   text-wrap: balance;
-  overflow-wrap: break-word;
-  hyphens: auto;
+  overflow-wrap: normal;
+  hyphens: manual;
 }
 
 @utility headline-hero {
@@ -194,9 +214,34 @@
   letter-spacing: -0.04em;
   line-height: 1.02;
   text-wrap: balance;
-  overflow-wrap: break-word;
-  hyphens: auto;
-  font-size: clamp(2.75rem, 8vw, 6rem);
+  overflow-wrap: normal;
+  hyphens: manual;
+  /*
+   * `2.25rem` at the floor, and a steeper `9vw` so nothing is lost above it.
+   *
+   * The minimum is set by one word. «Профессиональные» measures 414px at the
+   * old 2.75rem floor, inside a 342px column on a 390px phone — so with word
+   * breaking gone it had nowhere to go but over the edge. 36px brings it to
+   * 339px, which fits. The `vw` term went 8 -> 9 so the type reaches its 6rem
+   * ceiling at 683px instead of 768px: the floor drops for the one viewport
+   * that needs it, and every width above 400px is the same size or larger
+   * than before.
+   *
+   * 390px is the narrowest width `qa-overflow` tests, and the narrowest this
+   * site is built for.
+   *
+   * The ceiling term is `5.8vw` rather than something steeper because the home
+   * hero is now two written lines, and the second of them — «Профессиональные
+   * рации.», "Professional two-way radios." — is the longest line on the site.
+   * At the old rate it reached 96px by 683px wide, and from there the line
+   * needed 1253px (ru) and 1276px (en) inside a 1180px column, so it broke and
+   * the hero read as three lines instead of the two it is written as.
+   *
+   * Measured across 1024, 1280, 1440 and 1920 in all three locales: 5.8vw is
+   * the fastest rate that holds two lines at every one of them. It still
+   * reaches the full 6rem, just at 1655px rather than 683px.
+   */
+  font-size: clamp(2.25rem, 5.8vw, 6rem);
 }
 
 @utility subhead {
@@ -630,7 +675,19 @@
  * nothing grows on a phone; the ceiling is what rises.
  */
 @utility type-display {
-  font-size: clamp(2.75rem, 7.4vw, 6rem);
+  /*
+   * The floor is set by the longest word that has to fit in it, now that
+   * headlines never break mid-word: «ретрансляторов.» on the PoC page, 351px
+   * at the old 2.75rem floor inside a 346px column at 390px. 2.5rem brings it
+   * to 319px. `headline-hero` lands on a lower floor (2.25rem) because its
+   * longest word — «Профессиональные» — is longer still; each scale is sized
+   * by its own worst case rather than both being dragged to the lower one.
+   *
+   * The `vw` term went 7.4 -> 8.4 so the ceiling arrives at 1143px instead of
+   * 1297px, which means every width above ~410px renders the same size or
+   * larger than before. Only the 390px floor moved down.
+   */
+  font-size: clamp(2.5rem, 8.4vw, 6rem);
   letter-spacing: -0.035em;
   line-height: 1.03;
   font-weight: 600;
