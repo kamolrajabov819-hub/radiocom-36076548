@@ -773,3 +773,52 @@ year and it is a one-line change.
 While you are looking: if «11 лет» and «10 000+ клиентов» have gone stale, both
 are in `meta.home.desc` in ru/en/uz and are quoted verbatim into the
 `Organization` schema.
+
+## Agent discovery — what was published, and what was refused
+
+From the isitagentready.com report. Split by one test: **does the thing being
+advertised exist?**
+
+### Published
+
+| Goal | What shipped |
+|---|---|
+| Markdown for agents | `Accept: text/markdown` now returns Markdown. See below — this also fixed a live 500. |
+| Content Signals | `Content-Signal: search=yes, ai-input=yes, ai-train=no` in robots.txt |
+| `Link` headers (RFC 8288) | `describedby` → the locale's `llms.txt`; `alternate` → the same URL as Markdown |
+| ARD manifest | `/.well-known/ai-catalog.json`, listing the sitemap and all three `llms.txt` files |
+
+**The 500 was real and worth the trip on its own.** TanStack Start answers any
+request whose `Accept` is neither `text/html` nor the wildcard with
+`{"error":"Only HTML requests are supported here"}` and **HTTP 500** — not 406,
+which is the status that means "I cannot produce that". Any agent, uptime
+check or crawler sending `Accept: application/json` was being told the site was
+broken. One `curl` reproduced it. Now: Markdown when asked for, HTML otherwise,
+200 either way.
+
+**One decision is yours, not mine.** `ai-train=no` says this content may be
+cited but not used as training data. That matches what the site already does —
+every AI answer engine is allowed in robots.txt because being quotable is a
+distribution channel — but granting training rights is a commercial call nobody
+has made. It is one word in `scripts/generate-seo.ts`.
+
+### Refused, and why
+
+These would each have meant publishing a discovery document for infrastructure
+this site does not have. An agent that follows such a document into a flow that
+cannot complete is worse served than one that found nothing.
+
+| Goal | Why not |
+|---|---|
+| `/.well-known/api-catalog` (RFC 9727) | There is no public API. The only endpoint is `/api/send-lead`, which robots.txt already disallows and which takes a lead form, not queries. |
+| OAuth/OIDC discovery | There is no authorization server. Publishing `authorization_endpoint` and `token_endpoint` would send agents to URLs that do not resolve. |
+| OAuth Protected Resource metadata | Same: nothing on this site is a protected resource. |
+| `auth.md` | Same: there is no agent registration to describe. |
+| MCP Server Card | There is no MCP server. A card advertising a `transport` endpoint that does not exist is a broken promise in a well-known location. |
+| Agent Skills index | There are no skills to index. An index of zero skills is not a signal, it is noise. |
+| WebMCP | Genuinely implementable — search and the catalogue are real actions — but `navigator.modelContext` is an unshipped draft, and the client bundle is 839–921 KB against a 930 KB gate. Worth revisiting when the API ships. |
+
+**DNS-AID is not refused, it is simply not in this repo.** It needs SVCB/HTTPS
+records published under `_agents.radiocom.uz` and the zone signed with DNSSEC.
+That is done at the DNS host, by whoever controls the domain. Say the word and
+I will write the exact records out for you to paste.

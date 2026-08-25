@@ -1,3 +1,16 @@
+# Content preferences, per contentsignals.org.
+#
+# These match the policy the rest of this file already states rather than
+# adding a new one. Every AI answer engine below is allowed on purpose: for a
+# regional B2B catalogue, being quotable by ChatGPT, Perplexity and AI
+# Overviews is a distribution channel. That is `search` and `ai-input` —
+# retrieval and citation at answer time.
+#
+# `ai-train=no` because training a model on this corpus is a different thing
+# from citing it, and nobody has agreed to it. It is a commercial decision, not
+# a technical one: flip it here if the owner wants to grant it.
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
 User-agent: *
 Allow: /
 

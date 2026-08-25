@@ -12,7 +12,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 // for the redirect map below, because a hidden model's old /catalog URL is
 // already indexed and must keep resolving.
 import { legacyCatalogTarget, products, visibleProducts } from "../src/data/products";
-import { SITE_URL, LANGS, localePath, productPath } from "../src/lib/seo";
+import { SITE_URL, LANGS, localePath, productPath, ORG_DESCRIPTION } from "../src/lib/seo";
 import { entries, renderSitemap } from "./lib/sitemap";
 
 // The page list and the XML renderer now live in `scripts/lib/sitemap.ts`,
@@ -28,7 +28,20 @@ const sitemap = renderSitemap(entries);
 // AI crawlers are allowed deliberately: for a regional B2B catalogue, being quotable
 // by ChatGPT, Perplexity and AI Overviews is a channel, not a leak. Everything here
 // is public product information.
-const robots = `User-agent: *
+const robots = `# Content preferences, per contentsignals.org.
+#
+# These match the policy the rest of this file already states rather than
+# adding a new one. Every AI answer engine below is allowed on purpose: for a
+# regional B2B catalogue, being quotable by ChatGPT, Perplexity and AI
+# Overviews is a distribution channel. That is \`search\` and \`ai-input\` —
+# retrieval and citation at answer time.
+#
+# \`ai-train=no\` because training a model on this corpus is a different thing
+# from citing it, and nobody has agreed to it. It is a commercial decision, not
+# a technical one: flip it here if the owner wants to grant it.
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+User-agent: *
 Allow: /
 
 # Lead-capture and function endpoints hold nothing indexable.
@@ -229,6 +242,53 @@ const nextToml = marked.test(existingToml)
   : `${existingToml.trimEnd()}\n\n${redirectBlock}\n`;
 await writeFile(tomlPath, nextToml, "utf8");
 
+/**
+ * `/.well-known/ai-catalog.json` — an Agentic Resource Discovery manifest.
+ *
+ * Every entry points at a file this build actually writes. That is the whole
+ * design constraint: a discovery manifest is a promise, and an agent that
+ * follows a `urn:air:` identifier to a 404 is worse served than one that found
+ * no manifest at all. So there is no entry here for an API catalogue, an MCP
+ * server, or an OAuth issuer — this site has none of those, and advertising
+ * them would send agents into flows that cannot complete. See TODO-content.md.
+ *
+ * `representativeQueries` are the questions each resource can genuinely answer,
+ * so a registry can embed them without having to fetch and guess.
+ */
+const aiCatalog = {
+  specVersion: "0.1",
+  host: {
+    name: "RADIOCOM",
+    url: SITE_URL,
+    description: ORG_DESCRIPTION,
+  },
+  entries: [
+    {
+      id: `urn:air:radiocom.uz:catalog:sitemap`,
+      displayName: "Sitemap",
+      description: "Every page on the site, in all three locales, with last-modified dates.",
+      type: "application/xml",
+      url: `${SITE_URL}/sitemap.xml`,
+      representativeQueries: [
+        "What pages does radiocom.uz have?",
+        "Which two-way radio models does RADIOCOM list?",
+      ],
+    },
+    ...LANGS.map((l) => ({
+      id: `urn:air:radiocom.uz:summary:llms-${l}`,
+      displayName: `Site summary (${l})`,
+      description: `Plain-text summary of the catalogue, services and contact details in ${l}.`,
+      type: "text/plain",
+      url: l === "ru" ? `${SITE_URL}/llms.txt` : `${SITE_URL}/llms.${l}.txt`,
+      representativeQueries: [
+        "Where can I buy two-way radios in Tashkent?",
+        "What does RADIOCOM sell and service?",
+        "How much does a DMR radio cost in Uzbekistan?",
+      ],
+    })),
+  ],
+};
+
 await mkdir("public", { recursive: true });
 await writeFile("public/sitemap.xml", sitemap, "utf8");
 await writeFile("public/robots.txt", robots, "utf8");
@@ -236,6 +296,12 @@ await writeFile("public/robots.txt", robots, "utf8");
 // beside it and are advertised from robots.txt.
 await writeFile("public/llms.txt", llmsFor("ru"), "utf8");
 for (const l of LANGS) await writeFile(`public/llms.${l}.txt`, llmsFor(l), "utf8");
+await mkdir("public/.well-known", { recursive: true });
+await writeFile(
+  "public/.well-known/ai-catalog.json",
+  JSON.stringify(aiCatalog, null, 2) + "\n",
+  "utf8",
+);
 console.log(
-  `seo: wrote public/sitemap.xml (${entries.length} pages x ${LANGS.length} locales = ${entries.length * LANGS.length} urls) plus robots.txt and llms.txt`,
+  `seo: wrote public/sitemap.xml (${entries.length} pages x ${LANGS.length} locales = ${entries.length * LANGS.length} urls) plus robots.txt, llms.txt and .well-known/ai-catalog.json`,
 );
