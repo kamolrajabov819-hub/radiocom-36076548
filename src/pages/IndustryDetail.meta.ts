@@ -35,8 +35,16 @@ export const head = ({ params }: { params: { slug: string; lang: SeoLang } }) =>
   // display names carry "·" separators that do not belong in a page title.
   const inTitle = t(`industries.${slug}.seo`, { defaultValue: name });
   const title = t("meta.industry.title", { name: inTitle });
+  // `.meta_desc`, not `.desc`.
+  //
+  // `.desc` is the card blurb — «Крупные объекты. IP67, дальняя связь.», 37
+  // characters. It was being preferred over the generic template beneath it,
+  // so all six industry pages shipped a meta description a third of the length
+  // Google will display, and the better string never ran. `.meta_desc` is
+  // written for the search result: one sentence naming the industry, two or
+  // three figures that are actually on the page, and what a visitor gets.
   const description =
-    t(`industries.${slug}.desc`, { defaultValue: "" }) ||
+    t(`industries.${slug}.meta_desc`, { defaultValue: "" }) ||
     t("meta.industry.desc", { name: inTitle });
   const path = `/industries/${slug}`;
 

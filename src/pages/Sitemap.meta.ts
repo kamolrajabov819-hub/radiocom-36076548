@@ -25,7 +25,11 @@ export const head = ({ params }: { params: { lang: SeoLang } }) => {
     meta: pageMeta({
       lang: params.lang,
       title: `${t("sitemap.title")} — Radiocom`,
-      description: t("sitemap.sub"),
+      // `meta.sitemap.desc`, not `sitemap.sub`. The subtitle is one short line
+      // written to sit under a heading — «Все страницы Radiocom в одном
+      // списке.», 37 characters — which is too little for Google to use as a
+      // snippet. The `sitemap.sub` on the page itself is unchanged.
+      description: t("meta.sitemap.desc"),
       path,
       ogCard: "sitemap",
     }),

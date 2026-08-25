@@ -100,7 +100,8 @@
       ],
       "seo": "HoReCa",
       "h1": "Two-way radios for hotels and restaurants",
-      "clients": ""
+      "clients": "",
+      "meta_desc": "Two-way radios for hotels, restaurants and events in Tashkent. Motorola CLP 446 and CLK 446: up to 7,400 m² of coverage, 68 g, earpiece in the box. Free trial."
     },
     "construction": {
       "name": "Construction",
@@ -148,7 +149,8 @@
       ],
       "seo": "Construction",
       "h1": "Two-way radios for construction",
-      "clients": ""
+      "clients": "",
+      "meta_desc": "Two-way radios for construction in Tashkent: RCD-70 PRO with IP67 and up to 10 km in open ground, clear digital DMR audio over site noise. Free on-site trial."
     },
     "security": {
       "name": "Security",
@@ -196,7 +198,8 @@
       ],
       "seo": "Security",
       "h1": "Two-way radios for security",
-      "clients": ""
+      "clients": "",
+      "meta_desc": "Two-way radios for security teams: AES-256 voice encryption in digital mode, GPS on the RCD-70 PRO, up to 3 km in dense city. 12-month warranty, free trial."
     },
     "mining": {
       "name": "Mining · Oil · Gas",
@@ -244,7 +247,8 @@
       ],
       "seo": "Mining, Oil and Gas",
       "h1": "Two-way radios for mining, oil and gas",
-      "clients": "Trusted by: Uz-Kor Gas Chemical, ERIELL, ENTER Engineering, HYUNDAI Engineering, SAMSUNG Engineering Construction."
+      "clients": "Trusted by: Uz-Kor Gas Chemical, ERIELL, ENTER Engineering, HYUNDAI Engineering, SAMSUNG Engineering Construction.",
+      "meta_desc": "Two-way radios for mining, oil and gas: IP67 against dust and water, AES-256 encryption, a 3600 mAh battery that lasts a shift. ERIELL and ENTER Engineering."
     },
     "transport": {
       "name": "Transport · Logistics",
@@ -292,7 +296,8 @@
       ],
       "seo": "Transport and Logistics",
       "h1": "Two-way radios for transport and logistics",
-      "clients": ""
+      "clients": "",
+      "meta_desc": "Two-way radios for transport and logistics: crew position on the dispatcher's map, up to 10 km on the highway, 3600 mAh a shift. Free trial for your fleet."
     },
     "manufacturing": {
       "name": "Manufacturing · Warehousing",
@@ -340,7 +345,8 @@
       ],
       "seo": "Manufacturing and Warehousing",
       "h1": "Two-way radios for manufacturing and warehouses",
-      "clients": ""
+      "clients": "",
+      "meta_desc": "Two-way radios for plants and warehouses: clean digital DMR, up to 2.5 km across shop floors and yards, your own frequency — no airtime fees. Free trial."
     },
     "banner_title": "Not sure which radio fits your operation?",
     "banner_sub": "Tell us your industry — we will recommend the right system within 15 minutes.",
@@ -649,7 +655,7 @@
   "meta": {
     "home": {
       "title": "Two-Way Radios in Tashkent — Motorola, Radiocom | Radiocom",
-      "desc": "The official two-way radio supplier in Uzbekistan: 11 years in the market, 10,000+ customers. Motorola, Hytera, PoC and Radiocom RC. Free trial, warranty, service centre in Tashkent."
+      "desc": "Official two-way radio supplier in Uzbekistan: 11 years, 10,000+ customers. Motorola, PoC and Radiocom RC. Free trial, warranty and service in Tashkent."
     },
     "poc": {
       "title": "PoC Radios: LTE Push-to-Talk across Uzbekistan | Radiocom",
@@ -657,20 +663,20 @@
     },
     "service": {
       "title": "Two-Way Radio Repair in Tashkent — Authorised Service | Radiocom",
-      "desc": "Warranty and post-warranty repair for Motorola, Hytera and Vertex Standard. Genuine parts, certified engineers, fixed prices. Tashkent.",
+      "desc": "Warranty and post-warranty repair for Motorola, Radiocom and Vertex Standard. Genuine parts, certified engineers, fixed prices. Tashkent.",
       "schema_name": "Radiocom Authorised Service Centre",
-      "schema_desc": "Warranty and post-warranty repair of Motorola, Hytera and Vertex Standard two-way radios in Tashkent."
+      "schema_desc": "Warranty and post-warranty repair of Motorola, Radiocom and Vertex Standard two-way radios in Tashkent."
     },
     "industries": {
       "title": "Business radios in Tashkent — HoReCa, construction, security",
-      "desc": "Ready-made radio communication solutions for six industries: HoReCa, construction, security, mining, transport and manufacturing. Model selection and a free trial."
+      "desc": "Ready-made radio solutions for six industries: HoReCa, construction, security, mining, transport and manufacturing. Model selection and a free trial."
     },
     "industry": {
-      "title": "Two-Way Radios for {{name}} — Selection and Rollout | Radiocom",
+      "title": "Two-Way Radios for {{name}} | Radiocom",
       "desc": "Two-way radios for {{name}} in Tashkent and across Uzbekistan: models matched to the job, a free on-site trial, a 12-month warranty and our own service centre."
     },
     "product": {
-      "title": "{{name}} — buy in Tashkent | Radiocom",
+      "title": "{{name}} — buy in Tashkent",
       "desc": "{{blurb}} Range {{range}}. {{price}}. Official warranty, free trial, delivery across Uzbekistan."
     },
     "crumb": {
@@ -700,7 +706,11 @@
       "radiocom_title": "Radiocom RC and RCD radios — buy in Tashkent | Radiocom",
       "radiocom_desc": "{{count}} Radiocom models: analogue RC handhelds and digital RCD DMR radios. Prices, specs, 12-month warranty and a free trial across Uzbekistan.",
       "motorola_title": "Motorola two-way radios — buy in Tashkent | Radiocom",
-      "motorola_desc": "{{count}} Motorola models: Talkabout, XT, TLKR and CLP. License-free PMR radios with warranty, delivery across Uzbekistan and a free trial."
+      "motorola_desc": "{{count}} Motorola models: Talkabout, XT, TLKR and CLP. License-free PMR radios with warranty, delivery across Uzbekistan and a free trial.",
+      "radiocom_desc_one": "{{count}} Radiocom model: analogue RC handhelds and digital RCD DMR radios. Prices, specs, 12-month warranty and a free trial across Uzbekistan.",
+      "radiocom_desc_other": "{{count}} Radiocom models: analogue RC handhelds and digital RCD DMR radios. Prices, specs, 12-month warranty and a free trial across Uzbekistan.",
+      "motorola_desc_one": "{{count}} Motorola model: Talkabout, XT, TLKR and CLP. License-free PMR radios with warranty, delivery across Uzbekistan and a free trial.",
+      "motorola_desc_other": "{{count}} Motorola models: Talkabout, XT, TLKR and CLP. License-free PMR radios with warranty, delivery across Uzbekistan and a free trial."
     },
     "specs": {
       "title": "{{name}} — specifications and price | Radiocom",
@@ -708,11 +718,16 @@
     },
     "compare": {
       "title": "Compare Motorola and Radiocom radios — {{count}} models | Radiocom",
-      "desc": "Every model by range, standard, ingress protection and price in one table. Find the radio that fits the job."
+      "desc": "Every model by range, standard, ingress protection and price in one table. Find the radio that fits the job.",
+      "title_one": "Compare Motorola and Radiocom radios — {{count}} model | Radiocom",
+      "title_other": "Compare Motorola and Radiocom radios — {{count}} models | Radiocom"
     },
     "search": {
       "title": "Search the two-way radio catalogue — Radiocom",
       "desc": "Find a radio by model, standard, ingress rating or range. 21 Radiocom RC and Motorola models, in stock in Tashkent."
+    },
+    "sitemap": {
+      "desc": "Every Radiocom page in one list: Motorola and Radiocom RC two-way radios, specs and prices, industry pages, and repair service in Tashkent."
     }
   },
   "brand": {

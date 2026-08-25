@@ -74,8 +74,8 @@ export const BUSINESS_IMAGE = "/og-radiocom.jpg";
  * without the build saying so.
  */
 export const ORG_DESCRIPTION =
-  "Официальный поставщик радиостанций в Узбекистане: 11 лет на рынке, 10 000+ клиентов. " +
-  "Motorola, Hytera, PoC и Radiocom RC. Бесплатный тест, гарантия, сервис в Ташкенте.";
+  "Официальный поставщик раций в Узбекистане: 11 лет на рынке, 10 000+ клиентов. " +
+  "Motorola, PoC и Radiocom RC. Бесплатный тест, гарантия, сервис в Ташкенте.";
 
 /** Absolute URL for a site-relative path. */
 export function absolute(path: string): string {

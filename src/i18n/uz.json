@@ -100,7 +100,8 @@
       ],
       "seo": "HoReCa",
       "h1": "Mehmonxona va restoranlar uchun ratsiyalar",
-      "clients": ""
+      "clients": "",
+      "meta_desc": "Mehmonxona, restoran va tadbirlar uchun ratsiyalar. Motorola CLP 446 va CLK 446: 7400 m² gacha qamrov, 68 g og'irlik, garnitura to'plamda. Bepul sinov."
     },
     "construction": {
       "name": "Qurilish",
@@ -148,7 +149,8 @@
       ],
       "seo": "Qurilish",
       "h1": "Qurilish uchun ratsiyalar",
-      "clients": ""
+      "clients": "",
+      "meta_desc": "Qurilish uchun ratsiyalar: RCD-70 PRO — IP67 himoya, ochiq joyda 10 km gacha aloqa, shovqin ichida toza raqamli DMR ovozi. Obyektda bepul sinov."
     },
     "security": {
       "name": "Xavfsizlik",
@@ -196,7 +198,8 @@
       ],
       "seo": "Xavfsizlik xizmatlari",
       "h1": "Xavfsizlik uchun ratsiyalar",
-      "clients": ""
+      "clients": "",
+      "meta_desc": "Qo'riqlash va xavfsizlik xizmatlari uchun ratsiyalar: raqamli rejimda AES-256 shifrlash, RCD-70 PRO'da GPS, zich shaharda 3 km gacha. 12 oy kafolat."
     },
     "mining": {
       "name": "Kon · Neft · Gaz",
@@ -244,7 +247,8 @@
       ],
       "seo": "Kon, neft va gaz",
       "h1": "Kon, neft va gaz uchun ratsiyalar",
-      "clients": "Bizga ishonishadi: Uz-Kor Gas Chemical, ERIELL, ENTER Engineering, HYUNDAI Engineering, SAMSUNG Engineering Construction."
+      "clients": "Bizga ishonishadi: Uz-Kor Gas Chemical, ERIELL, ENTER Engineering, HYUNDAI Engineering, SAMSUNG Engineering Construction.",
+      "meta_desc": "Konchilik, neft va gaz uchun ratsiyalar: chang va suvdan IP67 himoya, AES-256 shifrlash, bir smenaga 3600 mA·s batareya. ERIELL va ENTER Engineering."
     },
     "transport": {
       "name": "Transport · Logistika",
@@ -292,7 +296,8 @@
       ],
       "seo": "Transport va logistika",
       "h1": "Transport va logistika uchun ratsiyalar",
-      "clients": ""
+      "clients": "",
+      "meta_desc": "Transport va logistika uchun ratsiyalar: ekipaj joylashuvi dispetcherda GPS orqali, trassada 10 km gacha, smenaga 3600 mA·s. Avtopark uchun bepul sinov."
     },
     "manufacturing": {
       "name": "Ishlab chiqarish · Ombor",
@@ -340,7 +345,8 @@
       ],
       "seo": "Ishlab chiqarish va omborlar",
       "h1": "Ishlab chiqarish va omborlar uchun ratsiyalar",
-      "clients": ""
+      "clients": "",
+      "meta_desc": "Ishlab chiqarish va omborlar uchun ratsiyalar: xalaqitsiz raqamli DMR, sexlarda 2,5 km gacha, o'z chastotangiz — abonent to'lovisiz. Bepul sinov."
     },
     "banner_title": "Qaysi ratsiya biznesingizga mos kelishini bilmayapsizmi?",
     "banner_sub": "Sohangizni ayting — 15 daqiqada tizim tanlab beramiz.",
@@ -649,7 +655,7 @@
   "meta": {
     "home": {
       "title": "Toshkentda ratsiyalar — Motorola va Radiocom | Radiocom",
-      "desc": "O'zbekistondagi rasmiy radiostansiya yetkazib beruvchi: bozorda 11 yil, 10 000+ mijoz. Motorola, Hytera, PoC va Radiocom RC. Bepul sinov, kafolat, Toshkentda servis."
+      "desc": "O'zbekistondagi rasmiy ratsiya yetkazib beruvchi: bozorda 11 yil, 10 000+ mijoz. Motorola, PoC va Radiocom RC. Bepul sinov, kafolat, Toshkentda servis."
     },
     "poc": {
       "title": "PoC ratsiyalar: butun O'zbekiston bo'ylab LTE aloqa | Radiocom",
@@ -657,21 +663,21 @@
     },
     "service": {
       "title": "Toshkentda ratsiya ta'miri — vakolatli servis | Radiocom",
-      "desc": "Motorola, Hytera va Vertex Standard uchun kafolatli va kafolatdan keyingi ta'mir. Original ehtiyot qismlar, sertifikatlangan muhandislar, belgilangan narxlar. Toshkent.",
+      "desc": "Motorola, Radiocom va Vertex Standard uchun kafolatli va kafolatdan keyingi ta'mir. Original ehtiyot qismlar, sertifikatlangan muhandislar. Toshkent.",
       "schema_name": "Radiocom vakolatli servis markazi",
-      "schema_desc": "Toshkentda Motorola, Hytera va Vertex Standard radiostansiyalarini kafolatli va kafolatdan keyingi ta'mirlash."
+      "schema_desc": "Toshkentda Motorola, Radiocom va Vertex Standard radiostansiyalarini kafolatli va kafolatdan keyingi ta'mirlash."
     },
     "industries": {
       "title": "Biznes uchun ratsiyalar — HoReCa, qurilish, transport | Radiocom",
       "desc": "Olti soha uchun tayyor radioaloqa yechimlari: HoReCa, qurilish, qo'riqlash, kon qazish, transport va ishlab chiqarish. Model tanlash va bepul sinov."
     },
     "industry": {
-      "title": "{{name}} uchun ratsiyalar — tanlov va joriy etish | Radiocom",
+      "title": "{{name}} uchun ratsiyalar | Radiocom",
       "desc": "Toshkent va O'zbekiston bo'ylab {{name}} uchun ratsiyalar: vazifaga mos model tanlash, obyektda bepul sinov, 12 oy kafolat va o'z servis markazimiz."
     },
     "product": {
-      "title": "{{name}} — Toshkentda sotib olish | Radiocom",
-      "desc": "{{blurb}} Aloqa masofasi {{range}}. {{price}}. Rasmiy kafolat, bepul sinov, O'zbekiston bo'ylab yetkazib berish."
+      "title": "{{name}} — Toshkentda sotib olish",
+      "desc": "{{blurb}} Aloqa masofasi {{range}}. {{price}}. Rasmiy kafolat, bepul sinov."
     },
     "crumb": {
       "industries": "Sohalar",
@@ -713,6 +719,9 @@
     "search": {
       "title": "Ratsiyalar katalogi bo'yicha qidiruv — Radiocom",
       "desc": "Ratsiyani model, standart, himoya klassi yoki masofa bo'yicha toping. Toshkentda 21 ta Radiocom RC va Motorola modeli mavjud."
+    },
+    "sitemap": {
+      "desc": "Radiocom'ning barcha sahifalari bitta ro'yxatda: Motorola va Radiocom RC ratsiyalari, xususiyatlar va narxlar, sohalar, Toshkentda ta'mir."
     }
   },
   "brand": {

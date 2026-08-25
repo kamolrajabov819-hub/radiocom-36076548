@@ -731,3 +731,45 @@ the pages use *today*. Widen a slot, or drop one of these images into a bigger
 frame, and a nominal descriptor could start choosing the wrong file. The durable
 fix, if that ever happens, is for the pipeline to emit a manifest of real widths
 rather than for call sites to hardcode them.
+
+## SEO sweep — two things only you can answer
+
+**1. Hytera — removed, and the page had already answered it.**
+
+The home page's meta description named **Hytera** among the brands sold. The
+catalogue holds 24 models — eight Radiocom and sixteen Motorola — and not one
+Hytera. Someone searching «Hytera Ташкент» would have landed on a page that
+sells no Hytera.
+
+The service page turned out to be the clearer case. Its metadata and its visible
+copy disagreed, in all three locales:
+
+| | Brands named |
+|---|---|
+| What the page says | Motorola, **Radiocom**, Vertex Standard |
+| What the meta description and `Service` schema said | Motorola, **Hytera**, Vertex Standard |
+
+So the page itself never claimed to repair Hytera — the metadata had substituted
+it for Radiocom. A snippet promising a brand the page does not mention is a
+weak result, and structured data that contradicts the page is against Google's
+guidelines outright. Both now match the page: Motorola, Radiocom, Vertex
+Standard. Hytera appears nowhere in `src/i18n/` any more.
+
+Nothing needed from you unless the bench *does* take Hytera, in which case the
+right fix is to say so in the page copy first and let the metadata follow.
+
+**2. What year was the company founded?**
+
+`Organization.foundingDate` is still the one structured-data field left empty,
+and it is the field Google's knowledge panel uses. I will not invent it.
+
+There is an inference available and I want to be clear that it is only an
+inference: the published home description says **«11 лет на рынке»**, which
+would put the founding year at **2015** if that line was written for 2026. If it
+was written a couple of years ago and never updated, the real year is earlier —
+which is exactly why this needs a person rather than arithmetic. Give me the
+year and it is a one-line change.
+
+While you are looking: if «11 лет» and «10 000+ клиентов» have gone stale, both
+are in `meta.home.desc` in ru/en/uz and are quoted verbatim into the
+`Organization` schema.

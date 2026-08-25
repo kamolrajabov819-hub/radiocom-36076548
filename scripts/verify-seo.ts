@@ -980,5 +980,15 @@ console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
   else console.log("ok  Organization.description is the published home description, verbatim");
 }
 
+// N. Snippet lengths — titles and meta descriptions — live in
+//     `scripts/verify-snippets.ts`, not here.
+//
+//     Not a matter of taste: adding that gate to this file pushed its import
+//     graph past a threshold Bun 1.3.11 does not survive, and the process died
+//     before any check ran, trying to parse `rcd-70-hero.webp` as JavaScript.
+//     The graph is what does it — replacing one of the eight page-meta imports
+//     with a comment of exactly the same byte length fixed it, same file size
+//     and one fewer module. That script documents the whole diagnosis.
+
 console.log(fail === 0 ? "\nALL SEO CHECKS PASSED" : `\n${fail} FAILURES`);
 process.exit(fail ? 1 : 0);
