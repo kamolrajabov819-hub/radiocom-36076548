@@ -507,6 +507,15 @@
   [headers.values]
     Content-Type = "application/json"
 
+# Extensionless, so nothing infers a type from the filename: without this it
+# would be served as application/octet-stream and every consumer would reject
+# it. The profile parameter is what RFC 9727 uses to distinguish an API
+# catalogue from any other linkset.
+[[headers]]
+  for = "/.well-known/api-catalog"
+  [headers.values]
+    Content-Type = 'application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"'
+
 [[headers]]
   for = "/.well-known/agent-skills/*/SKILL.md"
   [headers.values]

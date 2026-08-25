@@ -30,6 +30,24 @@ const sitemap = renderSitemap(entries);
 // AI crawlers are allowed deliberately: for a regional B2B catalogue, being quotable
 // by ChatGPT, Perplexity and AI Overviews is a channel, not a leak. Everything here
 // is public product information.
+//
+// **Why `ai-train=no` while the other two signals are `yes`.** The owner asked
+// for the best call rather than stating a preference, so the reasoning is here
+// for whoever revisits it — kept in this comment rather than in the emitted
+// file, because robots.txt is served to the public and the argument below is
+// addressed to this business, not to a crawler.
+//
+// The site is a price list. `search` and `ai-input` govern retrieval and
+// citation, which read the live page: an answer engine quoting it today quotes
+// today's prices, and a correction propagates the next time it crawls.
+// Training is different in kind — it copies perishable commercial data into
+// model weights, where a 2026 сум figure can still be quoted in 2029 with no
+// mechanism to correct it. The grant is also one-way in practice: setting this
+// to `yes` and back to `no` later does not untrain anything already trained.
+//
+// The upside forgone is brand presence in future model weights, which is
+// speculative and cannot be measured. The discovery value the business
+// actually gets is already carried by the two signals that stay `yes`.
 const robots = `# Content preferences, per contentsignals.org.
 #
 # These match the policy the rest of this file already states rather than
@@ -38,9 +56,9 @@ const robots = `# Content preferences, per contentsignals.org.
 # Overviews is a distribution channel. That is \`search\` and \`ai-input\` —
 # retrieval and citation at answer time.
 #
-# \`ai-train=no\` because training a model on this corpus is a different thing
-# from citing it, and nobody has agreed to it. It is a commercial decision, not
-# a technical one: flip it here if the owner wants to grant it.
+# \`ai-train=no\` is a deliberate exception, not an oversight: this is a price
+# list, and prices copied into model weights outlive the prices themselves.
+# Citation is welcome; training is not.
 Content-Signal: search=yes, ai-input=yes, ai-train=no
 
 User-agent: *
@@ -91,7 +109,7 @@ const LLMS_COPY = {
   ru: {
     summary:
       "Официальный поставщик профессиональных и любительских радиостанций в Узбекистане.\n" +
-      "> 11 лет на рынке, 10 000+ клиентов. Продажа, аренда, авторизованный сервис и\n" +
+      "> 14 лет на рынке, 10 000+ клиентов. Продажа, аренда, авторизованный сервис и\n" +
       "> проектирование систем радиосвязи. Офис и сервисный центр в Ташкенте.",
     languages: "Языки: русский, английский, узбекский. Канонический язык — русский.",
     contacts: "## Контакты",
@@ -108,7 +126,7 @@ const LLMS_COPY = {
   en: {
     summary:
       "Authorised supplier of professional and consumer two-way radios in Uzbekistan.\n" +
-      "> 11 years in business, 10,000+ customers. Sales, rental, authorised service and\n" +
+      "> 14 years in business, 10,000+ customers. Sales, rental, authorised service and\n" +
       "> radio network design. Office and service centre in Tashkent.",
     languages: "Languages: Russian, English, Uzbek. Russian is the canonical language.",
     contacts: "## Contacts",
@@ -125,7 +143,7 @@ const LLMS_COPY = {
   uz: {
     summary:
       "O'zbekistonda professional va havaskor radiostansiyalarning rasmiy yetkazib beruvchisi.\n" +
-      "> Bozorda 11 yil, 10 000+ mijoz. Savdo, ijara, vakolatli servis va radioaloqa\n" +
+      "> Bozorda 14 yil, 10 000+ mijoz. Savdo, ijara, vakolatli servis va radioaloqa\n" +
       "> tizimlarini loyihalash. Ofis va servis markazi Toshkentda.",
     languages: "Tillar: rus, ingliz, o'zbek. Kanonik til — rus tili.",
     contacts: "## Kontaktlar",
@@ -290,9 +308,22 @@ const aiCatalog = {
       ],
     },
     {
+      identifier: `urn:air:radiocom.uz:catalog:api`,
+      displayName: "API catalogue",
+      description:
+        "RFC 9727 catalogue of this site's machine-readable APIs, anchored at the MCP endpoint.",
+      type: "application/linkset+json",
+      url: `${SITE_URL}/.well-known/api-catalog`,
+      representativeQueries: [
+        "What APIs does radiocom.uz expose?",
+        "Where is the machine-readable description of the RADIOCOM API?",
+      ],
+    },
+    {
       identifier: `urn:air:radiocom.uz:skills:index`,
       displayName: "Agent skills index",
-      description: "Skills describing how to query this site's catalogue and read its pages as Markdown.",
+      description:
+        "Skills describing how to query this site's catalogue and read its pages as Markdown.",
       type: "application/json",
       url: `${SITE_URL}/.well-known/agent-skills/index.json`,
       representativeQueries: [
@@ -421,7 +452,8 @@ Prices are in сум and come from the same data the website renders. A model
 priced "on request" has no published figure; do not estimate one.
 `;
 
-const sha256 = (text: string) => "sha256:" + createHash("sha256").update(text, "utf8").digest("hex");
+const sha256 = (text: string) =>
+  "sha256:" + createHash("sha256").update(text, "utf8").digest("hex");
 
 /**
  * `/.well-known/mcp/server-card.json`.
@@ -460,6 +492,42 @@ const agentSkillsIndex = {
   ],
 };
 
+/**
+ * `/.well-known/api-catalog` — RFC 9727, serialised as a linkset (RFC 9264).
+ *
+ * This was refused in the previous round and is published now because the facts
+ * changed, not because the standard did: `/mcp` shipped, so there is a real API
+ * to anchor a catalogue to, a machine-readable description of it (the server
+ * card) and documentation (the SKILL.md). A catalogue of nothing would have
+ * been the same mistake as an OAuth document with no issuer behind it.
+ *
+ * The member names are `anchor` and the relation types themselves, each holding
+ * an array of link objects — checked against several shipped implementations
+ * rather than written from memory, because guessing a member name is exactly
+ * what produced the `id`/`identifier` defect the round before.
+ *
+ * `service-desc` points at the MCP server card rather than an OpenAPI document:
+ * the API is JSON-RPC over MCP, and the server card is its machine-readable
+ * description. Naming a non-existent OpenAPI file would defeat the point.
+ */
+const apiCatalog = {
+  linkset: [
+    {
+      anchor: `${SITE_URL}/mcp`,
+      "service-desc": [
+        { href: `${SITE_URL}/.well-known/mcp/server-card.json`, type: "application/json" },
+      ],
+      "service-doc": [
+        {
+          href: `${SITE_URL}/.well-known/agent-skills/radiocom-catalog/SKILL.md`,
+          type: "text/markdown",
+        },
+      ],
+      status: [{ href: `${SITE_URL}/mcp/health`, type: "application/json" }],
+    },
+  ],
+};
+
 await mkdir("public", { recursive: true });
 await writeFile("public/sitemap.xml", sitemap, "utf8");
 await writeFile("public/robots.txt", robots, "utf8");
@@ -481,9 +549,10 @@ await writeFile(
   JSON.stringify(mcpServerCard, null, 2) + "\n",
   "utf8",
 );
+await writeFile("public/.well-known/agent-skills/radiocom-catalog/SKILL.md", catalogSkill, "utf8");
 await writeFile(
-  "public/.well-known/agent-skills/radiocom-catalog/SKILL.md",
-  catalogSkill,
+  "public/.well-known/api-catalog",
+  JSON.stringify(apiCatalog, null, 2) + "\n",
   "utf8",
 );
 await writeFile(

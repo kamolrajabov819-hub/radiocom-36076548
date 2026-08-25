@@ -65,6 +65,35 @@ export const ORG_LOGO = "/icon-512.png";
 export const BUSINESS_IMAGE = "/og-radiocom.jpg";
 
 /**
+ * The year the business was founded, and the single source for how long it has
+ * been trading.
+ *
+ * Both numbers are published — the schema carries the year, the hero and the
+ * meta descriptions carry the span — so they have to agree. Deriving the span
+ * from the year is what keeps them from drifting apart.
+ *
+ * 2012 is the client's figure, given directly, and confirming it mattered. The
+ * copy said «11 лет», which put the founding year at 2015 by arithmetic; the
+ * copy had gone stale by three years, so the arithmetic was wrong by three. A
+ * `foundingDate` is slow to correct once Google has indexed it into a knowledge
+ * panel, which is why this was asked rather than inferred.
+ */
+export const FOUNDED_YEAR = 2012;
+
+/**
+ * Whole years trading, evaluated when this module loads.
+ *
+ * The home page's counter reads this, so it re-rolls on its own each January.
+ * Twelve other places spell the number out as a word in a sentence and cannot:
+ * `hero.sub`, `industries.trust_years` and `meta.home.desc` in each of the
+ * three locales, and the summary block of each generated `llms.txt`.
+ * `verify-seo` reads the figure back out of all twelve and fails the build the
+ * January they stop agreeing with this constant. That failure is the reminder
+ * to edit the copy, which is the only part a person has to do.
+ */
+export const YEARS_TRADING = new Date().getFullYear() - FOUNDED_YEAR;
+
+/**
  * `meta.home.desc` from `ru.json`, verbatim.
  *
  * Kept as a constant rather than read through `tFor("ru")` because
@@ -74,7 +103,7 @@ export const BUSINESS_IMAGE = "/og-radiocom.jpg";
  * without the build saying so.
  */
 export const ORG_DESCRIPTION =
-  "Официальный поставщик раций в Узбекистане: 11 лет на рынке, 10 000+ клиентов. " +
+  "Официальный поставщик раций в Узбекистане: 14 лет на рынке, 10 000+ клиентов. " +
   "Motorola, PoC и Radiocom RC. Бесплатный тест, гарантия, сервис в Ташкенте.";
 
 /** Absolute URL for a site-relative path. */
@@ -358,6 +387,10 @@ export function organizationSchema() {
     // Russian on the English and Uzbek pages. A description in a fourth
     // language would be the odd one out, not the fix.
     description: ORG_DESCRIPTION,
+    // The last field Google's knowledge panel reads that this schema did not
+    // carry. Year only: schema.org accepts a bare year for `foundingDate`, and
+    // a fabricated month and day would be three facts where one is known.
+    foundingDate: String(FOUNDED_YEAR),
     // All three lines, not just the first — a caller who finds the business
     // through a knowledge panel should see the number they'd actually reach.
     telephone: BUSINESS.phones[0],

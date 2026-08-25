@@ -22,7 +22,7 @@
     "eyebrow": "Rasmiy distribyutor · Toshkent",
     "title_a": "Buzilmas",
     "title_b": "aloqa",
-    "sub": "Bozorda 11 yil. 10 000+ mijoz. O'zbekistonda Motorola va Radiocom ning rasmiy markazi.",
+    "sub": "Bozorda 14 yil. 10 000+ mijoz. O'zbekistonda Motorola va Radiocom ning rasmiy markazi.",
     "cta_primary": "Bepul sinov",
     "cta_secondary": "Katalogni ko'rish",
     "social_proof": "Bu yil 247 ta bepul sinov band qilingan",
@@ -52,7 +52,7 @@
     "cta_secondary": "Katalog yuklash",
     "compare_all": "Barcha modellarni ko'rish →",
     "trust_delivered": "10 000+ ratsiya yetkazib berildi",
-    "trust_years": "Bozorda 11 yil",
+    "trust_years": "Bozorda 14 yil",
     "trust_teams": "{{industry}} jamoalari Radiocom ga ishonadi",
     "horeca": {
       "name": "HoReCa",
@@ -656,7 +656,7 @@
   "meta": {
     "home": {
       "title": "Toshkentda ratsiyalar — Motorola va Radiocom | Radiocom",
-      "desc": "O'zbekistondagi rasmiy ratsiya yetkazib beruvchi: bozorda 11 yil, 10 000+ mijoz. Motorola, PoC va Radiocom RC. Bepul sinov, kafolat, Toshkentda servis."
+      "desc": "O'zbekistondagi rasmiy ratsiya yetkazib beruvchi: bozorda 14 yil, 10 000+ mijoz. Motorola, PoC va Radiocom RC. Bepul sinov, kafolat, Toshkentda servis."
     },
     "poc": {
       "title": "PoC ratsiyalar: butun O'zbekiston bo'ylab LTE aloqa | Radiocom",
@@ -731,7 +731,7 @@
     "sub": "Ishlab chiqaruvchilar bilan to'g'ridan-to'g'ri ishlaymiz: original qurilmalar, kafolat va Toshkentda servis.",
     "view": "Modellarni ko'rish",
     "models": "model",
-    "radiocom_title": "Radiocom RC va RCD",
+    "radiocom_title": "Radiocom RC va RCD ratsiyalari",
     "radiocom_desc": "O'z liniyamiz Radiocom: analog RC va raqamli RCD DMR ratsiyalari, kafolat va servis bilan.",
     "motorola_title": "Motorola ratsiyalari",
     "motorola_desc": "Talkabout, XT va TLKR — jahon yetakchisidan litsenziyasiz PMR ratsiyalar.",
