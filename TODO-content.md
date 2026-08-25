@@ -535,3 +535,58 @@ Together that is roughly 256 KB → ~210 KB gz, about 18%. Real, worth doing, an
 smaller than the note promised. The three biggest items in the bundle —
 react-dom, the motion library, and the TanStack framework — are eager by
 construction and no amount of route splitting touches them.
+
+## What is in the JavaScript bundle, and what is not worth doing about it
+
+Nothing in the repo documented this, so here it is, measured rather than
+guessed. Attribution of the entry chunk by source module (corrected for Vite
+inlining JSON with no sourcemap mappings, which had been charging 65 KB of
+locale data to a 0.8 KB error-reporting file):
+
+| | raw | note |
+|---|---|---|
+| react-dom | 174.6 KB | framework |
+| framer-motion + motion-dom | 136.7 KB | eager: `__root` MotionConfig, Nav, LeadFormSheet |
+| TanStack router + query + start | 138 KB | framework |
+| locales ru+en+uz | 80.3 KB | eager via `getI18n` |
+| **page bodies (11 pages)** | **69.1 KB** | now split per route |
+| components | 44.9 KB | much of it now follows the pages |
+| i18next | 41.6 KB | eager |
+| product data | 38.7 KB | eager — see below |
+
+**The route split worked and the baseline is the reason it mattered.** Before
+it, every one of the twelve routes fetched *exactly* 956.1 KB of JavaScript.
+Identical. Whether you asked for the sitemap or a product page, you got the
+whole site. `autoCodeSplitting` was on and lifting nothing, because
+`createFileRoute(path)(routeOptions)` hides the `component` key from the
+plugin's matcher. Routes now range 823-898 KB and `scripts/qa-weight.mjs`
+fails the build if they ever converge again.
+
+### Two things that look like waste and are not worth removing
+
+**The catalogue (53 KB of `products.ts` + `spec-dict.ts`) is eager, and it has
+to be.** I tried moving the four route guards from `beforeLoad` to `loader` —
+`loader` is code-splittable and `beforeLoad` is not — and verified every 404 and
+301 came back identical. It bought exactly zero bytes, so I reverted it. The
+real holder is `head()`: a product page's title and its `Product` JSON-LD need
+the product, `head` is deliberately not splittable because SSR needs it
+synchronously, and the route tree is eager, so all five product-aware `head()`s
+are eager on every route. The only ways out are to stop emitting product
+structured data — a real SEO loss for 16 KB — or for TanStack to support lazy
+per-route `head`. Neither is a trade worth making.
+
+**Shipping one locale instead of three would cost more than it saves.** Only
+en+uz is genuinely redundant: 16.7 KB gz, and it is in a content-hashed chunk,
+so it downloads once and is reused for the whole session. Injecting the active
+locale into the HTML instead would put 10.4 KB gz on *every* page view,
+uncached — a net loss after two pages. Awaiting a locale chunk before hydration
+would trade the bytes for a round-trip before interactivity. And `LangToggle`
+switches with `router.navigate()`, so the other locales would need on-demand
+loading anyway, risking a wrong-language flash on the single most-used control
+in a three-language market. `src/lib/i18n.ts` also documents at length why it
+holds one immutable instance per language — a cross-request SSR race guard worth
+considerably more than 16.7 KB.
+
+The remaining eager weight is framework and motion library. Removing
+framer-motion or Lenis would buy real bytes, but that is a decision about how
+the site feels, not a performance fix, so it stays yours.
