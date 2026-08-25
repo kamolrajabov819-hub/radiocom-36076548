@@ -74,7 +74,16 @@ export function IndustryPage() {
             transition={{ ...spring, delay: 0.2 }}
             className="headline-hero mt-6"
           >
-            {industryName}.
+            {/* «Рации для строительства», not «Строительство.»
+                
+                The bare industry name told a visitor nothing they did not
+                already know from clicking, and confirmed nothing for someone
+                who arrived from a search for «рации для стройки» — the one
+                moment the page has to say "yes, this is the thing you looked
+                for". Each industry carries its own written-out h1 rather than a
+                `для {{name}}` pattern, because Russian needs the genitive and
+                Uzbek a postposition, and neither survives interpolation. */}
+            {t(`industries.${s}.h1`)}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 16 }}

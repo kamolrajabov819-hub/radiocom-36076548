@@ -37,7 +37,7 @@
     "Trade-in program"
   ],
   "industries": {
-    "title": "Industries",
+    "title": "Two-way radios for business",
     "kicker": "Turnkey solutions",
     "overview_sub": "We designed and tuned radio systems for six key industries in Uzbekistan. Pick yours — we’ll show what fits.",
     "view_all": "All industries",
@@ -98,7 +98,8 @@
           "a": "Yes — free test on your site."
         }
       ],
-      "seo": "HoReCa"
+      "seo": "HoReCa",
+      "h1": "Two-way radios for hotels and restaurants"
     },
     "construction": {
       "name": "Construction",
@@ -144,7 +145,8 @@
           "a": "IP68 survives submersion. We restore or replace under warranty."
         }
       ],
-      "seo": "Construction"
+      "seo": "Construction",
+      "h1": "Two-way radios for construction"
     },
     "security": {
       "name": "Security",
@@ -190,7 +192,8 @@
           "a": "To everyone on the channel plus the dispatch console with coordinates."
         }
       ],
-      "seo": "Security"
+      "seo": "Security",
+      "h1": "Two-way radios for security"
     },
     "mining": {
       "name": "Mining · Oil · Gas",
@@ -236,7 +239,8 @@
           "a": "3 years with annual service at our center."
         }
       ],
-      "seo": "Mining, Oil and Gas"
+      "seo": "Mining, Oil and Gas",
+      "h1": "Two-way radios for mining, oil and gas"
     },
     "transport": {
       "name": "Transport · Logistics",
@@ -282,7 +286,8 @@
           "a": "Yes, through a dispatch gateway."
         }
       ],
-      "seo": "Transport and Logistics"
+      "seo": "Transport and Logistics",
+      "h1": "Two-way radios for transport and logistics"
     },
     "manufacturing": {
       "name": "Manufacturing · Warehousing",
@@ -328,7 +333,8 @@
           "a": "2 to 7 days depending on plant size."
         }
       ],
-      "seo": "Manufacturing and Warehousing"
+      "seo": "Manufacturing and Warehousing",
+      "h1": "Two-way radios for manufacturing and warehouses"
     },
     "banner_title": "Not sure which radio fits your operation?",
     "banner_sub": "Tell us your industry — we will recommend the right system within 15 minutes.",
@@ -424,7 +430,7 @@
   },
   "poc": {
     "kicker": "PoC · PUSH-TO-TALK OVER CELLULAR",
-    "title_a": "Global range.",
+    "title_a": "PoC radios.",
     "title_b": "Zero repeaters.",
     "sub": "Push-to-Talk over LTE and WiFi. Instant comms with no infrastructure to build — group calls, GPS and multimedia included.",
     "vs_title": "PoC vs PMR",
@@ -483,7 +489,7 @@
   },
   "service": {
     "kicker": "AUTHORIZED SERVICE CENTER",
-    "title_a": "Repairs",
+    "title_a": "Radio repair,",
     "title_b": "you can trust.",
     "sub": "Warranty and post-warranty service for Motorola, Radiocom and Vertex Standard radios. Original parts, fixed pricing, diagnostics on dedicated hardware.",
     "request_repair": "Request repair",
@@ -560,7 +566,7 @@
   },
   "home": {
     "hero": {
-      "title": "Pro Communication. Unbreakable.",
+      "title": "Professional two-way radios. Unbreakable.",
       "sub": "Motorola and Radiocom — authorized service, free testing and nationwide delivery.",
       "cta_primary": "Book Free Test",
       "cta_secondary": "Learn more",
@@ -709,9 +715,9 @@
     "sub": "We work directly with manufacturers: genuine devices, warranty and service in Tashkent.",
     "view": "View models",
     "models": "models",
-    "radiocom_title": "Radiocom RC and RCD",
+    "radiocom_title": "Radiocom RC and RCD radios",
     "radiocom_desc": "Our own Radiocom line: analog RC handhelds and digital RCD DMR radios with warranty and service.",
-    "motorola_title": "Motorola",
+    "motorola_title": "Motorola radios",
     "motorola_desc": "Talkabout, XT and TLKR — license-free PMR radios from the global market leader.",
     "lineup": "The line-up",
     "why_title": "Why buy from us",
@@ -749,7 +755,7 @@
     "spec_column": "Specification"
   },
   "search": {
-    "title": "Search the catalogue",
+    "title": "Search the radio catalogue",
     "sub": "Model, standard, ingress rating, range — search however suits you.",
     "placeholder": "Try: IP67, DMR, RCD-70",
     "label": "Search query",

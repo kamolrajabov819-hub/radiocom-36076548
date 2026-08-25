@@ -590,3 +590,38 @@ considerably more than 16.7 KB.
 The remaining eager weight is framework and motion library. Removing
 framer-motion or Lenis would buy real bytes, but that is a decision about how
 the site feels, not a performance fix, so it stays yours.
+
+## The keyword set the headings are built around
+
+**What this is and is not.** I had no live keyword tool in this session, so there
+are no search volumes here and I have not invented any. This is the target set
+derived from the vocabulary the catalogue itself uses and the market the site
+sells into. Run it through a real tool when you have one — the headings are easy
+to adjust once you know which of these actually carry volume in Uzbekistan.
+
+| Intent | RU | UZ | EN |
+|---|---|---|---|
+| Category | рации, радиостанции, портативные радиостанции | ratsiya, ratsiyalar | two-way radios, walkie-talkies |
+| Qualifier | профессиональные рации | professional ratsiyalar | professional two-way radios |
+| Technology | цифровые DMR рации, PoC-рации, PMR446 | raqamli DMR, PoC ratsiyalar | digital DMR radios, PoC radios |
+| Commercial | купить рацию Ташкент, цена рации | ratsiya narxi Toshkent | buy two-way radios Tashkent |
+| Brand | Motorola Ташкент, Radiocom рации | Motorola Toshkent | Motorola Tashkent |
+| Service | ремонт раций Ташкент | ratsiya ta'miri | radio repair Tashkent |
+| Vertical | рации для стройки / охраны / склада / отеля | qurilish / xavfsizlik uchun ratsiya | radios for construction / security |
+
+**What changed.** The meta titles were already carrying these — «Рации и
+радиостанции в Ташкенте», «Ремонт рации в Ташкенте», «PoC-рации». The `h1`s were
+not: the home page said «Про-связь. Несокрушимая.», the industry pages said
+«Строительство.», and the brand pages said «Motorola». So a visitor arriving on
+a title-tag match landed on a heading that confirmed nothing, and the strongest
+on-page signal after the title was spent on voice alone.
+
+Every `h1` now leads with the category noun and keeps the two-beat rhythm the
+site is written in: «Профессиональные рации. Несокрушимые.», «Рации для
+строительства», «Ремонт раций, которому доверяют.» The rule applied throughout —
+if a heading reads like it was written for a crawler, it is wrong.
+
+Per-industry `h1`s are written out one by one rather than interpolated from a
+`для {{name}}` pattern, because Russian needs the genitive («для
+строительства», not «для Строительство») and Uzbek a postposition. A pattern
+would have produced ungrammatical headings in two of the three languages.

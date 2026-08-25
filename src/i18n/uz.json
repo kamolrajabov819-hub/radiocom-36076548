@@ -37,7 +37,7 @@
     "Trade-In dasturi"
   ],
   "industries": {
-    "title": "Sohalar",
+    "title": "Biznes uchun ratsiyalar",
     "kicker": "Tayyor yechimlar",
     "overview_sub": "Biz O'zbekistonning 6 asosiy sohasi uchun radio tizimlarini loyihalashtirdik. O'z sohangizni tanlang — mos yechimni ko'rsatamiz.",
     "view_all": "Barcha sohalar",
@@ -98,7 +98,8 @@
           "a": "Ha — ob'ektingizda bepul sinov."
         }
       ],
-      "seo": "HoReCa"
+      "seo": "HoReCa",
+      "h1": "Mehmonxona va restoranlar uchun ratsiyalar"
     },
     "construction": {
       "name": "Qurilish",
@@ -144,7 +145,8 @@
           "a": "IP68 suvga botishga chidaydi. Kafolat doirasida tiklaymiz yoki almashtiramiz."
         }
       ],
-      "seo": "Qurilish"
+      "seo": "Qurilish",
+      "h1": "Qurilish uchun ratsiyalar"
     },
     "security": {
       "name": "Xavfsizlik",
@@ -190,7 +192,8 @@
           "a": "Kanaldagi hammaga va dispetcher konsoliga koordinatlar bilan."
         }
       ],
-      "seo": "Xavfsizlik xizmatlari"
+      "seo": "Xavfsizlik xizmatlari",
+      "h1": "Xavfsizlik uchun ratsiyalar"
     },
     "mining": {
       "name": "Kon · Neft · Gaz",
@@ -236,7 +239,8 @@
           "a": "3 yil, servis markazimizda har yilgi texnik ko'rik bilan."
         }
       ],
-      "seo": "Kon, neft va gaz"
+      "seo": "Kon, neft va gaz",
+      "h1": "Kon, neft va gaz uchun ratsiyalar"
     },
     "transport": {
       "name": "Transport · Logistika",
@@ -282,7 +286,8 @@
           "a": "Ha, dispetcher shlyuzi orqali."
         }
       ],
-      "seo": "Transport va logistika"
+      "seo": "Transport va logistika",
+      "h1": "Transport va logistika uchun ratsiyalar"
     },
     "manufacturing": {
       "name": "Ishlab chiqarish · Ombor",
@@ -328,7 +333,8 @@
           "a": "Ishlab chiqarish hajmiga qarab 2 dan 7 kungacha."
         }
       ],
-      "seo": "Ishlab chiqarish va omborlar"
+      "seo": "Ishlab chiqarish va omborlar",
+      "h1": "Ishlab chiqarish va omborlar uchun ratsiyalar"
     },
     "banner_title": "Qaysi ratsiya biznesingizga mos kelishini bilmayapsizmi?",
     "banner_sub": "Sohangizni ayting — 15 daqiqada tizim tanlab beramiz.",
@@ -424,7 +430,7 @@
   },
   "poc": {
     "kicker": "PoC · UYALI TARMOQ ORQALI PUSH-TO-TALK",
-    "title_a": "Global masofa.",
+    "title_a": "PoC ratsiyalar.",
     "title_b": "Retranslyatorsiz.",
     "sub": "LTE va WiFi orqali Push-to-Talk. Infratuzilma qurmasdan bir zumda aloqa — guruh chaqiruvlari, GPS va multimedia bilan.",
     "vs_title": "PoC va PMR",
@@ -483,8 +489,8 @@
   },
   "service": {
     "kicker": "VAKOLATLI SERVIS MARKAZI",
-    "title_a": "Ishonchli",
-    "title_b": "ta'mirlash.",
+    "title_a": "Ratsiya ta'miri.",
+    "title_b": "Ishonchli.",
     "sub": "Motorola, Radiocom va Vertex Standard ratsiyalari uchun kafolat va kafolatdan keyingi xizmat. Original ehtiyot qismlar, qat'iy narxlar, maxsus uskunada diagnostika.",
     "request_repair": "Ta'mirlashga ariza",
     "advantages": {
@@ -560,7 +566,7 @@
   },
   "home": {
     "hero": {
-      "title": "Professional aloqa. Buzilmas.",
+      "title": "Professional ratsiyalar. Buzilmas.",
       "sub": "Motorola va Radiocom — rasmiy servis, bepul sinov va butun mamlakat bo'ylab yetkazib berish.",
       "cta_primary": "Bepul sinovni band qilish",
       "cta_secondary": "Batafsil",
@@ -709,9 +715,9 @@
     "sub": "Ishlab chiqaruvchilar bilan to'g'ridan-to'g'ri ishlaymiz: original qurilmalar, kafolat va Toshkentda servis.",
     "view": "Modellarni ko'rish",
     "models": "model",
-    "radiocom_title": "Radiocom RC va RCD",
+    "radiocom_title": "Radiocom RC va RCD ratsiyalari",
     "radiocom_desc": "O'z liniyamiz Radiocom: analog RC va raqamli RCD DMR ratsiyalari, kafolat va servis bilan.",
-    "motorola_title": "Motorola",
+    "motorola_title": "Motorola ratsiyalari",
     "motorola_desc": "Talkabout, XT va TLKR — jahon yetakchisidan litsenziyasiz PMR ratsiyalar.",
     "lineup": "Model qatori",
     "why_title": "Nega biz orqali",
@@ -749,7 +755,7 @@
     "spec_column": "Xususiyat"
   },
   "search": {
-    "title": "Katalog bo'yicha qidiruv",
+    "title": "Ratsiyalar katalogi bo'yicha qidiruv",
     "sub": "Model, standart, himoya klassi, masofa — o'zingizga qulay tarzda qidiring.",
     "placeholder": "Masalan: IP67, DMR, RCD-70",
     "label": "Qidiruv so'rovi",
