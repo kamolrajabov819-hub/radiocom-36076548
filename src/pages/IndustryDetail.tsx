@@ -138,6 +138,23 @@ export function IndustryPage() {
               </motion.div>
             ))}
           </dl>
+
+          {/* The client line, where an industry has one.
+              
+              Only the mining page carries it today, and it is the strongest
+              thing on that page: a buyer weighing radios for an oil and gas
+              site trusts five names they recognise more than any spec row.
+              Every industry carries the key, holding an empty string where
+              there is nothing to say. That is what keeps `verify-i18n`'s
+              dynamic-key check meaningful: it requires an interpolated `t()`
+              key to resolve across the whole set it iterates, which is right —
+              a key present on one industry and missing on five renders as raw
+              text on the other five. Truthiness, not a key comparison. */}
+          {t(`industries.${s}.clients`) && (
+            <motion.p {...fadeUpAt(3)} className="mt-12 max-w-3xl text-[15px] text-cool">
+              {t(`industries.${s}.clients`)}
+            </motion.p>
+          )}
         </Section>
       )}
 

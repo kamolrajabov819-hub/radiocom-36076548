@@ -625,3 +625,47 @@ Per-industry `h1`s are written out one by one rather than interpolated from a
 `для {{name}}` pattern, because Russian needs the genitive («для
 строительства», not «для Строительство») and Uzbek a postposition. A pattern
 would have produced ungrammatical headings in two of the three languages.
+
+## The MOTOTRBO shopping list
+
+Your «Что вы получите» rewrite was built around Motorola's professional DMR
+line, and none of it is in `products.ts`. The catalogue's Motorola range is
+PMR446 consumer and light-commercial: Talkabout T-series, XT185, XT420, CLP 446,
+CLK 446. Missing, and named in the drafts:
+
+**DP4600 · DP4800 · DP4400 · DP3441 · DP2600** (handhelds) ·
+**DM2600 · DM4600** (mobile stations) · **SLR5500 · SLR8000** (repeaters) ·
+**Caltta** PoC radios.
+
+Also unsupported by any line in `products.ts` or `specs.ts`, so not shipped:
+the **−30…+60 °C** operating range, **25 W** mobile output, **1000 channels**,
+the **FM** intrinsic-safety rating, and lone-worker monitoring.
+
+Adding the DMR line is a data task — names, specs, prices, photos into
+`products.ts` and `specs.ts` — after which the six industry pages can carry the
+copy you actually wrote. Until then they carry stats that trace to real rows.
+
+### What the pages claimed before, which is why this mattered
+
+The stat blocks were not merely unsupported, they were largely invented, and
+several contradicted the catalogue outright:
+
+| Page | Claimed | Reality |
+|---|---|---|
+| Добыча | `ATEX` искробезопасное | zero occurrences anywhere in the data |
+| Добыча | `15 км` range | the catalogue's maximum is **10 km** |
+| Добыча | `99.9%` network uptime | invented |
+| Добыча | `3 года` warranty | `specs.ts` says **12 месяцев на радиоблок** |
+| Строительство | `IP68` | zero occurrences — **IP67** is the real rating |
+| Строительство | `8 км с ретранслятором` | no repeater in the catalogue |
+| Транспорт | `100% РУз` LTE coverage | a claim about an operator's network |
+| Транспорт | `97% покрытия` | same |
+| Производство | `40%` less coordination time | invented |
+| Производство | `60 дБ` noise cancelling | not in any spec row |
+| HoReCa | `3 года` Motorola warranty | 12 months |
+
+The FAQ answers carried the same problem — «поставляем ATEX-версии Motorola
+DP4801 Ex» and «Motorola DP4400/DP4600 работают от −30°C до +60°C» both named
+products that do not exist here. Those are rewritten too: the mining page now
+says plainly that there are no Ex versions in the current catalogue and invites
+the buyer to say which class they need.
