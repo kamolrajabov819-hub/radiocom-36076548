@@ -734,23 +734,29 @@ rather than for call sites to hardcode them.
 
 ## SEO sweep — two things only you can answer
 
-**1. Does Radiocom repair Hytera and Vertex Standard?**
+**1. Hytera — removed, and the page had already answered it.**
 
 The home page's meta description named **Hytera** among the brands sold. The
 catalogue holds 24 models — eight Radiocom and sixteen Motorola — and not one
 Hytera. Someone searching «Hytera Ташкент» would have landed on a page that
-sells no Hytera, so I removed it from that description.
+sells no Hytera.
 
-The **service** page is a different claim and I have left it alone:
+The service page turned out to be the clearer case. Its metadata and its visible
+copy disagreed, in all three locales:
 
-> «Гарантийный и постгарантийный ремонт Motorola, **Hytera** и **Vertex
-> Standard**.»
+| | Brands named |
+|---|---|
+| What the page says | Motorola, **Radiocom**, Vertex Standard |
+| What the meta description and `Service` schema said | Motorola, **Hytera**, Vertex Standard |
 
-A workshop can legitimately repair brands it does not stock, so nothing in the
-data contradicts this — but nothing in the data supports it either. It appears
-in `meta.service.desc` and `meta.service.schema_desc` in all three locales, and
-in the `Service` schema Google reads. If the bench does not actually take those
-two brands, say so and it comes out in one edit.
+So the page itself never claimed to repair Hytera — the metadata had substituted
+it for Radiocom. A snippet promising a brand the page does not mention is a
+weak result, and structured data that contradicts the page is against Google's
+guidelines outright. Both now match the page: Motorola, Radiocom, Vertex
+Standard. Hytera appears nowhere in `src/i18n/` any more.
+
+Nothing needed from you unless the bench *does* take Hytera, in which case the
+right fix is to say so in the page copy first and let the metadata follow.
 
 **2. What year was the company founded?**
 

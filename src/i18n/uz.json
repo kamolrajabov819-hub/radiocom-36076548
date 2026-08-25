@@ -663,9 +663,9 @@
     },
     "service": {
       "title": "Toshkentda ratsiya ta'miri — vakolatli servis | Radiocom",
-      "desc": "Motorola, Hytera va Vertex Standard uchun kafolatli va kafolatdan keyingi ta'mir. Original ehtiyot qismlar, sertifikatlangan muhandislar. Toshkent.",
+      "desc": "Motorola, Radiocom va Vertex Standard uchun kafolatli va kafolatdan keyingi ta'mir. Original ehtiyot qismlar, sertifikatlangan muhandislar. Toshkent.",
       "schema_name": "Radiocom vakolatli servis markazi",
-      "schema_desc": "Toshkentda Motorola, Hytera va Vertex Standard radiostansiyalarini kafolatli va kafolatdan keyingi ta'mirlash."
+      "schema_desc": "Toshkentda Motorola, Radiocom va Vertex Standard radiostansiyalarini kafolatli va kafolatdan keyingi ta'mirlash."
     },
     "industries": {
       "title": "Biznes uchun ratsiyalar — HoReCa, qurilish, transport | Radiocom",
