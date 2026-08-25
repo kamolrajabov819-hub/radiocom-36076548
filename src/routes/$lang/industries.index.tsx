@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { routeOptions } from "@/pages/IndustriesIndex";
+import { head } from "@/pages/IndustriesIndex.meta";
+import { IndustriesOverview } from "@/pages/IndustriesIndex";
 
-export const Route = createFileRoute("/$lang/industries/")(routeOptions);
+export const Route = createFileRoute("/$lang/industries/")({ head, component: IndustriesOverview });

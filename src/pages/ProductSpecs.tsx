@@ -12,26 +12,12 @@ import { Magnetic } from "@/components/Magnetic";
 import {
   categoryLabels,
   formatPrice,
-  isBrandSlug,
   productBySlug,
   type BrandSlug,
   type Product,
 } from "@/data/products";
 import { specs, RANGE_NOTE } from "@/data/specs";
 import { pick, type Lang } from "@/data/spec-dict";
-import {
-  breadcrumbSchema,
-  brandPath,
-  jsonLd,
-  localeLinks,
-  pageMeta,
-  productPath,
-  productSchema,
-  productSpecsPath,
-  webPageSchema,
-  type SeoLang,
-} from "@/lib/seo";
-import { tFor } from "@/lib/i18n";
 import { brandCase } from "@/lib/brand";
 import { useLang } from "@/lib/locale";
 
@@ -48,69 +34,6 @@ import { useLang } from "@/lib/locale";
  * and both carry the same `Product` schema, differentiated by URL. The offer
  * lives on both because either can be the page a buyer lands on from search.
  */
-export function productSpecsRouteOptions() {
-  return {
-    head: ({ params }: { params: { lang: SeoLang; brand: string; model: string } }) => {
-      if (!isBrandSlug(params.brand)) return {};
-      const brandSlug = params.brand;
-      const t = tFor(params.lang);
-      const p = productBySlug(brandSlug, params.model);
-      if (!p) return {};
-
-      const path = productSpecsPath(p);
-      const spec = specs[p.id];
-
-      const title = t("meta.specs.title", { name: p.name });
-      const description = t("meta.specs.desc", {
-        name: p.name,
-        price: formatPrice(p.price, params.lang),
-      });
-
-      return {
-        meta: pageMeta({
-          lang: params.lang,
-          title,
-          description,
-          path,
-          ogCard: `product-${p.slug}`,
-          type: "product",
-        }),
-        links: localeLinks(params.lang, path),
-        scripts: [
-          jsonLd(
-            webPageSchema({
-              lang: params.lang,
-              path,
-              name: title,
-              description,
-              image: p.image,
-            }),
-          ),
-          jsonLd(
-            productSchema(p, params.lang, {
-              specs: (spec?.rows ?? []).map((r) => ({
-                name: pick(r.label, params.lang),
-                value: pick(r.value, params.lang),
-              })),
-            }),
-          ),
-          jsonLd(
-            breadcrumbSchema(
-              [
-                { name: t("nav.home"), path: "/" },
-                { name: t(`meta.crumb.${brandSlug}`), path: brandPath(brandSlug) },
-                { name: p.name, path: productPath(p) },
-                { name: t("meta.crumb.specs"), path },
-              ],
-              params.lang,
-            ),
-          ),
-        ],
-      };
-    },
-    component: ProductSpecsPage,
-  };
-}
 
 export function ProductSpecsPage() {
   const { t } = useTranslation();
@@ -315,7 +238,9 @@ export function ProductSpecsPage() {
                 <span className="text-[17px] text-crisp">{pick(line.item, lang)}</span>
                 {/* Always shown, including ×1 — see ProductStory.tsx's InBox
                     for why: an omitted count read as ambiguous, not as one. */}
-                <span className="shrink-0 text-[15px] tabular-nums text-cool">×{line.qty ?? 1}</span>
+                <span className="shrink-0 text-[15px] tabular-nums text-cool">
+                  ×{line.qty ?? 1}
+                </span>
               </li>
             ))}
           </ul>

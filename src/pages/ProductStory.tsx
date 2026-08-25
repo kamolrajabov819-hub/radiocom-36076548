@@ -7,8 +7,6 @@ import { Check, ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
 import { Section, SectionHead } from "@/components/Section";
 import {
-  BentoGrid,
-  FeatureCard,
   HighlightsShelf,
   LeadInCaption,
   PosterCard,
@@ -17,30 +15,11 @@ import {
   statRowTier,
 } from "@/components/apple";
 import { openLead } from "@/components/LeadFormSheet";
-import {
-  formatPrice,
-  isBrandSlug,
-  productBySlug,
-  type BrandSlug,
-  type Product,
-} from "@/data/products";
+import { formatPrice, productBySlug, type BrandSlug, type Product } from "@/data/products";
 import { specs } from "@/data/specs";
 import { INDUSTRY_SLUGS, type IndustrySlug } from "@/data/industries";
 import { INDUSTRY_POSTERS } from "@/data/industry-images";
 import { pick, type Lang } from "@/data/spec-dict";
-import {
-  breadcrumbSchema,
-  brandPath,
-  jsonLd,
-  localeLinks,
-  pageMeta,
-  preloadImage,
-  productPath,
-  productSchema,
-  webPageSchema,
-  type SeoLang,
-} from "@/lib/seo";
-import { tFor } from "@/lib/i18n";
 import { useLang } from "@/lib/locale";
 
 /**
@@ -60,79 +39,6 @@ import { useLang } from "@/lib/locale";
  * two-way `industryPicks` map. That is deliberate — invented product claims on
  * a supplier's site are worse than a thinner page.
  */
-export function productStoryRouteOptions() {
-  return {
-    head: ({ params }: { params: { lang: SeoLang; brand: string; model: string } }) => {
-      if (!isBrandSlug(params.brand)) return {};
-      const brandSlug = params.brand;
-      const t = tFor(params.lang);
-      const p = productBySlug(brandSlug, params.model);
-      if (!p) return {};
-
-      const path = productPath(p);
-      const title = t("meta.product.title", { name: p.name });
-      const description = t("meta.product.desc", {
-        blurb: pick(p.blurb, params.lang),
-        range: pick(p.rangeCity, params.lang),
-        price: formatPrice(p.price, params.lang),
-      });
-      const spec = specs[p.id];
-
-      return {
-        meta: pageMeta({
-          lang: params.lang,
-          title,
-          description,
-          path,
-          ogCard: `product-${p.slug}`,
-          type: "product",
-          product: { price: p.price },
-        }),
-        links: [
-          ...localeLinks(params.lang, path),
-          // The hero photograph is the LCP element here, and its candidate set
-          // must match the <img> in `Hero` exactly or the browser fetches the
-          // image twice.
-          preloadImage({
-            src: p.image,
-            small: p.imageSmall,
-            sizes: "(min-width: 768px) 520px, 88vw",
-          }),
-        ],
-        scripts: [
-          jsonLd(
-            webPageSchema({
-              lang: params.lang,
-              path,
-              name: title,
-              description,
-              image: p.image,
-            }),
-          ),
-          jsonLd(
-            productSchema(p, params.lang, {
-              specs: (spec?.rows ?? []).map((r) => ({
-                name: pick(r.label, params.lang),
-                value: pick(r.value, params.lang),
-              })),
-            }),
-          ),
-          jsonLd(
-            breadcrumbSchema(
-              [
-                { name: t("nav.home"), path: "/" },
-                { name: t(`meta.crumb.${brandSlug}`), path: brandPath(brandSlug) },
-                { name: p.name, path },
-              ],
-              params.lang,
-            ),
-          ),
-        ],
-      };
-    },
-    component: ProductStoryPage,
-  };
-}
 
 export function ProductStoryPage() {
   const { t } = useTranslation();
@@ -346,7 +252,9 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
               </div>
               {/* 26px held a value like «до 3 км, 8 Вт» hard against the card's
                   padding on a 78vw phone card. One step down below `sm`. */}
-              <div className={cn("mt-8 font-semibold leading-[1.15] tracking-[-0.02em]", sizeClass)}>
+              <div
+                className={cn("mt-8 font-semibold leading-[1.15] tracking-[-0.02em]", sizeClass)}
+              >
                 {c.value}
               </div>
             </article>

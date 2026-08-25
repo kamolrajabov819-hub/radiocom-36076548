@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { routeOptions } from "@/pages/IndustryDetail";
+import { head } from "@/pages/IndustryDetail.meta";
+import { IndustryPage } from "@/pages/IndustryDetail";
 
-export const Route = createFileRoute("/$lang/industries/$slug")(routeOptions);
+export const Route = createFileRoute("/$lang/industries/$slug")({ head, component: IndustryPage });

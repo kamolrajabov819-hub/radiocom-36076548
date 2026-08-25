@@ -26,7 +26,8 @@ import { I18nextProvider, useTranslation } from "react-i18next";
 import { getI18n, LANGS, type Lang } from "../src/lib/i18n";
 import { products } from "../src/data/products";
 import { pick, type L } from "../src/data/spec-dict";
-import { OG_LOCALE, pageMeta, breadcrumbSchema, productSchema, SITE_URL } from "../src/lib/seo";
+import { OG_LOCALE, pageMeta, breadcrumbSchema, SITE_URL } from "../src/lib/seo";
+import { productSchema } from "../src/lib/seo-product";
 
 let fail = 0;
 const bad = (m: string) => {
@@ -188,8 +189,21 @@ const code = (path: string) =>
     .replace(/\/\*[\s\S]*?\*\//g, "")
     .replace(/^\s*\/\/.*$/gm, "");
 
-if (!code("src/routes/__root.tsx").includes("I18nextProvider"))
-  bad("__root.tsx no longer mounts I18nextProvider — the chrome will stop translating");
+// `<LocaleProvider`, with the angle bracket, and not a bare name.
+//
+// This check used to look for the substring "I18nextProvider" anywhere in
+// __root.tsx, and it was passing on a *dead import*: the actual mount moved
+// into LocaleProvider when that component was extracted, and __root kept an
+// unused `import { I18nextProvider }` line that satisfied the match. So the
+// gate would have stayed green with the provider genuinely unmounted, and gone
+// red on a correct tidy-up of the import. Rendering is the thing that matters,
+// so rendering is what is asserted — on both halves of the pair.
+if (!code("src/routes/__root.tsx").includes("<LocaleProvider"))
+  bad("__root.tsx no longer renders <LocaleProvider> — the chrome will stop translating");
+if (!code("src/components/LocaleProvider.tsx").includes("<I18nextProvider"))
+  bad("LocaleProvider no longer renders <I18nextProvider> — nothing mounts i18n at all");
+if (!code("src/components/LocaleProvider.tsx").includes("getI18n("))
+  bad("LocaleProvider no longer builds its instance with getI18n(lang) — see check 4");
 if (code("src/routes/$lang.tsx").includes("I18nextProvider"))
   bad(
     "$lang.tsx mounts I18nextProvider again; from there it wraps only <Outlet />, " +

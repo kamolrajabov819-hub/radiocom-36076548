@@ -56,18 +56,6 @@ import {
   type Product,
 } from "@/data/products";
 import { pick, type Lang } from "@/data/spec-dict";
-import {
-  breadcrumbSchema,
-  brandPath,
-  collectionPageSchema,
-  jsonLd,
-  localeLinks,
-  pageMeta,
-  preloadImage,
-  webPageSchema,
-  type SeoLang,
-} from "@/lib/seo";
-import { tFor } from "@/lib/i18n";
 import { useLang } from "@/lib/locale";
 
 /**
@@ -90,69 +78,6 @@ import { useLang } from "@/lib/locale";
  * and "Radiocom RCD характеристики" competed for the same page and neither
  * ranked. Two brand URLs give each family its own indexable surface.
  */
-export function brandRouteOptions(brandSlug: BrandSlug) {
-  return {
-    head: ({ params }: { params: { lang: SeoLang } }) => {
-      const t = tFor(params.lang);
-      const list = productsOfBrand(brandSlug);
-      const title = t(`meta.brand.${brandSlug}_title`);
-      const description = t(`meta.brand.${brandSlug}_desc`, { count: list.length });
-      const path = brandPath(brandSlug);
-
-      return {
-        meta: pageMeta({ lang: params.lang, title, description, path, ogCard: brandSlug }),
-        links: [
-          ...localeLinks(params.lang, path),
-          // The first lineup card is the LCP element on this page at every
-          // width — the model strip above it is 52px thumbnails.
-          ...(list[0]
-            ? [
-                preloadImage({
-                  src: list[0].image,
-                  small: list[0].imageSmall,
-                  sizes: "(min-width: 1280px) 240px, (min-width: 640px) 45vw, 80vw",
-                }),
-              ]
-            : []),
-        ],
-        scripts: [
-          jsonLd(
-            webPageSchema({
-              lang: params.lang,
-              path,
-              name: title,
-              description,
-              image: list[0]?.image,
-            }),
-          ),
-          // `CollectionPage` rather than a bare `ItemList`: it carries the
-          // family's real price range as an `AggregateOffer`, which is what a
-          // "Motorola рации цена" query is asking and what an ItemList of
-          // twelve links cannot answer.
-          jsonLd(
-            collectionPageSchema({
-              items: list,
-              lang: params.lang,
-              path,
-              name: t(`brand.${brandSlug}_title`),
-              description,
-            }),
-          ),
-          jsonLd(
-            breadcrumbSchema(
-              [
-                { name: t("nav.home"), path: "/" },
-                { name: t(`brand.${brandSlug}_title`), path },
-              ],
-              params.lang,
-            ),
-          ),
-        ],
-      };
-    },
-    component: () => <BrandPage brandSlug={brandSlug} />,
-  };
-}
 
 type Facet = Category | "all";
 
@@ -236,7 +161,10 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
 
       {/* ── The line-up ────────────────────────────────────── */}
       <Section band="soft">
-        <div data-scrub-in className="mb-8 flex flex-wrap items-baseline justify-between gap-4 md:mb-10">
+        <div
+          data-scrub-in
+          className="mb-8 flex flex-wrap items-baseline justify-between gap-4 md:mb-10"
+        >
           <h2 className="type-headline text-crisp">{t("brand.lineup")}</h2>
           {floor != null ? (
             <p className="text-[14px] text-cool">
@@ -616,8 +544,17 @@ function LineupCard({ p, lang, idx }: { p: Product; lang: Lang; idx: number }) {
   );
 }
 
-/** Both brand routes share one component; this keeps the export surface small. */
-export const radiocomRouteOptions = brandRouteOptions("radiocom");
-export const motorolaRouteOptions = brandRouteOptions("motorola");
+/**
+ * One component per brand route, rather than one shared `component:` built from
+ * a factory.
+ *
+ * The factory returned `component: () => <BrandPage brandSlug={brandSlug} />`,
+ * and the route files spread its result — which hid the `component` key from
+ * the code-splitter behind an identifier it cannot see through. Two named
+ * components are what the splitter can actually lift, and they cost three lines
+ * against a whole page body in the entry chunk.
+ */
+export const RadiocomPage = () => <BrandPage brandSlug="radiocom" />;
+export const MotorolaPage = () => <BrandPage brandSlug="motorola" />;
 
 export { products };

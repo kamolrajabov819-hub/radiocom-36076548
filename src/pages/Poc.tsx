@@ -46,16 +46,6 @@ import {
 } from "@/components/apple";
 import { ProductShot } from "@/components/ProductShot";
 import { spring, fadeUpAt } from "@/lib/springs";
-import {
-  breadcrumbSchema,
-  jsonLd,
-  localeLinks,
-  pageMeta,
-  preloadImage,
-  serviceSchema,
-  type SeoLang,
-} from "@/lib/seo";
-import { tFor } from "@/lib/i18n";
 
 /**
  * The six rows of the PoC-vs-PMR matrix.
@@ -68,57 +58,6 @@ import { tFor } from "@/lib/i18n";
  * stay in the comparison table where a buyer can read down one axis.
  */
 const ROW_IDS = ["coverage", "infra", "media", "gps", "scale", "cost"] as const;
-
-export const routeOptions = {
-  head: ({ params }: { params: { lang: SeoLang } }) => {
-    const t = tFor(params.lang);
-    return {
-      meta: pageMeta({
-        lang: params.lang,
-        title: t("meta.poc.title"),
-        description: t("meta.poc.desc"),
-        path: "/poc",
-        ogCard: "poc",
-      }),
-      links: [
-        ...localeLinks(params.lang, "/poc"),
-        // The hero is this page's LCP element and now ships a real srcset pair,
-        // so the preload has to advertise the same candidate set the <img>
-        // chooses from — otherwise the browser preloads one file and fetches
-        // another. Gate 12 checks exactly this.
-        preloadImage({
-          src: heroPair,
-          small: heroPair800,
-          sizes: "(max-width: 768px) 86vw, 720px",
-        }),
-      ],
-      // /poc was the only page on the site emitting no structured data at all,
-      // despite being a named product line with its own service offer.
-      scripts: [
-        jsonLd(
-          serviceSchema(
-            {
-              name: t("poc.design.title"),
-              description: t("meta.poc.desc"),
-              path: "/poc",
-            },
-            params.lang,
-          ),
-        ),
-        jsonLd(
-          breadcrumbSchema(
-            [
-              { name: t("nav.home"), path: "/" },
-              { name: t("nav.poc"), path: "/poc" },
-            ],
-            params.lang,
-          ),
-        ),
-      ],
-    };
-  },
-  component: PoCPage,
-};
 
 export function PoCPage() {
   const page = useScrollChoreography();

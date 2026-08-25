@@ -11,19 +11,9 @@ import {
   shortName,
   type BrandSlug,
   type Product,
-  visibleProducts,
 } from "@/data/products";
 import { specs } from "@/data/specs";
 import { pick, type Lang } from "@/data/spec-dict";
-import {
-  breadcrumbSchema,
-  itemListSchema,
-  jsonLd,
-  localeLinks,
-  pageMeta,
-  type SeoLang,
-} from "@/lib/seo";
-import { tFor } from "@/lib/i18n";
 import { useLang } from "@/lib/locale";
 
 /**
@@ -66,36 +56,6 @@ const COMPARE_ROWS = [
   "Время работы от аккумулятора",
   "Ёмкость аккумулятора",
 ] as const;
-
-export const routeOptions = {
-  head: ({ params }: { params: { lang: SeoLang } }) => {
-    const t = tFor(params.lang);
-    const path = "/compare";
-    return {
-      meta: pageMeta({
-        lang: params.lang,
-        title: t("meta.compare.title", { count: visibleProducts.length }),
-        description: t("meta.compare.desc"),
-        path,
-        ogCard: "compare",
-      }),
-      links: localeLinks(params.lang, path),
-      scripts: [
-        jsonLd(itemListSchema(visibleProducts, params.lang)),
-        jsonLd(
-          breadcrumbSchema(
-            [
-              { name: t("nav.home"), path: "/" },
-              { name: t("meta.crumb.compare"), path },
-            ],
-            params.lang,
-          ),
-        ),
-      ],
-    };
-  },
-  component: ComparePage,
-};
 
 export function ComparePage() {
   const { t } = useTranslation();

@@ -12,15 +12,6 @@ import miningImg from "@/assets/industry-mining.jpg";
 import transportImg from "@/assets/industry-transport.jpg";
 import manufacturingImg from "@/assets/industry-manufacturing.jpg";
 import { spring } from "@/lib/springs";
-import {
-  SITE_NAME,
-  breadcrumbSchema,
-  jsonLd,
-  localeLinks,
-  pageMeta,
-  type SeoLang,
-} from "@/lib/seo";
-import { tFor } from "@/lib/i18n";
 
 const IMAGES: Record<string, string> = {
   horeca: horecaImg,
@@ -29,34 +20,6 @@ const IMAGES: Record<string, string> = {
   mining: miningImg,
   transport: transportImg,
   manufacturing: manufacturingImg,
-};
-
-export const routeOptions = {
-  head: ({ params }: { params: { lang: SeoLang } }) => {
-    const t = tFor(params.lang);
-    return {
-      meta: pageMeta({
-        lang: params.lang,
-        title: t("meta.industries.title"),
-        description: t("meta.industries.desc"),
-        path: "/industries",
-        ogCard: "industries",
-      }),
-      links: localeLinks(params.lang, "/industries"),
-      scripts: [
-        jsonLd(
-          breadcrumbSchema(
-            [
-              { name: SITE_NAME, path: "/" },
-              { name: t("meta.crumb.industries"), path: "/industries" },
-            ],
-            params.lang,
-          ),
-        ),
-      ],
-    };
-  },
-  component: IndustriesOverview,
 };
 
 export function IndustriesOverview() {
