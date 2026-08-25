@@ -68,14 +68,32 @@ function Hero() {
   const { t } = useTranslation();
   return (
     <section className="pt-40 md:pt-56 pb-16 md:pb-24 bg-pitch px-6 text-center">
-      <div className="max-w-3xl mx-auto">
+      {/* `max-w-6xl` for the heading, not `max-w-3xl`.
+          
+          The h1 uses the site's shared `headline-hero` scale with no override,
+          which reaches 96px. Russian — «Ремонт, которому доверяют.» — needs a
+          1152px measure to balance onto two lines at that size; in the old 768px
+          container it broke to three and swamped the subhead and the call to
+          action below it. The supporting copy keeps its own narrower measure, so
+          only the headline gets the extra width. */}
+      <div className="max-w-6xl mx-auto">
         <div className="text-signal text-[13px] mb-4">{t("service.kicker")}</div>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={spring}
-          className="headline text-crisp md:text-nowrap"
-          style={{ fontSize: "clamp(1.5rem, 4vw, 2.5rem)" }}
+          // `headline-hero`, the same scale every other hero on the site uses,
+          // in the same `max-w-3xl` centred container the compare page uses.
+          //
+          // This was `headline` plus an inline `clamp(1.5rem, 4vw, 2.5rem)`,
+          // which capped the service h1 at 40px while the home, product and
+          // compare heroes reach 96px — the service page looked like a
+          // subsection of itself. The inline cap existed to serve the
+          // `md:text-nowrap` beside it: the title was shrunk until it fit on one
+          // line. `headline-hero` already carries `text-wrap: balance` and
+          // `overflow-wrap: break-word`, so it wraps to two balanced lines like
+          // every other hero rather than needing to be made small enough not to.
+          className="headline-hero text-crisp"
         >
           {t("service.title_a")} {t("service.title_b")}
         </motion.h1>
@@ -83,7 +101,7 @@ function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...spring, delay: 0.1 }}
-          className="subhead mt-5 text-lg md:text-xl"
+          className="subhead mx-auto mt-5 max-w-2xl text-lg md:text-xl"
         >
           {brandCase(t("service.sub"))}
         </motion.p>
