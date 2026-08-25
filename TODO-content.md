@@ -731,3 +731,39 @@ the pages use *today*. Widen a slot, or drop one of these images into a bigger
 frame, and a nominal descriptor could start choosing the wrong file. The durable
 fix, if that ever happens, is for the pipeline to emit a manifest of real widths
 rather than for call sites to hardcode them.
+
+## SEO sweep — two things only you can answer
+
+**1. Does Radiocom repair Hytera and Vertex Standard?**
+
+The home page's meta description named **Hytera** among the brands sold. The
+catalogue holds 24 models — eight Radiocom and sixteen Motorola — and not one
+Hytera. Someone searching «Hytera Ташкент» would have landed on a page that
+sells no Hytera, so I removed it from that description.
+
+The **service** page is a different claim and I have left it alone:
+
+> «Гарантийный и постгарантийный ремонт Motorola, **Hytera** и **Vertex
+> Standard**.»
+
+A workshop can legitimately repair brands it does not stock, so nothing in the
+data contradicts this — but nothing in the data supports it either. It appears
+in `meta.service.desc` and `meta.service.schema_desc` in all three locales, and
+in the `Service` schema Google reads. If the bench does not actually take those
+two brands, say so and it comes out in one edit.
+
+**2. What year was the company founded?**
+
+`Organization.foundingDate` is still the one structured-data field left empty,
+and it is the field Google's knowledge panel uses. I will not invent it.
+
+There is an inference available and I want to be clear that it is only an
+inference: the published home description says **«11 лет на рынке»**, which
+would put the founding year at **2015** if that line was written for 2026. If it
+was written a couple of years ago and never updated, the real year is earlier —
+which is exactly why this needs a person rather than arithmetic. Give me the
+year and it is a one-line change.
+
+While you are looking: if «11 лет» and «10 000+ клиентов» have gone stale, both
+are in `meta.home.desc` in ru/en/uz and are quoted verbatim into the
+`Organization` schema.
