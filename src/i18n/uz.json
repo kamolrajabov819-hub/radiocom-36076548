@@ -578,7 +578,8 @@
   },
   "home": {
     "hero": {
-      "title": "Professional ratsiyalar. Buzilmas.",
+      "title_a": "Buzilmas,",
+      "title_b": "Professional ratsiyalar.",
       "sub": "Motorola va Radiocom — rasmiy servis, bepul sinov va butun mamlakat bo'ylab yetkazib berish.",
       "cta_primary": "Bepul sinovni band qilish",
       "cta_secondary": "Batafsil",
@@ -730,7 +731,7 @@
     "sub": "Ishlab chiqaruvchilar bilan to'g'ridan-to'g'ri ishlaymiz: original qurilmalar, kafolat va Toshkentda servis.",
     "view": "Modellarni ko'rish",
     "models": "model",
-    "radiocom_title": "Radiocom RC va RCD ratsiyalari",
+    "radiocom_title": "Radiocom RC va RCD",
     "radiocom_desc": "O'z liniyamiz Radiocom: analog RC va raqamli RCD DMR ratsiyalari, kafolat va servis bilan.",
     "motorola_title": "Motorola ratsiyalari",
     "motorola_desc": "Talkabout, XT va TLKR — jahon yetakchisidan litsenziyasiz PMR ratsiyalar.",

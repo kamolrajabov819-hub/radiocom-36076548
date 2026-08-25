@@ -471,3 +471,40 @@
   force = true
 
 # --- generated:catalog-301 ---
+
+# --- Agent discovery -------------------------------------------------------
+# `Link` headers (RFC 8288) so a client learns what else this site offers
+# without having to parse the HTML first.
+#
+# Two relations, both IANA-registered and both pointing at something that
+# exists:
+#
+#   describedby  -> /llms.txt, the plain-text summary of the whole catalogue
+#   alternate    -> `<>`, an empty relative reference, which per RFC 3986
+#                   resolves to the requesting URL itself. It says "this same
+#                   page is also available as Markdown", which is true: see
+#                   `agentAcceptMiddleware` in src/start.ts.
+#
+# Scoped to the locale prefixes rather than `/*` on purpose — `<>` would
+# otherwise promise a Markdown alternate for every stylesheet and photograph.
+[[headers]]
+  for = "/ru/*"
+  [headers.values]
+    Link = '</llms.txt>; rel="describedby"; type="text/plain", <>; rel="alternate"; type="text/markdown"'
+
+[[headers]]
+  for = "/en/*"
+  [headers.values]
+    Link = '</llms.en.txt>; rel="describedby"; type="text/plain", <>; rel="alternate"; type="text/markdown"'
+
+[[headers]]
+  for = "/uz/*"
+  [headers.values]
+    Link = '</llms.uz.txt>; rel="describedby"; type="text/plain", <>; rel="alternate"; type="text/markdown"'
+
+# The ARD manifest is meant to be fetched cross-origin by registries.
+[[headers]]
+  for = "/.well-known/ai-catalog.json"
+  [headers.values]
+    Content-Type = "application/json"
+    Access-Control-Allow-Origin = "*"

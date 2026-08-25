@@ -1,0 +1,57 @@
+{
+  "specVersion": "0.1",
+  "host": {
+    "name": "RADIOCOM",
+    "url": "https://radiocom.uz",
+    "description": "Официальный поставщик раций в Узбекистане: 11 лет на рынке, 10 000+ клиентов. Motorola, PoC и Radiocom RC. Бесплатный тест, гарантия, сервис в Ташкенте."
+  },
+  "entries": [
+    {
+      "id": "urn:air:radiocom.uz:catalog:sitemap",
+      "displayName": "Sitemap",
+      "description": "Every page on the site, in all three locales, with last-modified dates.",
+      "type": "application/xml",
+      "url": "https://radiocom.uz/sitemap.xml",
+      "representativeQueries": [
+        "What pages does radiocom.uz have?",
+        "Which two-way radio models does RADIOCOM list?"
+      ]
+    },
+    {
+      "id": "urn:air:radiocom.uz:summary:llms-ru",
+      "displayName": "Site summary (ru)",
+      "description": "Plain-text summary of the catalogue, services and contact details in ru.",
+      "type": "text/plain",
+      "url": "https://radiocom.uz/llms.txt",
+      "representativeQueries": [
+        "Where can I buy two-way radios in Tashkent?",
+        "What does RADIOCOM sell and service?",
+        "How much does a DMR radio cost in Uzbekistan?"
+      ]
+    },
+    {
+      "id": "urn:air:radiocom.uz:summary:llms-en",
+      "displayName": "Site summary (en)",
+      "description": "Plain-text summary of the catalogue, services and contact details in en.",
+      "type": "text/plain",
+      "url": "https://radiocom.uz/llms.en.txt",
+      "representativeQueries": [
+        "Where can I buy two-way radios in Tashkent?",
+        "What does RADIOCOM sell and service?",
+        "How much does a DMR radio cost in Uzbekistan?"
+      ]
+    },
+    {
+      "id": "urn:air:radiocom.uz:summary:llms-uz",
+      "displayName": "Site summary (uz)",
+      "description": "Plain-text summary of the catalogue, services and contact details in uz.",
+      "type": "text/plain",
+      "url": "https://radiocom.uz/llms.uz.txt",
+      "representativeQueries": [
+        "Where can I buy two-way radios in Tashkent?",
+        "What does RADIOCOM sell and service?",
+        "How much does a DMR radio cost in Uzbekistan?"
+      ]
+    }
+  ]
+}
