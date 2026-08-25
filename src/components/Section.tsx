@@ -83,11 +83,22 @@ export function SectionHead({
   invert = false,
   link,
   spacing = "loose",
+  as = "h2",
 }: {
   eyebrow?: string;
   title: string;
   sub?: string;
   align?: "center" | "left";
+  /**
+   * The heading level this title renders at.
+   *
+   * `h2` is right almost everywhere — a `SectionHead` names a section inside a
+   * page that already has its own `h1`. The exceptions are the pages whose
+   * *only* title is a `SectionHead`: the sitemap and the search page both
+   * opened with an `h2` and shipped no `h1` at all, which leaves a crawler and
+   * a screen reader without the one element that says what the page is.
+   */
+  as?: "h1" | "h2";
   invert?: boolean;
   link?: {
     label: string;
@@ -124,7 +135,7 @@ export function SectionHead({
         were always meant to sit in.
       */}
       <WordReveal
-        as="h2"
+        as={as}
         text={title}
         className={`type-headline block ${invert ? "text-white" : "text-crisp"}`}
       />
