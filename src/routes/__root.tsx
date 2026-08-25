@@ -12,6 +12,8 @@ import { MotionConfig } from "framer-motion";
 import { I18nextProvider, useTranslation } from "react-i18next";
 
 import appCss from "../styles.css?url";
+import interCyrillic from "../assets/fonts/inter-cyrillic-wght-normal.woff2?url";
+import interLatin from "../assets/fonts/inter-latin-wght-normal.woff2?url";
 import {
   jsonLd,
   localBusinessSchema,
@@ -118,6 +120,29 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      // Preload both subsets.
+      //
+      // They are already self-hosted, but nothing points at them until the
+      // stylesheet has been fetched and parsed — so Lighthouse measured a
+      // three-hop critical chain: document 365 ms, stylesheet 473 ms, then the
+      // two faces at 625 ms and 746 ms. Preloading moves both onto the same
+      // round trip as the CSS instead of behind it. `crossOrigin` is required
+      // even same-origin: fonts are fetched in CORS mode, and a preload whose
+      // mode does not match the real request is downloaded twice and used once.
+      {
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: interCyrillic,
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: interLatin,
+        crossOrigin: "anonymous",
+      },
       { rel: "manifest", href: "/manifest.webmanifest" },
       { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon.png" },
       { rel: "icon", type: "image/png", sizes: "192x192", href: "/icon-192.png" },

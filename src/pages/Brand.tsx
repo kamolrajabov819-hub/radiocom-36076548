@@ -18,7 +18,7 @@ import {
   TintTag,
 } from "@/components/apple";
 import { INDUSTRY_SLUGS } from "@/data/industries";
-import { INDUSTRY_POSTERS } from "@/data/industry-images";
+import { INDUSTRY_POSTERS, INDUSTRY_POSTER_SRCSET } from "@/data/industry-images";
 import { openLead } from "@/components/LeadFormSheet";
 import { TrustedBy } from "@/components/TrustedBy";
 import priceListPdf from "@/assets/radiocom-price-list.pdf";
@@ -136,6 +136,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
                   <ModelStripItem
                     image={p.strip ?? p.image}
                     imageSmall={p.strip ? undefined : p.imageSmall}
+                    imageTiny={p.strip ? undefined : p.imageTiny}
                     label={shortName(p.name)}
                   />
                 </LocaleLink>
@@ -288,6 +289,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
               <PosterCard
                 idx={i}
                 image={INDUSTRY_POSTERS[slug]}
+                srcSet={INDUSTRY_POSTER_SRCSET[slug]}
                 eyebrow={t(`industries.${slug}.short`)}
                 title={t(`industries.${slug}.name`)}
                 href={

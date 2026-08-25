@@ -695,3 +695,39 @@ This mattered because a glob over the directory would have shipped
 `alt="AB-1"`, which is worse than nothing: it tells a screen-reader user
 nothing and hands a crawler a string with no meaning. The strip is the best
 credibility asset on the site and it should be legible to both.
+
+## Image descriptors: a known inaccuracy that currently costs nothing
+
+`scripts/build-image-variants.ts` scales by the **longest edge**, so a portrait
+source's `@800` file is not 800px wide. `rc-50-device@800.webp` is 224px across;
+`radio-macro-cutout@800.webp` is 597px; the industry posters' `@800` is 533px.
+
+Most `srcSet` strings in the app declare a flat `400w, 800w, 1600w`, which for
+those files overstates what they hold. Where I added new candidates — the
+posters, the industry heroes, the service bench strip — the descriptors carry
+the **real** widths instead, because those slots are small enough for the
+difference to decide which file the browser picks.
+
+**Measured, before changing anything: this has never cost the site a pixel.**
+Across all 56 `/ru/` routes at DPR 2, 38 of 624 rendered images were genuinely
+under-served, and every single one of them had *no* `srcSet` at all — not one
+was under-served because a descriptor lied. Those 38 are now down to 5, and all
+five are source-asset ceilings (the master file is simply smaller than a Retina
+desktop wants):
+
+| File | Has | Wanted at DPR 2 |
+|---|---|---|
+| `radios-pair-crossed-cutout.webp` | 889px | 2246px |
+| `industry-*.jpg` | 1400px | 3168px |
+| `service-tech-light.jpg` | 1264px | 2561px |
+| `rcd-70-kit.webp` | 1080px | 2072px |
+| `hero-rcd60-cutout.webp` | 597px | 1044px |
+
+Nothing to fix in code — these need larger originals, which is a photography
+task. They are all fine at DPR 1 and on phones.
+
+**Why it is worth writing down anyway:** the finding holds for the slot sizes
+the pages use *today*. Widen a slot, or drop one of these images into a bigger
+frame, and a nominal descriptor could start choosing the wrong file. The durable
+fix, if that ever happens, is for the pipeline to emit a manifest of real widths
+rather than for call sites to hardcode them.

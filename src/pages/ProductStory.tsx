@@ -18,7 +18,7 @@ import { openLead } from "@/components/LeadFormSheet";
 import { formatPrice, productBySlug, type BrandSlug, type Product } from "@/data/products";
 import { specs } from "@/data/specs";
 import { INDUSTRY_SLUGS, type IndustrySlug } from "@/data/industries";
-import { INDUSTRY_POSTERS } from "@/data/industry-images";
+import { INDUSTRY_POSTERS, INDUSTRY_POSTER_SRCSET } from "@/data/industry-images";
 import { pick, type Lang } from "@/data/spec-dict";
 import { useLang } from "@/lib/locale";
 
@@ -281,6 +281,33 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
  * panels underneath carry the two range figures at display size — the numbers
  * that decide the purchase, stated once at a size that matches their weight.
  */
+
+/**
+ * `srcSet` for gallery frame `i` — or for the hero shot, which is what the
+ * design section falls back to on the nine models that carry no gallery.
+ *
+ * The frames live in three parallel arrays (`gallery`, `gallerySmall`,
+ * `galleryTiny`) because that is how the catalogue has always carried them,
+ * so the lookup has to be by index and has to tolerate a model that has the
+ * master but not the variants.
+ *
+ * The descriptors are nominal: the variant pipeline scales by the longest
+ * edge, so a portrait frame's `@800` is narrower than 800px. Measured across
+ * all 56 routes this costs nothing — the browser never picks a too-small
+ * candidate in these slots — but see TODO-content.md, because it is only
+ * true for the slot sizes the page uses today.
+ */
+function frameSrcSet(p: Product, i: number): string | undefined {
+  if (!p.gallery?.length) {
+    return p.imageTiny && p.imageSmall
+      ? `${p.imageTiny} 400w, ${p.imageSmall} 800w, ${p.image} 1600w`
+      : undefined;
+  }
+  const tiny = p.galleryTiny?.[i];
+  const small = p.gallerySmall?.[i];
+  return tiny && small ? `${tiny} 400w, ${small} 800w, ${p.gallery[i]} 1600w` : undefined;
+}
+
 function Design({ p, lang }: { p: Product; lang: Lang }) {
   const { t } = useTranslation();
   // Nine of the twenty-one visible models have no gallery frames, and for those
@@ -324,6 +351,10 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
         <div className="flex w-full items-center justify-center overflow-hidden rounded-[28px] bg-charcoal px-6 py-10 md:px-16 md:py-14">
           <img
             src={wide}
+            srcSet={frameSrcSet(p, 0)}
+            /* Capped at 600px tall inside a shell column, so it never needs
+               the 1600px master on a phone. */
+            sizes="(min-width: 1280px) 1200px, 92vw"
             alt={`${p.name} — ${t("px.design")}`}
             width={1600}
             height={1067}
@@ -415,6 +446,10 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
             >
               <img
                 src={src}
+                /* `rest` is `gallery` minus its first frame, so frame `i`
+                   here is index `i + 1` in the parallel arrays. */
+                srcSet={frameSrcSet(p, i + 1)}
+                sizes="(min-width: 640px) 600px, 92vw"
                 alt={`${p.name} — ${i + 2}`}
                 width={1600}
                 height={1067}
@@ -529,6 +564,10 @@ function InBox({ p, lang }: { p: Product; lang: Lang }) {
           <div className="flex items-center justify-center overflow-hidden rounded-[28px] bg-charcoal p-8">
             <img
               src={kit}
+              srcSet={frameSrcSet(p, (p.gallery?.length ?? 1) - 1)}
+              /* `max-w-[380px]`, and that cap is the whole point: this panel
+                 was pulling the 1080px master for a 298px slot. */
+              sizes="380px"
               alt=""
               loading="lazy"
               decoding="async"
@@ -584,6 +623,7 @@ function WhereUsed({ p, lang }: { p: Product; lang: Lang }) {
             idx={i}
             className="w-[62vw] shrink-0 snap-start sm:w-[38vw] lg:w-[calc((100%-3rem)/4)]"
             image={INDUSTRY_POSTERS[slug]}
+                srcSet={INDUSTRY_POSTER_SRCSET[slug]}
             eyebrow={t(`industries.${slug}.short`)}
             title={t(`industries.${slug}.name`)}
             href={

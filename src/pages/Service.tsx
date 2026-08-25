@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { brandCase } from "@/lib/brand";
 import { Search, Cog } from "lucide-react";
 import serviceLight from "@/assets/service-tech-light.jpg";
+import serviceLight800 from "@/assets/service-tech-light@800.jpg";
+import serviceLight400 from "@/assets/service-tech-light@400.jpg";
 // One distinct photograph per repair stage — the brief's rule is never to
 // reuse a shot for two slots on the same page, and a lucide icon alone in
 // white space is what these cards looked like before.
@@ -53,10 +55,14 @@ function BenchStrip() {
         <div className="rounded-3xl overflow-hidden aspect-[16/7] bg-charcoal relative">
           <img
             src={serviceLight}
+            srcSet={`${serviceLight400} 400w, ${serviceLight800} 800w, ${serviceLight} 1264w`}
+            /* Shell-width, then `scale-110`. 151 KB of 1264px master was
+               going into a 381px slot on a phone. */
+            sizes="(min-width: 1280px) 1280px, 98vw"
             alt=""
             loading="lazy"
-            width={1400}
-            height={1000}
+            width={1264}
+            height={848}
             data-parallax="0.16"
             className="absolute inset-0 h-full w-full scale-110 object-cover"
           />

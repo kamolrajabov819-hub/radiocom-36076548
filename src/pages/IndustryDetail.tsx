@@ -6,7 +6,11 @@ import { brandCase } from "@/lib/brand";
 import { motion } from "framer-motion";
 import { ChevronRight, FileDown, Check, Quote, Radio, Repeat, Wrench } from "lucide-react";
 import { industryPicks, type IndustrySlug } from "@/data/industries";
-import { INDUSTRY_IMAGES as IMAGES } from "@/data/industry-images";
+import {
+  INDUSTRY_IMAGES as IMAGES,
+  INDUSTRY_IMAGE_SRCSET as SRCSET,
+  INDUSTRY_IMAGE_SRCSET_SMALL as SRCSET_SMALL,
+} from "@/data/industry-images";
 import { visibleProducts } from "@/data/products";
 import { openLead } from "@/components/LeadFormSheet";
 import { CountUp } from "@/components/CountUp";
@@ -49,16 +53,37 @@ export function IndustryPage() {
           transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
           className="absolute inset-0"
         >
-          <img
-            src={IMAGES[s]}
-            alt=""
-            width={1600}
-            height={1067}
-            fetchPriority="high"
-            decoding="sync"
-            data-parallax="0.18"
-            className="absolute inset-0 h-full w-full scale-110 object-cover"
-          />
+          {/* `<picture>`, because on a phone the right answer is not the
+              largest file the browser can justify.
+
+              This frame is full-bleed and `scale-110`, so `sizes` is 110vw —
+              429 CSS px on a 390px phone, 858 device pixels at DPR 2. That is
+              past the 800w candidate, so a plain `<img>` correctly reaches for
+              the 1400px master and spends 288 KB on it, on the LCP element of
+              six pages.
+
+              Narrowing `sizes` to force a smaller pick would be a lie about
+              the layout. Art direction is the honest lever: below 768px the
+              menu simply does not include the master, so the browser takes
+              800w — 1.86x density across the slot, behind a gradient that runs
+              from solid black to black/25. There is nothing there to resolve.
+              Wide viewports, where the photograph is actually large and only
+              lightly scrimmed at its foot, keep the full set. */}
+          <picture>
+            <source media="(max-width: 768px)" srcSet={SRCSET_SMALL[s]} sizes="110vw" />
+            <img
+              src={IMAGES[s]}
+              srcSet={SRCSET[s]}
+              sizes="110vw"
+              alt=""
+              width={1400}
+              height={900}
+              fetchPriority="high"
+              decoding="sync"
+              data-parallax="0.18"
+              className="absolute inset-0 h-full w-full scale-110 object-cover"
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/25" />
         </motion.div>
 

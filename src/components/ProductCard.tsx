@@ -53,6 +53,35 @@ export function ProductCard({
             <div className="pointer-events-none absolute inset-0 rounded-full opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_50%_55%,color-mix(in_oklab,var(--signal)_22%,transparent),transparent_70%)]" />
             <img
               src={p.image}
+              /* The card renders this at 180-210px tall — roughly 187px wide —
+                 and it had no `srcSet` and no `sizes` at all, so every card
+                 downloaded the full 1080px or 1600px product photo. Measured on
+                 a fully-scrolled home page that was 516 KB across eight files,
+                 the largest 8.6x wider than the slot it lands in. Lighthouse
+                 never reported it because its run does not scroll far enough to
+                 load them.
+
+                 Both DPR 1 and DPR 2 want the 400w candidate here, so this is
+                 the rare case where the small file is also the correct one. */
+              srcSet={
+                p.imageSmall
+                  ? [
+                      p.imageTiny && `${p.imageTiny} 400w`,
+                      `${p.imageSmall} 800w`,
+                      `${p.image} 1600w`,
+                    ]
+                      .filter(Boolean)
+                      .join(", ")
+                  : undefined
+              }
+              /* A flat 260px, measured rather than guessed: the widest this
+                 image ever renders is 253px, on a 390px viewport where the card
+                 is nearly full-bleed. Declaring the breakpoint-shaped
+                 "240px / 200px" under-stated it, and at DPR 2 that made the
+                 browser pick 400w where it needed 800w — trading sharpness for
+                 bytes, which is not the trade. At 260px, DPR 1 picks 400w and
+                 DPR 2 picks 800w, which is right on both. */
+              sizes={p.imageSmall ? "260px" : undefined}
               alt={p.name}
               width={1024}
               height={1024}
@@ -65,6 +94,18 @@ export function ProductCard({
             {p.gallery?.length ? (
               <img
                 src={p.gallery[0]}
+                /* Same 187px slot as the card's main shot, and it had the same
+                   problem: the full 1080px kit photo fetched for a decorative
+                   hover state. It is `aria-hidden` and purely visual, so the
+                   400w file is all it ever needs. */
+                srcSet={
+                  p.galleryTiny?.[0] && p.gallerySmall?.[0]
+                    ? `${p.galleryTiny[0]} 400w, ${p.gallerySmall[0]} 800w, ${p.gallery[0]} 1600w`
+                    : p.galleryTiny?.[0]
+                      ? `${p.galleryTiny[0]} 400w, ${p.gallery[0]} 1600w`
+                      : undefined
+                }
+                sizes={p.galleryTiny?.[0] ? "260px" : undefined}
                 alt=""
                 loading="lazy"
                 width={1024}
