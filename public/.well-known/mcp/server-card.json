@@ -1,0 +1,15 @@
+{
+  "serverInfo": {
+    "name": "radiocom-catalog",
+    "version": "1.0.0",
+    "description": "Read-only access to the RADIOCOM two-way radio catalogue: models, manufacturer specifications, box contents and prices.",
+    "websiteUrl": "https://radiocom.uz"
+  },
+  "transport": {
+    "type": "streamable-http",
+    "url": "https://radiocom.uz/mcp"
+  },
+  "capabilities": {
+    "tools": {}
+  }
+}

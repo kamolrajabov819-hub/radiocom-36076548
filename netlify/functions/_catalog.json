@@ -1,0 +1,4782 @@
+{
+  "site": "https://radiocom.uz",
+  "products": [
+    {
+      "slug": "rcd-70",
+      "brandSlug": "radiocom",
+      "brand": "Radiocom RC",
+      "name": "Radiocom RCD-70 PRO",
+      "category": "professional",
+      "tags": [
+        "DMR",
+        "GPS",
+        "IP67"
+      ],
+      "price": 1900000,
+      "blurb": {
+        "ru": "Флагман линейки RCD: цифровой DMR, GPS и защита IP67.",
+        "en": "The RCD flagship: digital DMR, GPS and IP67 protection.",
+        "uz": "RCD liniyasining flagmani: raqamli DMR, GPS va IP67 himoyasi."
+      },
+      "rangeCity": {
+        "ru": "до 3 км",
+        "en": "up to 3 km",
+        "uz": "3 km gacha"
+      },
+      "rangeOpen": {
+        "ru": "до 10 км",
+        "en": "up to 10 km",
+        "uz": "10 km gacha"
+      },
+      "url": {
+        "ru": "https://radiocom.uz/ru/radiocom/rcd-70",
+        "en": "https://radiocom.uz/en/radiocom/rcd-70",
+        "uz": "https://radiocom.uz/uz/radiocom/rcd-70"
+      },
+      "specs": {
+        "rows": [
+          {
+            "label": {
+              "ru": "Стандарт",
+              "en": "Standard",
+              "uz": "Standart"
+            },
+            "value": {
+              "ru": "DMR",
+              "en": "DMR",
+              "uz": "DMR"
+            }
+          },
+          {
+            "label": {
+              "ru": "Режим работы",
+              "en": "Operating mode",
+              "uz": "Ishlash rejimi"
+            },
+            "value": {
+              "ru": "Аналоговый и цифровой",
+              "en": "Analogue and digital",
+              "uz": "Analog va raqamli"
+            }
+          },
+          {
+            "label": {
+              "ru": "Класс защиты",
+              "en": "Ingress protection",
+              "uz": "Himoya darajasi"
+            },
+            "value": {
+              "ru": "IP67",
+              "en": "IP67",
+              "uz": "IP67"
+            }
+          },
+          {
+            "label": {
+              "ru": "Радиус действия",
+              "en": "Range",
+              "uz": "Ishlash radiusi"
+            },
+            "value": {
+              "ru": "до 3 км в городе, до 10 км на открытой местности",
+              "en": "up to 3 km in built-up areas, up to 10 km in the open",
+              "uz": "shaharda 3 km gacha, ochiq joyda 10 km gacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мощность передатчика",
+              "en": "Transmit power",
+              "uz": "Uzatgich quvvati"
+            },
+            "value": {
+              "ru": "0,5 Вт",
+              "en": "0,5 W",
+              "uz": "0,5 Vt"
+            }
+          },
+          {
+            "label": {
+              "ru": "Тип питания",
+              "en": "Power source",
+              "uz": "Quvvat manbayi"
+            },
+            "value": {
+              "ru": "Литий-полимерный аккумулятор 3600 мА·ч",
+              "en": "Lithium-polymer battery, 3600 mAh",
+              "uz": "Litiy-polimer akkumulyator, 3600 mA·soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Ёмкость аккумулятора",
+              "en": "Battery capacity",
+              "uz": "Akkumulyator sig'imi"
+            },
+            "value": {
+              "ru": "3600 мА·ч",
+              "en": "3600 mAh",
+              "uz": "3600 mA·soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Зоны и каналы",
+              "en": "Zones and channels",
+              "uz": "Zonalar va kanallar"
+            },
+            "value": {
+              "ru": "До 1024 каналов — 32 зоны по 32 канала",
+              "en": "Up to 1,024 channels — 32 zones × 32 channels",
+              "uz": "1024 kanalgacha — 32 zona × 32 kanal"
+            }
+          },
+          {
+            "label": {
+              "ru": "Контакты и группы",
+              "en": "Contacts and groups",
+              "uz": "Kontaktlar va guruhlar"
+            },
+            "value": {
+              "ru": "До 256 контактов, 64 группы приёма (RX), до 32 контактов в одной RX-группе",
+              "en": "Up to 256 contacts, 64 RX groups, up to 32 contacts per RX group",
+              "uz": "256 kontaktgacha, 64 qabul (RX) guruhi, bitta RX guruhida 32 kontaktgacha"
+            }
+          }
+        ],
+        "inBox": [
+          {
+            "item": {
+              "ru": "Радиостанция",
+              "en": "Two-way radio",
+              "uz": "Radiostansiya"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Клипса",
+              "en": "Belt clip",
+              "uz": "Qisqich"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Зарядная чаша",
+              "en": "Charging cup",
+              "uz": "Quvvatlash uyasi"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Аккумулятор",
+              "en": "Battery",
+              "uz": "Akkumulyator"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Гарнитура",
+              "en": "Headset",
+              "uz": "Garnitura"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Подвеска",
+              "en": "Lanyard",
+              "uz": "Bo'yin bog'ichi"
+            },
+            "qty": 1
+          }
+        ],
+        "features": [
+          {
+            "ru": "Поддержка TDMA Tier II в конвенциональном режиме и режим прямой связи TDMA",
+            "en": "TDMA Tier II conventional support and TDMA direct mode",
+            "uz": "Konvensional rejimda TDMA Tier II va TDMA to'g'ridan-to'g'ri aloqa rejimi"
+          },
+          {
+            "ru": "Голосовое оповещение о номере зоны и канала",
+            "en": "Voice announcement of zone and channel number",
+            "uz": "Zona va kanal raqami haqida ovozli xabar"
+          },
+          {
+            "ru": "Индивидуальные, групповые и общие вызовы",
+            "en": "Individual, group and all-call",
+            "uz": "Individual, guruh va umumiy chaqiruvlar"
+          },
+          {
+            "ru": "Проверка радиостанции, удалённый мониторинг, дистанционное отключение и восстановление рации",
+            "en": "Radio check, remote monitor, remote disable and re-enable",
+            "uz": "Radiostansiyani tekshirish, masofadan monitoring, masofadan o'chirish va tiklash"
+          },
+          {
+            "ru": "Аналоговый режим — скремблер речи; цифровой — шифрование голоса AES-256",
+            "en": "Analogue mode — voice scrambler; digital — AES-256 voice encryption",
+            "uz": "Analog rejim — nutq skrembleri; raqamli — AES-256 ovoz shifrlash"
+          },
+          {
+            "ru": "Режим работы в одиночку",
+            "en": "Lone worker mode",
+            "uz": "Yolg'iz ishlash rejimi"
+          },
+          {
+            "ru": "5 программируемых функциональных кнопок (PFB)",
+            "en": "5 programmable function buttons (PFB)",
+            "uz": "5 programmalanadigan funksional tugma (PFB)"
+          },
+          {
+            "ru": "Разъём для аудиоаксессуаров Motorola M5",
+            "en": "Motorola M5 audio accessory connector",
+            "uz": "Motorola M5 audio aksessuar ulagichi"
+          },
+          {
+            "ru": "Зарядка и программирование через USB-C",
+            "en": "Charging and programming over USB-C",
+            "uz": "USB-C orqali quvvatlash va programmalash"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "rcd-60",
+      "brandSlug": "radiocom",
+      "brand": "Radiocom RC",
+      "name": "Radiocom RCD-60 PRO",
+      "category": "professional",
+      "tags": [
+        "DMR",
+        "Display",
+        "Keypad"
+      ],
+      "price": 1800000,
+      "blurb": {
+        "ru": "Цифровая рация с дисплеем и клавиатурой в полном комплекте.",
+        "en": "A digital radio with display and keypad, fully equipped.",
+        "uz": "Displey va klaviaturali raqamli radiostansiya, to'liq komplektda."
+      },
+      "rangeCity": {
+        "ru": "до 2,5 км",
+        "en": "up to 2.5 km",
+        "uz": "2,5 km gacha"
+      },
+      "rangeOpen": {
+        "ru": "до 10 км",
+        "en": "up to 10 km",
+        "uz": "10 km gacha"
+      },
+      "url": {
+        "ru": "https://radiocom.uz/ru/radiocom/rcd-60",
+        "en": "https://radiocom.uz/en/radiocom/rcd-60",
+        "uz": "https://radiocom.uz/uz/radiocom/rcd-60"
+      },
+      "specs": {
+        "rows": [
+          {
+            "label": {
+              "ru": "Стандарт",
+              "en": "Standard",
+              "uz": "Standart"
+            },
+            "value": {
+              "ru": "PMR",
+              "en": "PMR",
+              "uz": "PMR"
+            }
+          },
+          {
+            "label": {
+              "ru": "Режим работы",
+              "en": "Operating mode",
+              "uz": "Ishlash rejimi"
+            },
+            "value": {
+              "ru": "Аналоговый и цифровой",
+              "en": "Analogue and digital",
+              "uz": "Analog va raqamli"
+            }
+          },
+          {
+            "label": {
+              "ru": "Класс защиты",
+              "en": "Ingress protection",
+              "uz": "Himoya darajasi"
+            },
+            "value": {
+              "ru": "IP55",
+              "en": "IP55",
+              "uz": "IP55"
+            }
+          },
+          {
+            "label": {
+              "ru": "Радиус действия",
+              "en": "Range",
+              "uz": "Ishlash radiusi"
+            },
+            "value": {
+              "ru": "до 2,5 км в городе, до 10 км на открытой местности",
+              "en": "up to 2.5 km in built-up areas, up to 10 km in the open",
+              "uz": "shaharda 2,5 km gacha, ochiq joyda 10 km gacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мощность передатчика",
+              "en": "Transmit power",
+              "uz": "Uzatgich quvvati"
+            },
+            "value": {
+              "ru": "0,5 Вт",
+              "en": "0,5 W",
+              "uz": "0,5 Vt"
+            }
+          },
+          {
+            "label": {
+              "ru": "Тип питания",
+              "en": "Power source",
+              "uz": "Quvvat manbayi"
+            },
+            "value": {
+              "ru": "Аккумулятор Li-Ion 2200 мА·ч",
+              "en": "Li-Ion battery, 2200 mAh",
+              "uz": "Li-Ion akkumulyator, 2200 mA·soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Ёмкость аккумулятора",
+              "en": "Battery capacity",
+              "uz": "Akkumulyator sig'imi"
+            },
+            "value": {
+              "ru": "2200 мА·ч",
+              "en": "2200 mAh",
+              "uz": "2200 mA·soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Зоны и каналы",
+              "en": "Zones and channels",
+              "uz": "Zonalar va kanallar"
+            },
+            "value": {
+              "ru": "До 1024 каналов — 32 зоны по 32 канала",
+              "en": "Up to 1,024 channels — 32 zones × 32 channels",
+              "uz": "1024 kanalgacha — 32 zona × 32 kanal"
+            }
+          },
+          {
+            "label": {
+              "ru": "Контакты и группы",
+              "en": "Contacts and groups",
+              "uz": "Kontaktlar va guruhlar"
+            },
+            "value": {
+              "ru": "256 контактов, 64 группы RX, 32 контакта на группу RX",
+              "en": "256 contacts, 64 RX groups, 32 contacts per RX group",
+              "uz": "256 kontakt, 64 RX guruhi, RX guruhiga 32 kontakt"
+            }
+          }
+        ],
+        "inBox": [
+          {
+            "item": {
+              "ru": "Радиостанция",
+              "en": "Two-way radio",
+              "uz": "Radiostansiya"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Клипса",
+              "en": "Belt clip",
+              "uz": "Qisqich"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Зарядная чаша",
+              "en": "Charging cup",
+              "uz": "Quvvatlash uyasi"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Аккумулятор",
+              "en": "Battery",
+              "uz": "Akkumulyator"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Гарнитура",
+              "en": "Headset",
+              "uz": "Garnitura"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Подвеска",
+              "en": "Lanyard",
+              "uz": "Bo'yin bog'ichi"
+            },
+            "qty": 1
+          }
+        ],
+        "features": [
+          {
+            "ru": "Поддержка TDMA Tier II в конвенциональном режиме и режим прямой связи TDMA",
+            "en": "TDMA Tier II conventional support and TDMA direct mode",
+            "uz": "Konvensional rejimda TDMA Tier II va TDMA to'g'ridan-to'g'ri aloqa rejimi"
+          },
+          {
+            "ru": "Голосовое оповещение о номере зоны и канала",
+            "en": "Voice announcement of zone and channel number",
+            "uz": "Zona va kanal raqami haqida ovozli xabar"
+          },
+          {
+            "ru": "Индивидуальные, групповые и общие вызовы",
+            "en": "Individual, group and all-call",
+            "uz": "Individual, guruh va umumiy chaqiruvlar"
+          },
+          {
+            "ru": "Проверка радиостанции, удалённый мониторинг, дистанционное отключение и восстановление рации",
+            "en": "Radio check, remote monitor, remote disable and re-enable",
+            "uz": "Radiostansiyani tekshirish, masofadan monitoring, masofadan o'chirish va tiklash"
+          },
+          {
+            "ru": "Аналоговый режим — скремблер речи; цифровой — шифрование голоса AES-256",
+            "en": "Analogue mode — voice scrambler; digital — AES-256 voice encryption",
+            "uz": "Analog rejim — nutq skrembleri; raqamli — AES-256 ovoz shifrlash"
+          },
+          {
+            "ru": "Режим работы в одиночку",
+            "en": "Lone worker mode",
+            "uz": "Yolg'iz ishlash rejimi"
+          },
+          {
+            "ru": "2 программируемых функциональных кнопок (PFB)",
+            "en": "2 programmable function buttons (PFB)",
+            "uz": "2 programmalanadigan funksional tugma (PFB)"
+          },
+          {
+            "ru": "Разъём для аудиоаксессуаров Motorola 2-pin",
+            "en": "Motorola 2-pin audio accessory connector",
+            "uz": "Motorola 2-pin audio aksessuar ulagichi"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "rcd-50",
+      "brandSlug": "radiocom",
+      "brand": "Radiocom RC",
+      "name": "Radiocom RCD-50 PRO",
+      "category": "professional",
+      "tags": [
+        "DMR",
+        "Display"
+      ],
+      "price": 1800000,
+      "blurb": {
+        "ru": "Рабочая лошадка бригад: чистый цифровой звук и дисплей.",
+        "en": "The crew workhorse: clean digital audio and a display.",
+        "uz": "Brigadalar uchun ishchi model: toza raqamli ovoz va displey."
+      },
+      "rangeCity": {
+        "ru": "до 2,5 км",
+        "en": "up to 2.5 km",
+        "uz": "2,5 km gacha"
+      },
+      "rangeOpen": {
+        "ru": "до 10 км",
+        "en": "up to 10 km",
+        "uz": "10 km gacha"
+      },
+      "url": {
+        "ru": "https://radiocom.uz/ru/radiocom/rcd-50",
+        "en": "https://radiocom.uz/en/radiocom/rcd-50",
+        "uz": "https://radiocom.uz/uz/radiocom/rcd-50"
+      },
+      "specs": {
+        "rows": [
+          {
+            "label": {
+              "ru": "Стандарт",
+              "en": "Standard",
+              "uz": "Standart"
+            },
+            "value": {
+              "ru": "DMR",
+              "en": "DMR",
+              "uz": "DMR"
+            }
+          },
+          {
+            "label": {
+              "ru": "Режим работы",
+              "en": "Operating mode",
+              "uz": "Ishlash rejimi"
+            },
+            "value": {
+              "ru": "Аналоговый и цифровой",
+              "en": "Analogue and digital",
+              "uz": "Analog va raqamli"
+            }
+          },
+          {
+            "label": {
+              "ru": "Класс защиты",
+              "en": "Ingress protection",
+              "uz": "Himoya darajasi"
+            },
+            "value": {
+              "ru": "IP67",
+              "en": "IP67",
+              "uz": "IP67"
+            }
+          },
+          {
+            "label": {
+              "ru": "Радиус действия",
+              "en": "Range",
+              "uz": "Ishlash radiusi"
+            },
+            "value": {
+              "ru": "до 2,5 км в городе, до 10 км на открытой местности",
+              "en": "up to 2.5 km in built-up areas, up to 10 km in the open",
+              "uz": "shaharda 2,5 km gacha, ochiq joyda 10 km gacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Тип питания",
+              "en": "Power source",
+              "uz": "Quvvat manbayi"
+            },
+            "value": {
+              "ru": "Литий-полимерный аккумулятор 3600 мА·ч",
+              "en": "Lithium-polymer battery, 3600 mAh",
+              "uz": "Litiy-polimer akkumulyator, 3600 mA·soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Ёмкость аккумулятора",
+              "en": "Battery capacity",
+              "uz": "Akkumulyator sig'imi"
+            },
+            "value": {
+              "ru": "3600 мА·ч",
+              "en": "3600 mAh",
+              "uz": "3600 mA·soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Зоны и каналы",
+              "en": "Zones and channels",
+              "uz": "Zonalar va kanallar"
+            },
+            "value": {
+              "ru": "До 800 каналов — 8 зон по 100 каналов",
+              "en": "Up to 800 channels — 8 zones × 100 channels",
+              "uz": "800 kanalgacha — 8 zona × 100 kanal"
+            }
+          },
+          {
+            "label": {
+              "ru": "Контакты и группы",
+              "en": "Contacts and groups",
+              "uz": "Kontaktlar va guruhlar"
+            },
+            "value": {
+              "ru": "512 контактов, 64 группы RX, 32 контакта на группу RX",
+              "en": "512 contacts, 64 RX groups, 32 contacts per RX group",
+              "uz": "512 kontakt, 64 RX guruhi, RX guruhiga 32 kontakt"
+            }
+          }
+        ],
+        "inBox": [
+          {
+            "item": {
+              "ru": "Радиостанция",
+              "en": "Two-way radio",
+              "uz": "Radiostansiya"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Клипса",
+              "en": "Belt clip",
+              "uz": "Qisqich"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Зарядная чаша",
+              "en": "Charging cup",
+              "uz": "Quvvatlash uyasi"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Аккумулятор",
+              "en": "Battery",
+              "uz": "Akkumulyator"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Гарнитура",
+              "en": "Headset",
+              "uz": "Garnitura"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Подвеска",
+              "en": "Lanyard",
+              "uz": "Bo'yin bog'ichi"
+            },
+            "qty": 1
+          }
+        ],
+        "features": [
+          {
+            "ru": "Поддержка TDMA Tier II в конвенциональном режиме и режим прямой связи TDMA",
+            "en": "TDMA Tier II conventional support and TDMA direct mode",
+            "uz": "Konvensional rejimda TDMA Tier II va TDMA to'g'ridan-to'g'ri aloqa rejimi"
+          },
+          {
+            "ru": "Голосовое оповещение о номере зоны и канала",
+            "en": "Voice announcement of zone and channel number",
+            "uz": "Zona va kanal raqami haqida ovozli xabar"
+          },
+          {
+            "ru": "Индивидуальные, групповые и общие вызовы",
+            "en": "Individual, group and all-call",
+            "uz": "Individual, guruh va umumiy chaqiruvlar"
+          },
+          {
+            "ru": "Проверка радиостанции, удалённый мониторинг, дистанционное отключение и восстановление рации",
+            "en": "Radio check, remote monitor, remote disable and re-enable",
+            "uz": "Radiostansiyani tekshirish, masofadan monitoring, masofadan o'chirish va tiklash"
+          },
+          {
+            "ru": "Аналоговый режим — скремблер речи; цифровой — шифрование голоса AES-256",
+            "en": "Analogue mode — voice scrambler; digital — AES-256 voice encryption",
+            "uz": "Analog rejim — nutq skrembleri; raqamli — AES-256 ovoz shifrlash"
+          },
+          {
+            "ru": "Режим работы в одиночку",
+            "en": "Lone worker mode",
+            "uz": "Yolg'iz ishlash rejimi"
+          },
+          {
+            "ru": "2 программируемых функциональных кнопок (PFB)",
+            "en": "2 programmable function buttons (PFB)",
+            "uz": "2 programmalanadigan funksional tugma (PFB)"
+          },
+          {
+            "ru": "Небьющийся сегментированный LED-дисплей",
+            "en": "Shatterproof segmented LED display",
+            "uz": "Sinmaydigan segmentli LED displey"
+          },
+          {
+            "ru": "Поддержка зарядки через USB-C",
+            "en": "USB-C charging",
+            "uz": "USB-C orqali quvvatlash"
+          },
+          {
+            "ru": "Подавление фонового шума",
+            "en": "Background noise suppression",
+            "uz": "Fon shovqinini bostirish"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "rcd-40",
+      "brandSlug": "radiocom",
+      "brand": "Radiocom RC",
+      "name": "Radiocom RCD-40 PRO",
+      "category": "professional",
+      "tags": [
+        "DMR",
+        "Long range"
+      ],
+      "price": 1600000,
+      "blurb": {
+        "ru": "Средний класс RCD с усиленным приёмом и долгим циклом работы.",
+        "en": "Mid-range RCD with boosted reception and a long duty cycle.",
+        "uz": "Kuchaytirilgan qabul va uzoq ish sikliga ega o'rta sinf RCD."
+      },
+      "rangeCity": {
+        "ru": "до 2 км",
+        "en": "up to 2 km",
+        "uz": "2 km gacha"
+      },
+      "rangeOpen": {
+        "ru": "до 6 км",
+        "en": "up to 6 km",
+        "uz": "6 km gacha"
+      },
+      "url": {
+        "ru": "https://radiocom.uz/ru/radiocom/rcd-40",
+        "en": "https://radiocom.uz/en/radiocom/rcd-40",
+        "uz": "https://radiocom.uz/uz/radiocom/rcd-40"
+      },
+      "specs": {
+        "rows": [
+          {
+            "label": {
+              "ru": "Стандарт",
+              "en": "Standard",
+              "uz": "Standart"
+            },
+            "value": {
+              "ru": "PMR",
+              "en": "PMR",
+              "uz": "PMR"
+            }
+          },
+          {
+            "label": {
+              "ru": "Режим работы",
+              "en": "Operating mode",
+              "uz": "Ishlash rejimi"
+            },
+            "value": {
+              "ru": "Аналоговый и цифровой",
+              "en": "Analogue and digital",
+              "uz": "Analog va raqamli"
+            }
+          },
+          {
+            "label": {
+              "ru": "Диапазон частот",
+              "en": "Frequency range",
+              "uz": "Chastota diapazoni"
+            },
+            "value": {
+              "ru": "446.0–446.1 МГц",
+              "en": "446.0–446.1 MHz",
+              "uz": "446.0–446.1 MGts"
+            }
+          },
+          {
+            "label": {
+              "ru": "Радиус действия",
+              "en": "Range",
+              "uz": "Ishlash radiusi"
+            },
+            "value": {
+              "ru": "до 2 км в городе, до 6 км на открытой местности",
+              "en": "up to 2 km in built-up areas, up to 6 km in the open",
+              "uz": "shaharda 2 km gacha, ochiq joyda 6 km gacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мощность передатчика",
+              "en": "Transmit power",
+              "uz": "Uzatgich quvvati"
+            },
+            "value": {
+              "ru": "0,5 Вт",
+              "en": "0,5 W",
+              "uz": "0,5 Vt"
+            }
+          },
+          {
+            "label": {
+              "ru": "Тип питания",
+              "en": "Power source",
+              "uz": "Quvvat manbayi"
+            },
+            "value": {
+              "ru": "Аккумулятор Li-Ion 2200 мА·ч",
+              "en": "Li-Ion battery, 2200 mAh",
+              "uz": "Li-Ion akkumulyator, 2200 mA·soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Ёмкость аккумулятора",
+              "en": "Battery capacity",
+              "uz": "Akkumulyator sig'imi"
+            },
+            "value": {
+              "ru": "2200 мА·ч",
+              "en": "2200 mAh",
+              "uz": "2200 mA·soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Время работы от аккумулятора",
+              "en": "Battery life",
+              "uz": "Akkumulyatordan ishlash vaqti"
+            },
+            "value": {
+              "ru": "~14 часов",
+              "en": "~14 hours",
+              "uz": "~14 soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Количество каналов",
+              "en": "Channels",
+              "uz": "Kanallar soni"
+            },
+            "value": {
+              "ru": "32 каналов",
+              "en": "32 channels",
+              "uz": "32 kanal"
+            }
+          },
+          {
+            "label": {
+              "ru": "Тональные сигналы",
+              "en": "Tone signalling",
+              "uz": "Tonal signallar"
+            },
+            "value": {
+              "ru": "8 тонов CTCSS и 210 кодов DCS в TX и RX",
+              "en": "8 CTCSS tones and 210 DCS codes on TX and RX",
+              "uz": "TX va RX da 8 CTCSS toni va 210 DCS kodi"
+            }
+          },
+          {
+            "label": {
+              "ru": "Класс защиты",
+              "en": "Ingress protection",
+              "uz": "Himoya darajasi"
+            },
+            "value": {
+              "ru": "IP55",
+              "en": "IP55",
+              "uz": "IP55"
+            }
+          }
+        ],
+        "inBox": [
+          {
+            "item": {
+              "ru": "Радиостанция",
+              "en": "Two-way radio",
+              "uz": "Radiostansiya"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Клипса",
+              "en": "Belt clip",
+              "uz": "Qisqich"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Зарядная чаша",
+              "en": "Charging cup",
+              "uz": "Quvvatlash uyasi"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Аккумулятор",
+              "en": "Battery",
+              "uz": "Akkumulyator"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Гарнитура",
+              "en": "Headset",
+              "uz": "Garnitura"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Подвеска",
+              "en": "Lanyard",
+              "uz": "Bo'yin bog'ichi"
+            },
+            "qty": 1
+          }
+        ],
+        "features": [
+          {
+            "ru": "Система передачи сигнала с голосовым управлением VOX",
+            "en": "VOX voice-operated transmission",
+            "uz": "VOX ovozli boshqarish tizimi"
+          },
+          {
+            "ru": "Сканирование и мониторинг каналов",
+            "en": "Channel scanning and monitoring",
+            "uz": "Kanallarni skanerlash va monitoring"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "rcd-30",
+      "brandSlug": "radiocom",
+      "brand": "Radiocom RC",
+      "name": "Radiocom RCD-30 PRO",
+      "category": "professional",
+      "tags": [
+        "DMR",
+        "Compact"
+      ],
+      "price": 1800000,
+      "blurb": {
+        "ru": "Компактная цифровая рация для входа в профессиональный сегмент.",
+        "en": "A compact digital radio — the way into the professional tier.",
+        "uz": "Professional segmentga kirish uchun ixcham raqamli radiostansiya."
+      },
+      "rangeCity": {
+        "ru": "до 1,5 км",
+        "en": "up to 1.5 km",
+        "uz": "1,5 km gacha"
+      },
+      "rangeOpen": {
+        "ru": "до 4 км",
+        "en": "up to 4 km",
+        "uz": "4 km gacha"
+      },
+      "url": {
+        "ru": "https://radiocom.uz/ru/radiocom/rcd-30",
+        "en": "https://radiocom.uz/en/radiocom/rcd-30",
+        "uz": "https://radiocom.uz/uz/radiocom/rcd-30"
+      },
+      "specs": {
+        "rows": [
+          {
+            "label": {
+              "ru": "Стандарт",
+              "en": "Standard",
+              "uz": "Standart"
+            },
+            "value": {
+              "ru": "PMR",
+              "en": "PMR",
+              "uz": "PMR"
+            }
+          },
+          {
+            "label": {
+              "ru": "Режим работы",
+              "en": "Operating mode",
+              "uz": "Ishlash rejimi"
+            },
+            "value": {
+              "ru": "Аналоговый и цифровой",
+              "en": "Analogue and digital",
+              "uz": "Analog va raqamli"
+            }
+          },
+          {
+            "label": {
+              "ru": "Диапазон частот",
+              "en": "Frequency range",
+              "uz": "Chastota diapazoni"
+            },
+            "value": {
+              "ru": "446.0–446.1 МГц",
+              "en": "446.0–446.1 MHz",
+              "uz": "446.0–446.1 MGts"
+            }
+          },
+          {
+            "label": {
+              "ru": "Радиус действия",
+              "en": "Range",
+              "uz": "Ishlash radiusi"
+            },
+            "value": {
+              "ru": "до 1,5 км в городе, до 4 км на открытой местности",
+              "en": "up to 1.5 km in built-up areas, up to 4 km in the open",
+              "uz": "shaharda 1,5 km gacha, ochiq joyda 4 km gacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мощность передатчика",
+              "en": "Transmit power",
+              "uz": "Uzatgich quvvati"
+            },
+            "value": {
+              "ru": "0,5 Вт",
+              "en": "0,5 W",
+              "uz": "0,5 Vt"
+            }
+          },
+          {
+            "label": {
+              "ru": "Тип питания",
+              "en": "Power source",
+              "uz": "Quvvat manbayi"
+            },
+            "value": {
+              "ru": "Аккумулятор Li-Ion 2200 мА·ч",
+              "en": "Li-Ion battery, 2200 mAh",
+              "uz": "Li-Ion akkumulyator, 2200 mA·soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Ёмкость аккумулятора",
+              "en": "Battery capacity",
+              "uz": "Akkumulyator sig'imi"
+            },
+            "value": {
+              "ru": "2200 мА·ч",
+              "en": "2200 mAh",
+              "uz": "2200 mA·soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Класс защиты",
+              "en": "Ingress protection",
+              "uz": "Himoya darajasi"
+            },
+            "value": {
+              "ru": "IP54",
+              "en": "IP54",
+              "uz": "IP54"
+            }
+          },
+          {
+            "label": {
+              "ru": "Зоны и каналы",
+              "en": "Zones and channels",
+              "uz": "Zonalar va kanallar"
+            },
+            "value": {
+              "ru": "До 32 каналов — 2 зоны по 16 каналов",
+              "en": "Up to 32 channels — 2 zones × 16 channels",
+              "uz": "32 kanalgacha — 2 zona × 16 kanal"
+            }
+          },
+          {
+            "label": {
+              "ru": "Контакты и группы",
+              "en": "Contacts and groups",
+              "uz": "Kontaktlar va guruhlar"
+            },
+            "value": {
+              "ru": "256 контактов, 64 группы RX, 32 контакта на группу RX",
+              "en": "256 contacts, 64 RX groups, 32 contacts per RX group",
+              "uz": "256 kontakt, 64 RX guruhi, RX guruhiga 32 kontakt"
+            }
+          }
+        ],
+        "inBox": [
+          {
+            "item": {
+              "ru": "Радиостанция",
+              "en": "Two-way radio",
+              "uz": "Radiostansiya"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Клипса",
+              "en": "Belt clip",
+              "uz": "Qisqich"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Зарядная чаша",
+              "en": "Charging cup",
+              "uz": "Quvvatlash uyasi"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Аккумулятор",
+              "en": "Battery",
+              "uz": "Akkumulyator"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Гарнитура",
+              "en": "Headset",
+              "uz": "Garnitura"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Подвеска",
+              "en": "Lanyard",
+              "uz": "Bo'yin bog'ichi"
+            },
+            "qty": 2
+          }
+        ],
+        "features": [
+          {
+            "ru": "Поддержка TDMA Tier II в конвенциональном режиме и режим прямой связи TDMA",
+            "en": "TDMA Tier II conventional support and TDMA direct mode",
+            "uz": "Konvensional rejimda TDMA Tier II va TDMA to'g'ridan-to'g'ri aloqa rejimi"
+          },
+          {
+            "ru": "Голосовое оповещение о номере зоны и канала",
+            "en": "Voice announcement of zone and channel number",
+            "uz": "Zona va kanal raqami haqida ovozli xabar"
+          },
+          {
+            "ru": "Индивидуальные, групповые и общие вызовы",
+            "en": "Individual, group and all-call",
+            "uz": "Individual, guruh va umumiy chaqiruvlar"
+          },
+          {
+            "ru": "Проверка радиостанции, удалённый мониторинг, дистанционное отключение и восстановление рации",
+            "en": "Radio check, remote monitor, remote disable and re-enable",
+            "uz": "Radiostansiyani tekshirish, masofadan monitoring, masofadan o'chirish va tiklash"
+          },
+          {
+            "ru": "Режим работы в одиночку",
+            "en": "Lone worker mode",
+            "uz": "Yolg'iz ishlash rejimi"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "rc-50",
+      "brandSlug": "radiocom",
+      "brand": "Radiocom RC",
+      "name": "Radiocom RC-50",
+      "category": "professional",
+      "tags": [
+        "Long range"
+      ],
+      "price": 1300000,
+      "blurb": {
+        "ru": "Универсальная модель для среднего радиуса действия.",
+        "en": "An all-round model for mid-range coverage.",
+        "uz": "O'rta radiusdagi aloqa uchun universal model."
+      },
+      "rangeCity": {
+        "ru": "до 2–2,5 км",
+        "en": "up to 2–2.5 km",
+        "uz": "2–2,5 km gacha"
+      },
+      "rangeOpen": {
+        "ru": "до 5 км",
+        "en": "up to 5 km",
+        "uz": "5 km gacha"
+      },
+      "url": {
+        "ru": "https://radiocom.uz/ru/radiocom/rc-50",
+        "en": "https://radiocom.uz/en/radiocom/rc-50",
+        "uz": "https://radiocom.uz/uz/radiocom/rc-50"
+      },
+      "specs": {
+        "rows": [
+          {
+            "label": {
+              "ru": "Стандарт",
+              "en": "Standard",
+              "uz": "Standart"
+            },
+            "value": {
+              "ru": "PMR",
+              "en": "PMR",
+              "uz": "PMR"
+            }
+          },
+          {
+            "label": {
+              "ru": "Режим работы",
+              "en": "Operating mode",
+              "uz": "Ishlash rejimi"
+            },
+            "value": {
+              "ru": "Аналоговый",
+              "en": "Analogue",
+              "uz": "Analog"
+            }
+          },
+          {
+            "label": {
+              "ru": "Диапазон частот",
+              "en": "Frequency range",
+              "uz": "Chastota diapazoni"
+            },
+            "value": {
+              "ru": "446.0–446.1 МГц",
+              "en": "446.0–446.1 MHz",
+              "uz": "446.0–446.1 MGts"
+            }
+          },
+          {
+            "label": {
+              "ru": "Радиус действия",
+              "en": "Range",
+              "uz": "Ishlash radiusi"
+            },
+            "value": {
+              "ru": "до 2–2,5 км в городе, до 5 км на открытой местности",
+              "en": "up to 2–2.5 km in built-up areas, up to 5 km in the open",
+              "uz": "shaharda 2–2,5 km gacha, ochiq joyda 5 km gacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мощность передатчика",
+              "en": "Transmit power",
+              "uz": "Uzatgich quvvati"
+            },
+            "value": {
+              "ru": "0,5 Вт",
+              "en": "0,5 W",
+              "uz": "0,5 Vt"
+            }
+          },
+          {
+            "label": {
+              "ru": "Тип питания",
+              "en": "Power source",
+              "uz": "Quvvat manbayi"
+            },
+            "value": {
+              "ru": "Аккумулятор Li-Ion 2200 мА·ч",
+              "en": "Li-Ion battery, 2200 mAh",
+              "uz": "Li-Ion akkumulyator, 2200 mA·soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Ёмкость аккумулятора",
+              "en": "Battery capacity",
+              "uz": "Akkumulyator sig'imi"
+            },
+            "value": {
+              "ru": "2200 мА·ч",
+              "en": "2200 mAh",
+              "uz": "2200 mA·soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Время работы от аккумулятора",
+              "en": "Battery life",
+              "uz": "Akkumulyatordan ishlash vaqti"
+            },
+            "value": {
+              "ru": "~12 часов",
+              "en": "~12 hours",
+              "uz": "~12 soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Количество каналов",
+              "en": "Channels",
+              "uz": "Kanallar soni"
+            },
+            "value": {
+              "ru": "16 каналов",
+              "en": "16 channels",
+              "uz": "16 kanal"
+            }
+          },
+          {
+            "label": {
+              "ru": "Тональные сигналы",
+              "en": "Tone signalling",
+              "uz": "Tonal signallar"
+            },
+            "value": {
+              "ru": "Тональный сигнал CTCSS и код DCS на каждом канале",
+              "en": "CTCSS tone and DCS code on every channel",
+              "uz": "Har bir kanalda CTCSS toni va DCS kodi"
+            }
+          },
+          {
+            "label": {
+              "ru": "Класс защиты",
+              "en": "Ingress protection",
+              "uz": "Himoya darajasi"
+            },
+            "value": {
+              "ru": "IP55",
+              "en": "IP55",
+              "uz": "IP55"
+            }
+          }
+        ],
+        "inBox": [
+          {
+            "item": {
+              "ru": "Радиостанция",
+              "en": "Two-way radio",
+              "uz": "Radiostansiya"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Клипса",
+              "en": "Belt clip",
+              "uz": "Qisqich"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Зарядная чаша",
+              "en": "Charging cup",
+              "uz": "Quvvatlash uyasi"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Аккумулятор",
+              "en": "Battery",
+              "uz": "Akkumulyator"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Гарнитура",
+              "en": "Headset",
+              "uz": "Garnitura"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Подвеска",
+              "en": "Lanyard",
+              "uz": "Bo'yin bog'ichi"
+            },
+            "qty": 1
+          }
+        ],
+        "features": [
+          {
+            "ru": "Режим работы VFO / MR",
+            "en": "VFO / MR operating modes",
+            "uz": "VFO / MR ishlash rejimi"
+          },
+          {
+            "ru": "ЖК-дисплей с подсветкой",
+            "en": "Backlit LCD display",
+            "uz": "Yoritilgan LCD displey"
+          },
+          {
+            "ru": "Индикатор заряда батареи",
+            "en": "Battery level indicator",
+            "uz": "Batareya zaryadi indikatori"
+          },
+          {
+            "ru": "FM-радиоприёмник",
+            "en": "FM radio receiver",
+            "uz": "FM radiopriyomnik"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "rc-20",
+      "brandSlug": "radiocom",
+      "brand": "Radiocom RC",
+      "name": "Radiocom RC-20",
+      "category": "amateur",
+      "tags": [
+        "Compact",
+        "License-free"
+      ],
+      "price": 1600000,
+      "blurb": {
+        "ru": "Лёгкая рация для персонала — комплект с зарядкой и гарнитурой.",
+        "en": "A light radio for floor staff — ships with charger and headset.",
+        "uz": "Xodimlar uchun yengil radiostansiya — quvvatlagich va garnitura bilan."
+      },
+      "rangeCity": {
+        "ru": "до 1,5 км",
+        "en": "up to 1.5 km",
+        "uz": "1,5 km gacha"
+      },
+      "rangeOpen": {
+        "ru": "до 4 км",
+        "en": "up to 4 km",
+        "uz": "4 km gacha"
+      },
+      "url": {
+        "ru": "https://radiocom.uz/ru/radiocom/rc-20",
+        "en": "https://radiocom.uz/en/radiocom/rc-20",
+        "uz": "https://radiocom.uz/uz/radiocom/rc-20"
+      },
+      "specs": {
+        "rows": [
+          {
+            "label": {
+              "ru": "Стандарт",
+              "en": "Standard",
+              "uz": "Standart"
+            },
+            "value": {
+              "ru": "PMR",
+              "en": "PMR",
+              "uz": "PMR"
+            }
+          },
+          {
+            "label": {
+              "ru": "Режим работы",
+              "en": "Operating mode",
+              "uz": "Ishlash rejimi"
+            },
+            "value": {
+              "ru": "Аналоговый",
+              "en": "Analogue",
+              "uz": "Analog"
+            }
+          },
+          {
+            "label": {
+              "ru": "Диапазон частот",
+              "en": "Frequency range",
+              "uz": "Chastota diapazoni"
+            },
+            "value": {
+              "ru": "446.0–446.1 МГц",
+              "en": "446.0–446.1 MHz",
+              "uz": "446.0–446.1 MGts"
+            }
+          },
+          {
+            "label": {
+              "ru": "Радиус действия",
+              "en": "Range",
+              "uz": "Ishlash radiusi"
+            },
+            "value": {
+              "ru": "до 1,5 км в городе, до 4 км на открытой местности",
+              "en": "up to 1.5 km in built-up areas, up to 4 km in the open",
+              "uz": "shaharda 1,5 km gacha, ochiq joyda 4 km gacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мощность передатчика",
+              "en": "Transmit power",
+              "uz": "Uzatgich quvvati"
+            },
+            "value": {
+              "ru": "0,5 Вт",
+              "en": "0,5 W",
+              "uz": "0,5 Vt"
+            }
+          },
+          {
+            "label": {
+              "ru": "Тип питания",
+              "en": "Power source",
+              "uz": "Quvvat manbayi"
+            },
+            "value": {
+              "ru": "Аккумулятор Li-Ion 1800 мА·ч",
+              "en": "Li-Ion battery, 1800 mAh",
+              "uz": "Li-Ion akkumulyator, 1800 mA·soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Ёмкость аккумулятора",
+              "en": "Battery capacity",
+              "uz": "Akkumulyator sig'imi"
+            },
+            "value": {
+              "ru": "1800 мА·ч",
+              "en": "1800 mAh",
+              "uz": "1800 mA·soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Время работы от аккумулятора",
+              "en": "Battery life",
+              "uz": "Akkumulyatordan ishlash vaqti"
+            },
+            "value": {
+              "ru": "~12 часов",
+              "en": "~12 hours",
+              "uz": "~12 soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Количество каналов",
+              "en": "Channels",
+              "uz": "Kanallar soni"
+            },
+            "value": {
+              "ru": "99 каналов",
+              "en": "99 channels",
+              "uz": "99 kanal"
+            }
+          },
+          {
+            "label": {
+              "ru": "Тональные сигналы",
+              "en": "Tone signalling",
+              "uz": "Tonal signallar"
+            },
+            "value": {
+              "ru": "50 тонов CTCSS и 210 кодов DCS в TX и RX",
+              "en": "50 CTCSS tones and 210 DCS codes on TX and RX",
+              "uz": "TX va RX da 50 CTCSS toni va 210 DCS kodi"
+            }
+          },
+          {
+            "label": {
+              "ru": "Класс защиты",
+              "en": "Ingress protection",
+              "uz": "Himoya darajasi"
+            },
+            "value": {
+              "ru": "IP54",
+              "en": "IP54",
+              "uz": "IP54"
+            }
+          }
+        ],
+        "inBox": [
+          {
+            "item": {
+              "ru": "Радиостанция",
+              "en": "Two-way radio",
+              "uz": "Radiostansiya"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Клипса",
+              "en": "Belt clip",
+              "uz": "Qisqich"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Зарядная чаша",
+              "en": "Charging cup",
+              "uz": "Quvvatlash uyasi"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Аккумулятор",
+              "en": "Battery",
+              "uz": "Akkumulyator"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Гарнитура",
+              "en": "Headset",
+              "uz": "Garnitura"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Подвеска",
+              "en": "Lanyard",
+              "uz": "Bo'yin bog'ichi"
+            },
+            "qty": 2
+          }
+        ],
+        "features": [
+          {
+            "ru": "ЖК-дисплей с 3 видами подсветки",
+            "en": "LCD with three backlight modes",
+            "uz": "3 xil yoritishli LCD displey"
+          },
+          {
+            "ru": "Индикатор заряда батареи",
+            "en": "Battery level indicator",
+            "uz": "Batareya zaryadi indikatori"
+          },
+          {
+            "ru": "Система передачи сигнала с голосовым управлением VOX",
+            "en": "VOX voice-operated transmission",
+            "uz": "VOX ovozli boshqarish tizimi"
+          },
+          {
+            "ru": "Сканирование и мониторинг каналов",
+            "en": "Channel scanning and monitoring",
+            "uz": "Kanallarni skanerlash va monitoring"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "rc-10",
+      "brandSlug": "radiocom",
+      "brand": "Radiocom RC",
+      "name": "Radiocom RC-10",
+      "category": "amateur",
+      "tags": [
+        "Compact"
+      ],
+      "price": 1300000,
+      "blurb": {
+        "ru": "Начальный уровень линейки — надёжно и просто.",
+        "en": "The entry point of the range — simple and dependable.",
+        "uz": "Liniyaning boshlang'ich darajasi — sodda va ishonchli."
+      },
+      "rangeCity": {
+        "ru": "до 1 км",
+        "en": "up to 1 km",
+        "uz": "1 km gacha"
+      },
+      "rangeOpen": {
+        "ru": "до 3 км",
+        "en": "up to 3 km",
+        "uz": "3 km gacha"
+      },
+      "url": {
+        "ru": "https://radiocom.uz/ru/radiocom/rc-10",
+        "en": "https://radiocom.uz/en/radiocom/rc-10",
+        "uz": "https://radiocom.uz/uz/radiocom/rc-10"
+      },
+      "specs": {
+        "rows": [
+          {
+            "label": {
+              "ru": "Стандарт",
+              "en": "Standard",
+              "uz": "Standart"
+            },
+            "value": {
+              "ru": "PMR",
+              "en": "PMR",
+              "uz": "PMR"
+            }
+          },
+          {
+            "label": {
+              "ru": "Режим работы",
+              "en": "Operating mode",
+              "uz": "Ishlash rejimi"
+            },
+            "value": {
+              "ru": "Аналоговый",
+              "en": "Analogue",
+              "uz": "Analog"
+            }
+          },
+          {
+            "label": {
+              "ru": "Диапазон частот",
+              "en": "Frequency range",
+              "uz": "Chastota diapazoni"
+            },
+            "value": {
+              "ru": "446.0–446.1 МГц",
+              "en": "446.0–446.1 MHz",
+              "uz": "446.0–446.1 MGts"
+            }
+          },
+          {
+            "label": {
+              "ru": "Радиус действия",
+              "en": "Range",
+              "uz": "Ishlash radiusi"
+            },
+            "value": {
+              "ru": "до 1 км в городе, до 3 км на открытой местности",
+              "en": "up to 1 km in built-up areas, up to 3 km in the open",
+              "uz": "shaharda 1 km gacha, ochiq joyda 3 km gacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мощность передатчика",
+              "en": "Transmit power",
+              "uz": "Uzatgich quvvati"
+            },
+            "value": {
+              "ru": "0,5 Вт",
+              "en": "0,5 W",
+              "uz": "0,5 Vt"
+            }
+          },
+          {
+            "label": {
+              "ru": "Тип питания",
+              "en": "Power source",
+              "uz": "Quvvat manbayi"
+            },
+            "value": {
+              "ru": "Аккумулятор Li-Ion 1700 мА·ч",
+              "en": "Li-Ion battery, 1700 mAh",
+              "uz": "Li-Ion akkumulyator, 1700 mA·soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Ёмкость аккумулятора",
+              "en": "Battery capacity",
+              "uz": "Akkumulyator sig'imi"
+            },
+            "value": {
+              "ru": "1700 мА·ч",
+              "en": "1700 mAh",
+              "uz": "1700 mA·soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Время работы от аккумулятора",
+              "en": "Battery life",
+              "uz": "Akkumulyatordan ishlash vaqti"
+            },
+            "value": {
+              "ru": "~12 часов",
+              "en": "~12 hours",
+              "uz": "~12 soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Количество каналов",
+              "en": "Channels",
+              "uz": "Kanallar soni"
+            },
+            "value": {
+              "ru": "99 каналов",
+              "en": "99 channels",
+              "uz": "99 kanal"
+            }
+          },
+          {
+            "label": {
+              "ru": "Тональные сигналы",
+              "en": "Tone signalling",
+              "uz": "Tonal signallar"
+            },
+            "value": {
+              "ru": "38 тонов CTCSS и 83 кодов DCS в TX и RX",
+              "en": "38 CTCSS tones and 83 DCS codes on TX and RX",
+              "uz": "TX va RX da 38 CTCSS toni va 83 DCS kodi"
+            }
+          },
+          {
+            "label": {
+              "ru": "Класс защиты",
+              "en": "Ingress protection",
+              "uz": "Himoya darajasi"
+            },
+            "value": {
+              "ru": "IP54",
+              "en": "IP54",
+              "uz": "IP54"
+            }
+          }
+        ],
+        "inBox": [
+          {
+            "item": {
+              "ru": "Радиостанция",
+              "en": "Two-way radio",
+              "uz": "Radiostansiya"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Клипса",
+              "en": "Belt clip",
+              "uz": "Qisqich"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Зарядная чаша",
+              "en": "Charging cup",
+              "uz": "Quvvatlash uyasi"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Аккумулятор",
+              "en": "Battery",
+              "uz": "Akkumulyator"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Гарнитура",
+              "en": "Headset",
+              "uz": "Garnitura"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Подвеска",
+              "en": "Lanyard",
+              "uz": "Bo'yin bog'ichi"
+            },
+            "qty": 2
+          }
+        ],
+        "features": [
+          {
+            "ru": "ЖК-дисплей с подсветкой",
+            "en": "Backlit LCD display",
+            "uz": "Yoritilgan LCD displey"
+          },
+          {
+            "ru": "Индикатор заряда батареи",
+            "en": "Battery level indicator",
+            "uz": "Batareya zaryadi indikatori"
+          },
+          {
+            "ru": "Система передачи сигнала с голосовым управлением VOX",
+            "en": "VOX voice-operated transmission",
+            "uz": "VOX ovozli boshqarish tizimi"
+          },
+          {
+            "ru": "Светодиодный фонарик",
+            "en": "LED torch",
+            "uz": "LED fonar"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "t82-extreme",
+      "brandSlug": "motorola",
+      "brand": "Motorola",
+      "name": "Motorola Talkabout T82 Extreme",
+      "category": "amateur",
+      "tags": [
+        "PMR446",
+        "License-free",
+        "IPx4"
+      ],
+      "price": 1700000,
+      "blurb": {
+        "ru": "Защищённая безлицензионная рация для outdoor задач.",
+        "en": "A rugged licence-free radio for work outdoors.",
+        "uz": "Ochiq havodagi vazifalar uchun himoyalangan, litsenziyasiz radiostansiya."
+      },
+      "rangeCity": {
+        "ru": "до 1,5 км",
+        "en": "up to 1.5 km",
+        "uz": "1,5 km gacha"
+      },
+      "rangeOpen": {
+        "ru": "до 10 км",
+        "en": "up to 10 km",
+        "uz": "10 km gacha"
+      },
+      "url": {
+        "ru": "https://radiocom.uz/ru/motorola/t82-extreme",
+        "en": "https://radiocom.uz/en/motorola/t82-extreme",
+        "uz": "https://radiocom.uz/uz/motorola/t82-extreme"
+      },
+      "specs": {
+        "rows": [
+          {
+            "label": {
+              "ru": "Стандарт",
+              "en": "Standard",
+              "uz": "Standart"
+            },
+            "value": {
+              "ru": "PMR",
+              "en": "PMR",
+              "uz": "PMR"
+            }
+          },
+          {
+            "label": {
+              "ru": "Диапазон частот",
+              "en": "Frequency range",
+              "uz": "Chastota diapazoni"
+            },
+            "value": {
+              "ru": "446–446.1 МГц",
+              "en": "446–446.1 MHz",
+              "uz": "446–446.1 MGts"
+            }
+          },
+          {
+            "label": {
+              "ru": "Радиус действия",
+              "en": "Range",
+              "uz": "Ishlash radiusi"
+            },
+            "value": {
+              "ru": "до 1,5 км в городе, до 10 км на открытой местности",
+              "en": "up to 1.5 km in built-up areas, up to 10 km in the open",
+              "uz": "shaharda 1,5 km gacha, ochiq joyda 10 km gacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Класс защиты",
+              "en": "Ingress protection",
+              "uz": "Himoya darajasi"
+            },
+            "value": {
+              "ru": "IPX4",
+              "en": "IPX4",
+              "uz": "IPX4"
+            }
+          },
+          {
+            "label": {
+              "ru": "Количество каналов",
+              "en": "Channels",
+              "uz": "Kanallar soni"
+            },
+            "value": {
+              "ru": "8 каналов + 121 кодов",
+              "en": "8 channels + 121 codes",
+              "uz": "8 kanal + 121 kod"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мелодии вызова",
+              "en": "Call tones",
+              "uz": "Chaqiruv ohanglari"
+            },
+            "value": {
+              "ru": "20 мелодий вызова",
+              "en": "20 call tones",
+              "uz": "20 chaqiruv ohangi"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мощность передатчика",
+              "en": "Transmit power",
+              "uz": "Uzatgich quvvati"
+            },
+            "value": {
+              "ru": "0,5 Вт",
+              "en": "0,5 W",
+              "uz": "0,5 Vt"
+            }
+          },
+          {
+            "label": {
+              "ru": "Размеры (Ш×В×Т)",
+              "en": "Dimensions (W×H×D)",
+              "uz": "O'lchamlar (K×B×Ch)"
+            },
+            "value": {
+              "ru": "57×181×33 мм",
+              "en": "57×181×33 mm",
+              "uz": "57×181×33 mm"
+            }
+          }
+        ],
+        "inBox": [
+          {
+            "item": {
+              "ru": "Радиостанция",
+              "en": "Two-way radio",
+              "uz": "Radiostansiya"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Клипса на пояс",
+              "en": "Belt clip",
+              "uz": "Kamarga qisqich"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Micro-USB зарядка",
+              "en": "Micro-USB charger",
+              "uz": "Micro-USB quvvatlagich"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Аккумулятор Ni-MH 800 мА·ч",
+              "en": "Ni-MH battery, 800 mAh",
+              "uz": "Ni-MH akkumulyator, 800 mA·soat"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Гарнитура",
+              "en": "Headset",
+              "uz": "Garnitura"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Подвеска",
+              "en": "Lanyard",
+              "uz": "Bo'yin bog'ichi"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Переносной чемоданчик",
+              "en": "Carry case",
+              "uz": "Tashish chemodani"
+            },
+            "qty": null
+          },
+          {
+            "item": {
+              "ru": "Инструкция по эксплуатации",
+              "en": "User manual",
+              "uz": "Foydalanish qo'llanmasi"
+            },
+            "qty": null
+          }
+        ],
+        "features": [
+          {
+            "ru": "Бесплатные вызовы",
+            "en": "Free calls",
+            "uz": "Bepul chaqiruvlar"
+          },
+          {
+            "ru": "Перезаряжаемые никель-металлгидридные аккумуляторы",
+            "en": "Rechargeable nickel-metal hydride batteries",
+            "uz": "Qayta quvvatlanadigan nikel-metallgidrid akkumulyatorlar"
+          },
+          {
+            "ru": "Система передачи сигнала с голосовым управлением VOX",
+            "en": "VOX voice-operated transmission",
+            "uz": "VOX ovozli boshqarish tizimi"
+          },
+          {
+            "ru": "Сканирование и мониторинг каналов",
+            "en": "Channel scanning and monitoring",
+            "uz": "Kanallarni skanerlash va monitoring"
+          },
+          {
+            "ru": "Функция Room Monitor",
+            "en": "Room Monitor",
+            "uz": "Room Monitor funksiyasi"
+          },
+          {
+            "ru": "ЖК-дисплей с подсветкой",
+            "en": "Backlit LCD display",
+            "uz": "Yoritilgan LCD displey"
+          },
+          {
+            "ru": "Блокировка клавиатуры",
+            "en": "Keypad lock",
+            "uz": "Klaviatura blokirovkasi"
+          },
+          {
+            "ru": "Индикатор заряда батареи",
+            "en": "Battery level indicator",
+            "uz": "Batareya zaryadi indikatori"
+          },
+          {
+            "ru": "Разъём для гарнитуры",
+            "en": "Headset connector",
+            "uz": "Garnitura uchun ulagich"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "t82-extreme-quad",
+      "brandSlug": "motorola",
+      "brand": "Motorola",
+      "name": "Motorola Talkabout T82 Extreme Quad",
+      "category": "amateur",
+      "tags": [
+        "PMR446",
+        "License-free",
+        "Quad",
+        "IPx4"
+      ],
+      "price": 3100000,
+      "blurb": {
+        "ru": "Комплект из 4 раций для организованных бригад.",
+        "en": "A four-radio kit for organised crews.",
+        "uz": "Uyushgan brigadalar uchun 4 ta radiostansiyadan iborat to'plam."
+      },
+      "rangeCity": {
+        "ru": "до 1,5 км",
+        "en": "up to 1.5 km",
+        "uz": "1,5 km gacha"
+      },
+      "rangeOpen": {
+        "ru": "до 10 км",
+        "en": "up to 10 km",
+        "uz": "10 km gacha"
+      },
+      "url": {
+        "ru": "https://radiocom.uz/ru/motorola/t82-extreme-quad",
+        "en": "https://radiocom.uz/en/motorola/t82-extreme-quad",
+        "uz": "https://radiocom.uz/uz/motorola/t82-extreme-quad"
+      },
+      "specs": {
+        "rows": [
+          {
+            "label": {
+              "ru": "Стандарт",
+              "en": "Standard",
+              "uz": "Standart"
+            },
+            "value": {
+              "ru": "PMR",
+              "en": "PMR",
+              "uz": "PMR"
+            }
+          },
+          {
+            "label": {
+              "ru": "Диапазон частот",
+              "en": "Frequency range",
+              "uz": "Chastota diapazoni"
+            },
+            "value": {
+              "ru": "446–446.1 МГц",
+              "en": "446–446.1 MHz",
+              "uz": "446–446.1 MGts"
+            }
+          },
+          {
+            "label": {
+              "ru": "Радиус действия",
+              "en": "Range",
+              "uz": "Ishlash radiusi"
+            },
+            "value": {
+              "ru": "до 1,5 км в городе, до 10 км на открытой местности",
+              "en": "up to 1.5 km in built-up areas, up to 10 km in the open",
+              "uz": "shaharda 1,5 km gacha, ochiq joyda 10 km gacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Класс защиты",
+              "en": "Ingress protection",
+              "uz": "Himoya darajasi"
+            },
+            "value": {
+              "ru": "IPX4",
+              "en": "IPX4",
+              "uz": "IPX4"
+            }
+          },
+          {
+            "label": {
+              "ru": "Количество каналов",
+              "en": "Channels",
+              "uz": "Kanallar soni"
+            },
+            "value": {
+              "ru": "8 каналов + 121 кодов",
+              "en": "8 channels + 121 codes",
+              "uz": "8 kanal + 121 kod"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мелодии вызова",
+              "en": "Call tones",
+              "uz": "Chaqiruv ohanglari"
+            },
+            "value": {
+              "ru": "20 мелодий вызова",
+              "en": "20 call tones",
+              "uz": "20 chaqiruv ohangi"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мощность передатчика",
+              "en": "Transmit power",
+              "uz": "Uzatgich quvvati"
+            },
+            "value": {
+              "ru": "0,5 Вт",
+              "en": "0,5 W",
+              "uz": "0,5 Vt"
+            }
+          },
+          {
+            "label": {
+              "ru": "Размеры (Ш×В×Т)",
+              "en": "Dimensions (W×H×D)",
+              "uz": "O'lchamlar (K×B×Ch)"
+            },
+            "value": {
+              "ru": "57×181×33 мм",
+              "en": "57×181×33 mm",
+              "uz": "57×181×33 mm"
+            }
+          }
+        ],
+        "inBox": [
+          {
+            "item": {
+              "ru": "Радиостанция",
+              "en": "Two-way radio",
+              "uz": "Radiostansiya"
+            },
+            "qty": 4
+          },
+          {
+            "item": {
+              "ru": "Клипса на пояс",
+              "en": "Belt clip",
+              "uz": "Kamarga qisqich"
+            },
+            "qty": 4
+          },
+          {
+            "item": {
+              "ru": "Micro-USB зарядка",
+              "en": "Micro-USB charger",
+              "uz": "Micro-USB quvvatlagich"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Аккумулятор Ni-MH 800 мА·ч",
+              "en": "Ni-MH battery, 800 mAh",
+              "uz": "Ni-MH akkumulyator, 800 mA·soat"
+            },
+            "qty": 4
+          },
+          {
+            "item": {
+              "ru": "Гарнитура",
+              "en": "Headset",
+              "uz": "Garnitura"
+            },
+            "qty": 4
+          },
+          {
+            "item": {
+              "ru": "Подвеска",
+              "en": "Lanyard",
+              "uz": "Bo'yin bog'ichi"
+            },
+            "qty": 4
+          },
+          {
+            "item": {
+              "ru": "Переносной чемоданчик",
+              "en": "Carry case",
+              "uz": "Tashish chemodani"
+            },
+            "qty": null
+          },
+          {
+            "item": {
+              "ru": "Инструкция по эксплуатации",
+              "en": "User manual",
+              "uz": "Foydalanish qo'llanmasi"
+            },
+            "qty": null
+          }
+        ],
+        "features": [
+          {
+            "ru": "Бесплатные вызовы",
+            "en": "Free calls",
+            "uz": "Bepul chaqiruvlar"
+          },
+          {
+            "ru": "Перезаряжаемые никель-металлгидридные аккумуляторы",
+            "en": "Rechargeable nickel-metal hydride batteries",
+            "uz": "Qayta quvvatlanadigan nikel-metallgidrid akkumulyatorlar"
+          },
+          {
+            "ru": "Система передачи сигнала с голосовым управлением VOX",
+            "en": "VOX voice-operated transmission",
+            "uz": "VOX ovozli boshqarish tizimi"
+          },
+          {
+            "ru": "Сканирование и мониторинг каналов",
+            "en": "Channel scanning and monitoring",
+            "uz": "Kanallarni skanerlash va monitoring"
+          },
+          {
+            "ru": "Функция Room Monitor",
+            "en": "Room Monitor",
+            "uz": "Room Monitor funksiyasi"
+          },
+          {
+            "ru": "ЖК-дисплей с подсветкой",
+            "en": "Backlit LCD display",
+            "uz": "Yoritilgan LCD displey"
+          },
+          {
+            "ru": "Блокировка клавиатуры",
+            "en": "Keypad lock",
+            "uz": "Klaviatura blokirovkasi"
+          },
+          {
+            "ru": "Индикатор заряда батареи",
+            "en": "Battery level indicator",
+            "uz": "Batareya zaryadi indikatori"
+          },
+          {
+            "ru": "Разъём для гарнитуры",
+            "en": "Headset connector",
+            "uz": "Garnitura uchun ulagich"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "t82",
+      "brandSlug": "motorola",
+      "brand": "Motorola",
+      "name": "Motorola Talkabout T82",
+      "category": "amateur",
+      "tags": [
+        "PMR446",
+        "License-free"
+      ],
+      "price": 1500000,
+      "blurb": {
+        "ru": "Компактная PMR-рация для команд и мероприятий.",
+        "en": "A compact PMR radio for teams and events.",
+        "uz": "Jamoalar va tadbirlar uchun ixcham PMR radiostansiya."
+      },
+      "rangeCity": {
+        "ru": "до 1,5 км",
+        "en": "up to 1.5 km",
+        "uz": "1,5 km gacha"
+      },
+      "rangeOpen": {
+        "ru": "до 10 км",
+        "en": "up to 10 km",
+        "uz": "10 km gacha"
+      },
+      "url": {
+        "ru": "https://radiocom.uz/ru/motorola/t82",
+        "en": "https://radiocom.uz/en/motorola/t82",
+        "uz": "https://radiocom.uz/uz/motorola/t82"
+      },
+      "specs": {
+        "rows": [
+          {
+            "label": {
+              "ru": "Стандарт",
+              "en": "Standard",
+              "uz": "Standart"
+            },
+            "value": {
+              "ru": "PMR",
+              "en": "PMR",
+              "uz": "PMR"
+            }
+          },
+          {
+            "label": {
+              "ru": "Диапазон частот",
+              "en": "Frequency range",
+              "uz": "Chastota diapazoni"
+            },
+            "value": {
+              "ru": "446–446.1 МГц",
+              "en": "446–446.1 MHz",
+              "uz": "446–446.1 MGts"
+            }
+          },
+          {
+            "label": {
+              "ru": "Радиус действия",
+              "en": "Range",
+              "uz": "Ishlash radiusi"
+            },
+            "value": {
+              "ru": "до 1,5 км в городе, до 10 км на открытой местности",
+              "en": "up to 1.5 km in built-up areas, up to 10 km in the open",
+              "uz": "shaharda 1,5 km gacha, ochiq joyda 10 km gacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Класс защиты",
+              "en": "Ingress protection",
+              "uz": "Himoya darajasi"
+            },
+            "value": {
+              "ru": "IPX4",
+              "en": "IPX4",
+              "uz": "IPX4"
+            }
+          },
+          {
+            "label": {
+              "ru": "Количество каналов",
+              "en": "Channels",
+              "uz": "Kanallar soni"
+            },
+            "value": {
+              "ru": "8 каналов + 121 кодов",
+              "en": "8 channels + 121 codes",
+              "uz": "8 kanal + 121 kod"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мелодии вызова",
+              "en": "Call tones",
+              "uz": "Chaqiruv ohanglari"
+            },
+            "value": {
+              "ru": "20 мелодий вызова",
+              "en": "20 call tones",
+              "uz": "20 chaqiruv ohangi"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мощность передатчика",
+              "en": "Transmit power",
+              "uz": "Uzatgich quvvati"
+            },
+            "value": {
+              "ru": "0,5 Вт",
+              "en": "0,5 W",
+              "uz": "0,5 Vt"
+            }
+          },
+          {
+            "label": {
+              "ru": "Размеры (Ш×В×Т)",
+              "en": "Dimensions (W×H×D)",
+              "uz": "O'lchamlar (K×B×Ch)"
+            },
+            "value": {
+              "ru": "57×181×33 мм",
+              "en": "57×181×33 mm",
+              "uz": "57×181×33 mm"
+            }
+          }
+        ],
+        "inBox": [
+          {
+            "item": {
+              "ru": "Радиостанция",
+              "en": "Two-way radio",
+              "uz": "Radiostansiya"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Клипса на пояс",
+              "en": "Belt clip",
+              "uz": "Kamarga qisqich"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Micro-USB зарядка",
+              "en": "Micro-USB charger",
+              "uz": "Micro-USB quvvatlagich"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Аккумулятор Ni-MH 800 мА·ч",
+              "en": "Ni-MH battery, 800 mAh",
+              "uz": "Ni-MH akkumulyator, 800 mA·soat"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Инструкция по эксплуатации",
+              "en": "User manual",
+              "uz": "Foydalanish qo'llanmasi"
+            },
+            "qty": null
+          }
+        ],
+        "features": [
+          {
+            "ru": "Бесплатные вызовы",
+            "en": "Free calls",
+            "uz": "Bepul chaqiruvlar"
+          },
+          {
+            "ru": "Перезаряжаемые никель-металлгидридные аккумуляторы",
+            "en": "Rechargeable nickel-metal hydride batteries",
+            "uz": "Qayta quvvatlanadigan nikel-metallgidrid akkumulyatorlar"
+          },
+          {
+            "ru": "Система передачи сигнала с голосовым управлением VOX",
+            "en": "VOX voice-operated transmission",
+            "uz": "VOX ovozli boshqarish tizimi"
+          },
+          {
+            "ru": "Сканирование и мониторинг каналов",
+            "en": "Channel scanning and monitoring",
+            "uz": "Kanallarni skanerlash va monitoring"
+          },
+          {
+            "ru": "Функция Room Monitor",
+            "en": "Room Monitor",
+            "uz": "Room Monitor funksiyasi"
+          },
+          {
+            "ru": "ЖК-дисплей с подсветкой",
+            "en": "Backlit LCD display",
+            "uz": "Yoritilgan LCD displey"
+          },
+          {
+            "ru": "Блокировка клавиатуры",
+            "en": "Keypad lock",
+            "uz": "Klaviatura blokirovkasi"
+          },
+          {
+            "ru": "Индикатор заряда батареи",
+            "en": "Battery level indicator",
+            "uz": "Batareya zaryadi indikatori"
+          },
+          {
+            "ru": "Разъём для гарнитуры",
+            "en": "Headset connector",
+            "uz": "Garnitura uchun ulagich"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "t72",
+      "brandSlug": "motorola",
+      "brand": "Motorola",
+      "name": "Motorola Talkabout T72",
+      "category": "amateur",
+      "tags": [
+        "PMR446",
+        "License-free",
+        "IPx4"
+      ],
+      "price": 1300000,
+      "blurb": {
+        "ru": "Актуальная PMR для активного использования вне помещений.",
+        "en": "A current-generation PMR built for active outdoor use.",
+        "uz": "Ochiq havoda faol foydalanish uchun zamonaviy PMR."
+      },
+      "rangeCity": {
+        "ru": "до 1 км",
+        "en": "up to 1 km",
+        "uz": "1 km gacha"
+      },
+      "rangeOpen": {
+        "ru": "до 8 км",
+        "en": "up to 8 km",
+        "uz": "8 km gacha"
+      },
+      "url": {
+        "ru": "https://radiocom.uz/ru/motorola/t72",
+        "en": "https://radiocom.uz/en/motorola/t72",
+        "uz": "https://radiocom.uz/uz/motorola/t72"
+      },
+      "specs": {
+        "rows": [
+          {
+            "label": {
+              "ru": "Стандарт",
+              "en": "Standard",
+              "uz": "Standart"
+            },
+            "value": {
+              "ru": "PMR446 — безлицензионный диапазон",
+              "en": "PMR446 — licence-free band",
+              "uz": "PMR446 — litsenziyasiz diapazon"
+            }
+          },
+          {
+            "label": {
+              "ru": "Радиус действия",
+              "en": "Range",
+              "uz": "Ishlash radiusi"
+            },
+            "value": {
+              "ru": "до 1 км в городе, до 8 км на открытой местности",
+              "en": "up to 1 km in built-up areas, up to 8 km in the open",
+              "uz": "shaharda 1 km gacha, ochiq joyda 8 km gacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Количество каналов",
+              "en": "Channels",
+              "uz": "Kanallar soni"
+            },
+            "value": {
+              "ru": "16 каналов + 121 кодов",
+              "en": "16 channels + 121 codes",
+              "uz": "16 kanal + 121 kod"
+            }
+          },
+          {
+            "label": {
+              "ru": "Тип питания",
+              "en": "Power source",
+              "uz": "Quvvat manbayi"
+            },
+            "value": {
+              "ru": "Аккумулятор Li-Ion 1130 мА·ч",
+              "en": "Li-Ion battery, 1130 mAh",
+              "uz": "Li-Ion akkumulyator, 1130 mA·soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Ёмкость аккумулятора",
+              "en": "Battery capacity",
+              "uz": "Akkumulyator sig'imi"
+            },
+            "value": {
+              "ru": "1130 мА·ч",
+              "en": "1130 mAh",
+              "uz": "1130 mA·soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Время работы от аккумулятора",
+              "en": "Battery life",
+              "uz": "Akkumulyatordan ishlash vaqti"
+            },
+            "value": {
+              "ru": "до 24 часов",
+              "en": "up to 24 hours",
+              "uz": "24 soatgacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Класс защиты",
+              "en": "Ingress protection",
+              "uz": "Himoya darajasi"
+            },
+            "value": {
+              "ru": "IP54",
+              "en": "IP54",
+              "uz": "IP54"
+            }
+          },
+          {
+            "label": {
+              "ru": "Раций в комплекте",
+              "en": "Radios per kit",
+              "uz": "Komplektdagi radiostansiyalar"
+            },
+            "value": {
+              "ru": "2 шт",
+              "en": "2 pcs",
+              "uz": "2 dona"
+            }
+          },
+          {
+            "label": {
+              "ru": "Размер упаковки (Ш×В×Г)",
+              "en": "Packaging (W×H×D)",
+              "uz": "Qadoq o'lchami (K×B×Ch)"
+            },
+            "value": {
+              "ru": "16.5×17.5×7 см",
+              "en": "16.5×17.5×7 cm",
+              "uz": "16.5×17.5×7 sm"
+            }
+          },
+          {
+            "label": {
+              "ru": "Страна производства",
+              "en": "Country of manufacture",
+              "uz": "Ishlab chiqarilgan mamlakat"
+            },
+            "value": {
+              "ru": "Китай",
+              "en": "China",
+              "uz": "Xitoy"
+            }
+          },
+          {
+            "label": {
+              "ru": "Гарантийный срок",
+              "en": "Warranty",
+              "uz": "Kafolat muddati"
+            },
+            "value": {
+              "ru": "12 месяцев",
+              "en": "12 months",
+              "uz": "12 oy"
+            }
+          }
+        ],
+        "inBox": [
+          {
+            "item": {
+              "ru": "Радиостанция",
+              "en": "Two-way radio",
+              "uz": "Radiostansiya"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Зарядная док-станция",
+              "en": "Charging dock",
+              "uz": "Quvvatlash dok-stansiyasi"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Li-Ion аккумулятор",
+              "en": "Li-Ion battery",
+              "uz": "Li-Ion akkumulyator"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Инструкция по эксплуатации",
+              "en": "User manual",
+              "uz": "Foydalanish qo'llanmasi"
+            },
+            "qty": null
+          }
+        ],
+        "features": [
+          {
+            "ru": "Лёгкое сопряжение раций в группе",
+            "en": "Easy group pairing",
+            "uz": "Guruhda ratsiyalarni oson ulash"
+          },
+          {
+            "ru": "Функции iVOX / VOX",
+            "en": "iVOX / VOX",
+            "uz": "iVOX / VOX funksiyalari"
+          },
+          {
+            "ru": "ЖК-дисплей с подсветкой",
+            "en": "Backlit LCD display",
+            "uz": "Yoritilgan LCD displey"
+          },
+          {
+            "ru": "Сканирование и мониторинг каналов",
+            "en": "Channel scanning and monitoring",
+            "uz": "Kanallarni skanerlash va monitoring"
+          },
+          {
+            "ru": "Зарядная док-станция в комплекте",
+            "en": "Charging dock included",
+            "uz": "Komplektda quvvatlash dok-stansiyasi"
+          },
+          {
+            "ru": "Перезаряжаемые литиево-ионные аккумуляторы",
+            "en": "Rechargeable lithium-ion batteries",
+            "uz": "Qayta quvvatlanadigan litiy-ion akkumulyatorlar"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "t62-red",
+      "brandSlug": "motorola",
+      "brand": "Motorola",
+      "name": "Motorola Talkabout T62 Red",
+      "category": "amateur",
+      "tags": [
+        "PMR446",
+        "License-free"
+      ],
+      "price": 1100000,
+      "blurb": {
+        "ru": "Стильная PMR в красном корпусе с надёжным приёмом.",
+        "en": "A styled PMR in a red shell, with dependable reception.",
+        "uz": "Ishonchli qabulga ega qizil korpusdagi nafis PMR."
+      },
+      "rangeCity": {
+        "ru": "до 900 м",
+        "en": "up to 900 m",
+        "uz": "900 m gacha"
+      },
+      "rangeOpen": {
+        "ru": "до 8 км",
+        "en": "up to 8 km",
+        "uz": "8 km gacha"
+      },
+      "url": {
+        "ru": "https://radiocom.uz/ru/motorola/t62-red",
+        "en": "https://radiocom.uz/en/motorola/t62-red",
+        "uz": "https://radiocom.uz/uz/motorola/t62-red"
+      },
+      "specs": {
+        "rows": [
+          {
+            "label": {
+              "ru": "Стандарт",
+              "en": "Standard",
+              "uz": "Standart"
+            },
+            "value": {
+              "ru": "PMR",
+              "en": "PMR",
+              "uz": "PMR"
+            }
+          },
+          {
+            "label": {
+              "ru": "Диапазон частот",
+              "en": "Frequency range",
+              "uz": "Chastota diapazoni"
+            },
+            "value": {
+              "ru": "446–446.1 МГц",
+              "en": "446–446.1 MHz",
+              "uz": "446–446.1 MGts"
+            }
+          },
+          {
+            "label": {
+              "ru": "Радиус действия",
+              "en": "Range",
+              "uz": "Ishlash radiusi"
+            },
+            "value": {
+              "ru": "до 900 м в городе, до 8 км на открытой местности",
+              "en": "up to 900 m in built-up areas, up to 8 km in the open",
+              "uz": "shaharda 900 m gacha, ochiq joyda 8 km gacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Количество каналов",
+              "en": "Channels",
+              "uz": "Kanallar soni"
+            },
+            "value": {
+              "ru": "8 каналов + 121 кодов",
+              "en": "8 channels + 121 codes",
+              "uz": "8 kanal + 121 kod"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мелодии вызова",
+              "en": "Call tones",
+              "uz": "Chaqiruv ohanglari"
+            },
+            "value": {
+              "ru": "5 мелодий вызова",
+              "en": "5 call tones",
+              "uz": "5 chaqiruv ohangi"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мощность передатчика",
+              "en": "Transmit power",
+              "uz": "Uzatgich quvvati"
+            },
+            "value": {
+              "ru": "0,5 Вт",
+              "en": "0,5 W",
+              "uz": "0,5 Vt"
+            }
+          },
+          {
+            "label": {
+              "ru": "Размеры (Ш×В×Т)",
+              "en": "Dimensions (W×H×D)",
+              "uz": "O'lchamlar (K×B×Ch)"
+            },
+            "value": {
+              "ru": "55×165×30 мм",
+              "en": "55×165×30 mm",
+              "uz": "55×165×30 mm"
+            }
+          },
+          {
+            "label": {
+              "ru": "Вес",
+              "en": "Weight",
+              "uz": "Vazn"
+            },
+            "value": {
+              "ru": "103 г",
+              "en": "103 g",
+              "uz": "103 g"
+            }
+          },
+          {
+            "label": {
+              "ru": "Гарантийный срок",
+              "en": "Warranty",
+              "uz": "Kafolat muddati"
+            },
+            "value": {
+              "ru": "12 месяцев на радиоблок. Гарантия не распространяется на аксессуары и АКБ",
+              "en": "12 months on the radio unit. Accessories and batteries are not covered",
+              "uz": "Radioblokka 12 oy. Kafolat aksessuarlar va akkumulyatorlarga tatbiq etilmaydi"
+            }
+          }
+        ],
+        "inBox": [
+          {
+            "item": {
+              "ru": "Радиостанция",
+              "en": "Two-way radio",
+              "uz": "Radiostansiya"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Клипса на пояс",
+              "en": "Belt clip",
+              "uz": "Kamarga qisqich"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Micro-USB зарядка",
+              "en": "Micro-USB charger",
+              "uz": "Micro-USB quvvatlagich"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Аккумулятор Ni-MH 800 мА·ч",
+              "en": "Ni-MH battery, 800 mAh",
+              "uz": "Ni-MH akkumulyator, 800 mA·soat"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Инструкция по эксплуатации",
+              "en": "User manual",
+              "uz": "Foydalanish qo'llanmasi"
+            },
+            "qty": null
+          }
+        ],
+        "features": [
+          {
+            "ru": "Бесплатные вызовы",
+            "en": "Free calls",
+            "uz": "Bepul chaqiruvlar"
+          },
+          {
+            "ru": "Перезаряжаемые никель-металлгидридные аккумуляторы",
+            "en": "Rechargeable nickel-metal hydride batteries",
+            "uz": "Qayta quvvatlanadigan nikel-metallgidrid akkumulyatorlar"
+          },
+          {
+            "ru": "Система передачи сигнала с голосовым управлением VOX",
+            "en": "VOX voice-operated transmission",
+            "uz": "VOX ovozli boshqarish tizimi"
+          },
+          {
+            "ru": "Сканирование и мониторинг каналов",
+            "en": "Channel scanning and monitoring",
+            "uz": "Kanallarni skanerlash va monitoring"
+          },
+          {
+            "ru": "Функция Room Monitor",
+            "en": "Room Monitor",
+            "uz": "Room Monitor funksiyasi"
+          },
+          {
+            "ru": "ЖК-дисплей с подсветкой",
+            "en": "Backlit LCD display",
+            "uz": "Yoritilgan LCD displey"
+          },
+          {
+            "ru": "Блокировка клавиатуры",
+            "en": "Keypad lock",
+            "uz": "Klaviatura blokirovkasi"
+          },
+          {
+            "ru": "Индикатор заряда батареи",
+            "en": "Battery level indicator",
+            "uz": "Batareya zaryadi indikatori"
+          },
+          {
+            "ru": "Разъём для гарнитуры",
+            "en": "Headset connector",
+            "uz": "Garnitura uchun ulagich"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "t62-blue",
+      "brandSlug": "motorola",
+      "brand": "Motorola",
+      "name": "Motorola Talkabout T62 Blue",
+      "category": "amateur",
+      "tags": [
+        "PMR446",
+        "License-free"
+      ],
+      "price": 1100000,
+      "blurb": {
+        "ru": "Та же T62 в синем корпусе — для команд и семьи.",
+        "en": "The same T62 in blue — for teams and families.",
+        "uz": "Xuddi shu T62 ko'k korpusda — jamoa va oila uchun."
+      },
+      "rangeCity": {
+        "ru": "до 900 м",
+        "en": "up to 900 m",
+        "uz": "900 m gacha"
+      },
+      "rangeOpen": {
+        "ru": "до 8 км",
+        "en": "up to 8 km",
+        "uz": "8 km gacha"
+      },
+      "url": {
+        "ru": "https://radiocom.uz/ru/motorola/t62-blue",
+        "en": "https://radiocom.uz/en/motorola/t62-blue",
+        "uz": "https://radiocom.uz/uz/motorola/t62-blue"
+      },
+      "specs": {
+        "rows": [
+          {
+            "label": {
+              "ru": "Стандарт",
+              "en": "Standard",
+              "uz": "Standart"
+            },
+            "value": {
+              "ru": "PMR",
+              "en": "PMR",
+              "uz": "PMR"
+            }
+          },
+          {
+            "label": {
+              "ru": "Диапазон частот",
+              "en": "Frequency range",
+              "uz": "Chastota diapazoni"
+            },
+            "value": {
+              "ru": "446–446.1 МГц",
+              "en": "446–446.1 MHz",
+              "uz": "446–446.1 MGts"
+            }
+          },
+          {
+            "label": {
+              "ru": "Радиус действия",
+              "en": "Range",
+              "uz": "Ishlash radiusi"
+            },
+            "value": {
+              "ru": "до 900 м в городе, до 8 км на открытой местности",
+              "en": "up to 900 m in built-up areas, up to 8 km in the open",
+              "uz": "shaharda 900 m gacha, ochiq joyda 8 km gacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Количество каналов",
+              "en": "Channels",
+              "uz": "Kanallar soni"
+            },
+            "value": {
+              "ru": "8 каналов + 121 кодов",
+              "en": "8 channels + 121 codes",
+              "uz": "8 kanal + 121 kod"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мелодии вызова",
+              "en": "Call tones",
+              "uz": "Chaqiruv ohanglari"
+            },
+            "value": {
+              "ru": "5 мелодий вызова",
+              "en": "5 call tones",
+              "uz": "5 chaqiruv ohangi"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мощность передатчика",
+              "en": "Transmit power",
+              "uz": "Uzatgich quvvati"
+            },
+            "value": {
+              "ru": "0,5 Вт",
+              "en": "0,5 W",
+              "uz": "0,5 Vt"
+            }
+          },
+          {
+            "label": {
+              "ru": "Размеры (Ш×В×Т)",
+              "en": "Dimensions (W×H×D)",
+              "uz": "O'lchamlar (K×B×Ch)"
+            },
+            "value": {
+              "ru": "55×165×30 мм",
+              "en": "55×165×30 mm",
+              "uz": "55×165×30 mm"
+            }
+          },
+          {
+            "label": {
+              "ru": "Вес",
+              "en": "Weight",
+              "uz": "Vazn"
+            },
+            "value": {
+              "ru": "103 г",
+              "en": "103 g",
+              "uz": "103 g"
+            }
+          },
+          {
+            "label": {
+              "ru": "Гарантийный срок",
+              "en": "Warranty",
+              "uz": "Kafolat muddati"
+            },
+            "value": {
+              "ru": "12 месяцев на радиоблок. Гарантия не распространяется на аксессуары и АКБ",
+              "en": "12 months on the radio unit. Accessories and batteries are not covered",
+              "uz": "Radioblokka 12 oy. Kafolat aksessuarlar va akkumulyatorlarga tatbiq etilmaydi"
+            }
+          }
+        ],
+        "inBox": [
+          {
+            "item": {
+              "ru": "Радиостанция",
+              "en": "Two-way radio",
+              "uz": "Radiostansiya"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Клипса на пояс",
+              "en": "Belt clip",
+              "uz": "Kamarga qisqich"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Micro-USB зарядка",
+              "en": "Micro-USB charger",
+              "uz": "Micro-USB quvvatlagich"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Аккумулятор Ni-MH 800 мА·ч",
+              "en": "Ni-MH battery, 800 mAh",
+              "uz": "Ni-MH akkumulyator, 800 mA·soat"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Инструкция по эксплуатации",
+              "en": "User manual",
+              "uz": "Foydalanish qo'llanmasi"
+            },
+            "qty": null
+          }
+        ],
+        "features": [
+          {
+            "ru": "Бесплатные вызовы",
+            "en": "Free calls",
+            "uz": "Bepul chaqiruvlar"
+          },
+          {
+            "ru": "Перезаряжаемые никель-металлгидридные аккумуляторы",
+            "en": "Rechargeable nickel-metal hydride batteries",
+            "uz": "Qayta quvvatlanadigan nikel-metallgidrid akkumulyatorlar"
+          },
+          {
+            "ru": "Система передачи сигнала с голосовым управлением VOX",
+            "en": "VOX voice-operated transmission",
+            "uz": "VOX ovozli boshqarish tizimi"
+          },
+          {
+            "ru": "Сканирование и мониторинг каналов",
+            "en": "Channel scanning and monitoring",
+            "uz": "Kanallarni skanerlash va monitoring"
+          },
+          {
+            "ru": "Функция Room Monitor",
+            "en": "Room Monitor",
+            "uz": "Room Monitor funksiyasi"
+          },
+          {
+            "ru": "ЖК-дисплей с подсветкой",
+            "en": "Backlit LCD display",
+            "uz": "Yoritilgan LCD displey"
+          },
+          {
+            "ru": "Блокировка клавиатуры",
+            "en": "Keypad lock",
+            "uz": "Klaviatura blokirovkasi"
+          },
+          {
+            "ru": "Индикатор заряда батареи",
+            "en": "Battery level indicator",
+            "uz": "Batareya zaryadi indikatori"
+          },
+          {
+            "ru": "Разъём для гарнитуры",
+            "en": "Headset connector",
+            "uz": "Garnitura uchun ulagich"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "t42-triple",
+      "brandSlug": "motorola",
+      "brand": "Motorola",
+      "name": "Motorola Talkabout T42 Triple",
+      "category": "amateur",
+      "tags": [
+        "PMR446",
+        "License-free",
+        "Triple"
+      ],
+      "price": 700000,
+      "blurb": {
+        "ru": "Комплект из 3 раций для малых команд.",
+        "en": "A three-radio kit for small teams.",
+        "uz": "Kichik jamoalar uchun 3 ta radiostansiyadan iborat to'plam."
+      },
+      "rangeCity": {
+        "ru": "до 300 м",
+        "en": "up to 300 m",
+        "uz": "300 m gacha"
+      },
+      "rangeOpen": {
+        "ru": "до 4 км",
+        "en": "up to 4 km",
+        "uz": "4 km gacha"
+      },
+      "url": {
+        "ru": "https://radiocom.uz/ru/motorola/t42-triple",
+        "en": "https://radiocom.uz/en/motorola/t42-triple",
+        "uz": "https://radiocom.uz/uz/motorola/t42-triple"
+      },
+      "specs": {
+        "rows": [
+          {
+            "label": {
+              "ru": "Стандарт",
+              "en": "Standard",
+              "uz": "Standart"
+            },
+            "value": {
+              "ru": "PMR",
+              "en": "PMR",
+              "uz": "PMR"
+            }
+          },
+          {
+            "label": {
+              "ru": "Диапазон частот",
+              "en": "Frequency range",
+              "uz": "Chastota diapazoni"
+            },
+            "value": {
+              "ru": "446–446.1 МГц",
+              "en": "446–446.1 MHz",
+              "uz": "446–446.1 MGts"
+            }
+          },
+          {
+            "label": {
+              "ru": "Радиус действия",
+              "en": "Range",
+              "uz": "Ishlash radiusi"
+            },
+            "value": {
+              "ru": "до 300 м в городе, до 4 км на открытой местности",
+              "en": "up to 300 m in built-up areas, up to 4 km in the open",
+              "uz": "shaharda 300 m gacha, ochiq joyda 4 km gacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Количество каналов",
+              "en": "Channels",
+              "uz": "Kanallar soni"
+            },
+            "value": {
+              "ru": "8 каналов",
+              "en": "8 channels",
+              "uz": "8 kanal"
+            }
+          },
+          {
+            "label": {
+              "ru": "Тип питания",
+              "en": "Power source",
+              "uz": "Quvvat manbayi"
+            },
+            "value": {
+              "ru": "3×AAA",
+              "en": "3×AAA",
+              "uz": "3×AAA"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мощность передатчика",
+              "en": "Transmit power",
+              "uz": "Uzatgich quvvati"
+            },
+            "value": {
+              "ru": "0,5 Вт",
+              "en": "0,5 W",
+              "uz": "0,5 Vt"
+            }
+          },
+          {
+            "label": {
+              "ru": "Размеры (Ш×В×Т)",
+              "en": "Dimensions (W×H×D)",
+              "uz": "O'lchamlar (K×B×Ch)"
+            },
+            "value": {
+              "ru": "50×134×29 мм",
+              "en": "50×134×29 mm",
+              "uz": "50×134×29 mm"
+            }
+          },
+          {
+            "label": {
+              "ru": "Вес",
+              "en": "Weight",
+              "uz": "Vazn"
+            },
+            "value": {
+              "ru": "74 г",
+              "en": "74 g",
+              "uz": "74 g"
+            }
+          }
+        ],
+        "inBox": [
+          {
+            "item": {
+              "ru": "Радиостанция",
+              "en": "Two-way radio",
+              "uz": "Radiostansiya"
+            },
+            "qty": 3
+          },
+          {
+            "item": {
+              "ru": "Клипса на пояс",
+              "en": "Belt clip",
+              "uz": "Kamarga qisqich"
+            },
+            "qty": 3
+          },
+          {
+            "item": {
+              "ru": "Инструкция по эксплуатации",
+              "en": "User manual",
+              "uz": "Foydalanish qo'llanmasi"
+            },
+            "qty": null
+          }
+        ],
+        "features": [
+          {
+            "ru": "Бесплатные вызовы",
+            "en": "Free calls",
+            "uz": "Bepul chaqiruvlar"
+          },
+          {
+            "ru": "ЖК-дисплей с подсветкой",
+            "en": "Backlit LCD display",
+            "uz": "Yoritilgan LCD displey"
+          },
+          {
+            "ru": "Блокировка клавиатуры",
+            "en": "Keypad lock",
+            "uz": "Klaviatura blokirovkasi"
+          },
+          {
+            "ru": "Индикатор заряда батареи",
+            "en": "Battery level indicator",
+            "uz": "Batareya zaryadi indikatori"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "t42-quad",
+      "brandSlug": "motorola",
+      "brand": "Motorola",
+      "name": "Motorola Talkabout T42 Quad",
+      "category": "amateur",
+      "tags": [
+        "PMR446",
+        "License-free",
+        "Quad"
+      ],
+      "price": 900000,
+      "blurb": {
+        "ru": "Комплект из 4 раций T42.",
+        "en": "A four-radio T42 kit.",
+        "uz": "4 ta T42 radiostansiyasidan iborat to'plam."
+      },
+      "rangeCity": {
+        "ru": "до 300 м",
+        "en": "up to 300 m",
+        "uz": "300 m gacha"
+      },
+      "rangeOpen": {
+        "ru": "до 4 км",
+        "en": "up to 4 km",
+        "uz": "4 km gacha"
+      },
+      "url": {
+        "ru": "https://radiocom.uz/ru/motorola/t42-quad",
+        "en": "https://radiocom.uz/en/motorola/t42-quad",
+        "uz": "https://radiocom.uz/uz/motorola/t42-quad"
+      },
+      "specs": {
+        "rows": [
+          {
+            "label": {
+              "ru": "Стандарт",
+              "en": "Standard",
+              "uz": "Standart"
+            },
+            "value": {
+              "ru": "PMR",
+              "en": "PMR",
+              "uz": "PMR"
+            }
+          },
+          {
+            "label": {
+              "ru": "Диапазон частот",
+              "en": "Frequency range",
+              "uz": "Chastota diapazoni"
+            },
+            "value": {
+              "ru": "446–446.1 МГц",
+              "en": "446–446.1 MHz",
+              "uz": "446–446.1 MGts"
+            }
+          },
+          {
+            "label": {
+              "ru": "Радиус действия",
+              "en": "Range",
+              "uz": "Ishlash radiusi"
+            },
+            "value": {
+              "ru": "до 300 м в городе, до 4 км на открытой местности",
+              "en": "up to 300 m in built-up areas, up to 4 km in the open",
+              "uz": "shaharda 300 m gacha, ochiq joyda 4 km gacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Количество каналов",
+              "en": "Channels",
+              "uz": "Kanallar soni"
+            },
+            "value": {
+              "ru": "8 каналов",
+              "en": "8 channels",
+              "uz": "8 kanal"
+            }
+          },
+          {
+            "label": {
+              "ru": "Тип питания",
+              "en": "Power source",
+              "uz": "Quvvat manbayi"
+            },
+            "value": {
+              "ru": "3×AAA",
+              "en": "3×AAA",
+              "uz": "3×AAA"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мощность передатчика",
+              "en": "Transmit power",
+              "uz": "Uzatgich quvvati"
+            },
+            "value": {
+              "ru": "0,5 Вт",
+              "en": "0,5 W",
+              "uz": "0,5 Vt"
+            }
+          },
+          {
+            "label": {
+              "ru": "Размеры (Ш×В×Т)",
+              "en": "Dimensions (W×H×D)",
+              "uz": "O'lchamlar (K×B×Ch)"
+            },
+            "value": {
+              "ru": "50×134×29 мм",
+              "en": "50×134×29 mm",
+              "uz": "50×134×29 mm"
+            }
+          },
+          {
+            "label": {
+              "ru": "Вес",
+              "en": "Weight",
+              "uz": "Vazn"
+            },
+            "value": {
+              "ru": "74 г",
+              "en": "74 g",
+              "uz": "74 g"
+            }
+          }
+        ],
+        "inBox": [
+          {
+            "item": {
+              "ru": "Радиостанция",
+              "en": "Two-way radio",
+              "uz": "Radiostansiya"
+            },
+            "qty": 4
+          },
+          {
+            "item": {
+              "ru": "Клипса на пояс",
+              "en": "Belt clip",
+              "uz": "Kamarga qisqich"
+            },
+            "qty": 4
+          },
+          {
+            "item": {
+              "ru": "Инструкция по эксплуатации",
+              "en": "User manual",
+              "uz": "Foydalanish qo'llanmasi"
+            },
+            "qty": null
+          }
+        ],
+        "features": [
+          {
+            "ru": "Бесплатные вызовы",
+            "en": "Free calls",
+            "uz": "Bepul chaqiruvlar"
+          },
+          {
+            "ru": "ЖК-дисплей с подсветкой",
+            "en": "Backlit LCD display",
+            "uz": "Yoritilgan LCD displey"
+          },
+          {
+            "ru": "Блокировка клавиатуры",
+            "en": "Keypad lock",
+            "uz": "Klaviatura blokirovkasi"
+          },
+          {
+            "ru": "Индикатор заряда батареи",
+            "en": "Battery level indicator",
+            "uz": "Batareya zaryadi indikatori"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "t42-red",
+      "brandSlug": "motorola",
+      "brand": "Motorola",
+      "name": "Motorola Talkabout T42 Red",
+      "category": "amateur",
+      "tags": [
+        "PMR446",
+        "License-free"
+      ],
+      "price": 600000,
+      "blurb": {
+        "ru": "Начальная PMR для семей и малого бизнеса.",
+        "en": "An entry-level PMR for families and small businesses.",
+        "uz": "Oilalar va kichik biznes uchun boshlang'ich PMR."
+      },
+      "rangeCity": {
+        "ru": "до 300 м",
+        "en": "up to 300 m",
+        "uz": "300 m gacha"
+      },
+      "rangeOpen": {
+        "ru": "до 4 км",
+        "en": "up to 4 km",
+        "uz": "4 km gacha"
+      },
+      "url": {
+        "ru": "https://radiocom.uz/ru/motorola/t42-red",
+        "en": "https://radiocom.uz/en/motorola/t42-red",
+        "uz": "https://radiocom.uz/uz/motorola/t42-red"
+      },
+      "specs": {
+        "rows": [
+          {
+            "label": {
+              "ru": "Стандарт",
+              "en": "Standard",
+              "uz": "Standart"
+            },
+            "value": {
+              "ru": "PMR",
+              "en": "PMR",
+              "uz": "PMR"
+            }
+          },
+          {
+            "label": {
+              "ru": "Диапазон частот",
+              "en": "Frequency range",
+              "uz": "Chastota diapazoni"
+            },
+            "value": {
+              "ru": "446–446.1 МГц",
+              "en": "446–446.1 MHz",
+              "uz": "446–446.1 MGts"
+            }
+          },
+          {
+            "label": {
+              "ru": "Радиус действия",
+              "en": "Range",
+              "uz": "Ishlash radiusi"
+            },
+            "value": {
+              "ru": "до 300 м в городе, до 4 км на открытой местности",
+              "en": "up to 300 m in built-up areas, up to 4 km in the open",
+              "uz": "shaharda 300 m gacha, ochiq joyda 4 km gacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Количество каналов",
+              "en": "Channels",
+              "uz": "Kanallar soni"
+            },
+            "value": {
+              "ru": "8 каналов",
+              "en": "8 channels",
+              "uz": "8 kanal"
+            }
+          },
+          {
+            "label": {
+              "ru": "Тип питания",
+              "en": "Power source",
+              "uz": "Quvvat manbayi"
+            },
+            "value": {
+              "ru": "3×AAA",
+              "en": "3×AAA",
+              "uz": "3×AAA"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мощность передатчика",
+              "en": "Transmit power",
+              "uz": "Uzatgich quvvati"
+            },
+            "value": {
+              "ru": "0,5 Вт",
+              "en": "0,5 W",
+              "uz": "0,5 Vt"
+            }
+          },
+          {
+            "label": {
+              "ru": "Размеры (Ш×В×Т)",
+              "en": "Dimensions (W×H×D)",
+              "uz": "O'lchamlar (K×B×Ch)"
+            },
+            "value": {
+              "ru": "50×134×29 мм",
+              "en": "50×134×29 mm",
+              "uz": "50×134×29 mm"
+            }
+          },
+          {
+            "label": {
+              "ru": "Вес",
+              "en": "Weight",
+              "uz": "Vazn"
+            },
+            "value": {
+              "ru": "74 г",
+              "en": "74 g",
+              "uz": "74 g"
+            }
+          }
+        ],
+        "inBox": [
+          {
+            "item": {
+              "ru": "Радиостанция",
+              "en": "Two-way radio",
+              "uz": "Radiostansiya"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Клипса на пояс",
+              "en": "Belt clip",
+              "uz": "Kamarga qisqich"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Инструкция по эксплуатации",
+              "en": "User manual",
+              "uz": "Foydalanish qo'llanmasi"
+            },
+            "qty": null
+          }
+        ],
+        "features": [
+          {
+            "ru": "Бесплатные вызовы",
+            "en": "Free calls",
+            "uz": "Bepul chaqiruvlar"
+          },
+          {
+            "ru": "ЖК-дисплей с подсветкой",
+            "en": "Backlit LCD display",
+            "uz": "Yoritilgan LCD displey"
+          },
+          {
+            "ru": "Блокировка клавиатуры",
+            "en": "Keypad lock",
+            "uz": "Klaviatura blokirovkasi"
+          },
+          {
+            "ru": "Индикатор заряда батареи",
+            "en": "Battery level indicator",
+            "uz": "Batareya zaryadi indikatori"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "t42-blue",
+      "brandSlug": "motorola",
+      "brand": "Motorola",
+      "name": "Motorola Talkabout T42 Blue",
+      "category": "amateur",
+      "tags": [
+        "PMR446",
+        "License-free"
+      ],
+      "price": 600000,
+      "blurb": {
+        "ru": "T42 в синем корпусе — просто, доступно, надёжно.",
+        "en": "The T42 in blue — simple, affordable, dependable.",
+        "uz": "Ko'k korpusdagi T42 — sodda, arzon, ishonchli."
+      },
+      "rangeCity": {
+        "ru": "до 300 м",
+        "en": "up to 300 m",
+        "uz": "300 m gacha"
+      },
+      "rangeOpen": {
+        "ru": "до 4 км",
+        "en": "up to 4 km",
+        "uz": "4 km gacha"
+      },
+      "url": {
+        "ru": "https://radiocom.uz/ru/motorola/t42-blue",
+        "en": "https://radiocom.uz/en/motorola/t42-blue",
+        "uz": "https://radiocom.uz/uz/motorola/t42-blue"
+      },
+      "specs": {
+        "rows": [
+          {
+            "label": {
+              "ru": "Стандарт",
+              "en": "Standard",
+              "uz": "Standart"
+            },
+            "value": {
+              "ru": "PMR",
+              "en": "PMR",
+              "uz": "PMR"
+            }
+          },
+          {
+            "label": {
+              "ru": "Диапазон частот",
+              "en": "Frequency range",
+              "uz": "Chastota diapazoni"
+            },
+            "value": {
+              "ru": "446–446.1 МГц",
+              "en": "446–446.1 MHz",
+              "uz": "446–446.1 MGts"
+            }
+          },
+          {
+            "label": {
+              "ru": "Радиус действия",
+              "en": "Range",
+              "uz": "Ishlash radiusi"
+            },
+            "value": {
+              "ru": "до 300 м в городе, до 4 км на открытой местности",
+              "en": "up to 300 m in built-up areas, up to 4 km in the open",
+              "uz": "shaharda 300 m gacha, ochiq joyda 4 km gacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Количество каналов",
+              "en": "Channels",
+              "uz": "Kanallar soni"
+            },
+            "value": {
+              "ru": "8 каналов",
+              "en": "8 channels",
+              "uz": "8 kanal"
+            }
+          },
+          {
+            "label": {
+              "ru": "Тип питания",
+              "en": "Power source",
+              "uz": "Quvvat manbayi"
+            },
+            "value": {
+              "ru": "3×AAA",
+              "en": "3×AAA",
+              "uz": "3×AAA"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мощность передатчика",
+              "en": "Transmit power",
+              "uz": "Uzatgich quvvati"
+            },
+            "value": {
+              "ru": "0,5 Вт",
+              "en": "0,5 W",
+              "uz": "0,5 Vt"
+            }
+          },
+          {
+            "label": {
+              "ru": "Размеры (Ш×В×Т)",
+              "en": "Dimensions (W×H×D)",
+              "uz": "O'lchamlar (K×B×Ch)"
+            },
+            "value": {
+              "ru": "50×134×29 мм",
+              "en": "50×134×29 mm",
+              "uz": "50×134×29 mm"
+            }
+          },
+          {
+            "label": {
+              "ru": "Вес",
+              "en": "Weight",
+              "uz": "Vazn"
+            },
+            "value": {
+              "ru": "74 г",
+              "en": "74 g",
+              "uz": "74 g"
+            }
+          }
+        ],
+        "inBox": [
+          {
+            "item": {
+              "ru": "Радиостанция",
+              "en": "Two-way radio",
+              "uz": "Radiostansiya"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Клипса на пояс",
+              "en": "Belt clip",
+              "uz": "Kamarga qisqich"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Инструкция по эксплуатации",
+              "en": "User manual",
+              "uz": "Foydalanish qo'llanmasi"
+            },
+            "qty": null
+          }
+        ],
+        "features": [
+          {
+            "ru": "Бесплатные вызовы",
+            "en": "Free calls",
+            "uz": "Bepul chaqiruvlar"
+          },
+          {
+            "ru": "ЖК-дисплей с подсветкой",
+            "en": "Backlit LCD display",
+            "uz": "Yoritilgan LCD displey"
+          },
+          {
+            "ru": "Блокировка клавиатуры",
+            "en": "Keypad lock",
+            "uz": "Klaviatura blokirovkasi"
+          },
+          {
+            "ru": "Индикатор заряда батареи",
+            "en": "Battery level indicator",
+            "uz": "Batareya zaryadi indikatori"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "tlkr-t92h2o",
+      "brandSlug": "motorola",
+      "brand": "Motorola",
+      "name": "Motorola TLKR-T92 H2O",
+      "category": "amateur",
+      "tags": [
+        "PMR446",
+        "License-free",
+        "IP67",
+        "Float"
+      ],
+      "price": 1800000,
+      "blurb": {
+        "ru": "Плавает, водозащищена IP67 — для воды и стройки.",
+        "en": "It floats, and it is IP67 waterproof — for water and building sites.",
+        "uz": "Suzadi va IP67 suvdan himoyalangan — suv va qurilish uchun."
+      },
+      "rangeCity": {
+        "ru": "до 1,5 км",
+        "en": "up to 1.5 km",
+        "uz": "1,5 km gacha"
+      },
+      "rangeOpen": {
+        "ru": "до 10 км",
+        "en": "up to 10 km",
+        "uz": "10 km gacha"
+      },
+      "url": {
+        "ru": "https://radiocom.uz/ru/motorola/tlkr-t92h2o",
+        "en": "https://radiocom.uz/en/motorola/tlkr-t92h2o",
+        "uz": "https://radiocom.uz/uz/motorola/tlkr-t92h2o"
+      },
+      "specs": {
+        "rows": [
+          {
+            "label": {
+              "ru": "Стандарт",
+              "en": "Standard",
+              "uz": "Standart"
+            },
+            "value": {
+              "ru": "PMR",
+              "en": "PMR",
+              "uz": "PMR"
+            }
+          },
+          {
+            "label": {
+              "ru": "Диапазон частот",
+              "en": "Frequency range",
+              "uz": "Chastota diapazoni"
+            },
+            "value": {
+              "ru": "446–446.1 МГц",
+              "en": "446–446.1 MHz",
+              "uz": "446–446.1 MGts"
+            }
+          },
+          {
+            "label": {
+              "ru": "Радиус действия",
+              "en": "Range",
+              "uz": "Ishlash radiusi"
+            },
+            "value": {
+              "ru": "до 1,5 км в городе, до 10 км на открытой местности",
+              "en": "up to 1.5 km in built-up areas, up to 10 km in the open",
+              "uz": "shaharda 1,5 km gacha, ochiq joyda 10 km gacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Класс защиты",
+              "en": "Ingress protection",
+              "uz": "Himoya darajasi"
+            },
+            "value": {
+              "ru": "IP67",
+              "en": "IP67",
+              "uz": "IP67"
+            }
+          },
+          {
+            "label": {
+              "ru": "Количество каналов",
+              "en": "Channels",
+              "uz": "Kanallar soni"
+            },
+            "value": {
+              "ru": "8 каналов + 121 кодов",
+              "en": "8 channels + 121 codes",
+              "uz": "8 kanal + 121 kod"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мелодии вызова",
+              "en": "Call tones",
+              "uz": "Chaqiruv ohanglari"
+            },
+            "value": {
+              "ru": "20 мелодий вызова",
+              "en": "20 call tones",
+              "uz": "20 chaqiruv ohangi"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мощность передатчика",
+              "en": "Transmit power",
+              "uz": "Uzatgich quvvati"
+            },
+            "value": {
+              "ru": "0,5 Вт",
+              "en": "0,5 W",
+              "uz": "0,5 Vt"
+            }
+          },
+          {
+            "label": {
+              "ru": "Размеры (Ш×В×Т)",
+              "en": "Dimensions (W×H×D)",
+              "uz": "O'lchamlar (K×B×Ch)"
+            },
+            "value": {
+              "ru": "61×178×38 мм",
+              "en": "61×178×38 mm",
+              "uz": "61×178×38 mm"
+            }
+          },
+          {
+            "label": {
+              "ru": "Вес",
+              "en": "Weight",
+              "uz": "Vazn"
+            },
+            "value": {
+              "ru": "233 г",
+              "en": "233 g",
+              "uz": "233 g"
+            }
+          },
+          {
+            "label": {
+              "ru": "Гарантийный срок",
+              "en": "Warranty",
+              "uz": "Kafolat muddati"
+            },
+            "value": {
+              "ru": "12 месяцев на радиоблок. Гарантия не распространяется на аксессуары и АКБ",
+              "en": "12 months on the radio unit. Accessories and batteries are not covered",
+              "uz": "Radioblokka 12 oy. Kafolat aksessuarlar va akkumulyatorlarga tatbiq etilmaydi"
+            }
+          }
+        ],
+        "inBox": [
+          {
+            "item": {
+              "ru": "Радиостанция",
+              "en": "Two-way radio",
+              "uz": "Radiostansiya"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Клипса на пояс",
+              "en": "Belt clip",
+              "uz": "Kamarga qisqich"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Аккумулятор Ni-MH",
+              "en": "Ni-MH battery",
+              "uz": "Ni-MH akkumulyator"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Type-C кабель",
+              "en": "Type-C cable",
+              "uz": "Type-C kabel"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "USB-кабель",
+              "en": "USB cable",
+              "uz": "USB kabel"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Переносной чемоданчик",
+              "en": "Carry case",
+              "uz": "Tashish chemodani"
+            },
+            "qty": null
+          },
+          {
+            "item": {
+              "ru": "Инструкция по эксплуатации",
+              "en": "User manual",
+              "uz": "Foydalanish qo'llanmasi"
+            },
+            "qty": null
+          }
+        ],
+        "features": [
+          {
+            "ru": "Корпус водонепроницаемый, противоударный",
+            "en": "Waterproof, shock-resistant housing",
+            "uz": "Suv o'tkazmaydigan, zarbaga chidamli korpus"
+          },
+          {
+            "ru": "Бесплатные вызовы",
+            "en": "Free calls",
+            "uz": "Bepul chaqiruvlar"
+          },
+          {
+            "ru": "Перезаряжаемые никель-металлгидридные аккумуляторы",
+            "en": "Rechargeable nickel-metal hydride batteries",
+            "uz": "Qayta quvvatlanadigan nikel-metallgidrid akkumulyatorlar"
+          },
+          {
+            "ru": "Сканирование и мониторинг каналов",
+            "en": "Channel scanning and monitoring",
+            "uz": "Kanallarni skanerlash va monitoring"
+          },
+          {
+            "ru": "Виброзвонок",
+            "en": "Vibrate alert",
+            "uz": "Tebranishli chaqiruv"
+          },
+          {
+            "ru": "ЖК-дисплей с подсветкой",
+            "en": "Backlit LCD display",
+            "uz": "Yoritilgan LCD displey"
+          },
+          {
+            "ru": "Встроенный автоматический фонарик",
+            "en": "Built-in automatic torch",
+            "uz": "Ichki avtomatik fonar"
+          },
+          {
+            "ru": "Клипсы со встроенными свистками",
+            "en": "Belt clips with integrated whistles",
+            "uz": "Ichki hushtakli qisqichlar"
+          },
+          {
+            "ru": "Блокировка клавиатуры",
+            "en": "Keypad lock",
+            "uz": "Klaviatura blokirovkasi"
+          },
+          {
+            "ru": "Индикатор заряда батареи",
+            "en": "Battery level indicator",
+            "uz": "Batareya zaryadi indikatori"
+          },
+          {
+            "ru": "Разъём для гарнитуры",
+            "en": "Headset connector",
+            "uz": "Garnitura uchun ulagich"
+          },
+          {
+            "ru": "Голосовая активация через гарнитуру (VOX)",
+            "en": "Voice activation via headset (VOX)",
+            "uz": "Garnitura orqali ovozli aktivatsiya (VOX)"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "xt185",
+      "brandSlug": "motorola",
+      "brand": "Motorola",
+      "name": "Motorola XT185",
+      "category": "amateur",
+      "tags": [
+        "PMR446",
+        "License-free"
+      ],
+      "price": 1500000,
+      "blurb": {
+        "ru": "PMR для розницы, HoReCa и общественных заведений.",
+        "en": "PMR for retail, HoReCa and public venues.",
+        "uz": "Chakana savdo, HoReCa va jamoat joylari uchun PMR."
+      },
+      "rangeCity": {
+        "ru": "до 1 км",
+        "en": "up to 1 km",
+        "uz": "1 km gacha"
+      },
+      "rangeOpen": {
+        "ru": "до 8 км",
+        "en": "up to 8 km",
+        "uz": "8 km gacha"
+      },
+      "url": {
+        "ru": "https://radiocom.uz/ru/motorola/xt185",
+        "en": "https://radiocom.uz/en/motorola/xt185",
+        "uz": "https://radiocom.uz/uz/motorola/xt185"
+      },
+      "specs": {
+        "rows": [
+          {
+            "label": {
+              "ru": "Стандарт",
+              "en": "Standard",
+              "uz": "Standart"
+            },
+            "value": {
+              "ru": "PMR",
+              "en": "PMR",
+              "uz": "PMR"
+            }
+          },
+          {
+            "label": {
+              "ru": "Диапазон частот",
+              "en": "Frequency range",
+              "uz": "Chastota diapazoni"
+            },
+            "value": {
+              "ru": "446–446.1 МГц",
+              "en": "446–446.1 MHz",
+              "uz": "446–446.1 MGts"
+            }
+          },
+          {
+            "label": {
+              "ru": "Радиус действия",
+              "en": "Range",
+              "uz": "Ishlash radiusi"
+            },
+            "value": {
+              "ru": "до 1 км в городе, до 8 км на открытой местности",
+              "en": "up to 1 km in built-up areas, up to 8 km in the open",
+              "uz": "shaharda 1 km gacha, ochiq joyda 8 km gacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Количество каналов",
+              "en": "Channels",
+              "uz": "Kanallar soni"
+            },
+            "value": {
+              "ru": "16 каналов",
+              "en": "16 channels",
+              "uz": "16 kanal"
+            }
+          },
+          {
+            "label": {
+              "ru": "Раций в комплекте",
+              "en": "Radios per kit",
+              "uz": "Komplektdagi radiostansiyalar"
+            },
+            "value": {
+              "ru": "2 шт",
+              "en": "2 pcs",
+              "uz": "2 dona"
+            }
+          },
+          {
+            "label": {
+              "ru": "Тип питания",
+              "en": "Power source",
+              "uz": "Quvvat manbayi"
+            },
+            "value": {
+              "ru": "Аккумулятор Li-Ion 1130 мА·ч",
+              "en": "Li-Ion battery, 1130 mAh",
+              "uz": "Li-Ion akkumulyator, 1130 mA·soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Ёмкость аккумулятора",
+              "en": "Battery capacity",
+              "uz": "Akkumulyator sig'imi"
+            },
+            "value": {
+              "ru": "1130 мА·ч",
+              "en": "1130 mAh",
+              "uz": "1130 mA·soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Время работы от аккумулятора",
+              "en": "Battery life",
+              "uz": "Akkumulyatordan ishlash vaqti"
+            },
+            "value": {
+              "ru": "до 24 часов",
+              "en": "up to 24 hours",
+              "uz": "24 soatgacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мощность передатчика",
+              "en": "Transmit power",
+              "uz": "Uzatgich quvvati"
+            },
+            "value": {
+              "ru": "0,5 Вт",
+              "en": "0,5 W",
+              "uz": "0,5 Vt"
+            }
+          },
+          {
+            "label": {
+              "ru": "Класс защиты",
+              "en": "Ingress protection",
+              "uz": "Himoya darajasi"
+            },
+            "value": {
+              "ru": "IP54",
+              "en": "IP54",
+              "uz": "IP54"
+            }
+          },
+          {
+            "label": {
+              "ru": "Страна производства",
+              "en": "Country of manufacture",
+              "uz": "Ishlab chiqarilgan mamlakat"
+            },
+            "value": {
+              "ru": "Китай",
+              "en": "China",
+              "uz": "Xitoy"
+            }
+          }
+        ],
+        "inBox": [
+          {
+            "item": {
+              "ru": "Радиостанция",
+              "en": "Two-way radio",
+              "uz": "Radiostansiya"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Клипса на пояс",
+              "en": "Belt clip",
+              "uz": "Kamarga qisqich"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Одноместный стакан для зарядки",
+              "en": "Single-unit charging cup",
+              "uz": "Bir o'rinli quvvatlash stakani"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Сетевое зарядное устройство с двумя разъёмами micro-USB",
+              "en": "Mains charger with two micro-USB outputs",
+              "uz": "Ikkita micro-USB chiqishli tarmoq quvvatlagichi"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Li-Ion аккумулятор",
+              "en": "Li-Ion battery",
+              "uz": "Li-Ion akkumulyator"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Ремешок для крепления",
+              "en": "Wrist strap",
+              "uz": "Mahkamlash tasmasi"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Гарнитура с микрофоном и кнопкой PTT",
+              "en": "Headset with microphone and PTT button",
+              "uz": "Mikrofon va PTT tugmali garnitura"
+            },
+            "qty": 2
+          },
+          {
+            "item": {
+              "ru": "Инструкция по эксплуатации",
+              "en": "User manual",
+              "uz": "Foydalanish qo'llanmasi"
+            },
+            "qty": null
+          }
+        ],
+        "features": [
+          {
+            "ru": "ЖК-дисплей с подсветкой",
+            "en": "Backlit LCD display",
+            "uz": "Yoritilgan LCD displey"
+          },
+          {
+            "ru": "Перезаряжаемые литиево-ионные аккумуляторы",
+            "en": "Rechargeable lithium-ion batteries",
+            "uz": "Qayta quvvatlanadigan litiy-ion akkumulyatorlar"
+          },
+          {
+            "ru": "Бесплатные вызовы",
+            "en": "Free calls",
+            "uz": "Bepul chaqiruvlar"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "xt420",
+      "brandSlug": "motorola",
+      "brand": "Motorola",
+      "name": "Motorola XT420",
+      "category": "professional",
+      "tags": [
+        "PMR446",
+        "License-free",
+        "IP55"
+      ],
+      "price": 2200000,
+      "blurb": {
+        "ru": "Безлицензионная PMR для HoReCa и объектной охраны.",
+        "en": "A licence-free PMR for HoReCa and on-site security.",
+        "uz": "HoReCa va obyekt qo'riqlash uchun litsenziyasiz PMR."
+      },
+      "rangeCity": {
+        "ru": "до 2 км в городе",
+        "en": "up to 2 km in built-up areas",
+        "uz": "shaharda 2 km gacha"
+      },
+      "rangeOpen": null,
+      "url": {
+        "ru": "https://radiocom.uz/ru/motorola/xt420",
+        "en": "https://radiocom.uz/en/motorola/xt420",
+        "uz": "https://radiocom.uz/uz/motorola/xt420"
+      },
+      "specs": {
+        "rows": [
+          {
+            "label": {
+              "ru": "Стандарт",
+              "en": "Standard",
+              "uz": "Standart"
+            },
+            "value": {
+              "ru": "PMR",
+              "en": "PMR",
+              "uz": "PMR"
+            }
+          },
+          {
+            "label": {
+              "ru": "Режим работы",
+              "en": "Operating mode",
+              "uz": "Ishlash rejimi"
+            },
+            "value": {
+              "ru": "Аналоговый",
+              "en": "Analogue",
+              "uz": "Analog"
+            }
+          },
+          {
+            "label": {
+              "ru": "Диапазон частот",
+              "en": "Frequency range",
+              "uz": "Chastota diapazoni"
+            },
+            "value": {
+              "ru": "446–446.1 МГц",
+              "en": "446–446.1 MHz",
+              "uz": "446–446.1 MGts"
+            }
+          },
+          {
+            "label": {
+              "ru": "Радиус действия",
+              "en": "Range",
+              "uz": "Ishlash radiusi"
+            },
+            "value": {
+              "ru": "до 2 км в городе",
+              "en": "up to 2 km in built-up areas",
+              "uz": "shaharda 2 km gacha"
+            }
+          },
+          {
+            "label": {
+              "ru": "Мощность передатчика",
+              "en": "Transmit power",
+              "uz": "Uzatgich quvvati"
+            },
+            "value": {
+              "ru": "0,5 Вт",
+              "en": "0,5 W",
+              "uz": "0,5 Vt"
+            }
+          },
+          {
+            "label": {
+              "ru": "Тип питания",
+              "en": "Power source",
+              "uz": "Quvvat manbayi"
+            },
+            "value": {
+              "ru": "Аккумулятор Li-Ion 2100 мА·ч",
+              "en": "Li-Ion battery, 2100 mAh",
+              "uz": "Li-Ion akkumulyator, 2100 mA·soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Ёмкость аккумулятора",
+              "en": "Battery capacity",
+              "uz": "Akkumulyator sig'imi"
+            },
+            "value": {
+              "ru": "2100 мА·ч",
+              "en": "2100 mAh",
+              "uz": "2100 mA·soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Время работы от аккумулятора",
+              "en": "Battery life",
+              "uz": "Akkumulyatordan ishlash vaqti"
+            },
+            "value": {
+              "ru": "~12 часов",
+              "en": "~12 hours",
+              "uz": "~12 soat"
+            }
+          },
+          {
+            "label": {
+              "ru": "Количество каналов",
+              "en": "Channels",
+              "uz": "Kanallar soni"
+            },
+            "value": {
+              "ru": "16 каналов",
+              "en": "16 channels",
+              "uz": "16 kanal"
+            }
+          },
+          {
+            "label": {
+              "ru": "Класс защиты",
+              "en": "Ingress protection",
+              "uz": "Himoya darajasi"
+            },
+            "value": {
+              "ru": "IP55",
+              "en": "IP55",
+              "uz": "IP55"
+            }
+          }
+        ],
+        "inBox": [
+          {
+            "item": {
+              "ru": "Радиостанция",
+              "en": "Two-way radio",
+              "uz": "Radiostansiya"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Кобура для ношения",
+              "en": "Carry holster",
+              "uz": "Tashish g'ilofi"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Сетевой адаптер",
+              "en": "Mains adapter",
+              "uz": "Tarmoq adapteri"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Зарядное устройство",
+              "en": "Charger",
+              "uz": "Quvvatlash qurilmasi"
+            },
+            "qty": 1
+          },
+          {
+            "item": {
+              "ru": "Аккумулятор",
+              "en": "Battery",
+              "uz": "Akkumulyator"
+            },
+            "qty": 1
+          }
+        ],
+        "features": [
+          {
+            "ru": "Система передачи сигнала с голосовым управлением VOX",
+            "en": "VOX voice-operated transmission",
+            "uz": "VOX ovozli boshqarish tizimi"
+          },
+          {
+            "ru": "Сканирование и мониторинг каналов",
+            "en": "Channel scanning and monitoring",
+            "uz": "Kanallarni skanerlash va monitoring"
+          },
+          {
+            "ru": "Шумоподавление",
+            "en": "Noise suppression",
+            "uz": "Shovqinni bostirish"
+          },
+          {
+            "ru": "Функция TOT — таймер, ограничивающий время передачи",
+            "en": "TOT — transmit time-out timer",
+            "uz": "TOT — uzatish vaqtini cheklovchi taymer"
+          }
+        ]
+      }
+    }
+  ]
+}

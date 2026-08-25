@@ -7,7 +7,7 @@
   },
   "entries": [
     {
-      "id": "urn:air:radiocom.uz:catalog:sitemap",
+      "identifier": "urn:air:radiocom.uz:catalog:sitemap",
       "displayName": "Sitemap",
       "description": "Every page on the site, in all three locales, with last-modified dates.",
       "type": "application/xml",
@@ -18,7 +18,30 @@
       ]
     },
     {
-      "id": "urn:air:radiocom.uz:summary:llms-ru",
+      "identifier": "urn:air:radiocom.uz:mcp:catalog",
+      "displayName": "Catalogue MCP server",
+      "description": "Read-only MCP tools over the two-way radio catalogue: list, search, full specifications and side-by-side comparison.",
+      "type": "application/json",
+      "url": "https://radiocom.uz/mcp",
+      "representativeQueries": [
+        "Which DMR radios does RADIOCOM sell and what do they cost?",
+        "Compare the RCD-70 PRO and the RCD-50 PRO",
+        "What ships in the box with a Motorola T82 Extreme?"
+      ]
+    },
+    {
+      "identifier": "urn:air:radiocom.uz:skills:index",
+      "displayName": "Agent skills index",
+      "description": "Skills describing how to query this site's catalogue and read its pages as Markdown.",
+      "type": "application/json",
+      "url": "https://radiocom.uz/.well-known/agent-skills/index.json",
+      "representativeQueries": [
+        "How do I query the RADIOCOM catalogue programmatically?",
+        "Does radiocom.uz expose an MCP server?"
+      ]
+    },
+    {
+      "identifier": "urn:air:radiocom.uz:summary:llms-ru",
       "displayName": "Site summary (ru)",
       "description": "Plain-text summary of the catalogue, services and contact details in ru.",
       "type": "text/plain",
@@ -30,7 +53,7 @@
       ]
     },
     {
-      "id": "urn:air:radiocom.uz:summary:llms-en",
+      "identifier": "urn:air:radiocom.uz:summary:llms-en",
       "displayName": "Site summary (en)",
       "description": "Plain-text summary of the catalogue, services and contact details in en.",
       "type": "text/plain",
@@ -42,7 +65,7 @@
       ]
     },
     {
-      "id": "urn:air:radiocom.uz:summary:llms-uz",
+      "identifier": "urn:air:radiocom.uz:summary:llms-uz",
       "displayName": "Site summary (uz)",
       "description": "Plain-text summary of the catalogue, services and contact details in uz.",
       "type": "text/plain",

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "radiocom-catalog",
+      "type": "skill-md",
+      "description": "Query the RADIOCOM two-way radio catalogue over MCP, or read any page of the site as Markdown.",
+      "url": "https://radiocom.uz/.well-known/agent-skills/radiocom-catalog/SKILL.md",
+      "digest": "sha256:1a836cc1d35a7199184c8441526c21749ce0789db7ae529057ee6596e2889247"
+    }
+  ]
+}
