@@ -37,7 +37,7 @@
     "Trade-in program"
   ],
   "industries": {
-    "title": "Industries",
+    "title": "Two-way radios for business",
     "kicker": "Turnkey solutions",
     "overview_sub": "We designed and tuned radio systems for six key industries in Uzbekistan. Pick yours — we’ll show what fits.",
     "view_all": "All industries",
@@ -67,19 +67,19 @@
       ],
       "outcomes": [
         {
-          "n": "0",
-          "u": "licensing",
-          "l": "PMR channels — no permits needed"
+          "n": "7,400",
+          "u": "m²",
+          "l": "Up to 6 floors of coverage — Motorola CLP 446 and CLK 446"
         },
         {
-          "n": "12",
-          "u": "hours",
-          "l": "Battery per shift"
+          "n": "68",
+          "u": "g",
+          "l": "Radio weight: invisible under a uniform, headset in the box"
         },
         {
-          "n": "3",
-          "u": "years",
-          "l": "Motorola warranty"
+          "n": "0.5",
+          "u": "W",
+          "l": "PMR 446 band — no frequency paperwork"
         }
       ],
       "quote": "Guests no longer hear what’s happening in the kitchen. Shifts got calmer and turnover went up — the team clears tables faster.",
@@ -98,14 +98,16 @@
           "a": "Yes — free test on your site."
         }
       ],
-      "seo": "HoReCa"
+      "seo": "HoReCa",
+      "h1": "Two-way radios for hotels and restaurants",
+      "clients": ""
     },
     "construction": {
       "name": "Construction",
       "short": "Construction",
       "desc": "Massive sites. IP67 ruggedness, long-range coverage.",
       "problem": "Dust, vibration, kilometers between crews. Regular phones don’t survive and don’t cover the site.",
-      "solution": "Rugged DMR radios with IP67/IP68 protection and repeaters for full site coverage.",
+      "solution": "Rugged IP67 DMR radios: RCD-70 PRO on site, RCD-50 and RCD-60 PRO for the crews.",
       "pains": [
         "Foreman can’t reach crane ops or fitters",
         "Phones crack, drown, die in dust",
@@ -113,19 +115,19 @@
       ],
       "outcomes": [
         {
-          "n": "IP68",
+          "n": "IP67",
           "u": "",
-          "l": "Dust, water, 2 m drops"
+          "l": "Dust and water on site — RCD-70 PRO"
         },
         {
-          "n": "8",
+          "n": "up to 10",
           "u": "km",
-          "l": "Range with repeater"
+          "l": "In open ground — RCD-70 PRO"
         },
         {
-          "n": "24",
-          "u": "hours",
-          "l": "System live on-site"
+          "n": "DMR",
+          "u": "",
+          "l": "Clear digital audio over site noise — RCD-50, RCD-60 and RCD-70 PRO"
         }
       ],
       "quote": "We used to lose 2 hours a day chasing foremen. Now — press a button, the whole shift hears it. Paid off in a month.",
@@ -133,7 +135,7 @@
       "faq": [
         {
           "q": "Will radios survive winter builds?",
-          "a": "Yes. Motorola DP4400/DP4600 run from −30°C to +60°C."
+          "a": "IP67 keeps out the dust, grit and water jets of a site. The exact temperature range depends on the model — we will bring radios to your site and test them in your conditions before you buy."
         },
         {
           "q": "Do I need a repeater?",
@@ -141,10 +143,12 @@
         },
         {
           "q": "What if a radio ends up in wet concrete?",
-          "a": "IP68 survives submersion. We restore or replace under warranty."
+          "a": "IP67 withstands dust and water jets. If a radio does fail, we repair or replace it under the 12-month warranty in our own service centre."
         }
       ],
-      "seo": "Construction"
+      "seo": "Construction",
+      "h1": "Two-way radios for construction",
+      "clients": ""
     },
     "security": {
       "name": "Security",
@@ -159,19 +163,19 @@
       ],
       "outcomes": [
         {
-          "n": "AES256",
+          "n": "AES-256",
           "u": "",
-          "l": "Military-grade encryption"
+          "l": "Voice encryption in digital mode — RCD-50, RCD-60 and RCD-70 PRO"
         },
         {
           "n": "GPS",
           "u": "",
-          "l": "Every post on live map"
+          "l": "Every post's position at the desk — RCD-70 PRO"
         },
         {
-          "n": "1",
-          "u": "button",
-          "l": "Alarm to full shift in <1 s"
+          "n": "up to 3",
+          "u": "km",
+          "l": "In dense urban blocks — RCD-70 PRO"
         }
       ],
       "quote": "We standardized on encrypted DMR across all our sites. Dispatch sees every officer, and the panic button has already saved us twice.",
@@ -190,14 +194,16 @@
           "a": "To everyone on the channel plus the dispatch console with coordinates."
         }
       ],
-      "seo": "Security"
+      "seo": "Security",
+      "h1": "Two-way radios for security",
+      "clients": ""
     },
     "mining": {
       "name": "Mining · Oil · Gas",
       "short": "Mining",
       "desc": "Open pits, mines, oil-and-gas infrastructure.",
       "problem": "Huge areas, hazardous zones, strict intrinsic-safety requirements.",
-      "solution": "ATEX-compatible DP4800/DP4600 radios with SLR8000 repeaters. Full pit coverage plus dispatcher link.",
+      "solution": "Digital RCD PRO radios with IP67 protection, encryption and a shift-long battery. We size the kit to the site.",
       "pains": [
         "3 km pit — regular radios can’t reach across",
         "Standard electronics banned in Ex zones",
@@ -205,19 +211,19 @@
       ],
       "outcomes": [
         {
-          "n": "ATEX",
+          "n": "IP67",
           "u": "",
-          "l": "Intrinsically-safe models"
+          "l": "Dust and water on site — RCD-70 PRO"
         },
         {
-          "n": "15",
-          "u": "km",
-          "l": "Open-terrain range"
+          "n": "AES-256",
+          "u": "",
+          "l": "Voice encryption in digital mode — the RCD PRO range"
         },
         {
-          "n": "99.9%",
-          "u": "",
-          "l": "Uptime with redundant repeater"
+          "n": "3,600",
+          "u": "mAh",
+          "l": "A full shift on one charge — RCD-70 and RCD-50 PRO"
         }
       ],
       "quote": "Radiocom rolled out the DMR network across the pit in 3 days. Second winter running — zero downtime.",
@@ -225,7 +231,7 @@
       "faq": [
         {
           "q": "Do you supply ATEX-certified units?",
-          "a": "Yes — Motorola DP4801 Ex versions."
+          "a": "There are no intrinsically safe (Ex) versions in the current catalogue. Tell us which class your site requires and we will source it separately."
         },
         {
           "q": "Do I need frequency licensing?",
@@ -233,10 +239,12 @@
         },
         {
           "q": "What warranty on industrial builds?",
-          "a": "3 years with annual service at our center."
+          "a": "12 months on the radio unit. Servicing is done in our authorised centre with original parts."
         }
       ],
-      "seo": "Mining, Oil and Gas"
+      "seo": "Mining, Oil and Gas",
+      "h1": "Two-way radios for mining, oil and gas",
+      "clients": "Trusted by: Uz-Kor Gas Chemical, ERIELL, ENTER Engineering, HYUNDAI Engineering, SAMSUNG Engineering Construction."
     },
     "transport": {
       "name": "Transport · Logistics",
@@ -251,19 +259,19 @@
       ],
       "outcomes": [
         {
-          "n": "100%",
-          "u": "UZ",
-          "l": "LTE nationwide coverage"
-        },
-        {
-          "n": "1",
-          "u": "flat rate",
-          "l": "No per-minute billing"
-        },
-        {
-          "n": "∞",
+          "n": "GPS",
           "u": "",
-          "l": "Group channels for convoys"
+          "l": "Crew position at the dispatcher — RCD-70 PRO"
+        },
+        {
+          "n": "up to 10",
+          "u": "km",
+          "l": "On the road and in open ground — RCD-70, RCD-60 and RCD-50 PRO"
+        },
+        {
+          "n": "3,600",
+          "u": "mAh",
+          "l": "A shift behind the wheel without recharging — RCD-70 and RCD-50 PRO"
         }
       ],
       "quote": "Moved the whole fleet to PoC — 40% saved on comms, and dispatch sees every driver on the live map.",
@@ -271,7 +279,7 @@
       "faq": [
         {
           "q": "Does PoC work on highways and mountains?",
-          "a": "Anywhere with LTE — 97% coverage across UZ."
+          "a": "They work anywhere the operator has network. Check coverage on your particular route with your own mobile operator."
         },
         {
           "q": "What’s the monthly cost?",
@@ -282,7 +290,9 @@
           "a": "Yes, through a dispatch gateway."
         }
       ],
-      "seo": "Transport and Logistics"
+      "seo": "Transport and Logistics",
+      "h1": "Two-way radios for transport and logistics",
+      "clients": ""
     },
     "manufacturing": {
       "name": "Manufacturing · Warehousing",
@@ -297,19 +307,19 @@
       ],
       "outcomes": [
         {
-          "n": "40%",
+          "n": "DMR",
           "u": "",
-          "l": "Less time coordinating shifts"
+          "l": "Digital voice without interference — the RCD PRO range"
         },
         {
-          "n": "60dB",
-          "u": "",
-          "l": "Active noise suppression"
+          "n": "up to 2.5",
+          "u": "km",
+          "l": "Across shop floors and yards — RCD-50 and RCD-60 PRO"
         },
         {
-          "n": "1C",
-          "u": "",
-          "l": "PDA integrations included"
+          "n": "0",
+          "u": "UZS/min",
+          "l": "Your own frequency: no subscription, no traffic charges"
         }
       ],
       "quote": "DMR plus PDAs rolled out in a week. Storemen dropped the paper, picking sped up almost 2×.",
@@ -328,7 +338,9 @@
           "a": "2 to 7 days depending on plant size."
         }
       ],
-      "seo": "Manufacturing and Warehousing"
+      "seo": "Manufacturing and Warehousing",
+      "h1": "Two-way radios for manufacturing and warehouses",
+      "clients": ""
     },
     "banner_title": "Not sure which radio fits your operation?",
     "banner_sub": "Tell us your industry — we will recommend the right system within 15 minutes.",
@@ -424,7 +436,7 @@
   },
   "poc": {
     "kicker": "PoC · PUSH-TO-TALK OVER CELLULAR",
-    "title_a": "Global range.",
+    "title_a": "PoC radios.",
     "title_b": "Zero repeaters.",
     "sub": "Push-to-Talk over LTE and WiFi. Instant comms with no infrastructure to build — group calls, GPS and multimedia included.",
     "vs_title": "PoC vs PMR",
@@ -483,7 +495,7 @@
   },
   "service": {
     "kicker": "AUTHORIZED SERVICE CENTER",
-    "title_a": "Repairs",
+    "title_a": "Radio repair,",
     "title_b": "you can trust.",
     "sub": "Warranty and post-warranty service for Motorola, Radiocom and Vertex Standard radios. Original parts, fixed pricing, diagnostics on dedicated hardware.",
     "request_repair": "Request repair",
@@ -560,7 +572,7 @@
   },
   "home": {
     "hero": {
-      "title": "Pro Communication. Unbreakable.",
+      "title": "Professional two-way radios. Unbreakable.",
       "sub": "Motorola and Radiocom — authorized service, free testing and nationwide delivery.",
       "cta_primary": "Book Free Test",
       "cta_secondary": "Learn more",
@@ -568,7 +580,7 @@
     },
     "feature": {
       "title": "Built for the toughest sites.",
-      "sub": "IP68 rugged. −30°C to +60°C. AES256 encryption. GPS on every unit.",
+      "sub": "IP67 protection. Digital DMR. AES-256 encryption. GPS on the RCD-70 PRO.",
       "link": "Explore PoC"
     },
     "bento": {
@@ -709,9 +721,9 @@
     "sub": "We work directly with manufacturers: genuine devices, warranty and service in Tashkent.",
     "view": "View models",
     "models": "models",
-    "radiocom_title": "Radiocom RC and RCD",
+    "radiocom_title": "Radiocom RC and RCD radios",
     "radiocom_desc": "Our own Radiocom line: analog RC handhelds and digital RCD DMR radios with warranty and service.",
-    "motorola_title": "Motorola",
+    "motorola_title": "Motorola radios",
     "motorola_desc": "Talkabout, XT and TLKR — license-free PMR radios from the global market leader.",
     "lineup": "The line-up",
     "why_title": "Why buy from us",
@@ -749,7 +761,7 @@
     "spec_column": "Specification"
   },
   "search": {
-    "title": "Search the catalogue",
+    "title": "Search the radio catalogue",
     "sub": "Model, standard, ingress rating, range — search however suits you.",
     "placeholder": "Try: IP67, DMR, RCD-70",
     "label": "Search query",
@@ -766,5 +778,9 @@
     "pages": "Pages",
     "models": "Models",
     "industries": "Industries"
+  },
+  "clients": {
+    "title": "Trusted by",
+    "sub": "Industry, banks, hotels, retail chains and state agencies across Uzbekistan."
   }
 }

@@ -46,6 +46,7 @@ import type { CSSProperties } from "react";
 export function ProductShot({
   src,
   srcSmall,
+  srcTiny,
   alt,
   width,
   height,
@@ -68,6 +69,18 @@ export function ProductShot({
    * 404s.
    */
   srcSmall?: string;
+  /**
+   * The `@400` variant, also imported. Same rule as `srcSmall`: omit it when
+   * the file does not exist rather than advertising a candidate that 404s.
+   *
+   * This exists because the smallest candidate on offer was 800w, and several
+   * of these render far smaller than that. Lighthouse measured the home page's
+   * cutouts arriving at 574x800 for a 289x403 slot and 731x800 for 384x420 —
+   * roughly 164 KB of pixels the layout never used. A 400w candidate is chosen
+   * at DPR 1 and ignored at DPR 2, where 800w is still the correct pick, so
+   * nothing gets softer on a phone.
+   */
+  srcTiny?: string;
   alt: string;
   width: number;
   height: number;
@@ -123,7 +136,13 @@ export function ProductShot({
       ) : null}
       <img
         src={src}
-        srcSet={srcSmall ? `${srcSmall} 800w, ${src} 1600w` : undefined}
+        srcSet={
+          srcSmall
+            ? [srcTiny && `${srcTiny} 400w`, `${srcSmall} 800w`, `${src} 1600w`]
+                .filter(Boolean)
+                .join(", ")
+            : undefined
+        }
         sizes={srcSmall ? sizes : undefined}
         alt={alt}
         width={width}

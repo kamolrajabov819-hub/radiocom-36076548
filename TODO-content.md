@@ -590,3 +590,144 @@ considerably more than 16.7 KB.
 The remaining eager weight is framework and motion library. Removing
 framer-motion or Lenis would buy real bytes, but that is a decision about how
 the site feels, not a performance fix, so it stays yours.
+
+## The keyword set the headings are built around
+
+**What this is and is not.** I had no live keyword tool in this session, so there
+are no search volumes here and I have not invented any. This is the target set
+derived from the vocabulary the catalogue itself uses and the market the site
+sells into. Run it through a real tool when you have one — the headings are easy
+to adjust once you know which of these actually carry volume in Uzbekistan.
+
+| Intent | RU | UZ | EN |
+|---|---|---|---|
+| Category | рации, радиостанции, портативные радиостанции | ratsiya, ratsiyalar | two-way radios, walkie-talkies |
+| Qualifier | профессиональные рации | professional ratsiyalar | professional two-way radios |
+| Technology | цифровые DMR рации, PoC-рации, PMR446 | raqamli DMR, PoC ratsiyalar | digital DMR radios, PoC radios |
+| Commercial | купить рацию Ташкент, цена рации | ratsiya narxi Toshkent | buy two-way radios Tashkent |
+| Brand | Motorola Ташкент, Radiocom рации | Motorola Toshkent | Motorola Tashkent |
+| Service | ремонт раций Ташкент | ratsiya ta'miri | radio repair Tashkent |
+| Vertical | рации для стройки / охраны / склада / отеля | qurilish / xavfsizlik uchun ratsiya | radios for construction / security |
+
+**What changed.** The meta titles were already carrying these — «Рации и
+радиостанции в Ташкенте», «Ремонт рации в Ташкенте», «PoC-рации». The `h1`s were
+not: the home page said «Про-связь. Несокрушимая.», the industry pages said
+«Строительство.», and the brand pages said «Motorola». So a visitor arriving on
+a title-tag match landed on a heading that confirmed nothing, and the strongest
+on-page signal after the title was spent on voice alone.
+
+Every `h1` now leads with the category noun and keeps the two-beat rhythm the
+site is written in: «Профессиональные рации. Несокрушимые.», «Рации для
+строительства», «Ремонт раций, которому доверяют.» The rule applied throughout —
+if a heading reads like it was written for a crawler, it is wrong.
+
+Per-industry `h1`s are written out one by one rather than interpolated from a
+`для {{name}}` pattern, because Russian needs the genitive («для
+строительства», not «для Строительство») and Uzbek a postposition. A pattern
+would have produced ungrammatical headings in two of the three languages.
+
+## The MOTOTRBO shopping list
+
+Your «Что вы получите» rewrite was built around Motorola's professional DMR
+line, and none of it is in `products.ts`. The catalogue's Motorola range is
+PMR446 consumer and light-commercial: Talkabout T-series, XT185, XT420, CLP 446,
+CLK 446. Missing, and named in the drafts:
+
+**DP4600 · DP4800 · DP4400 · DP3441 · DP2600** (handhelds) ·
+**DM2600 · DM4600** (mobile stations) · **SLR5500 · SLR8000** (repeaters) ·
+**Caltta** PoC radios.
+
+Also unsupported by any line in `products.ts` or `specs.ts`, so not shipped:
+the **−30…+60 °C** operating range, **25 W** mobile output, **1000 channels**,
+the **FM** intrinsic-safety rating, and lone-worker monitoring.
+
+Adding the DMR line is a data task — names, specs, prices, photos into
+`products.ts` and `specs.ts` — after which the six industry pages can carry the
+copy you actually wrote. Until then they carry stats that trace to real rows.
+
+### What the pages claimed before, which is why this mattered
+
+The stat blocks were not merely unsupported, they were largely invented, and
+several contradicted the catalogue outright:
+
+| Page | Claimed | Reality |
+|---|---|---|
+| Добыча | `ATEX` искробезопасное | zero occurrences anywhere in the data |
+| Добыча | `15 км` range | the catalogue's maximum is **10 km** |
+| Добыча | `99.9%` network uptime | invented |
+| Добыча | `3 года` warranty | `specs.ts` says **12 месяцев на радиоблок** |
+| Строительство | `IP68` | zero occurrences — **IP67** is the real rating |
+| Строительство | `8 км с ретранслятором` | no repeater in the catalogue |
+| Транспорт | `100% РУз` LTE coverage | a claim about an operator's network |
+| Транспорт | `97% покрытия` | same |
+| Производство | `40%` less coordination time | invented |
+| Производство | `60 дБ` noise cancelling | not in any spec row |
+| HoReCa | `3 года` Motorola warranty | 12 months |
+
+The FAQ answers carried the same problem — «поставляем ATEX-версии Motorola
+DP4801 Ex» and «Motorola DP4400/DP4600 работают от −30°C до +60°C» both named
+products that do not exist here. Those are rewritten too: the mining page now
+says plainly that there are no Ex versions in the current catalogue and invites
+the buyer to say which class they need.
+
+## The «Нам доверяют» logo strip — what I decided and what is yours
+
+52 client logos, on the home page, both brand pages, PoC, service and every
+industry page, immediately above the contact block.
+
+**Four of the 52 are state bodies, not two.** You confirmed МВД (Ichki ishlar
+vazirligi) and Прокуратура. Reading the other logos to write alt text turned up
+two more of the same kind: the **Ministry of Justice** (Adliya vazirligi) and
+the **State Security Service** (Davlat xavfsizlik xizmati). I included all four,
+consistently with your decision on the first two — but you only saw two named
+when you made it, so say if the other two should come out. They are one line
+each in `src/data/clients.ts`.
+
+**Nineteen filenames were unreadable**, so every logo was identified by opening
+it. `AB-1` is Asakabank, `CE-1` is Çalık Enerji, `ozv` is Özgüven, `carf` is
+Carrefour, `marr` is Courtyard by Marriott, `inrer` is International Hotel
+Tashkent, `H-1` is HAVAS, `MC-1` is Magic City. The files are renamed to match,
+so `src/assets/companies-trust/` now reads as a list of companies rather than a
+list of codes. If I have misread one, the fix is the `name` in
+`src/data/clients.ts` — the alt text and the filename both come from there.
+
+This mattered because a glob over the directory would have shipped
+`alt="AB-1"`, which is worse than nothing: it tells a screen-reader user
+nothing and hands a crawler a string with no meaning. The strip is the best
+credibility asset on the site and it should be legible to both.
+
+## Image descriptors: a known inaccuracy that currently costs nothing
+
+`scripts/build-image-variants.ts` scales by the **longest edge**, so a portrait
+source's `@800` file is not 800px wide. `rc-50-device@800.webp` is 224px across;
+`radio-macro-cutout@800.webp` is 597px; the industry posters' `@800` is 533px.
+
+Most `srcSet` strings in the app declare a flat `400w, 800w, 1600w`, which for
+those files overstates what they hold. Where I added new candidates — the
+posters, the industry heroes, the service bench strip — the descriptors carry
+the **real** widths instead, because those slots are small enough for the
+difference to decide which file the browser picks.
+
+**Measured, before changing anything: this has never cost the site a pixel.**
+Across all 56 `/ru/` routes at DPR 2, 38 of 624 rendered images were genuinely
+under-served, and every single one of them had *no* `srcSet` at all — not one
+was under-served because a descriptor lied. Those 38 are now down to 5, and all
+five are source-asset ceilings (the master file is simply smaller than a Retina
+desktop wants):
+
+| File | Has | Wanted at DPR 2 |
+|---|---|---|
+| `radios-pair-crossed-cutout.webp` | 889px | 2246px |
+| `industry-*.jpg` | 1400px | 3168px |
+| `service-tech-light.jpg` | 1264px | 2561px |
+| `rcd-70-kit.webp` | 1080px | 2072px |
+| `hero-rcd60-cutout.webp` | 597px | 1044px |
+
+Nothing to fix in code — these need larger originals, which is a photography
+task. They are all fine at DPR 1 and on phones.
+
+**Why it is worth writing down anyway:** the finding holds for the slot sizes
+the pages use *today*. Widen a slot, or drop one of these images into a bigger
+frame, and a nominal descriptor could start choosing the wrong file. The durable
+fix, if that ever happens, is for the pipeline to emit a manifest of real widths
+rather than for call sites to hardcode them.

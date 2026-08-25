@@ -232,6 +232,16 @@ function columnFor(p: Product, rows: { id: string }[], lang: Lang): CompareColum
     media: (
       <img
         src={p.image}
+        /* The column head renders these at 96px tall, 128px from `md` up —
+           measured 121px wide. With no `srcSet` the table was pulling the
+           1600px masters: 208 KB, 144 KB and 119 KB for three thumbnails,
+           471 KB of the compare page's 986 KB on a phone. */
+        srcSet={
+          p.imageTiny && p.imageSmall
+            ? `${p.imageTiny} 400w, ${p.imageSmall} 800w, ${p.image} 1600w`
+            : undefined
+        }
+        sizes="130px"
         alt={p.name}
         loading="lazy"
         width={512}

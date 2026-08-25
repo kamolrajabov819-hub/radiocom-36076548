@@ -49,7 +49,7 @@ export function SitemapPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={spring}
         >
-          <SectionHead align="left" title={t("sitemap.title")} sub={t("sitemap.sub")} />
+          <SectionHead as="h1" align="left" title={t("sitemap.title")} sub={t("sitemap.sub")} />
         </motion.div>
 
         <div className="grid grid-cols-1 gap-x-12 gap-y-14 md:grid-cols-3">

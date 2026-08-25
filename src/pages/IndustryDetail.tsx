@@ -6,7 +6,11 @@ import { brandCase } from "@/lib/brand";
 import { motion } from "framer-motion";
 import { ChevronRight, FileDown, Check, Quote, Radio, Repeat, Wrench } from "lucide-react";
 import { industryPicks, type IndustrySlug } from "@/data/industries";
-import { INDUSTRY_IMAGES as IMAGES } from "@/data/industry-images";
+import {
+  INDUSTRY_IMAGES as IMAGES,
+  INDUSTRY_IMAGE_SRCSET as SRCSET,
+  INDUSTRY_IMAGE_SRCSET_SMALL as SRCSET_SMALL,
+} from "@/data/industry-images";
 import { visibleProducts } from "@/data/products";
 import { openLead } from "@/components/LeadFormSheet";
 import { CountUp } from "@/components/CountUp";
@@ -14,6 +18,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { Section, SectionHead } from "@/components/Section";
 import { Faq } from "@/components/Faq";
 import { BentoGrid, FeatureCard } from "@/components/apple";
+import { TrustedBy } from "@/components/TrustedBy";
 // The client's own price list, dated 29.06.26. Replaces a CDN pointer to a
 // catalogue PDF that only existed on radiocom.lovable.app.
 import priceListPdf from "@/assets/radiocom-price-list.pdf";
@@ -48,16 +53,37 @@ export function IndustryPage() {
           transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
           className="absolute inset-0"
         >
-          <img
-            src={IMAGES[s]}
-            alt=""
-            width={1600}
-            height={1067}
-            fetchPriority="high"
-            decoding="sync"
-            data-parallax="0.18"
-            className="absolute inset-0 h-full w-full scale-110 object-cover"
-          />
+          {/* `<picture>`, because on a phone the right answer is not the
+              largest file the browser can justify.
+
+              This frame is full-bleed and `scale-110`, so `sizes` is 110vw —
+              429 CSS px on a 390px phone, 858 device pixels at DPR 2. That is
+              past the 800w candidate, so a plain `<img>` correctly reaches for
+              the 1400px master and spends 288 KB on it, on the LCP element of
+              six pages.
+
+              Narrowing `sizes` to force a smaller pick would be a lie about
+              the layout. Art direction is the honest lever: below 768px the
+              menu simply does not include the master, so the browser takes
+              800w — 1.86x density across the slot, behind a gradient that runs
+              from solid black to black/25. There is nothing there to resolve.
+              Wide viewports, where the photograph is actually large and only
+              lightly scrimmed at its foot, keep the full set. */}
+          <picture>
+            <source media="(max-width: 768px)" srcSet={SRCSET_SMALL[s]} sizes="110vw" />
+            <img
+              src={IMAGES[s]}
+              srcSet={SRCSET[s]}
+              sizes="110vw"
+              alt=""
+              width={1400}
+              height={900}
+              fetchPriority="high"
+              decoding="sync"
+              data-parallax="0.18"
+              className="absolute inset-0 h-full w-full scale-110 object-cover"
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/25" />
         </motion.div>
 
@@ -74,7 +100,16 @@ export function IndustryPage() {
             transition={{ ...spring, delay: 0.2 }}
             className="headline-hero mt-6"
           >
-            {industryName}.
+            {/* «Рации для строительства», not «Строительство.»
+                
+                The bare industry name told a visitor nothing they did not
+                already know from clicking, and confirmed nothing for someone
+                who arrived from a search for «рации для стройки» — the one
+                moment the page has to say "yes, this is the thing you looked
+                for". Each industry carries its own written-out h1 rather than a
+                `для {{name}}` pattern, because Russian needs the genitive and
+                Uzbek a postposition, and neither survives interpolation. */}
+            {t(`industries.${s}.h1`)}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -129,6 +164,23 @@ export function IndustryPage() {
               </motion.div>
             ))}
           </dl>
+
+          {/* The client line, where an industry has one.
+              
+              Only the mining page carries it today, and it is the strongest
+              thing on that page: a buyer weighing radios for an oil and gas
+              site trusts five names they recognise more than any spec row.
+              Every industry carries the key, holding an empty string where
+              there is nothing to say. That is what keeps `verify-i18n`'s
+              dynamic-key check meaningful: it requires an interpolated `t()`
+              key to resolve across the whole set it iterates, which is right —
+              a key present on one industry and missing on five renders as raw
+              text on the other five. Truthiness, not a key comparison. */}
+          {t(`industries.${s}.clients`) && (
+            <motion.p {...fadeUpAt(3)} className="mt-12 max-w-3xl text-[15px] text-cool">
+              {t(`industries.${s}.clients`)}
+            </motion.p>
+          )}
         </Section>
       )}
 
@@ -292,6 +344,7 @@ export function IndustryPage() {
           </div>
         </div>
       </Section>
+      <TrustedBy />
     </div>
   );
 }

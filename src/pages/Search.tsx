@@ -90,7 +90,7 @@ export function SearchPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={spring}
         >
-          <SectionHead align="left" title={t("search.title")} sub={t("search.sub")} />
+          <SectionHead as="h1" align="left" title={t("search.title")} sub={t("search.sub")} />
         </motion.div>
 
         {/* A real GET form, not a controlled input.
@@ -141,9 +141,15 @@ export function SearchPage() {
             <p className="subhead measure text-[17px]">{t("search.prompt")}</p>
           ) : results.length ? (
             <>
-              <p className="text-[15px] text-cool">
+              {/* An `h2`, not a `p`, because it is the only thing naming the
+                  block of results underneath it. `ProductCard` titles are `h3`,
+                  so without this the outline jumped straight from the page `h1`
+                  to `h3` and a screen-reader user navigating by heading level
+                  fell into the cards with nothing telling them what the list
+                  was. It keeps the quiet styling it always had. */}
+              <h2 className="text-[15px] font-normal text-cool">
                 {t("search.results", { count: results.length })}
-              </p>
+              </h2>
               <div
                 data-stagger
                 className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"

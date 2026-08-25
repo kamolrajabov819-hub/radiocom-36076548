@@ -21,10 +21,13 @@ import heroImage800 from "@/assets/hero-rcd60-cutout@800.webp";
 // file, not in the layout.
 import kitWide from "@/assets/cutout/kit-flatlay-cutout.webp";
 import kitWide800 from "@/assets/cutout/kit-flatlay-cutout@800.webp";
+import kitWide400 from "@/assets/cutout/kit-flatlay-cutout@400.webp";
 import macroWide from "@/assets/cutout/macro-display-cutout.webp";
 import macroWide800 from "@/assets/cutout/macro-display-cutout@800.webp";
+import macroWide400 from "@/assets/cutout/macro-display-cutout@400.webp";
 import radiosPair from "@/assets/cutout/pair-floating-cutout.webp";
 import radiosPair800 from "@/assets/cutout/pair-floating-cutout@800.webp";
+import radiosPair400 from "@/assets/cutout/pair-floating-cutout@400.webp";
 // The grille macro that used to be a CDN pointer. This cutout is the same
 // subject shot properly: alpha, so it can float on a tinted band.
 import bentoDetail from "@/assets/radio-macro-cutout.webp";
@@ -33,12 +36,11 @@ import bentoDetail800 from "@/assets/radio-macro-cutout@800.webp";
 // the delivery claim, photographed. Shared with the brand pages, which use the
 // same frame for the warranty card.
 import retailBox from "@/assets/cutout/hand-retail-box-cutout@800.webp";
+import retailBox400 from "@/assets/cutout/hand-retail-box-cutout@400.webp";
+import { INDUSTRY_IMAGE_SRCSET } from "@/data/industry-images";
 import horecaImg from "@/assets/industry-horeca.jpg";
-import horecaImg800 from "@/assets/industry-horeca@800.jpg";
 import constructionImg from "@/assets/industry-construction.jpg";
-import constructionImg800 from "@/assets/industry-construction@800.jpg";
 import securityImg from "@/assets/industry-security.jpg";
-import securityImg800 from "@/assets/industry-security@800.jpg";
 import { openLead } from "@/components/LeadFormSheet";
 import { Section, SectionHead } from "@/components/Section";
 import { BentoGrid, FeatureCard, StackedTile } from "@/components/apple";
@@ -47,6 +49,7 @@ import { Magnetic } from "@/components/Magnetic";
 import { visibleProducts } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
 import { CountUp } from "@/components/CountUp";
+import { TrustedBy } from "@/components/TrustedBy";
 import { spring, fadeUpAt } from "@/lib/springs";
 import { DESKTOP, useGsap, useScrollChoreography } from "@/lib/motion";
 
@@ -63,6 +66,7 @@ export function HomePage() {
       <IndustriesTeaser />
       <FeaturedCatalog />
       <FinalCta />
+      <TrustedBy />
     </div>
   );
 }
@@ -306,6 +310,7 @@ function ValueShelf() {
               src={kitWide}
               cutout
               srcSmall={kitWide800}
+              srcTiny={kitWide400}
               alt=""
               width={1600}
               height={1111}
@@ -342,6 +347,7 @@ function ValueShelf() {
               src={radiosPair}
               cutout
               srcSmall={radiosPair800}
+              srcTiny={radiosPair400}
               alt=""
               width={1149}
               height={1600}
@@ -363,7 +369,7 @@ function ValueShelf() {
             itself. The other two claims ("free test", "35+ models") have no
             equivalent frame, and inventing one is what the brief rules out. */}
         {[
-          { key: "delivery", Icon: Truck, photo: retailBox },
+          { key: "delivery", Icon: Truck, photo: retailBox, photoTiny: retailBox400 },
           { key: "test", Icon: Sparkles },
           { key: "models", Icon: Package },
         ].map((it, i) => (
@@ -377,6 +383,10 @@ function ValueShelf() {
               it.photo ? (
                 <img
                   src={it.photo}
+                  /* Rendered at 130px tall, ~280px wide, and shipping the full
+                     800px file because it had no `srcSet` at all. */
+                  srcSet={it.photoTiny ? `${it.photoTiny} 400w, ${it.photo} 800w` : undefined}
+                  sizes={it.photoTiny ? "280px" : undefined}
                   alt=""
                   loading="lazy"
                   decoding="async"
@@ -431,6 +441,7 @@ function ValueShelf() {
                 src={macroWide}
                 cutout
                 srcSmall={macroWide800}
+                srcTiny={macroWide400}
                 alt=""
                 width={1463}
                 height={1600}
@@ -493,9 +504,9 @@ function NetworkSplit() {
 function IndustriesTeaser() {
   const { t } = useTranslation();
   const items = [
-    { slug: "horeca" as const, img: horecaImg, img800: horecaImg800 },
-    { slug: "construction" as const, img: constructionImg, img800: constructionImg800 },
-    { slug: "security" as const, img: securityImg, img800: securityImg800 },
+    { slug: "horeca" as const, img: horecaImg },
+    { slug: "construction" as const, img: constructionImg },
+    { slug: "security" as const, img: securityImg },
   ];
   return (
     <Section band="soft">
@@ -518,7 +529,10 @@ function IndustriesTeaser() {
               >
                 <img
                   src={it.img}
-                  srcSet={`${it.img800} 800w, ${it.img} 1400w`}
+                  /* From the shared map, which carries the 400w rung as well.
+                     A phone at DPR 1 in this 346px slot now takes the 400px
+                     file instead of the 800px one. */
+                  srcSet={INDUSTRY_IMAGE_SRCSET[it.slug]}
                   sizes="(min-width: 768px) 456px, 92vw"
                   alt=""
                   loading="lazy"

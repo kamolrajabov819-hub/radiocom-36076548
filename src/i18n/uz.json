@@ -37,7 +37,7 @@
     "Trade-In dasturi"
   ],
   "industries": {
-    "title": "Sohalar",
+    "title": "Biznes uchun ratsiyalar",
     "kicker": "Tayyor yechimlar",
     "overview_sub": "Biz O'zbekistonning 6 asosiy sohasi uchun radio tizimlarini loyihalashtirdik. O'z sohangizni tanlang — mos yechimni ko'rsatamiz.",
     "view_all": "Barcha sohalar",
@@ -67,19 +67,19 @@
       ],
       "outcomes": [
         {
-          "n": "0",
-          "u": "litsenziya",
-          "l": "PMR kanallar — ruxsatsiz"
+          "n": "7400",
+          "u": "m²",
+          "l": "6 qavatgacha qamrov — Motorola CLP 446 va CLK 446"
         },
         {
-          "n": "12",
-          "u": "soat",
-          "l": "Bir zaryadda ishlash"
+          "n": "68",
+          "u": "g",
+          "l": "Ratsiya vazni: forma ostida bilinmaydi, garnitura komplektda"
         },
         {
-          "n": "3",
-          "u": "yil",
-          "l": "Motorola kafolati"
+          "n": "0,5",
+          "u": "Vt",
+          "l": "PMR 446 diapazoni — chastota rasmiylashtirishsiz"
         }
       ],
       "quote": "Mijozlar endi oshxonadagi gaplarni eshitmaydi. Smena tinchroq bo'ldi, tushum ko'paydi — jamoa stollarni tezroq bo'shatadi.",
@@ -98,14 +98,16 @@
           "a": "Ha — ob'ektingizda bepul sinov."
         }
       ],
-      "seo": "HoReCa"
+      "seo": "HoReCa",
+      "h1": "Mehmonxona va restoranlar uchun ratsiyalar",
+      "clients": ""
     },
     "construction": {
       "name": "Qurilish",
       "short": "Qurilish",
       "desc": "Yirik ob'ektlar. IP67 himoya, uzoq masofa.",
       "problem": "Chang, tebranish, brigadalar orasida kilometrlar. Oddiy telefonlar dosh bermaydi va ob'ektni qamrab ololmaydi.",
-      "solution": "IP67/IP68 himoyali zarbaga chidamli DMR ratsiyalar va maydonni to'liq qamrash uchun retranslyatorlar.",
+      "solution": "IP67 himoyali zarbaga chidamli DMR ratsiyalar: obyektda RCD-70 PRO, brigadalar uchun RCD-50 va RCD-60 PRO.",
       "pains": [
         "Brigadir kran va montajchilarga yeta olmaydi",
         "Telefonlar yorilib, cho'kib, changdan buziladi",
@@ -113,19 +115,19 @@
       ],
       "outcomes": [
         {
-          "n": "IP68",
+          "n": "IP67",
           "u": "",
-          "l": "Chang, suv, 2 m tushish"
+          "l": "Maydondagi chang va suv — RCD-70 PRO"
         },
         {
-          "n": "8",
-          "u": "km",
-          "l": "Retranslyator bilan masofa"
+          "n": "10 km gacha",
+          "u": "",
+          "l": "Ochiq joyda — RCD-70 PRO"
         },
         {
-          "n": "24",
-          "u": "soat",
-          "l": "Tizim ob'ektda ishga tushadi"
+          "n": "DMR",
+          "u": "",
+          "l": "Qurilish shovqinida toza raqamli ovoz — RCD-50, RCD-60 va RCD-70 PRO"
         }
       ],
       "quote": "Ilgari brigadirlarni izlashga kunlik 2 soat ketardi. Endi — tugmani bosdim, butun smena eshitadi. Bir oyda o'zini oqladi.",
@@ -133,7 +135,7 @@
       "faq": [
         {
           "q": "Qish qurilishida chidaydimi?",
-          "a": "Ha. Motorola DP4400/DP4600 −30°C dan +60°C gacha ishlaydi."
+          "a": "IP67 maydondagi chang, loy va suv oqimidan himoya qiladi. Aniq harorat diapazoni modelga bog'liq — ratsiyalarni obyektga olib kelamiz va sotib olishdan oldin sizning sharoitingizda sinab ko'ramiz."
         },
         {
           "q": "Retranslyator kerakmi?",
@@ -141,10 +143,12 @@
         },
         {
           "q": "Ratsiya ho'l betonga tushib ketsa-chi?",
-          "a": "IP68 suvga botishga chidaydi. Kafolat doirasida tiklaymiz yoki almashtiramiz."
+          "a": "IP67 chang va suv oqimiga chidaydi. Agar ratsiya baribir ishdan chiqsa — 12 oylik kafolat doirasida o'z servis markazimizda tiklaymiz yoki almashtiramiz."
         }
       ],
-      "seo": "Qurilish"
+      "seo": "Qurilish",
+      "h1": "Qurilish uchun ratsiyalar",
+      "clients": ""
     },
     "security": {
       "name": "Xavfsizlik",
@@ -159,19 +163,19 @@
       ],
       "outcomes": [
         {
-          "n": "AES256",
+          "n": "AES-256",
           "u": "",
-          "l": "Harbiy darajali shifrlash"
+          "l": "Raqamli rejimda ovoz shifrlash — RCD-50, RCD-60 va RCD-70 PRO"
         },
         {
           "n": "GPS",
           "u": "",
-          "l": "Har bir postning joylashuvi xaritada onlayn"
+          "l": "Har bir postning joylashuvi dispetcherda — RCD-70 PRO"
         },
         {
-          "n": "1",
-          "u": "tugma",
-          "l": "1 soniyada butun smenaga signal"
+          "n": "3 km gacha",
+          "u": "",
+          "l": "Zich shahar qurilishida — RCD-70 PRO"
         }
       ],
       "quote": "Barcha ob'ektlarga shifrlangan DMR o'rnatdik. Dispetcher xodimlarni ko'radi, tugma ikki marta yordam berdi.",
@@ -190,14 +194,16 @@
           "a": "Kanaldagi hammaga va dispetcher konsoliga koordinatlar bilan."
         }
       ],
-      "seo": "Xavfsizlik xizmatlari"
+      "seo": "Xavfsizlik xizmatlari",
+      "h1": "Xavfsizlik uchun ratsiyalar",
+      "clients": ""
     },
     "mining": {
       "name": "Kon · Neft · Gaz",
       "short": "Kon",
       "desc": "Karyerlar, konlar, neft-gaz infratuzilmasi.",
       "problem": "Katta hududlar, portlash xavfli zonalar, aniq uchqun xavfsizligi talablari.",
-      "solution": "ATEX mos DP4800/DP4600 ratsiyalar va SLR8000 retranslyatorlar. Karyerning to'liq qamrovi va dispetcher bilan aloqa.",
+      "solution": "IP67 himoyasi, shifrlash va smenaga yetadigan akkumulyatorli raqamli RCD PRO ratsiyalar. Komplektni uchastkaga moslaymiz.",
       "pains": [
         "3 km karyer — oddiy ratsiya yetmaydi",
         "Xavfli zonalarda oddiy elektronika taqiqlangan",
@@ -205,19 +211,19 @@
       ],
       "outcomes": [
         {
-          "n": "ATEX",
+          "n": "IP67",
           "u": "",
-          "l": "Uchqun xavfsiz modellar"
+          "l": "Uchastkadagi chang va suv — RCD-70 PRO"
         },
         {
-          "n": "15",
-          "u": "km",
-          "l": "Ochiq joyda masofa"
+          "n": "AES-256",
+          "u": "",
+          "l": "Raqamli rejimda ovoz shifrlash — RCD PRO liniyasi"
         },
         {
-          "n": "99.9%",
-          "u": "",
-          "l": "Zaxira retranslyator bilan uptime"
+          "n": "3600",
+          "u": "mA·s",
+          "l": "Bir zaryadda butun smena — RCD-70 va RCD-50 PRO"
         }
       ],
       "quote": "Radiocom karyerga DMR-tarmoqni 3 kunda o'rnatdi. Ikkinchi qish — hech qanday uzilish yo'q.",
@@ -225,7 +231,7 @@
       "faq": [
         {
           "q": "Portlash xavfli zonalar uchun sertifikat bormi?",
-          "a": "Ha, Motorola DP4801 Ex ATEX versiyalarini yetkazib beramiz."
+          "a": "Joriy katalogda uchqundan himoyalangan (Ex) versiyalar yo'q. Uchastkangizga qaysi sinf kerakligini yozing — alohida yechim tanlaymiz."
         },
         {
           "q": "Chastota kelishuvini o'zingiz qilasizmi?",
@@ -233,10 +239,12 @@
         },
         {
           "q": "Sanoat modellariga qanday kafolat?",
-          "a": "3 yil, servis markazimizda har yilgi texnik ko'rik bilan."
+          "a": "Radioblokka 12 oy kafolat. Xizmat ko'rsatish — o'z vakolatli servis markazimizda, original ehtiyot qismlar bilan."
         }
       ],
-      "seo": "Kon, neft va gaz"
+      "seo": "Kon, neft va gaz",
+      "h1": "Kon, neft va gaz uchun ratsiyalar",
+      "clients": "Bizga ishonishadi: Uz-Kor Gas Chemical, ERIELL, ENTER Engineering, HYUNDAI Engineering, SAMSUNG Engineering Construction."
     },
     "transport": {
       "name": "Transport · Logistika",
@@ -251,19 +259,19 @@
       ],
       "outcomes": [
         {
-          "n": "100%",
-          "u": "O'zb",
-          "l": "LTE bo'yicha qamrov"
-        },
-        {
-          "n": "1",
-          "u": "tarif",
-          "l": "Fiks to'lov — daqiqa hisobisiz"
-        },
-        {
-          "n": "∞",
+          "n": "GPS",
           "u": "",
-          "l": "Kolonna uchun guruh kanallari"
+          "l": "Ekipaj joylashuvi dispetcherda — RCD-70 PRO"
+        },
+        {
+          "n": "10 km gacha",
+          "u": "",
+          "l": "Trassada va ochiq joyda — RCD-70, RCD-60 va RCD-50 PRO"
+        },
+        {
+          "n": "3600",
+          "u": "mA·s",
+          "l": "Rul ortida smena — quvvatlashsiz — RCD-70 va RCD-50 PRO"
         }
       ],
       "quote": "Butun parkni PoC ga o'tkazdik — aloqa xarajatlari 40% kamaydi, dispetcher hammani xaritada ko'radi.",
@@ -271,7 +279,7 @@
       "faq": [
         {
           "q": "Tog' va trassalarda ishlaydimi?",
-          "a": "LTE bor joyda ishlaydi — O'zb bo'yicha 97% qamrov."
+          "a": "Operator tarmog'i bor joyda ishlaydi. Aniq marshrutdagi qamrovni o'z aloqa operatoringizdan aniqlang."
         },
         {
           "q": "Oylik to'lov qancha?",
@@ -282,7 +290,9 @@
           "a": "Ha, dispetcher shlyuzi orqali."
         }
       ],
-      "seo": "Transport va logistika"
+      "seo": "Transport va logistika",
+      "h1": "Transport va logistika uchun ratsiyalar",
+      "clients": ""
     },
     "manufacturing": {
       "name": "Ishlab chiqarish · Ombor",
@@ -297,19 +307,19 @@
       ],
       "outcomes": [
         {
-          "n": "40%",
+          "n": "DMR",
           "u": "",
-          "l": "Smenani muvofiqlashtirishga kamroq vaqt"
+          "l": "Xalaqitsiz raqamli aloqa — RCD PRO liniyasi"
         },
         {
-          "n": "60dB",
+          "n": "2,5 km gacha",
           "u": "",
-          "l": "Faol shovqin bosish"
+          "l": "Sexlarda va hududda — RCD-50 va RCD-60 PRO"
         },
         {
-          "n": "1C",
-          "u": "",
-          "l": "Sanoat KPK integratsiyasi"
+          "n": "0",
+          "u": "so'm/daq",
+          "l": "O'z chastotangiz: abonent to'lovi va trafiksiz"
         }
       ],
       "quote": "DMR va KPK ni bir haftada o'rnatdik. Omborchilar qog'ozdan voz kechdi, komplektatsiya deyarli 2 barobar tezlashdi.",
@@ -328,7 +338,9 @@
           "a": "Ishlab chiqarish hajmiga qarab 2 dan 7 kungacha."
         }
       ],
-      "seo": "Ishlab chiqarish va omborlar"
+      "seo": "Ishlab chiqarish va omborlar",
+      "h1": "Ishlab chiqarish va omborlar uchun ratsiyalar",
+      "clients": ""
     },
     "banner_title": "Qaysi ratsiya biznesingizga mos kelishini bilmayapsizmi?",
     "banner_sub": "Sohangizni ayting — 15 daqiqada tizim tanlab beramiz.",
@@ -424,7 +436,7 @@
   },
   "poc": {
     "kicker": "PoC · UYALI TARMOQ ORQALI PUSH-TO-TALK",
-    "title_a": "Global masofa.",
+    "title_a": "PoC ratsiyalar.",
     "title_b": "Retranslyatorsiz.",
     "sub": "LTE va WiFi orqali Push-to-Talk. Infratuzilma qurmasdan bir zumda aloqa — guruh chaqiruvlari, GPS va multimedia bilan.",
     "vs_title": "PoC va PMR",
@@ -483,8 +495,8 @@
   },
   "service": {
     "kicker": "VAKOLATLI SERVIS MARKAZI",
-    "title_a": "Ishonchli",
-    "title_b": "ta'mirlash.",
+    "title_a": "Ratsiya ta'miri.",
+    "title_b": "Ishonchli.",
     "sub": "Motorola, Radiocom va Vertex Standard ratsiyalari uchun kafolat va kafolatdan keyingi xizmat. Original ehtiyot qismlar, qat'iy narxlar, maxsus uskunada diagnostika.",
     "request_repair": "Ta'mirlashga ariza",
     "advantages": {
@@ -560,7 +572,7 @@
   },
   "home": {
     "hero": {
-      "title": "Professional aloqa. Buzilmas.",
+      "title": "Professional ratsiyalar. Buzilmas.",
       "sub": "Motorola va Radiocom — rasmiy servis, bepul sinov va butun mamlakat bo'ylab yetkazib berish.",
       "cta_primary": "Bepul sinovni band qilish",
       "cta_secondary": "Batafsil",
@@ -568,7 +580,7 @@
     },
     "feature": {
       "title": "Eng qiyin ob'ektlar uchun yaratilgan.",
-      "sub": "IP68 himoya. −30°C dan +60°C gacha. AES256 shifrlash. Har bir qurilmada GPS.",
+      "sub": "IP67 himoya. Raqamli DMR. AES-256 shifrlash. RCD-70 PRO'da GPS.",
       "link": "PoC haqida"
     },
     "bento": {
@@ -709,9 +721,9 @@
     "sub": "Ishlab chiqaruvchilar bilan to'g'ridan-to'g'ri ishlaymiz: original qurilmalar, kafolat va Toshkentda servis.",
     "view": "Modellarni ko'rish",
     "models": "model",
-    "radiocom_title": "Radiocom RC va RCD",
+    "radiocom_title": "Radiocom RC va RCD ratsiyalari",
     "radiocom_desc": "O'z liniyamiz Radiocom: analog RC va raqamli RCD DMR ratsiyalari, kafolat va servis bilan.",
-    "motorola_title": "Motorola",
+    "motorola_title": "Motorola ratsiyalari",
     "motorola_desc": "Talkabout, XT va TLKR — jahon yetakchisidan litsenziyasiz PMR ratsiyalar.",
     "lineup": "Model qatori",
     "why_title": "Nega biz orqali",
@@ -749,7 +761,7 @@
     "spec_column": "Xususiyat"
   },
   "search": {
-    "title": "Katalog bo'yicha qidiruv",
+    "title": "Ratsiyalar katalogi bo'yicha qidiruv",
     "sub": "Model, standart, himoya klassi, masofa — o'zingizga qulay tarzda qidiring.",
     "placeholder": "Masalan: IP67, DMR, RCD-70",
     "label": "Qidiruv so'rovi",
@@ -766,5 +778,9 @@
     "pages": "Sahifalar",
     "models": "Modellar",
     "industries": "Tarmoqlar"
+  },
+  "clients": {
+    "title": "Bizga ishonishadi",
+    "sub": "O'zbekiston sanoati, banklari, mehmonxonalari, savdo tarmoqlari va davlat idoralari."
   }
 }

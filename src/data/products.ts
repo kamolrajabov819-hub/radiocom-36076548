@@ -14,13 +14,22 @@
  */
 import rcd70Hero from "@/assets/catalog/rcd-70-hero.webp";
 import rcd70Hero800 from "@/assets/catalog/rcd-70-hero@800.webp";
+import rcd70Hero400 from "@/assets/catalog/rcd-70-hero@400.webp";
 import rcd70Kit from "@/assets/catalog/rcd-70-kit.webp";
+import rcd70Kit400 from "@/assets/catalog/rcd-70-kit@400.webp";
+import rcd70Kit800 from "@/assets/catalog/rcd-70-kit@800.webp";
 import rcd60Hero from "@/assets/catalog/rcd-60-hero.webp";
 import rcd60Hero800 from "@/assets/catalog/rcd-60-hero@800.webp";
+import rcd60Hero400 from "@/assets/catalog/rcd-60-hero@400.webp";
 import rcd60Kit from "@/assets/catalog/rcd-60-kit.webp";
+import rcd60Kit400 from "@/assets/catalog/rcd-60-kit@400.webp";
+import rcd60Kit800 from "@/assets/catalog/rcd-60-kit@800.webp";
 import rcd50Hero from "@/assets/catalog/rcd-50-hero.webp";
 import rcd50Hero800 from "@/assets/catalog/rcd-50-hero@800.webp";
+import rcd50Hero400 from "@/assets/catalog/rcd-50-hero@400.webp";
 import rcd50Kit from "@/assets/catalog/rcd-50-kit.webp";
+import rcd50Kit400 from "@/assets/catalog/rcd-50-kit@400.webp";
+import rcd50Kit800 from "@/assets/catalog/rcd-50-kit@800.webp";
 // Device-only crops, for the model strip. Five Radiocom models have no
 // standalone product shot — only a kit flat-lay — so the strip was showing a
 // charger and two cables where the other three showed a radio. These are the
@@ -33,60 +42,116 @@ import rc20Device from "@/assets/catalog/rc-20-device.webp";
 import rc10Device from "@/assets/catalog/rc-10-device.webp";
 import rcd40Kit from "@/assets/catalog/rcd-40-kit.webp";
 import rcd40Kit800 from "@/assets/catalog/rcd-40-kit@800.webp";
+import rcd40Kit400 from "@/assets/catalog/rcd-40-kit@400.webp";
 import rcd30Kit from "@/assets/catalog/rcd-30-kit.webp";
 import rcd30Kit800 from "@/assets/catalog/rcd-30-kit@800.webp";
+import rcd30Kit400 from "@/assets/catalog/rcd-30-kit@400.webp";
 import rc50Kit from "@/assets/catalog/rc-50-kit.webp";
 import rc50Kit800 from "@/assets/catalog/rc-50-kit@800.webp";
+import rc50Kit400 from "@/assets/catalog/rc-50-kit@400.webp";
 import rc20Kit from "@/assets/catalog/rc-20-kit.webp";
 import rc20Kit800 from "@/assets/catalog/rc-20-kit@800.webp";
+import rc20Kit400 from "@/assets/catalog/rc-20-kit@400.webp";
 import rc10Kit from "@/assets/catalog/rc-10-kit.webp";
 import rc10Kit800 from "@/assets/catalog/rc-10-kit@800.webp";
+import rc10Kit400 from "@/assets/catalog/rc-10-kit@400.webp";
 
 import t82ExtremeHero from "@/assets/catalog/t82-extreme-hero.webp";
 import t82ExtremeHero800 from "@/assets/catalog/t82-extreme-hero@800.webp";
+import t82ExtremeHero400 from "@/assets/catalog/t82-extreme-hero@400.webp";
 import t82ExtremePair from "@/assets/catalog/t82-extreme-pair.webp";
+import t82ExtremePair400 from "@/assets/catalog/t82-extreme-pair@400.webp";
+import t82ExtremePair800 from "@/assets/catalog/t82-extreme-pair@800.webp";
 import t82ExtremeKit from "@/assets/catalog/t82-extreme-kit.webp";
+import t82ExtremeKit400 from "@/assets/catalog/t82-extreme-kit@400.webp";
+import t82ExtremeKit800 from "@/assets/catalog/t82-extreme-kit@800.webp";
 import t82ExtremeQuadHero from "@/assets/catalog/t82-extreme-quad-hero.webp";
 import t82ExtremeQuadHero800 from "@/assets/catalog/t82-extreme-quad-hero@800.webp";
+import t82ExtremeQuadHero400 from "@/assets/catalog/t82-extreme-quad-hero@400.webp";
 import t82Hero from "@/assets/catalog/t82-hero.webp";
 import t82Hero800 from "@/assets/catalog/t82-hero@800.webp";
+import t82Hero400 from "@/assets/catalog/t82-hero@400.webp";
 import t72Hero from "@/assets/catalog/t72-hero.webp";
 import t72Hero800 from "@/assets/catalog/t72-hero@800.webp";
+import t72Hero400 from "@/assets/catalog/t72-hero@400.webp";
 import t72Alt from "@/assets/catalog/t72-alt.webp";
+import t72Alt400 from "@/assets/catalog/t72-alt@400.webp";
+import t72Alt800 from "@/assets/catalog/t72-alt@800.webp";
 import t72Box from "@/assets/catalog/t72-box.webp";
+import t72Box400 from "@/assets/catalog/t72-box@400.webp";
+import t72Box800 from "@/assets/catalog/t72-box@800.webp";
 import t62RedHero from "@/assets/catalog/t62-red-hero.webp";
 import t62RedHero800 from "@/assets/catalog/t62-red-hero@800.webp";
+import t62RedHero400 from "@/assets/catalog/t62-red-hero@400.webp";
 import t62RedFront from "@/assets/catalog/t62-red-front.webp";
+import t62RedFront400 from "@/assets/catalog/t62-red-front@400.webp";
+import t62RedFront800 from "@/assets/catalog/t62-red-front@800.webp";
 import t62RedBack from "@/assets/catalog/t62-red-back.webp";
+import t62RedBack400 from "@/assets/catalog/t62-red-back@400.webp";
+import t62RedBack800 from "@/assets/catalog/t62-red-back@800.webp";
 import t62BlueHero from "@/assets/catalog/t62-blue-hero.webp";
 import t62BlueHero800 from "@/assets/catalog/t62-blue-hero@800.webp";
+import t62BlueHero400 from "@/assets/catalog/t62-blue-hero@400.webp";
 import t62BlueBox from "@/assets/catalog/t62-blue-box.webp";
+import t62BlueBox400 from "@/assets/catalog/t62-blue-box@400.webp";
+import t62BlueBox800 from "@/assets/catalog/t62-blue-box@800.webp";
 import t42TripleHero from "@/assets/catalog/t42-triple-hero.webp";
 import t42TripleHero800 from "@/assets/catalog/t42-triple-hero@800.webp";
+import t42TripleHero400 from "@/assets/catalog/t42-triple-hero@400.webp";
 import t42TripleAlt from "@/assets/catalog/t42-triple-alt.webp";
+import t42TripleAlt400 from "@/assets/catalog/t42-triple-alt@400.webp";
+import t42TripleAlt800 from "@/assets/catalog/t42-triple-alt@800.webp";
 import t42TripleBox from "@/assets/catalog/t42-triple-box.webp";
+import t42TripleBox400 from "@/assets/catalog/t42-triple-box@400.webp";
+import t42TripleBox800 from "@/assets/catalog/t42-triple-box@800.webp";
 import t42QuadHero from "@/assets/catalog/t42-quad-hero.webp";
 import t42QuadHero800 from "@/assets/catalog/t42-quad-hero@800.webp";
+import t42QuadHero400 from "@/assets/catalog/t42-quad-hero@400.webp";
 import t42QuadAlt from "@/assets/catalog/t42-quad-alt.webp";
+import t42QuadAlt400 from "@/assets/catalog/t42-quad-alt@400.webp";
+import t42QuadAlt800 from "@/assets/catalog/t42-quad-alt@800.webp";
 import t42QuadBox from "@/assets/catalog/t42-quad-box.webp";
+import t42QuadBox400 from "@/assets/catalog/t42-quad-box@400.webp";
+import t42QuadBox800 from "@/assets/catalog/t42-quad-box@800.webp";
 import t42RedHero from "@/assets/catalog/t42-red-hero.webp";
 import t42RedHero800 from "@/assets/catalog/t42-red-hero@800.webp";
+import t42RedHero400 from "@/assets/catalog/t42-red-hero@400.webp";
 import t42RedPair from "@/assets/catalog/t42-red-pair.webp";
+import t42RedPair400 from "@/assets/catalog/t42-red-pair@400.webp";
+import t42RedPair800 from "@/assets/catalog/t42-red-pair@800.webp";
 import t42RedBox from "@/assets/catalog/t42-red-box.webp";
+import t42RedBox400 from "@/assets/catalog/t42-red-box@400.webp";
+import t42RedBox800 from "@/assets/catalog/t42-red-box@800.webp";
 import t42BlueHero from "@/assets/catalog/t42-blue-hero.webp";
 import t42BlueHero800 from "@/assets/catalog/t42-blue-hero@800.webp";
+import t42BlueHero400 from "@/assets/catalog/t42-blue-hero@400.webp";
 import t42BluePair from "@/assets/catalog/t42-blue-pair.webp";
+import t42BluePair400 from "@/assets/catalog/t42-blue-pair@400.webp";
+import t42BluePair800 from "@/assets/catalog/t42-blue-pair@800.webp";
 import t42BlueBox from "@/assets/catalog/t42-blue-box.webp";
+import t42BlueBox400 from "@/assets/catalog/t42-blue-box@400.webp";
+import t42BlueBox800 from "@/assets/catalog/t42-blue-box@800.webp";
 import tlkrHero from "@/assets/catalog/tlkr-t92h2o-hero.webp";
 import tlkrHero800 from "@/assets/catalog/tlkr-t92h2o-hero@800.webp";
+import tlkrHero400 from "@/assets/catalog/tlkr-t92h2o-hero@400.webp";
 import tlkrFront from "@/assets/catalog/tlkr-t92h2o-front.webp";
+import tlkrFront400 from "@/assets/catalog/tlkr-t92h2o-front@400.webp";
+import tlkrFront800 from "@/assets/catalog/tlkr-t92h2o-front@800.webp";
 import tlkrSide from "@/assets/catalog/tlkr-t92h2o-side.webp";
+import tlkrSide400 from "@/assets/catalog/tlkr-t92h2o-side@400.webp";
+import tlkrSide800 from "@/assets/catalog/tlkr-t92h2o-side@800.webp";
 import xt185Hero from "@/assets/catalog/xt185-hero.webp";
 import xt185Hero800 from "@/assets/catalog/xt185-hero@800.webp";
+import xt185Hero400 from "@/assets/catalog/xt185-hero@400.webp";
 import xt185Alt from "@/assets/catalog/xt185-alt.webp";
+import xt185Alt400 from "@/assets/catalog/xt185-alt@400.webp";
+import xt185Alt800 from "@/assets/catalog/xt185-alt@800.webp";
 import xt185Kit from "@/assets/catalog/xt185-kit.webp";
+import xt185Kit400 from "@/assets/catalog/xt185-kit@400.webp";
+import xt185Kit800 from "@/assets/catalog/xt185-kit@800.webp";
 import xt420Hero from "@/assets/catalog/xt420-hero.webp";
 import xt420Hero800 from "@/assets/catalog/xt420-hero@800.webp";
+import xt420Hero400 from "@/assets/catalog/xt420-hero@400.webp";
 
 import {
   inCity,
@@ -131,6 +196,9 @@ export type Product = {
   image: string;
   /** The `@800` sibling — a real import, never derived from `image`. */
   imageSmall?: string;
+  /** The `@400` sibling. The model strip renders a 104px chip; 800w there is
+   *  eight times the pixels it can show. Same rule: a real import or absent. */
+  imageTiny?: string;
   /**
    * A device-only shot for the model strip, where `image` is a kit flat-lay.
    *
@@ -141,6 +209,13 @@ export type Product = {
    */
   strip?: string;
   gallery?: string[];
+  /** `@800` siblings of `gallery`. Without this rung the card hover shot
+   *  jumped straight from 400w to the 1600w master: at a 260px slot on a
+   *  phone at DPR 2 the browser needs 520px, so it took the master and paid
+   *  91 KB for it. */
+  gallerySmall?: string[];
+  /** `@400` siblings of `gallery`, for the 187px card hover shot. */
+  galleryTiny?: string[];
   /**
    * Kept in the data but absent from the site: no photograph exists, and the
    * model is not in the current price list. It still needs to be here so the
@@ -170,7 +245,10 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "professional",
     image: rcd70Hero,
     imageSmall: rcd70Hero800,
+    imageTiny: rcd70Hero400,
     gallery: [rcd70Kit],
+    gallerySmall: [rcd70Kit800],
+    galleryTiny: [rcd70Kit400],
     tags: ["DMR", "GPS", "IP67"],
     price: 1_900_000,
     rangeCity: upToKm("3"),
@@ -189,7 +267,10 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "professional",
     image: rcd60Hero,
     imageSmall: rcd60Hero800,
+    imageTiny: rcd60Hero400,
     gallery: [rcd60Kit],
+    gallerySmall: [rcd60Kit800],
+    galleryTiny: [rcd60Kit400],
     tags: ["DMR", "Display", "Keypad"],
     price: 1_800_000,
     rangeCity: upToKm("2,5"),
@@ -208,7 +289,10 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "professional",
     image: rcd50Hero,
     imageSmall: rcd50Hero800,
+    imageTiny: rcd50Hero400,
     gallery: [rcd50Kit],
+    gallerySmall: [rcd50Kit800],
+    galleryTiny: [rcd50Kit400],
     tags: ["DMR", "Display"],
     price: 1_800_000,
     rangeCity: upToKm("2,5"),
@@ -227,6 +311,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "professional",
     image: rcd40Kit,
     imageSmall: rcd40Kit800,
+    imageTiny: rcd40Kit400,
     strip: rcd40Device,
     tags: ["DMR", "Long range"],
     price: 1_600_000,
@@ -246,6 +331,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "professional",
     image: rcd30Kit,
     imageSmall: rcd30Kit800,
+    imageTiny: rcd30Kit400,
     strip: rcd30Device,
     tags: ["DMR", "Compact"],
     price: 1_800_000,
@@ -267,6 +353,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "professional",
     image: rc50Kit,
     imageSmall: rc50Kit800,
+    imageTiny: rc50Kit400,
     strip: rc50Device,
     tags: ["Long range"],
     price: 1_300_000,
@@ -286,6 +373,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "amateur",
     image: rc20Kit,
     imageSmall: rc20Kit800,
+    imageTiny: rc20Kit400,
     strip: rc20Device,
     tags: ["Compact", "License-free"],
     price: 1_600_000,
@@ -305,6 +393,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "amateur",
     image: rc10Kit,
     imageSmall: rc10Kit800,
+    imageTiny: rc10Kit400,
     strip: rc10Device,
     tags: ["Compact"],
     price: 1_300_000,
@@ -326,7 +415,10 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "amateur",
     image: t82ExtremeHero,
     imageSmall: t82ExtremeHero800,
+    imageTiny: t82ExtremeHero400,
     gallery: [t82ExtremePair, t82ExtremeKit],
+    gallerySmall: [t82ExtremePair800, t82ExtremeKit800],
+    galleryTiny: [t82ExtremePair400, t82ExtremeKit400],
     tags: [...TALK, "IPx4"],
     price: 1_700_000,
     rangeCity: upToKm("1,5"),
@@ -345,6 +437,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "amateur",
     image: t82ExtremeQuadHero,
     imageSmall: t82ExtremeQuadHero800,
+    imageTiny: t82ExtremeQuadHero400,
     tags: [...TALK, "Quad", "IPx4"],
     price: 3_100_000,
     rangeCity: upToKm("1,5"),
@@ -385,6 +478,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "amateur",
     image: t82Hero,
     imageSmall: t82Hero800,
+    imageTiny: t82Hero400,
     tags: TALK,
     price: 1_500_000,
     rangeCity: upToKm("1,5"),
@@ -403,7 +497,10 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "amateur",
     image: t72Hero,
     imageSmall: t72Hero800,
+    imageTiny: t72Hero400,
     gallery: [t72Alt, t72Box],
+    gallerySmall: [t72Alt800, t72Box800],
+    galleryTiny: [t72Alt400, t72Box400],
     tags: [...TALK, "IPx4"],
     price: 1_300_000,
     rangeCity: upToKm("1"),
@@ -422,7 +519,10 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "amateur",
     image: t62RedHero,
     imageSmall: t62RedHero800,
+    imageTiny: t62RedHero400,
     gallery: [t62RedFront, t62RedBack],
+    gallerySmall: [t62RedFront800, t62RedBack800],
+    galleryTiny: [t62RedFront400, t62RedBack400],
     tags: TALK,
     price: 1_100_000,
     rangeCity: upToM("900"),
@@ -441,7 +541,10 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "amateur",
     image: t62BlueHero,
     imageSmall: t62BlueHero800,
+    imageTiny: t62BlueHero400,
     gallery: [t62BlueBox],
+    gallerySmall: [t62BlueBox800],
+    galleryTiny: [t62BlueBox400],
     tags: TALK,
     price: 1_100_000,
     rangeCity: upToM("900"),
@@ -460,7 +563,10 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "amateur",
     image: t42TripleHero,
     imageSmall: t42TripleHero800,
+    imageTiny: t42TripleHero400,
     gallery: [t42TripleAlt, t42TripleBox],
+    gallerySmall: [t42TripleAlt800, t42TripleBox800],
+    galleryTiny: [t42TripleAlt400, t42TripleBox400],
     tags: [...TALK, "Triple"],
     price: 700_000,
     rangeCity: upToM("300"),
@@ -479,7 +585,10 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "amateur",
     image: t42QuadHero,
     imageSmall: t42QuadHero800,
+    imageTiny: t42QuadHero400,
     gallery: [t42QuadAlt, t42QuadBox],
+    gallerySmall: [t42QuadAlt800, t42QuadBox800],
+    galleryTiny: [t42QuadAlt400, t42QuadBox400],
     tags: [...TALK, "Quad"],
     price: 900_000,
     rangeCity: upToM("300"),
@@ -498,7 +607,10 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "amateur",
     image: t42RedHero,
     imageSmall: t42RedHero800,
+    imageTiny: t42RedHero400,
     gallery: [t42RedPair, t42RedBox],
+    gallerySmall: [t42RedPair800, t42RedBox800],
+    galleryTiny: [t42RedPair400, t42RedBox400],
     tags: TALK,
     price: 600_000,
     rangeCity: upToM("300"),
@@ -517,7 +629,10 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "amateur",
     image: t42BlueHero,
     imageSmall: t42BlueHero800,
+    imageTiny: t42BlueHero400,
     gallery: [t42BluePair, t42BlueBox],
+    gallerySmall: [t42BluePair800, t42BlueBox800],
+    galleryTiny: [t42BluePair400, t42BlueBox400],
     tags: TALK,
     price: 600_000,
     rangeCity: upToM("300"),
@@ -536,7 +651,10 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "amateur",
     image: tlkrHero,
     imageSmall: tlkrHero800,
+    imageTiny: tlkrHero400,
     gallery: [tlkrFront, tlkrSide],
+    gallerySmall: [tlkrFront800, tlkrSide800],
+    galleryTiny: [tlkrFront400, tlkrSide400],
     tags: [...TALK, "IP67", "Float"],
     price: 1_800_000,
     rangeCity: upToKm("1,5"),
@@ -555,7 +673,10 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "amateur",
     image: xt185Hero,
     imageSmall: xt185Hero800,
+    imageTiny: xt185Hero400,
     gallery: [xt185Alt, xt185Kit],
+    gallerySmall: [xt185Alt800, xt185Kit800],
+    galleryTiny: [xt185Alt400, xt185Kit400],
     tags: TALK,
     price: 1_500_000,
     rangeCity: upToKm("1"),
@@ -574,6 +695,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     category: "professional",
     image: xt420Hero,
     imageSmall: xt420Hero800,
+    imageTiny: xt420Hero400,
     tags: [...TALK, "IP55"],
     price: 2_200_000,
     rangeCity: inCity(upToKm("2")),

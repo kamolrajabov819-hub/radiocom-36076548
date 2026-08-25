@@ -990,10 +990,13 @@ export function ModelStrip({ children, label }: { children: ReactNode; label: st
 export function ModelStripItem({
   image,
   imageSmall,
+  imageTiny,
   label,
 }: {
   image: string;
   imageSmall?: string;
+  /** The `@400` file. Omit when there is none. */
+  imageTiny?: string;
   label: string;
 }) {
   return (
@@ -1005,7 +1008,17 @@ export function ModelStripItem({
       <span className="flex h-[96px] items-end justify-center">
         <img
           src={image}
-          srcSet={imageSmall ? `${imageSmall} 800w, ${image} 1600w` : undefined}
+          // A 104px chip whose smallest candidate was 800w — eight times the
+          // pixels it can show, and 1600w on the model strip of a page that
+          // lists fifteen of them. `imageTiny` is the 400w file; at DPR 2 the
+          // browser still needs ~208px and picks it, so the chips do not soften.
+          srcSet={
+            imageSmall
+              ? [imageTiny && `${imageTiny} 400w`, `${imageSmall} 800w`, `${image} 1600w`]
+                  .filter(Boolean)
+                  .join(", ")
+              : undefined
+          }
           sizes={imageSmall ? "104px" : undefined}
           alt=""
           width={152}
@@ -1155,6 +1168,7 @@ export function PosterCard({
   eyebrow,
   title,
   image,
+  srcSet,
   href,
   idx = 0,
   className = "",
@@ -1162,6 +1176,12 @@ export function PosterCard({
   eyebrow?: string;
   title: string;
   image: string;
+  /**
+   * Candidates for `image`. The card already declared a `sizes` of 220px /
+   * 54vw, but `sizes` alone does nothing without a `srcSet` to choose from,
+   * so every card was fetching the 600px master into a 211px slot.
+   */
+  srcSet?: string;
   /** The whole card is the link target; the caller supplies the element. */
   href?: ReactNode;
   idx?: number;
@@ -1177,6 +1197,7 @@ export function PosterCard({
     >
       <img
         src={image}
+        srcSet={srcSet}
         alt=""
         loading="lazy"
         decoding="async"
