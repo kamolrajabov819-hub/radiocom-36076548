@@ -63,9 +63,75 @@ const attachSupabaseAuth = createMiddleware({ type: "function" }).client(async (
  * this sits in front of every request on the site, so it must never be the
  * reason a page does not render.
  */
+/**
+ * The locale-appropriate `llms.txt` for a path.
+ *
+ * Russian lives at the conventional `/llms.txt`; the other two sit beside it.
+ * Anything without a recognised prefix — `/sitemap.xml`, `/` before the
+ * redirect — gets the Russian one, which is the site's default locale.
+ */
+function llmsForPath(pathname: string): string {
+  const seg = pathname.split("/")[1];
+  return seg === "en" || seg === "uz" ? `/llms.${seg}.txt` : "/llms.txt";
+}
+
+/**
+ * The `Link` header, per RFC 8288.
+ *
+ * Two relations, both IANA-registered, both pointing at something that exists:
+ *
+ *   describedby  the locale's llms.txt — a plain-text summary of the catalogue
+ *   alternate    `<>`, an empty relative reference, which per RFC 3986 resolves
+ *                to the requesting URL. It says "this same page is also
+ *                available as Markdown", which is true — see the middleware
+ *                below.
+ *
+ * The Markdown alternate is omitted from a Markdown response, which *is* the
+ * alternate and should not advertise itself as its own.
+ */
+function linkHeader(pathname: string, withMarkdownAlternate: boolean): string {
+  const rels = [`<${llmsForPath(pathname)}>; rel="describedby"; type="text/plain"`];
+  if (withMarkdownAlternate) rels.push(`<>; rel="alternate"; type="text/markdown"`);
+  return rels.join(", ");
+}
+
+/**
+ * Re-emit a response with extra headers, without touching the body.
+ *
+ * `Response.headers` is immutable once the runtime has built the response, so
+ * the header cannot simply be appended. Passing `res.body` straight through
+ * keeps the SSR *stream* intact — buffering it here would delay first paint on
+ * every page on the site to add one header.
+ */
+function withHeaders(res: Response, add: Record<string, string>): Response {
+  try {
+    const headers = new Headers(res.headers);
+    for (const [k, v] of Object.entries(add)) headers.append(k, v);
+    return new Response(res.body, { status: res.status, statusText: res.statusText, headers });
+  } catch {
+    return res;
+  }
+}
+
+const isHtml = (res: Response) => (res.headers.get("content-type") ?? "").includes("text/html");
+
 const agentAcceptMiddleware = createMiddleware().server(async ({ request, next }) => {
   const accept = request.headers.get("accept") ?? "*/*";
-  if (accept.includes("*/*") || accept.includes("text/html")) return next();
+  const pathname = new URL(request.url).pathname;
+
+  // The browser path. It still has to pass through here, because the `Link`
+  // header is emitted on the way out — it was previously declared in
+  // `netlify.toml`, and a scan of the live site found no `Link` header on the
+  // page at all. Two things could explain that and I could not test either
+  // from here: Netlify documents `[[headers]]` for static assets rather than
+  // SSR function responses, and the globs were `/ru/*`, which does not match
+  // the canonical homepage `/ru`. Emitting from the handler that owns the
+  // response settles both.
+  if (accept.includes("*/*") || accept.includes("text/html")) {
+    const result = await next();
+    if (!isHtml(result.response)) return result;
+    return { ...result, response: withHeaders(result.response, { Link: linkHeader(pathname, true) }) };
+  }
 
   const wantsMarkdown = accept.includes("text/markdown") || accept.includes("text/x-markdown");
 
@@ -96,6 +162,7 @@ const agentAcceptMiddleware = createMiddleware().server(async ({ request, next }
         // Caches must not hand this Markdown to a browser that asked for HTML.
         vary: "Accept",
         "x-markdown-tokens": String(Math.ceil(markdown.length / 4)),
+        link: linkHeader(pathname, false),
       },
     });
   } catch {

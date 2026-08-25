@@ -774,51 +774,54 @@ While you are looking: if «11 лет» and «10 000+ клиентов» have go
 are in `meta.home.desc` in ru/en/uz and are quoted verbatim into the
 `Organization` schema.
 
-## Agent discovery — what was published, and what was refused
+## Agent discovery — what is published, and what is still refused
 
-From the isitagentready.com report. Split by one test: **does the thing being
-advertised exist?**
+A second isitagentready.com scan, after the first round shipped, found two
+defects in that round. Both were the same kind of mistake — a document that
+looked right and was never checked against reality — and both are now covered by
+`scripts/verify-agent-discovery.ts`, which fails the build:
+
+| Defect | What it was |
+|---|---|
+| `Link` header absent from every page | Declared in `netlify.toml`. Either Netlify does not apply `[[headers]]` to SSR responses, or the `/ru/*` glob never matched the canonical homepage `/ru`. Now emitted from `agentAcceptMiddleware`, which owns the response. |
+| ARD entries all invalid | Used `id`; the spec (§4.2) requires `identifier`. Every entry was rejected. |
 
 ### Published
 
-| Goal | What shipped |
+| Goal | What ships |
 |---|---|
-| Markdown for agents | `Accept: text/markdown` now returns Markdown. See below — this also fixed a live 500. |
-| Content Signals | `Content-Signal: search=yes, ai-input=yes, ai-train=no` in robots.txt |
-| `Link` headers (RFC 8288) | `describedby` → the locale's `llms.txt`; `alternate` → the same URL as Markdown |
-| ARD manifest | `/.well-known/ai-catalog.json`, listing the sitemap and all three `llms.txt` files |
+| MCP server | `POST /mcp` — streamable HTTP, read-only, no auth. Four tools over the real catalogue: `list_radios`, `search_radios`, `get_radio`, `compare_radios`. |
+| MCP Server Card | `/.well-known/mcp/server-card.json`, pointing at that endpoint |
+| Agent Skills index | `/.well-known/agent-skills/index.json` + a `SKILL.md`, with a computed SHA-256 digest |
+| WebMCP | The same tools in the browser, plus `open_lead_form`; behind a feature detect and a dynamic import |
+| Markdown for agents | `Accept: text/markdown` returns Markdown |
+| Content Signals | `search=yes, ai-input=yes, ai-train=no` |
+| `Link` headers | `describedby` → the locale's `llms.txt`; `alternate` → the same URL as Markdown |
+| ARD manifest | `/.well-known/ai-catalog.json`, six entries, all resolvable |
 
-**The 500 was real and worth the trip on its own.** TanStack Start answers any
-request whose `Accept` is neither `text/html` nor the wildcard with
-`{"error":"Only HTML requests are supported here"}` and **HTTP 500** — not 406,
-which is the status that means "I cannot produce that". Any agent, uptime
-check or crawler sending `Accept: application/json` was being told the site was
-broken. One `curl` reproduced it. Now: Markdown when asked for, HTML otherwise,
-200 either way.
+**The MCP server is read-only, and that is deliberate.** There is no tool that
+submits an enquiry or places an order: an unattended agent posting into the
+sales pipeline is spam with extra steps. The browser-side twin *does* offer
+`open_lead_form`, for the opposite reason — a person is sitting there and still
+presses send.
 
-**One decision is yours, not mine.** `ai-train=no` says this content may be
-cited but not used as training data. That matches what the site already does —
-every AI answer engine is allowed in robots.txt because being quotable is a
-distribution channel — but granting training rights is a commercial call nobody
-has made. It is one word in `scripts/generate-seo.ts`.
+**One decision is still yours.** `ai-train=no` says this content may be cited but
+not used as training data. That matches what the site already does — every AI
+answer engine is allowed in robots.txt because being quotable is a distribution
+channel — but granting training rights is a commercial call nobody has made. It
+is one word in `scripts/generate-seo.ts`.
 
-### Refused, and why
-
-These would each have meant publishing a discovery document for infrastructure
-this site does not have. An agent that follows such a document into a flow that
-cannot complete is worse served than one that found nothing.
+### Still refused
 
 | Goal | Why not |
 |---|---|
-| `/.well-known/api-catalog` (RFC 9727) | There is no public API. The only endpoint is `/api/send-lead`, which robots.txt already disallows and which takes a lead form, not queries. |
+| `/.well-known/api-catalog` (RFC 9727) | There is no public API. The only endpoint is `/api/send-lead`, which robots.txt disallows and which takes a lead form, not queries. The MCP server is the queryable surface, and it has its own discovery document. |
 | OAuth/OIDC discovery | There is no authorization server. Publishing `authorization_endpoint` and `token_endpoint` would send agents to URLs that do not resolve. |
-| OAuth Protected Resource metadata | Same: nothing on this site is a protected resource. |
+| OAuth Protected Resource metadata | Nothing here is a protected resource — `/mcp` is deliberately open and read-only. |
 | `auth.md` | Same: there is no agent registration to describe. |
-| MCP Server Card | There is no MCP server. A card advertising a `transport` endpoint that does not exist is a broken promise in a well-known location. |
-| Agent Skills index | There are no skills to index. An index of zero skills is not a signal, it is noise. |
-| WebMCP | Genuinely implementable — search and the catalogue are real actions — but `navigator.modelContext` is an unshipped draft, and the client bundle is 839–921 KB against a 930 KB gate. Worth revisiting when the API ships. |
 
-**DNS-AID is not refused, it is simply not in this repo.** It needs SVCB/HTTPS
-records published under `_agents.radiocom.uz` and the zone signed with DNSSEC.
-That is done at the DNS host, by whoever controls the domain. Say the word and
-I will write the exact records out for you to paste.
+**DNS-AID is not refused, it is just not in this repo.** It needs SVCB/HTTPS
+records under `_agents.radiocom.uz` and the zone signed with DNSSEC, done at the
+DNS host by whoever controls the domain. Say the word and I will write the exact
+records out to paste.
+

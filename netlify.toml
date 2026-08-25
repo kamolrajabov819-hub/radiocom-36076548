@@ -473,38 +473,41 @@
 # --- generated:catalog-301 ---
 
 # --- Agent discovery -------------------------------------------------------
-# `Link` headers (RFC 8288) so a client learns what else this site offers
-# without having to parse the HTML first.
+# The `Link` headers that used to live here now come from
+# `agentAcceptMiddleware` in src/start.ts.
 #
-# Two relations, both IANA-registered and both pointing at something that
-# exists:
-#
-#   describedby  -> /llms.txt, the plain-text summary of the whole catalogue
-#   alternate    -> `<>`, an empty relative reference, which per RFC 3986
-#                   resolves to the requesting URL itself. It says "this same
-#                   page is also available as Markdown", which is true: see
-#                   `agentAcceptMiddleware` in src/start.ts.
-#
-# Scoped to the locale prefixes rather than `/*` on purpose — `<>` would
-# otherwise promise a Markdown alternate for every stylesheet and photograph.
-[[headers]]
-  for = "/ru/*"
-  [headers.values]
-    Link = '</llms.txt>; rel="describedby"; type="text/plain", <>; rel="alternate"; type="text/markdown"'
+# They were declared here first, and a scan of the live site then reported no
+# `Link` header on the page at all. Two candidate causes, neither of which I
+# could test from this sandbox: Netlify documents `[[headers]]` for static
+# assets rather than for SSR function responses, and the globs were `/ru/*`,
+# which does not match the canonical homepage `/ru`. Emitting from the handler
+# that owns the response answers both, and keeps the header next to the
+# Markdown negotiation it advertises.
 
+# Discovery documents are meant to be fetched cross-origin by registries and
+# agent runtimes, so they carry CORS. They are genuinely static files, which is
+# what `[[headers]]` is for.
 [[headers]]
-  for = "/en/*"
+  for = "/.well-known/*"
   [headers.values]
-    Link = '</llms.en.txt>; rel="describedby"; type="text/plain", <>; rel="alternate"; type="text/markdown"'
+    Access-Control-Allow-Origin = "*"
 
-[[headers]]
-  for = "/uz/*"
-  [headers.values]
-    Link = '</llms.uz.txt>; rel="describedby"; type="text/plain", <>; rel="alternate"; type="text/markdown"'
-
-# The ARD manifest is meant to be fetched cross-origin by registries.
 [[headers]]
   for = "/.well-known/ai-catalog.json"
   [headers.values]
     Content-Type = "application/json"
-    Access-Control-Allow-Origin = "*"
+
+[[headers]]
+  for = "/.well-known/mcp/server-card.json"
+  [headers.values]
+    Content-Type = "application/json"
+
+[[headers]]
+  for = "/.well-known/agent-skills/index.json"
+  [headers.values]
+    Content-Type = "application/json"
+
+[[headers]]
+  for = "/.well-known/agent-skills/*/SKILL.md"
+  [headers.values]
+    Content-Type = "text/markdown; charset=utf-8"

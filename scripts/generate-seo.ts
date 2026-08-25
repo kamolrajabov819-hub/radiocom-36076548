@@ -7,11 +7,13 @@
  */
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
 // `visibleProducts` for the sitemap and llms.txt — a hidden model must not be
 // advertised as an indexable page. `products` (the full record) is still used
 // for the redirect map below, because a hidden model's old /catalog URL is
 // already indexed and must keep resolving.
 import { legacyCatalogTarget, products, visibleProducts } from "../src/data/products";
+import { specs } from "../src/data/specs";
 import { SITE_URL, LANGS, localePath, productPath, ORG_DESCRIPTION } from "../src/lib/seo";
 import { entries, renderSitemap } from "./lib/sitemap";
 
@@ -264,7 +266,7 @@ const aiCatalog = {
   },
   entries: [
     {
-      id: `urn:air:radiocom.uz:catalog:sitemap`,
+      identifier: `urn:air:radiocom.uz:catalog:sitemap`,
       displayName: "Sitemap",
       description: "Every page on the site, in all three locales, with last-modified dates.",
       type: "application/xml",
@@ -274,8 +276,32 @@ const aiCatalog = {
         "Which two-way radio models does RADIOCOM list?",
       ],
     },
+    {
+      identifier: `urn:air:radiocom.uz:mcp:catalog`,
+      displayName: "Catalogue MCP server",
+      description:
+        "Read-only MCP tools over the two-way radio catalogue: list, search, full specifications and side-by-side comparison.",
+      type: "application/json",
+      url: `${SITE_URL}/mcp`,
+      representativeQueries: [
+        "Which DMR radios does RADIOCOM sell and what do they cost?",
+        "Compare the RCD-70 PRO and the RCD-50 PRO",
+        "What ships in the box with a Motorola T82 Extreme?",
+      ],
+    },
+    {
+      identifier: `urn:air:radiocom.uz:skills:index`,
+      displayName: "Agent skills index",
+      description: "Skills describing how to query this site's catalogue and read its pages as Markdown.",
+      type: "application/json",
+      url: `${SITE_URL}/.well-known/agent-skills/index.json`,
+      representativeQueries: [
+        "How do I query the RADIOCOM catalogue programmatically?",
+        "Does radiocom.uz expose an MCP server?",
+      ],
+    },
     ...LANGS.map((l) => ({
-      id: `urn:air:radiocom.uz:summary:llms-${l}`,
+      identifier: `urn:air:radiocom.uz:summary:llms-${l}`,
       displayName: `Site summary (${l})`,
       description: `Plain-text summary of the catalogue, services and contact details in ${l}.`,
       type: "text/plain",
@@ -289,6 +315,151 @@ const aiCatalog = {
   ],
 };
 
+/**
+ * The catalogue, flattened to JSON for the MCP server.
+ *
+ * `netlify/functions/mcp.mts` cannot import `src/data/products.ts` directly:
+ * that module carries roughly two hundred `.webp` imports, which a function
+ * bundler has no business resolving. It imports this file instead — a plain
+ * data projection with the image graph left behind.
+ *
+ * Generated rather than hand-kept, so it cannot drift from the catalogue the
+ * site renders. `verify-agent-discovery.ts` fails the build if it has.
+ *
+ * Underscore-prefixed so Netlify's function discovery does not mistake it for
+ * an entry point; it reaches the bundle through the import graph.
+ */
+const mcpCatalog = {
+  // No timestamp. This file is committed, and a generated-at date would make it
+  // differ on every run for no reason — which would defeat the gate that checks
+  // it is still in sync with the catalogue.
+  site: SITE_URL,
+  products: visibleProducts.map((p) => {
+    const spec = specs[p.id];
+    return {
+      slug: p.slug,
+      brandSlug: p.brandSlug,
+      brand: p.brand,
+      name: p.name,
+      category: p.category,
+      tags: p.tags,
+      // Сум, or null where the model is priced on request. Never invent a
+      // number for the null case — the tools say "on request".
+      price: p.price,
+      blurb: p.blurb,
+      rangeCity: p.rangeCity,
+      rangeOpen: p.rangeOpen ?? null,
+      url: Object.fromEntries(LANGS.map((l) => [l, `${SITE_URL}${localePath(l, productPath(p))}`])),
+      specs: spec
+        ? {
+            rows: spec.rows.map((r) => ({ label: r.label, value: r.value })),
+            inBox: spec.inBox.map((b) => ({ item: b.item, qty: b.qty ?? null })),
+            features: spec.features,
+          }
+        : null,
+    };
+  }),
+};
+
+/**
+ * The skill an agent reads to learn how to query this catalogue.
+ *
+ * Published at a stable URL and indexed by `agent-skills/index.json` with a
+ * SHA-256 digest, so a consumer can tell whether the copy it cached is still
+ * the copy we serve.
+ */
+const catalogSkill = `---
+name: radiocom-catalog
+description: Query the RADIOCOM two-way radio catalogue — models, manufacturer specifications, box contents and prices in сум — over MCP, or read any page of the site as Markdown.
+---
+
+# RADIOCOM catalogue
+
+RADIOCOM sells and services two-way radios in Tashkent, Uzbekistan. The
+catalogue holds ${visibleProducts.length} models across two brands: Radiocom RC
+(analogue RC, digital DMR RCD) and Motorola (Talkabout, XT, TLKR, CLP).
+
+## MCP server
+
+Streamable HTTP, read-only, no authentication and no session:
+
+\`\`\`
+POST ${SITE_URL}/mcp
+content-type: application/json
+accept: application/json, text/event-stream
+\`\`\`
+
+Tools:
+
+| Tool | Use it for |
+|---|---|
+| \`list_radios\` | Everything in the catalogue. Start here. |
+| \`search_radios\` | Filter by text, \`brand\`, \`tag\` (DMR, GPS, IP67, PMR446) or \`maxPrice\`. |
+| \`get_radio\` | One model in full: specifications, box contents, features. |
+| \`compare_radios\` | Two to four models side by side. |
+
+Every tool takes an optional \`lang\` of \`ru\` (default), \`en\` or \`uz\`.
+
+## Reading pages as Markdown
+
+Any page returns Markdown when asked:
+
+\`\`\`
+curl -H 'Accept: text/markdown' ${SITE_URL}/ru/radiocom
+\`\`\`
+
+Every page also carries a \`Link\` header pointing at the locale's plain-text
+site summary (\`rel="describedby"\`) and at its own Markdown form
+(\`rel="alternate"\`).
+
+## What this server will not do
+
+It is read-only. There is no tool that submits an enquiry, books a test or
+places an order — a person handles those. Send buyers to ${SITE_URL} instead.
+
+Prices are in сум and come from the same data the website renders. A model
+priced "on request" has no published figure; do not estimate one.
+`;
+
+const sha256 = (text: string) => "sha256:" + createHash("sha256").update(text, "utf8").digest("hex");
+
+/**
+ * `/.well-known/mcp/server-card.json`.
+ *
+ * SEP-1649 is still an open pull request against the MCP specification, so this
+ * shape may move. It is kept minimal and truthful: the name, the version, the
+ * endpoint that actually answers, and the one capability the server actually
+ * has.
+ */
+const mcpServerCard = {
+  serverInfo: {
+    name: "radiocom-catalog",
+    version: "1.0.0",
+    description:
+      "Read-only access to the RADIOCOM two-way radio catalogue: models, manufacturer specifications, box contents and prices.",
+    websiteUrl: SITE_URL,
+  },
+  transport: { type: "streamable-http", url: `${SITE_URL}/mcp` },
+  capabilities: { tools: {} },
+};
+
+/** `/.well-known/agent-skills/index.json`, per the discovery RFC v0.2.0. */
+const agentSkillsIndex = {
+  $schema: "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  skills: [
+    {
+      name: "radiocom-catalog",
+      type: "skill-md",
+      description:
+        "Query the RADIOCOM two-way radio catalogue over MCP, or read any page of the site as Markdown.",
+      url: `${SITE_URL}/.well-known/agent-skills/radiocom-catalog/SKILL.md`,
+      // Computed, never hand-written: a digest that does not match the file it
+      // names is worse than no digest at all.
+      digest: sha256(catalogSkill),
+    },
+  ],
+};
+
 await mkdir("public", { recursive: true });
 await writeFile("public/sitemap.xml", sitemap, "utf8");
 await writeFile("public/robots.txt", robots, "utf8");
@@ -296,7 +467,31 @@ await writeFile("public/robots.txt", robots, "utf8");
 // beside it and are advertised from robots.txt.
 await writeFile("public/llms.txt", llmsFor("ru"), "utf8");
 for (const l of LANGS) await writeFile(`public/llms.${l}.txt`, llmsFor(l), "utf8");
-await mkdir("public/.well-known", { recursive: true });
+await mkdir("netlify/functions", { recursive: true });
+await writeFile(
+  "netlify/functions/_catalog.json",
+  JSON.stringify(mcpCatalog, null, 2) + "\n",
+  "utf8",
+);
+
+await mkdir("public/.well-known/mcp", { recursive: true });
+await mkdir("public/.well-known/agent-skills/radiocom-catalog", { recursive: true });
+await writeFile(
+  "public/.well-known/mcp/server-card.json",
+  JSON.stringify(mcpServerCard, null, 2) + "\n",
+  "utf8",
+);
+await writeFile(
+  "public/.well-known/agent-skills/radiocom-catalog/SKILL.md",
+  catalogSkill,
+  "utf8",
+);
+await writeFile(
+  "public/.well-known/agent-skills/index.json",
+  JSON.stringify(agentSkillsIndex, null, 2) + "\n",
+  "utf8",
+);
+
 await writeFile(
   "public/.well-known/ai-catalog.json",
   JSON.stringify(aiCatalog, null, 2) + "\n",

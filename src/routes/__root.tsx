@@ -190,6 +190,19 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  // WebMCP, behind a feature detect and a dynamic import.
+  //
+  // `navigator.modelContext` is a draft API that no shipping browser has yet,
+  // so in practice this is one `in` check and nothing else. The dynamic import
+  // is what keeps it that way: `src/lib/webmcp.ts` pulls in the whole catalogue
+  // and the spec tables, and a static import would put all of it in every
+  // visitor's bundle. `qa-weight` caps each route at 930 KB and the heaviest is
+  // 921 KB — there is no room to spend on a tool surface almost nobody can use.
+  useEffect(() => {
+    if (typeof navigator === "undefined" || !("modelContext" in navigator)) return;
+    void import("@/lib/webmcp").then((m) => m.registerWebMcpTools());
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       {/*
