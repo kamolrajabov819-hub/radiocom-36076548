@@ -20,6 +20,7 @@ import {
 import { INDUSTRY_SLUGS } from "@/data/industries";
 import { INDUSTRY_POSTERS } from "@/data/industry-images";
 import { openLead } from "@/components/LeadFormSheet";
+import { TrustedBy } from "@/components/TrustedBy";
 import priceListPdf from "@/assets/radiocom-price-list.pdf";
 // apple.com's "Why Apple is the best place to shop Mac" cards each carry a
 // photograph at the bottom; ours were text with an empty half. These are the
@@ -380,6 +381,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
           </div>
         </div>
       </Section>
+      <TrustedBy />
     </div>
   );
 }

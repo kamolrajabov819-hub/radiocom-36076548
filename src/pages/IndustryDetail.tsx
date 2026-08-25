@@ -14,6 +14,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { Section, SectionHead } from "@/components/Section";
 import { Faq } from "@/components/Faq";
 import { BentoGrid, FeatureCard } from "@/components/apple";
+import { TrustedBy } from "@/components/TrustedBy";
 // The client's own price list, dated 29.06.26. Replaces a CDN pointer to a
 // catalogue PDF that only existed on radiocom.lovable.app.
 import priceListPdf from "@/assets/radiocom-price-list.pdf";
@@ -318,6 +319,7 @@ export function IndustryPage() {
           </div>
         </div>
       </Section>
+      <TrustedBy />
     </div>
   );
 }

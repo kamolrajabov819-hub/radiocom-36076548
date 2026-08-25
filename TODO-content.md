@@ -669,3 +669,29 @@ DP4801 Ex» and «Motorola DP4400/DP4600 работают от −30°C до +60
 products that do not exist here. Those are rewritten too: the mining page now
 says plainly that there are no Ex versions in the current catalogue and invites
 the buyer to say which class they need.
+
+## The «Нам доверяют» logo strip — what I decided and what is yours
+
+52 client logos, on the home page, both brand pages, PoC, service and every
+industry page, immediately above the contact block.
+
+**Four of the 52 are state bodies, not two.** You confirmed МВД (Ichki ishlar
+vazirligi) and Прокуратура. Reading the other logos to write alt text turned up
+two more of the same kind: the **Ministry of Justice** (Adliya vazirligi) and
+the **State Security Service** (Davlat xavfsizlik xizmati). I included all four,
+consistently with your decision on the first two — but you only saw two named
+when you made it, so say if the other two should come out. They are one line
+each in `src/data/clients.ts`.
+
+**Nineteen filenames were unreadable**, so every logo was identified by opening
+it. `AB-1` is Asakabank, `CE-1` is Çalık Enerji, `ozv` is Özgüven, `carf` is
+Carrefour, `marr` is Courtyard by Marriott, `inrer` is International Hotel
+Tashkent, `H-1` is HAVAS, `MC-1` is Magic City. The files are renamed to match,
+so `src/assets/companies-trust/` now reads as a list of companies rather than a
+list of codes. If I have misread one, the fix is the `name` in
+`src/data/clients.ts` — the alt text and the filename both come from there.
+
+This mattered because a glob over the directory would have shipped
+`alt="AB-1"`, which is worse than nothing: it tells a screen-reader user
+nothing and hands a crawler a string with no meaning. The strip is the best
+credibility asset on the site and it should be legible to both.

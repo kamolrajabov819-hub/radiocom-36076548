@@ -47,6 +47,7 @@ import { Magnetic } from "@/components/Magnetic";
 import { visibleProducts } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
 import { CountUp } from "@/components/CountUp";
+import { TrustedBy } from "@/components/TrustedBy";
 import { spring, fadeUpAt } from "@/lib/springs";
 import { DESKTOP, useGsap, useScrollChoreography } from "@/lib/motion";
 
@@ -63,6 +64,7 @@ export function HomePage() {
       <IndustriesTeaser />
       <FeaturedCatalog />
       <FinalCta />
+      <TrustedBy />
     </div>
   );
 }

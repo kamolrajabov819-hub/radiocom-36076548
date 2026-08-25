@@ -778,5 +778,9 @@
     "pages": "Sahifalar",
     "models": "Modellar",
     "industries": "Tarmoqlar"
+  },
+  "clients": {
+    "title": "Bizga ishonishadi",
+    "sub": "O'zbekiston sanoati, banklari, mehmonxonalari, savdo tarmoqlari va davlat idoralari."
   }
 }

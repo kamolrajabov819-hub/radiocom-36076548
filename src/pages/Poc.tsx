@@ -45,6 +45,7 @@ import {
   type CompareColumn,
 } from "@/components/apple";
 import { ProductShot } from "@/components/ProductShot";
+import { TrustedBy } from "@/components/TrustedBy";
 import { spring, fadeUpAt } from "@/lib/springs";
 
 /**
@@ -70,6 +71,7 @@ export function PoCPage() {
       <Compare />
       <NetworkDesign />
       <Rental />
+      <TrustedBy />
     </div>
   );
 }

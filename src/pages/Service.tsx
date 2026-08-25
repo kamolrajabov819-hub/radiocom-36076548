@@ -24,6 +24,7 @@ import { ProductShot } from "@/components/ProductShot";
 import { SectionHead } from "@/components/Section";
 import { Faq } from "@/components/Faq";
 import { BentoGrid, FeatureCard, HighlightsShelf } from "@/components/apple";
+import { TrustedBy } from "@/components/TrustedBy";
 
 /** A title plus its supporting line. Both the repair stages and the
  *  advantages tiles use this shape; a bare string is what made them read as
@@ -40,6 +41,7 @@ export function ServicePage() {
       <Flow />
       <Advantages />
       <Policy />
+      <TrustedBy />
     </div>
   );
 }
