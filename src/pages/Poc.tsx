@@ -1,5 +1,7 @@
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { useScrollChoreography } from "@/lib/motion";
+import { cn } from "@/lib/utils";
+import { brandCase } from "@/lib/brand";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Check, Radio, MapPin, MessagesSquare, Layers, Coins, Wifi } from "lucide-react";
@@ -20,14 +22,19 @@ import { Check, Radio, MapPin, MessagesSquare, Layers, Coins, Wifi } from "lucid
 import heroPair from "@/assets/cutout/pair-crossed-cutout.webp";
 import heroPair800 from "@/assets/cutout/pair-crossed-cutout@800.webp";
 // Three more cutouts for the feature sequence, one for the rental close.
-import shotMedia from "@/assets/cutout/pair-displayed-cutout.webp";
-import shotMedia800 from "@/assets/cutout/pair-displayed-cutout@800.webp";
-import shotGps from "@/assets/cutout/hand-radio-lit-cutout.webp";
-import shotGps800 from "@/assets/cutout/hand-radio-lit-cutout@800.webp";
-import shotScale from "@/assets/cutout/radios-fan-cutout.webp";
-import shotScale800 from "@/assets/cutout/radios-fan-cutout@800.webp";
-import radioInHand from "@/assets/cutout/hand-radio-cutout.webp";
-import radioInHand800 from "@/assets/cutout/hand-radio-cutout@800.webp";
+// The PoC set, normalised by `scripts/build-poc-cutouts.ts` — see there for why
+// the uploads needed a pass before they could be used: a sparse alpha veil that
+// hid where each subject actually was, and subject scale running from 36% to
+// 86% of canvas, which is what made four photographs of the same product read
+// as four unrelated stock shots.
+import shotMedia from "@/assets/cutout/poc-handover-box-cutout.webp";
+import shotMedia800 from "@/assets/cutout/poc-handover-box-cutout@800.webp";
+import shotGps from "@/assets/cutout/poc-radio-in-hand-cutout.webp";
+import shotGps800 from "@/assets/cutout/poc-radio-in-hand-cutout@800.webp";
+import shotScale from "@/assets/cutout/poc-fleet-fan-cutout.webp";
+import shotScale800 from "@/assets/cutout/poc-fleet-fan-cutout@800.webp";
+import radioInHand from "@/assets/cutout/poc-radio-held-cutout.webp";
+import radioInHand800 from "@/assets/cutout/poc-radio-held-cutout@800.webp";
 import { openLead } from "@/components/LeadFormSheet";
 import { Section, SectionHead } from "@/components/Section";
 import {
@@ -298,10 +305,23 @@ function StatBand() {
  * already written as short declaratives, which is the shape an Apple section
  * headline takes.
  */
+/**
+ * `w`/`h` are each file's real intrinsic size after the cutout pass, and they
+ * have to be: the browser reserves its box from this ratio, and the handover
+ * frame that now fills the `media` slot is landscape where the shot it replaced
+ * was portrait — left at the old 955x1600 the row would reserve a tall box and
+ * jump as the image decoded.
+ *
+ * `cap` is the width each frame is allowed. `object-contain` sizes by whichever
+ * edge binds first, so a 1.9:1 scene capped at the same 480px as a 0.65 portrait
+ * lands 254px tall against the portrait's 420 — the devices inside it render
+ * around half the size and the row stops reading as one set. The wide frame gets
+ * the column's full width back so its subject carries comparable weight.
+ */
 const FEATURES = [
-  { id: "media", src: shotMedia, small: shotMedia800, w: 955, h: 1600 },
-  { id: "gps", src: shotGps, small: shotGps800, w: 1195, h: 1600 },
-  { id: "scale", src: shotScale, small: shotScale800, w: 1600, h: 1072 },
+  { id: "media", src: shotMedia, small: shotMedia800, w: 1600, h: 847, cap: "max-w-[560px]" },
+  { id: "gps", src: shotGps, small: shotGps800, w: 1038, h: 1600, cap: "max-w-[480px]" },
+  { id: "scale", src: shotScale, small: shotScale800, w: 1317, h: 1274, cap: "max-w-[480px]" },
 ] as const;
 
 function FeatureSequence() {
@@ -336,8 +356,8 @@ function FeatureSequence() {
                 alt=""
                 width={f.w}
                 height={f.h}
-                sizes="(max-width: 768px) 84vw, 520px"
-                className="mx-auto w-full max-w-[480px]"
+                sizes="(max-width: 768px) 84vw, 560px"
+                className={cn("mx-auto w-full", f.cap)}
                 imgClassName="max-h-[420px]"
               />
             </div>
@@ -477,7 +497,7 @@ function Rental() {
             {t("poc.rental.kicker")}
           </div>
           <h2 className="type-headline mt-3 text-crisp">{t("poc.rental.title")}</h2>
-          <p className="subhead measure mt-5 text-[17px]">{t("poc.rental.desc")}</p>
+          <p className="subhead measure mt-5 text-[17px]">{brandCase(t("poc.rental.desc"))}</p>
           <button
             onClick={() => openLead({ title: t("poc.rental.cta") })}
             className="pill pill-accent mt-8"
@@ -492,7 +512,7 @@ function Rental() {
             srcSmall={radioInHand800}
             cutout
             alt={t("poc.rental.title")}
-            width={1195}
+            width={1042}
             height={1600}
             sizes="(max-width: 768px) 84vw, 520px"
             className="mx-auto w-full max-w-[440px]"

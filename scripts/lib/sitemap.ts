@@ -19,6 +19,7 @@
  * is ever skipped, the site ships a sitemap without image entries rather than
  * one full of broken ones.
  */
+import { contentDate } from "./content-date";
 import { visibleProducts } from "../../src/data/products";
 import { INDUSTRY_SLUGS } from "../../src/data/industries";
 import {
@@ -114,7 +115,7 @@ export function renderSitemap(
   list: Entry[],
   resolveImage?: (src: string) => string | undefined,
 ): string {
-  const lastmod = new Date().toISOString().slice(0, 10);
+  const lastmod = contentDate();
 
   // Every page is emitted once per locale, and each entry advertises the full
   // alternate set including itself — Google discards an hreflang cluster whose

@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useScrollChoreography } from "@/lib/motion";
 import { useTranslation } from "react-i18next";
+import { brandCase } from "@/lib/brand";
 import { Search, Cog } from "lucide-react";
 import serviceLight from "@/assets/service-tech-light.jpg";
 // One distinct photograph per repair stage — the brief's rule is never to
@@ -143,7 +144,7 @@ function Hero() {
           transition={{ ...spring, delay: 0.1 }}
           className="subhead mt-5 text-lg md:text-xl"
         >
-          {t("service.sub")}
+          {brandCase(t("service.sub"))}
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 12 }}

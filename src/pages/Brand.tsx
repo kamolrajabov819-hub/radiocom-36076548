@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
+import { brandCase } from "@/lib/brand";
 import { useScrollChoreography } from "@/lib/motion";
 import { spring } from "@/lib/springs";
 import { Section } from "@/components/Section";
@@ -191,9 +192,9 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
           animate={{ opacity: 1, y: 0 }}
           transition={spring}
         >
-          <h1 className="type-display text-crisp">{t(`brand.${brandSlug}_title`)}</h1>
+          <h1 className="type-display text-crisp">{brandCase(t(`brand.${brandSlug}_title`))}</h1>
           <p className="subhead measure mt-5 text-[17px] leading-relaxed md:text-[21px]">
-            {t(`brand.${brandSlug}_desc`)}
+            {brandCase(t(`brand.${brandSlug}_desc`))}
           </p>
         </motion.div>
 
@@ -265,7 +266,22 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
             that escape hatch in place the shelf is the better container: it
             keeps the lineup one screen tall however many models a brand has,
             and it is what the reference actually does. */}
-        <HighlightsShelf label={t("brand.lineup")} stagger>
+        <HighlightsShelf
+          label={t("brand.lineup")}
+          stagger
+          leading={
+            <a
+              href={priceListPdf}
+              className="pill-link text-[14px]"
+              target="_blank"
+              rel="noopener"
+              download="radiocom-price-list.pdf"
+            >
+              {t("catalog.download")}
+              <ChevronRight className="h-4 w-4" aria-hidden />
+            </a>
+          }
+        >
           {shown.map((p, i) => (
             <div
               key={p.id}
@@ -275,19 +291,6 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
             </div>
           ))}
         </HighlightsShelf>
-
-        <p className="mt-10 text-[14px] text-cool">
-          <a
-            href={priceListPdf}
-            className="pill-link"
-            target="_blank"
-            rel="noopener"
-            download={`radiocom-price-list.pdf`}
-          >
-            {t("catalog.download")}
-            <ChevronRight className="h-4 w-4" aria-hidden />
-          </a>
-        </p>
       </Section>
 
       {/* ── Why buy from us ────────────────────────────────── */}
@@ -443,7 +446,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
               to={brandSlug === "radiocom" ? "/motorola" : "/radiocom"}
               className="pill-link"
             >
-              {t(`brand.${brandSlug === "radiocom" ? "motorola" : "radiocom"}_title`)}
+              {brandCase(t(`brand.${brandSlug === "radiocom" ? "motorola" : "radiocom"}_title`))}
               <ChevronRight className="h-4 w-4" aria-hidden />
             </LocaleLink>
           </div>
@@ -565,7 +568,7 @@ function LineupCard({ p, lang, idx }: { p: Product; lang: Lang; idx: number }) {
           params={{ brand: p.brandSlug, model: p.slug }}
           className="inline-block rounded-sm py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2"
         >
-          {p.name}
+          {brandCase(p.name)}
         </LocaleLink>
       </h3>
       <p className="mt-1.5 text-[13px] leading-relaxed text-cool">{pick(p.blurb, lang)}</p>

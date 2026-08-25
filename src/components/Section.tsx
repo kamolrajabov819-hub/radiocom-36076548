@@ -1,6 +1,7 @@
 import type { ReactNode, CSSProperties } from "react";
 import { ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
+import { brandCase } from "@/lib/brand";
 import { WordReveal } from "@/components/WordReveal";
 
 /**
@@ -111,7 +112,9 @@ export function SectionHead({
   const heading = (
     <div className={centred ? "text-center mx-auto max-w-3xl" : "text-left"}>
       {eyebrow && (
-        <div className="eyebrow-sweep text-[13px] tracking-wide font-medium mb-4">{eyebrow}</div>
+        <div className="eyebrow-sweep text-[13px] tracking-wide font-medium mb-4">
+          {brandCase(eyebrow)}
+        </div>
       )}
       {/*
         `headline` carries weight, tracking and leading but deliberately no
@@ -125,7 +128,11 @@ export function SectionHead({
         text={title}
         className={`type-headline block ${invert ? "text-white" : "text-crisp"}`}
       />
-      {sub && <p className={`subhead mt-4 text-lg ${centred ? "mx-auto max-w-2xl" : ""}`}>{sub}</p>}
+      {sub && (
+        <p className={`subhead mt-4 text-lg ${centred ? "mx-auto max-w-2xl" : ""}`}>
+          {brandCase(sub)}
+        </p>
+      )}
     </div>
   );
 
@@ -136,15 +143,15 @@ export function SectionHead({
       {heading}
       {link.to ? (
         <LocaleLink to={link.to} className="pill-link shrink-0">
-          {link.label} <ChevronRight className="w-4 h-4" aria-hidden />
+          {brandCase(link.label)} <ChevronRight className="w-4 h-4" aria-hidden />
         </LocaleLink>
       ) : link.href ? (
         <a href={link.href} className="pill-link shrink-0">
-          {link.label} <ChevronRight className="w-4 h-4" aria-hidden />
+          {brandCase(link.label)} <ChevronRight className="w-4 h-4" aria-hidden />
         </a>
       ) : (
         <button onClick={link.onClick} className="pill-link shrink-0">
-          {link.label} <ChevronRight className="w-4 h-4" aria-hidden />
+          {brandCase(link.label)} <ChevronRight className="w-4 h-4" aria-hidden />
         </button>
       )}
     </div>

@@ -6,7 +6,7 @@ import { notFound, useParams } from "@tanstack/react-router";
 import { Check, ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
 import { Section, SectionHead } from "@/components/Section";
-import { LeadInCaption, StatPanel, statRowTier, TintedHeadline } from "@/components/apple";
+import { LeadInCaption, StatPanel, statRowTier } from "@/components/apple";
 import { openLead } from "@/components/LeadFormSheet";
 import { Magnetic } from "@/components/Magnetic";
 import {
@@ -32,6 +32,7 @@ import {
   type SeoLang,
 } from "@/lib/seo";
 import { tFor } from "@/lib/i18n";
+import { brandCase } from "@/lib/brand";
 import { useLang } from "@/lib/locale";
 
 /**
@@ -132,7 +133,7 @@ export function ProductSpecsPage() {
             to={brandSlug === "radiocom" ? "/radiocom" : "/motorola"}
             className="inline-flex min-h-11 items-center hover:text-crisp"
           >
-            {t(`meta.crumb.${brandSlug}`)}
+            {brandCase(t(`meta.crumb.${brandSlug}`))}
           </LocaleLink>
           <span className="mx-2" aria-hidden>
             /
@@ -142,7 +143,7 @@ export function ProductSpecsPage() {
             params={{ brand: p.brandSlug, model: p.slug }}
             className="inline-flex min-h-11 items-center hover:text-crisp"
           >
-            {p.name}
+            {brandCase(p.name)}
           </LocaleLink>
           <span className="mx-2" aria-hidden>
             /
@@ -166,9 +167,7 @@ export function ProductSpecsPage() {
           className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)]"
         >
           <div className="lg:order-2">
-            <TintedHeadline as="h1" className="type-headline text-crisp">
-              {p.name}
-            </TintedHeadline>
+            <h1 className="type-headline text-balance text-crisp">{brandCase(p.name)}</h1>
             <p className="subhead mt-4 max-w-xl text-[17px]">{pick(p.blurb, lang)}</p>
 
             {/* At-a-glance only — deliberately *not* the first four rows of

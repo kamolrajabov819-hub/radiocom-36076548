@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { brandCase } from "@/lib/brand";
 import { useScrollChoreography } from "@/lib/motion";
 import { ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
@@ -108,7 +109,7 @@ export function ComparePage() {
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="headline-hero text-crisp">{t("px.compare_title")}</h1>
           <p className="subhead mx-auto mt-6 max-w-2xl text-[17px] md:text-[21px]">
-            {t("px.compare_sub")}
+            {brandCase(t("px.compare_sub"))}
           </p>
         </div>
       </Section>
@@ -122,7 +123,7 @@ export function ComparePage() {
           <p className="subhead mt-4 text-[17px]">{t("px.trial")}</p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <LocaleLink to="/radiocom" className="pill pill-accent">
-              {t("brand.radiocom_title")}
+              {brandCase(t("brand.radiocom_title"))}
             </LocaleLink>
             <LocaleLink to="/motorola" className="pill-link">
               {t("brand.motorola_title")} <ChevronRight className="h-4 w-4" aria-hidden />

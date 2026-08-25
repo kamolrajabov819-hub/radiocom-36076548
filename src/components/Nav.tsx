@@ -1,5 +1,6 @@
 import { useRouterState } from "@tanstack/react-router";
 import { LocaleLink } from "@/components/LocaleLink";
+import { brandCase } from "@/lib/brand";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -165,7 +166,7 @@ export function Nav() {
                     active ? "text-crisp" : "text-cool hover:text-crisp"
                   }`}
                 >
-                  {l.label}
+                  {brandCase(l.label)}
                 </LocaleLink>
               );
             })}

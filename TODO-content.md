@@ -437,3 +437,58 @@ something to slip into a QA pass. Expect it to buy roughly 5–8 points.
 
 Removing framer-motion or Lenis would buy more, but that is a design decision
 about how the site feels, not a performance fix — so it is yours to make.
+
+## The four new PoC photos — two things I noticed, neither of which I changed
+
+You uploaded four images for the PoC page and asked me to make them look
+harmonic. They are now `src/assets/cutout/poc-*-cutout.webp`, normalised by
+`scripts/build-poc-cutouts.ts` (renamed into the `<name>` + `<name>@800`
+convention the `srcSet` pipeline needs, cropped to the subject, veil cleared).
+The harmonising was a scale problem: the four-radio fan filled 39% of its
+canvas while the close hand filled 86%, so dropped into equal slots one radio
+rendered at roughly half the weight of the other. That is fixed.
+
+Two things in the photographs themselves are yours to decide, not mine:
+
+- **Three of the four show a visible `Caltta` logo** on the radio body — the
+  OEM, not a brand the catalogue sells. Every other product photo on the site
+  is Radiocom- or Motorola-branded. A buyer who reads the badge and searches it
+  lands on a manufacturer you do not name anywhere else on the site.
+- **The retail box reads `RCE-300`.** `src/data/products.ts` does not carry an
+  RCE-300 — the PoC family in the catalogue is different. So the hero shot of
+  the PoC page advertises a model nobody can then find or price.
+
+I shipped them as given, because they are your product photography and
+substituting something else quietly is not my call. If either matters, the fix
+is new source images, not code.
+
+## No founding year anywhere, so `Organization.foundingDate` stays off
+
+The site says «11 лет на рынке» in several places but never states a year, and
+`foundingDate` in the Organization schema takes a date, not a duration. Deriving
+2015 from "11 years" plus today's date would put an invented fact in your
+structured data, which is exactly the sort of thing that gets an identity graph
+distrusted. Tell me the founding year and it is a one-line addition.
+
+## Two claims I removed from the industry pages, in case they were true
+
+`industries.offers` on all eight industry pages promised things nothing else on
+the site supports. I rewrote the cards to what the rest of the site does say
+(see the commit for the reasoning), but if either of these is real, say so and
+they go back — with a matching line on the service page so a reader who follows
+the link finds the same promise waiting.
+
+- **Подменный фонд / loaner units.** The service card offered one. The service
+  page, its four advantages, the repair flow and the FAQ never mention lending a
+  device during a repair. If you do run a loaner fleet, that is a genuine
+  differentiator and it belongs on `/service` first.
+- **«Настройка частот на весь срок службы».** Frequency setup for the lifetime
+  of the device, against «Гарантия 12 месяцев» printed beside every buy button.
+  If support really does continue past the warranty, tell me the actual term and
+  I will write it in both places.
+
+One more, already fixed rather than asked about, because the three locales
+disagreed with each other: `tradein.desc` says «со скидкой» in Russian but
+promised "a **massive** discount" in English and «**katta** chegirma» in Uzbek.
+An English-reading buyer was being told something the Russian original does not
+claim. All three now say what the Russian says.

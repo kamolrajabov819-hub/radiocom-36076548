@@ -15,7 +15,7 @@
     "i18n:verify": "bun scripts/verify-i18n.ts",
     "verify": "bun scripts/verify-seo.ts && bun scripts/verify-i18n.ts && bun scripts/verify-assets.ts",
     "assets:inventory": "bun scripts/inventory-assets.ts",
-    "qa": "bun scripts/qa-images.mjs && bun scripts/qa-overflow.mjs && bun scripts/qa-touch.mjs && bun scripts/qa-blend.mjs && bun scripts/qa-motion.mjs && bun scripts/qa-search.mjs && bun scripts/qa-i18n-rendered.mjs && bun scripts/qa-a11y.mjs"
+    "qa": "bun scripts/qa-images.mjs && bun scripts/qa-overflow.mjs && bun scripts/qa-touch.mjs && bun scripts/qa-blend.mjs && bun scripts/qa-motion.mjs && bun scripts/qa-search.mjs && bun scripts/qa-i18n-rendered.mjs && bun scripts/qa-brand.mjs && bun scripts/qa-a11y.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

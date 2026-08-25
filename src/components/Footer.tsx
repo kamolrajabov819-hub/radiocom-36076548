@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { LocaleLink } from "@/components/LocaleLink";
+import { brandCase } from "@/lib/brand";
 import { Socials } from "./Socials";
 import { INDUSTRY_SLUGS } from "@/data/industries";
 // The logo was a 1793x313 RGBA PNG at 341 KB, rendered at 22px tall. Lighthouse
@@ -28,7 +29,7 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 border-b border-border pb-12">
           <FooterCol title={t("footer.nav_col")}>
             <FLink to="/">{t("nav.home")}</FLink>
-            <FLink to="/radiocom">{t("nav.radiocom")}</FLink>
+            <FLink to="/radiocom">{brandCase(t("nav.radiocom"))}</FLink>
             <FLink to="/motorola">{t("nav.motorola")}</FLink>
             <FLink to="/compare">{t("nav.compare")}</FLink>
             <FLink to="/poc">{t("nav.poc")}</FLink>
@@ -93,7 +94,7 @@ export function Footer() {
           </FooterCol>
         </div>
         <div className="pt-6 flex flex-wrap items-center justify-between gap-3">
-          <div className="text-[12px] text-cool">{t("footer.rights")}</div>
+          <div className="text-[12px] text-cool">{brandCase(t("footer.rights"))}</div>
           <div className="text-[12px] text-cool">MOTOROLA · RADIOCOM RC</div>
         </div>
       </div>
@@ -104,7 +105,7 @@ export function Footer() {
 function FooterCol({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <div className="text-[12px] font-semibold text-crisp mb-4">{title}</div>
+      <div className="text-[12px] font-semibold text-crisp mb-4">{brandCase(title)}</div>
       <ul className="-my-1.5">{children}</ul>
     </div>
   );

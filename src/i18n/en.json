@@ -342,12 +342,12 @@
       },
       "tradein": {
         "t": "Trade-in your old radios",
-        "d": "We take your old fleet in part-exchange and cut the price of the new set.",
-        "c": "Get a valuation"
+        "d": "Bring in your old radio and we will match it to a current Motorola or Radiocom model at a discount.",
+        "c": "Start trade-in"
       },
       "service": {
         "t": "Service and warranty",
-        "d": "Authorized service center, loaner units and frequency setup for the whole lifecycle.",
+        "d": "An authorised service centre for Motorola and Radiocom: a 12-month warranty, factory parts only, and a fixed price set after diagnostics.",
         "c": "See terms"
       }
     }
@@ -356,7 +356,7 @@
     "kicker": "TRADE-IN",
     "title_a": "Trade the old.",
     "title_b": "Take the new.",
-    "desc": "Bring your worn-out walkie-talkie. Our specialists match it to a fresh Motorola or Radiocom model at a massive discount.",
+    "desc": "Bring your worn-out walkie-talkie. Our specialists match it to a fresh Motorola or Radiocom model at a discount.",
     "cta": "Start trade-in"
   },
   "stats": {

@@ -21,6 +21,20 @@ export const DEFAULT_SEO_LANG: SeoLang = "ru";
 /** Production origin. Used for canonicals, sitemap entries and absolute schema URLs. */
 export const SITE_URL = "https://radiocom.uz";
 
+/**
+ * The date the site's content last changed, baked in at build time by
+ * `vite.config.ts` from `scripts/lib/content-date.ts` — the same value the
+ * sitemap writes into every `<lastmod>`.
+ *
+ * Declared rather than imported: `head()` runs in the browser as well as on the
+ * server, so it cannot reach a Node script. The fallback keeps a dev server
+ * that somehow missed the define from emitting the string `undefined` into a
+ * date field.
+ */
+declare const __CONTENT_DATE__: string | undefined;
+export const CONTENT_DATE: string =
+  typeof __CONTENT_DATE__ === "string" ? __CONTENT_DATE__ : new Date().toISOString().slice(0, 10);
+
 export const SITE_NAME = "Radiocom";
 
 export const BUSINESS = {
@@ -50,6 +64,19 @@ export const BUSINESS = {
  */
 export const ORG_LOGO = "/icon-512.png";
 export const BUSINESS_IMAGE = "/og-radiocom.jpg";
+
+/**
+ * `meta.home.desc` from `ru.json`, verbatim.
+ *
+ * Kept as a constant rather than read through `tFor("ru")` because
+ * `organizationSchema()` is called from the root `head()`, which is
+ * language-neutral by construction and holds no i18n instance. `verify-seo`
+ * asserts the two strings still match, so the copy cannot drift from the schema
+ * without the build saying so.
+ */
+export const ORG_DESCRIPTION =
+  "Официальный поставщик радиостанций в Узбекистане: 11 лет на рынке, 10 000+ клиентов. " +
+  "Motorola, Hytera, PoC и Radiocom RC. Бесплатный тест, гарантия, сервис в Ташкенте.";
 
 /** Absolute URL for a site-relative path. */
 export function absolute(path: string): string {
@@ -176,6 +203,22 @@ export function pageMeta(opts: {
    * links on it are real product links worth crawling.
    */
   noindex?: boolean;
+  /**
+   * The Open Graph article namespace, for the pages that declare
+   * `type: "article"`.
+   *
+   * The industry pages have declared `og:type: article` since they were built
+   * and carried nothing else from the namespace, which leaves a scraper reading
+   * a content type it cannot then place: no date, no section, nothing to file
+   * it under. `section` is the industry itself, which is exactly what the field
+   * means, and the modified time is the site's real content date rather than a
+   * per-page one — see `CONTENT_DATE`.
+   *
+   * Deliberately no `article:published_time` and no `article:author`. Neither
+   * has an answer anywhere in this repository, and a first-publication date is
+   * not something to guess at.
+   */
+  article?: { section: string };
 }) {
   const url = absolute(localePath(opts.lang, opts.path));
   const type = opts.type ?? "website";
@@ -220,6 +263,14 @@ export function pageMeta(opts: {
       : []),
     ...(opts.product
       ? [{ property: "product:availability", content: opts.product.availability ?? "instock" }]
+      : []),
+
+    // Open Graph article namespace, only where the page really is one.
+    ...(opts.article
+      ? [
+          { property: "article:section", content: opts.article.section },
+          { property: "article:modified_time", content: CONTENT_DATE },
+        ]
       : []),
 
     // Local intent. Every query this site competes for is geographically bound
@@ -296,6 +347,18 @@ export function organizationSchema() {
     // nothing about the page would have told us. The 512 is the same mark at
     // the size the manifest already ships.
     logo: absolute(ORG_LOGO),
+    // The published home-page description, not a new sentence written for the
+    // schema. Google cross-checks a knowledge-panel description against what
+    // the site actually says about itself, and two descriptions of one business
+    // that do not match is the thing that gets both distrusted.
+    //
+    // Russian, on every locale, and that is a property of where this node lives
+    // rather than a decision made here: the root `head()` has no route params,
+    // so it cannot know which language it is rendering — which is why `name`,
+    // `legalName` and the whole postal address in this same object are already
+    // Russian on the English and Uzbek pages. A description in a fourth
+    // language would be the odd one out, not the fix.
+    description: ORG_DESCRIPTION,
     // All three lines, not just the first — a caller who finds the business
     // through a knowledge panel should see the number they'd actually reach.
     telephone: BUSINESS.phones[0],

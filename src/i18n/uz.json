@@ -342,12 +342,12 @@
       },
       "tradein": {
         "t": "Eski ratsiyalarni almashtirish",
-        "d": "Eski texnikangizni hisobga olamiz va yangi to‘plam narxini pasaytiramiz.",
-        "c": "Baholashni olish"
+        "d": "Eski ratsiyangizni olib keling — sizga dolzarb Motorola yoki Radiocom modelini chegirma bilan tanlab beramiz.",
+        "c": "Almashishni boshlash"
       },
       "service": {
         "t": "Servis va kafolat",
-        "d": "Avtorizatsiyalangan servis markazi, zaxira qurilmalar va chastota sozlamalari.",
+        "d": "Motorola va Radiocom bo‘yicha vakolatli servis markazi: 12 oy kafolat, faqat zavod ehtiyot qismlari va diagnostikadan keyin belgilanadigan qat’iy narx.",
         "c": "Shartlarni bilish"
       }
     }
@@ -356,7 +356,7 @@
     "kicker": "TRADE-IN",
     "title_a": "Eskini bering.",
     "title_b": "Yangisini oling.",
-    "desc": "Eski ratsiyangizni olib keling — mutaxassislarimiz sizga yangi Motorola yoki Radiocom modelini katta chegirma bilan taklif qiladi.",
+    "desc": "Eski ratsiyangizni olib keling — mutaxassislarimiz sizga yangi Motorola yoki Radiocom modelini chegirma bilan taklif qiladi.",
     "cta": "Almashishni boshlash"
   },
   "stats": {

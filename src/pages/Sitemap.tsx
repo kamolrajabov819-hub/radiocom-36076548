@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { brandCase } from "@/lib/brand";
 import { motion } from "framer-motion";
 import { LocaleLink } from "@/components/LocaleLink";
 import { Section, SectionHead } from "@/components/Section";
@@ -108,7 +109,7 @@ export function SitemapPage() {
                     to={p.to}
                     className="inline-flex min-h-11 items-center text-[15px] text-cool transition-colors hover:text-crisp"
                   >
-                    {t(p.key)}
+                    {brandCase(t(p.key))}
                   </LocaleLink>
                 </li>
               ))}
@@ -122,7 +123,7 @@ export function SitemapPage() {
             {(["radiocom", "motorola"] as const).map((brand) => (
               <div key={brand} className="mb-8 last:mb-0">
                 <h3 className="mb-2 text-[13px] font-medium uppercase tracking-[0.14em] text-cool">
-                  {t(`nav.${brand}`)}
+                  {brandCase(t(`nav.${brand}`))}
                 </h3>
                 <ul data-stagger className="space-y-1">
                   {productsOfBrand(brand).map((p) => (
@@ -132,7 +133,7 @@ export function SitemapPage() {
                         params={{ brand: p.brandSlug, model: p.slug }}
                         className="inline-flex min-h-11 items-center text-[15px] text-cool transition-colors hover:text-crisp"
                       >
-                        {p.name}
+                        {brandCase(p.name)}
                       </LocaleLink>
                     </li>
                   ))}
