@@ -1,4 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { radiocomRouteOptions } from "@/pages/Brand";
+import { brandHead } from "@/pages/Brand.meta";
+import { RadiocomPage } from "@/pages/Brand";
 
-export const Route = createFileRoute("/$lang/radiocom/")(radiocomRouteOptions);
+export const Route = createFileRoute("/$lang/radiocom/")({
+  head: brandHead("radiocom"),
+  component: RadiocomPage,
+});

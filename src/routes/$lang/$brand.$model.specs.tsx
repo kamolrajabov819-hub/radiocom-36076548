@@ -1,5 +1,6 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { productSpecsRouteOptions } from "@/pages/ProductSpecs";
+import { head } from "@/pages/ProductSpecs.meta";
+import { ProductSpecsPage } from "@/pages/ProductSpecs";
 import { isBrandSlug, productBySlug } from "@/data/products";
 
 /** `/{lang}/{brand}/{model}/specs` — see the story route for why this is parameterised. */
@@ -13,5 +14,6 @@ export const Route = createFileRoute("/$lang/$brand/$model/specs")({
     if (!isBrandSlug(params.brand)) throw notFound();
     if (!productBySlug(params.brand, params.model)) throw notFound();
   },
-  ...productSpecsRouteOptions(),
+  head,
+  component: ProductSpecsPage,
 });

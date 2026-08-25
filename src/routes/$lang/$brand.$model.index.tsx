@@ -1,5 +1,6 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
-import { productStoryRouteOptions } from "@/pages/ProductStory";
+import { head } from "@/pages/ProductStory.meta";
+import { ProductStoryPage } from "@/pages/ProductStory";
 import { isBrandSlug, productBySlug } from "@/data/products";
 
 /**
@@ -26,5 +27,6 @@ export const Route = createFileRoute("/$lang/$brand/$model/")({
     if (!isBrandSlug(params.brand)) throw notFound();
     if (!productBySlug(params.brand, params.model)) throw notFound();
   },
-  ...productStoryRouteOptions(),
+  head,
+  component: ProductStoryPage,
 });

@@ -77,64 +77,6 @@ function matches(text: string, terms: string[]): boolean {
   return terms.every((term) => text.includes(term));
 }
 
-export const routeOptions = {
-  validateSearch: (search: Record<string, unknown>): { q?: string } => {
-    const q = typeof search.q === "string" ? search.q.slice(0, 120) : undefined;
-    return q ? { q } : {};
-  },
-  head: ({ params, match }: { params: { lang: SeoLang }; match?: { search?: { q?: string } } }) => {
-    const t = tFor(params.lang);
-    const path = "/search";
-    // Only a *results* page is noindexed, not the form.
-    //
-    // The two are different pages wearing one route. `/search` with no query
-    // is a real destination: it is linked from the chrome and the HTML
-    // sitemap, it is the URL the WebSite node's SearchAction advertises, and
-    // there is exactly one of it — so it stays indexable and stays in the
-    // sitemap. `/search?q=…` is the opposite: it answers 200 for any string
-    // anyone types, which is an unbounded set of thin pages duplicating the
-    // catalogue they link to, and it is the case Google's own guidance on
-    // internal search results is about.
-    //
-    // `follow` on both counts: the product links on a results page are real
-    // and worth crawling, which is also why this is a meta tag rather than a
-    // robots.txt disallow — a blocked URL is one whose noindex is never read.
-    const isResults = Boolean(match?.search?.q);
-    return {
-      meta: pageMeta({
-        lang: params.lang,
-        title: t("meta.search.title"),
-        description: t("meta.search.desc"),
-        path,
-        ogCard: "search",
-        noindex: isResults,
-      }),
-      links: localeLinks(params.lang, path),
-      scripts: [
-        jsonLd(
-          webPageSchema({
-            name: t("meta.search.title"),
-            description: t("meta.search.desc"),
-            path,
-            lang: params.lang,
-          }),
-        ),
-        jsonLd(itemListSchema(visibleProducts, params.lang)),
-        jsonLd(
-          breadcrumbSchema(
-            [
-              { name: t("nav.home"), path: "/" },
-              { name: t("meta.crumb.search"), path },
-            ],
-            params.lang,
-          ),
-        ),
-      ],
-    };
-  },
-  component: SearchPage,
-};
-
 export function SearchPage() {
   const { t } = useTranslation();
   const lang = useLang();

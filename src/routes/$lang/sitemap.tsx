@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { routeOptions } from "@/pages/Sitemap";
+import { head } from "@/pages/Sitemap.meta";
+import { SitemapPage } from "@/pages/Sitemap";
 
-export const Route = createFileRoute("/$lang/sitemap")(routeOptions);
+export const Route = createFileRoute("/$lang/sitemap")({ head, component: SitemapPage });

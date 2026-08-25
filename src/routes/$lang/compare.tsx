@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { routeOptions } from "@/pages/Compare";
+import { head } from "@/pages/Compare.meta";
+import { ComparePage } from "@/pages/Compare";
 
-export const Route = createFileRoute("/$lang/compare")(routeOptions);
+export const Route = createFileRoute("/$lang/compare")({ head, component: ComparePage });

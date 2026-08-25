@@ -33,42 +33,6 @@ import { tFor } from "@/lib/i18n";
  * is where someone goes when they know the site has a page and cannot find the
  * door.
  */
-export const routeOptions = {
-  head: ({ params }: { params: { lang: SeoLang } }) => {
-    const t = tFor(params.lang);
-    const path = "/sitemap";
-    return {
-      meta: pageMeta({
-        lang: params.lang,
-        title: `${t("sitemap.title")} — Radiocom`,
-        description: t("sitemap.sub"),
-        path,
-        ogCard: "sitemap",
-      }),
-      links: localeLinks(params.lang, path),
-      scripts: [
-        jsonLd(
-          webPageSchema({
-            name: t("sitemap.title"),
-            description: t("sitemap.sub"),
-            path,
-            lang: params.lang,
-          }),
-        ),
-        jsonLd(
-          breadcrumbSchema(
-            [
-              { name: t("nav.home"), path: "/" },
-              { name: t("sitemap.title"), path },
-            ],
-            params.lang,
-          ),
-        ),
-      ],
-    };
-  },
-  component: SitemapPage,
-};
 
 const PAGES = [
   { to: "/", key: "nav.home" },

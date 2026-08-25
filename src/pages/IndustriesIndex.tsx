@@ -31,34 +31,6 @@ const IMAGES: Record<string, string> = {
   manufacturing: manufacturingImg,
 };
 
-export const routeOptions = {
-  head: ({ params }: { params: { lang: SeoLang } }) => {
-    const t = tFor(params.lang);
-    return {
-      meta: pageMeta({
-        lang: params.lang,
-        title: t("meta.industries.title"),
-        description: t("meta.industries.desc"),
-        path: "/industries",
-        ogCard: "industries",
-      }),
-      links: localeLinks(params.lang, "/industries"),
-      scripts: [
-        jsonLd(
-          breadcrumbSchema(
-            [
-              { name: SITE_NAME, path: "/" },
-              { name: t("meta.crumb.industries"), path: "/industries" },
-            ],
-            params.lang,
-          ),
-        ),
-      ],
-    };
-  },
-  component: IndustriesOverview,
-};
-
 export function IndustriesOverview() {
   const { t } = useTranslation();
   const page = useScrollChoreography();

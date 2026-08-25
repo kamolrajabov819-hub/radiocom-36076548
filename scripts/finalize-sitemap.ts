@@ -50,9 +50,17 @@ if (!OUT) {
 const ASSETS = `${OUT}/assets`;
 const built = await readdir(ASSETS);
 
+// Images only. `resolve()` is ever asked about image imports, so those are the
+// only basenames that can be answered wrongly — and restricting the map is what
+// keeps the guard below meaningful. Code chunks legitimately collide: the route
+// splitter emits both `_lang-<hash>.js` (the route) and a second `_lang` chunk
+// for the component it lifted out of it, which is correct output that this
+// script has no business rejecting.
+const IMAGE = /\.(webp|avif|png|jpe?g|gif|svg)$/i;
 const byName = new Map<string, string>();
 const collisions: string[] = [];
 for (const file of built) {
+  if (!IMAGE.test(file)) continue;
   const key = stripHash(file);
   if (byName.has(key)) collisions.push(key);
   byName.set(key, `/assets/${file}`);

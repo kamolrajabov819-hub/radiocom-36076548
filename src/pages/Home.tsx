@@ -60,45 +60,6 @@ import {
 } from "@/lib/seo";
 import { tFor } from "@/lib/i18n";
 
-export const routeOptions = {
-  head: ({ params }: { params: { lang: SeoLang } }) => {
-    const t = tFor(params.lang);
-    const title = t("meta.home.title");
-    const description = t("meta.home.desc");
-
-    return {
-      meta: pageMeta({ lang: params.lang, title, description, path: "/", ogCard: "home" }),
-      links: [
-        ...localeLinks(params.lang, "/"),
-        // The hero cutout is the LCP element here. Candidate set and sizes must
-        // match the <img> below exactly, or the browser picks a different
-        // candidate and downloads the image twice.
-        preloadImage({
-          src: heroImage,
-          small: heroImage800,
-          sizes: "(min-width: 768px) 597px, 94vw",
-        }),
-      ],
-      // The section graph lives on the homepage: it is the page Google reads
-      // hierarchy from when it generates sitelinks, and only here can the URLs
-      // be locale-correct (the root route's head() has no params).
-      scripts: [
-        jsonLd(
-          siteNavigationSchema(
-            SITE_SECTIONS.map((sec) => ({
-              name: t(`meta.section.${sec.key}_name`),
-              description: t(`meta.section.${sec.key}_desc`),
-              path: sec.path,
-            })),
-            params.lang,
-          ),
-        ),
-      ],
-    };
-  },
-  component: HomePage,
-};
-
 export function HomePage() {
   const page = useScrollChoreography();
 

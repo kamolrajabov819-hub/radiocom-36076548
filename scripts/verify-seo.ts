@@ -37,8 +37,12 @@ import { SPEC } from "../src/data/spec-dict";
 import { entries } from "./lib/sitemap";
 // The real search route, so the indexability gate below exercises the code
 // that actually ships rather than the helper it calls.
-import { routeOptions as searchRoute } from "../src/pages/Search";
-import { routeOptions as industryRoute } from "../src/pages/IndustryDetail";
+// The `.meta` modules, not the pages. These gates drive the real `head()` a
+// visitor gets, and since the route split those live beside the page rather
+// than inside it — which also means this script no longer imports eleven
+// React page components just to check their meta tags.
+import { head as searchHead } from "../src/pages/Search.meta";
+import { head as industryHead } from "../src/pages/IndustryDetail.meta";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
@@ -602,7 +606,14 @@ console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
       problems.push(`SearchAction targets ${bare}, which the sitemap does not ship`);
     const routeFile = `src/routes/$lang${bare}.tsx`;
     if (!existsSync(routeFile)) problems.push(`no route file at ${routeFile}`);
-    const pageSrc = readFileSync("src/pages/Search.tsx", "utf8");
+    // Both halves of the route: `validateSearch` and the `head` that reads the
+    // parsed value live in the `.meta` module (they are eager, so they must),
+    // while the form that submits the param lives in the page. The question
+    // this gate asks — "is the template Google is told about backed by real
+    // parsing?" — spans the pair, so it reads the pair.
+    const pageSrc =
+      readFileSync("src/pages/Search.meta.ts", "utf8") +
+      readFileSync("src/pages/Search.tsx", "utf8");
     if (!pageSrc.includes("validateSearch"))
       problems.push("the search page does not validate its search params");
     // Specifically: the parameter has to be read off the *search params*, not
@@ -858,7 +869,7 @@ console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
   // page went indexable again, so it was testing the wrong thing entirely.
   // Calling the real `head()` is what ties the check to the behaviour.
   const headFor = (q?: string) => {
-    const head = searchRoute.head({
+    const head = searchHead({
       params: { lang: "ru" as const },
       match: { search: q ? { q } : {} },
     }) as { meta: { name?: string; content?: string }[] };
@@ -904,7 +915,7 @@ console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
 {
   const problems: string[] = [];
   for (const slug of INDUSTRY_SLUGS) {
-    const head = industryRoute.head({ params: { lang: "ru" as const, slug } }) as {
+    const head = industryHead({ params: { lang: "ru" as const, slug } }) as {
       meta: { property?: string; content?: string }[];
     };
     const prop = (k: string) => head.meta.find((m) => m.property === k)?.content;

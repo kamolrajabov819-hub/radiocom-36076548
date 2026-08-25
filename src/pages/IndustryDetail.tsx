@@ -30,64 +30,6 @@ import {
 } from "@/lib/seo";
 import { tFor } from "@/lib/i18n";
 
-export const routeOptions = {
-  beforeLoad: ({ params }: { params: { lang: string; slug: string } }) => {
-    if (!INDUSTRY_SLUGS.includes(params.slug as IndustrySlug)) throw notFound();
-  },
-  head: ({ params }: { params: { slug: string; lang: SeoLang } }) => {
-    const slug = params.slug as IndustrySlug;
-    const t = tFor(params.lang);
-
-    const name = t(`industries.${slug}.name`);
-    // `.seo` is the industry as it reads inside a sentence: Russian needs the
-    // genitive ("Рации для строительства", not "для строительство"), and the
-    // display names carry "·" separators that do not belong in a page title.
-    const inTitle = t(`industries.${slug}.seo`, { defaultValue: name });
-    const title = t("meta.industry.title", { name: inTitle });
-    const description =
-      t(`industries.${slug}.desc`, { defaultValue: "" }) ||
-      t("meta.industry.desc", { name: inTitle });
-    const path = `/industries/${slug}`;
-
-    // The FAQ pairs must be this locale's — schema that disagrees with the
-    // rendered text counts as mismatched markup.
-    const faq = (t(`industries.${slug}.faq`, { returnObjects: true, defaultValue: [] }) ?? []) as {
-      q: string;
-      a: string;
-    }[];
-
-    return {
-      meta: pageMeta({
-        lang: params.lang,
-        title,
-        description,
-        path,
-        type: "article",
-        ogCard: `industries-${slug}`,
-        // `name`, not `inTitle`. The section is a label a scraper files the
-        // page under, so it wants the industry as it is displayed — the `.seo`
-        // variant exists only to read correctly inside a Russian sentence.
-        article: { section: name },
-      }),
-      links: localeLinks(params.lang, path),
-      scripts: [
-        ...(Array.isArray(faq) && faq.length ? [jsonLd(faqSchema(faq, params.lang))] : []),
-        jsonLd(
-          breadcrumbSchema(
-            [
-              { name: SITE_NAME, path: "/" },
-              { name: t("meta.crumb.industries"), path: "/industries" },
-              { name, path },
-            ],
-            params.lang,
-          ),
-        ),
-      ],
-    };
-  },
-  component: IndustryPage,
-};
-
 type Outcome = { n: string; u: string; l: string };
 type FAQ = { q: string; a: string };
 

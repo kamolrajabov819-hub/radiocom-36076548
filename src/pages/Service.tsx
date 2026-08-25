@@ -29,65 +29,6 @@ import { BentoGrid, FeatureCard, HighlightsShelf } from "@/components/apple";
  *  advantages tiles use this shape; a bare string is what made them read as
  *  filler. */
 type FlowStep = { t: string; d: string };
-import {
-  SITE_NAME,
-  breadcrumbSchema,
-  faqSchema,
-  jsonLd,
-  localeLinks,
-  pageMeta,
-  serviceSchema,
-  type SeoLang,
-} from "@/lib/seo";
-import { tFor } from "@/lib/i18n";
-
-export const routeOptions = {
-  head: ({ params }: { params: { lang: SeoLang } }) => {
-    const t = tFor(params.lang);
-    return {
-      meta: pageMeta({
-        lang: params.lang,
-        title: t("meta.service.title"),
-        description: t("meta.service.desc"),
-        path: "/service",
-        ogCard: "service",
-      }),
-      links: localeLinks(params.lang, "/service"),
-      scripts: [
-        jsonLd(
-          serviceSchema(
-            {
-              name: t("meta.service.schema_name"),
-              description: t("meta.service.schema_desc"),
-              path: "/service",
-            },
-            params.lang,
-          ),
-        ),
-        jsonLd(
-          breadcrumbSchema(
-            [
-              { name: SITE_NAME, path: "/" },
-              { name: t("meta.crumb.service"), path: "/service" },
-            ],
-            params.lang,
-          ),
-        ),
-        // The repair policy accordion is already a list of questions and
-        // answers, translated in all three locales — it just was not marked up
-        // as one. Free eligibility for an FAQ rich result on the page that
-        // answers "how much does a repair cost".
-        jsonLd(
-          faqSchema(
-            t("service.policy", { returnObjects: true }) as { q: string; a: string }[],
-            params.lang,
-          ),
-        ),
-      ],
-    };
-  },
-  component: ServicePage,
-};
 
 export function ServicePage() {
   const page = useScrollChoreography();
