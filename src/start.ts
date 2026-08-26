@@ -130,7 +130,10 @@ const agentAcceptMiddleware = createMiddleware().server(async ({ request, next }
   if (accept.includes("*/*") || accept.includes("text/html")) {
     const result = await next();
     if (!isHtml(result.response)) return result;
-    return { ...result, response: withHeaders(result.response, { Link: linkHeader(pathname, true) }) };
+    return {
+      ...result,
+      response: withHeaders(result.response, { Link: linkHeader(pathname, true) }),
+    };
   }
 
   const wantsMarkdown = accept.includes("text/markdown") || accept.includes("text/x-markdown");

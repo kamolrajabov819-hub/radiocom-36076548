@@ -36,14 +36,18 @@ const ENTITIES: Record<string, string> = {
 function decode(s: string): string {
   return s.replace(/&(#x?[0-9a-fA-F]+|[a-zA-Z]+);/g, (m, e: string) => {
     if (e[0] === "#") {
-      const code = e[1] === "x" || e[1] === "X" ? parseInt(e.slice(2), 16) : parseInt(e.slice(1), 10);
+      const code =
+        e[1] === "x" || e[1] === "X" ? parseInt(e.slice(2), 16) : parseInt(e.slice(1), 10);
       return Number.isFinite(code) ? String.fromCodePoint(code) : m;
     }
     return ENTITIES[e] ?? m;
   });
 }
 
-const stripTags = (s: string) => decode(s.replace(/<[^>]*>/g, "")).replace(/\s+/g, " ").trim();
+const stripTags = (s: string) =>
+  decode(s.replace(/<[^>]*>/g, ""))
+    .replace(/\s+/g, " ")
+    .trim();
 
 /**
  * Convert one SSR HTML document to Markdown.
@@ -56,9 +60,7 @@ export function htmlToMarkdown(html: string, origin = ""): string {
   // Title and description first — an agent reading only the head of the file
   // should still learn what the page is.
   const title = stripTags(/<title[^>]*>([\s\S]*?)<\/title>/i.exec(html)?.[1] ?? "");
-  const desc = decode(
-    /<meta\s+name="description"\s+content="([^"]*)"/i.exec(html)?.[1] ?? "",
-  );
+  const desc = decode(/<meta\s+name="description"\s+content="([^"]*)"/i.exec(html)?.[1] ?? "");
 
   let body = /<body[^>]*>([\s\S]*)<\/body>/i.exec(html)?.[1] ?? html;
 

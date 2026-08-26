@@ -94,11 +94,7 @@ export function Nav() {
               here, first in document order, so flex places it there without
               needing `position` at all. `shrink-0` keeps it from being
               squeezed once the middle nav below is also fighting for room. */}
-          <LocaleLink
-            to="/"
-            className="flex min-h-11 shrink-0 items-center"
-            aria-label="Radiocom"
-          >
+          <LocaleLink to="/" className="flex min-h-11 shrink-0 items-center" aria-label="Radiocom">
             <img
               src={logoAsset}
               alt="Radiocom"

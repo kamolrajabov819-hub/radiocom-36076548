@@ -623,7 +623,7 @@ function WhereUsed({ p, lang }: { p: Product; lang: Lang }) {
             idx={i}
             className="w-[62vw] shrink-0 snap-start sm:w-[38vw] lg:w-[calc((100%-3rem)/4)]"
             image={INDUSTRY_POSTERS[slug]}
-                srcSet={INDUSTRY_POSTER_SRCSET[slug]}
+            srcSet={INDUSTRY_POSTER_SRCSET[slug]}
             eyebrow={t(`industries.${slug}.short`)}
             title={t(`industries.${slug}.name`)}
             href={

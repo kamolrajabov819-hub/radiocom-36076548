@@ -82,7 +82,12 @@ for path in sorted(glob.glob(os.path.join(src_root, "catalog", "*.webp"))):
     name = os.path.basename(path)
     if "@800" in name:
         continue
-    m = re.match(r"^(.*)-(hero|device)\.webp$", name)
+    # Doubled backslash, deliberately: this Python lives inside a JS template
+    # literal, which consumes a lone backslash before a non-escape character.
+    # Written singly, the regex reaching Python matched any character where a
+    # literal dot was meant. (No backticks in this block -- they would close
+    # the template literal.)
+    m = re.match(r"^(.*)-(hero|device)\\.webp$", name)
     if not m:
         continue
     slug = m.group(1)

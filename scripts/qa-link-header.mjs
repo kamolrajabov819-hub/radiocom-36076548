@@ -49,7 +49,8 @@ for (const path of PATHS) {
   const link = res.headers.get("link") ?? "";
   const ct = res.headers.get("content-type") ?? "";
   if (!ct.includes("text/markdown")) bad(`Accept: text/markdown returned ${ct}`);
-  else if (link.includes("rel=\"alternate\"")) bad("the Markdown response advertises a Markdown alternate of itself");
+  else if (link.includes('rel="alternate"'))
+    bad("the Markdown response advertises a Markdown alternate of itself");
   else console.log("  ok   markdown response carries describedby, not a self-alternate");
 }
 

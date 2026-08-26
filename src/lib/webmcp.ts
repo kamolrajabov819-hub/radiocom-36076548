@@ -180,7 +180,9 @@ function tools(): ToolDefinition[] {
       },
       execute: ({ slugs, lang }) => {
         const l = asLang(lang);
-        const wanted = Array.isArray(slugs) ? slugs.filter((x): x is string => typeof x === "string") : [];
+        const wanted = Array.isArray(slugs)
+          ? slugs.filter((x): x is string => typeof x === "string")
+          : [];
         if (wanted.length < 2) return text("Give at least two slugs to compare.");
         const found = wanted.map((s) => visibleProducts.find((p) => p.slug === s));
         const missing = wanted.filter((_, i) => !found[i]);
@@ -202,7 +204,10 @@ function tools(): ToolDefinition[] {
       inputSchema: {
         type: "object",
         properties: {
-          product: { type: "string", description: "Model name to prefill, e.g. Radiocom RCD-70 PRO." },
+          product: {
+            type: "string",
+            description: "Model name to prefill, e.g. Radiocom RCD-70 PRO.",
+          },
         },
       },
       execute: ({ product }) => {
