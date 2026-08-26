@@ -312,6 +312,39 @@ function handle(msg: Rpc): object | null {
 }
 
 export default async (req: Request) => {
+  const { pathname } = new URL(req.url);
+
+  /**
+   * `GET /mcp/health` — what `/.well-known/api-catalog` points its `status`
+   * relation at.
+   *
+   * It reports the model count rather than a hardcoded `"ok"`, which is the
+   * difference between a health check and a lie: this answers only if the
+   * function booted *and* `_catalog.json` loaded and parsed. A build that
+   * shipped an empty or truncated catalogue would show `models: 0` here
+   * instead of passing.
+   */
+  if (/\/health\/?$/.test(pathname)) {
+    if (req.method !== "GET" && req.method !== "HEAD") {
+      return new Response("Method Not Allowed", { status: 405, headers: { allow: "GET, HEAD" } });
+    }
+    return Response.json(
+      {
+        status: "ok",
+        models: catalog.products.length,
+        protocolVersion: PROTOCOL_VERSION,
+        version: SERVER_VERSION,
+      },
+      {
+        headers: {
+          "access-control-allow-origin": "*",
+          // A health check that is cached is not a health check.
+          "cache-control": "no-store",
+        },
+      },
+    );
+  }
+
   if (req.method === "GET") {
     // No server-initiated stream to offer. 405 is the spec's answer for a
     // server that does not support GET on the endpoint.
@@ -359,5 +392,9 @@ export default async (req: Request) => {
 };
 
 export const config: Config = {
-  path: "/mcp",
+  // Both paths, one function: the health endpoint answers out of the same
+  // loaded catalogue the tools use, so it reports on the thing that actually
+  // serves rather than on a separate process that might be fine while this one
+  // is not.
+  path: ["/mcp", "/mcp/health"],
 };

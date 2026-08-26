@@ -87,14 +87,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "11 лет на рынке, 10 000+ клиентов. Радиостанции Motorola, Hytera, PoC и Radiocom RC с официальной гарантией, бесплатным тестом и доставкой по Узбекистану.",
+          "14 лет на рынке, 10 000+ клиентов. Радиостанции Motorola, PoC и Radiocom RC с официальной гарантией, бесплатным тестом и доставкой по Узбекистану.",
       },
       { property: "og:site_name", content: "Radiocom" },
       { property: "og:title", content: "Radiocom — рации и радиостанции в Узбекистане" },
       {
         property: "og:description",
         content:
-          "Радиостанции Motorola, Hytera, PoC и Radiocom RC с официальной гарантией, бесплатным тестом и доставкой по Узбекистану.",
+          "Радиостанции Motorola, PoC и Radiocom RC с официальной гарантией, бесплатным тестом и доставкой по Узбекистану.",
       },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "ru_RU" },
@@ -104,7 +104,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "twitter:description",
         content:
-          "Радиостанции Motorola, Hytera, PoC и Radiocom RC с официальной гарантией, бесплатным тестом и доставкой по Узбекистану.",
+          "Радиостанции Motorola, PoC и Radiocom RC с официальной гарантией, бесплатным тестом и доставкой по Узбекистану.",
       },
       {
         property: "og:image",

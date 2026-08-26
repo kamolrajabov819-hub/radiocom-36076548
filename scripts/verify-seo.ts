@@ -19,6 +19,8 @@ import {
   ORG_LOGO,
   BUSINESS_IMAGE,
   ORG_DESCRIPTION,
+  FOUNDED_YEAR,
+  YEARS_TRADING,
   CONTENT_DATE,
 } from "../src/lib/seo";
 import { productSchema } from "../src/lib/seo-product";
@@ -978,6 +980,73 @@ console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
 
   if (problems.length) bad(`organization description:\n     ${problems.join("\n     ")}`);
   else console.log("ok  Organization.description is the published home description, verbatim");
+}
+
+// N. The tenure figure in the copy agrees with the founding year in the schema.
+//
+//     Three sentences in three languages each state how long the business has
+//     been trading, and `Organization.foundingDate` states when it started.
+//     Those are the same fact said two ways, and they drift on a schedule: the
+//     copy is a hand-written word, the span is arithmetic on the current year,
+//     so they part company every January.
+//
+//     This is not hypothetical. The copy said «11 лет» for long enough that
+//     subtracting it from the current year gave 2015 for a business founded in
+//     2012 — three years of quiet drift, and the wrong answer was the one that
+//     looked derivable. The gate fires on the first build of the year the
+//     numbers disagree, which is the reminder to edit nine strings.
+{
+  const problems: string[] = [];
+  const org = organizationSchema() as { foundingDate?: string };
+
+  if (org.foundingDate !== String(FOUNDED_YEAR))
+    problems.push(
+      `Organization.foundingDate is ${JSON.stringify(org.foundingDate)}, expected "${FOUNDED_YEAR}"`,
+    );
+
+  // One pattern per locale, anchored on that language's word for "years", so
+  // "10 000+ клиентов" in the same sentence cannot be mistaken for a tenure.
+  const tenure: Record<string, RegExp> = {
+    ru: /(\d+)\s+лет/,
+    en: /(\d+)\s+years?/,
+    uz: /(\d+)\s+yil/,
+  };
+  const keys = ["hero.sub", "industries.trust_years", "meta.home.desc"];
+
+  // Every published place the span appears. The locale files are the site's
+  // own copy; the llms.txt summaries are the same claim written again for
+  // agents, generated from `LLMS_COPY` in `scripts/generate-seo.ts`, and they
+  // go stale on exactly the same January.
+  const sources: Array<{ lang: keyof typeof tenure; at: string; text: string }> = [];
+  for (const lang of Object.keys(tenure) as Array<keyof typeof tenure>) {
+    for (const key of keys) sources.push({ lang, at: `${lang}.${key}`, text: tFor(lang)(key) });
+  }
+  for (const [lang, file] of [
+    ["ru", "public/llms.txt"],
+    ["en", "public/llms.en.txt"],
+    ["uz", "public/llms.uz.txt"],
+  ] as const) {
+    // Only the summary block states a tenure; the rest of the file is a link
+    // list, so the whole file is scanned and the first match is the one.
+    sources.push({ lang, at: file, text: readFileSync(file, "utf8") });
+  }
+
+  for (const { lang, at, text } of sources) {
+    const m = text.match(tenure[lang]);
+    // No match means the sentence was reworded and this check went blind,
+    // which is worse than a mismatch because it fails silently.
+    if (!m) {
+      problems.push(`${at} no longer states a tenure the gate can read`);
+    } else if (Number(m[1]) !== YEARS_TRADING) {
+      problems.push(`${at} says ${m[1]} years, but ${FOUNDED_YEAR} makes it ${YEARS_TRADING}`);
+    }
+  }
+
+  if (problems.length) bad(`tenure vs foundingDate:\n     ${problems.join("\n     ")}`);
+  else
+    console.log(
+      `ok  founded ${FOUNDED_YEAR}, and all ${sources.length} tenure strings say ${YEARS_TRADING} years`,
+    );
 }
 
 // N. Snippet lengths — titles and meta descriptions — live in

@@ -15,6 +15,9 @@
  * Run: bun scripts/qa-mcp.mts
  */
 import handler from "../netlify/functions/mcp.mts";
+import catalog from "../netlify/functions/_catalog.json" with { type: "json" };
+
+const catalogSize = catalog.products.length;
 
 const call = async (payload: unknown) => {
   const res = await handler(
@@ -104,6 +107,26 @@ check("batch drops notification replies", Array.isArray(batch.json) && batch.jso
 
 const get = await handler(new Request("https://radiocom.uz/mcp", { method: "GET" }));
 check("GET returns 405 with Allow", get.status === 405 && !!get.headers.get("allow"));
+
+// The health endpoint `/.well-known/api-catalog` points at.
+{
+  const res = await handler(new Request("https://radiocom.uz/mcp/health", { method: "GET" }));
+  const body = await res.json();
+  check("GET /mcp/health returns 200", res.status === 200, String(res.status));
+  check("health reports status ok", body?.status === "ok", JSON.stringify(body));
+  check(
+    "health reports the real model count, not a constant",
+    body?.models === catalogSize,
+    `${body?.models} vs ${catalogSize}`,
+  );
+  check("health is not cacheable", (res.headers.get("cache-control") ?? "").includes("no-store"));
+  const post = await handler(new Request("https://radiocom.uz/mcp/health", { method: "POST" }));
+  check("POST /mcp/health is 405", post.status === 405, String(post.status));
+  // A trailing slash must not fall through to the JSON-RPC branch and
+  // answer 405 to what is plainly a health check.
+  const slash = await handler(new Request("https://radiocom.uz/mcp/health/", { method: "GET" }));
+  check("GET /mcp/health/ (trailing slash) still 200", slash.status === 200, String(slash.status));
+}
 
 console.log(fail === 0 ? "\nALL MCP CHECKS PASSED" : `\n${fail} FAILURES`);
 process.exit(fail ? 1 : 0);

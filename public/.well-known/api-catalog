@@ -1,0 +1,25 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://radiocom.uz/mcp",
+      "service-desc": [
+        {
+          "href": "https://radiocom.uz/.well-known/mcp/server-card.json",
+          "type": "application/json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://radiocom.uz/.well-known/agent-skills/radiocom-catalog/SKILL.md",
+          "type": "text/markdown"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://radiocom.uz/mcp/health",
+          "type": "application/json"
+        }
+      ]
+    }
+  ]
+}

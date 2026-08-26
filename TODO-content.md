@@ -462,13 +462,24 @@ I shipped them as given, because they are your product photography and
 substituting something else quietly is not my call. If either matters, the fix
 is new source images, not code.
 
-## No founding year anywhere, so `Organization.foundingDate` stays off
+## Founding year — answered: 2012, and the arithmetic would have been wrong
 
-The site says «11 лет на рынке» in several places but never states a year, and
-`foundingDate` in the Organization schema takes a date, not a duration. Deriving
-2015 from "11 years" plus today's date would put an invented fact in your
-structured data, which is exactly the sort of thing that gets an identity graph
-distrusted. Tell me the founding year and it is a one-line addition.
+**Resolved.** The company was founded in **2012**, so it has been trading
+**14 years**, and `Organization.foundingDate` is now `"2012"`.
+
+Worth recording why this one was worth asking about rather than working out.
+The site said «11 лет на рынке» and never named a year; subtracting 11 from 2026
+gives 2015. The real answer is 2012 — the copy had gone stale by three years, so
+the arithmetic was off by three. Had that inference gone into the schema
+unasked, a wrong founding date would now be sitting in a Google knowledge panel,
+which is slow and awkward to correct once indexed.
+
+The tenure figure is no longer written out by hand. `src/lib/seo.ts` holds
+`FOUNDED_YEAR = 2012` and derives `YEARS_TRADING` from the current year, and the
+home page's counter reads from it, so the number on screen cannot drift from the
+schema. The copy in `hero.sub`, `trust_years` and `meta.home.desc` still spells
+"14" out in three languages — those are sentences, not counters — so they need a
+one-word edit each January.
 
 ## Two claims I removed from the industry pages, in case they were true
 
@@ -758,21 +769,17 @@ Standard. Hytera appears nowhere in `src/i18n/` any more.
 Nothing needed from you unless the bench *does* take Hytera, in which case the
 right fix is to say so in the page copy first and let the metadata follow.
 
-**2. What year was the company founded?**
+**2. What year was the company founded? — answered: 2012.**
 
-`Organization.foundingDate` is still the one structured-data field left empty,
-and it is the field Google's knowledge panel uses. I will not invent it.
+`Organization.foundingDate` is `"2012"` and every tenure string now says
+**14 лет / 14 years / 14 yil**. The inference offered here was 2015, from
+«11 лет» plus 2026; it was wrong by three years because the copy itself was
+three years stale. That is the whole argument for asking instead of computing,
+and it is written up under "Founding year" above.
 
-There is an inference available and I want to be clear that it is only an
-inference: the published home description says **«11 лет на рынке»**, which
-would put the founding year at **2015** if that line was written for 2026. If it
-was written a couple of years ago and never updated, the real year is earlier —
-which is exactly why this needs a person rather than arithmetic. Give me the
-year and it is a one-line change.
-
-While you are looking: if «11 лет» and «10 000+ клиентов» have gone stale, both
-are in `meta.home.desc` in ru/en/uz and are quoted verbatim into the
-`Organization` schema.
+**Still open, and smaller:** «10 000+ клиентов» has never been checked. It sits
+in `meta.home.desc` in ru/en/uz and is quoted verbatim into the `Organization`
+schema, so if that figure has moved it is the same three-file edit.
 
 ## Agent discovery — what is published, and what is still refused
 
@@ -797,7 +804,8 @@ looked right and was never checked against reality — and both are now covered 
 | Markdown for agents | `Accept: text/markdown` returns Markdown |
 | Content Signals | `search=yes, ai-input=yes, ai-train=no` |
 | `Link` headers | `describedby` → the locale's `llms.txt`; `alternate` → the same URL as Markdown |
-| ARD manifest | `/.well-known/ai-catalog.json`, six entries, all resolvable |
+| ARD manifest | `/.well-known/ai-catalog.json`, seven entries, all resolvable |
+| API catalogue | `/.well-known/api-catalog` (RFC 9727), a linkset anchored on `/mcp` |
 
 **The MCP server is read-only, and that is deliberate.** There is no tool that
 submits an enquiry or places an order: an unattended agent posting into the
@@ -805,20 +813,39 @@ sales pipeline is spam with extra steps. The browser-side twin *does* offer
 `open_lead_form`, for the opposite reason — a person is sitting there and still
 presses send.
 
-**One decision is still yours.** `ai-train=no` says this content may be cited but
-not used as training data. That matches what the site already does — every AI
-answer engine is allowed in robots.txt because being quotable is a distribution
-channel — but granting training rights is a commercial call nobody has made. It
-is one word in `scripts/generate-seo.ts`.
+**`ai-train=no` is a recommendation, not a leftover default.** You asked for the
+best call, so here is the reasoning. `search=yes` and `ai-input=yes` stay,
+because those are the channels that deliver traffic and they read **live**
+pages. Training is different in kind: it freezes content into weights, and this
+site is a price list. A model quoting a 2026 сум figure in 2029 misleads a
+customer with no way to correct it, and the grant is irreversible in effect even
+if the header changes later. The upside — brand presence in future model
+weights — is speculative and unmeasurable, and the discovery value is already
+captured by the two signals that stay `yes`. Change it later if that trade ever
+looks different; it is one word in `scripts/generate-seo.ts`.
 
 ### Still refused
 
 | Goal | Why not |
 |---|---|
-| `/.well-known/api-catalog` (RFC 9727) | There is no public API. The only endpoint is `/api/send-lead`, which robots.txt disallows and which takes a lead form, not queries. The MCP server is the queryable surface, and it has its own discovery document. |
 | OAuth/OIDC discovery | There is no authorization server. Publishing `authorization_endpoint` and `token_endpoint` would send agents to URLs that do not resolve. |
 | OAuth Protected Resource metadata | Nothing here is a protected resource — `/mcp` is deliberately open and read-only. |
 | `auth.md` | Same: there is no agent registration to describe. |
+
+**`api-catalog` moved out of this table because the facts changed, not the
+standard.** Last round the honest answer was "there is no public API" — the only
+endpoint was `/api/send-lead`, which robots.txt disallows and which takes a lead
+form rather than queries. Shipping `/mcp` created a real queryable API, a
+machine-readable description of it (the server card) and documentation for it
+(the `SKILL.md`), which is exactly the set of things a catalogue links to. So it
+is now published, anchored on `/mcp`, with a `status` link to `/mcp/health` that
+reports the live model count rather than a hardcoded `ok`.
+
+**The remaining three are one decision away.** They describe authentication, and
+`/mcp` is deliberately open and read-only, so today they would name a
+`token_endpoint` that 404s and send an agent into a flow that cannot complete —
+worse served than finding no document at all. Build an authenticated surface and
+all three become publishable the same afternoon.
 
 **DNS-AID is not refused, it is just not in this repo.** It needs SVCB/HTTPS
 records under `_agents.radiocom.uz` and the zone signed with DNSSEC, done at the

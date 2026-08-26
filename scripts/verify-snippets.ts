@@ -87,7 +87,10 @@ for (const lang of LANGS) {
     });
   // `brandHead` is curried by brand, unlike the others.
   for (const brand of ["radiocom", "motorola"] as const) {
-    cases.push({ label: `${lang} /${brand}`, head: brandHead(brand)({ params: { lang } }) as Head });
+    cases.push({
+      label: `${lang} /${brand}`,
+      head: brandHead(brand)({ params: { lang } }) as Head,
+    });
     // Two models per brand rather than the whole catalogue: title and
     // description each come from one template, so a fifth model tests nothing
     // a second does not. The longest names are what matter, and
@@ -114,7 +117,9 @@ for (const { label, head } of cases) {
       `${label}: description is only ${[...desc].length} chars (min ${DESC_MIN}) — "${desc}"`,
     );
   else if ([...desc].length > DESC_MAX)
-    problems.push(`${label}: description is ${[...desc].length} chars (max ${DESC_MAX}) — "${desc}"`);
+    problems.push(
+      `${label}: description is ${[...desc].length} chars (max ${DESC_MAX}) — "${desc}"`,
+    );
 }
 
 if (problems.length) {

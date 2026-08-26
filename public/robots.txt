@@ -6,9 +6,9 @@
 # Overviews is a distribution channel. That is `search` and `ai-input` —
 # retrieval and citation at answer time.
 #
-# `ai-train=no` because training a model on this corpus is a different thing
-# from citing it, and nobody has agreed to it. It is a commercial decision, not
-# a technical one: flip it here if the owner wants to grant it.
+# `ai-train=no` is a deliberate exception, not an oversight: this is a price
+# list, and prices copied into model weights outlive the prices themselves.
+# Citation is welcome; training is not.
 Content-Signal: search=yes, ai-input=yes, ai-train=no
 
 User-agent: *

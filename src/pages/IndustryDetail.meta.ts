@@ -8,7 +8,7 @@
  * import that module to reach `head`, which dragged the whole page body into
  * the entry chunk behind it.
  */
-import { INDUSTRY_SLUGS, type IndustrySlug } from "@/data/industries";
+import { type IndustrySlug } from "@/data/industries";
 import { tFor } from "@/lib/i18n";
 import {
   SITE_NAME,
@@ -19,11 +19,6 @@ import {
   pageMeta,
   type SeoLang,
 } from "@/lib/seo";
-import { notFound } from "@tanstack/react-router";
-
-beforeLoad: ({ params }: { params: { lang: string; slug: string } }) => {
-  if (!INDUSTRY_SLUGS.includes(params.slug as IndustrySlug)) throw notFound();
-};
 
 export const head = ({ params }: { params: { slug: string; lang: SeoLang } }) => {
   const slug = params.slug as IndustrySlug;

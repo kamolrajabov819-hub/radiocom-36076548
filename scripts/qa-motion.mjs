@@ -142,9 +142,9 @@ for (const c of CASES) {
       // fold that produced no reveal at all.
       const belowFold = await page.evaluate(
         () =>
-          [
-            ...document.querySelectorAll("[data-reveal], [data-scrub-in], [data-stagger]"),
-          ].filter((el) => el.getBoundingClientRect().top + scrollY > innerHeight).length,
+          [...document.querySelectorAll("[data-reveal], [data-scrub-in], [data-stagger]")].filter(
+            (el) => el.getBoundingClientRect().top + scrollY > innerHeight,
+          ).length,
       );
       if (marked > 0 && belowFold > 0 && marks.reveal === 0)
         problems.push(`${belowFold} blocks below the fold but none revealed`);

@@ -40,7 +40,7 @@ const read = (p: string) => JSON.parse(readFileSync(p, "utf8"));
 function resolves(url: string): boolean {
   if (!url.startsWith(SITE_URL)) return false;
   const path = url.slice(SITE_URL.length) || "/";
-  if (path === "/mcp") return existsSync("netlify/functions/mcp.mts");
+  if (path === "/mcp" || path === "/mcp/health") return existsSync("netlify/functions/mcp.mts");
   if (path === "/") return true;
   return existsSync(`public${path}`);
 }
@@ -60,10 +60,13 @@ function resolves(url: string): boolean {
       const at = `entry ${i}${typeof e.displayName === "string" ? ` (${e.displayName})` : ""}`;
       // `identifier`, not `id`. This is the exact defect that shipped.
       if (typeof e.identifier !== "string" || !e.identifier)
-        problems.push(`${at}: missing identifier${"id" in e ? ' — it has "id", which the spec does not use' : ""}`);
+        problems.push(
+          `${at}: missing identifier${"id" in e ? ' — it has "id", which the spec does not use' : ""}`,
+        );
       else if (!e.identifier.startsWith("urn:air:"))
         problems.push(`${at}: identifier "${e.identifier}" is not a urn:air: URN`);
-      if (typeof e.displayName !== "string" || !e.displayName) problems.push(`${at}: missing displayName`);
+      if (typeof e.displayName !== "string" || !e.displayName)
+        problems.push(`${at}: missing displayName`);
       if (typeof e.type !== "string" || !e.type) problems.push(`${at}: missing type`);
       const hasUrl = typeof e.url === "string" && e.url;
       const hasData = e.data != null;
@@ -125,7 +128,8 @@ function resolves(url: string): boolean {
     if (!doc.capabilities) problems.push("no capabilities");
     const url = doc.transport?.url;
     if (!url) problems.push("no transport.url");
-    else if (!resolves(url)) problems.push(`transport.url ${url} is not an endpoint this repo serves`);
+    else if (!resolves(url))
+      problems.push(`transport.url ${url} is not an endpoint this repo serves`);
 
     if (problems.length) bad(`mcp/server-card.json:\n     ${problems.join("\n     ")}`);
     else console.log(`ok  mcp/server-card.json — advertises ${url}, which this repo serves`);
@@ -149,7 +153,8 @@ function resolves(url: string): boolean {
       );
     } else {
       const stale = visibleProducts.filter((p2, i) => doc.products[i]?.slug !== p2.slug);
-      if (stale.length) bad(`_catalog.json is out of order or stale: ${stale.map((x) => x.slug).join(", ")}`);
+      if (stale.length)
+        bad(`_catalog.json is out of order or stale: ${stale.map((x) => x.slug).join(", ")}`);
       else console.log(`ok  MCP catalogue matches products.ts — ${doc.products.length} models`);
     }
   }
@@ -160,6 +165,62 @@ function resolves(url: string): boolean {
   const robots = existsSync("public/robots.txt") ? readFileSync("public/robots.txt", "utf8") : "";
   if (!/^Content-Signal:/m.test(robots)) bad("robots.txt has no Content-Signal line");
   else console.log("ok  robots.txt declares Content-Signal");
+}
+
+// 6. API catalogue — RFC 9727, serialised as a linkset.
+//
+//    Published only because /mcp exists. The check that matters is that every
+//    link in it resolves: a catalogue is a promise about what a client will
+//    find, and this is the same rule the ARD manifest lives by.
+{
+  const p = "public/.well-known/api-catalog";
+  if (!existsSync(p)) bad(`${p} is missing — run scripts/generate-seo.ts`);
+  else {
+    const doc = read(p);
+    const problems: string[] = [];
+    if (!Array.isArray(doc.linkset) || !doc.linkset.length) problems.push("no linkset array");
+
+    for (const [i, e] of (doc.linkset ?? []).entries()) {
+      const at = `linkset[${i}]`;
+      if (typeof e.anchor !== "string" || !e.anchor) problems.push(`${at}: missing anchor`);
+      else if (!resolves(e.anchor)) problems.push(`${at}: anchor ${e.anchor} does not resolve`);
+
+      // Every relation holds an array of link objects, each with an href that
+      // has to point at something this build actually serves.
+      for (const [rel, targets] of Object.entries(e)) {
+        if (rel === "anchor") continue;
+        if (!Array.isArray(targets)) {
+          problems.push(`${at}: relation "${rel}" must be an array of link objects`);
+          continue;
+        }
+        for (const t of targets as Array<{ href?: string }>) {
+          if (!t.href) problems.push(`${at}: "${rel}" has a target with no href`);
+          else if (!resolves(t.href))
+            problems.push(`${at}: "${rel}" href ${t.href} does not resolve`);
+        }
+      }
+    }
+
+    // The media type is set in netlify.toml because the file is extensionless,
+    // so no host can infer one from the name. Measured under the local
+    // node-server preset it comes back as `text/plain; charset=utf-8` — a
+    // sensible guess and still the wrong answer, since RFC 9727 is identified
+    // by `application/linkset+json` plus its profile parameter. Without the
+    // header a consumer that checks the type rejects a document that is
+    // otherwise perfect, so the header is load-bearing and asserted here.
+    const toml = existsSync("netlify.toml") ? readFileSync("netlify.toml", "utf8") : "";
+    if (!/for\s*=\s*"\/\.well-known\/api-catalog"/.test(toml)) {
+      problems.push("netlify.toml has no Content-Type header for the extensionless api-catalog");
+    } else if (!toml.includes("application/linkset+json")) {
+      problems.push("netlify.toml does not set application/linkset+json for the api-catalog");
+    }
+
+    if (problems.length) bad(`api-catalog:\n     ${problems.join("\n     ")}`);
+    else
+      console.log(
+        `ok  api-catalog — ${doc.linkset.length} API(s), every anchor and href resolvable`,
+      );
+  }
 }
 
 console.log(fail === 0 ? "\nALL AGENT DISCOVERY CHECKS PASSED" : `\n${fail} FAILURES`);

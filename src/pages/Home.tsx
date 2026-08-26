@@ -37,6 +37,7 @@ import bentoDetail800 from "@/assets/radio-macro-cutout@800.webp";
 // same frame for the warranty card.
 import retailBox from "@/assets/cutout/hand-retail-box-cutout@800.webp";
 import retailBox400 from "@/assets/cutout/hand-retail-box-cutout@400.webp";
+import { YEARS_TRADING } from "@/lib/seo";
 import { INDUSTRY_IMAGE_SRCSET } from "@/data/industry-images";
 import horecaImg from "@/assets/industry-horeca.jpg";
 import constructionImg from "@/assets/industry-construction.jpg";
@@ -218,7 +219,7 @@ function Proof() {
   const stats = [
     { n: 35, suffix: "+", label: t("stats.types") },
     { n: 10000, suffix: "+", label: t("stats.clients") },
-    { n: 11, suffix: "", label: t("stats.years") },
+    { n: YEARS_TRADING, suffix: "", label: t("stats.years") },
   ];
   return (
     <section className="band-soft border-y border-border py-12 md:py-16">
