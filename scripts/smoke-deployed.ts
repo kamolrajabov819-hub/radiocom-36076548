@@ -72,6 +72,41 @@ if (/^https?:\/\/(localhost|127\.0\.0\.1|\[::1\])/.test(BASE)) {
   );
 }
 
+/**
+ * Preflight: prove the host is reachable before reporting on what it serves.
+ *
+ * Without this the script is actively misleading when it cannot get through.
+ * Run from behind an egress proxy that denies the host, every request comes
+ * back 403 with the proxy's own plain-text error page — and the checks below
+ * dutifully report "served as text/plain, not application/linkset+json" and
+ * "the deploy is serving a different build". Both read as findings about
+ * Netlify. Neither request ever reached it.
+ *
+ * A wrong answer stated confidently is worse than no answer, so a failure here
+ * stops the run rather than colouring the next eighteen lines red.
+ */
+{
+  let reason = "";
+  try {
+    const res = await get("/");
+    // A site that is up answers *something* coherent on `/` — 200 after the
+    // locale redirect, or a redirect. A 403 or 5xx here is infrastructure, not
+    // content.
+    if (res.status >= 400) reason = `GET / returned ${res.status}`;
+  } catch (e) {
+    reason = e instanceof Error ? e.message : String(e);
+  }
+  if (reason) {
+    console.log(`  STOP  cannot reach ${BASE} — ${reason}\n`);
+    console.log(
+      "        Nothing below would describe the deploy, so the run stops here.\n" +
+        "        Check the URL, and whether this machine is behind a proxy or\n" +
+        "        allowlist that blocks the host.\n",
+    );
+    process.exit(2);
+  }
+}
+
 // 1. The API catalogue, and the media type that only a host can apply.
 const localCatalogText = readFileSync("public/.well-known/api-catalog", "utf8");
 const localCatalog = JSON.parse(localCatalogText);
