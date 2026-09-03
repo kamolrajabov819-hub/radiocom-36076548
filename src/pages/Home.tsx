@@ -558,7 +558,7 @@ function IndustriesTeaser() {
                     {t(`industries.${it.slug}.name`)}
                   </h3>
                   <span className="mt-2 inline-flex items-center gap-1 text-[14px] text-white/85">
-                    {t("industries.cta_secondary", { defaultValue: t("product.more") })}
+                    {t("product.more")}
                     <ChevronRight className="h-4 w-4" aria-hidden />
                   </span>
                 </div>

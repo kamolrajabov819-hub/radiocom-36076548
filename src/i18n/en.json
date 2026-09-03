@@ -18,24 +18,6 @@
     "compare": "Compare",
     "search": "Search"
   },
-  "hero": {
-    "eyebrow": "Authorized distributor · Tashkent",
-    "title_a": "Unbreakable",
-    "title_b": "comms",
-    "sub": "14 years on the market. 10,000+ clients. The official hub for Motorola and Radiocom in Uzbekistan.",
-    "cta_primary": "Free testing",
-    "cta_secondary": "Explore catalog",
-    "social_proof": "247 free tests booked this year",
-    "scroll": "Scroll"
-  },
-  "marquee": [
-    "35 radio types",
-    "12-month warranty",
-    "Authorized service center",
-    "10,000+ clients",
-    "Free nationwide delivery",
-    "Trade-in program"
-  ],
   "industries": {
     "title": "Two-way radios for business",
     "kicker": "Turnkey solutions",
@@ -51,9 +33,6 @@
     "cta": "Book free on-site test",
     "cta_secondary": "Download catalog",
     "compare_all": "See all models →",
-    "trust_delivered": "10,000+ radios deployed",
-    "trust_years": "14 years on the market",
-    "trust_teams": "{{industry}} teams trust Radiocom",
     "horeca": {
       "name": "HoReCa",
       "short": "HoReCa",
@@ -67,14 +46,14 @@
       ],
       "outcomes": [
         {
-          "n": "7,400",
-          "u": "m²",
-          "l": "Up to 6 floors of coverage — Motorola CLP 446 and CLK 446"
+          "n": "1.5",
+          "u": "km",
+          "l": "Range indoors and in the yard — RC-20 and Motorola T82"
         },
         {
-          "n": "68",
-          "u": "g",
-          "l": "Radio weight: invisible under a uniform, headset in the box"
+          "n": "12",
+          "u": "hours",
+          "l": "A full shift on one charge — RC-20, headset in the box"
         },
         {
           "n": "0.5",
@@ -101,7 +80,7 @@
       "seo": "HoReCa",
       "h1": "Two-way radios for hotels and restaurants",
       "clients": "",
-      "meta_desc": "Two-way radios for hotels, restaurants and events in Tashkent. Motorola CLP 446 and CLK 446: up to 7,400 m² of coverage, 68 g, earpiece in the box. Free trial."
+      "meta_desc": "Two-way radios for hotels, restaurants and events in Tashkent. RC-20 and Motorola T82: up to 1.5 km indoors, 12 hours of use, earpiece in the box. Free trial."
     },
     "construction": {
       "name": "Construction",
@@ -350,7 +329,6 @@
     },
     "banner_title": "Not sure which radio fits your operation?",
     "banner_sub": "Tell us your industry — we will recommend the right system within 15 minutes.",
-    "eyebrow": "Industries",
     "offers": {
       "title": "What you get",
       "test": {
@@ -371,11 +349,7 @@
     }
   },
   "tradein": {
-    "kicker": "TRADE-IN",
-    "title_a": "Trade the old.",
-    "title_b": "Take the new.",
-    "desc": "Bring your worn-out walkie-talkie. Our specialists match it to a fresh Motorola or Radiocom model at a discount.",
-    "cta": "Start trade-in"
+    "desc": "Bring your worn-out walkie-talkie. Our specialists match it to a fresh Motorola or Radiocom model at a discount."
   },
   "stats": {
     "types": "radio types",
@@ -383,61 +357,24 @@
     "years": "years on the market"
   },
   "catalog": {
-    "title_a": "Multi-brand",
-    "title_b": "catalog.",
-    "sub": "Professional and amateur radios, PoC devices, accessories and PDAs. Request a quote — a manager will build a proposal for your case.",
-    "filters": "Filters",
     "categories": "Categories",
-    "brands": "Brands",
-    "features": "Features",
     "all": "All",
-    "results": "results",
-    "clear": "Reset",
-    "request": "Request quote",
-    "empty": "No models match the selected filters.",
-    "download": "Download price list (PDF)",
-    "price": "Price",
-    "open_filters": "Filters",
-    "apply": "Show {{n}}",
-    "active": "active",
-    "in_stock": "In stock · Tashkent",
-    "quick_all": "All",
-    "sort": "Sort",
-    "title": "The whole comms catalog.",
-    "compare_title": "Which radio is right for you?",
-    "compare_sub": "Key models compared on specifications, not marketing."
+    "download": "Download price list (PDF)"
   },
   "product": {
-    "spec": "Specifications",
     "range_city": "Urban range",
     "range_open": "Open-field range",
-    "features": "Features",
-    "price": "Price",
-    "cta": "Buy",
-    "overview": "Overview",
-    "in_box": "In the box",
-    "tech_specs": "Tech specs",
-    "gallery": "Gallery",
-    "colour": "Colour",
-    "kit_label": "Radios per kit",
-    "related": "Related models",
-    "all_models": "All models",
-    "more": "Learn more",
-    "prev": "Previous image",
-    "next": "Next image",
-    "breadcrumb": "Breadcrumb"
+    "more": "Learn more"
   },
   "form": {
     "title": "Request quote",
     "sub": "Leave your contacts — a manager will reach out within 15 minutes during business hours.",
     "name": "Your name",
-    "company": "Company",
     "phone": "Phone",
     "qty": "Quantity",
     "message": "Message",
     "submit": "Send request",
     "success": "Request sent. We’ll be in touch.",
-    "test_title": "Free on-site test",
     "trust_line": "We reply in 15 min · Mon–Fri 9:00–18:00"
   },
   "poc": {
@@ -503,7 +440,7 @@
     "kicker": "AUTHORIZED SERVICE CENTER",
     "title_a": "Radio repair,",
     "title_b": "you can trust.",
-    "sub": "Warranty and post-warranty service for Motorola, Radiocom and Vertex Standard radios. Original parts, fixed pricing, diagnostics on dedicated hardware.",
+    "sub": "Warranty and post-warranty service for Motorola and Radiocom radios. Original parts, fixed pricing, diagnostics on dedicated hardware.",
     "request_repair": "Request repair",
     "advantages": {
       "certified": {
@@ -542,7 +479,6 @@
       }
     ],
     "policy_title": "Returns & exchanges",
-    "visit_title": "Visit our office",
     "policy": [
       {
         "q": "Returns of goods in proper condition",
@@ -571,10 +507,7 @@
     "contact_col": "Contact"
   },
   "lead": {
-    "float": "Free test",
-    "tooltip": "Request a specialist visit",
-    "sticky_cta": "Free testing",
-    "sticky_sub": "We deliver, tune and pick up"
+    "sticky_cta": "Free testing"
   },
   "home": {
     "hero": {
@@ -664,9 +597,9 @@
     },
     "service": {
       "title": "Two-Way Radio Repair in Tashkent — Authorised Service | Radiocom",
-      "desc": "Warranty and post-warranty repair for Motorola, Radiocom and Vertex Standard. Genuine parts, certified engineers, fixed prices. Tashkent.",
+      "desc": "Warranty and post-warranty repair for Motorola and Radiocom. Genuine parts, certified engineers, fixed prices. Tashkent.",
       "schema_name": "Radiocom Authorised Service Centre",
-      "schema_desc": "Warranty and post-warranty repair of Motorola, Radiocom and Vertex Standard two-way radios in Tashkent."
+      "schema_desc": "Warranty and post-warranty repair of Motorola and Radiocom two-way radios in Tashkent."
     },
     "industries": {
       "title": "Business radios in Tashkent — HoReCa, construction, security",
@@ -699,7 +632,7 @@
       "radiocom_name": "Radiocom radios",
       "radiocom_desc": "Analogue RC handhelds and digital RCD DMR radios with warranty and service in Tashkent.",
       "motorola_name": "Motorola radios",
-      "motorola_desc": "Talkabout, XT, TLKR and CLP — license-free PMR radios from the market leader.",
+      "motorola_desc": "Talkabout, XT and TLKR — license-free PMR radios from the market leader.",
       "compare_name": "Compare models",
       "compare_desc": "Every radio by range, standard, ingress protection and price in one table."
     },
@@ -707,11 +640,11 @@
       "radiocom_title": "Radiocom RC and RCD radios — buy in Tashkent | Radiocom",
       "radiocom_desc": "{{count}} Radiocom models: analogue RC handhelds and digital RCD DMR radios. Prices, specs, 12-month warranty and a free trial across Uzbekistan.",
       "motorola_title": "Motorola two-way radios — buy in Tashkent | Radiocom",
-      "motorola_desc": "{{count}} Motorola models: Talkabout, XT, TLKR and CLP. License-free PMR radios with warranty, delivery across Uzbekistan and a free trial.",
+      "motorola_desc": "{{count}} Motorola models: Talkabout, XT and TLKR. License-free PMR radios with warranty, delivery across Uzbekistan and a free trial.",
       "radiocom_desc_one": "{{count}} Radiocom model: analogue RC handhelds and digital RCD DMR radios. Prices, specs, 12-month warranty and a free trial across Uzbekistan.",
       "radiocom_desc_other": "{{count}} Radiocom models: analogue RC handhelds and digital RCD DMR radios. Prices, specs, 12-month warranty and a free trial across Uzbekistan.",
-      "motorola_desc_one": "{{count}} Motorola model: Talkabout, XT, TLKR and CLP. License-free PMR radios with warranty, delivery across Uzbekistan and a free trial.",
-      "motorola_desc_other": "{{count}} Motorola models: Talkabout, XT, TLKR and CLP. License-free PMR radios with warranty, delivery across Uzbekistan and a free trial."
+      "motorola_desc_one": "{{count}} Motorola model: Talkabout, XT and TLKR. License-free PMR radios with warranty, delivery across Uzbekistan and a free trial.",
+      "motorola_desc_other": "{{count}} Motorola models: Talkabout, XT and TLKR. License-free PMR radios with warranty, delivery across Uzbekistan and a free trial."
     },
     "specs": {
       "title": "{{name}} — specifications and price | Radiocom",
@@ -736,12 +669,13 @@
     "headline": "Authorized distribution",
     "sub": "We work directly with manufacturers: genuine devices, warranty and service in Tashkent.",
     "view": "View models",
-    "models": "models",
     "radiocom_title": "Radiocom RC and RCD radios",
     "radiocom_desc": "Our own Radiocom line: analog RC handhelds and digital RCD DMR radios with warranty and service.",
     "motorola_title": "Motorola radios",
     "motorola_desc": "Talkabout, XT and TLKR — license-free PMR radios from the global market leader.",
     "lineup": "The line-up",
+    "models_one": "model",
+    "models_other": "models",
     "why_title": "Why buy from us",
     "compare_cta": "Which radio is right for you?",
     "compare_sub": "Compare models by range, protection and price.",
@@ -757,7 +691,6 @@
     "in_box": "In the box",
     "features": "Features",
     "where_used": "Where it is used",
-    "accessories": "Compatible accessories",
     "spec_table": "Specifications",
     "config": "Configuration",
     "warranty": "12-month warranty",
@@ -766,10 +699,8 @@
     "range_city": "In town",
     "range_open": "Open ground",
     "price_on_request": "Price on request",
-    "back_to_brand": "All models",
     "compare_title": "Compare models",
     "compare_sub": "Every Radiocom and Motorola model by range, protection and price.",
-    "faq_title": "Frequently asked questions",
     "design": "Design",
     "design_title": "Take a closer look.",
     "range_lead": "Range depends on terrain and built-up area.",

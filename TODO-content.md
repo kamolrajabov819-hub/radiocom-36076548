@@ -273,6 +273,54 @@ They are flagged `hidden: true` rather than deleted, so their already-indexed
 
 ---
 
+# Site reorganisation — two product claims I removed, and one I need you to settle
+
+## Vertex Standard — removed from the service copy
+
+The English and Uzbek service pages said the bench repairs **Motorola, Radiocom
+and Vertex Standard**. The Russian page said only Motorola and Radiocom. So the
+three languages disagreed about what the business does, and the odd one out
+named a brand that appears nowhere else on the site and is not in the catalogue.
+
+I aligned all three to the Russian version, which is the same call made about
+Hytera in an earlier round: metadata is not the place to introduce a product
+line the page itself never mentions.
+
+**If the bench does take Vertex Standard**, the fix is to say so in the visible
+service copy first and let the metadata follow — tell me and I will put it back
+properly, in all three languages.
+
+## Motorola CLP 446 and CLK 446 — removed, and this one loses real detail
+
+The HoReCa page led with two specific claims:
+
+> **7 400 м²** — Покрытие до 6 этажей — Motorola CLP 446 и CLK 446
+> **68 г** — Вес рации: незаметна под формой
+
+Neither model is in `products.ts`, and neither figure is in `specs.ts`. The page
+does not even recommend them — its own model list is RC-20, RC-10, XT185,
+T62 Red, T82 and RCD-30. `meta.brand.motorola_desc` also advertised "Talkabout,
+XT, TLKR и CLP" while the visible brand page correctly said "Talkabout, XT и
+TLKR".
+
+I replaced the two statistics with figures that **are** sourced, for models the
+page actually recommends:
+
+| Was | Now | Source |
+|---|---|---|
+| 7 400 м², CLP/CLK | **1,5 км** in town — RC-20 and Motorola T82 | `products.ts` `rangeCity` |
+| 68 г | **12 часов** on one charge — RC-20 | `specs.ts` «Время работы от аккумулятора» |
+
+**This is the one I would most like you to check.** Those original numbers read
+like they came from a real Motorola datasheet, which suggests you may genuinely
+sell CLP 446 and CLK 446 without having catalogued them. If so, the right fix is
+not the copy — it is adding the models to `products.ts` with their real specs,
+and then the original HoReCa claims can come back verbatim. Send me the price
+and spec sheet and I will add them.
+
+Weight is not tracked in `specs.ts` for any model, so «68 г» could not have been
+restored even for a catalogued product.
+
 # SEO — things that are live but that you should know about
 
 ## IndexNow is switched on

@@ -170,7 +170,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
           <h2 className="type-headline text-crisp">{t("brand.lineup")}</h2>
           {floor != null ? (
             <p className="text-[14px] text-cool">
-              {list.length} {t("brand.models")} · {t("px.from")}{" "}
+              {list.length} {t("brand.models", { count: list.length })} · {t("px.from")}{" "}
               <TintTag>{formatPrice(floor, lang)}</TintTag>
             </p>
           ) : null}

@@ -994,7 +994,18 @@ console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
 //     subtracting it from the current year gave 2015 for a business founded in
 //     2012 — three years of quiet drift, and the wrong answer was the one that
 //     looked derivable. The gate fires on the first build of the year the
-//     numbers disagree, which is the reminder to edit nine strings.
+//     numbers disagree, which is the reminder to edit the copy.
+//
+//     **It used to guard the wrong strings.** The first version read `hero.sub`
+//     and `industries.trust_years` — both dead. `hero.*` had been superseded by
+//     `home.hero.*` and left behind, so six of the twelve strings this checked
+//     were invisible to visitors, and the check was the only thing still
+//     referencing them: a test keeping its own subject alive. `verify-i18n-usage`
+//     now fails the build on exactly that shape.
+//
+//     What is left is every place the span is written by hand and read by
+//     someone. The home page's counter is not in the list because it derives
+//     from `YEARS_TRADING` and re-rolls on its own.
 {
   const problems: string[] = [];
   const org = organizationSchema() as { foundingDate?: string };
@@ -1011,7 +1022,7 @@ console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
     en: /(\d+)\s+years?/,
     uz: /(\d+)\s+yil/,
   };
-  const keys = ["hero.sub", "industries.trust_years", "meta.home.desc"];
+  const keys = ["meta.home.desc"];
 
   // Every published place the span appears. The locale files are the site's
   // own copy; the llms.txt summaries are the same claim written again for

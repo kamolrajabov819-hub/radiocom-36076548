@@ -247,7 +247,7 @@ console.log("ok  og:locale, canonical URLs and JSON-LD are locale-correct");
 // (`t(\`industries.${slug}.name\`)) are skipped rather than guessed at.
 {
   const ru = JSON.parse(readFileSync("src/i18n/ru.json", "utf8")) as Record<string, unknown>;
-  const has = (dotted: string) => {
+  const exists = (dotted: string) => {
     let node: unknown = ru;
     for (const part of dotted.split(".")) {
       if (typeof node !== "object" || node === null) return false;
@@ -256,6 +256,19 @@ console.log("ok  og:locale, canonical URLs and JSON-LD are locale-correct");
     }
     return true;
   };
+
+  /**
+   * A key counts as present if the literal exists, or if i18next would resolve
+   * it through a plural form.
+   *
+   * `t("brand.models", { count })` is stored as `models_one` / `models_few` /
+   * `models_many` with no bare `models`, which is correct i18next and used to
+   * fail here as "absent from ru.json". Requiring a base key that i18next never
+   * reads would mean either a redundant duplicate or no plurals at all.
+   */
+  const PLURAL_SUFFIXES = ["_zero", "_one", "_two", "_few", "_many", "_other"];
+  const has = (dotted: string) =>
+    exists(dotted) || PLURAL_SUFFIXES.some((suffix) => exists(dotted + suffix));
 
   const missing: string[] = [];
   const walk = (dir: string) => {
