@@ -14,6 +14,18 @@
  *      search page both shipped zero. More than one dilutes it.
  *   2. **No skipped levels.** An `h3` directly after an `h1` breaks the outline
  *      a screen-reader user navigates by, and it is invisible in a screenshot.
+ *   3. **What is seen is what is read.** A heading's `textContent` must match the
+ *      text a sighted reader sees, spaces included. This exists because the
+ *      site's word-reveal animation split headings on `" "` and then dropped the
+ *      space, faking the gap with `mr-[0.25em]`. It looked perfect and served
+ *      `<h1>Несокрушимые,Профессиональныерации.</h1>` to every screen reader,
+ *      crawler, and copy-paste — 31 headings across the 15 routes below, in all
+ *      three locales. A screenshot cannot show this and rule 1 and 2 both pass
+ *      while it is happening, which is why it survived so long.
+ *
+ *      The check measures each text run's box and inserts a space wherever the
+ *      layout puts one, then compares that against `textContent`. Faking a gap
+ *      in CSS makes the two disagree; a real space keeps them identical.
  *
  * Usage: node scripts/qa-headings.mjs [base-url]
  */
@@ -45,11 +57,55 @@ const problems = [];
 for (const route of ROUTES) {
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
   await page.goto(BASE + route, { waitUntil: "networkidle" });
-  const { levels, h1s } = await page.evaluate(() => {
+  // Transforms are neutralised before measuring. The word reveal translates each
+  // word on the Y axis with a staggered delay, so a heading caught mid-animation
+  // has its words at different heights and every one of them reads as a new line.
+  // Horizontal geometry — the only axis this check uses — is unaffected.
+  await page.addStyleTag({
+    content:
+      "*{transform:none!important;opacity:1!important;transition:none!important;animation:none!important}",
+  });
+  await page.evaluate(() => document.fonts.ready);
+  const { levels, h1s, jammed } = await page.evaluate(() => {
     const all = [...document.querySelectorAll("h1,h2,h3,h4,h5,h6")];
+
+    /** The boxes a text node actually paints into, one per visual line. */
+    const boxes = (node) => {
+      const r = document.createRange();
+      r.selectNodeContents(node);
+      return [...r.getClientRects()];
+    };
+
+    const norm = (s) => s.replace(/\s+/g, " ").trim();
+    const jammed = [];
+    for (const h of all) {
+      const walk = document.createTreeWalker(h, NodeFilter.SHOW_TEXT);
+      const runs = [];
+      for (let n = walk.nextNode(); n; n = walk.nextNode()) {
+        if (!n.textContent.trim()) continue;
+        const bs = boxes(n);
+        if (bs.length) runs.push({ text: n.textContent, first: bs[0], last: bs[bs.length - 1] });
+      }
+      if (runs.length < 2) continue;
+
+      // Rebuild the heading as the layout presents it: a space wherever
+      // consecutive runs are pushed apart horizontally or land on a new line.
+      let seen = runs[0].text;
+      for (let i = 1; i < runs.length; i++) {
+        const a = runs[i - 1].last;
+        const b = runs[i].first;
+        const separated = b.top > a.top + 2 || b.left - a.right > 1;
+        seen += (separated ? " " : "") + runs[i].text;
+      }
+      if (norm(seen) !== norm(h.textContent)) {
+        jammed.push({ read: norm(h.textContent).slice(0, 70), seen: norm(seen).slice(0, 70) });
+      }
+    }
+
     return {
       levels: all.map((e) => Number(e.tagName[1])),
       h1s: all.filter((e) => e.tagName === "H1").map((e) => e.textContent.trim().slice(0, 40)),
+      jammed,
     };
   });
   await page.close();
@@ -67,9 +123,16 @@ for (const route of ROUTES) {
   }
   if (skips.length) problems.push(`${route}: skipped heading levels (${skips.join(", ")})`);
 
+  for (const j of jammed) {
+    problems.push(
+      `${route}: heading reads as "${j.read}" but is seen as "${j.seen}" — ` +
+        `the gap is CSS, not a space, so screen readers and crawlers get the jammed form`,
+    );
+  }
+
   const counts = [1, 2, 3].map((n) => `h${n}:${levels.filter((l) => l === n).length}`).join(" ");
   console.log(
-    `  ${h1s.length === 1 && !skips.length ? "ok  " : "FAIL"} ${route.padEnd(30)} ${counts}`,
+    `  ${h1s.length === 1 && !skips.length && !jammed.length ? "ok  " : "FAIL"} ${route.padEnd(30)} ${counts}`,
   );
 }
 
@@ -80,4 +143,7 @@ if (problems.length) {
   for (const p of problems) console.error(`  - ${p}`);
   process.exit(1);
 }
-console.log(`\nqa-headings: ok — ${ROUTES.length} routes, one h1 each, no skipped levels`);
+console.log(
+  `\nqa-headings: ok — ${ROUTES.length} routes, one h1 each, no skipped levels,` +
+    ` every heading read exactly as seen`,
+);

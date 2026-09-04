@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion
 import { useScrollChoreography } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 import { brandCase } from "@/lib/brand";
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Check, Radio, MapPin, MessagesSquare, Layers, Coins, Wifi } from "lucide-react";
 // The hero — the pair shot you asked for, as its cutout rather than as
@@ -112,16 +112,22 @@ function PocHero() {
 
         <h1 className="type-display mt-4 text-crisp">
           {[t("poc.title_a"), t("poc.title_b")].map((line, li) => (
-            <span key={li} className="block overflow-hidden pb-[0.14em] -mb-[0.14em]">
-              <motion.span
-                className="inline-block max-w-full"
-                initial={{ y: "110%", opacity: 0 }}
-                animate={{ y: "0%", opacity: 1 }}
-                transition={{ ...spring, delay: 0.08 + li * 0.09 }}
-              >
-                {line}
-              </motion.span>
-            </span>
+            <Fragment key={li}>
+              {/* The two lines are one sentence. Without this the h1 reaches a
+                  screen reader as "PoC-рации.Ноль ретрансляторов." — see the
+                  note in WordReveal. */}
+              {li > 0 && " "}
+              <span className="block overflow-hidden pb-[0.14em] -mb-[0.14em]">
+                <motion.span
+                  className="inline-block max-w-full"
+                  initial={{ y: "110%", opacity: 0 }}
+                  animate={{ y: "0%", opacity: 1 }}
+                  transition={{ ...spring, delay: 0.08 + li * 0.09 }}
+                >
+                  {line}
+                </motion.span>
+              </span>
+            </Fragment>
           ))}
         </h1>
 
