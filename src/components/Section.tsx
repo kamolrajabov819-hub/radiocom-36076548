@@ -54,7 +54,30 @@ export function Section({
   id?: string;
 }) {
   const rhythm = tight ? "section-tight" : "section";
-  const bandClass = band ? `band-${band}` : "";
+  // Written out, not composed.
+  //
+  // Tailwind v4 emits an `@utility` only for class names it can find as literal
+  // text in the files it scans. `band-${band}` is not literal text, so the four
+  // band utilities in styles.css survived only by accident: `band-plain`,
+  // `band-soft` and `band-tint` each happen to appear spelled out somewhere
+  // else in the source, and `band-dark` did not.
+  //
+  // So `.band-dark { background: #000000 }` was never generated, while the
+  // hand-written `.band-dark .pill-link { color: #f5f5f7 }` — ordinary CSS, not
+  // a utility — was. The one `band="dark"` section on the site is the closing
+  // call to action on the industry pages, and it rendered as a blank white
+  // band: `text-white` heading on no background, its subtitle invisible, and a
+  // near-white link on white at 1.09:1. Six industries times three locales.
+  //
+  // A literal map cannot fail that way, and it fails loudly rather than
+  // silently if a band is ever added without a class.
+  const BAND_CLASS = {
+    plain: "band-plain",
+    soft: "band-soft",
+    dark: "band-dark",
+    tint: "band-tint",
+  } as const;
+  const bandClass = band ? BAND_CLASS[band] : "";
   return (
     <section id={id} style={style} className={`${bandClass} ${rhythm} ${className}`}>
       <div
