@@ -1,7 +1,7 @@
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { ChevronRight, Truck, Wrench, Package, Sparkles } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
 import { brandCase } from "@/lib/brand";
 import { SignalPulse } from "@/components/SignalPulse";
@@ -19,30 +19,16 @@ import heroImage800 from "@/assets/hero-rcd60-cutout@800.webp";
 // They are also cropped to their subject: the source frames carried up to 75%
 // transparent margin, so a radio that looked small in its slot was small in the
 // file, not in the layout.
-import kitWide from "@/assets/cutout/kit-flatlay-cutout.webp";
-import kitWide800 from "@/assets/cutout/kit-flatlay-cutout@800.webp";
-import kitWide400 from "@/assets/cutout/kit-flatlay-cutout@400.webp";
-import macroWide from "@/assets/cutout/macro-display-cutout.webp";
-import macroWide800 from "@/assets/cutout/macro-display-cutout@800.webp";
-import macroWide400 from "@/assets/cutout/macro-display-cutout@400.webp";
-import radiosPair from "@/assets/cutout/pair-floating-cutout.webp";
-import radiosPair800 from "@/assets/cutout/pair-floating-cutout@800.webp";
-import radiosPair400 from "@/assets/cutout/pair-floating-cutout@400.webp";
 // The grille macro that used to be a CDN pointer. This cutout is the same
 // subject shot properly: alpha, so it can float on a tinted band.
-import bentoDetail from "@/assets/radio-macro-cutout.webp";
-import bentoDetail800 from "@/assets/radio-macro-cutout@800.webp";
 // Hands presenting a sealed RCD-70 PRO box, plus a hand offering the radio —
 // the delivery claim, photographed. Shared with the brand pages, which use the
 // same frame for the warranty card.
-import retailBox from "@/assets/cutout/hand-retail-box-cutout@800.webp";
-import retailBox400 from "@/assets/cutout/hand-retail-box-cutout@400.webp";
 import { YEARS_TRADING } from "@/lib/seo";
-import { INDUSTRY_IMAGE_SRCSET } from "@/data/industry-images";
-import horecaImg from "@/assets/industry-horeca.jpg";
-import constructionImg from "@/assets/industry-construction.jpg";
-import securityImg from "@/assets/industry-security.jpg";
+import { INDUSTRY_IMAGE_SRCSET, INDUSTRY_IMAGES } from "@/data/industry-images";
+import { INDUSTRY_SLUGS } from "@/data/industries";
 import { openLead } from "@/components/LeadFormSheet";
+import { WhyUs } from "@/components/WhyUs";
 import { Section, SectionHead } from "@/components/Section";
 import { BentoGrid, FeatureCard, StackedTile } from "@/components/apple";
 import { ProductShot } from "@/components/ProductShot";
@@ -59,14 +45,23 @@ export function HomePage() {
 
   return (
     <div ref={page} className="page-anim">
+      {/* Six sections, in the order a customer actually asks things.
+
+          What is this / are you real -> what do I need it for -> which models
+          and what do they cost -> why buy here -> who else trusts you.
+
+          It was nine, and three of them said what another already had:
+          `FeatureDark` printed the same two strings the bento reprinted lower
+          down, `NetworkSplit` was a compressed copy of the PoC page's own
+          network section, and `FinalCta` made the same ask as the ContactBlock
+          rendered directly beneath this component by the root layout. The five
+          promises that were scattered across the bento now live in `WhyUs`,
+          which the brand pages share rather than restate. */}
       <Hero />
       <Proof />
-      <FeatureDark />
-      <ValueShelf />
-      <NetworkSplit />
       <IndustriesTeaser />
       <FeaturedCatalog />
-      <FinalCta />
+      <WhyUs />
       <TrustedBy />
     </div>
   );
@@ -145,19 +140,31 @@ function Hero() {
             // `block`, so the second line always starts on its own row rather
             // than wherever the first happens to run out. The word spans stay
             // per-line so the reveal still plays left to right across both.
-            <span key={li} className="block">
-              {line.split(" ").map((w, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ ...spring, delay: 0.1 + (li * 2 + i) * 0.04 }}
-                  className="mr-[0.25em] inline-block"
-                >
-                  {w}
-                </motion.span>
-              ))}
-            </span>
+            <Fragment key={li}>
+              {/* Whitespace between two block-level lines collapses to nothing
+                  visually, but it is the only thing separating the two halves of
+                  the h1 in textContent — without it the title extracts as
+                  "Несокрушимые,профессиональные рации." */}
+              {li > 0 && " "}
+              <span className="block">
+                {line.split(" ").map((w, i) => (
+                  <Fragment key={i}>
+                    {/* A real space, not a margin. See the note in WordReveal:
+                      faking the gap in CSS served this h1 to crawlers and
+                      screen readers as one unbroken word. */}
+                    {i > 0 && " "}
+                    <motion.span
+                      initial={{ opacity: 0, y: 24 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ ...spring, delay: 0.1 + (li * 2 + i) * 0.04 }}
+                      className="inline-block"
+                    >
+                      {w}
+                    </motion.span>
+                  </Fragment>
+                ))}
+              </span>
+            </Fragment>
           ))}
         </h1>
 
@@ -239,287 +246,13 @@ function Proof() {
 }
 
 /* ─── Dark statement band ─────────────────────────────────── */
-function FeatureDark() {
-  const { t } = useTranslation();
-  return (
-    <section className="band-dark overflow-hidden py-28 text-center md:py-40">
-      <div className="shell">
-        <motion.h2
-          {...fadeUpAt(0)}
-          className="mx-auto max-w-4xl font-semibold leading-[1.05] tracking-[-0.03em]"
-          style={{ fontSize: "clamp(2.25rem, 6vw, 4.5rem)" }}
-        >
-          {t("home.feature.title")}
-        </motion.h2>
-        <motion.p
-          {...fadeUpAt(1)}
-          className="mx-auto mt-5 max-w-2xl text-lg text-white/60 md:text-xl"
-        >
-          {t("home.feature.sub")}
-        </motion.p>
-        <motion.div {...fadeUpAt(2)} className="mt-8">
-          <LocaleLink to="/poc" className="pill-link">
-            {t("home.feature.link")} <ChevronRight className="h-4 w-4" aria-hidden />
-          </LocaleLink>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── Value shelf — a bento that closes ──────────────────── */
-/**
- * Three rows of three. The wide tiles span two columns and the rest span one,
- * so every row fills exactly and the grid has no ragged edge — the earlier
- * version mixed a `tall` tile into a three-column grid, which left a step in
- * the right-hand column.
- *
- * The two wide tiles put their photograph *beside* the copy rather than behind
- * it. A backdrop image under a headline is only safe when the art has dead
- * space where the text lands, and a flat-lay does not.
- */
-function ValueShelf() {
-  const { t } = useTranslation();
-  // `lead.title` does not exist — this rendered the literal string "lead.title"
-  // as the card's button label on the live home page. The sheet takes the
-  // card's own subject; the button takes the site-wide CTA string.
-  const openTest = () => openLead({ title: t("home.bento.tradein.title") });
-
-  return (
-    <Section band="soft">
-      <SectionHead
-        align="left"
-        spacing="tight"
-        eyebrow={t("home.bento.eyebrow")}
-        title={t("home.bento.title")}
-        sub={t("home.bento.sub")}
-      />
-      <BentoGrid>
-        {/* Rows 1-2, cols 1-2 — the lead tile: copy, then the kit photograph
-            below it running the card's full width. */}
-        <StackedTile
-          idx={0}
-          span={2}
-          tall
-          eyebrow={t("home.bento.warranty.title")}
-          title={t("home.bento.warranty.sub")}
-          className="col-span-1 sm:col-span-2"
-        >
-          {/* The grey panel this used to sit on is gone.
-              
-              It existed for one reason: the old flat-lay's studio backdrop was
-              #f9f9f9 rather than white, so on a white card it read as a grey
-              rectangle pasted on, and `mix-blend-multiply` could not remove a
-              tone that is not white. Making the panel deliberate was the least
-              bad answer available to a photograph with a background.
-              
-              This file has none, so the kit sits on the card itself — which is
-              what apple.com does with a product, and what the card wanted all
-              along. `contain`, so nothing is cropped; the soft contact shadow
-              gives it a surface to stand on rather than leaving it floating. */}
-          <div data-parallax="0.05" className="flex w-full flex-1 items-center justify-center pt-2">
-            <ProductShot
-              src={kitWide}
-              cutout
-              srcSmall={kitWide800}
-              srcTiny={kitWide400}
-              alt=""
-              width={1600}
-              height={1111}
-              sizes="(max-width: 640px) 78vw, (max-width: 1024px) 62vw, 560px"
-              className="w-full max-w-[560px]"
-              imgClassName="max-h-[300px] drop-shadow-[0_18px_28px_rgba(0,0,0,0.10)]"
-            />
-          </div>
-        </StackedTile>
-
-        {/* Rows 1-2, col 3 — the tall trade-in card. The vertical pair shot
-            bleeds to the rounded edge behind the copy. */}
-        <FeatureCard
-          idx={1}
-          tall
-          eyebrow={t("home.bento.tradein.title")}
-          title={t("home.bento.tradein.sub")}
-          className="min-h-[260px]"
-          // `pr-14` clears the circular action button in the bottom-right
-          // corner. No width cap: this is a single-column card, so the
-          // photograph is below the copy at every width and the copy gets the
-          // whole column. Capping it here is what broke "Обменяй" after
-          // "Обмен" on a ~250px column.
-          copyClassName="pr-14"
-          action={{ label: t("px.buy"), onClick: openTest }}
-          figure={
-            /* You flagged this one on desktop as well as on a phone, and the
-               desktop fault was separate: the slot started at `top-[42%]` and
-               ran to the card's bottom edge, which is less height than a 3:4
-               portrait needs, so `object-bottom` pinned the radios and let the
-               antennae fall out of the top of the frame. Sizing by height and
-               letting width follow is what keeps a portrait whole. */
-            <ProductShot
-              src={radiosPair}
-              cutout
-              srcSmall={radiosPair800}
-              srcTiny={radiosPair400}
-              alt=""
-              width={1149}
-              height={1600}
-              fit="contain"
-              sizes="(max-width: 640px) 62vw, (max-width: 1024px) 40vw, 260px"
-              className="w-full max-w-[240px] sm:max-w-none"
-              imgClassName="max-h-[230px] sm:max-h-[280px] drop-shadow-[0_16px_24px_rgba(0,0,0,0.12)]"
-            />
-          }
-        />
-
-        {/* Row 3 — three equal tiles.
-
-            `delivery` carries a photograph where the other two carry an icon,
-            and that asymmetry is deliberate: the claim is that a boxed radio
-            arrives at your door, and the repo has the frame of exactly that —
-            one hand offering a radio, two presenting the sealed RCD-70 box. An
-            icon of a lorry is a pictogram of the idea; this is the thing
-            itself. The other two claims ("free test", "35+ models") have no
-            equivalent frame, and inventing one is what the brief rules out. */}
-        {[
-          { key: "delivery", Icon: Truck, photo: retailBox, photoTiny: retailBox400 },
-          { key: "test", Icon: Sparkles },
-          { key: "models", Icon: Package },
-        ].map((it, i) => (
-          <FeatureCard
-            key={it.key}
-            idx={i + 2}
-            eyebrow={t(`home.bento.${it.key}.title`)}
-            title={t(`home.bento.${it.key}.sub`)}
-            className="min-h-[260px]"
-            media={
-              it.photo ? (
-                <img
-                  src={it.photo}
-                  /* Rendered at 130px tall, ~280px wide, and shipping the full
-                     800px file because it had no `srcSet` at all. */
-                  srcSet={it.photoTiny ? `${it.photoTiny} 400w, ${it.photo} 800w` : undefined}
-                  sizes={it.photoTiny ? "280px" : undefined}
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                  width={800}
-                  height={372}
-                  className="max-h-[130px] w-auto object-contain drop-shadow-[0_14px_22px_rgba(0,0,0,0.12)]"
-                />
-              ) : (
-                <it.Icon className="h-10 w-10 text-signal" strokeWidth={1.5} aria-hidden />
-              )
-            }
-          />
-        ))}
-
-        {/* Row 4 — the one dark tile, then the workshop close. */}
-        <FeatureCard
-          idx={5}
-          tone="dark"
-          eyebrow={t("home.bento.service.title")}
-          title={t("home.bento.service.sub")}
-          className="min-h-[260px]"
-          media={<Wrench className="h-10 w-10 text-white" strokeWidth={1.5} aria-hidden />}
-        />
-        <FeatureCard
-          idx={6}
-          span={2}
-          eyebrow={t("home.feature.title")}
-          title={t("home.feature.sub")}
-          // Taller than the 260px row default: the macro is 3:4 portrait, and at
-          // 260px a contained portrait shrinks to a thumbnail. Giving the card
-          // the height the photograph wants is what lets it read as the detail
-          // shot it is.
-          className="min-h-[340px]"
-          copyClassName="sm:max-w-[52%] lg:max-w-[46%]"
-          figure={
-            /* The grey panel here is gone for the same reason as the lead
-               tile's: it was framing a #dae3e7 studio backdrop that could not
-               be blended away. The macro is a crop rather than a whole object —
-               the display corner, cut off at the bottom — so it bleeds off the
-               card's lower edge instead of floating in the middle of a box,
-               which is how apple.com uses a detail shot.
-            
-               The parallax stays on this wrapper rather than moving into the
-               card: `data-parallax` is read by the page's scroll choreography
-               and applies a transform, and a transform on the card itself would
-               open a stacking context around every child. */
-            <div
-              data-parallax="0.08"
-              className="flex w-full items-end justify-center self-end sm:-mb-8 sm:-mr-2"
-            >
-              <ProductShot
-                src={macroWide}
-                cutout
-                srcSmall={macroWide800}
-                srcTiny={macroWide400}
-                alt=""
-                width={1463}
-                height={1600}
-                fit="contain"
-                sizes="(max-width: 640px) 62vw, (max-width: 1024px) 44vw, 300px"
-                className="w-full max-w-[240px] sm:max-w-none"
-                imgClassName="max-h-[240px] sm:max-h-[320px] drop-shadow-[0_20px_30px_rgba(0,0,0,0.14)]"
-              />
-            </div>
-          }
-        />
-      </BentoGrid>
-    </Section>
-  );
-}
-
-/* ─── Network design — image / copy split ─────────────────── */
-function NetworkSplit() {
-  const { t } = useTranslation();
-  return (
-    <Section band="plain">
-      <div className="grid gap-4 md:grid-cols-2">
-        <motion.div
-          {...fadeUpAt(0)}
-          className="relative aspect-[4/3] overflow-hidden rounded-[28px] bg-charcoal md:aspect-auto md:min-h-[440px]"
-        >
-          <img
-            src={bentoDetail}
-            srcSet={`${bentoDetail800} 597w, ${bentoDetail} 1195w`}
-            sizes="(min-width: 768px) 692px, 94vw"
-            alt=""
-            loading="lazy"
-            width={1195}
-            height={1600}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-        </motion.div>
-        <motion.div
-          {...fadeUpAt(1)}
-          className="relative flex flex-col justify-center overflow-hidden rounded-[28px] bg-charcoal p-10 md:p-14"
-        >
-          <SignalPulse size={700} opacity={0.15} className="!items-end !justify-end" />
-          <div className="eyebrow-sweep relative mb-4 text-[13px] font-medium tracking-wide">
-            {t("home.bento.network.eyebrow")}
-          </div>
-          <h3 className="type-headline relative text-crisp">{t("home.bento.network.title")}</h3>
-          <p className="subhead relative mt-5 max-w-md text-[15px] md:text-base">
-            {t("home.bento.network.sub")}
-          </p>
-          <LocaleLink to="/poc" className="pill-link relative mt-6">
-            {t("home.feature.link")} <ChevronRight className="h-4 w-4" aria-hidden />
-          </LocaleLink>
-        </motion.div>
-      </div>
-    </Section>
-  );
-}
-
-/* ─── Industries — full-bleed image cards ─────────────────── */
 function IndustriesTeaser() {
   const { t } = useTranslation();
-  const items = [
-    { slug: "horeca" as const, img: horecaImg },
-    { slug: "construction" as const, img: constructionImg },
-    { slug: "security" as const, img: securityImg },
-  ];
+  // All six, driven from the shared map rather than three hand-picked imports.
+  // The subheading has always promised "6 ключевых отраслей" while the grid
+  // showed three, and this is the section a customer is most likely to use as
+  // their way in — it answers "what is this for" before "what is it called".
+  const items = INDUSTRY_SLUGS.map((slug) => ({ slug, img: INDUSTRY_IMAGES[slug] }));
   return (
     <Section band="soft">
       <div>
@@ -601,35 +334,3 @@ function FeaturedCatalog() {
 }
 
 /* ─── Closing CTA ─────────────────────────────────────────── */
-function FinalCta() {
-  const { t } = useTranslation();
-  return (
-    <section className="band-dark px-6 py-28 text-center md:px-10 md:py-40">
-      <div className="shell">
-        <motion.h2
-          {...fadeUpAt(0)}
-          className="mx-auto max-w-3xl font-semibold leading-[1.05] tracking-[-0.03em]"
-          style={{ fontSize: "clamp(2.25rem, 6vw, 4.5rem)" }}
-        >
-          {t("home.final_cta.title")}
-        </motion.h2>
-        <motion.p {...fadeUpAt(1)} className="mx-auto mt-4 max-w-2xl text-lg text-white/60">
-          {t("home.final_cta.sub")}
-        </motion.p>
-        <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-          <Magnetic>
-            <button
-              onClick={() => openLead({ title: t("home.final_cta.button") })}
-              className="pill pill-invert"
-            >
-              {t("home.final_cta.button")}
-            </button>
-          </Magnetic>
-          <LocaleLink to="/service" className="pill-link">
-            {t("nav.service")} <ChevronRight className="h-4 w-4" aria-hidden />
-          </LocaleLink>
-        </div>
-      </div>
-    </section>
-  );
-}

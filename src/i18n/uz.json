@@ -348,9 +348,6 @@
       }
     }
   },
-  "tradein": {
-    "desc": "Eski ratsiyangizni olib keling — mutaxassislarimiz sizga yangi Motorola yoki Radiocom modelini chegirma bilan taklif qiladi."
-  },
   "stats": {
     "types": "ratsiya turi",
     "clients": "mijoz",
@@ -518,21 +515,12 @@
       "cta_secondary": "Batafsil",
       "eyebrow": "RADIOCOM · PROFESSIONAL RADIOALOQA"
     },
-    "feature": {
-      "title": "Eng qiyin ob'ektlar uchun yaratilgan.",
-      "sub": "IP67 himoya. Raqamli DMR. AES-256 shifrlash. RCD-70 PRO'da GPS.",
-      "link": "PoC haqida"
-    },
     "bento": {
       "title": "Har bir tafsilot puxta ishlangan.",
       "sub": "Jihoz, litsenziya, o'rnatish va ta'mirlash — bitta hamkorda.",
       "tradein": {
         "title": "Trade-In",
         "sub": "Eski ratsiyani bering — yangi Motorola yoki Radiocom ni chegirma bilan oling."
-      },
-      "models": {
-        "title": "35+ model",
-        "sub": "Motorola va Radiocom RC / RCD."
       },
       "warranty": {
         "title": "12 oy kafolat",
@@ -550,22 +538,12 @@
         "title": "Vakolatli servis",
         "sub": "Sertifikatlangan mutaxassislar, original ehtiyot qismlar, qat'iy narxlar."
       },
-      "eyebrow": "Nega Radiocom",
-      "network": {
-        "eyebrow": "Tarmoq loyihalash",
-        "title": "Aloqa bo‘lmagan joyda ham aloqa.",
-        "sub": "Obyektni radio tekshiruvi, qamrov hisobi, repiter va antennalarni o‘rnatish — kalit topshirish sharti bilan."
-      }
+      "eyebrow": "Nega Radiocom"
     },
     "featured": {
       "title": "Tavsiya etiladi.",
       "link": "Barcha katalog",
       "eyebrow": "Eng ko‘p sotilganlar"
-    },
-    "final_cta": {
-      "title": "Muhandis bilan gaplashing.",
-      "sub": "Ish vaqti davomida 15 daqiqada javob. Bosim yo'q.",
-      "button": "Muhandisga bog'lanish"
     }
   },
   "contact": {

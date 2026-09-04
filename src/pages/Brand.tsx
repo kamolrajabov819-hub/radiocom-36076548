@@ -3,13 +3,12 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
+import { WhyUs } from "@/components/WhyUs";
 import { brandCase } from "@/lib/brand";
 import { useScrollChoreography } from "@/lib/motion";
 import { spring } from "@/lib/springs";
 import { Section } from "@/components/Section";
 import {
-  DuoCard,
-  ExpandCard,
   FilterPills,
   HighlightsShelf,
   ModelStrip,
@@ -37,14 +36,6 @@ import priceListPdf from "@/assets/radiocom-price-list.pdf";
 // remove a tone that is not white — both showed a visible panel edge against
 // the card.
 //
-// `whyWarranty` is used twice on this page: on its own why-card and, at your
-// request, as the first of the two closing cards. That is deliberate rather
-// than an oversight — worth knowing before someone "fixes" the duplicate.
-import whyWarranty from "@/assets/cutout/hand-retail-box-cutout@800.webp";
-import whyDelivery from "@/assets/cutout/pair-floating-cutout@800.webp";
-import whyService from "@/assets/cutout/radios-fan-cutout@800.webp";
-import whyTest from "@/assets/cutout/hands-compare-cutout@800.webp";
-import whyTradein from "@/assets/cutout/hands-tradein-cutout@800.webp";
 import {
   products,
   productsOfBrand,
@@ -223,52 +214,14 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
         </HighlightsShelf>
       </Section>
 
-      {/* ── Why buy from us ────────────────────────────────── */}
-      <Section band="plain">
-        <h2 data-scrub-in className="type-headline mb-10 max-w-2xl text-crisp md:mb-12">
-          {t("brand.why_title")}
-        </h2>
+      {/* The five promises, from the one component that states them.
 
-        {/* The bento this replaced gave five claims five different weights, so
-            the eye landed on whichever tile happened to be widest rather than
-            on whichever claim mattered. apple.com's own "Why Apple is the best
-            place to shop Mac" is a flat shelf of equal cards with the detail
-            behind a `+` — every claim gets the same one-line hearing, and the
-            reader opens the one they actually care about. */}
-        {/* A shelf, not a grid. There are five reasons and the grid this
-            replaced was four columns wide, so the fifth card sat alone against
-            three empty cells — which reads as a layout fault, not a design.
-            apple.com scrolls this row at every width for the same reason: the
-            card count is content, and content should not have to divide evenly
-            into a column count. */}
-        <HighlightsShelf label={t("brand.why_title")}>
-          {WHY_CARDS.map((c, i) => (
-            <div
-              key={c.key}
-              className="w-[74vw] shrink-0 snap-start sm:w-[46vw] lg:w-[calc((100%-3rem)/4)]"
-            >
-              <ExpandCard
-                idx={i}
-                className="h-full min-h-[300px]"
-                eyebrow={t(c.eyebrow)}
-                title={t(c.title)}
-                detail={t(c.detail)}
-                media={
-                  <img
-                    src={c.image}
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                    width={c.w}
-                    height={c.h}
-                    className="max-h-[170px] w-auto object-contain drop-shadow-[0_14px_22px_rgba(0,0,0,0.12)]"
-                  />
-                }
-              />
-            </div>
-          ))}
-        </HighlightsShelf>
-      </Section>
+          This was a five-card shelf followed by two DuoCards that repeated
+          two of those five cards verbatim — and two of the shelf's own
+          cards were miswired: the delivery card's title was the trial line
+          and its body was the compare line, and the test card said the same
+          sentence twice. Sharing the block fixes all of it at once. */}
+      <WhyUs band="plain" />
 
       {/* ── Where these radios work — apple.com's poster shelf ─ */}
       {/* Apple fills this row with bespoke art and marketing claims. We have
@@ -306,64 +259,6 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
         </HighlightsShelf>
       </Section>
 
-      {/* ── The closing pair — apple.com's "Switch to Mac" ────── */}
-      <Section band="soft">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <DuoCard
-            idx={0}
-            className="min-h-[300px]"
-            title={t("home.bento.service.sub")}
-            body={t("service.sub")}
-            link={
-              <LocaleLink to="/service" className="pill-link text-[13px]">
-                {t("nav.service")} <ChevronRight className="h-4 w-4" aria-hidden />
-              </LocaleLink>
-            }
-            media={
-              <img
-                // You asked for the retail-box frame here. `whyWarranty` is
-                // already that exact file, so this reuses the binding rather
-                // than importing the same asset a second time under another
-                // name — which would emit it twice through Vite.
-                src={whyWarranty}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                width={800}
-                height={372}
-                className="max-h-[190px] w-auto object-contain drop-shadow-[0_16px_24px_rgba(0,0,0,0.12)]"
-              />
-            }
-          />
-          <DuoCard
-            idx={1}
-            className="min-h-[300px]"
-            title={t("home.bento.tradein.sub")}
-            body={t("px.trial")}
-            link={
-              <button
-                type="button"
-                onClick={() => openLead({ title: t("home.bento.tradein.title") })}
-                className="pill-link text-[13px]"
-              >
-                {t("px.buy")} <ChevronRight className="h-4 w-4" aria-hidden />
-              </button>
-            }
-            media={
-              <img
-                src={whyTradein}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                width={800}
-                height={447}
-                className="max-h-[190px] w-auto object-contain drop-shadow-[0_16px_24px_rgba(0,0,0,0.12)]"
-              />
-            }
-          />
-        </div>
-      </Section>
-
       {/* ── Compare invitation ─────────────────────────────── */}
       <Section band="soft">
         <div data-scrub-in className="mx-auto max-w-2xl text-center">
@@ -387,65 +282,6 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
     </div>
   );
 }
-
-/**
- * The five reasons, as `(eyebrow, title, detail)` triples.
- *
- * Kept as data rather than five inline `<ExpandCard>`s so the `+` detail and
- * its heading cannot drift apart, and so adding a sixth reason is a row here
- * rather than a copy-paste of eleven lines of JSX.
- *
- * `w`/`h` are the image's real intrinsic size. They were a shared 800x600 —
- * the aspect of none of the five — so the browser reserved the wrong box for
- * each and the shelf shifted as the images decoded.
- */
-const WHY_CARDS = [
-  {
-    key: "warranty",
-    eyebrow: "home.bento.warranty.title",
-    title: "home.bento.warranty.sub",
-    detail: "brand.sub",
-    image: whyWarranty,
-    w: 800,
-    h: 372,
-  },
-  {
-    key: "delivery",
-    eyebrow: "px.delivery",
-    title: "px.trial",
-    detail: "brand.compare_sub",
-    image: whyDelivery,
-    w: 574,
-    h: 800,
-  },
-  {
-    key: "service",
-    eyebrow: "home.bento.service.title",
-    title: "home.bento.service.sub",
-    detail: "service.sub",
-    image: whyService,
-    w: 800,
-    h: 536,
-  },
-  {
-    key: "test",
-    eyebrow: "home.bento.test.title",
-    title: "home.bento.test.sub",
-    detail: "px.trial",
-    image: whyTest,
-    w: 800,
-    h: 800,
-  },
-  {
-    key: "tradein",
-    eyebrow: "home.bento.tradein.title",
-    title: "home.bento.tradein.sub",
-    detail: "tradein.desc",
-    image: whyTradein,
-    w: 800,
-    h: 447,
-  },
-] as const;
 
 /**
  * One model in the line-up — apple.com/mac's card anatomy, in order.

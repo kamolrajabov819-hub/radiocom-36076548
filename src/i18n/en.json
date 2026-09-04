@@ -348,9 +348,6 @@
       }
     }
   },
-  "tradein": {
-    "desc": "Bring your worn-out walkie-talkie. Our specialists match it to a fresh Motorola or Radiocom model at a discount."
-  },
   "stats": {
     "types": "radio types",
     "clients": "clients",
@@ -518,21 +515,12 @@
       "cta_secondary": "Learn more",
       "eyebrow": "RADIOCOM · PROFESSIONAL TWO-WAY RADIO"
     },
-    "feature": {
-      "title": "Built for the toughest sites.",
-      "sub": "IP67 protection. Digital DMR. AES-256 encryption. GPS on the RCD-70 PRO.",
-      "link": "Explore PoC"
-    },
     "bento": {
       "title": "Every detail, engineered.",
       "sub": "One partner for hardware, licensing, deployment and repair.",
       "tradein": {
         "title": "Trade-In",
         "sub": "Bring your old radio. Take a fresh Motorola or Radiocom at a discount."
-      },
-      "models": {
-        "title": "35+ models",
-        "sub": "Motorola and Radiocom RC / RCD."
       },
       "warranty": {
         "title": "12-month warranty",
@@ -550,22 +538,12 @@
         "title": "Authorized service",
         "sub": "Certified technicians, original parts, fixed pricing."
       },
-      "eyebrow": "Why Radiocom",
-      "network": {
-        "eyebrow": "Network design",
-        "title": "Coverage where there was none.",
-        "sub": "Site RF survey, coverage modelling, repeater and antenna installation — turnkey, guaranteed."
-      }
+      "eyebrow": "Why Radiocom"
     },
     "featured": {
       "title": "Featured radios.",
       "link": "See all",
       "eyebrow": "Best sellers"
-    },
-    "final_cta": {
-      "title": "Talk to an engineer.",
-      "sub": "15-minute reply during business hours. No sales pressure.",
-      "button": "Talk to an engineer"
     }
   },
   "contact": {
