@@ -4,11 +4,6 @@
     "poc": "Nationwide",
     "service": "Service",
     "industries": "Industries",
-    "contact": "Contact",
-    "download": "Download catalog",
-    "theme_light": "Light theme",
-    "theme_dark": "Dark theme",
-    "tradein_badge": "Trade-In",
     "menu": "Menu",
     "close": "Close",
     "get_quote": "Get Quote",
@@ -234,7 +229,7 @@
       "short": "Transport",
       "desc": "Fleets, warehouses, expeditions.",
       "problem": "The dispatcher loses drivers outside the city. Cellular is expensive and drops.",
-      "solution": "PoC radios (PoC devices) with nationwide LTE coverage plus in-vehicle Radiocom RCD base stations.",
+      "solution": "Radios over the mobile network — nationwide range wherever data reaches. Radiocom RCD sets in the vehicles.",
       "pains": [
         "Driver in Bukhara — Tashkent dispatch can’t reach",
         "Cellular tariffs eat freight margin",
@@ -257,11 +252,11 @@
           "l": "A shift behind the wheel without recharging — RCD-70 and RCD-50 PRO"
         }
       ],
-      "quote": "Moved the whole fleet to PoC — 40% saved on comms, and dispatch sees every driver on the live map.",
+      "quote": "Moved the whole fleet onto the mobile network — 40% saved on comms, and dispatch sees every driver on the map.",
       "quote_author": "Fleet manager, logistics operator",
       "faq": [
         {
-          "q": "Does PoC work on highways and mountains?",
+          "q": "Does it work on highways and in the mountains?",
           "a": "They work anywhere the operator has network. Check coverage on your particular route with your own mobile operator."
         },
         {
@@ -269,7 +264,7 @@
           "a": "From 45,000 UZS/device on a 10-unit pack."
         },
         {
-          "q": "Can we mix PoC with traditional radios?",
+          "q": "Can we mix these with ordinary radios?",
           "a": "Yes, through a dispatch gateway."
         }
       ],

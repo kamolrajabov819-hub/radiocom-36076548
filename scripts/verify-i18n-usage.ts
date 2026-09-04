@@ -28,6 +28,27 @@
  * matcher that breaks fails loudly rather than proposing that several hundred
  * live strings be deleted.
  *
+ * **The wildcard is also this check's blind spot, and it hid five dead keys.**
+ * `Sitemap.tsx` renders `` t(`nav.${brand}`) ``. That single interpolated call
+ * makes `nav.•WILD•` match *every* key under `nav`, so `nav.contact`,
+ * `nav.download`, `nav.theme_light`, `nav.theme_dark` and `nav.tradein_badge`
+ * were reported live while rendering nowhere — the same shape as the `hero.sub`
+ * bug this file was written for, one level up.
+ *
+ * Two of the five hid particularly well: their text is identical to a live key's
+ * («Скачать каталог» is also `industries.cta_secondary`, «Trade-In» is also
+ * `home.bento.tradein.title`), so grepping the rendered pages for the string
+ * finds it and looks satisfied. Duplicate values are not a defect in themselves,
+ * but they do mask dead keys from any text-based check.
+ *
+ * There is no sound fix inside a regex matcher — resolving `${brand}` needs the
+ * values, which live in a const array in another module. So instead the hole is
+ * **counted and ratcheted**: `WILDCARD_ONLY_BUDGET` records how many keys are
+ * currently reachable *only* through an interpolated reference. The number may
+ * fall freely; if it rises, the build fails and someone looks at the new ones.
+ * That cannot prove a key is live, but it does stop the blind spot growing in
+ * silence, which is what let these five sit there.
+ *
  * Run: bun scripts/verify-i18n-usage.ts
  */
 import { readFileSync } from "node:fs";
@@ -145,6 +166,50 @@ if (broken.length) {
 const dead = leaves.filter((k) => !used(k) && !scriptOnly(k));
 const testOnly = leaves.filter((k) => scriptOnly(k));
 
+/**
+ * Keys no literal reference reaches — only an interpolated one.
+ *
+ * `matches()` with no wildcard segment is the strict form: it is what the check
+ * would say if nothing were ever built from a template. The difference between
+ * the two answers is exactly the set this check cannot vouch for.
+ */
+const literalOnly = (keySegs: string[], refSeg: string[]) =>
+  refSeg.length === keySegs.length && refSeg.every((seg, i) => seg === keySegs[i]);
+
+const reachedLiterally = (key: string) => {
+  const parts = key.split(".");
+  for (let i = parts.length; i > 0; i--) {
+    if (refSegs.some((r) => literalOnly(parts.slice(0, i), r))) return true;
+  }
+  return PLURAL.test(key) && reachedLiterally(key.replace(PLURAL, ""));
+};
+
+const wildcardOnly = leaves.filter((k) => used(k) && !reachedLiterally(k));
+
+/**
+ * The high-water mark, not a target. Lower it whenever the real number drops —
+ * the check prints it — and never raise it without reading the keys it lets in.
+ */
+const WILDCARD_ONLY_BUDGET = 249;
+
+if (wildcardOnly.length > WILDCARD_ONLY_BUDGET) {
+  const byGroup: Record<string, number> = {};
+  for (const k of wildcardOnly) byGroup[k.split(".")[0]] = (byGroup[k.split(".")[0]] ?? 0) + 1;
+  console.log(
+    `FAIL ${wildcardOnly.length} keys are reachable only through an interpolated\n` +
+      `     reference, up from the recorded ${WILDCARD_ONLY_BUDGET}. This check cannot tell\n` +
+      "     whether those render at all — one interpolated key vouches for every\n" +
+      "     key in its group, which is how five dead nav.* keys survived it.\n\n" +
+      Object.entries(byGroup)
+        .sort((a, b) => b[1] - a[1])
+        .map(([g, n]) => `     ${g}: ${n}`)
+        .join("\n") +
+      `\n\n     Reference the new keys literally, or lower the budget if they really\n` +
+      `     do need a template.`,
+  );
+  process.exit(1);
+}
+
 if (testOnly.length) {
   console.log(
     `FAIL ${testOnly.length} key(s) are referenced only by build scripts, never rendered:\n     ` +
@@ -171,4 +236,7 @@ if (dead.length) {
 
 if (testOnly.length) process.exit(1);
 
-console.log(`ok  all ${leaves.length} translation keys are rendered from src/`);
+console.log(
+  `ok  all ${leaves.length} translation keys are rendered from src/` +
+    ` (${wildcardOnly.length}/${WILDCARD_ONLY_BUDGET} reached only via an interpolated key)`,
+);

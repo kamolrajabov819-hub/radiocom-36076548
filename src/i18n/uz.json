@@ -4,11 +4,6 @@
     "poc": "Butun mamlakat",
     "service": "Servis",
     "industries": "Sohalar",
-    "contact": "Bog'lanish",
-    "download": "Katalogni yuklab olish",
-    "theme_light": "Yorug' rejim",
-    "theme_dark": "Qorong'u rejim",
-    "tradein_badge": "Trade-In",
     "menu": "Menyu",
     "close": "Yopish",
     "get_quote": "Ariza qoldirish",
@@ -234,7 +229,7 @@
       "short": "Transport",
       "desc": "Avtoparklar, omborlar, ekspeditsiyalar.",
       "problem": "Dispetcher haydovchilarni shahar tashqarisida yo'qotadi. Mobil aloqa qimmat va uziladi.",
-      "solution": "Butun mamlakat bo'ylab LTE qamrovli PoC qurilmalari PoC ratsiyalari va Radiocom RCD avtomobil stansiyalari.",
+      "solution": "Mobil tarmoq orqali ratsiyalar — internet tutgan joyda butun mamlakat bo'ylab aloqa. Mashinalarda Radiocom RCD.",
       "pains": [
         "Haydovchi Buxoroda — Toshkentdagi dispetcher aloqasiz",
         "Mobil tariflar tashish marjasini yeb qo'yadi",
@@ -257,7 +252,7 @@
           "l": "Rul ortida smena — quvvatlashsiz — RCD-70 va RCD-50 PRO"
         }
       ],
-      "quote": "Butun parkni PoC ga o'tkazdik — aloqa xarajatlari 40% kamaydi, dispetcher hammani xaritada ko'radi.",
+      "quote": "Butun parkni mobil tarmoq aloqasiga o'tkazdik — xarajatlar 40% kamaydi, dispetcher hammani xaritada ko'radi.",
       "quote_author": "Avtopark boshlig'i, logistika kompaniyasi",
       "faq": [
         {
@@ -269,7 +264,7 @@
           "a": "10 dan boshlab paketda 45 000 so'm/oy dan boshlab."
         },
         {
-          "q": "PoC va oddiy ratsiyani birlashtirsak bo'ladimi?",
+          "q": "Oddiy ratsiyalar bilan birga ishlatsak bo'ladimi?",
           "a": "Ha, dispetcher shlyuzi orqali."
         }
       ],

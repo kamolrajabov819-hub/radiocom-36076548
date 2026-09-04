@@ -26,6 +26,18 @@
  *      The check measures each text run's box and inserts a space wherever the
  *      layout puts one, then compares that against `textContent`. Faking a gap
  *      in CSS makes the two disagree; a real space keeps them identical.
+ *   4. **No heading text twice on one page.** Every industry page carried
+ *      «Что вы получите» as an `h2`, and then again as the `h2` of the very next
+ *      section. Two sections with the same name is a reader's problem before it
+ *      is a crawler's: it reads as the page having lost its place, and it is a
+ *      reliable sign that neither section is sure what it is for. They are now
+ *      «Что это даёт» (what the radios do) and «Что мы берём на себя» (what we
+ *      do).
+ *
+ *      Repetition is only a fault *within* one page. The compare page's section
+ *      headings match the brand pages' titles, and that is fine — nobody sees
+ *      both at once. So this compares headings against their own page, never
+ *      across the site.
  *
  * Usage: node scripts/qa-headings.mjs [base-url]
  */
@@ -66,7 +78,7 @@ for (const route of ROUTES) {
       "*{transform:none!important;opacity:1!important;transition:none!important;animation:none!important}",
   });
   await page.evaluate(() => document.fonts.ready);
-  const { levels, h1s, jammed } = await page.evaluate(() => {
+  const { levels, h1s, jammed, repeated } = await page.evaluate(() => {
     const all = [...document.querySelectorAll("h1,h2,h3,h4,h5,h6")];
 
     /** The boxes a text node actually paints into, one per visual line. */
@@ -102,10 +114,20 @@ for (const route of ROUTES) {
       }
     }
 
+    const seen = {};
+    for (const h of all) {
+      const t = norm(h.textContent);
+      if (t) (seen[t] ??= []).push(h.tagName);
+    }
+    const repeated = Object.entries(seen)
+      .filter(([, tags]) => tags.length > 1)
+      .map(([text, tags]) => ({ text: text.slice(0, 60), tags: tags.join(" + ") }));
+
     return {
       levels: all.map((e) => Number(e.tagName[1])),
       h1s: all.filter((e) => e.tagName === "H1").map((e) => e.textContent.trim().slice(0, 40)),
       jammed,
+      repeated,
     };
   });
   await page.close();
@@ -130,9 +152,16 @@ for (const route of ROUTES) {
     );
   }
 
+  for (const r of repeated) {
+    problems.push(
+      `${route}: "${r.text}" appears as a heading ${r.tags.split(" + ").length} times ` +
+        `(${r.tags}) — two sections with one name read as the page losing its place`,
+    );
+  }
+
   const counts = [1, 2, 3].map((n) => `h${n}:${levels.filter((l) => l === n).length}`).join(" ");
   console.log(
-    `  ${h1s.length === 1 && !skips.length && !jammed.length ? "ok  " : "FAIL"} ${route.padEnd(30)} ${counts}`,
+    `  ${h1s.length === 1 && !skips.length && !jammed.length && !repeated.length ? "ok  " : "FAIL"} ${route.padEnd(30)} ${counts}`,
   );
 }
 
@@ -145,5 +174,5 @@ if (problems.length) {
 }
 console.log(
   `\nqa-headings: ok — ${ROUTES.length} routes, one h1 each, no skipped levels,` +
-    ` every heading read exactly as seen`,
+    ` every heading read exactly as seen, none repeated on its own page`,
 );
