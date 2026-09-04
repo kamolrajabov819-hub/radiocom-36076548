@@ -37,13 +37,7 @@ import radioInHand from "@/assets/cutout/poc-radio-held-cutout.webp";
 import radioInHand800 from "@/assets/cutout/poc-radio-held-cutout@800.webp";
 import { openLead } from "@/components/LeadFormSheet";
 import { Section, SectionHead } from "@/components/Section";
-import {
-  CompareTable,
-  HighlightsShelf,
-  StatPanel,
-  statRowTier,
-  type CompareColumn,
-} from "@/components/apple";
+import { CompareTable, HighlightsShelf, type CompareColumn } from "@/components/apple";
 import { ProductShot } from "@/components/ProductShot";
 import { TrustedBy } from "@/components/TrustedBy";
 import { spring, fadeUpAt } from "@/lib/springs";
@@ -54,9 +48,17 @@ import { spring, fadeUpAt } from "@/lib/springs";
  * This page has exactly one body of real copy — `poc.rows.*` paired with
  * `poc.poc_vals.*` and `poc.pmr_vals.*` — and the page is built from it. Every
  * apple.com product page carries bespoke prose per section; inventing that here
- * is what the brief rules out, so the same six facts do three jobs instead:
- * three become the stat band, three become the feature sequence, and all six
- * stay in the comparison table where a buyer can read down one axis.
+ * is what the brief rules out, so the same six facts were made to do three jobs:
+ * three as a stat band, three as the feature sequence, and all six in the
+ * comparison table.
+ *
+ * Three jobs was one too many. Reusing copy to fill a page is a reasonable
+ * answer to having none; printing «Тысячи абонентов» three times on one screen
+ * is what it looked like to a reader. The stat band is gone — it was the only
+ * one of the three that carried nothing of its own, no photograph and no
+ * framing, just the table's values at a larger size. What is left is the
+ * ordinary shape of a product page: a few highlights with pictures, then the
+ * full table underneath, each fact stated twice at most and for a reason.
  */
 const ROW_IDS = ["coverage", "infra", "media", "gps", "scale", "cost"] as const;
 
@@ -66,7 +68,6 @@ export function PoCPage() {
   return (
     <div ref={page} className="page-anim page-tight">
       <PocHero />
-      <StatBand />
       <FeatureSequence />
       <Compare />
       <NetworkDesign />
@@ -207,36 +208,6 @@ function PocHero() {
  * PoC differs from PMR by a category rather than a degree, so they are the
  * three worth stating at size.
  */
-function StatBand() {
-  const { t } = useTranslation();
-  const stats = ["coverage", "scale", "infra"] as const;
-  // One size for the row, from its longest value. These three differ enough in
-  // length ("Не требуется" against "Глобальная (LTE / WiFi)") to land in three
-  // different tiers if each panel sized itself.
-  const size = statRowTier(stats.map((id) => t(`poc.poc_vals.${id}`)));
-
-  return (
-    <Section band="plain" tight>
-      {/* GSAP owns this row, not Framer.
-      
-          `data-stagger` batches every panel that crosses the fold in one frame
-          into a single staggered gesture, which is what apple.com's stat bands
-          do. Layering it over a Framer `fadeUpAt` would have both libraries
-          writing opacity and transform on the same node, which is a flicker
-          rather than a richer animation — so the Framer wrapper is gone. */}
-      <div data-stagger className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-        {stats.map((id) => (
-          <StatPanel
-            key={id}
-            value={t(`poc.poc_vals.${id}`)}
-            label={t(`poc.rows.${id}`)}
-            size={size}
-          />
-        ))}
-      </div>
-    </Section>
-  );
-}
 
 /* ─── Feature sequence — alternating copy and product ─────── */
 /**

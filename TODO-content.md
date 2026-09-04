@@ -900,3 +900,53 @@ records under `_agents.radiocom.uz` and the zone signed with DNSSEC, done at the
 DNS host by whoever controls the domain. Say the word and I will write the exact
 records out to paste.
 
+
+## The licence question — I could not build the section the plan promised
+
+The plan for this round had one organising idea: **answer the permit question
+first.** The pitch was that the catalogue splits cleanly — Motorola is
+licence-free, buy it and switch it on; Radiocom reaches further and needs a
+frequency permit, which you handle — and that this is the single most useful
+thing a buyer can be told, yet the site never says it plainly.
+
+I went to build that section and measured the catalogue first. The split does
+not exist.
+
+| Model | Brand | `License-free` tag | Frequency in `specs.ts` |
+|---|---|---|---|
+| rcd-70, rcd-60, rcd-50 | radiocom | — | **no frequency row at all** |
+| rcd-40, rcd-30, rc-50, rc-10 | radiocom | — | 446.0–446.1 МГц |
+| rc-20 | radiocom | License-free | 446.0–446.1 МГц |
+| t72 | motorola | License-free | no frequency row |
+| the other 12 Motorola | motorola | License-free | 446–446.1 МГц |
+
+Two things fall out of it, and they are different kinds of problem.
+
+**1. The tag is wrong on four models — a data bug.** `rcd-40`, `rcd-30`, `rc-50`
+and `rc-10` publish 446.0–446.1 МГц on their own spec sheets, the same
+licence-exempt PMR446 band as every Motorola in the range, and the same band as
+`rc-20`, which *is* tagged. So 18 of 21 models are on the licence-free band while
+only 14 say so. Anyone filtering or reading tags gets four wrong answers. This is
+worth fixing in `products.ts` whatever you decide about the rest.
+
+**2. There is no evidence in the catalogue that any model needs a permit.** Not
+weak evidence — none. The three DMR models that would plausibly be the licensed
+ones (`rcd-70`, `rcd-60`, `rcd-50`) carry no frequency data at all, so the
+catalogue is silent rather than negative. I am not going to write "needs a
+permit, we handle it" onto a page from an absence of data, and I am not going to
+infer a band from the fact that a radio is digital.
+
+So the home page does not get the permit fork, and the two-way "which kind do you
+need" card pair is not in this PR. What is there instead is the industries row,
+which answers the same question — *what is it for* — from data that exists.
+
+**What I need from you, in one line each:**
+
+- Do `rcd-70`, `rcd-60` and `rcd-50` operate outside PMR446, and does a customer
+  need a frequency permit for them? If yes, give me the band and I will write the
+  section as planned — it is a genuinely strong page and the reason the plan led
+  with it.
+- Should the `License-free` tag be added to `rcd-40`, `rcd-30`, `rc-50` and
+  `rc-10`? Their own spec rows say it already.
+- Do you actually arrange frequency permits for customers? The plan asserted it;
+  nothing in the repo does.

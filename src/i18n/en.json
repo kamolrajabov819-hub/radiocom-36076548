@@ -26,7 +26,7 @@
     "problem_title": "The problem",
     "solution_title": "Our solution",
     "recommended": "Recommended models",
-    "outcomes_title": "What you get",
+    "outcomes_title": "What this gives you",
     "pains_title": "Sound familiar?",
     "faq_title": "Frequently asked",
     "quote_kicker": "Client story",
@@ -330,7 +330,7 @@
     "banner_title": "Not sure which radio fits your operation?",
     "banner_sub": "Tell us your industry — we will recommend the right system within 15 minutes.",
     "offers": {
-      "title": "What you get",
+      "title": "What we take care of",
       "test": {
         "t": "Free on-site testing",
         "d": "We bring radios to your site and verify coverage in real conditions — before you buy.",
