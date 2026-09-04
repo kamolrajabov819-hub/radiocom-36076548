@@ -384,7 +384,7 @@ function NetworkDesign() {
                     n: i + 1,
                   })}
                 </div>
-                <h3 className="type-title mt-2 hyphens-auto break-words text-crisp">{step}</h3>
+                <h3 className="type-title mt-2 text-crisp">{step}</h3>
               </div>
             </article>
           );

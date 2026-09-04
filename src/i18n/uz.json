@@ -1,7 +1,7 @@
 {
   "nav": {
     "home": "Bosh sahifa",
-    "poc": "PoC tizimlari",
+    "poc": "Butun mamlakat",
     "service": "Servis",
     "industries": "Sohalar",
     "contact": "Bog'lanish",
@@ -144,9 +144,9 @@
       ],
       "outcomes": [
         {
-          "n": "AES-256",
+          "n": "Shifrlash",
           "u": "",
-          "l": "Raqamli rejimda ovoz shifrlash — RCD-50, RCD-60 va RCD-70 PRO"
+          "l": "Suhbatni faqat o'zingiznikilar eshitadi — RCD-50, RCD-60 va RCD-70 PRO"
         },
         {
           "n": "GPS",
@@ -198,9 +198,9 @@
           "l": "Uchastkadagi chang va suv — RCD-70 PRO"
         },
         {
-          "n": "AES-256",
+          "n": "Shifrlash",
           "u": "",
-          "l": "Raqamli rejimda ovoz shifrlash — RCD PRO liniyasi"
+          "l": "Suhbatni faqat o'zingiznikilar eshitadi — RCD PRO liniyasi"
         },
         {
           "n": "3600",
@@ -283,7 +283,7 @@
       "short": "Zavod",
       "desc": "Zavodlar, sexlar, distribyutsiya markazlari.",
       "problem": "Turli uchastkalardagi smenalar, sanoat shovqini, brigadirlar tezkor koordinatsiyaga muhtoj.",
-      "solution": "Retranslyator va guruh chaqiruvlari bilan DMR tizim. Ombor hisobi uchun sanoat KPK'lari.",
+      "solution": "Retranslyator va butun smenaga bitta chaqiruv bilan raqamli DMR aloqa. Ombor hisobi uchun skanerli terminallar.",
       "pains": [
         "Brigadirlar sex shovqinida bir-birini eshitmaydi",
         "Omborchilar stellajlar orasida qog'oz bilan yuguradi",
@@ -306,7 +306,7 @@
           "l": "O'z chastotangiz: abonent to'lovi va trafiksiz"
         }
       ],
-      "quote": "DMR va KPK ni bir haftada o'rnatdik. Omborchilar qog'ozdan voz kechdi, komplektatsiya deyarli 2 barobar tezlashdi.",
+      "quote": "Aloqa va terminallarni bir haftada o'rnatdik. Omborchilar qog'ozdan voz kechdi, komplektatsiya deyarli 2 barobar tezlashdi.",
       "quote_author": "Operatsion direktor, qadoqlash zavodi",
       "faq": [
         {
@@ -314,7 +314,7 @@
           "a": "Ha — faol shovqin bosish bilan 100 dB da ham aniq eshitiladi."
         },
         {
-          "q": "KPK 1C bilan integratsiyalashadimi?",
+          "q": "Ombor terminallari 1C bilan ishlaydimi?",
           "a": "Ha, tayyor integratsiyalar bor, zarur bo'lsa alohida ishlab chiqamiz."
         },
         {
@@ -328,7 +328,7 @@
       "meta_desc": "Ishlab chiqarish va omborlar uchun ratsiyalar: xalaqitsiz raqamli DMR, sexlarda 2,5 km gacha, o'z chastotangiz — abonent to'lovisiz. Bepul sinov."
     },
     "banner_title": "Qaysi ratsiya biznesingizga mos kelishini bilmayapsizmi?",
-    "banner_sub": "Sohangizni ayting — 15 daqiqada tizim tanlab beramiz.",
+    "banner_sub": "Sohangizni ayting — 15 daqiqada javob beramiz va mos ratsiyalarni tanlaymiz.",
     "offers": {
       "title": "Biz nimani o'z zimmamizga olamiz",
       "test": {
@@ -375,45 +375,45 @@
     "trust_line": "15 daqiqada javob · Du–Ju 9:00–18:00"
   },
   "poc": {
-    "kicker": "PoC · UYALI TARMOQ ORQALI PUSH-TO-TALK",
-    "title_a": "PoC ratsiyalar.",
-    "title_b": "Retranslyatorsiz.",
-    "sub": "LTE va WiFi orqali Push-to-Talk. Infratuzilma qurmasdan bir zumda aloqa — guruh chaqiruvlari, GPS va multimedia bilan.",
-    "vs_title": "PoC va PMR",
-    "vs_sub": "Marketing emas, haqiqiy parametrlar bo'yicha taqqoslash.",
+    "kicker": "MOBIL TARMOQ ORQALI RATSIYALAR",
+    "title_a": "Mobil tarmoq orqali ratsiyalar.",
+    "title_b": "Hech narsa o'rnatmaysiz.",
+    "sub": "Mobil internet tutgan hamma joyda ishlaydi. Butun mamlakat bo'ylab aloqa, butun smenaga bitta chaqiruv, foto va video, xodimning xaritadagi belgisi.",
+    "vs_title": "Mobil tarmoq orqali yoki eskicha",
+    "vs_sub": "Har biri nima beradi — bandlar bo'yicha, marketingsiz.",
     "rows": {
-      "coverage": "Qamrov",
-      "infra": "Infratuzilma",
-      "media": "Multimedia",
-      "gps": "GPS",
-      "scale": "Miqyos",
-      "cost": "Kirish narxi"
+      "coverage": "Qayerda ishlaydi",
+      "infra": "Nima o'rnatish kerak",
+      "media": "Nima yuborish mumkin",
+      "gps": "Xodim qayerdaligi ko'rinadi",
+      "scale": "Nechta odam",
+      "cost": "Boshlash qancha turadi"
     },
     "poc_vals": {
-      "coverage": "Global (LTE / WiFi)",
-      "infra": "Talab etilmaydi",
+      "coverage": "Mobil internet bor hamma joyda",
+      "infra": "Hech narsa",
       "media": "Ovoz, foto, video, matn",
-      "gps": "Ichki GPS/GLONASS",
-      "scale": "Minglab foydalanuvchi",
-      "cost": "Past"
+      "gps": "Ichki GPS va GLONASS",
+      "scale": "Minglab odam",
+      "cost": "Arzon"
     },
     "pmr_vals": {
-      "coverage": "Mahalliy (VHF/UHF)",
-      "infra": "Retranslyator, antenna",
+      "coverage": "Faqat yaqin atrofda, o'z zonasida",
+      "infra": "Retranslyator va antennalar",
       "media": "Faqat ovoz",
       "gps": "Ixtiyoriy",
-      "scale": "Zona bilan cheklangan",
-      "cost": "Yuqori"
+      "scale": "Zonaga nechta sig'sa",
+      "cost": "Boshlashda qimmatroq"
     },
     "design": {
       "kicker": "LOYIHALASH · ISHGA TUSHIRISH",
       "title": "Sizning ob'ektingiz uchun tarmoq quramiz.",
       "steps": [
-        "O'rnatish joyini tekshirish",
-        "Ma'lumot yig'ish va loyiha hujjatlari",
-        "Buyurtmachi parametrlari bo'yicha jihoz tanlash",
-        "O'zbekiston Aloqa qo'mitasi bilan chastotani kelishish",
-        "Ishga tushirish va topshiruv hujjatlari"
+        "Ob'ektga borib ko'rib chiqamiz",
+        "Ma'lumot yig'ib, loyihani tayyorlaymiz",
+        "Vazifangizga mos jihozni tanlaymiz",
+        "Aloqa qo'mitasida chastotani rasmiylashtiramiz",
+        "Tarmoqni ishga tushirib, hujjatlarni topshiramiz"
       ]
     },
     "rental": {
@@ -431,7 +431,7 @@
       }
     },
     "cta_primary": "Tarmoqni hisoblash",
-    "cta_secondary": "PoC yoki PMR?"
+    "cta_secondary": "Qaysi birini tanlash kerak?"
   },
   "service": {
     "kicker": "VAKOLATLI SERVIS MARKAZI",
@@ -666,7 +666,7 @@
     "spec_table": "Xususiyatlar",
     "config": "Konfiguratsiya",
     "warranty": "12 oy kafolat",
-    "delivery": "O'zbekiston bo'ylab bepul yetkazib berish",
+    "delivery": "Butun mamlakat bo'ylab bepul yetkazib berish",
     "trial": "Bepul sinov: olib kelamiz, sozlaymiz, olib ketamiz",
     "range_city": "Shaharda",
     "range_open": "Ochiq joyda",

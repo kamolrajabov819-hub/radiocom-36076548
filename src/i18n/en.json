@@ -1,7 +1,7 @@
 {
   "nav": {
     "home": "Home",
-    "poc": "PoC Systems",
+    "poc": "Nationwide",
     "service": "Service",
     "industries": "Industries",
     "contact": "Contact",
@@ -144,9 +144,9 @@
       ],
       "outcomes": [
         {
-          "n": "AES-256",
+          "n": "Encrypted",
           "u": "",
-          "l": "Voice encryption in digital mode — RCD-50, RCD-60 and RCD-70 PRO"
+          "l": "Only your own team hears the call — RCD-50, RCD-60 and RCD-70 PRO"
         },
         {
           "n": "GPS",
@@ -168,7 +168,7 @@
         },
         {
           "q": "Does GPS work indoors?",
-          "a": "Outdoors, yes. Indoors we fall back to last-known-position."
+          "a": "Outdoors, yes. Indoors the radio shows the last place it had a signal."
         },
         {
           "q": "Where does the panic button go?",
@@ -198,9 +198,9 @@
           "l": "Dust and water on site — RCD-70 PRO"
         },
         {
-          "n": "AES-256",
+          "n": "Encrypted",
           "u": "",
-          "l": "Voice encryption in digital mode — the RCD PRO range"
+          "l": "Only your own team hears the call — the RCD PRO range"
         },
         {
           "n": "3,600",
@@ -283,7 +283,7 @@
       "short": "Manufacturing",
       "desc": "Plants, workshops, distribution centers.",
       "problem": "Shifts across many zones, industrial noise, foremen need instant coordination.",
-      "solution": "DMR system with a repeater and group calls. Rugged PDAs for warehouse operations.",
+      "solution": "Digital DMR radio with a repeater and one call to the whole shift. Handheld scanners for warehouse stock.",
       "pains": [
         "Foremen can’t hear each other over machine noise",
         "Warehouse ops walk paper between shelves",
@@ -306,7 +306,7 @@
           "l": "Your own frequency: no subscription, no traffic charges"
         }
       ],
-      "quote": "DMR plus PDAs rolled out in a week. Storemen dropped the paper, picking sped up almost 2×.",
+      "quote": "Radios and scanners rolled out in a week. Storemen dropped the paper, picking sped up almost 2×.",
       "quote_author": "Ops director, packaging plant",
       "faq": [
         {
@@ -314,7 +314,7 @@
           "a": "Yes — active noise suppression keeps voice clear at 100 dB."
         },
         {
-          "q": "Do PDAs integrate with 1C/ERP?",
+          "q": "Do the warehouse scanners work with 1C/ERP?",
           "a": "Yes, out of the box plus custom builds if needed."
         },
         {
@@ -328,7 +328,7 @@
       "meta_desc": "Two-way radios for plants and warehouses: clean digital DMR, up to 2.5 km across shop floors and yards, your own frequency — no airtime fees. Free trial."
     },
     "banner_title": "Not sure which radio fits your operation?",
-    "banner_sub": "Tell us your industry — we will recommend the right system within 15 minutes.",
+    "banner_sub": "Tell us your industry — we reply within 15 minutes and recommend the right radios.",
     "offers": {
       "title": "What we take care of",
       "test": {
@@ -375,45 +375,45 @@
     "trust_line": "We reply in 15 min · Mon–Fri 9:00–18:00"
   },
   "poc": {
-    "kicker": "PoC · PUSH-TO-TALK OVER CELLULAR",
-    "title_a": "PoC radios.",
-    "title_b": "Zero repeaters.",
-    "sub": "Push-to-Talk over LTE and WiFi. Instant comms with no infrastructure to build — group calls, GPS and multimedia included.",
-    "vs_title": "PoC vs PMR",
-    "vs_sub": "Real trade-offs by parameter, not marketing.",
+    "kicker": "RADIOS OVER THE MOBILE NETWORK",
+    "title_a": "Radios over the mobile network.",
+    "title_b": "Nothing to install.",
+    "sub": "They work anywhere mobile data reaches. Nationwide range, one call to the whole shift, photo and video, and each person's position on a map.",
+    "vs_title": "Over the mobile network, or the old way",
+    "vs_sub": "What each one gives you, point by point, without the marketing.",
     "rows": {
-      "coverage": "Coverage",
-      "infra": "Infrastructure",
-      "media": "Multimedia",
-      "gps": "GPS positioning",
-      "scale": "Scale",
-      "cost": "Entry cost"
+      "coverage": "Where it works",
+      "infra": "What you have to install",
+      "media": "What you can send",
+      "gps": "You can see where people are",
+      "scale": "How many people",
+      "cost": "Cost to start"
     },
     "poc_vals": {
-      "coverage": "Global (LTE / WiFi)",
-      "infra": "None required",
+      "coverage": "Anywhere with mobile data",
+      "infra": "Nothing",
       "media": "Voice, photo, video, text",
-      "gps": "Built-in GPS/GLONASS",
-      "scale": "Thousands of users",
+      "gps": "Built-in GPS and GLONASS",
+      "scale": "Thousands of people",
       "cost": "Low"
     },
     "pmr_vals": {
-      "coverage": "Local (VHF/UHF)",
-      "infra": "Repeaters, antennas",
+      "coverage": "Nearby only, within your own zone",
+      "infra": "Repeaters and antennas",
       "media": "Voice only",
       "gps": "Optional",
-      "scale": "Limited by zone",
-      "cost": "High"
+      "scale": "As many as the zone holds",
+      "cost": "Higher to start"
     },
     "design": {
       "kicker": "NETWORK DESIGN · COMMISSIONING",
       "title": "We engineer the network for your site.",
       "steps": [
-        "Site survey and installation assessment",
-        "Data collection and project documentation",
-        "Equipment selection matched to your parameters",
-        "Frequency licensing with State Comms of Uzbekistan",
-        "Commissioning and acceptance documentation"
+        "We visit and survey the site",
+        "We gather the data and draw up the plan",
+        "We pick the kit that fits your job",
+        "We arrange the frequencies with State Comms",
+        "We switch the network on and hand over the papers"
       ]
     },
     "rental": {
@@ -431,7 +431,7 @@
       }
     },
     "cta_primary": "Design my network",
-    "cta_secondary": "PoC or PMR?"
+    "cta_secondary": "Which one do I need?"
   },
   "service": {
     "kicker": "AUTHORIZED SERVICE CENTER",

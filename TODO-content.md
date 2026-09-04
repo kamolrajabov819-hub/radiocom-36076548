@@ -940,7 +940,8 @@ So the home page does not get the permit fork, and the two-way "which kind do yo
 need" card pair is not in this PR. What is there instead is the industries row,
 which answers the same question — *what is it for* — from data that exists.
 
-**What I need from you, in one line each:**
+**What I need from you, in one line each** (the first is the one that matters —
+the others are tidy-ups):
 
 - Do `rcd-70`, `rcd-60` and `rcd-50` operate outside PMR446, and does a customer
   need a frequency permit for them? If yes, give me the band and I will write the
@@ -948,5 +949,11 @@ which answers the same question — *what is it for* — from data that exists.
   with it.
 - Should the `License-free` tag be added to `rcd-40`, `rcd-30`, `rc-50` and
   `rc-10`? Their own spec rows say it already.
-- Do you actually arrange frequency permits for customers? The plan asserted it;
-  nothing in the repo does.
+- ~~Do you actually arrange frequency permits for customers? The plan asserted
+  it; nothing in the repo does.~~ **I was wrong about this and have struck it
+  out.** The PoC page's network-design steps have said so all along —
+  «Согласование частот с Госкомсвязи РУз», now reworded to «Оформляем частоты в
+  Госкомсвязи». So the service is real and stated on the site; what is missing is
+  only the evidence that any *catalogue model* needs a permit in the first place.
+  That makes the first question below the one that decides whether the home-page
+  section can be written.

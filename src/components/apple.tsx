@@ -118,7 +118,7 @@ export function FeatureCard({
           </div>
         ) : null}
 
-        <h3 className="type-title mt-2 hyphens-auto break-words">{brandCase(title)}</h3>
+        <h3 className="type-title mt-2">{brandCase(title)}</h3>
 
         {body ? (
           <p
@@ -219,7 +219,7 @@ export function StackedTile({
         {eyebrow ? (
           <div className="text-[14px] font-medium text-cool">{brandCase(eyebrow)}</div>
         ) : null}
-        <h3 className="type-title mt-2 hyphens-auto break-words">{brandCase(title)}</h3>
+        <h3 className="type-title mt-2">{brandCase(title)}</h3>
         {body ? (
           <p
             className={cn(
