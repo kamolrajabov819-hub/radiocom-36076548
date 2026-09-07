@@ -150,7 +150,7 @@
       "seo": "Qurilish",
       "h1": "Qurilish uchun ratsiyalar",
       "clients": "",
-      "meta_desc": "Qurilish uchun ratsiyalar: RCD-70 PRO — IP67 himoya, ochiq joyda 10 km gacha aloqa, shovqin ichida toza raqamli DMR ovozi. Obyektda bepul sinov."
+      "meta_desc": "Toshkentda qurilish uchun ratsiyalar: RCD-70 PRO chang va suvdan IP67 himoyasi bilan, ochiq joyda 10 km gacha, maydon shovqinida toza ovoz. Sinov bepul."
     },
     "security": {
       "name": "Xavfsizlik",
@@ -199,7 +199,7 @@
       "seo": "Xavfsizlik xizmatlari",
       "h1": "Xavfsizlik uchun ratsiyalar",
       "clients": "",
-      "meta_desc": "Qo'riqlash va xavfsizlik xizmatlari uchun ratsiyalar: raqamli rejimda AES-256 shifrlash, RCD-70 PRO'da GPS, zich shaharda 3 km gacha. 12 oy kafolat."
+      "meta_desc": "Toshkentda qo'riqlash xizmatlari uchun ratsiyalar: AES-256 shifrlash, trevoga tugmasi, RCD-70 PRO'da GPS, zich qurilishda 3 km gacha. 12 oy kafolat."
     },
     "mining": {
       "name": "Kon · Neft · Gaz",
@@ -265,7 +265,7 @@
         {
           "n": "GPS",
           "u": "",
-          "l": "Ekipaj joylashuvi dispetcherda — RCD-70 PRO"
+          "l": "Dispetcher ekipajni xaritada ko'radi — RCD-70 PRO"
         },
         {
           "n": "10 km gacha",
@@ -297,7 +297,7 @@
       "seo": "Transport va logistika",
       "h1": "Transport va logistika uchun ratsiyalar",
       "clients": "",
-      "meta_desc": "Transport va logistika uchun ratsiyalar: ekipaj joylashuvi dispetcherda GPS orqali, trassada 10 km gacha, smenaga 3600 mA·s. Avtopark uchun bepul sinov."
+      "meta_desc": "Transport va logistika uchun ratsiyalar: dispetcher ekipajni xaritada ko'radi, trassada 10 km gacha, rulda bir smenaga 3600 mA·s. Sinov bepul."
     },
     "manufacturing": {
       "name": "Ishlab chiqarish · Ombor",
@@ -346,7 +346,7 @@
       "seo": "Ishlab chiqarish va omborlar",
       "h1": "Ishlab chiqarish va omborlar uchun ratsiyalar",
       "clients": "",
-      "meta_desc": "Ishlab chiqarish va omborlar uchun ratsiyalar: xalaqitsiz raqamli DMR, sexlarda 2,5 km gacha, o'z chastotangiz — abonent to'lovisiz. Bepul sinov."
+      "meta_desc": "Toshkentda ishlab chiqarish va omborlar uchun ratsiyalar: sexlarda 2,5 km, abonent to'lovsiz o'z chastotangiz, skanerli terminallar. Bepul sinov."
     },
     "banner_title": "Qaysi ratsiya biznesingizga mos kelishini bilmayapsizmi?",
     "banner_sub": "Ob'ektingiz qanday ekanini ayting — 15 daqiqada ratsiya tanlaymiz.",
@@ -657,25 +657,25 @@
   "meta": {
     "home": {
       "title": "Toshkentda ratsiyalar — Motorola va Radiocom | Radiocom",
-      "desc": "O'zbekistondagi rasmiy ratsiya yetkazib beruvchi: bozorda 14 yil, 10 000+ mijoz. Motorola, PoC va Radiocom RC. Bepul sinov, kafolat, Toshkentda servis."
+      "desc": "Toshkentda Motorola va Radiocom ratsiyalari: 21 model mavjud, bozorda 14 yil, 10 000+ mijoz. Bepul sinov, 12 oy kafolat, o'z servisimiz."
     },
     "poc": {
-      "title": "PoC ratsiyalar: butun O'zbekiston bo'ylab LTE aloqa | Radiocom",
-      "desc": "Push-to-Talk over Cellular — retranslyatorsiz butun mamlakat bo'ylab aloqa, GPS, guruhlar va dispetcherlik. Toshkentda tarmoq loyihalash va ratsiya ijarasi."
+      "title": "PoC ratsiyalari — mobil tarmoq orqali aloqa | Radiocom",
+      "desc": "PoC ratsiyasi o'z antennasi orqali emas, mobil tarmoq orqali gapiradi: telefon tutgan joyda aloqa bor. Retranslyator kerak emas. Tarmoq loyihasi va ijara."
     },
     "service": {
       "title": "Toshkentda ratsiya ta'miri — vakolatli servis | Radiocom",
-      "desc": "Motorola, Radiocom va Vertex Standard uchun kafolatli va kafolatdan keyingi ta'mir. Original ehtiyot qismlar, sertifikatlangan muhandislar. Toshkent.",
+      "desc": "Toshkentda Motorola, Radiocom va Vertex Standard ratsiyalarini ta'mirlaymiz — kafolat bilan va keyin ham. Original qismlar, narx diagnostikadan keyin qat'iy.",
       "schema_name": "Radiocom vakolatli servis markazi",
-      "schema_desc": "Toshkentda Motorola, Radiocom va Vertex Standard radiostansiyalarini kafolatli va kafolatdan keyingi ta'mirlash."
+      "schema_desc": "Toshkentda Motorola, Radiocom va Vertex Standard ratsiyalarini ta'mirlash — kafolat davrida va keyin."
     },
     "industries": {
-      "title": "Biznes uchun ratsiyalar — HoReCa, qurilish, transport | Radiocom",
-      "desc": "Olti soha uchun tayyor radioaloqa yechimlari: HoReCa, qurilish, qo'riqlash, kon qazish, transport va ishlab chiqarish. Model tanlash va bepul sinov."
+      "title": "Qurilish, qo'riqlash va mehmonxona uchun ratsiyalar | Radiocom",
+      "desc": "Oltita soha va har biriga mos ratsiyalar: qurilish, qo'riqlash, mehmonxona, kon, transport, ishlab chiqarish. Ob'ektingizga tanlaymiz, sinov bepul."
     },
     "industry": {
-      "title": "{{name}} uchun ratsiyalar | Radiocom",
-      "desc": "Toshkent va O'zbekiston bo'ylab {{name}} uchun ratsiyalar: vazifaga mos model tanlash, obyektda bepul sinov, 12 oy kafolat va o'z servis markazimiz."
+      "title": "{{name}} uchun ratsiyalar — narx | Radiocom",
+      "desc": "Toshkentda va butun O'zbekistonda {{name}} uchun ratsiyalar: vazifangizga model tanlaymiz, bepul sinovga olib kelamiz, 12 oy kafolat va o'z servisimiz."
     },
     "product": {
       "title": "{{name}} — Toshkentda sotib olish",
@@ -692,23 +692,23 @@
     },
     "section": {
       "poc_name": "PoC ratsiyalar",
-      "poc_desc": "LTE orqali Push-to-Talk: retranslyatorsiz butun O'zbekiston bo'ylab aloqa.",
+      "poc_desc": "Mobil tarmoq orqali aloqa: ratsiya telefon tutadigan hamma joyda ishlaydi.",
       "service_name": "Servis markazi",
-      "service_desc": "Toshkentda ratsiyalarni kafolatli va kafolatdan keyingi ta'mirlash.",
+      "service_desc": "Toshkentda Motorola va Radiocom ratsiyalarini ta'mirlash — kafolat davrida va keyin.",
       "industries_name": "Sohalar",
-      "industries_desc": "HoReCa, qurilish, qo'riqlash, kon qazish, transport va ishlab chiqarish uchun radioaloqa yechimlari.",
+      "industries_desc": "Qurilish, qo'riqlash, mehmonxona, kon, transport va ishlab chiqarish uchun ratsiyalar.",
       "radiocom_name": "Radiocom ratsiyalari",
       "radiocom_desc": "Analog RC va raqamli RCD DMR ratsiyalari, Toshkentda kafolat va servis bilan.",
       "motorola_name": "Motorola ratsiyalari",
-      "motorola_desc": "Talkabout, XT, TLKR va CLP — jahon yetakchisidan litsenziyasiz PMR ratsiyalar.",
+      "motorola_desc": "Talkabout, XT, TLKR, CLP va CLK — chastota ruxsatnomasi kerak bo'lmaydigan ratsiyalar.",
       "compare_name": "Modellarni solishtirish",
       "compare_desc": "Barcha ratsiyalar masofa, standart, himoya darajasi va narx bo'yicha bitta jadvalda."
     },
     "brand": {
       "radiocom_title": "Radiocom RC va RCD ratsiyalari — Toshkentda sotib olish",
-      "radiocom_desc": "{{count}} ta Radiocom modeli: analog RC va raqamli RCD DMR ratsiyalari. Narxlar, xususiyatlar, 12 oy kafolat va O'zbekiston bo'ylab bepul sinov.",
+      "radiocom_desc": "Radiocom'ning {{count}} modeli: analog RC va raqamli RCD. Narxlar, xususiyatlar, 12 oy kafolat va butun O'zbekiston bo'ylab bepul sinov.",
       "motorola_title": "Motorola ratsiyalari — Toshkentda sotib olish | Radiocom",
-      "motorola_desc": "{{count}} ta Motorola modeli: Talkabout, XT, TLKR va CLP. Litsenziyasiz PMR ratsiyalar, kafolat, yetkazib berish va bepul sinov bilan."
+      "motorola_desc": "Motorola'ning {{count}} modeli: Talkabout, XT, TLKR, CLP va CLK. Chastota ruxsatnomasi kerak emas. Kafolat, O'zbekiston bo'ylab yetkazish va bepul sinov."
     },
     "specs": {
       "title": "{{name}} — xususiyatlari va narxi | Radiocom",
@@ -716,11 +716,11 @@
     },
     "compare": {
       "title": "Ratsiyalarni solishtirish — {{count}} model | Radiocom",
-      "desc": "Barcha modellar masofa, standart, himoya darajasi va narx bo'yicha bitta jadvalda. Vazifaga mos ratsiyani tanlang."
+      "desc": "Motorola va Radiocom ratsiyalari bitta jadvalda: masofa, chang va suvdan himoya, narx va komplekt. Solishtiring va jamoangizga mosini tanlang."
     },
     "search": {
       "title": "Ratsiyalar katalogi bo'yicha qidiruv — Radiocom",
-      "desc": "Ratsiyani model, standart, himoya klassi yoki masofa bo'yicha toping. Toshkentda 21 ta Radiocom RC va Motorola modeli mavjud."
+      "desc": "Ratsiyani nomi, masofasi yoki chang va suvdan himoyasi bo'yicha qidiring. Toshkentda Motorola va Radiocom'ning 21 modeli, narx va xususiyatlari bilan."
     },
     "sitemap": {
       "desc": "Radiocom'ning barcha sahifalari bitta ro'yxatda: Motorola va Radiocom RC ratsiyalari, xususiyatlar va narxlar, sohalar, Toshkentda ta'mir."
