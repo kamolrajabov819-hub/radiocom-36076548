@@ -37,20 +37,20 @@
     "Trade-in program"
   ],
   "industries": {
-    "title": "Two-way radios for business",
-    "kicker": "Turnkey solutions",
-    "overview_sub": "We designed and tuned radio systems for six key industries in Uzbekistan. Pick yours — we’ll show what fits.",
+    "title": "Radios by industry",
+    "kicker": "Where they are used",
+    "overview_sub": "Six industries where we have already set everything up. Pick yours and we will show which radios work there, and why.",
     "view_all": "All industries",
-    "problem_title": "The problem",
-    "solution_title": "Our solution",
-    "recommended": "Recommended models",
-    "outcomes_title": "What you get",
+    "problem_title": "What gets in the way",
+    "solution_title": "What we suggest",
+    "recommended": "Which radios suit it",
+    "outcomes_title": "What the radios do on site",
     "pains_title": "Sound familiar?",
     "faq_title": "Frequently asked",
     "quote_kicker": "Client story",
     "cta": "Book free on-site test",
     "cta_secondary": "Download catalog",
-    "compare_all": "See all models →",
+    "compare_all": "See all models",
     "trust_delivered": "10,000+ radios deployed",
     "trust_years": "14 years on the market",
     "trust_teams": "{{industry}} teams trust Radiocom",
@@ -59,7 +59,7 @@
       "short": "HoReCa",
       "desc": "Hotels, restaurants, events. Discreet earpieces, clean channels.",
       "problem": "Staff loses contact across noisy floors and between levels. Guests overhear crew chatter.",
-      "solution": "Compact PMR radios plus discreet earpieces. Instant coordination — no noise, no license required.",
+      "solution": "Small radios and concealed earpieces. Only the staff hear it, and no frequency permit is needed.",
       "pains": [
         "Waiters can’t hear the kitchen at peak hours",
         "Guests overhear internal staff chatter",
@@ -79,19 +79,19 @@
         {
           "n": "0.5",
           "u": "W",
-          "l": "PMR 446 band — no frequency paperwork"
+          "l": "The free 446 MHz band — no permit needed"
         }
       ],
       "quote": "Guests no longer hear what’s happening in the kitchen. Shifts got calmer and turnover went up — the team clears tables faster.",
       "quote_author": "Restaurant group operator, Tashkent",
       "faq": [
         {
-          "q": "Do I need a PMR license?",
-          "a": "No. PMR446 models run on free channels without any permit."
+          "q": "Do we need a frequency permit?",
+          "a": "No. These radios work on the free 446 MHz band, so there is nothing to register."
         },
         {
           "q": "How many radios for a restaurant?",
-          "a": "Usually 4–6: host, floor manager, chef, bar, waiter, storeroom. We’ll count on-site for free."
+          "a": "Usually four to six: the host, the floor manager, the chef, the barista, a waiter and the store room. We will come out and count for free."
         },
         {
           "q": "Can I try before I buy?",
@@ -139,8 +139,8 @@
           "a": "IP67 keeps out the dust, grit and water jets of a site. The exact temperature range depends on the model — we will bring radios to your site and test them in your conditions before you buy."
         },
         {
-          "q": "Do I need a repeater?",
-          "a": "Only for sites over 500 m or with heavy structure. We assess on-site."
+          "q": "Do we need a repeater?",
+          "a": "Only if the site runs longer than 500 m, or there are floors between the crews. We assess that on the visit, free of charge."
         },
         {
           "q": "What if a radio ends up in wet concrete?",
@@ -156,23 +156,23 @@
       "name": "Security",
       "short": "Security",
       "desc": "Private security, facility protection, government.",
-      "problem": "You need encrypted comms with GPS shift tracking and a panic button.",
-      "solution": "DMR radios with encryption, emergency button and GPS positioning. Everything visible to the dispatcher.",
+      "problem": "You need a channel nobody can listen in on, an alarm button, and a map showing every post.",
+      "solution": "Digital radios with encryption, an alarm button and GPS. The dispatcher sees every post on a map.",
       "pains": [
         "Officers go off the radar — nobody knows where",
         "Open frequencies can be scanned by anyone",
-        "Panic alerts go via phone — 30–90s lost"
+        "The alarm goes up by phone — that costs 30 to 90 seconds"
       ],
       "outcomes": [
         {
           "n": "AES-256",
           "u": "",
-          "l": "Voice encryption in digital mode — RCD-50, RCD-60 and RCD-70 PRO"
+          "l": "Only your own team hears you — RCD-50, RCD-60 and RCD-70 PRO"
         },
         {
           "n": "GPS",
           "u": "",
-          "l": "Every post's position at the desk — RCD-70 PRO"
+          "l": "You can see where each post is — RCD-70 PRO"
         },
         {
           "n": "up to 3",
@@ -184,16 +184,16 @@
       "quote_author": "Director, private security firm",
       "faq": [
         {
-          "q": "Can our channels be intercepted?",
-          "a": "With AES256, effectively no. Keys rotate over-the-air."
+          "q": "Can anyone listen in on us?",
+          "a": "Practically not: in digital mode the conversation is encrypted, and the key can be changed from software."
         },
         {
-          "q": "Does GPS work indoors?",
-          "a": "Outdoors, yes. Indoors we fall back to last-known-position."
+          "q": "Does GPS work inside a building?",
+          "a": "Outdoors, yes. Indoors the radio shows the last point where it had a signal."
         },
         {
-          "q": "Where does the panic button go?",
-          "a": "To everyone on the channel plus the dispatch console with coordinates."
+          "q": "Where does the alarm button send its signal?",
+          "a": "To everyone on the channel and to the dispatcher, together with the post's coordinates."
         }
       ],
       "seo": "Security",
@@ -221,7 +221,7 @@
         {
           "n": "AES-256",
           "u": "",
-          "l": "Voice encryption in digital mode — the RCD PRO range"
+          "l": "Only your own team hears you — the RCD PRO range"
         },
         {
           "n": "3,600",
@@ -237,8 +237,8 @@
           "a": "There are no intrinsically safe (Ex) versions in the current catalogue. Tell us which class your site requires and we will source it separately."
         },
         {
-          "q": "Do I need frequency licensing?",
-          "a": "We handle full licensing with State Comms of Uzbekistan."
+          "q": "Do the frequencies have to be registered?",
+          "a": "Yes, and we do it for you: we handle the whole filing with State Comms of Uzbekistan."
         },
         {
           "q": "What warranty on industrial builds?",
@@ -304,10 +304,10 @@
       "short": "Manufacturing",
       "desc": "Plants, workshops, distribution centers.",
       "problem": "Shifts across many zones, industrial noise, foremen need instant coordination.",
-      "solution": "DMR system with a repeater and group calls. Rugged PDAs for warehouse operations.",
+      "solution": "Digital radios with a repeater: everyone hears everyone, anywhere on the site. Plus warehouse terminals with a scanner for stock-keeping.",
       "pains": [
         "Foremen can’t hear each other over machine noise",
-        "Warehouse ops walk paper between shelves",
+        "Store staff run between the racks with paper",
         "Shift doesn’t know what happened at another zone"
       ],
       "outcomes": [
@@ -327,16 +327,16 @@
           "l": "Your own frequency: no subscription, no traffic charges"
         }
       ],
-      "quote": "DMR plus PDAs rolled out in a week. Storemen dropped the paper, picking sped up almost 2×.",
+      "quote": "The radios and the warehouse terminals were running in a week. The store staff stopped walking around with notebooks and picking got almost twice as fast.",
       "quote_author": "Ops director, packaging plant",
       "faq": [
         {
           "q": "Do radios work in noisy shops?",
-          "a": "Yes — active noise suppression keeps voice clear at 100 dB."
+          "a": "Yes. Noise cancelling strips out the background — you can hear at 100 dB on the shop floor."
         },
         {
-          "q": "Do PDAs integrate with 1C/ERP?",
-          "a": "Yes, out of the box plus custom builds if needed."
+          "q": "Do the warehouse terminals work with 1C?",
+          "a": "Yes. There are ready-made integrations, and we write to fit your own stock system where needed."
         },
         {
           "q": "How fast can you deploy?",
@@ -349,10 +349,10 @@
       "meta_desc": "Two-way radios for plants and warehouses: clean digital DMR, up to 2.5 km across shop floors and yards, your own frequency — no airtime fees. Free trial."
     },
     "banner_title": "Not sure which radio fits your operation?",
-    "banner_sub": "Tell us your industry — we will recommend the right system within 15 minutes.",
+    "banner_sub": "Tell us what your site is like and we will pick the radios in 15 minutes.",
     "eyebrow": "Industries",
     "offers": {
-      "title": "What you get",
+      "title": "What we take on",
       "test": {
         "t": "Free on-site testing",
         "d": "We bring radios to your site and verify coverage in real conditions — before you buy.",
@@ -378,7 +378,7 @@
     "cta": "Start trade-in"
   },
   "stats": {
-    "types": "radio types",
+    "types": "radio models",
     "clients": "clients",
     "years": "years on the market"
   },
@@ -393,7 +393,7 @@
     "all": "All",
     "results": "results",
     "clear": "Reset",
-    "request": "Request quote",
+    "request": "Ask for a price",
     "empty": "No models match the selected filters.",
     "download": "Download price list (PDF)",
     "price": "Price",
@@ -405,7 +405,7 @@
     "sort": "Sort",
     "title": "The whole comms catalog.",
     "compare_title": "Which radio is right for you?",
-    "compare_sub": "Key models compared on specifications, not marketing."
+    "compare_sub": "Compare the models by range, protection and price."
   },
   "product": {
     "spec": "Specifications",
@@ -428,8 +428,8 @@
     "breadcrumb": "Breadcrumb"
   },
   "form": {
-    "title": "Request quote",
-    "sub": "Leave your contacts — a manager will reach out within 15 minutes during business hours.",
+    "title": "Ask for a price",
+    "sub": "Leave a phone number — we call back within 15 minutes during working hours.",
     "name": "Your name",
     "company": "Company",
     "phone": "Phone",
@@ -504,7 +504,7 @@
     "kicker": "AUTHORIZED SERVICE CENTER",
     "title_a": "Radio repair,",
     "title_b": "you can trust.",
-    "sub": "Warranty and post-warranty service for Motorola, Radiocom and Vertex Standard radios. Original parts, fixed pricing, diagnostics on dedicated hardware.",
+    "sub": "We repair Motorola and Radiocom radios, under warranty and after it. Original parts, and once we have diagnosed the fault the price does not move.",
     "request_repair": "Request repair",
     "advantages": {
       "certified": {
@@ -558,7 +558,7 @@
         "a": "From 7 days for obvious factory defects up to 2 months for delivery to remote territories."
       }
     ],
-    "flow_title": "How the repair works",
+    "flow_title": "The repair, step by step",
     "advantages_title": "Why bring it here",
     "request_repair_sub": "Describe the fault and we will come back with a diagnosis and a fixed price."
   },
@@ -581,9 +581,9 @@
     "hero": {
       "title_a": "Two-way radios",
       "title_b": "Motorola and Radiocom.",
-      "sub": "Motorola and Radiocom — authorized service, free testing and nationwide delivery.",
+      "sub": "The official supplier in Uzbekistan. We bring the radios out for a free trial, and after you buy there is a warranty and our own service centre.",
       "cta_primary": "Book Free Test",
-      "cta_secondary": "Learn more",
+      "cta_secondary": "See the models",
       "eyebrow": "RADIOCOM · TWO-WAY RADIO"
     },
     "feature": {
@@ -592,15 +592,15 @@
       "link": "Coverage on your site"
     },
     "bento": {
-      "title": "Every detail, engineered.",
-      "sub": "One partner for hardware, licensing, deployment and repair.",
+      "title": "What you get along with the radio.",
+      "sub": "One supplier: the radios, the frequency permits, the setup and the repairs.",
       "tradein": {
         "title": "Trade-In",
         "sub": "Bring your old radio. Take a fresh Motorola or Radiocom at a discount."
       },
       "models": {
         "title": "35+ models",
-        "sub": "Motorola and Radiocom RC / RCD."
+        "sub": "Motorola, Radiocom RC and RCD."
       },
       "warranty": {
         "title": "12-month warranty",
@@ -616,18 +616,18 @@
       },
       "service": {
         "title": "Authorized service",
-        "sub": "Certified technicians, original parts, fixed pricing."
+        "sub": "Our own technicians, original parts, and a price that does not move."
       },
       "eyebrow": "Why Radiocom",
       "network": {
         "eyebrow": "Network design",
         "title": "Coverage where there was none.",
-        "sub": "Site RF survey, coverage modelling, repeater and antenna installation — turnkey, guaranteed."
+        "sub": "We come out, measure the signal, work out the coverage and put up the antennas. Turnkey, under warranty."
       }
     },
     "featured": {
-      "title": "Featured radios.",
-      "link": "See all",
+      "title": "These are the models people usually start with.",
+      "link": "All Radiocom models",
       "eyebrow": "Best sellers"
     },
     "final_cta": {
@@ -739,9 +739,9 @@
     "view": "View models",
     "models": "models",
     "radiocom_title": "Radiocom RC and RCD radios",
-    "radiocom_desc": "Our own Radiocom line: analog RC handhelds and digital RCD DMR radios with warranty and service.",
+    "radiocom_desc": "Radiocom's own range: analogue RC and digital RCD. Warranty and repairs at our own service centre.",
     "motorola_title": "Motorola radios",
-    "motorola_desc": "Talkabout, XT and TLKR — license-free PMR radios from the global market leader.",
+    "motorola_desc": "Talkabout, XT and TLKR — Motorola radios that need no frequency permit.",
     "lineup": "The line-up",
     "why_title": "Why buy from us",
     "compare_cta": "Which radio is right for you?",

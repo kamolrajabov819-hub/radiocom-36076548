@@ -313,7 +313,7 @@ export const specs: Record<string, ProductSpec> = {
 
   "m-xt185": {
     intro: {
-      ru: "Motorola XT185 — компактная и лёгкая 16-канальная радиостанция в безлицензионном диапазоне PMR 446 МГц. В комплекте две рации и аксессуары к ним: аккумуляторы, зарядное устройство, гарнитуры. Дисплей показывает номер канала, заряд АКБ, используемый субтон и активные функции. Полного заряда литий-ионного аккумулятора хватает примерно на 24 часа работы в режиме 5/5/90.",
+      ru: "Motorola XT185 — компактная и лёгкая 16-канальная радиостанция в безлицензионном диапазоне PMR 446 МГц. В комплекте две рации и аксессуары к ним: аккумуляторы, зарядное устройство, гарнитуры. Дисплей показывает номер канала, заряд аккумулятора, используемый субтон и активные функции. Полного заряда литий-ионного аккумулятора хватает примерно на 24 часа работы в режиме 5/5/90.",
       en: "The Motorola XT185 is a compact, lightweight 16-channel radio on the licence-free PMR 446 MHz band. The kit ships with two radios plus batteries, charger and headsets. The display shows channel number, battery level, the sub-tone in use and any active functions. A full charge of the lithium-ion battery lasts roughly 24 hours on a 5/5/90 duty cycle.",
       uz: "Motorola XT185 — litsenziyasiz PMR 446 MGts diapazonida ishlaydigan ixcham va yengil 16 kanalli radiostansiya. Komplektda ikkita ratsiya va ularga aksessuarlar: akkumulyatorlar, quvvatlagich, garnituralar. Displey kanal raqami, akkumulyator zaryadi, ishlatilayotgan subton va faol funksiyalarni ko'rsatadi. Litiy-ion akkumulyatorning to'liq zaryadi 5/5/90 rejimida taxminan 24 soatga yetadi.",
     },

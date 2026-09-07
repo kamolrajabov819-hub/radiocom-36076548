@@ -37,20 +37,20 @@
     "Trade-In dasturi"
   ],
   "industries": {
-    "title": "Biznes uchun ratsiyalar",
-    "kicker": "Tayyor yechimlar",
-    "overview_sub": "Biz O'zbekistonning 6 asosiy sohasi uchun radio tizimlarini loyihalashtirdik. O'z sohangizni tanlang — mos yechimni ko'rsatamiz.",
+    "title": "Sohalar bo'yicha ratsiyalar",
+    "kicker": "Ular qayerda ishlatiladi",
+    "overview_sub": "Biz allaqachon hammasini sozlagan oltita soha. O'zingiznikini tanlang — u yerda qaysi ratsiyalar ishlashini va nega ishlashini ko'rsatamiz.",
     "view_all": "Barcha sohalar",
-    "problem_title": "Muammo",
-    "solution_title": "Bizning yechim",
-    "recommended": "Tavsiya etilgan modellar",
-    "outcomes_title": "Nima olasiz",
+    "problem_title": "Ishga nima xalaqit beradi",
+    "solution_title": "Biz nima taklif qilamiz",
+    "recommended": "Qaysi ratsiyalar mos keladi",
+    "outcomes_title": "Ratsiyalar ob'ektda nima beradi",
     "pains_title": "Tanishmi?",
     "faq_title": "Ko'p so'raladi",
     "quote_kicker": "Mijoz fikri",
     "cta": "Ob'ektga bepul chiqish",
     "cta_secondary": "Katalog yuklash",
-    "compare_all": "Barcha modellarni ko'rish →",
+    "compare_all": "Barcha modellarni ko'rish",
     "trust_delivered": "10 000+ ratsiya yetkazib berildi",
     "trust_years": "Bozorda 14 yil",
     "trust_teams": "{{industry}} jamoalari Radiocom ga ishonadi",
@@ -59,7 +59,7 @@
       "short": "HoReCa",
       "desc": "Mehmonxona, restoran, tadbirlar. Yashirin garnituralar, toza efir.",
       "problem": "Xodimlar shovqinli zallarda va qavatlar orasida aloqani yo'qotadi. Mehmonlar xizmat suhbatlarini eshitadi.",
-      "solution": "Kompakt PMR ratsiyalari va yashirin garnituralar. Shovqinsiz va litsenziyasiz tezkor koordinatsiya.",
+      "solution": "Kichik ratsiyalar va yashirin garnituralar. Faqat xodimlar eshitadi, chastota ruxsatnomasi kerak emas.",
       "pains": [
         "Ofitsiantlar cho'qqi vaqtlarida oshxonani eshitmaydi",
         "Mijozlar xodimlar suhbatini eshitib qoladi",
@@ -79,19 +79,19 @@
         {
           "n": "0,5",
           "u": "Vt",
-          "l": "PMR 446 diapazoni — chastota rasmiylashtirishsiz"
+          "l": "Erkin 446 MGts diapazoni — ruxsatnoma kerak emas"
         }
       ],
       "quote": "Mijozlar endi oshxonadagi gaplarni eshitmaydi. Smena tinchroq bo'ldi, tushum ko'paydi — jamoa stollarni tezroq bo'shatadi.",
       "quote_author": "Restoran tarmog'i menejeri, Toshkent",
       "faq": [
         {
-          "q": "PMR uchun litsenziya kerakmi?",
-          "a": "Yo'q. PMR446 modellari litsenziyasiz, ochiq chastotalarda ishlaydi."
+          "q": "Chastota uchun ruxsatnoma kerakmi?",
+          "a": "Yo'q. Bu ratsiyalar erkin 446 MGts diapazonida ishlaydi — hech narsa rasmiylashtirish shart emas."
         },
         {
           "q": "Restoranga nechta ratsiya kerak?",
-          "a": "Odatda 4–6 ta: xostess, menejer, oshpaz, bar, ofitsiant, ombor. Bepul kelib sanaymiz."
+          "a": "Odatda 4–6 ta: xostes, zal menejeri, oshpaz, barista, ofitsiant va ombor. Kelib bepul hisoblab beramiz."
         },
         {
           "q": "Sotib olishdan oldin sinab ko'rish mumkinmi?",
@@ -140,7 +140,7 @@
         },
         {
           "q": "Retranslyator kerakmi?",
-          "a": "Faqat ob'ekt 500 m dan katta bo'lsa yoki og'ir konstruksiyalar bo'lsa. Kelib baholaymiz."
+          "a": "Faqat ob'ekt 500 m dan uzun bo'lsa yoki brigadalar orasida to'siq bo'lsa. Chiqib bepul baholaymiz."
         },
         {
           "q": "Ratsiya ho'l betonga tushib ketsa-chi?",
@@ -156,23 +156,23 @@
       "name": "Xavfsizlik",
       "short": "Xavfsizlik",
       "desc": "Xususiy qo'riqlash, ob'ekt himoyasi, davlat xavfsizligi.",
-      "problem": "Smenalarni GPS orqali kuzatish va favqulodda tugmasi bilan himoyalangan, shifrlangan aloqa kerak.",
-      "solution": "Shifrlash, favqulodda tugmasi va GPS bilan DMR ratsiyalar. Hammasi dispetcher nazoratida.",
+      "problem": "Tinglab bo'lmaydigan aloqa, trevoga tugmasi va har bir postni ko'rsatadigan xarita kerak.",
+      "solution": "Shifrlash, trevoga tugmasi va GPS'li raqamli ratsiyalar. Dispetcher barcha postlarni xaritada ko'radi.",
       "pains": [
         "Xodimlar radardan yo'qoladi — hech kim qayerdaligini bilmaydi",
         "Ochiq chastotalarni har kim eshitishi mumkin",
-        "Signal telefon orqali yuboriladi — 30–90 s yo'qoladi"
+        "Trevoga telefon orqali ko'tariladi — 30–90 soniya ketadi"
       ],
       "outcomes": [
         {
           "n": "AES-256",
           "u": "",
-          "l": "Raqamli rejimda ovoz shifrlash — RCD-50, RCD-60 va RCD-70 PRO"
+          "l": "Suhbatni faqat o'zingiznikilar eshitadi — RCD-50, RCD-60 va RCD-70 PRO"
         },
         {
           "n": "GPS",
           "u": "",
-          "l": "Har bir postning joylashuvi dispetcherda — RCD-70 PRO"
+          "l": "Post qayerda turgani ko'rinadi — RCD-70 PRO"
         },
         {
           "n": "3 km gacha",
@@ -184,16 +184,16 @@
       "quote_author": "Xususiy qo'riqlash direktori",
       "faq": [
         {
-          "q": "Kanalimizni ushlab olishlari mumkinmi?",
-          "a": "AES256 bilan — deyarli yo'q. Kalitlar dasturiy almashadi."
+          "q": "Bizni tinglashlari mumkinmi?",
+          "a": "Deyarli yo'q: raqamli rejimda suhbat shifrlanadi, kalitni esa dasturdan o'zgartirish mumkin."
         },
         {
-          "q": "GPS ichkarida ishlaydimi?",
-          "a": "Ochiq postlarda — ha. Ichkarida oxirgi ma'lum joylashuv ishlatiladi."
+          "q": "GPS bino ichida ishlaydimi?",
+          "a": "Ko'chada — ha. Bino ichida ratsiya signalni oxirgi marta tutgan nuqtani ko'rsatadi."
         },
         {
-          "q": "Favqulodda tugmasi signalni qayerga yuboradi?",
-          "a": "Kanaldagi hammaga va dispetcher konsoliga koordinatlar bilan."
+          "q": "Trevoga tugmasi signalni qayerga yuboradi?",
+          "a": "Kanaldagi barchaga va dispetcherga — post koordinatalari bilan birga."
         }
       ],
       "seo": "Xavfsizlik xizmatlari",
@@ -221,7 +221,7 @@
         {
           "n": "AES-256",
           "u": "",
-          "l": "Raqamli rejimda ovoz shifrlash — RCD PRO liniyasi"
+          "l": "Suhbatni faqat o'zingiznikilar eshitadi — RCD PRO liniyasi"
         },
         {
           "n": "3600",
@@ -237,8 +237,8 @@
           "a": "Joriy katalogda uchqundan himoyalangan (Ex) versiyalar yo'q. Uchastkangizga qaysi sinf kerakligini yozing — alohida yechim tanlaymiz."
         },
         {
-          "q": "Chastota kelishuvini o'zingiz qilasizmi?",
-          "a": "Ha, O'zbekiston Aloqa qo'mitasi bilan to'liq rasmiylashtiramiz."
+          "q": "Chastotalarni kelishish kerakmi?",
+          "a": "Ha, va buni biz siz uchun qilamiz: O'zbekiston Aloqa qo'mitasidagi rasmiylashtirishni to'liq olib boramiz."
         },
         {
           "q": "Sanoat modellariga qanday kafolat?",
@@ -304,10 +304,10 @@
       "short": "Zavod",
       "desc": "Zavodlar, sexlar, distribyutsiya markazlari.",
       "problem": "Turli uchastkalardagi smenalar, sanoat shovqini, brigadirlar tezkor koordinatsiyaga muhtoj.",
-      "solution": "Retranslyator va guruh chaqiruvlari bilan DMR tizim. Ombor hisobi uchun sanoat KPK'lari.",
+      "solution": "Retranslyatorli raqamli ratsiyalar: hududning istalgan burchagida hamma bir vaqtda eshitadi. Ustiga hisob uchun skanerli ombor terminallari.",
       "pains": [
         "Brigadirlar sex shovqinida bir-birini eshitmaydi",
-        "Omborchilar stellajlar orasida qog'oz bilan yuguradi",
+        "Omborchilar javonlar orasida qog'oz bilan yugurishadi",
         "Smena boshqa uchastkada nima bo'lganini bilmaydi"
       ],
       "outcomes": [
@@ -327,16 +327,16 @@
           "l": "O'z chastotangiz: abonent to'lovi va trafiksiz"
         }
       ],
-      "quote": "DMR va KPK ni bir haftada o'rnatdik. Omborchilar qog'ozdan voz kechdi, komplektatsiya deyarli 2 barobar tezlashdi.",
+      "quote": "Ratsiyalar va ombor terminallarini bir haftada yo'lga qo'ydik. Omborchilar bloknot bilan yurishni bas qildi, yig'ish deyarli ikki barobar tezlashdi.",
       "quote_author": "Operatsion direktor, qadoqlash zavodi",
       "faq": [
         {
           "q": "Shovqinli sexda ishlaydimi?",
-          "a": "Ha — faol shovqin bosish bilan 100 dB da ham aniq eshitiladi."
+          "a": "Ha. Shovqinni bostirish fonni olib tashlaydi — sexda 100 dB da ham eshitiladi."
         },
         {
-          "q": "KPK 1C bilan integratsiyalashadimi?",
-          "a": "Ha, tayyor integratsiyalar bor, zarur bo'lsa alohida ishlab chiqamiz."
+          "q": "Ombor terminallari 1C bilan ishlaydimi?",
+          "a": "Ha. Tayyor bog'lanishlar bor, kerak bo'lsa sizning hisobingizga moslab yozamiz."
         },
         {
           "q": "Qancha vaqtda o'rnatasiz?",
@@ -349,10 +349,10 @@
       "meta_desc": "Ishlab chiqarish va omborlar uchun ratsiyalar: xalaqitsiz raqamli DMR, sexlarda 2,5 km gacha, o'z chastotangiz — abonent to'lovisiz. Bepul sinov."
     },
     "banner_title": "Qaysi ratsiya biznesingizga mos kelishini bilmayapsizmi?",
-    "banner_sub": "Sohangizni ayting — 15 daqiqada tizim tanlab beramiz.",
+    "banner_sub": "Ob'ektingiz qanday ekanini ayting — 15 daqiqada ratsiya tanlaymiz.",
     "eyebrow": "Sohalar",
     "offers": {
-      "title": "Siz nima olasiz",
+      "title": "Biz nimani o'z zimmamizga olamiz",
       "test": {
         "t": "Bepul sinov",
         "d": "Ratsiyalarni obyektingizga olib boramiz va aloqani real sharoitda tekshiramiz — sotib olishdan oldin.",
@@ -378,7 +378,7 @@
     "cta": "Almashishni boshlash"
   },
   "stats": {
-    "types": "ratsiya turi",
+    "types": "ratsiya modeli",
     "clients": "mijoz",
     "years": "yil bozorda"
   },
@@ -393,7 +393,7 @@
     "all": "Hammasi",
     "results": "natija",
     "clear": "Tozalash",
-    "request": "Taklif so'rash",
+    "request": "Narxni so'rash",
     "empty": "Tanlangan filtrlar bo'yicha modellar topilmadi.",
     "download": "Narxlar ro'yxatini yuklab olish (PDF)",
     "price": "Narx",
@@ -405,7 +405,7 @@
     "sort": "Saralash",
     "title": "Butun aloqa katalogi.",
     "compare_title": "Qaysi ratsiya sizga mos keladi?",
-    "compare_sub": "Asosiy modellar marketing emas, xususiyatlar bo'yicha taqqoslangan."
+    "compare_sub": "Modellarni masofa, himoya va narx bo'yicha solishtiring."
   },
   "product": {
     "spec": "Xususiyatlar",
@@ -428,8 +428,8 @@
     "breadcrumb": "Navigatsiya zanjiri"
   },
   "form": {
-    "title": "Taklif so'rash",
-    "sub": "Kontaktlaringizni qoldiring — ish vaqtida menejer 15 daqiqa ichida bog'lanadi.",
+    "title": "Narxni so'rash",
+    "sub": "Telefon raqamingizni qoldiring — ish vaqtida 15 daqiqada qo'ng'iroq qilamiz.",
     "name": "Ismingiz",
     "company": "Kompaniya",
     "phone": "Telefon",
@@ -504,7 +504,7 @@
     "kicker": "VAKOLATLI SERVIS MARKAZI",
     "title_a": "Ratsiya ta'miri.",
     "title_b": "Ishonchli.",
-    "sub": "Motorola, Radiocom va Vertex Standard ratsiyalari uchun kafolat va kafolatdan keyingi xizmat. Original ehtiyot qismlar, qat'iy narxlar, maxsus uskunada diagnostika.",
+    "sub": "Motorola va Radiocom ratsiyalarini ta'mirlaymiz — kafolat davrida ham, keyin ham. Original ehtiyot qismlar, diagnostikadan keyin narx o'zgarmaydi.",
     "request_repair": "Ta'mirlashga ariza",
     "advantages": {
       "certified": {
@@ -558,8 +558,8 @@
         "a": "Zavod nuqsoni aniq bo'lganda 7 kundan boshlab, olis hududlarga yetkazish uchun 2 oygacha."
       }
     ],
-    "flow_title": "Ta'mir qanday o'tadi",
-    "advantages_title": "Nega aynan bu yerga",
+    "flow_title": "Ta'mirlash bosqichma-bosqich",
+    "advantages_title": "Nega bizga",
     "request_repair_sub": "Nosozlikni tavsiflang — diagnostika va qat'iy narx bilan qaytamiz."
   },
   "footer": {
@@ -581,9 +581,9 @@
     "hero": {
       "title_a": "Ratsiyalar",
       "title_b": "Motorola va Radiocom.",
-      "sub": "Motorola va Radiocom — rasmiy servis, bepul sinov va butun mamlakat bo'ylab yetkazib berish.",
+      "sub": "O'zbekistondagi rasmiy yetkazib beruvchi. Ratsiyalarni bepul sinovga olib kelamiz, sotib olgandan keyin — kafolat va o'z servisimiz.",
       "cta_primary": "Bepul sinovni band qilish",
-      "cta_secondary": "Batafsil",
+      "cta_secondary": "Modellarni ko'rish",
       "eyebrow": "RADIOCOM · RADIOALOQA"
     },
     "feature": {
@@ -592,15 +592,15 @@
       "link": "Ob'ektda aloqa"
     },
     "bento": {
-      "title": "Har bir tafsilot puxta ishlangan.",
-      "sub": "Jihoz, litsenziya, o'rnatish va ta'mirlash — bitta hamkorda.",
+      "title": "Ratsiya bilan birga nima olasiz.",
+      "sub": "Bitta yetkazib beruvchi: ratsiyalar, chastota ruxsatnomalari, sozlash va ta'mirlash.",
       "tradein": {
         "title": "Trade-In",
         "sub": "Eski ratsiyani bering — yangi Motorola yoki Radiocom ni chegirma bilan oling."
       },
       "models": {
         "title": "35+ model",
-        "sub": "Motorola va Radiocom RC / RCD."
+        "sub": "Motorola, Radiocom RC va RCD."
       },
       "warranty": {
         "title": "12 oy kafolat",
@@ -616,18 +616,18 @@
       },
       "service": {
         "title": "Vakolatli servis",
-        "sub": "Sertifikatlangan mutaxassislar, original ehtiyot qismlar, qat'iy narxlar."
+        "sub": "O'z ustalarimiz, original ehtiyot qismlar, narx o'zgarmaydi."
       },
       "eyebrow": "Nega Radiocom",
       "network": {
         "eyebrow": "Tarmoq loyihalash",
         "title": "Aloqa bo‘lmagan joyda ham aloqa.",
-        "sub": "Obyektni radio tekshiruvi, qamrov hisobi, repiter va antennalarni o‘rnatish — kalit topshirish sharti bilan."
+        "sub": "Kelamiz, aloqani o'lchaymiz, qamrovni hisoblaymiz va antennalarni o'rnatamiz. Kalit topshirish, kafolat bilan."
       }
     },
     "featured": {
-      "title": "Tavsiya etiladi.",
-      "link": "Barcha katalog",
+      "title": "Odatda shu modellardan boshlashadi.",
+      "link": "Barcha Radiocom modellari",
       "eyebrow": "Eng ko‘p sotilganlar"
     },
     "final_cta": {
@@ -733,11 +733,11 @@
     "view": "Modellarni ko'rish",
     "models": "model",
     "radiocom_title": "Radiocom RC va RCD ratsiyalari",
-    "radiocom_desc": "O'z liniyamiz Radiocom: analog RC va raqamli RCD DMR ratsiyalari, kafolat va servis bilan.",
+    "radiocom_desc": "Radiocom'ning o'z liniyasi: analog RC va raqamli RCD. Kafolat va ta'mirlash — o'z servisimizda.",
     "motorola_title": "Motorola ratsiyalari",
-    "motorola_desc": "Talkabout, XT va TLKR — jahon yetakchisidan litsenziyasiz PMR ratsiyalar.",
+    "motorola_desc": "Talkabout, XT va TLKR — chastota ruxsatnomasi kerak bo'lmaydigan Motorola ratsiyalari.",
     "lineup": "Model qatori",
-    "why_title": "Nega biz orqali",
+    "why_title": "Nega bizdan sotib olish kerak",
     "compare_cta": "Sizga qaysi ratsiya mos keladi?",
     "compare_sub": "Modellarni masofa, himoya va narx bo'yicha solishtiring.",
     "all_models": "Barcha modellar"
