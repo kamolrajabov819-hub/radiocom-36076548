@@ -255,7 +255,7 @@
       "short": "Transport",
       "desc": "Fleets, warehouses, expeditions.",
       "problem": "The dispatcher loses drivers outside the city. Cellular is expensive and drops.",
-      "solution": "PoC radios (PoC devices) with nationwide LTE coverage plus in-vehicle Radiocom RCD base stations.",
+      "solution": "Radiocom RCD radios in the vehicles. Out of town — PoC radios: they run over the mobile network, so you have coverage across the whole country.",
       "pains": [
         "Driver in Bukhara — Tashkent dispatch can’t reach",
         "Cellular tariffs eat freight margin",
@@ -385,7 +385,7 @@
   "catalog": {
     "title_a": "Multi-brand",
     "title_b": "catalog.",
-    "sub": "Professional and amateur radios, PoC devices, accessories and PDAs. Request a quote — a manager will build a proposal for your case.",
+    "sub": "21 Motorola and Radiocom models — from a light radio for the dining room to a rugged digital one for a building site. Prices, specs and stock in Tashkent.",
     "filters": "Filters",
     "categories": "Categories",
     "brands": "Brands",
@@ -578,12 +578,12 @@
   },
   "home": {
     "hero": {
-      "title_a": "Unbreakable,",
-      "title_b": "Professional two-way radios.",
+      "title_a": "Two-way radios",
+      "title_b": "Motorola and Radiocom.",
       "sub": "Motorola and Radiocom — authorized service, free testing and nationwide delivery.",
       "cta_primary": "Book Free Test",
       "cta_secondary": "Learn more",
-      "eyebrow": "RADIOCOM · PROFESSIONAL TWO-WAY RADIO"
+      "eyebrow": "RADIOCOM · TWO-WAY RADIO"
     },
     "feature": {
       "title": "Built for the toughest sites.",
@@ -759,7 +759,7 @@
     "where_used": "Where it is used",
     "accessories": "Compatible accessories",
     "spec_table": "Specifications",
-    "config": "Configuration",
+    "config": "Who it is for",
     "warranty": "12-month warranty",
     "delivery": "Free delivery across Uzbekistan",
     "trial": "Free trial: we deliver, set it up and collect it",

@@ -339,9 +339,9 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     rangeOpen: upToKm("4"),
     industries: ["horeca", "security", "construction"],
     blurb: {
-      ru: "Компактная цифровая рация для входа в профессиональный сегмент.",
-      en: "A compact digital radio — the way into the professional tier.",
-      uz: "Professional segmentga kirish uchun ixcham raqamli radiostansiya.",
+      ru: "Самая доступная цифровая рация в линейке — для небольших смен.",
+      en: "The most affordable digital radio in the range — for small crews.",
+      uz: "Liniyadagi eng arzon raqamli ratsiya — kichik smenalar uchun.",
     },
   },
 
@@ -425,9 +425,9 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     rangeOpen: upToKm("10"),
     industries: ["horeca", "security", "construction"],
     blurb: {
-      ru: "Защищённая безлицензионная рация для outdoor задач.",
-      en: "A rugged licence-free radio for work outdoors.",
-      uz: "Ochiq havodagi vazifalar uchun himoyalangan, litsenziyasiz radiostansiya.",
+      ru: "Защищённая рация для работы на улице. Разрешение не нужно.",
+      en: "A rugged radio for working outdoors. No licence needed.",
+      uz: "Ochiq havoda ishlash uchun himoyalangan ratsiya. Ruxsatnoma kerak emas.",
     },
   },
   {
@@ -840,8 +840,8 @@ export function priceFrom(list: Product[]): number | null {
 }
 
 export const categoryLabels: Record<Category, { ru: string; en: string; uz: string }> = {
-  amateur: { ru: "Любительские", en: "Amateur", uz: "Havaskor" },
-  professional: { ru: "Профессиональные", en: "Professional", uz: "Professional" },
+  amateur: { ru: "Для дома и отдыха", en: "For home and outdoors", uz: "Uy va dam olish uchun" },
+  professional: { ru: "Для работы", en: "For work", uz: "Ish uchun" },
 };
 
 export const allBrands: Brand[] = ["Radiocom RC", "Motorola"];

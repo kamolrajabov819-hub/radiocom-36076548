@@ -20,13 +20,13 @@ Tillar: rus, ingliz, o'zbek. Kanonik til — rus tili.
 - [Radiocom RCD-60 PRO](https://radiocom.uz/uz/radiocom/rcd-60) — Displey va klaviaturali raqamli radiostansiya, to'liq komplektda. Masofa 2,5 km gacha.
 - [Radiocom RCD-50 PRO](https://radiocom.uz/uz/radiocom/rcd-50) — Brigadalar uchun ishchi model: toza raqamli ovoz va displey. Masofa 2,5 km gacha.
 - [Radiocom RCD-40 PRO](https://radiocom.uz/uz/radiocom/rcd-40) — Kuchaytirilgan qabul va uzoq ish sikliga ega o'rta sinf RCD. Masofa 2 km gacha.
-- [Radiocom RCD-30 PRO](https://radiocom.uz/uz/radiocom/rcd-30) — Professional segmentga kirish uchun ixcham raqamli radiostansiya. Masofa 1,5 km gacha.
+- [Radiocom RCD-30 PRO](https://radiocom.uz/uz/radiocom/rcd-30) — Liniyadagi eng arzon raqamli ratsiya — kichik smenalar uchun. Masofa 1,5 km gacha.
 - [Radiocom RC-50](https://radiocom.uz/uz/radiocom/rc-50) — O'rta radiusdagi aloqa uchun universal model. Masofa 2–2,5 km gacha.
 - [Radiocom RC-20](https://radiocom.uz/uz/radiocom/rc-20) — Xodimlar uchun yengil radiostansiya — quvvatlagich va garnitura bilan. Masofa 1,5 km gacha.
 - [Radiocom RC-10](https://radiocom.uz/uz/radiocom/rc-10) — Liniyaning boshlang'ich darajasi — sodda va ishonchli. Masofa 1 km gacha.
 
 ### Motorola
-- [Motorola Talkabout T82 Extreme](https://radiocom.uz/uz/motorola/t82-extreme) — Ochiq havodagi vazifalar uchun himoyalangan, litsenziyasiz radiostansiya. Masofa 1,5 km gacha.
+- [Motorola Talkabout T82 Extreme](https://radiocom.uz/uz/motorola/t82-extreme) — Ochiq havoda ishlash uchun himoyalangan ratsiya. Ruxsatnoma kerak emas. Masofa 1,5 km gacha.
 - [Motorola Talkabout T82 Extreme Quad](https://radiocom.uz/uz/motorola/t82-extreme-quad) — Uyushgan brigadalar uchun 4 ta radiostansiyadan iborat to'plam. Masofa 1,5 km gacha.
 - [Motorola Talkabout T82](https://radiocom.uz/uz/motorola/t82) — Jamoalar va tadbirlar uchun ixcham PMR radiostansiya. Masofa 1,5 km gacha.
 - [Motorola Talkabout T72](https://radiocom.uz/uz/motorola/t72) — Ochiq havoda faol foydalanish uchun zamonaviy PMR. Masofa 1 km gacha.

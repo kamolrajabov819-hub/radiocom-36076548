@@ -956,9 +956,9 @@
       ],
       "price": 1800000,
       "blurb": {
-        "ru": "Компактная цифровая рация для входа в профессиональный сегмент.",
-        "en": "A compact digital radio — the way into the professional tier.",
-        "uz": "Professional segmentga kirish uchun ixcham raqamli radiostansiya."
+        "ru": "Самая доступная цифровая рация в линейке — для небольших смен.",
+        "en": "The most affordable digital radio in the range — for small crews.",
+        "uz": "Liniyadagi eng arzon raqamli ratsiya — kichik smenalar uchun."
       },
       "rangeCity": {
         "ru": "до 1,5 км",
@@ -1908,9 +1908,9 @@
       ],
       "price": 1700000,
       "blurb": {
-        "ru": "Защищённая безлицензионная рация для outdoor задач.",
-        "en": "A rugged licence-free radio for work outdoors.",
-        "uz": "Ochiq havodagi vazifalar uchun himoyalangan, litsenziyasiz radiostansiya."
+        "ru": "Защищённая рация для работы на улице. Разрешение не нужно.",
+        "en": "A rugged radio for working outdoors. No licence needed.",
+        "uz": "Ochiq havoda ishlash uchun himoyalangan ratsiya. Ruxsatnoma kerak emas."
       },
       "rangeCity": {
         "ru": "до 1,5 км",

@@ -20,13 +20,13 @@ Languages: Russian, English, Uzbek. Russian is the canonical language.
 - [Radiocom RCD-60 PRO](https://radiocom.uz/en/radiocom/rcd-60) — A digital radio with display and keypad, fully equipped. Range up to 2.5 km.
 - [Radiocom RCD-50 PRO](https://radiocom.uz/en/radiocom/rcd-50) — The crew workhorse: clean digital audio and a display. Range up to 2.5 km.
 - [Radiocom RCD-40 PRO](https://radiocom.uz/en/radiocom/rcd-40) — Mid-range RCD with boosted reception and a long duty cycle. Range up to 2 km.
-- [Radiocom RCD-30 PRO](https://radiocom.uz/en/radiocom/rcd-30) — A compact digital radio — the way into the professional tier. Range up to 1.5 km.
+- [Radiocom RCD-30 PRO](https://radiocom.uz/en/radiocom/rcd-30) — The most affordable digital radio in the range — for small crews. Range up to 1.5 km.
 - [Radiocom RC-50](https://radiocom.uz/en/radiocom/rc-50) — An all-round model for mid-range coverage. Range up to 2–2.5 km.
 - [Radiocom RC-20](https://radiocom.uz/en/radiocom/rc-20) — A light radio for floor staff — ships with charger and headset. Range up to 1.5 km.
 - [Radiocom RC-10](https://radiocom.uz/en/radiocom/rc-10) — The entry point of the range — simple and dependable. Range up to 1 km.
 
 ### Motorola
-- [Motorola Talkabout T82 Extreme](https://radiocom.uz/en/motorola/t82-extreme) — A rugged licence-free radio for work outdoors. Range up to 1.5 km.
+- [Motorola Talkabout T82 Extreme](https://radiocom.uz/en/motorola/t82-extreme) — A rugged radio for working outdoors. No licence needed. Range up to 1.5 km.
 - [Motorola Talkabout T82 Extreme Quad](https://radiocom.uz/en/motorola/t82-extreme-quad) — A four-radio kit for organised crews. Range up to 1.5 km.
 - [Motorola Talkabout T82](https://radiocom.uz/en/motorola/t82) — A compact PMR radio for teams and events. Range up to 1.5 km.
 - [Motorola Talkabout T72](https://radiocom.uz/en/motorola/t72) — A current-generation PMR built for active outdoor use. Range up to 1 km.

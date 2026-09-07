@@ -255,7 +255,7 @@
       "short": "Transport",
       "desc": "Avtoparklar, omborlar, ekspeditsiyalar.",
       "problem": "Dispetcher haydovchilarni shahar tashqarisida yo'qotadi. Mobil aloqa qimmat va uziladi.",
-      "solution": "Butun mamlakat bo'ylab LTE qamrovli PoC qurilmalari PoC ratsiyalari va Radiocom RCD avtomobil stansiyalari.",
+      "solution": "Mashinalarga — Radiocom RCD ratsiyalari. Shahardan tashqarida — PoC ratsiyalari: ular mobil tarmoq orqali ishlaydi, shuning uchun aloqa butun mamlakat bo'ylab bor.",
       "pains": [
         "Haydovchi Buxoroda — Toshkentdagi dispetcher aloqasiz",
         "Mobil tariflar tashish marjasini yeb qo'yadi",
@@ -385,7 +385,7 @@
   "catalog": {
     "title_a": "Ko'p brendli",
     "title_b": "katalog.",
-    "sub": "Professional va havaskor ratsiyalar, PoC qurilmalari, aksessuarlar va KPK. Ariza qoldiring — menejer sizga taklifni tayyorlaydi.",
+    "sub": "Motorola va Radiocom'ning 21 modeli — zal uchun yengil ratsiyadan qurilish uchun himoyalangan raqamligacha. Narxlar, xususiyatlar va Toshkentdagi mavjudligi.",
     "filters": "Filtrlar",
     "categories": "Toifalar",
     "brands": "Brendlar",
@@ -578,12 +578,12 @@
   },
   "home": {
     "hero": {
-      "title_a": "Buzilmas,",
-      "title_b": "Professional ratsiyalar.",
+      "title_a": "Ratsiyalar",
+      "title_b": "Motorola va Radiocom.",
       "sub": "Motorola va Radiocom — rasmiy servis, bepul sinov va butun mamlakat bo'ylab yetkazib berish.",
       "cta_primary": "Bepul sinovni band qilish",
       "cta_secondary": "Batafsil",
-      "eyebrow": "RADIOCOM · PROFESSIONAL RADIOALOQA"
+      "eyebrow": "RADIOCOM · RADIOALOQA"
     },
     "feature": {
       "title": "Eng qiyin ob'ektlar uchun yaratilgan.",
@@ -753,7 +753,7 @@
     "where_used": "Qayerda qo'llaniladi",
     "accessories": "Mos aksessuarlar",
     "spec_table": "Xususiyatlar",
-    "config": "Konfiguratsiya",
+    "config": "Kimga mos",
     "warranty": "12 oy kafolat",
     "delivery": "O'zbekiston bo'ylab bepul yetkazib berish",
     "trial": "Bepul sinov: olib kelamiz, sozlaymiz, olib ketamiz",
