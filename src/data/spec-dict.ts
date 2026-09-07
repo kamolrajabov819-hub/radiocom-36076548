@@ -259,7 +259,7 @@ export const V = {
   china: { ru: "Китай", en: "China", uz: "Xitoy" },
   months12: { ru: "12 месяцев", en: "12 months", uz: "12 oy" },
   warrantyRadioOnly: {
-    ru: "12 месяцев на радиоблок. Гарантия не распространяется на аксессуары и АКБ",
+    ru: "12 месяцев на саму рацию. Аксессуары и аккумуляторы гарантия не покрывает",
     en: "12 months on the radio unit. Accessories and batteries are not covered",
     uz: "Radioblokka 12 oy. Kafolat aksessuarlar va akkumulyatorlarga tatbiq etilmaydi",
   },

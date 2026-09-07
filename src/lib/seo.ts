@@ -103,8 +103,8 @@ export const YEARS_TRADING = new Date().getFullYear() - FOUNDED_YEAR;
  * without the build saying so.
  */
 export const ORG_DESCRIPTION =
-  "Официальный поставщик раций в Узбекистане: 14 лет на рынке, 10 000+ клиентов. " +
-  "Motorola, PoC и Radiocom RC. Бесплатный тест, гарантия, сервис в Ташкенте.";
+  "Рации Motorola и Radiocom в Ташкенте: 21 модель в наличии, 14 лет на рынке, " +
+  "10 000+ клиентов. Бесплатный тест, гарантия 12 месяцев, свой сервис.";
 
 /** Absolute URL for a site-relative path. */
 export function absolute(path: string): string {

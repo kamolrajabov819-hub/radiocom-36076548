@@ -1,7 +1,7 @@
 {
   "nav": {
     "home": "Home",
-    "poc": "PoC Systems",
+    "poc": "PoC radios",
     "service": "Service",
     "industries": "Industries",
     "contact": "Contact",
@@ -37,20 +37,20 @@
     "Trade-in program"
   ],
   "industries": {
-    "title": "Two-way radios for business",
-    "kicker": "Turnkey solutions",
-    "overview_sub": "We designed and tuned radio systems for six key industries in Uzbekistan. Pick yours — we’ll show what fits.",
+    "title": "Radios by industry",
+    "kicker": "Where they are used",
+    "overview_sub": "Six industries where we have already set everything up. Pick yours and we will show which radios work there, and why.",
     "view_all": "All industries",
-    "problem_title": "The problem",
-    "solution_title": "Our solution",
-    "recommended": "Recommended models",
-    "outcomes_title": "What you get",
+    "problem_title": "What gets in the way",
+    "solution_title": "What we suggest",
+    "recommended": "Which radios suit it",
+    "outcomes_title": "What the radios do on site",
     "pains_title": "Sound familiar?",
     "faq_title": "Frequently asked",
     "quote_kicker": "Client story",
     "cta": "Book free on-site test",
     "cta_secondary": "Download catalog",
-    "compare_all": "See all models →",
+    "compare_all": "See all models",
     "trust_delivered": "10,000+ radios deployed",
     "trust_years": "14 years on the market",
     "trust_teams": "{{industry}} teams trust Radiocom",
@@ -59,7 +59,7 @@
       "short": "HoReCa",
       "desc": "Hotels, restaurants, events. Discreet earpieces, clean channels.",
       "problem": "Staff loses contact across noisy floors and between levels. Guests overhear crew chatter.",
-      "solution": "Compact PMR radios plus discreet earpieces. Instant coordination — no noise, no license required.",
+      "solution": "Small radios and concealed earpieces. Only the staff hear it, and no frequency permit is needed.",
       "pains": [
         "Waiters can’t hear the kitchen at peak hours",
         "Guests overhear internal staff chatter",
@@ -79,19 +79,19 @@
         {
           "n": "0.5",
           "u": "W",
-          "l": "PMR 446 band — no frequency paperwork"
+          "l": "The free 446 MHz band — no permit needed"
         }
       ],
       "quote": "Guests no longer hear what’s happening in the kitchen. Shifts got calmer and turnover went up — the team clears tables faster.",
       "quote_author": "Restaurant group operator, Tashkent",
       "faq": [
         {
-          "q": "Do I need a PMR license?",
-          "a": "No. PMR446 models run on free channels without any permit."
+          "q": "Do we need a frequency permit?",
+          "a": "No. These radios work on the free 446 MHz band, so there is nothing to register."
         },
         {
           "q": "How many radios for a restaurant?",
-          "a": "Usually 4–6: host, floor manager, chef, bar, waiter, storeroom. We’ll count on-site for free."
+          "a": "Usually four to six: the host, the floor manager, the chef, the barista, a waiter and the store room. We will come out and count for free."
         },
         {
           "q": "Can I try before I buy?",
@@ -139,8 +139,8 @@
           "a": "IP67 keeps out the dust, grit and water jets of a site. The exact temperature range depends on the model — we will bring radios to your site and test them in your conditions before you buy."
         },
         {
-          "q": "Do I need a repeater?",
-          "a": "Only for sites over 500 m or with heavy structure. We assess on-site."
+          "q": "Do we need a repeater?",
+          "a": "Only if the site runs longer than 500 m, or there are floors between the crews. We assess that on the visit, free of charge."
         },
         {
           "q": "What if a radio ends up in wet concrete?",
@@ -150,29 +150,29 @@
       "seo": "Construction",
       "h1": "Two-way radios for construction",
       "clients": "",
-      "meta_desc": "Two-way radios for construction in Tashkent: RCD-70 PRO with IP67 and up to 10 km in open ground, clear digital DMR audio over site noise. Free on-site trial."
+      "meta_desc": "Radios for building sites in Tashkent: the RCD-70 PRO has IP67 dust and water protection, reaches 10 km in the open, and stays clear through site noise."
     },
     "security": {
       "name": "Security",
       "short": "Security",
       "desc": "Private security, facility protection, government.",
-      "problem": "You need encrypted comms with GPS shift tracking and a panic button.",
-      "solution": "DMR radios with encryption, emergency button and GPS positioning. Everything visible to the dispatcher.",
+      "problem": "You need a channel nobody can listen in on, an alarm button, and a map showing every post.",
+      "solution": "Digital radios with encryption, an alarm button and GPS. The dispatcher sees every post on a map.",
       "pains": [
         "Officers go off the radar — nobody knows where",
         "Open frequencies can be scanned by anyone",
-        "Panic alerts go via phone — 30–90s lost"
+        "The alarm goes up by phone — that costs 30 to 90 seconds"
       ],
       "outcomes": [
         {
           "n": "AES-256",
           "u": "",
-          "l": "Voice encryption in digital mode — RCD-50, RCD-60 and RCD-70 PRO"
+          "l": "Only your own team hears you — RCD-50, RCD-60 and RCD-70 PRO"
         },
         {
           "n": "GPS",
           "u": "",
-          "l": "Every post's position at the desk — RCD-70 PRO"
+          "l": "You can see where each post is — RCD-70 PRO"
         },
         {
           "n": "up to 3",
@@ -184,22 +184,22 @@
       "quote_author": "Director, private security firm",
       "faq": [
         {
-          "q": "Can our channels be intercepted?",
-          "a": "With AES256, effectively no. Keys rotate over-the-air."
+          "q": "Can anyone listen in on us?",
+          "a": "Practically not: in digital mode the conversation is encrypted, and the key can be changed from software."
         },
         {
-          "q": "Does GPS work indoors?",
-          "a": "Outdoors, yes. Indoors we fall back to last-known-position."
+          "q": "Does GPS work inside a building?",
+          "a": "Outdoors, yes. Indoors the radio shows the last point where it had a signal."
         },
         {
-          "q": "Where does the panic button go?",
-          "a": "To everyone on the channel plus the dispatch console with coordinates."
+          "q": "Where does the alarm button send its signal?",
+          "a": "To everyone on the channel and to the dispatcher, together with the post's coordinates."
         }
       ],
       "seo": "Security",
       "h1": "Two-way radios for security",
       "clients": "",
-      "meta_desc": "Two-way radios for security teams: AES-256 voice encryption in digital mode, GPS on the RCD-70 PRO, up to 3 km in dense city. 12-month warranty, free trial."
+      "meta_desc": "Radios for security teams in Tashkent: AES-256 encryption, an alarm button, GPS on the RCD-70 PRO and up to 3 km through built-up streets. 12-month warranty."
     },
     "mining": {
       "name": "Mining · Oil · Gas",
@@ -221,7 +221,7 @@
         {
           "n": "AES-256",
           "u": "",
-          "l": "Voice encryption in digital mode — the RCD PRO range"
+          "l": "Only your own team hears you — the RCD PRO range"
         },
         {
           "n": "3,600",
@@ -237,8 +237,8 @@
           "a": "There are no intrinsically safe (Ex) versions in the current catalogue. Tell us which class your site requires and we will source it separately."
         },
         {
-          "q": "Do I need frequency licensing?",
-          "a": "We handle full licensing with State Comms of Uzbekistan."
+          "q": "Do the frequencies have to be registered?",
+          "a": "Yes, and we do it for you: we handle the whole filing with State Comms of Uzbekistan."
         },
         {
           "q": "What warranty on industrial builds?",
@@ -255,7 +255,7 @@
       "short": "Transport",
       "desc": "Fleets, warehouses, expeditions.",
       "problem": "The dispatcher loses drivers outside the city. Cellular is expensive and drops.",
-      "solution": "PoC radios (PoC devices) with nationwide LTE coverage plus in-vehicle Radiocom RCD base stations.",
+      "solution": "Radiocom RCD radios in the vehicles. Out of town — PoC radios: they run over the mobile network, so you have coverage across the whole country.",
       "pains": [
         "Driver in Bukhara — Tashkent dispatch can’t reach",
         "Cellular tariffs eat freight margin",
@@ -265,7 +265,7 @@
         {
           "n": "GPS",
           "u": "",
-          "l": "Crew position at the dispatcher — RCD-70 PRO"
+          "l": "The dispatcher sees the crew on a map — RCD-70 PRO"
         },
         {
           "n": "up to 10",
@@ -278,36 +278,36 @@
           "l": "A shift behind the wheel without recharging — RCD-70 and RCD-50 PRO"
         }
       ],
-      "quote": "Moved the whole fleet to PoC — 40% saved on comms, and dispatch sees every driver on the live map.",
+      "quote": "We moved the whole fleet onto radios that work over the mobile network — we pay 40% less for communications, and the dispatcher sees every driver on a map.",
       "quote_author": "Fleet manager, logistics operator",
       "faq": [
         {
-          "q": "Does PoC work on highways and mountains?",
-          "a": "They work anywhere the operator has network. Check coverage on your particular route with your own mobile operator."
+          "q": "Will there be coverage on the highway and in the mountains?",
+          "a": "Wherever the mobile network reaches, yes. For a specific route, check the coverage with your own operator."
         },
         {
           "q": "What’s the monthly cost?",
           "a": "From 45,000 UZS/device on a 10-unit pack."
         },
         {
-          "q": "Can we mix PoC with traditional radios?",
-          "a": "Yes, through a dispatch gateway."
+          "q": "Can we combine them with normal radios?",
+          "a": "Yes. A gateway goes in the dispatch room and both kinds of radio share one channel."
         }
       ],
       "seo": "Transport and Logistics",
       "h1": "Two-way radios for transport and logistics",
       "clients": "",
-      "meta_desc": "Two-way radios for transport and logistics: crew position on the dispatcher's map, up to 10 km on the highway, 3600 mAh a shift. Free trial for your fleet."
+      "meta_desc": "Radios for transport and logistics: the dispatcher sees every crew on a map, up to 10 km on the highway, 3600 mAh for a shift at the wheel. Free trial."
     },
     "manufacturing": {
       "name": "Manufacturing · Warehousing",
       "short": "Manufacturing",
       "desc": "Plants, workshops, distribution centers.",
       "problem": "Shifts across many zones, industrial noise, foremen need instant coordination.",
-      "solution": "DMR system with a repeater and group calls. Rugged PDAs for warehouse operations.",
+      "solution": "Digital radios with a repeater: everyone hears everyone, anywhere on the site. Plus warehouse terminals with a scanner for stock-keeping.",
       "pains": [
         "Foremen can’t hear each other over machine noise",
-        "Warehouse ops walk paper between shelves",
+        "Store staff run between the racks with paper",
         "Shift doesn’t know what happened at another zone"
       ],
       "outcomes": [
@@ -327,16 +327,16 @@
           "l": "Your own frequency: no subscription, no traffic charges"
         }
       ],
-      "quote": "DMR plus PDAs rolled out in a week. Storemen dropped the paper, picking sped up almost 2×.",
+      "quote": "The radios and the warehouse terminals were running in a week. The store staff stopped walking around with notebooks and picking got almost twice as fast.",
       "quote_author": "Ops director, packaging plant",
       "faq": [
         {
           "q": "Do radios work in noisy shops?",
-          "a": "Yes — active noise suppression keeps voice clear at 100 dB."
+          "a": "Yes. Noise cancelling strips out the background — you can hear at 100 dB on the shop floor."
         },
         {
-          "q": "Do PDAs integrate with 1C/ERP?",
-          "a": "Yes, out of the box plus custom builds if needed."
+          "q": "Do the warehouse terminals work with 1C?",
+          "a": "Yes. There are ready-made integrations, and we write to fit your own stock system where needed."
         },
         {
           "q": "How fast can you deploy?",
@@ -346,13 +346,13 @@
       "seo": "Manufacturing and Warehousing",
       "h1": "Two-way radios for manufacturing and warehouses",
       "clients": "",
-      "meta_desc": "Two-way radios for plants and warehouses: clean digital DMR, up to 2.5 km across shop floors and yards, your own frequency — no airtime fees. Free trial."
+      "meta_desc": "Radios for factories and warehouses in Tashkent: 2.5 km across the shop floor, your own frequency with no monthly fee, warehouse scanners. Free trial."
     },
     "banner_title": "Not sure which radio fits your operation?",
-    "banner_sub": "Tell us your industry — we will recommend the right system within 15 minutes.",
+    "banner_sub": "Tell us what your site is like and we will pick the radios in 15 minutes.",
     "eyebrow": "Industries",
     "offers": {
-      "title": "What you get",
+      "title": "What we take on",
       "test": {
         "t": "Free on-site testing",
         "d": "We bring radios to your site and verify coverage in real conditions — before you buy.",
@@ -378,14 +378,14 @@
     "cta": "Start trade-in"
   },
   "stats": {
-    "types": "radio types",
+    "types": "radio models",
     "clients": "clients",
     "years": "years on the market"
   },
   "catalog": {
     "title_a": "Multi-brand",
     "title_b": "catalog.",
-    "sub": "Professional and amateur radios, PoC devices, accessories and PDAs. Request a quote — a manager will build a proposal for your case.",
+    "sub": "21 Motorola and Radiocom models — from a light radio for the dining room to a rugged digital one for a building site. Prices, specs and stock in Tashkent.",
     "filters": "Filters",
     "categories": "Categories",
     "brands": "Brands",
@@ -393,7 +393,7 @@
     "all": "All",
     "results": "results",
     "clear": "Reset",
-    "request": "Request quote",
+    "request": "Ask for a price",
     "empty": "No models match the selected filters.",
     "download": "Download price list (PDF)",
     "price": "Price",
@@ -405,7 +405,7 @@
     "sort": "Sort",
     "title": "The whole comms catalog.",
     "compare_title": "Which radio is right for you?",
-    "compare_sub": "Key models compared on specifications, not marketing."
+    "compare_sub": "Compare the models by range, protection and price."
   },
   "product": {
     "spec": "Specifications",
@@ -428,8 +428,8 @@
     "breadcrumb": "Breadcrumb"
   },
   "form": {
-    "title": "Request quote",
-    "sub": "Leave your contacts — a manager will reach out within 15 minutes during business hours.",
+    "title": "Ask for a price",
+    "sub": "Leave a phone number — we call back within 15 minutes during working hours.",
     "name": "Your name",
     "company": "Company",
     "phone": "Phone",
@@ -441,69 +441,70 @@
     "trust_line": "We reply in 15 min · Mon–Fri 9:00–18:00"
   },
   "poc": {
-    "kicker": "PoC · PUSH-TO-TALK OVER CELLULAR",
+    "kicker": "PoC RADIOS · TALKING OVER THE MOBILE NETWORK",
     "title_a": "PoC radios.",
-    "title_b": "Zero repeaters.",
-    "sub": "Push-to-Talk over LTE and WiFi. Instant comms with no infrastructure to build — group calls, GPS and multimedia included.",
-    "vs_title": "PoC vs PMR",
-    "vs_sub": "Real trade-offs by parameter, not marketing.",
+    "title_b": "Coverage across the country.",
+    "sub": "A PoC radio talks over the mobile network instead of its own antenna. Wherever a phone has signal, the radio works. There are no masts or repeaters to install.",
+    "vs_title": "PoC or a normal radio",
+    "vs_sub": "A normal radio (PMR / DMR) talks on its own radio waves. PoC talks over the mobile network. Six differences that show which one you need.",
     "rows": {
-      "coverage": "Coverage",
-      "infra": "Infrastructure",
-      "media": "Multimedia",
-      "gps": "GPS positioning",
-      "scale": "Scale",
-      "cost": "Entry cost"
+      "coverage": "Where it works",
+      "infra": "What you have to install",
+      "media": "What you can send",
+      "gps": "Where your people are",
+      "scale": "How many people",
+      "cost": "What it costs to start"
     },
     "poc_vals": {
-      "coverage": "Global (LTE / WiFi)",
-      "infra": "None required",
-      "media": "Voice, photo, video, text",
-      "gps": "Built-in GPS/GLONASS",
-      "scale": "Thousands of users",
-      "cost": "Low"
+      "coverage": "Anywhere a phone has signal",
+      "infra": "Nothing",
+      "media": "Voice, photos, video and text",
+      "gps": "You see them on a map",
+      "scale": "Thousands of people",
+      "cost": "Lower: the masts already exist"
     },
     "pmr_vals": {
-      "coverage": "Local (VHF/UHF)",
-      "infra": "Repeaters, antennas",
+      "coverage": "Only near the antenna",
+      "infra": "An antenna, sometimes a repeater",
       "media": "Voice only",
-      "gps": "Optional",
-      "scale": "Limited by zone",
-      "cost": "High"
+      "gps": "Not on every model",
+      "scale": "As far as the antenna reaches",
+      "cost": "Higher, if a repeater is needed"
     },
     "design": {
-      "kicker": "NETWORK DESIGN · COMMISSIONING",
-      "title": "We engineer the network for your site.",
+      "kicker": "DESIGN · LAUNCH",
+      "title": "We build the network for your site — in five steps.",
+      "step_label": "Step {{n}}",
       "steps": [
-        "Site survey and installation assessment",
-        "Data collection and project documentation",
-        "Equipment selection matched to your parameters",
-        "Frequency licensing with State Comms of Uzbekistan",
-        "Commissioning and acceptance documentation"
+        "We come out and walk the site",
+        "We gather the data and draw up the project",
+        "We pick the equipment to match your conditions",
+        "We arrange the frequency permits with State Comms of Uzbekistan",
+        "We switch it on, tune it and hand it over with the paperwork"
       ]
     },
     "rental": {
       "kicker": "RENTAL",
       "title": "From 1 day to 5+ years.",
-      "desc": "Motorola with accessories, spare batteries and pre-tuning on Radiocom’s own licensed nationwide frequencies.",
-      "cta": "Request rental"
+      "desc": "Motorola radios with accessories and spare batteries. We set them to Radiocom's own frequencies, which work across the whole republic.",
+      "cta": "Rent radios"
     },
     "compare": {
       "poc": {
-        "title": "Anywhere there’s LTE."
+        "title": "Anywhere a phone has signal."
       },
       "pmr": {
-        "title": "Where you own the frequency."
+        "title": "Where your own signal reaches."
       }
     },
-    "cta_primary": "Design my network",
-    "cta_secondary": "PoC or PMR?"
+    "cta_primary": "Work out the cost",
+    "cta_secondary": "PoC or a normal radio?"
   },
   "service": {
     "kicker": "AUTHORIZED SERVICE CENTER",
     "title_a": "Radio repair,",
     "title_b": "you can trust.",
-    "sub": "Warranty and post-warranty service for Motorola, Radiocom and Vertex Standard radios. Original parts, fixed pricing, diagnostics on dedicated hardware.",
+    "sub": "We repair Motorola and Radiocom radios, under warranty and after it. Original parts, and once we have diagnosed the fault the price does not move.",
     "request_repair": "Request repair",
     "advantages": {
       "certified": {
@@ -557,7 +558,7 @@
         "a": "From 7 days for obvious factory defects up to 2 months for delivery to remote territories."
       }
     ],
-    "flow_title": "How the repair works",
+    "flow_title": "The repair, step by step",
     "advantages_title": "Why bring it here",
     "request_repair_sub": "Describe the fault and we will come back with a diagnosis and a fixed price."
   },
@@ -578,28 +579,28 @@
   },
   "home": {
     "hero": {
-      "title_a": "Unbreakable,",
-      "title_b": "Professional two-way radios.",
-      "sub": "Motorola and Radiocom — authorized service, free testing and nationwide delivery.",
+      "title_a": "Radios the whole",
+      "title_b": "shift can hear.",
+      "sub": "We bring the radios out to you for a free trial. After you buy: a 12-month warranty and our own service centre.",
       "cta_primary": "Book Free Test",
-      "cta_secondary": "Learn more",
-      "eyebrow": "RADIOCOM · PROFESSIONAL TWO-WAY RADIO"
+      "cta_secondary": "See the models",
+      "eyebrow": "OFFICIAL SUPPLIER · TASHKENT"
     },
     "feature": {
       "title": "Built for the toughest sites.",
-      "sub": "IP67 protection. Digital DMR. AES-256 encryption. GPS on the RCD-70 PRO.",
-      "link": "Explore PoC"
+      "sub": "IP67 against dust and water. Digital audio. Only your own team hears you.",
+      "link": "Coverage on your site"
     },
     "bento": {
-      "title": "Every detail, engineered.",
-      "sub": "One partner for hardware, licensing, deployment and repair.",
+      "title": "What you get along with the radio.",
+      "sub": "One supplier: the radios, the frequency permits, the setup and the repairs.",
       "tradein": {
         "title": "Trade-In",
         "sub": "Bring your old radio. Take a fresh Motorola or Radiocom at a discount."
       },
       "models": {
         "title": "35+ models",
-        "sub": "Motorola and Radiocom RC / RCD."
+        "sub": "Motorola, Radiocom RC and RCD."
       },
       "warranty": {
         "title": "12-month warranty",
@@ -615,18 +616,18 @@
       },
       "service": {
         "title": "Authorized service",
-        "sub": "Certified technicians, original parts, fixed pricing."
+        "sub": "Our own technicians, original parts, and a price that does not move."
       },
       "eyebrow": "Why Radiocom",
       "network": {
         "eyebrow": "Network design",
         "title": "Coverage where there was none.",
-        "sub": "Site RF survey, coverage modelling, repeater and antenna installation — turnkey, guaranteed."
+        "sub": "We come out, measure the signal, work out the coverage and put up the antennas. Turnkey, under warranty."
       }
     },
     "featured": {
-      "title": "Featured radios.",
-      "link": "See all",
+      "title": "These are the models people usually start with.",
+      "link": "All Radiocom models",
       "eyebrow": "Best sellers"
     },
     "final_cta": {
@@ -656,25 +657,25 @@
   "meta": {
     "home": {
       "title": "Two-Way Radios in Tashkent — Motorola, Radiocom | Radiocom",
-      "desc": "Official two-way radio supplier in Uzbekistan: 14 years, 10,000+ customers. Motorola, PoC and Radiocom RC. Free trial, warranty and service in Tashkent."
+      "desc": "Motorola and Radiocom two-way radios in Tashkent: 21 models in stock, 14 years in business, 10 000+ clients. Free trial, 12-month warranty, our own service."
     },
     "poc": {
-      "title": "PoC Radios: LTE Push-to-Talk across Uzbekistan | Radiocom",
-      "desc": "Push-to-Talk over Cellular — nationwide coverage with no repeaters, plus GPS, talk groups and dispatch. Network design and radio rental in Tashkent."
+      "title": "PoC radios — talk over the mobile network | Radiocom",
+      "desc": "A PoC radio talks over the mobile network instead of its own antenna: it works anywhere a phone has signal. No repeaters. Network design and rental in Tashkent."
     },
     "service": {
       "title": "Two-Way Radio Repair in Tashkent — Authorised Service | Radiocom",
-      "desc": "Warranty and post-warranty repair for Motorola, Radiocom and Vertex Standard. Genuine parts, certified engineers, fixed prices. Tashkent.",
+      "desc": "We repair Motorola, Radiocom and Vertex Standard radios in Tashkent, under warranty and after it. Original parts, and the price does not move after diagnosis.",
       "schema_name": "Radiocom Authorised Service Centre",
-      "schema_desc": "Warranty and post-warranty repair of Motorola, Radiocom and Vertex Standard two-way radios in Tashkent."
+      "schema_desc": "Repair of Motorola, Radiocom and Vertex Standard radios in Tashkent, under warranty and after it."
     },
     "industries": {
-      "title": "Business radios in Tashkent — HoReCa, construction, security",
-      "desc": "Ready-made radio solutions for six industries: HoReCa, construction, security, mining, transport and manufacturing. Model selection and a free trial."
+      "title": "Radios for building sites, security and hotels | Radiocom",
+      "desc": "Six industries and the radios that suit each: building sites, security, hotels, mining, transport and factories. Matched to your site, with a free trial."
     },
     "industry": {
-      "title": "Two-Way Radios for {{name}} | Radiocom",
-      "desc": "Two-way radios for {{name}} in Tashkent and across Uzbekistan: models matched to the job, a free on-site trial, a 12-month warranty and our own service centre."
+      "title": "Radios for {{name}} — prices | Radiocom",
+      "desc": "Radios for {{name}} in Tashkent and across Uzbekistan: we match a model to your job, bring it out for a free trial, and back it with a 12-month warranty and our own service."
     },
     "product": {
       "title": "{{name}} — buy in Tashkent",
@@ -691,27 +692,27 @@
     },
     "section": {
       "poc_name": "PoC radios",
-      "poc_desc": "Push-to-Talk over LTE: coverage across Uzbekistan with no repeaters.",
+      "poc_desc": "Talk over the mobile network: the radio works anywhere a phone has signal.",
       "service_name": "Service centre",
-      "service_desc": "Warranty and post-warranty two-way radio repair in Tashkent.",
+      "service_desc": "Motorola and Radiocom radio repair in Tashkent, under warranty and after it.",
       "industries_name": "Industries",
-      "industries_desc": "Radio communication solutions for HoReCa, construction, security, mining, transport and manufacturing.",
+      "industries_desc": "Radios for building sites, security, hotels, mining, transport and manufacturing.",
       "radiocom_name": "Radiocom radios",
       "radiocom_desc": "Analogue RC handhelds and digital RCD DMR radios with warranty and service in Tashkent.",
       "motorola_name": "Motorola radios",
-      "motorola_desc": "Talkabout, XT, TLKR and CLP — license-free PMR radios from the market leader.",
+      "motorola_desc": "Talkabout, XT, TLKR, CLP and CLK — radios that need no frequency permit.",
       "compare_name": "Compare models",
       "compare_desc": "Every radio by range, standard, ingress protection and price in one table."
     },
     "brand": {
       "radiocom_title": "Radiocom RC and RCD radios — buy in Tashkent | Radiocom",
-      "radiocom_desc": "{{count}} Radiocom models: analogue RC handhelds and digital RCD DMR radios. Prices, specs, 12-month warranty and a free trial across Uzbekistan.",
+      "radiocom_desc": "{{count}} Radiocom models: analogue RC and digital RCD. Prices, specifications, a 12-month warranty and a free trial anywhere in Uzbekistan.",
       "motorola_title": "Motorola two-way radios — buy in Tashkent | Radiocom",
-      "motorola_desc": "{{count}} Motorola models: Talkabout, XT, TLKR and CLP. License-free PMR radios with warranty, delivery across Uzbekistan and a free trial.",
-      "radiocom_desc_one": "{{count}} Radiocom model: analogue RC handhelds and digital RCD DMR radios. Prices, specs, 12-month warranty and a free trial across Uzbekistan.",
-      "radiocom_desc_other": "{{count}} Radiocom models: analogue RC handhelds and digital RCD DMR radios. Prices, specs, 12-month warranty and a free trial across Uzbekistan.",
-      "motorola_desc_one": "{{count}} Motorola model: Talkabout, XT, TLKR and CLP. License-free PMR radios with warranty, delivery across Uzbekistan and a free trial.",
-      "motorola_desc_other": "{{count}} Motorola models: Talkabout, XT, TLKR and CLP. License-free PMR radios with warranty, delivery across Uzbekistan and a free trial."
+      "motorola_desc": "{{count}} Motorola models: Talkabout, XT, TLKR, CLP and CLK. No frequency permit needed. Warranty, delivery across Uzbekistan and a free trial.",
+      "radiocom_desc_one": "{{count}} Radiocom model: analogue RC and digital RCD. Prices, specifications, a 12-month warranty and a free trial anywhere in Uzbekistan.",
+      "radiocom_desc_other": "{{count}} Radiocom models: analogue RC and digital RCD. Prices, specifications, a 12-month warranty and a free trial anywhere in Uzbekistan.",
+      "motorola_desc_one": "{{count}} Motorola model: Talkabout, XT, TLKR, CLP and CLK. No frequency permit needed. Warranty, delivery across Uzbekistan and a free trial.",
+      "motorola_desc_other": "{{count}} Motorola models: Talkabout, XT, TLKR, CLP and CLK. No frequency permit needed. Warranty, delivery across Uzbekistan and a free trial."
     },
     "specs": {
       "title": "{{name}} — specifications and price | Radiocom",
@@ -719,13 +720,13 @@
     },
     "compare": {
       "title": "Compare Motorola and Radiocom radios — {{count}} models | Radiocom",
-      "desc": "Every model by range, standard, ingress protection and price in one table. Find the radio that fits the job.",
+      "desc": "Motorola and Radiocom radios in one table: range, dust and water protection, price and what is in the box. Compare them and pick what suits your team.",
       "title_one": "Compare Motorola and Radiocom radios — {{count}} model | Radiocom",
       "title_other": "Compare Motorola and Radiocom radios — {{count}} models | Radiocom"
     },
     "search": {
       "title": "Search the two-way radio catalogue — Radiocom",
-      "desc": "Find a radio by model, standard, ingress rating or range. 21 Radiocom RC and Motorola models, in stock in Tashkent."
+      "desc": "Search for a radio by name, range or dust and water protection. 21 Motorola and Radiocom models in stock in Tashkent, with prices and specifications."
     },
     "sitemap": {
       "desc": "Every Radiocom page in one list: Motorola and Radiocom RC two-way radios, specs and prices, industry pages, and repair service in Tashkent."
@@ -738,9 +739,9 @@
     "view": "View models",
     "models": "models",
     "radiocom_title": "Radiocom RC and RCD radios",
-    "radiocom_desc": "Our own Radiocom line: analog RC handhelds and digital RCD DMR radios with warranty and service.",
+    "radiocom_desc": "Radiocom's own range: analogue RC and digital RCD. Warranty and repairs at our own service centre.",
     "motorola_title": "Motorola radios",
-    "motorola_desc": "Talkabout, XT and TLKR — license-free PMR radios from the global market leader.",
+    "motorola_desc": "Talkabout, XT and TLKR — Motorola radios that need no frequency permit.",
     "lineup": "The line-up",
     "why_title": "Why buy from us",
     "compare_cta": "Which radio is right for you?",
@@ -759,7 +760,7 @@
     "where_used": "Where it is used",
     "accessories": "Compatible accessories",
     "spec_table": "Specifications",
-    "config": "Configuration",
+    "config": "Who it is for",
     "warranty": "12-month warranty",
     "delivery": "Free delivery across Uzbekistan",
     "trial": "Free trial: we deliver, set it up and collect it",

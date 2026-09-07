@@ -96,7 +96,22 @@ for (const c of CASES) {
       if (/\/assets\/gsap-/.test(r.url())) gsapRequests++;
     });
 
-    await page.goto(`${BASE}/ru${route}`, { waitUntil: "domcontentloaded" });
+    // `load`, not `domcontentloaded`.
+    //
+    // The reveal layer installs in an effect after hydration, and it is the
+    // thing that hides a block in the first place. Starting the sweep at
+    // `domcontentloaded` raced it: on a page whose first stagger row sits just
+    // below the fold, the sweep could clear that row before the observer
+    // existed, and a block the reader has already scrolled past never
+    // intersects again — so it stayed at `opacity: 0` and the gate reported
+    // content stuck invisible that no reader would ever see stuck.
+    //
+    // Measured on /service at 390px, where the row lands 11px below the fold:
+    // 5 of 8 runs failed at `domcontentloaded`, 0 of 8 at `load`, and 0 of 8
+    // at `domcontentloaded` with the sweep slowed to 250ms a step. It was the
+    // harness racing hydration, not the page. A real phone cannot scroll 5400
+    // pixels before the page hydrates.
+    await page.goto(`${BASE}/ru${route}`, { waitUntil: "load" });
     await page.evaluate(async () => {
       const step = innerHeight * 0.5;
       for (let y = 0; y < Math.min(document.body.scrollHeight, 12000); y += step) {
