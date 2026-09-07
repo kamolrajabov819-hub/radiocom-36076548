@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { ChevronRight, Truck, Wrench, Package, Sparkles } from "lucide-react";
@@ -145,19 +145,29 @@ function Hero() {
             // `block`, so the second line always starts on its own row rather
             // than wherever the first happens to run out. The word spans stay
             // per-line so the reveal still plays left to right across both.
-            <span key={li} className="block">
-              {line.split(" ").map((w, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ opacity: 0, y: 24 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ ...spring, delay: 0.1 + (li * 2 + i) * 0.04 }}
-                  className="mr-[0.25em] inline-block"
-                >
-                  {w}
-                </motion.span>
-              ))}
-            </span>
+            //
+            // The separators are real text, not `mr-[0.25em]`: the margin drew
+            // the gap but left the markup as one unbroken word, so the h1
+            // reached a crawler, a screen reader and the clipboard with no
+            // spaces in it at all.
+            <Fragment key={li}>
+              {li > 0 && " "}
+              <span className="block">
+                {line.split(" ").map((w, i) => (
+                  <Fragment key={i}>
+                    {i > 0 && " "}
+                    <motion.span
+                      initial={{ opacity: 0, y: 24 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ ...spring, delay: 0.1 + (li * 2 + i) * 0.04 }}
+                      className="inline-block"
+                    >
+                      {w}
+                    </motion.span>
+                  </Fragment>
+                ))}
+              </span>
+            </Fragment>
           ))}
         </h1>
 

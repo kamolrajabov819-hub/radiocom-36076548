@@ -5,6 +5,22 @@ import { brandCase } from "@/lib/brand";
 import { WordReveal } from "@/components/WordReveal";
 
 /**
+ * Band background classes, spelled out as literals.
+ *
+ * These were built as a template — `band-${band}` — which Tailwind v4 cannot
+ * see: it only emits an `@utility` rule when the class name appears verbatim in
+ * a scanned source file. Three of the four happened to be written out elsewhere;
+ * `band-dark` was not, so the dark closing block on all six industry pages
+ * rendered as white text on a white background.
+ */
+const BAND_CLASS = {
+  plain: "band-plain",
+  soft: "band-soft",
+  dark: "band-dark",
+  tint: "band-tint",
+} as const;
+
+/**
  * The page's one section wrapper.
  *
  * `band` picks the background from the plain/soft/dark alternation, `tight`
@@ -54,7 +70,7 @@ export function Section({
   id?: string;
 }) {
   const rhythm = tight ? "section-tight" : "section";
-  const bandClass = band ? `band-${band}` : "";
+  const bandClass = band ? BAND_CLASS[band] : "";
   return (
     <section id={id} style={style} className={`${bandClass} ${rhythm} ${className}`}>
       <div
