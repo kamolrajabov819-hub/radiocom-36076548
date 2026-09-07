@@ -198,18 +198,11 @@ export const V = {
     uz: "VOX — ovoz bilan boshqariladigan uzatish",
   },
   voxHeadset: {
-    ru: "Говорит без нажатия кнопки — через гарнитуру (VOX)",
-    en: "Talks without pressing a button, via headset (VOX)",
-    uz: "Tugmani bosmasdan gapiradi — garnitura orqali (VOX)",
+    ru: "VOX через гарнитуру",
+    en: "VOX via headset",
+    uz: "Garnitura orqali VOX",
   },
-  // iVOX and VOX are the manufacturer's names for the same idea — the radio
-  // transmits when you speak. The names stay, because a spec sheet is where a
-  // buyer checks them against another one; the plain phrase goes first.
-  ivox: {
-    ru: "Передача голосом, без кнопки (iVOX / VOX)",
-    en: "Hands-free transmit (iVOX / VOX)",
-    uz: "Tugmasiz, ovoz bilan uzatish (iVOX / VOX)",
-  },
+  ivox: { ru: "iVOX / VOX", en: "iVOX / VOX", uz: "iVOX / VOX" },
   scanMonitor: {
     ru: "Сканирование и мониторинг каналов",
     en: "Channel scanning and monitoring",
@@ -426,11 +419,7 @@ export const F = {
     en: "Voice activation via headset (VOX)",
     uz: "Garnitura orqali ovozli aktivatsiya (VOX)",
   },
-  ivox: {
-    ru: "Передача голосом, без кнопки (iVOX / VOX)",
-    en: "Hands-free transmit (iVOX / VOX)",
-    uz: "Tugmasiz, ovoz bilan uzatish (iVOX / VOX)",
-  },
+  ivox: { ru: "Функции iVOX / VOX", en: "iVOX / VOX", uz: "iVOX / VOX funksiyalari" },
   scanMonitor: {
     ru: "Сканирование и мониторинг каналов",
     en: "Channel scanning and monitoring",

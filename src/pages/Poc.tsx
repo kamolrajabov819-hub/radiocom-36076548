@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion
 import { useScrollChoreography } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 import { brandCase } from "@/lib/brand";
-import { Fragment, useRef } from "react";
+import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Check, Radio, MapPin, MessagesSquare, Layers, Coins, Wifi } from "lucide-react";
 // The hero — the pair shot you asked for, as its cutout rather than as
@@ -37,7 +37,13 @@ import radioInHand from "@/assets/cutout/poc-radio-held-cutout.webp";
 import radioInHand800 from "@/assets/cutout/poc-radio-held-cutout@800.webp";
 import { openLead } from "@/components/LeadFormSheet";
 import { Section, SectionHead } from "@/components/Section";
-import { CompareTable, HighlightsShelf, type CompareColumn } from "@/components/apple";
+import {
+  CompareTable,
+  HighlightsShelf,
+  StatPanel,
+  statRowTier,
+  type CompareColumn,
+} from "@/components/apple";
 import { ProductShot } from "@/components/ProductShot";
 import { TrustedBy } from "@/components/TrustedBy";
 import { spring, fadeUpAt } from "@/lib/springs";
@@ -48,17 +54,9 @@ import { spring, fadeUpAt } from "@/lib/springs";
  * This page has exactly one body of real copy — `poc.rows.*` paired with
  * `poc.poc_vals.*` and `poc.pmr_vals.*` — and the page is built from it. Every
  * apple.com product page carries bespoke prose per section; inventing that here
- * is what the brief rules out, so the same six facts were made to do three jobs:
- * three as a stat band, three as the feature sequence, and all six in the
- * comparison table.
- *
- * Three jobs was one too many. Reusing copy to fill a page is a reasonable
- * answer to having none; printing «Тысячи абонентов» three times on one screen
- * is what it looked like to a reader. The stat band is gone — it was the only
- * one of the three that carried nothing of its own, no photograph and no
- * framing, just the table's values at a larger size. What is left is the
- * ordinary shape of a product page: a few highlights with pictures, then the
- * full table underneath, each fact stated twice at most and for a reason.
+ * is what the brief rules out, so the same six facts do three jobs instead:
+ * three become the stat band, three become the feature sequence, and all six
+ * stay in the comparison table where a buyer can read down one axis.
  */
 const ROW_IDS = ["coverage", "infra", "media", "gps", "scale", "cost"] as const;
 
@@ -68,6 +66,7 @@ export function PoCPage() {
   return (
     <div ref={page} className="page-anim page-tight">
       <PocHero />
+      <StatBand />
       <FeatureSequence />
       <Compare />
       <NetworkDesign />
@@ -113,22 +112,16 @@ function PocHero() {
 
         <h1 className="type-display mt-4 text-crisp">
           {[t("poc.title_a"), t("poc.title_b")].map((line, li) => (
-            <Fragment key={li}>
-              {/* The two lines are one sentence. Without this the h1 reaches a
-                  screen reader as "PoC-рации.Ноль ретрансляторов." — see the
-                  note in WordReveal. */}
-              {li > 0 && " "}
-              <span className="block overflow-hidden pb-[0.14em] -mb-[0.14em]">
-                <motion.span
-                  className="inline-block max-w-full"
-                  initial={{ y: "110%", opacity: 0 }}
-                  animate={{ y: "0%", opacity: 1 }}
-                  transition={{ ...spring, delay: 0.08 + li * 0.09 }}
-                >
-                  {line}
-                </motion.span>
-              </span>
-            </Fragment>
+            <span key={li} className="block overflow-hidden pb-[0.14em] -mb-[0.14em]">
+              <motion.span
+                className="inline-block max-w-full"
+                initial={{ y: "110%", opacity: 0 }}
+                animate={{ y: "0%", opacity: 1 }}
+                transition={{ ...spring, delay: 0.08 + li * 0.09 }}
+              >
+                {line}
+              </motion.span>
+            </span>
           ))}
         </h1>
 
@@ -208,6 +201,36 @@ function PocHero() {
  * PoC differs from PMR by a category rather than a degree, so they are the
  * three worth stating at size.
  */
+function StatBand() {
+  const { t } = useTranslation();
+  const stats = ["coverage", "scale", "infra"] as const;
+  // One size for the row, from its longest value. These three differ enough in
+  // length ("Не требуется" against "Глобальная (LTE / WiFi)") to land in three
+  // different tiers if each panel sized itself.
+  const size = statRowTier(stats.map((id) => t(`poc.poc_vals.${id}`)));
+
+  return (
+    <Section band="plain" tight>
+      {/* GSAP owns this row, not Framer.
+      
+          `data-stagger` batches every panel that crosses the fold in one frame
+          into a single staggered gesture, which is what apple.com's stat bands
+          do. Layering it over a Framer `fadeUpAt` would have both libraries
+          writing opacity and transform on the same node, which is a flicker
+          rather than a richer animation — so the Framer wrapper is gone. */}
+      <div data-stagger className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        {stats.map((id) => (
+          <StatPanel
+            key={id}
+            value={t(`poc.poc_vals.${id}`)}
+            label={t(`poc.rows.${id}`)}
+            size={size}
+          />
+        ))}
+      </div>
+    </Section>
+  );
+}
 
 /* ─── Feature sequence — alternating copy and product ─────── */
 /**
@@ -384,7 +407,7 @@ function NetworkDesign() {
                     n: i + 1,
                   })}
                 </div>
-                <h3 className="type-title mt-2 text-crisp">{step}</h3>
+                <h3 className="type-title mt-2 hyphens-auto break-words text-crisp">{step}</h3>
               </div>
             </article>
           );

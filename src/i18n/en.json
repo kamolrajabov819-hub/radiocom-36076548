@@ -1,9 +1,14 @@
 {
   "nav": {
     "home": "Home",
-    "poc": "Nationwide",
+    "poc": "PoC Systems",
     "service": "Service",
     "industries": "Industries",
+    "contact": "Contact",
+    "download": "Download catalog",
+    "theme_light": "Light theme",
+    "theme_dark": "Dark theme",
+    "tradein_badge": "Trade-In",
     "menu": "Menu",
     "close": "Close",
     "get_quote": "Get Quote",
@@ -13,6 +18,24 @@
     "compare": "Compare",
     "search": "Search"
   },
+  "hero": {
+    "eyebrow": "Authorized distributor · Tashkent",
+    "title_a": "Unbreakable",
+    "title_b": "comms",
+    "sub": "14 years on the market. 10,000+ clients. The official hub for Motorola and Radiocom in Uzbekistan.",
+    "cta_primary": "Free testing",
+    "cta_secondary": "Explore catalog",
+    "social_proof": "247 free tests booked this year",
+    "scroll": "Scroll"
+  },
+  "marquee": [
+    "35 radio types",
+    "12-month warranty",
+    "Authorized service center",
+    "10,000+ clients",
+    "Free nationwide delivery",
+    "Trade-in program"
+  ],
   "industries": {
     "title": "Two-way radios for business",
     "kicker": "Turnkey solutions",
@@ -21,13 +44,16 @@
     "problem_title": "The problem",
     "solution_title": "Our solution",
     "recommended": "Recommended models",
-    "outcomes_title": "What this gives you",
+    "outcomes_title": "What you get",
     "pains_title": "Sound familiar?",
     "faq_title": "Frequently asked",
     "quote_kicker": "Client story",
     "cta": "Book free on-site test",
     "cta_secondary": "Download catalog",
     "compare_all": "See all models →",
+    "trust_delivered": "10,000+ radios deployed",
+    "trust_years": "14 years on the market",
+    "trust_teams": "{{industry}} teams trust Radiocom",
     "horeca": {
       "name": "HoReCa",
       "short": "HoReCa",
@@ -41,14 +67,14 @@
       ],
       "outcomes": [
         {
-          "n": "1.5",
-          "u": "km",
-          "l": "Range indoors and in the yard — RC-20 and Motorola T82"
+          "n": "7,400",
+          "u": "m²",
+          "l": "Up to 6 floors of coverage — Motorola CLP 446 and CLK 446"
         },
         {
-          "n": "12",
-          "u": "hours",
-          "l": "A full shift on one charge — RC-20, headset in the box"
+          "n": "68",
+          "u": "g",
+          "l": "Radio weight: invisible under a uniform, headset in the box"
         },
         {
           "n": "0.5",
@@ -75,7 +101,7 @@
       "seo": "HoReCa",
       "h1": "Two-way radios for hotels and restaurants",
       "clients": "",
-      "meta_desc": "Two-way radios for hotels, restaurants and events in Tashkent. RC-20 and Motorola T82: up to 1.5 km indoors, 12 hours of use, earpiece in the box. Free trial."
+      "meta_desc": "Two-way radios for hotels, restaurants and events in Tashkent. Motorola CLP 446 and CLK 446: up to 7,400 m² of coverage, 68 g, earpiece in the box. Free trial."
     },
     "construction": {
       "name": "Construction",
@@ -139,9 +165,9 @@
       ],
       "outcomes": [
         {
-          "n": "Encrypted",
+          "n": "AES-256",
           "u": "",
-          "l": "Only your own team hears the call — RCD-50, RCD-60 and RCD-70 PRO"
+          "l": "Voice encryption in digital mode — RCD-50, RCD-60 and RCD-70 PRO"
         },
         {
           "n": "GPS",
@@ -163,7 +189,7 @@
         },
         {
           "q": "Does GPS work indoors?",
-          "a": "Outdoors, yes. Indoors the radio shows the last place it had a signal."
+          "a": "Outdoors, yes. Indoors we fall back to last-known-position."
         },
         {
           "q": "Where does the panic button go?",
@@ -193,9 +219,9 @@
           "l": "Dust and water on site — RCD-70 PRO"
         },
         {
-          "n": "Encrypted",
+          "n": "AES-256",
           "u": "",
-          "l": "Only your own team hears the call — the RCD PRO range"
+          "l": "Voice encryption in digital mode — the RCD PRO range"
         },
         {
           "n": "3,600",
@@ -229,7 +255,7 @@
       "short": "Transport",
       "desc": "Fleets, warehouses, expeditions.",
       "problem": "The dispatcher loses drivers outside the city. Cellular is expensive and drops.",
-      "solution": "Radios over the mobile network — nationwide range wherever data reaches. Radiocom RCD sets in the vehicles.",
+      "solution": "PoC radios (PoC devices) with nationwide LTE coverage plus in-vehicle Radiocom RCD base stations.",
       "pains": [
         "Driver in Bukhara — Tashkent dispatch can’t reach",
         "Cellular tariffs eat freight margin",
@@ -252,11 +278,11 @@
           "l": "A shift behind the wheel without recharging — RCD-70 and RCD-50 PRO"
         }
       ],
-      "quote": "Moved the whole fleet onto the mobile network — 40% saved on comms, and dispatch sees every driver on the map.",
+      "quote": "Moved the whole fleet to PoC — 40% saved on comms, and dispatch sees every driver on the live map.",
       "quote_author": "Fleet manager, logistics operator",
       "faq": [
         {
-          "q": "Does it work on highways and in the mountains?",
+          "q": "Does PoC work on highways and mountains?",
           "a": "They work anywhere the operator has network. Check coverage on your particular route with your own mobile operator."
         },
         {
@@ -264,7 +290,7 @@
           "a": "From 45,000 UZS/device on a 10-unit pack."
         },
         {
-          "q": "Can we mix these with ordinary radios?",
+          "q": "Can we mix PoC with traditional radios?",
           "a": "Yes, through a dispatch gateway."
         }
       ],
@@ -278,7 +304,7 @@
       "short": "Manufacturing",
       "desc": "Plants, workshops, distribution centers.",
       "problem": "Shifts across many zones, industrial noise, foremen need instant coordination.",
-      "solution": "Digital DMR radio with a repeater and one call to the whole shift. Handheld scanners for warehouse stock.",
+      "solution": "DMR system with a repeater and group calls. Rugged PDAs for warehouse operations.",
       "pains": [
         "Foremen can’t hear each other over machine noise",
         "Warehouse ops walk paper between shelves",
@@ -301,7 +327,7 @@
           "l": "Your own frequency: no subscription, no traffic charges"
         }
       ],
-      "quote": "Radios and scanners rolled out in a week. Storemen dropped the paper, picking sped up almost 2×.",
+      "quote": "DMR plus PDAs rolled out in a week. Storemen dropped the paper, picking sped up almost 2×.",
       "quote_author": "Ops director, packaging plant",
       "faq": [
         {
@@ -309,7 +335,7 @@
           "a": "Yes — active noise suppression keeps voice clear at 100 dB."
         },
         {
-          "q": "Do the warehouse scanners work with 1C/ERP?",
+          "q": "Do PDAs integrate with 1C/ERP?",
           "a": "Yes, out of the box plus custom builds if needed."
         },
         {
@@ -323,9 +349,10 @@
       "meta_desc": "Two-way radios for plants and warehouses: clean digital DMR, up to 2.5 km across shop floors and yards, your own frequency — no airtime fees. Free trial."
     },
     "banner_title": "Not sure which radio fits your operation?",
-    "banner_sub": "Tell us your industry — we reply within 15 minutes and recommend the right radios.",
+    "banner_sub": "Tell us your industry — we will recommend the right system within 15 minutes.",
+    "eyebrow": "Industries",
     "offers": {
-      "title": "What we take care of",
+      "title": "What you get",
       "test": {
         "t": "Free on-site testing",
         "d": "We bring radios to your site and verify coverage in real conditions — before you buy.",
@@ -343,72 +370,116 @@
       }
     }
   },
+  "tradein": {
+    "kicker": "TRADE-IN",
+    "title_a": "Trade the old.",
+    "title_b": "Take the new.",
+    "desc": "Bring your worn-out walkie-talkie. Our specialists match it to a fresh Motorola or Radiocom model at a discount.",
+    "cta": "Start trade-in"
+  },
   "stats": {
     "types": "radio types",
     "clients": "clients",
     "years": "years on the market"
   },
   "catalog": {
+    "title_a": "Multi-brand",
+    "title_b": "catalog.",
+    "sub": "Professional and amateur radios, PoC devices, accessories and PDAs. Request a quote — a manager will build a proposal for your case.",
+    "filters": "Filters",
     "categories": "Categories",
+    "brands": "Brands",
+    "features": "Features",
     "all": "All",
-    "download": "Download price list (PDF)"
+    "results": "results",
+    "clear": "Reset",
+    "request": "Request quote",
+    "empty": "No models match the selected filters.",
+    "download": "Download price list (PDF)",
+    "price": "Price",
+    "open_filters": "Filters",
+    "apply": "Show {{n}}",
+    "active": "active",
+    "in_stock": "In stock · Tashkent",
+    "quick_all": "All",
+    "sort": "Sort",
+    "title": "The whole comms catalog.",
+    "compare_title": "Which radio is right for you?",
+    "compare_sub": "Key models compared on specifications, not marketing."
   },
   "product": {
+    "spec": "Specifications",
     "range_city": "Urban range",
     "range_open": "Open-field range",
-    "more": "Learn more"
+    "features": "Features",
+    "price": "Price",
+    "cta": "Buy",
+    "overview": "Overview",
+    "in_box": "In the box",
+    "tech_specs": "Tech specs",
+    "gallery": "Gallery",
+    "colour": "Colour",
+    "kit_label": "Radios per kit",
+    "related": "Related models",
+    "all_models": "All models",
+    "more": "Learn more",
+    "prev": "Previous image",
+    "next": "Next image",
+    "breadcrumb": "Breadcrumb"
   },
   "form": {
     "title": "Request quote",
     "sub": "Leave your contacts — a manager will reach out within 15 minutes during business hours.",
     "name": "Your name",
+    "company": "Company",
     "phone": "Phone",
     "qty": "Quantity",
     "message": "Message",
     "submit": "Send request",
     "success": "Request sent. We’ll be in touch.",
+    "test_title": "Free on-site test",
     "trust_line": "We reply in 15 min · Mon–Fri 9:00–18:00"
   },
   "poc": {
-    "kicker": "RADIOS OVER THE MOBILE NETWORK",
-    "title_a": "Radios over the mobile network.",
-    "title_b": "Nothing to install.",
-    "sub": "They work anywhere mobile data reaches. Nationwide range, one call to the whole shift, photo and video, and each person's position on a map.",
-    "vs_title": "Over the mobile network, or the old way",
-    "vs_sub": "What each one gives you, point by point, without the marketing.",
+    "kicker": "PoC · PUSH-TO-TALK OVER CELLULAR",
+    "title_a": "PoC radios.",
+    "title_b": "Zero repeaters.",
+    "sub": "Push-to-Talk over LTE and WiFi. Instant comms with no infrastructure to build — group calls, GPS and multimedia included.",
+    "vs_title": "PoC vs PMR",
+    "vs_sub": "Real trade-offs by parameter, not marketing.",
     "rows": {
-      "coverage": "Where it works",
-      "infra": "What you have to install",
-      "media": "What you can send",
-      "gps": "You can see where people are",
-      "scale": "How many people",
-      "cost": "Cost to start"
+      "coverage": "Coverage",
+      "infra": "Infrastructure",
+      "media": "Multimedia",
+      "gps": "GPS positioning",
+      "scale": "Scale",
+      "cost": "Entry cost"
     },
     "poc_vals": {
-      "coverage": "Anywhere with mobile data",
-      "infra": "Nothing",
+      "coverage": "Global (LTE / WiFi)",
+      "infra": "None required",
       "media": "Voice, photo, video, text",
-      "gps": "Built-in GPS and GLONASS",
-      "scale": "Thousands of people",
+      "gps": "Built-in GPS/GLONASS",
+      "scale": "Thousands of users",
       "cost": "Low"
     },
     "pmr_vals": {
-      "coverage": "Nearby only, within your own zone",
-      "infra": "Repeaters and antennas",
+      "coverage": "Local (VHF/UHF)",
+      "infra": "Repeaters, antennas",
       "media": "Voice only",
       "gps": "Optional",
-      "scale": "As many as the zone holds",
-      "cost": "Higher to start"
+      "scale": "Limited by zone",
+      "cost": "High"
     },
     "design": {
       "kicker": "NETWORK DESIGN · COMMISSIONING",
       "title": "We engineer the network for your site.",
       "steps": [
-        "We visit and survey the site",
-        "We gather the data and draw up the plan",
-        "We pick the kit that fits your job",
-        "We arrange the frequencies with State Comms",
-        "We switch the network on and hand over the papers"
+        "Site survey and installation assessment",
+        "Data collection and project documentation",
+        "Equipment selection matched to your parameters",
+        "Frequency licensing with State Comms of Uzbekistan",
+        "Commissioning and acceptance documentation"
       ]
     },
     "rental": {
@@ -426,13 +497,13 @@
       }
     },
     "cta_primary": "Design my network",
-    "cta_secondary": "Which one do I need?"
+    "cta_secondary": "PoC or PMR?"
   },
   "service": {
     "kicker": "AUTHORIZED SERVICE CENTER",
     "title_a": "Radio repair,",
     "title_b": "you can trust.",
-    "sub": "Warranty and post-warranty service for Motorola and Radiocom radios. Original parts, fixed pricing, diagnostics on dedicated hardware.",
+    "sub": "Warranty and post-warranty service for Motorola, Radiocom and Vertex Standard radios. Original parts, fixed pricing, diagnostics on dedicated hardware.",
     "request_repair": "Request repair",
     "advantages": {
       "certified": {
@@ -471,6 +542,7 @@
       }
     ],
     "policy_title": "Returns & exchanges",
+    "visit_title": "Visit our office",
     "policy": [
       {
         "q": "Returns of goods in proper condition",
@@ -499,16 +571,24 @@
     "contact_col": "Contact"
   },
   "lead": {
-    "sticky_cta": "Free testing"
+    "float": "Free test",
+    "tooltip": "Request a specialist visit",
+    "sticky_cta": "Free testing",
+    "sticky_sub": "We deliver, tune and pick up"
   },
   "home": {
     "hero": {
       "title_a": "Unbreakable,",
-      "title_b": "professional two-way radios.",
+      "title_b": "Professional two-way radios.",
       "sub": "Motorola and Radiocom — authorized service, free testing and nationwide delivery.",
       "cta_primary": "Book Free Test",
       "cta_secondary": "Learn more",
       "eyebrow": "RADIOCOM · PROFESSIONAL TWO-WAY RADIO"
+    },
+    "feature": {
+      "title": "Built for the toughest sites.",
+      "sub": "IP67 protection. Digital DMR. AES-256 encryption. GPS on the RCD-70 PRO.",
+      "link": "Explore PoC"
     },
     "bento": {
       "title": "Every detail, engineered.",
@@ -516,6 +596,10 @@
       "tradein": {
         "title": "Trade-In",
         "sub": "Bring your old radio. Take a fresh Motorola or Radiocom at a discount."
+      },
+      "models": {
+        "title": "35+ models",
+        "sub": "Motorola and Radiocom RC / RCD."
       },
       "warranty": {
         "title": "12-month warranty",
@@ -533,12 +617,22 @@
         "title": "Authorized service",
         "sub": "Certified technicians, original parts, fixed pricing."
       },
-      "eyebrow": "Why Radiocom"
+      "eyebrow": "Why Radiocom",
+      "network": {
+        "eyebrow": "Network design",
+        "title": "Coverage where there was none.",
+        "sub": "Site RF survey, coverage modelling, repeater and antenna installation — turnkey, guaranteed."
+      }
     },
     "featured": {
       "title": "Featured radios.",
       "link": "See all",
       "eyebrow": "Best sellers"
+    },
+    "final_cta": {
+      "title": "Talk to an engineer.",
+      "sub": "15-minute reply during business hours. No sales pressure.",
+      "button": "Talk to an engineer"
     }
   },
   "contact": {
@@ -570,9 +664,9 @@
     },
     "service": {
       "title": "Two-Way Radio Repair in Tashkent — Authorised Service | Radiocom",
-      "desc": "Warranty and post-warranty repair for Motorola and Radiocom. Genuine parts, certified engineers, fixed prices. Tashkent.",
+      "desc": "Warranty and post-warranty repair for Motorola, Radiocom and Vertex Standard. Genuine parts, certified engineers, fixed prices. Tashkent.",
       "schema_name": "Radiocom Authorised Service Centre",
-      "schema_desc": "Warranty and post-warranty repair of Motorola and Radiocom two-way radios in Tashkent."
+      "schema_desc": "Warranty and post-warranty repair of Motorola, Radiocom and Vertex Standard two-way radios in Tashkent."
     },
     "industries": {
       "title": "Business radios in Tashkent — HoReCa, construction, security",
@@ -605,7 +699,7 @@
       "radiocom_name": "Radiocom radios",
       "radiocom_desc": "Analogue RC handhelds and digital RCD DMR radios with warranty and service in Tashkent.",
       "motorola_name": "Motorola radios",
-      "motorola_desc": "Talkabout, XT and TLKR — license-free PMR radios from the market leader.",
+      "motorola_desc": "Talkabout, XT, TLKR and CLP — license-free PMR radios from the market leader.",
       "compare_name": "Compare models",
       "compare_desc": "Every radio by range, standard, ingress protection and price in one table."
     },
@@ -613,11 +707,11 @@
       "radiocom_title": "Radiocom RC and RCD radios — buy in Tashkent | Radiocom",
       "radiocom_desc": "{{count}} Radiocom models: analogue RC handhelds and digital RCD DMR radios. Prices, specs, 12-month warranty and a free trial across Uzbekistan.",
       "motorola_title": "Motorola two-way radios — buy in Tashkent | Radiocom",
-      "motorola_desc": "{{count}} Motorola models: Talkabout, XT and TLKR. License-free PMR radios with warranty, delivery across Uzbekistan and a free trial.",
+      "motorola_desc": "{{count}} Motorola models: Talkabout, XT, TLKR and CLP. License-free PMR radios with warranty, delivery across Uzbekistan and a free trial.",
       "radiocom_desc_one": "{{count}} Radiocom model: analogue RC handhelds and digital RCD DMR radios. Prices, specs, 12-month warranty and a free trial across Uzbekistan.",
       "radiocom_desc_other": "{{count}} Radiocom models: analogue RC handhelds and digital RCD DMR radios. Prices, specs, 12-month warranty and a free trial across Uzbekistan.",
-      "motorola_desc_one": "{{count}} Motorola model: Talkabout, XT and TLKR. License-free PMR radios with warranty, delivery across Uzbekistan and a free trial.",
-      "motorola_desc_other": "{{count}} Motorola models: Talkabout, XT and TLKR. License-free PMR radios with warranty, delivery across Uzbekistan and a free trial."
+      "motorola_desc_one": "{{count}} Motorola model: Talkabout, XT, TLKR and CLP. License-free PMR radios with warranty, delivery across Uzbekistan and a free trial.",
+      "motorola_desc_other": "{{count}} Motorola models: Talkabout, XT, TLKR and CLP. License-free PMR radios with warranty, delivery across Uzbekistan and a free trial."
     },
     "specs": {
       "title": "{{name}} — specifications and price | Radiocom",
@@ -642,13 +736,12 @@
     "headline": "Authorized distribution",
     "sub": "We work directly with manufacturers: genuine devices, warranty and service in Tashkent.",
     "view": "View models",
+    "models": "models",
     "radiocom_title": "Radiocom RC and RCD radios",
     "radiocom_desc": "Our own Radiocom line: analog RC handhelds and digital RCD DMR radios with warranty and service.",
     "motorola_title": "Motorola radios",
     "motorola_desc": "Talkabout, XT and TLKR — license-free PMR radios from the global market leader.",
     "lineup": "The line-up",
-    "models_one": "model",
-    "models_other": "models",
     "why_title": "Why buy from us",
     "compare_cta": "Which radio is right for you?",
     "compare_sub": "Compare models by range, protection and price.",
@@ -664,6 +757,7 @@
     "in_box": "In the box",
     "features": "Features",
     "where_used": "Where it is used",
+    "accessories": "Compatible accessories",
     "spec_table": "Specifications",
     "config": "Configuration",
     "warranty": "12-month warranty",
@@ -672,8 +766,10 @@
     "range_city": "In town",
     "range_open": "Open ground",
     "price_on_request": "Price on request",
+    "back_to_brand": "All models",
     "compare_title": "Compare models",
     "compare_sub": "Every Radiocom and Motorola model by range, protection and price.",
+    "faq_title": "Frequently asked questions",
     "design": "Design",
     "design_title": "Take a closer look.",
     "range_lead": "Range depends on terrain and built-up area.",

@@ -1,9 +1,14 @@
 {
   "nav": {
     "home": "Bosh sahifa",
-    "poc": "Butun mamlakat",
+    "poc": "PoC tizimlari",
     "service": "Servis",
     "industries": "Sohalar",
+    "contact": "Bog'lanish",
+    "download": "Katalogni yuklab olish",
+    "theme_light": "Yorug' rejim",
+    "theme_dark": "Qorong'u rejim",
+    "tradein_badge": "Trade-In",
     "menu": "Menyu",
     "close": "Yopish",
     "get_quote": "Ariza qoldirish",
@@ -13,6 +18,24 @@
     "compare": "Solishtirish",
     "search": "Qidiruv"
   },
+  "hero": {
+    "eyebrow": "Rasmiy distribyutor · Toshkent",
+    "title_a": "Buzilmas",
+    "title_b": "aloqa",
+    "sub": "Bozorda 14 yil. 10 000+ mijoz. O'zbekistonda Motorola va Radiocom ning rasmiy markazi.",
+    "cta_primary": "Bepul sinov",
+    "cta_secondary": "Katalogni ko'rish",
+    "social_proof": "Bu yil 247 ta bepul sinov band qilingan",
+    "scroll": "Pastga"
+  },
+  "marquee": [
+    "35 xil ratsiya",
+    "12 oy kafolat",
+    "Vakolatli servis markazi",
+    "10 000+ mijoz",
+    "Respublika bo'ylab bepul yetkazib berish",
+    "Trade-In dasturi"
+  ],
   "industries": {
     "title": "Biznes uchun ratsiyalar",
     "kicker": "Tayyor yechimlar",
@@ -21,13 +44,16 @@
     "problem_title": "Muammo",
     "solution_title": "Bizning yechim",
     "recommended": "Tavsiya etilgan modellar",
-    "outcomes_title": "Bu nima beradi",
+    "outcomes_title": "Nima olasiz",
     "pains_title": "Tanishmi?",
     "faq_title": "Ko'p so'raladi",
     "quote_kicker": "Mijoz fikri",
     "cta": "Ob'ektga bepul chiqish",
     "cta_secondary": "Katalog yuklash",
     "compare_all": "Barcha modellarni ko'rish →",
+    "trust_delivered": "10 000+ ratsiya yetkazib berildi",
+    "trust_years": "Bozorda 14 yil",
+    "trust_teams": "{{industry}} jamoalari Radiocom ga ishonadi",
     "horeca": {
       "name": "HoReCa",
       "short": "HoReCa",
@@ -41,14 +67,14 @@
       ],
       "outcomes": [
         {
-          "n": "1,5",
-          "u": "km",
-          "l": "Bino ichida va hovlida masofa — RC-20 va Motorola T82"
+          "n": "7400",
+          "u": "m²",
+          "l": "6 qavatgacha qamrov — Motorola CLP 446 va CLK 446"
         },
         {
-          "n": "12",
-          "u": "soat",
-          "l": "Bir zaryadda butun smena — RC-20, garnitura komplektda"
+          "n": "68",
+          "u": "g",
+          "l": "Ratsiya vazni: forma ostida bilinmaydi, garnitura komplektda"
         },
         {
           "n": "0,5",
@@ -75,7 +101,7 @@
       "seo": "HoReCa",
       "h1": "Mehmonxona va restoranlar uchun ratsiyalar",
       "clients": "",
-      "meta_desc": "Mehmonxona, restoran va tadbirlar uchun ratsiyalar. RC-20 va Motorola T82: bino ichida 1,5 km gacha, 12 soat ishlash, garnitura to'plamda. Bepul sinov."
+      "meta_desc": "Mehmonxona, restoran va tadbirlar uchun ratsiyalar. Motorola CLP 446 va CLK 446: 7400 m² gacha qamrov, 68 g og'irlik, garnitura to'plamda. Bepul sinov."
     },
     "construction": {
       "name": "Qurilish",
@@ -139,9 +165,9 @@
       ],
       "outcomes": [
         {
-          "n": "Shifrlash",
+          "n": "AES-256",
           "u": "",
-          "l": "Suhbatni faqat o'zingiznikilar eshitadi — RCD-50, RCD-60 va RCD-70 PRO"
+          "l": "Raqamli rejimda ovoz shifrlash — RCD-50, RCD-60 va RCD-70 PRO"
         },
         {
           "n": "GPS",
@@ -193,9 +219,9 @@
           "l": "Uchastkadagi chang va suv — RCD-70 PRO"
         },
         {
-          "n": "Shifrlash",
+          "n": "AES-256",
           "u": "",
-          "l": "Suhbatni faqat o'zingiznikilar eshitadi — RCD PRO liniyasi"
+          "l": "Raqamli rejimda ovoz shifrlash — RCD PRO liniyasi"
         },
         {
           "n": "3600",
@@ -229,7 +255,7 @@
       "short": "Transport",
       "desc": "Avtoparklar, omborlar, ekspeditsiyalar.",
       "problem": "Dispetcher haydovchilarni shahar tashqarisida yo'qotadi. Mobil aloqa qimmat va uziladi.",
-      "solution": "Mobil tarmoq orqali ratsiyalar — internet tutgan joyda butun mamlakat bo'ylab aloqa. Mashinalarda Radiocom RCD.",
+      "solution": "Butun mamlakat bo'ylab LTE qamrovli PoC qurilmalari PoC ratsiyalari va Radiocom RCD avtomobil stansiyalari.",
       "pains": [
         "Haydovchi Buxoroda — Toshkentdagi dispetcher aloqasiz",
         "Mobil tariflar tashish marjasini yeb qo'yadi",
@@ -252,7 +278,7 @@
           "l": "Rul ortida smena — quvvatlashsiz — RCD-70 va RCD-50 PRO"
         }
       ],
-      "quote": "Butun parkni mobil tarmoq aloqasiga o'tkazdik — xarajatlar 40% kamaydi, dispetcher hammani xaritada ko'radi.",
+      "quote": "Butun parkni PoC ga o'tkazdik — aloqa xarajatlari 40% kamaydi, dispetcher hammani xaritada ko'radi.",
       "quote_author": "Avtopark boshlig'i, logistika kompaniyasi",
       "faq": [
         {
@@ -264,7 +290,7 @@
           "a": "10 dan boshlab paketda 45 000 so'm/oy dan boshlab."
         },
         {
-          "q": "Oddiy ratsiyalar bilan birga ishlatsak bo'ladimi?",
+          "q": "PoC va oddiy ratsiyani birlashtirsak bo'ladimi?",
           "a": "Ha, dispetcher shlyuzi orqali."
         }
       ],
@@ -278,7 +304,7 @@
       "short": "Zavod",
       "desc": "Zavodlar, sexlar, distribyutsiya markazlari.",
       "problem": "Turli uchastkalardagi smenalar, sanoat shovqini, brigadirlar tezkor koordinatsiyaga muhtoj.",
-      "solution": "Retranslyator va butun smenaga bitta chaqiruv bilan raqamli DMR aloqa. Ombor hisobi uchun skanerli terminallar.",
+      "solution": "Retranslyator va guruh chaqiruvlari bilan DMR tizim. Ombor hisobi uchun sanoat KPK'lari.",
       "pains": [
         "Brigadirlar sex shovqinida bir-birini eshitmaydi",
         "Omborchilar stellajlar orasida qog'oz bilan yuguradi",
@@ -301,7 +327,7 @@
           "l": "O'z chastotangiz: abonent to'lovi va trafiksiz"
         }
       ],
-      "quote": "Aloqa va terminallarni bir haftada o'rnatdik. Omborchilar qog'ozdan voz kechdi, komplektatsiya deyarli 2 barobar tezlashdi.",
+      "quote": "DMR va KPK ni bir haftada o'rnatdik. Omborchilar qog'ozdan voz kechdi, komplektatsiya deyarli 2 barobar tezlashdi.",
       "quote_author": "Operatsion direktor, qadoqlash zavodi",
       "faq": [
         {
@@ -309,7 +335,7 @@
           "a": "Ha — faol shovqin bosish bilan 100 dB da ham aniq eshitiladi."
         },
         {
-          "q": "Ombor terminallari 1C bilan ishlaydimi?",
+          "q": "KPK 1C bilan integratsiyalashadimi?",
           "a": "Ha, tayyor integratsiyalar bor, zarur bo'lsa alohida ishlab chiqamiz."
         },
         {
@@ -323,9 +349,10 @@
       "meta_desc": "Ishlab chiqarish va omborlar uchun ratsiyalar: xalaqitsiz raqamli DMR, sexlarda 2,5 km gacha, o'z chastotangiz — abonent to'lovisiz. Bepul sinov."
     },
     "banner_title": "Qaysi ratsiya biznesingizga mos kelishini bilmayapsizmi?",
-    "banner_sub": "Sohangizni ayting — 15 daqiqada javob beramiz va mos ratsiyalarni tanlaymiz.",
+    "banner_sub": "Sohangizni ayting — 15 daqiqada tizim tanlab beramiz.",
+    "eyebrow": "Sohalar",
     "offers": {
-      "title": "Biz nimani o'z zimmamizga olamiz",
+      "title": "Siz nima olasiz",
       "test": {
         "t": "Bepul sinov",
         "d": "Ratsiyalarni obyektingizga olib boramiz va aloqani real sharoitda tekshiramiz — sotib olishdan oldin.",
@@ -343,72 +370,116 @@
       }
     }
   },
+  "tradein": {
+    "kicker": "TRADE-IN",
+    "title_a": "Eskini bering.",
+    "title_b": "Yangisini oling.",
+    "desc": "Eski ratsiyangizni olib keling — mutaxassislarimiz sizga yangi Motorola yoki Radiocom modelini chegirma bilan taklif qiladi.",
+    "cta": "Almashishni boshlash"
+  },
   "stats": {
     "types": "ratsiya turi",
     "clients": "mijoz",
     "years": "yil bozorda"
   },
   "catalog": {
+    "title_a": "Ko'p brendli",
+    "title_b": "katalog.",
+    "sub": "Professional va havaskor ratsiyalar, PoC qurilmalari, aksessuarlar va KPK. Ariza qoldiring — menejer sizga taklifni tayyorlaydi.",
+    "filters": "Filtrlar",
     "categories": "Toifalar",
+    "brands": "Brendlar",
+    "features": "Funksiyalar",
     "all": "Hammasi",
-    "download": "Narxlar ro'yxatini yuklab olish (PDF)"
+    "results": "natija",
+    "clear": "Tozalash",
+    "request": "Taklif so'rash",
+    "empty": "Tanlangan filtrlar bo'yicha modellar topilmadi.",
+    "download": "Narxlar ro'yxatini yuklab olish (PDF)",
+    "price": "Narx",
+    "open_filters": "Filtrlar",
+    "apply": "{{n}} ni ko'rsatish",
+    "active": "faol",
+    "in_stock": "Toshkentda mavjud",
+    "quick_all": "Hammasi",
+    "sort": "Saralash",
+    "title": "Butun aloqa katalogi.",
+    "compare_title": "Qaysi ratsiya sizga mos keladi?",
+    "compare_sub": "Asosiy modellar marketing emas, xususiyatlar bo'yicha taqqoslangan."
   },
   "product": {
+    "spec": "Xususiyatlar",
     "range_city": "Shaharda masofa",
     "range_open": "Ochiq joyda masofa",
-    "more": "Batafsil"
+    "features": "Xususiyatlar",
+    "price": "Narx",
+    "cta": "Sotib olish",
+    "overview": "Umumiy ma'lumot",
+    "in_box": "Komplektatsiya",
+    "tech_specs": "Xususiyatlar",
+    "gallery": "Galereya",
+    "colour": "Rang",
+    "kit_label": "Komplektdagi ratsiyalar",
+    "related": "O'xshash modellar",
+    "all_models": "Barcha modellar",
+    "more": "Batafsil",
+    "prev": "Oldingi rasm",
+    "next": "Keyingi rasm",
+    "breadcrumb": "Navigatsiya zanjiri"
   },
   "form": {
     "title": "Taklif so'rash",
     "sub": "Kontaktlaringizni qoldiring — ish vaqtida menejer 15 daqiqa ichida bog'lanadi.",
     "name": "Ismingiz",
+    "company": "Kompaniya",
     "phone": "Telefon",
     "qty": "Miqdor",
     "message": "Izoh",
     "submit": "Yuborish",
     "success": "Ariza yuborildi. Tez orada bog'lanamiz.",
+    "test_title": "Bepul mutaxassis chaqirig'i",
     "trust_line": "15 daqiqada javob · Du–Ju 9:00–18:00"
   },
   "poc": {
-    "kicker": "MOBIL TARMOQ ORQALI RATSIYALAR",
-    "title_a": "Mobil tarmoq orqali ratsiyalar.",
-    "title_b": "Hech narsa o'rnatmaysiz.",
-    "sub": "Mobil internet tutgan hamma joyda ishlaydi. Butun mamlakat bo'ylab aloqa, butun smenaga bitta chaqiruv, foto va video, xodimning xaritadagi belgisi.",
-    "vs_title": "Mobil tarmoq orqali yoki eskicha",
-    "vs_sub": "Har biri nima beradi — bandlar bo'yicha, marketingsiz.",
+    "kicker": "PoC · UYALI TARMOQ ORQALI PUSH-TO-TALK",
+    "title_a": "PoC ratsiyalar.",
+    "title_b": "Retranslyatorsiz.",
+    "sub": "LTE va WiFi orqali Push-to-Talk. Infratuzilma qurmasdan bir zumda aloqa — guruh chaqiruvlari, GPS va multimedia bilan.",
+    "vs_title": "PoC va PMR",
+    "vs_sub": "Marketing emas, haqiqiy parametrlar bo'yicha taqqoslash.",
     "rows": {
-      "coverage": "Qayerda ishlaydi",
-      "infra": "Nima o'rnatish kerak",
-      "media": "Nima yuborish mumkin",
-      "gps": "Xodim qayerdaligi ko'rinadi",
-      "scale": "Nechta odam",
-      "cost": "Boshlash qancha turadi"
+      "coverage": "Qamrov",
+      "infra": "Infratuzilma",
+      "media": "Multimedia",
+      "gps": "GPS",
+      "scale": "Miqyos",
+      "cost": "Kirish narxi"
     },
     "poc_vals": {
-      "coverage": "Mobil internet bor hamma joyda",
-      "infra": "Hech narsa",
+      "coverage": "Global (LTE / WiFi)",
+      "infra": "Talab etilmaydi",
       "media": "Ovoz, foto, video, matn",
-      "gps": "Ichki GPS va GLONASS",
-      "scale": "Minglab odam",
-      "cost": "Arzon"
+      "gps": "Ichki GPS/GLONASS",
+      "scale": "Minglab foydalanuvchi",
+      "cost": "Past"
     },
     "pmr_vals": {
-      "coverage": "Faqat yaqin atrofda, o'z zonasida",
-      "infra": "Retranslyator va antennalar",
+      "coverage": "Mahalliy (VHF/UHF)",
+      "infra": "Retranslyator, antenna",
       "media": "Faqat ovoz",
       "gps": "Ixtiyoriy",
-      "scale": "Zonaga nechta sig'sa",
-      "cost": "Boshlashda qimmatroq"
+      "scale": "Zona bilan cheklangan",
+      "cost": "Yuqori"
     },
     "design": {
       "kicker": "LOYIHALASH · ISHGA TUSHIRISH",
       "title": "Sizning ob'ektingiz uchun tarmoq quramiz.",
       "steps": [
-        "Ob'ektga borib ko'rib chiqamiz",
-        "Ma'lumot yig'ib, loyihani tayyorlaymiz",
-        "Vazifangizga mos jihozni tanlaymiz",
-        "Aloqa qo'mitasida chastotani rasmiylashtiramiz",
-        "Tarmoqni ishga tushirib, hujjatlarni topshiramiz"
+        "O'rnatish joyini tekshirish",
+        "Ma'lumot yig'ish va loyiha hujjatlari",
+        "Buyurtmachi parametrlari bo'yicha jihoz tanlash",
+        "O'zbekiston Aloqa qo'mitasi bilan chastotani kelishish",
+        "Ishga tushirish va topshiruv hujjatlari"
       ]
     },
     "rental": {
@@ -426,13 +497,13 @@
       }
     },
     "cta_primary": "Tarmoqni hisoblash",
-    "cta_secondary": "Qaysi birini tanlash kerak?"
+    "cta_secondary": "PoC yoki PMR?"
   },
   "service": {
     "kicker": "VAKOLATLI SERVIS MARKAZI",
     "title_a": "Ratsiya ta'miri.",
     "title_b": "Ishonchli.",
-    "sub": "Motorola va Radiocom ratsiyalari uchun kafolat va kafolatdan keyingi xizmat. Original ehtiyot qismlar, qat'iy narxlar, maxsus uskunada diagnostika.",
+    "sub": "Motorola, Radiocom va Vertex Standard ratsiyalari uchun kafolat va kafolatdan keyingi xizmat. Original ehtiyot qismlar, qat'iy narxlar, maxsus uskunada diagnostika.",
     "request_repair": "Ta'mirlashga ariza",
     "advantages": {
       "certified": {
@@ -471,6 +542,7 @@
       }
     ],
     "policy_title": "Qaytarish va almashish",
+    "visit_title": "Ofisga tashrif buyuring",
     "policy": [
       {
         "q": "Sifatli mahsulotni qaytarish",
@@ -499,16 +571,24 @@
     "contact_col": "Kontaktlar"
   },
   "lead": {
-    "sticky_cta": "Bepul sinov"
+    "float": "Bepul sinov",
+    "tooltip": "Mutaxassisni chaqirish",
+    "sticky_cta": "Bepul sinov",
+    "sticky_sub": "Yetkazamiz, sozlaymiz, olib ketamiz"
   },
   "home": {
     "hero": {
       "title_a": "Buzilmas,",
-      "title_b": "professional ratsiyalar.",
+      "title_b": "Professional ratsiyalar.",
       "sub": "Motorola va Radiocom — rasmiy servis, bepul sinov va butun mamlakat bo'ylab yetkazib berish.",
       "cta_primary": "Bepul sinovni band qilish",
       "cta_secondary": "Batafsil",
       "eyebrow": "RADIOCOM · PROFESSIONAL RADIOALOQA"
+    },
+    "feature": {
+      "title": "Eng qiyin ob'ektlar uchun yaratilgan.",
+      "sub": "IP67 himoya. Raqamli DMR. AES-256 shifrlash. RCD-70 PRO'da GPS.",
+      "link": "PoC haqida"
     },
     "bento": {
       "title": "Har bir tafsilot puxta ishlangan.",
@@ -516,6 +596,10 @@
       "tradein": {
         "title": "Trade-In",
         "sub": "Eski ratsiyani bering — yangi Motorola yoki Radiocom ni chegirma bilan oling."
+      },
+      "models": {
+        "title": "35+ model",
+        "sub": "Motorola va Radiocom RC / RCD."
       },
       "warranty": {
         "title": "12 oy kafolat",
@@ -533,12 +617,22 @@
         "title": "Vakolatli servis",
         "sub": "Sertifikatlangan mutaxassislar, original ehtiyot qismlar, qat'iy narxlar."
       },
-      "eyebrow": "Nega Radiocom"
+      "eyebrow": "Nega Radiocom",
+      "network": {
+        "eyebrow": "Tarmoq loyihalash",
+        "title": "Aloqa bo‘lmagan joyda ham aloqa.",
+        "sub": "Obyektni radio tekshiruvi, qamrov hisobi, repiter va antennalarni o‘rnatish — kalit topshirish sharti bilan."
+      }
     },
     "featured": {
       "title": "Tavsiya etiladi.",
       "link": "Barcha katalog",
       "eyebrow": "Eng ko‘p sotilganlar"
+    },
+    "final_cta": {
+      "title": "Muhandis bilan gaplashing.",
+      "sub": "Ish vaqti davomida 15 daqiqada javob. Bosim yo'q.",
+      "button": "Muhandisga bog'lanish"
     }
   },
   "contact": {
@@ -570,9 +664,9 @@
     },
     "service": {
       "title": "Toshkentda ratsiya ta'miri — vakolatli servis | Radiocom",
-      "desc": "Motorola va Radiocom uchun kafolatli va kafolatdan keyingi ta'mir. Original ehtiyot qismlar, sertifikatlangan muhandislar. Toshkent.",
+      "desc": "Motorola, Radiocom va Vertex Standard uchun kafolatli va kafolatdan keyingi ta'mir. Original ehtiyot qismlar, sertifikatlangan muhandislar. Toshkent.",
       "schema_name": "Radiocom vakolatli servis markazi",
-      "schema_desc": "Toshkentda Motorola va Radiocom radiostansiyalarini kafolatli va kafolatdan keyingi ta'mirlash."
+      "schema_desc": "Toshkentda Motorola, Radiocom va Vertex Standard radiostansiyalarini kafolatli va kafolatdan keyingi ta'mirlash."
     },
     "industries": {
       "title": "Biznes uchun ratsiyalar — HoReCa, qurilish, transport | Radiocom",
@@ -605,7 +699,7 @@
       "radiocom_name": "Radiocom ratsiyalari",
       "radiocom_desc": "Analog RC va raqamli RCD DMR ratsiyalari, Toshkentda kafolat va servis bilan.",
       "motorola_name": "Motorola ratsiyalari",
-      "motorola_desc": "Talkabout, XT va TLKR — jahon yetakchisidan litsenziyasiz PMR ratsiyalar.",
+      "motorola_desc": "Talkabout, XT, TLKR va CLP — jahon yetakchisidan litsenziyasiz PMR ratsiyalar.",
       "compare_name": "Modellarni solishtirish",
       "compare_desc": "Barcha ratsiyalar masofa, standart, himoya darajasi va narx bo'yicha bitta jadvalda."
     },
@@ -613,7 +707,7 @@
       "radiocom_title": "Radiocom RC va RCD ratsiyalari — Toshkentda sotib olish",
       "radiocom_desc": "{{count}} ta Radiocom modeli: analog RC va raqamli RCD DMR ratsiyalari. Narxlar, xususiyatlar, 12 oy kafolat va O'zbekiston bo'ylab bepul sinov.",
       "motorola_title": "Motorola ratsiyalari — Toshkentda sotib olish | Radiocom",
-      "motorola_desc": "{{count}} ta Motorola modeli: Talkabout, XT va TLKR. Litsenziyasiz PMR ratsiyalar, kafolat, yetkazib berish va bepul sinov bilan."
+      "motorola_desc": "{{count}} ta Motorola modeli: Talkabout, XT, TLKR va CLP. Litsenziyasiz PMR ratsiyalar, kafolat, yetkazib berish va bepul sinov bilan."
     },
     "specs": {
       "title": "{{name}} — xususiyatlari va narxi | Radiocom",
@@ -636,13 +730,12 @@
     "headline": "Rasmiy distribyutsiya",
     "sub": "Ishlab chiqaruvchilar bilan to'g'ridan-to'g'ri ishlaymiz: original qurilmalar, kafolat va Toshkentda servis.",
     "view": "Modellarni ko'rish",
+    "models": "model",
     "radiocom_title": "Radiocom RC va RCD ratsiyalari",
     "radiocom_desc": "O'z liniyamiz Radiocom: analog RC va raqamli RCD DMR ratsiyalari, kafolat va servis bilan.",
     "motorola_title": "Motorola ratsiyalari",
     "motorola_desc": "Talkabout, XT va TLKR — jahon yetakchisidan litsenziyasiz PMR ratsiyalar.",
     "lineup": "Model qatori",
-    "models_one": "model",
-    "models_other": "model",
     "why_title": "Nega biz orqali",
     "compare_cta": "Sizga qaysi ratsiya mos keladi?",
     "compare_sub": "Modellarni masofa, himoya va narx bo'yicha solishtiring.",
@@ -658,16 +751,19 @@
     "in_box": "To'plamda",
     "features": "Imkoniyatlar",
     "where_used": "Qayerda qo'llaniladi",
+    "accessories": "Mos aksessuarlar",
     "spec_table": "Xususiyatlar",
     "config": "Konfiguratsiya",
     "warranty": "12 oy kafolat",
-    "delivery": "Butun mamlakat bo'ylab bepul yetkazib berish",
+    "delivery": "O'zbekiston bo'ylab bepul yetkazib berish",
     "trial": "Bepul sinov: olib kelamiz, sozlaymiz, olib ketamiz",
     "range_city": "Shaharda",
     "range_open": "Ochiq joyda",
     "price_on_request": "Narx so'rov bo'yicha",
+    "back_to_brand": "Barcha modellar",
     "compare_title": "Modellarni solishtirish",
     "compare_sub": "Radiocom va Motorolaning barcha modellari masofa, himoya va narx bo'yicha.",
+    "faq_title": "Ko'p so'raladigan savollar",
     "design": "Dizayn",
     "design_title": "Yaqindan ko'rib chiqing.",
     "range_lead": "Masofa relyef va binolarga bog'liq.",

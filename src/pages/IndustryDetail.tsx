@@ -219,15 +219,7 @@ export function IndustryPage() {
         )}
       </Section>
 
-      {/*
-        ── What we take care of ──────────────────────────────
-        This and the outcomes section above both used to be titled «Что вы
-        получите», one above the other on all six industry pages. Two sections
-        with the same name is a reader's problem before it is a crawler's: it
-        reads as the page having lost its place. They answer different questions
-        and now say so — the one above is what the radios do, this one is what we
-        do.
-      */}
+      {/* ── What you get ─────────────────────────────────────── */}
       <Section band="plain" tight>
         <div data-scrub-in>
           <SectionHead align="left" spacing="tight" title={t("industries.offers.title")} />
@@ -244,8 +236,7 @@ export function IndustryPage() {
               key={o.k}
               idx={i}
               tone={i === 1 ? "dark" : "light"}
-              // No eyebrow: it held `.c`, the same string as the button below
-              // it, so each card printed «Заказать тест» twice.
+              eyebrow={t(`industries.offers.${o.k}.c`)}
               title={t(`industries.offers.${o.k}.t`)}
               body={t(`industries.offers.${o.k}.d`)}
               className="min-h-[280px]"

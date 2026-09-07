@@ -172,20 +172,16 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
   const { t } = useTranslation();
   const spec = specs[p.id];
 
-  // Range used to lead this shelf as two dark cards, and also filled the two
-  // stat panels further down, and also ran as a sentence in the figure caption
-  // between them — the same two numbers three times on one page. The panels are
-  // the purpose-built treatment ("the figures, at the size their importance
-  // deserves"), so they keep it and this shelf gives the space back to facts
-  // that appear nowhere else. Every model publishes 8–11 spec rows, so the
-  // shelf still fills all seven slots.
-  const facts: { label: string; value: string; lead?: boolean }[] = (spec?.rows ?? [])
-    .map((r, i) => ({
+  const facts: { label: string; value: string; lead?: boolean }[] = [
+    { label: t("px.range_city"), value: pick(p.rangeCity, lang), lead: true },
+    ...(p.rangeOpen
+      ? [{ label: t("px.range_open"), value: pick(p.rangeOpen, lang), lead: true }]
+      : []),
+    ...(spec?.rows ?? []).map((r) => ({
       label: pick(r.label, lang),
       value: pick(r.value, lang),
-      lead: i < 2,
-    }))
-    .slice(0, 7);
+    })),
+  ].slice(0, 7);
 
   if (!facts.length) return null;
 
@@ -371,13 +367,15 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
             className="h-[clamp(280px,48vw,600px)] w-full object-contain mix-blend-multiply"
           />
         </div>
-        {/* No caption.
-        
-            It held the blurb followed by the two range figures in prose. The
-            range half duplicated the panels immediately below; taking it out
-            left the blurb alone, which is the hero subhead verbatim — the same
-            sentence twice on one page, a screen apart. A photograph between two
-            copies of its own caption does not need a third. */}
+        <figcaption className="mt-6 max-w-[62ch]">
+          <LeadInCaption lead={`${pick(p.blurb, lang)}`}>
+            {t("px.range_city")} — {pick(p.rangeCity, lang)}
+            {p.rangeOpen
+              ? `, ${t("px.range_open").toLowerCase()} — ${pick(p.rangeOpen, lang)}`
+              : ""}
+            .
+          </LeadInCaption>
+        </figcaption>
       </figure>
 
       {/* The figures, at the size their importance deserves.
@@ -639,6 +637,7 @@ function WhereUsed({ p, lang }: { p: Product; lang: Lang }) {
           />
         ))}
       </HighlightsShelf>
+      <p className="sr-only">{pick(p.blurb, lang)}</p>
     </Section>
   );
 }

@@ -91,14 +91,8 @@ export function IndustriesOverview() {
                   <p className="text-white/75 mt-2 text-[15px] max-w-md">
                     {t(`industries.${s}.desc`)}
                   </p>
-                  {/* `industries.cta` — «Бесплатный выезд на объект» — is a
-                      lead-form CTA, and it was printed here as the link label on
-                      all six cards: one promise six times on a page, on links
-                      that go to an industry page rather than to booking a visit.
-                      The same mistake the home teaser made with «Скачать
-                      каталог». A link label should say where it goes. */}
                   <div className="mt-4 text-[14px] inline-flex items-center gap-1 text-white">
-                    {t("product.more")} <ChevronRight className="w-4 h-4" />
+                    {t("industries.cta")} <ChevronRight className="w-4 h-4" />
                   </div>
                 </div>
               </LocaleLink>

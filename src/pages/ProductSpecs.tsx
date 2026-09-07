@@ -6,6 +6,7 @@ import { notFound, useParams } from "@tanstack/react-router";
 import { Check, ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
 import { Section, SectionHead } from "@/components/Section";
+import { LeadInCaption, StatPanel, statRowTier } from "@/components/apple";
 import { openLead } from "@/components/LeadFormSheet";
 import { Magnetic } from "@/components/Magnetic";
 import {
@@ -107,17 +108,6 @@ export function ProductSpecsPage() {
                 <SummaryRow label={t("px.features")} value={p.tags.join(" · ")} />
               ) : null}
             </dl>
-            {/* This line used to caption a band of three big figures between
-                here and the table. That band led with the two range figures —
-                the same two this list gives, four lines up — and its caption
-                («Дальность зависит от рельефа и застройки») was about range
-                too, so once range stopped being repeated the band had nothing
-                of its own left to say and its remaining panels just restated
-                rows from the table below. The signpost is the part worth
-                keeping, and it belongs here, pointing at that table. */}
-            <p className="mt-5 max-w-[62ch] text-[15px] leading-relaxed text-cool">
-              {t("px.spec_note")}
-            </p>
           </div>
 
           {/* Buy card. Sticky on desktop so the price stays with the reader
@@ -202,6 +192,7 @@ export function ProductSpecsPage() {
               answers the three a buyer came with. Every value is read straight
               out of the same rows rendered below, so the two can never
               disagree. */}
+          <HeadlineFigures p={p} lang={lang} />
 
           <div className="overflow-x-auto">
             <table className="w-full min-w-[520px] border-collapse text-left">
@@ -273,6 +264,68 @@ export function ProductSpecsPage() {
           </div>
         </div>
       </Section>
+    </div>
+  );
+}
+
+/**
+ * Range, ingress rating and battery life, as three panels.
+ *
+ * Which rows appear is data-driven and matched on the Russian label, because
+ * that is the join key `specs.ts` is written against — matching on the rendered
+ * label would silently return nothing the moment the page is read in English.
+ * A model missing a row simply contributes no panel; nothing is substituted or
+ * estimated.
+ */
+function HeadlineFigures({ p, lang }: { p: Product; lang: Lang }) {
+  const { t } = useTranslation();
+  const rows = specs[p.id]?.rows ?? [];
+  const find = (re: RegExp) => rows.find((r) => re.test(r.label.ru));
+
+  const protection = find(/Класс защиты/i);
+  const battery = find(/Время работы от аккумулятора/i);
+
+  const panels = [
+    { key: "range", value: pick(p.rangeCity, lang), label: t("px.range_city") },
+    ...(p.rangeOpen
+      ? [{ key: "open", value: pick(p.rangeOpen, lang), label: t("px.range_open") }]
+      : []),
+    ...(protection
+      ? [
+          {
+            key: "ip",
+            value: pick(protection.value, lang),
+            label: pick(protection.label, lang),
+          },
+        ]
+      : []),
+    ...(battery
+      ? [{ key: "batt", value: pick(battery.value, lang), label: pick(battery.label, lang) }]
+      : []),
+  ].slice(0, 3);
+
+  if (panels.length < 2) return null;
+
+  // One size across the row. RC-50 is the case that showed why: "до 2–2,5 км"
+  // is long enough to wrap at the `lg` tier while its neighbour "до 5 км" is
+  // not, so the two panels rendered at different sizes and different heights.
+  const size = statRowTier(panels.map((s) => s.value));
+
+  return (
+    <div className="mb-12 md:mb-14">
+      <div
+        data-stagger
+        className={`grid grid-cols-1 gap-4 ${
+          panels.length === 3 ? "md:grid-cols-3" : "md:grid-cols-2"
+        }`}
+      >
+        {panels.map((s) => (
+          <StatPanel key={s.key} value={s.value} label={s.label} size={size} />
+        ))}
+      </div>
+      <LeadInCaption className="mt-5 max-w-[62ch]" lead={t("px.range_lead")}>
+        {t("px.spec_note")}
+      </LeadInCaption>
     </div>
   );
 }
