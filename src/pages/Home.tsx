@@ -162,7 +162,11 @@ function Hero() {
                       transition={{ ...spring, delay: 0.1 + (li * 2 + i) * 0.04 }}
                       className="inline-block"
                     >
-                      {w}
+                      {/* The h1 names Radiocom now, and this loop is the one
+                          headline on the site that was not going through
+                          `brandCase` — so the hero read "Radiocom" beside a
+                          wordmark that reads RADIOCOM. */}
+                      {brandCase(w)}
                     </motion.span>
                   </Fragment>
                 ))}
