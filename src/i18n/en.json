@@ -1,7 +1,7 @@
 {
   "nav": {
     "home": "Home",
-    "poc": "PoC Systems",
+    "poc": "PoC radios",
     "service": "Service",
     "industries": "Industries",
     "contact": "Contact",
@@ -278,20 +278,20 @@
           "l": "A shift behind the wheel without recharging — RCD-70 and RCD-50 PRO"
         }
       ],
-      "quote": "Moved the whole fleet to PoC — 40% saved on comms, and dispatch sees every driver on the live map.",
+      "quote": "We moved the whole fleet onto radios that work over the mobile network — we pay 40% less for communications, and the dispatcher sees every driver on a map.",
       "quote_author": "Fleet manager, logistics operator",
       "faq": [
         {
-          "q": "Does PoC work on highways and mountains?",
-          "a": "They work anywhere the operator has network. Check coverage on your particular route with your own mobile operator."
+          "q": "Will there be coverage on the highway and in the mountains?",
+          "a": "Wherever the mobile network reaches, yes. For a specific route, check the coverage with your own operator."
         },
         {
           "q": "What’s the monthly cost?",
           "a": "From 45,000 UZS/device on a 10-unit pack."
         },
         {
-          "q": "Can we mix PoC with traditional radios?",
-          "a": "Yes, through a dispatch gateway."
+          "q": "Can we combine them with normal radios?",
+          "a": "Yes. A gateway goes in the dispatch room and both kinds of radio share one channel."
         }
       ],
       "seo": "Transport and Logistics",
@@ -441,63 +441,64 @@
     "trust_line": "We reply in 15 min · Mon–Fri 9:00–18:00"
   },
   "poc": {
-    "kicker": "PoC · PUSH-TO-TALK OVER CELLULAR",
+    "kicker": "PoC RADIOS · TALKING OVER THE MOBILE NETWORK",
     "title_a": "PoC radios.",
-    "title_b": "Zero repeaters.",
-    "sub": "Push-to-Talk over LTE and WiFi. Instant comms with no infrastructure to build — group calls, GPS and multimedia included.",
-    "vs_title": "PoC vs PMR",
-    "vs_sub": "Real trade-offs by parameter, not marketing.",
+    "title_b": "Coverage across the country.",
+    "sub": "A PoC radio talks over the mobile network instead of its own antenna. Wherever a phone has signal, the radio works. There are no masts or repeaters to install.",
+    "vs_title": "PoC or a normal radio",
+    "vs_sub": "A normal radio (PMR / DMR) talks on its own radio waves. PoC talks over the mobile network. Six differences that show which one you need.",
     "rows": {
-      "coverage": "Coverage",
-      "infra": "Infrastructure",
-      "media": "Multimedia",
-      "gps": "GPS positioning",
-      "scale": "Scale",
-      "cost": "Entry cost"
+      "coverage": "Where it works",
+      "infra": "What you have to install",
+      "media": "What you can send",
+      "gps": "Where your people are",
+      "scale": "How many people",
+      "cost": "What it costs to start"
     },
     "poc_vals": {
-      "coverage": "Global (LTE / WiFi)",
-      "infra": "None required",
-      "media": "Voice, photo, video, text",
-      "gps": "Built-in GPS/GLONASS",
-      "scale": "Thousands of users",
-      "cost": "Low"
+      "coverage": "Anywhere a phone has signal",
+      "infra": "Nothing",
+      "media": "Voice, photos, video and text",
+      "gps": "You see them on a map",
+      "scale": "Thousands of people",
+      "cost": "Lower: the masts already exist"
     },
     "pmr_vals": {
-      "coverage": "Local (VHF/UHF)",
-      "infra": "Repeaters, antennas",
+      "coverage": "Only near the antenna",
+      "infra": "An antenna, sometimes a repeater",
       "media": "Voice only",
-      "gps": "Optional",
-      "scale": "Limited by zone",
-      "cost": "High"
+      "gps": "Not on every model",
+      "scale": "As far as the antenna reaches",
+      "cost": "Higher, if a repeater is needed"
     },
     "design": {
-      "kicker": "NETWORK DESIGN · COMMISSIONING",
-      "title": "We engineer the network for your site.",
+      "kicker": "DESIGN · LAUNCH",
+      "title": "We build the network for your site — in five steps.",
+      "step_label": "Step {{n}}",
       "steps": [
-        "Site survey and installation assessment",
-        "Data collection and project documentation",
-        "Equipment selection matched to your parameters",
-        "Frequency licensing with State Comms of Uzbekistan",
-        "Commissioning and acceptance documentation"
+        "We come out and walk the site",
+        "We gather the data and draw up the project",
+        "We pick the equipment to match your conditions",
+        "We arrange the frequency permits with State Comms of Uzbekistan",
+        "We switch it on, tune it and hand it over with the paperwork"
       ]
     },
     "rental": {
       "kicker": "RENTAL",
       "title": "From 1 day to 5+ years.",
-      "desc": "Motorola with accessories, spare batteries and pre-tuning on Radiocom’s own licensed nationwide frequencies.",
-      "cta": "Request rental"
+      "desc": "Motorola radios with accessories and spare batteries. We set them to Radiocom's own frequencies, which work across the whole republic.",
+      "cta": "Rent radios"
     },
     "compare": {
       "poc": {
-        "title": "Anywhere there’s LTE."
+        "title": "Anywhere a phone has signal."
       },
       "pmr": {
-        "title": "Where you own the frequency."
+        "title": "Where your own signal reaches."
       }
     },
-    "cta_primary": "Design my network",
-    "cta_secondary": "PoC or PMR?"
+    "cta_primary": "Work out the cost",
+    "cta_secondary": "PoC or a normal radio?"
   },
   "service": {
     "kicker": "AUTHORIZED SERVICE CENTER",
@@ -587,8 +588,8 @@
     },
     "feature": {
       "title": "Built for the toughest sites.",
-      "sub": "IP67 protection. Digital DMR. AES-256 encryption. GPS on the RCD-70 PRO.",
-      "link": "Explore PoC"
+      "sub": "IP67 against dust and water. Digital audio. Only your own team hears you.",
+      "link": "Coverage on your site"
     },
     "bento": {
       "title": "Every detail, engineered.",

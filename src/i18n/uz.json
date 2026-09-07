@@ -1,7 +1,7 @@
 {
   "nav": {
     "home": "Bosh sahifa",
-    "poc": "PoC tizimlari",
+    "poc": "PoC ratsiyalari",
     "service": "Servis",
     "industries": "Sohalar",
     "contact": "Bog'lanish",
@@ -278,20 +278,20 @@
           "l": "Rul ortida smena — quvvatlashsiz — RCD-70 va RCD-50 PRO"
         }
       ],
-      "quote": "Butun parkni PoC ga o'tkazdik — aloqa xarajatlari 40% kamaydi, dispetcher hammani xaritada ko'radi.",
+      "quote": "Butun avtoparkni mobil tarmoq orqali aloqaga o'tkazdik — aloqa uchun 40% kam to'laymiz, dispetcher esa barcha haydovchilarni xaritada ko'radi.",
       "quote_author": "Avtopark boshlig'i, logistika kompaniyasi",
       "faq": [
         {
-          "q": "Tog' va trassalarda ishlaydimi?",
-          "a": "Operator tarmog'i bor joyda ishlaydi. Aniq marshrutdagi qamrovni o'z aloqa operatoringizdan aniqlang."
+          "q": "Trassada va tog'larda aloqa bo'ladimi?",
+          "a": "Mobil tarmoq tutadigan joyda — ha. Aniq marshrut bo'yicha qamrovni o'z operatoringizdan aniqlang."
         },
         {
           "q": "Oylik to'lov qancha?",
           "a": "10 dan boshlab paketda 45 000 so'm/oy dan boshlab."
         },
         {
-          "q": "PoC va oddiy ratsiyani birlashtirsak bo'ladimi?",
-          "a": "Ha, dispetcher shlyuzi orqali."
+          "q": "Oddiy ratsiyalar bilan birlashtirish mumkinmi?",
+          "a": "Ha. Dispetcherlik xonasiga shlyuz o'rnatiladi va ikkala aloqa bitta kanalda ishlaydi."
         }
       ],
       "seo": "Transport va logistika",
@@ -441,63 +441,64 @@
     "trust_line": "15 daqiqada javob · Du–Ju 9:00–18:00"
   },
   "poc": {
-    "kicker": "PoC · UYALI TARMOQ ORQALI PUSH-TO-TALK",
-    "title_a": "PoC ratsiyalar.",
-    "title_b": "Retranslyatorsiz.",
-    "sub": "LTE va WiFi orqali Push-to-Talk. Infratuzilma qurmasdan bir zumda aloqa — guruh chaqiruvlari, GPS va multimedia bilan.",
-    "vs_title": "PoC va PMR",
-    "vs_sub": "Marketing emas, haqiqiy parametrlar bo'yicha taqqoslash.",
+    "kicker": "PoC RATSIYALARI · MOBIL TARMOQ ORQALI ALOQA",
+    "title_a": "PoC ratsiyalari.",
+    "title_b": "Butun mamlakat bo'ylab aloqa.",
+    "sub": "PoC — bu o'z antennasi orqali emas, mobil tarmoq orqali gapiradigan ratsiya. Telefon tutadigan joyda ratsiya ham ishlaydi. Minora va retranslyator o'rnatish shart emas.",
+    "vs_title": "PoC yoki oddiy ratsiya",
+    "vs_sub": "Oddiy ratsiya (PMR / DMR) o'z to'lqinlarida gapiradi. PoC esa mobil tarmoq orqali. Sizga qaysi biri kerakligini ko'rsatadigan olti farq.",
     "rows": {
-      "coverage": "Qamrov",
-      "infra": "Infratuzilma",
-      "media": "Multimedia",
-      "gps": "GPS",
-      "scale": "Miqyos",
-      "cost": "Kirish narxi"
+      "coverage": "Qayerda ishlaydi",
+      "infra": "Nima o'rnatish kerak",
+      "media": "Nimani yuborish mumkin",
+      "gps": "Odamlar qayerda",
+      "scale": "Necha kishi",
+      "cost": "Boshlash qancha turadi"
     },
     "poc_vals": {
-      "coverage": "Global (LTE / WiFi)",
-      "infra": "Talab etilmaydi",
-      "media": "Ovoz, foto, video, matn",
-      "gps": "Ichki GPS/GLONASS",
-      "scale": "Minglab foydalanuvchi",
-      "cost": "Past"
+      "coverage": "Telefon tutadigan hamma joyda",
+      "infra": "Hech narsa",
+      "media": "Ovoz, foto, video va matn",
+      "gps": "Xaritada ko'rinadi",
+      "scale": "Minglab odam",
+      "cost": "Arzonroq: minoralar allaqachon bor"
     },
     "pmr_vals": {
-      "coverage": "Mahalliy (VHF/UHF)",
-      "infra": "Retranslyator, antenna",
+      "coverage": "Faqat antenna yaqinida",
+      "infra": "Antenna, ba'zan retranslyator",
       "media": "Faqat ovoz",
-      "gps": "Ixtiyoriy",
-      "scale": "Zona bilan cheklangan",
-      "cost": "Yuqori"
+      "gps": "Hamma modelda emas",
+      "scale": "Antenna yetgancha",
+      "cost": "Retranslyator kerak bo'lsa, qimmatroq"
     },
     "design": {
       "kicker": "LOYIHALASH · ISHGA TUSHIRISH",
-      "title": "Sizning ob'ektingiz uchun tarmoq quramiz.",
+      "title": "Ob'ektingiz uchun tarmoqni besh bosqichda quramiz.",
+      "step_label": "{{n}}-bosqich",
       "steps": [
-        "O'rnatish joyini tekshirish",
-        "Ma'lumot yig'ish va loyiha hujjatlari",
-        "Buyurtmachi parametrlari bo'yicha jihoz tanlash",
-        "O'zbekiston Aloqa qo'mitasi bilan chastotani kelishish",
-        "Ishga tushirish va topshiruv hujjatlari"
+        "Kelib ob'ektni ko'ramiz",
+        "Ma'lumot yig'amiz va loyihani tayyorlaymiz",
+        "Sizning sharoitingizga jihoz tanlaymiz",
+        "Chastotalarni O'zbekiston Aloqa qo'mitasida rasmiylashtiramiz",
+        "Ishga tushiramiz, sozlaymiz va hujjatlar bilan topshiramiz"
       ]
     },
     "rental": {
       "kicker": "IJARA",
       "title": "1 kundan 5+ yilgacha.",
-      "desc": "Motorola aksessuarlari, zaxira akkumulyatorlar va Radiocom ning butun respublika bo'ylab litsenziyalangan chastotalariga sozlangan.",
-      "cta": "Ijaraga ariza qoldirish"
+      "desc": "Aksessuarlar va zaxira akkumulyatorlar bilan Motorola ratsiyalari. Ularni Radiocom'ning o'z chastotalariga sozlaymiz — ular butun respublika bo'ylab ishlaydi.",
+      "cta": "Ijaraga olish"
     },
     "compare": {
       "poc": {
-        "title": "LTE bor joyda."
+        "title": "Telefon tutadigan hamma joyda."
       },
       "pmr": {
-        "title": "O'z chastotangiz bo'lgan joyda."
+        "title": "O'z to'lqini yetadigan joyda."
       }
     },
-    "cta_primary": "Tarmoqni hisoblash",
-    "cta_secondary": "PoC yoki PMR?"
+    "cta_primary": "Narxini hisoblash",
+    "cta_secondary": "PoC yoki oddiy ratsiya?"
   },
   "service": {
     "kicker": "VAKOLATLI SERVIS MARKAZI",
@@ -587,8 +588,8 @@
     },
     "feature": {
       "title": "Eng qiyin ob'ektlar uchun yaratilgan.",
-      "sub": "IP67 himoya. Raqamli DMR. AES-256 shifrlash. RCD-70 PRO'da GPS.",
-      "link": "PoC haqida"
+      "sub": "Chang va suvdan IP67 himoya. Raqamli ovoz. Suhbatni faqat o'zingiznikilar eshitadi.",
+      "link": "Ob'ektda aloqa"
     },
     "bento": {
       "title": "Har bir tafsilot puxta ishlangan.",
