@@ -18,7 +18,9 @@ import {
   jsonLd,
   localBusinessSchema,
   localePath,
+  ORG_DESCRIPTION,
   organizationSchema,
+  verificationMeta,
   webSiteSchema,
 } from "@/lib/seo";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -80,14 +82,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
+      // Google Search Console and Yandex.Webmaster ownership tokens, emitted
+      // only when the build environment supplies them. Yandex matters here as
+      // much as Google: this is a Tashkent business, and Yandex holds real
+      // search share in Uzbekistan. See `verificationMeta` for why these are
+      // read from env rather than committed.
+      ...verificationMeta(),
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       // Site-wide fallback, in Russian to match the SSR render (i18n lng: "ru").
       // Individual routes override these with page-specific copy.
       { title: "Radiocom — рации и радиостанции в Узбекистане" },
       {
         name: "description",
-        content:
-          "14 лет на рынке, 10 000+ клиентов. Радиостанции Motorola, PoC и Radiocom RC с официальной гарантией, бесплатным тестом и доставкой по Узбекистану.",
+        content: ORG_DESCRIPTION,
       },
       { property: "og:site_name", content: "Radiocom" },
       { property: "og:title", content: "Radiocom — рации и радиостанции в Узбекистане" },

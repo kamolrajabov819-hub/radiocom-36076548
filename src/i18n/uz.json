@@ -16,7 +16,8 @@
     "radiocom": "Radiocom",
     "motorola": "Motorola",
     "compare": "Solishtirish",
-    "search": "Qidiruv"
+    "search": "Qidiruv",
+    "answers": "Javoblar"
   },
   "hero": {
     "eyebrow": "Rasmiy distribyutor · Toshkent",
@@ -688,7 +689,8 @@
       "motorola": "Motorola",
       "compare": "Solishtirish",
       "specs": "Xususiyatlar",
-      "search": "Qidiruv"
+      "search": "Qidiruv",
+      "answers": "Javoblar"
     },
     "section": {
       "poc_name": "PoC ratsiyalar",
@@ -724,6 +726,10 @@
     },
     "sitemap": {
       "desc": "Radiocom'ning barcha sahifalari bitta ro'yxatda: Motorola va Radiocom RC ratsiyalari, xususiyatlar va narxlar, sohalar, Toshkentda ta'mir."
+    },
+    "answers": {
+      "title": "Ratsiyalar haqida hammasi: savol-javob | Radiocom",
+      "desc": "Ratsiyani qanday tanlash, haqiqiy masofa qancha, Toshkentda narxi qancha va kafolat nimani qoplaydi. Yettita javob va 21 model mavjud."
     }
   },
   "brand": {
@@ -793,5 +799,14 @@
   "clients": {
     "title": "Bizga ishonishadi",
     "sub": "O'zbekiston sanoati, banklari, mehmonxonalari, savdo tarmoqlari va davlat idoralari."
+  },
+  "answers": {
+    "eyebrow": "Javoblar",
+    "title": "Ratsiyalar haqida ko'p beriladigan savollarga javoblar",
+    "sub": "Qanday tanlash, haqiqiy masofa qanday bo'ladi, qancha turadi va ratsiya buzilsa nima qilish kerak. Sotib olishdan oldin javob beradigan yettita savol.",
+    "back": "Barcha javoblar",
+    "steps_title": "Bosqichma-bosqich",
+    "step_label": "{{n}}-bosqich",
+    "related_title": "Keyingi o'qish"
   }
 }

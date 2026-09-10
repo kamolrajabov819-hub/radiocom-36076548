@@ -16,7 +16,8 @@
     "radiocom": "Radiocom",
     "motorola": "Motorola",
     "compare": "Compare",
-    "search": "Search"
+    "search": "Search",
+    "answers": "Answers"
   },
   "hero": {
     "eyebrow": "Authorized distributor · Tashkent",
@@ -688,7 +689,8 @@
       "motorola": "Motorola",
       "compare": "Compare",
       "specs": "Specs",
-      "search": "Search"
+      "search": "Search",
+      "answers": "Answers"
     },
     "section": {
       "poc_name": "PoC radios",
@@ -730,6 +732,10 @@
     },
     "sitemap": {
       "desc": "Every Radiocom page in one list: Motorola and Radiocom RC two-way radios, specs and prices, industry pages, and repair service in Tashkent."
+    },
+    "answers": {
+      "title": "All about two-way radios: common questions | Radiocom",
+      "desc": "How to choose a radio, what range you really get, what it costs in Tashkent and what the warranty covers. Seven answers and 21 models in stock."
     }
   },
   "brand": {
@@ -799,5 +805,14 @@
   "clients": {
     "title": "Trusted by",
     "sub": "Industry, banks, hotels, retail chains and state agencies across Uzbekistan."
+  },
+  "answers": {
+    "eyebrow": "Answers",
+    "title": "Answers to the questions people ask about radios",
+    "sub": "How to choose, what range you will actually get, what it costs, and what to do if a radio breaks. Seven questions we answer before you buy, not after.",
+    "back": "All answers",
+    "steps_title": "Step by step",
+    "step_label": "Step {{n}}",
+    "related_title": "Read next"
   }
 }

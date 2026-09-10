@@ -27,8 +27,10 @@ import { Route as LangRadiocomIndexRouteImport } from './routes/$lang/radiocom.i
 import { Route as LangMotorolaIndexRouteImport } from './routes/$lang/motorola.index'
 import { Route as LangIndustriesIndexRouteImport } from './routes/$lang/industries.index'
 import { Route as LangCatalogIndexRouteImport } from './routes/$lang/catalog.index'
+import { Route as LangAnswersIndexRouteImport } from './routes/$lang/answers.index'
 import { Route as LangIndustriesSlugRouteImport } from './routes/$lang/industries.$slug'
 import { Route as LangCatalogIdRouteImport } from './routes/$lang/catalog.$id'
+import { Route as LangAnswersSlugRouteImport } from './routes/$lang/answers.$slug'
 import { Route as LangBrandModelIndexRouteImport } from './routes/$lang/$brand.$model.index'
 import { Route as LangBrandModelSpecsRouteImport } from './routes/$lang/$brand.$model.specs'
 
@@ -122,6 +124,11 @@ const LangCatalogIndexRoute = LangCatalogIndexRouteImport.update({
   path: '/catalog/',
   getParentRoute: () => LangRoute,
 } as any)
+const LangAnswersIndexRoute = LangAnswersIndexRouteImport.update({
+  id: '/answers/',
+  path: '/answers/',
+  getParentRoute: () => LangRoute,
+} as any)
 const LangIndustriesSlugRoute = LangIndustriesSlugRouteImport.update({
   id: '/industries/$slug',
   path: '/industries/$slug',
@@ -130,6 +137,11 @@ const LangIndustriesSlugRoute = LangIndustriesSlugRouteImport.update({
 const LangCatalogIdRoute = LangCatalogIdRouteImport.update({
   id: '/catalog/$id',
   path: '/catalog/$id',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangAnswersSlugRoute = LangAnswersSlugRouteImport.update({
+  id: '/answers/$slug',
+  path: '/answers/$slug',
   getParentRoute: () => LangRoute,
 } as any)
 const LangBrandModelIndexRoute = LangBrandModelIndexRouteImport.update({
@@ -158,8 +170,10 @@ export interface FileRoutesByFullPath {
   '/$lang/': typeof LangIndexRoute
   '/catalog/': typeof CatalogIndexRoute
   '/industries/': typeof IndustriesIndexRoute
+  '/$lang/answers/$slug': typeof LangAnswersSlugRoute
   '/$lang/catalog/$id': typeof LangCatalogIdRoute
   '/$lang/industries/$slug': typeof LangIndustriesSlugRoute
+  '/$lang/answers/': typeof LangAnswersIndexRoute
   '/$lang/catalog/': typeof LangCatalogIndexRoute
   '/$lang/industries/': typeof LangIndustriesIndexRoute
   '/$lang/motorola/': typeof LangMotorolaIndexRoute
@@ -181,8 +195,10 @@ export interface FileRoutesByTo {
   '/$lang': typeof LangIndexRoute
   '/catalog': typeof CatalogIndexRoute
   '/industries': typeof IndustriesIndexRoute
+  '/$lang/answers/$slug': typeof LangAnswersSlugRoute
   '/$lang/catalog/$id': typeof LangCatalogIdRoute
   '/$lang/industries/$slug': typeof LangIndustriesSlugRoute
+  '/$lang/answers': typeof LangAnswersIndexRoute
   '/$lang/catalog': typeof LangCatalogIndexRoute
   '/$lang/industries': typeof LangIndustriesIndexRoute
   '/$lang/motorola': typeof LangMotorolaIndexRoute
@@ -206,8 +222,10 @@ export interface FileRoutesById {
   '/$lang/': typeof LangIndexRoute
   '/catalog/': typeof CatalogIndexRoute
   '/industries/': typeof IndustriesIndexRoute
+  '/$lang/answers/$slug': typeof LangAnswersSlugRoute
   '/$lang/catalog/$id': typeof LangCatalogIdRoute
   '/$lang/industries/$slug': typeof LangIndustriesSlugRoute
+  '/$lang/answers/': typeof LangAnswersIndexRoute
   '/$lang/catalog/': typeof LangCatalogIndexRoute
   '/$lang/industries/': typeof LangIndustriesIndexRoute
   '/$lang/motorola/': typeof LangMotorolaIndexRoute
@@ -232,8 +250,10 @@ export interface FileRouteTypes {
     | '/$lang/'
     | '/catalog/'
     | '/industries/'
+    | '/$lang/answers/$slug'
     | '/$lang/catalog/$id'
     | '/$lang/industries/$slug'
+    | '/$lang/answers/'
     | '/$lang/catalog/'
     | '/$lang/industries/'
     | '/$lang/motorola/'
@@ -255,8 +275,10 @@ export interface FileRouteTypes {
     | '/$lang'
     | '/catalog'
     | '/industries'
+    | '/$lang/answers/$slug'
     | '/$lang/catalog/$id'
     | '/$lang/industries/$slug'
+    | '/$lang/answers'
     | '/$lang/catalog'
     | '/$lang/industries'
     | '/$lang/motorola'
@@ -279,8 +301,10 @@ export interface FileRouteTypes {
     | '/$lang/'
     | '/catalog/'
     | '/industries/'
+    | '/$lang/answers/$slug'
     | '/$lang/catalog/$id'
     | '/$lang/industries/$slug'
+    | '/$lang/answers/'
     | '/$lang/catalog/'
     | '/$lang/industries/'
     | '/$lang/motorola/'
@@ -428,6 +452,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangCatalogIndexRouteImport
       parentRoute: typeof LangRoute
     }
+    '/$lang/answers/': {
+      id: '/$lang/answers/'
+      path: '/answers'
+      fullPath: '/$lang/answers/'
+      preLoaderRoute: typeof LangAnswersIndexRouteImport
+      parentRoute: typeof LangRoute
+    }
     '/$lang/industries/$slug': {
       id: '/$lang/industries/$slug'
       path: '/industries/$slug'
@@ -440,6 +471,13 @@ declare module '@tanstack/react-router' {
       path: '/catalog/$id'
       fullPath: '/$lang/catalog/$id'
       preLoaderRoute: typeof LangCatalogIdRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/answers/$slug': {
+      id: '/$lang/answers/$slug'
+      path: '/answers/$slug'
+      fullPath: '/$lang/answers/$slug'
+      preLoaderRoute: typeof LangAnswersSlugRouteImport
       parentRoute: typeof LangRoute
     }
     '/$lang/$brand/$model/': {
@@ -466,8 +504,10 @@ interface LangRouteChildren {
   LangServiceRoute: typeof LangServiceRoute
   LangSitemapRoute: typeof LangSitemapRoute
   LangIndexRoute: typeof LangIndexRoute
+  LangAnswersSlugRoute: typeof LangAnswersSlugRoute
   LangCatalogIdRoute: typeof LangCatalogIdRoute
   LangIndustriesSlugRoute: typeof LangIndustriesSlugRoute
+  LangAnswersIndexRoute: typeof LangAnswersIndexRoute
   LangCatalogIndexRoute: typeof LangCatalogIndexRoute
   LangIndustriesIndexRoute: typeof LangIndustriesIndexRoute
   LangMotorolaIndexRoute: typeof LangMotorolaIndexRoute
@@ -483,8 +523,10 @@ const LangRouteChildren: LangRouteChildren = {
   LangServiceRoute: LangServiceRoute,
   LangSitemapRoute: LangSitemapRoute,
   LangIndexRoute: LangIndexRoute,
+  LangAnswersSlugRoute: LangAnswersSlugRoute,
   LangCatalogIdRoute: LangCatalogIdRoute,
   LangIndustriesSlugRoute: LangIndustriesSlugRoute,
+  LangAnswersIndexRoute: LangAnswersIndexRoute,
   LangCatalogIndexRoute: LangCatalogIndexRoute,
   LangIndustriesIndexRoute: LangIndustriesIndexRoute,
   LangMotorolaIndexRoute: LangMotorolaIndexRoute,

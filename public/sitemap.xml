@@ -213,6 +213,246 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://radiocom.uz/ru/answers</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/answers</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/answers</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/answers/how-to-choose</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers/how-to-choose"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers/how-to-choose"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers/how-to-choose"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers/how-to-choose"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/answers/how-to-choose</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers/how-to-choose"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers/how-to-choose"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers/how-to-choose"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers/how-to-choose"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/answers/how-to-choose</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers/how-to-choose"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers/how-to-choose"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers/how-to-choose"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers/how-to-choose"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/answers/real-range</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers/real-range"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers/real-range"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers/real-range"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers/real-range"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/answers/real-range</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers/real-range"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers/real-range"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers/real-range"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers/real-range"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/answers/real-range</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers/real-range"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers/real-range"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers/real-range"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers/real-range"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/answers/analog-or-digital</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers/analog-or-digital"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers/analog-or-digital"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers/analog-or-digital"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers/analog-or-digital"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/answers/analog-or-digital</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers/analog-or-digital"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers/analog-or-digital"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers/analog-or-digital"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers/analog-or-digital"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/answers/analog-or-digital</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers/analog-or-digital"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers/analog-or-digital"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers/analog-or-digital"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers/analog-or-digital"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/answers/how-many-radios</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers/how-many-radios"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers/how-many-radios"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers/how-many-radios"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers/how-many-radios"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/answers/how-many-radios</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers/how-many-radios"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers/how-many-radios"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers/how-many-radios"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers/how-many-radios"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/answers/how-many-radios</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers/how-many-radios"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers/how-many-radios"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers/how-many-radios"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers/how-many-radios"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/answers/radio-price-tashkent</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers/radio-price-tashkent"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers/radio-price-tashkent"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers/radio-price-tashkent"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers/radio-price-tashkent"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/answers/radio-price-tashkent</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers/radio-price-tashkent"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers/radio-price-tashkent"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers/radio-price-tashkent"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers/radio-price-tashkent"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/answers/radio-price-tashkent</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers/radio-price-tashkent"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers/radio-price-tashkent"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers/radio-price-tashkent"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers/radio-price-tashkent"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/answers/pmr-or-poc</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers/pmr-or-poc"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers/pmr-or-poc"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers/pmr-or-poc"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers/pmr-or-poc"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/answers/pmr-or-poc</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers/pmr-or-poc"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers/pmr-or-poc"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers/pmr-or-poc"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers/pmr-or-poc"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/answers/pmr-or-poc</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers/pmr-or-poc"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers/pmr-or-poc"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers/pmr-or-poc"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers/pmr-or-poc"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/answers/warranty-and-repair</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers/warranty-and-repair"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers/warranty-and-repair"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers/warranty-and-repair"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers/warranty-and-repair"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/answers/warranty-and-repair</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers/warranty-and-repair"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers/warranty-and-repair"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers/warranty-and-repair"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers/warranty-and-repair"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/answers/warranty-and-repair</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers/warranty-and-repair"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers/warranty-and-repair"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/answers/warranty-and-repair"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/answers/warranty-and-repair"/>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://radiocom.uz/ru/sitemap</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/sitemap"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/sitemap"/>

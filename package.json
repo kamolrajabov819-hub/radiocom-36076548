@@ -13,7 +13,7 @@
     "seo:generate": "bun scripts/generate-seo.ts",
     "seo:verify": "bun scripts/verify-seo.ts && bun scripts/verify-snippets.ts",
     "i18n:verify": "bun scripts/verify-i18n.ts",
-    "verify": "bun scripts/verify-seo.ts && bun scripts/verify-snippets.ts && bun scripts/verify-agent-discovery.ts && bun scripts/verify-i18n.ts && bun scripts/verify-assets.ts",
+    "verify": "bun scripts/verify-seo.ts && bun scripts/verify-snippets.ts && bun scripts/verify-agent-discovery.ts && bun scripts/verify-answers.ts && bun scripts/verify-i18n.ts && bun scripts/verify-assets.ts",
     "assets:inventory": "bun scripts/inventory-assets.ts",
     "qa": "bun scripts/qa-images.mjs && bun scripts/qa-overflow.mjs && bun scripts/qa-touch.mjs && bun scripts/qa-blend.mjs && bun scripts/qa-motion.mjs && bun scripts/qa-search.mjs && bun scripts/qa-i18n-rendered.mjs && bun scripts/qa-brand.mjs && bun scripts/qa-weight.mjs && bun scripts/qa-headings.mjs && bun scripts/qa-a11y.mjs && bun scripts/qa-mcp.mts && node scripts/qa-link-header.mjs && node scripts/qa-status.mjs"
   },
