@@ -30,6 +30,8 @@ const ROUTES = [
   "/service",
   "/industries",
   "/industries/horeca",
+  "/answers",
+  "/answers/how-to-choose",
 ];
 const LOCALES = ["ru", "en", "uz"];
 const VIEWPORTS = [

@@ -13,8 +13,6 @@ import {
   SITE_NAME,
   articleSchema,
   breadcrumbSchema,
-  faqSchema,
-  howToSchema,
   jsonLd,
   localeLinks,
   pageMeta,
@@ -48,7 +46,6 @@ export const head = ({ params }: { params: { slug: string; lang: SeoLang } }) =>
   const answer = pick(a.answer, lang);
   const title = pick(a.metaTitle, lang);
   const description = pick(a.metaDesc, lang);
-  const faq = a.faq.map((f) => ({ q: pick(f.q, lang), a: pick(f.a, lang) }));
 
   return {
     meta: pageMeta({
@@ -62,28 +59,12 @@ export const head = ({ params }: { params: { slug: string; lang: SeoLang } }) =>
     }),
     links: localeLinks(lang, path),
     scripts: [
-      // Article and FAQPage are separate top-level nodes on purpose — see the
-      // note on `articleSchema`. Nesting one inside the other suppresses both.
+      // Only Article and BreadcrumbList here. `FAQPage` and `HowTo` need the
+      // body copy, which is deliberately not importable from a `.meta.ts` —
+      // see `answers-content.ts`. Both are emitted from the page component
+      // instead, which is server-rendered, so a crawler still receives them in
+      // the delivered HTML. JSON-LD is valid in the body as well as the head.
       jsonLd(articleSchema({ headline: question, description, path, answer }, lang)),
-      ...(faq.length ? [jsonLd(faqSchema(faq, lang))] : []),
-      ...(a.steps?.length
-        ? [
-            jsonLd(
-              howToSchema(
-                {
-                  name: question,
-                  description: answer,
-                  path,
-                  steps: a.steps.map((s) => ({
-                    name: pick(s.name, lang),
-                    text: pick(s.text, lang),
-                  })),
-                },
-                lang,
-              ),
-            ),
-          ]
-        : []),
       jsonLd(
         breadcrumbSchema(
           [

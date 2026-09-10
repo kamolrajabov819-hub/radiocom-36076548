@@ -16,13 +16,30 @@
  *
  * Run: bun scripts/verify-answers.ts
  */
-import { answers, publishedAnswers, TODO_LEGAL } from "../src/data/answers";
+import { publishedAnswers, TODO_LEGAL } from "../src/data/answers";
+import { answerContent } from "../src/data/answers-content";
+import { draftAnswers, draftContent } from "../src/data/answers-draft";
+import { ANSWER_SLUGS } from "../src/data/answer-slugs";
 import { visibleProducts } from "../src/data/products";
 import { LANGS } from "../src/lib/seo";
 import { existsSync } from "node:fs";
 
 const problems: string[] = [];
 const bad = (m: string) => problems.push(m);
+
+/**
+ * Every rule below runs over drafts as well as published pages.
+ *
+ * A draft is text waiting on a fact, not text waiting on a proofread, so it is
+ * held to the same standard — locale parity, resolvable picks, a real OG source.
+ * Rule 2 is the single exception, and inverts: a `TODO-LEGAL` marker is required
+ * to be on a draft and forbidden anywhere else.
+ */
+const answers = [...publishedAnswers, ...draftAnswers];
+const allContent: Record<string, (typeof answerContent)[string]> = {
+  ...answerContent,
+  ...draftContent,
+};
 
 /* ── 1. Every field, in every locale, on every page ───────────────────── */
 {
@@ -32,15 +49,17 @@ const bad = (m: string) => problems.push(m);
       ["answer", a.answer],
       ["metaTitle", a.metaTitle],
       ["metaDesc", a.metaDesc],
-      ...a.sections.flatMap((s, i): [string, Record<string, string>][] => [
-        [`sections[${i}].heading`, s.heading],
-        [`sections[${i}].body`, s.body],
-      ]),
-      ...a.faq.flatMap((f, i): [string, Record<string, string>][] => [
+      ...(allContent[a.slug]?.sections ?? []).flatMap(
+        (s, i): [string, Record<string, string>][] => [
+          [`sections[${i}].heading`, s.heading],
+          [`sections[${i}].body`, s.body],
+        ],
+      ),
+      ...(allContent[a.slug]?.faq ?? []).flatMap((f, i): [string, Record<string, string>][] => [
         [`faq[${i}].q`, f.q],
         [`faq[${i}].a`, f.a],
       ]),
-      ...(a.steps ?? []).flatMap((s, i): [string, Record<string, string>][] => [
+      ...(allContent[a.slug]?.steps ?? []).flatMap((s, i): [string, Record<string, string>][] => [
         [`steps[${i}].name`, s.name],
         [`steps[${i}].text`, s.text],
       ]),
@@ -77,12 +96,17 @@ const bad = (m: string) => problems.push(m);
 {
   const slugs = new Set(answers.map((a) => a.slug));
   for (const a of answers) {
-    if (!a.picks.length)
+    // `picks` and `related` live in the content module, which the detail page
+    // already imports. Rule 7 proves every answer has an entry there, so a
+    // missing one is reported once rather than eight times here.
+    const c = allContent[a.slug];
+    if (!c) continue;
+    if (!c.picks.length)
       bad(`${a.slug}: links no products — the page has no way into the catalogue`);
-    for (const id of a.picks)
+    for (const id of c.picks)
       if (!visibleProducts.some((p) => p.id === id))
         bad(`${a.slug}: picks "${id}", which is not a visible product`);
-    for (const r of a.related) {
+    for (const r of c.related) {
       if (!slugs.has(r)) bad(`${a.slug}: related to "${r}", which does not exist`);
       if (r === a.slug) bad(`${a.slug}: related to itself`);
     }
@@ -93,7 +117,7 @@ const bad = (m: string) => problems.push(m);
 
 /* ── 4. HowTo is used once, and only where there are real steps ───────── */
 {
-  const withSteps = answers.filter((a) => a.steps?.length);
+  const withSteps = answers.filter((a) => allContent[a.slug]?.steps?.length);
   if (withSteps.length !== 1)
     bad(
       `${withSteps.length} pages declare steps (${withSteps.map((a) => a.slug).join(", ") || "none"}).\n` +
@@ -146,7 +170,11 @@ const bad = (m: string) => problems.push(m);
       bad(`figure check refers to "${e.on}", which is not an answer page`);
       continue;
     }
-    const blob = [a.answer.ru, a.metaDesc.ru, ...a.sections.map((s) => s.body.ru)].join(" ");
+    const blob = [
+      a.answer.ru,
+      a.metaDesc.ru,
+      ...(allContent[a.slug]?.sections ?? []).map((s) => s.body.ru),
+    ].join(" ");
     if (!blob.includes(e.needle))
       bad(
         `${e.on}: the ${e.what} is now "${e.needle}" in products.ts, and the Russian copy\n` +
@@ -163,6 +191,55 @@ const bad = (m: string) => problems.push(m);
     if (!existsSync(`src/assets/${a.ogCard}`))
       bad(`${a.slug}: ogCard source src/assets/${a.ogCard} does not exist`);
   if (!problems.length) console.log(`ok  all ${answers.length} OG card sources resolve`);
+}
+
+/* ── 7. The split modules still describe the same set of pages ────────── */
+{
+  // Each half of the split has to hold exactly its own pages, and the direction
+  // that matters is the strict one: a draft's body copy sitting in
+  // `answers-content.ts` would be imported by the page components and ship to
+  // every reader of the section, which is the leak the split exists to prevent.
+  const pub = new Set(publishedAnswers.map((a) => a.slug));
+  const drafted = new Set(draftAnswers.map((a) => a.slug));
+  for (const a of publishedAnswers)
+    if (!answerContent[a.slug])
+      bad(`${a.slug}: is published but has no body in answers-content.ts`);
+  for (const a of draftAnswers)
+    if (!draftContent[a.slug]) bad(`${a.slug}: is a draft but has no body in answers-draft.ts`);
+  for (const slug of Object.keys(answerContent)) {
+    if (drafted.has(slug))
+      bad(
+        `answers-content.ts carries "${slug}", which is a draft. That module is imported by\n` +
+          `     the page components, so its text ships to every reader of the section — the\n` +
+          `     draft's body belongs beside its record in answers-draft.ts.`,
+      );
+    else if (!pub.has(slug)) bad(`answers-content.ts has "${slug}", which is not an answer page`);
+  }
+  for (const slug of Object.keys(draftContent))
+    if (!drafted.has(slug))
+      bad(`answers-draft.ts has body copy for "${slug}", which is not a draft`);
+  // Nothing about the body copy is mirrored onto the slim record — not the
+  // step count, not the picks, not the related slugs. That is deliberate:
+  // duplicated state drifts, and every field on the slim record is a field
+  // `head` ships to every route on the site. Rules 3 and 4 read the content
+  // module directly instead, which is why there is no cross-check to make here.
+  //
+  // The route guard is the one exception, and it is not free-form: it reads its
+  // own tiny slug list, so the router can 404 an unknown slug without pulling
+  // the answers data onto every route. That list is duplicated state, so it
+  // gets the check.
+  const published = publishedAnswers.map((a) => a.slug).join(",");
+  if ([...ANSWER_SLUGS].join(",") !== published)
+    bad(
+      `answer-slugs.ts lists [${[...ANSWER_SLUGS].join(", ")}] but publishedAnswers is\n` +
+        `     [${published}]. The route guard and the data have drifted, so a page either\n` +
+        `     404s while being listed, or resolves while being unpublished.`,
+    );
+  if (!problems.length)
+    console.log(
+      `ok  the four answers modules agree: ${publishedAnswers.length} published, ` +
+        `${draftAnswers.length} draft, no body copy on the wrong side`,
+    );
 }
 
 if (problems.length) {

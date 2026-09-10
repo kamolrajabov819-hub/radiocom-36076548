@@ -371,7 +371,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
           <p className="subhead mt-4 text-[17px]">{t("brand.compare_sub")}</p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <LocaleLink to="/compare" className="pill pill-accent">
-              {t("px.compare_title")}
+              {brandCase(t("px.compare_title"))}
             </LocaleLink>
             <LocaleLink
               to={brandSlug === "radiocom" ? "/motorola" : "/radiocom"}

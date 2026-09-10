@@ -560,7 +560,7 @@
       }
     ],
     "flow_title": "The repair, step by step",
-    "advantages_title": "Why bring it here",
+    "advantages_title": "Why have a radio repaired here",
     "request_repair_sub": "Describe the fault and we will come back with a diagnosis and a fixed price."
   },
   "footer": {
@@ -748,8 +748,8 @@
     "radiocom_desc": "Radiocom's own range: analogue RC and digital RCD. Warranty and repairs at our own service centre.",
     "motorola_title": "Motorola radios",
     "motorola_desc": "Talkabout, XT and TLKR — Motorola radios that need no frequency permit.",
-    "lineup": "The line-up",
-    "why_title": "Why buy from us",
+    "lineup": "The radio line-up",
+    "why_title": "Why buy your radios from us",
     "compare_cta": "Which radio is right for you?",
     "compare_sub": "Compare models by range, protection and price.",
     "all_models": "All models"
@@ -763,7 +763,7 @@
     "highlights": "Get the highlights",
     "in_box": "In the box",
     "features": "Features",
-    "where_used": "Where it is used",
+    "where_used": "Where this radio is used",
     "accessories": "Compatible accessories",
     "spec_table": "Specifications",
     "config": "Who it is for",
@@ -774,7 +774,7 @@
     "range_open": "Open ground",
     "price_on_request": "Price on request",
     "back_to_brand": "All models",
-    "compare_title": "Compare models",
+    "compare_title": "Motorola and Radiocom radios compared",
     "compare_sub": "Every Radiocom and Motorola model by range, protection and price.",
     "faq_title": "Frequently asked questions",
     "design": "Design",
@@ -803,7 +803,7 @@
     "industries": "Industries"
   },
   "clients": {
-    "title": "Trusted by",
+    "title": "Trusted across Uzbekistan",
     "sub": "Industry, banks, hotels, retail chains and state agencies across Uzbekistan."
   },
   "answers": {

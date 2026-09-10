@@ -34,6 +34,8 @@ const ROUTES = [
   "/ru/compare",
   "/ru/industries",
   "/ru/industries/construction",
+  "/ru/answers",
+  "/ru/answers/how-to-choose",
   "/ru/sitemap",
   "/ru/search",
   "/ru/search?q=RCD",

@@ -1,9 +1,10 @@
 # SEO: the part that is not in this repository
 
 Everything inside this codebase is done. The technical layer is gated by
-`bun run verify` — 28 checks covering schema, hreflang, sitemap, snippet
-lengths, agent discovery and now the answers section — and the content layer
-now has pages that answer questions rather than only sell products.
+`bun run verify` — 52 checks across six gates, covering schema, hreflang,
+sitemap, snippet lengths, locale parity, agent discovery and now the answers
+section — and the content layer now has pages that answer questions rather than
+only sell products.
 
 What is left decides rankings more than any of it, and none of it can be done
 from a git repository. This file is that list, in the order worth doing it.

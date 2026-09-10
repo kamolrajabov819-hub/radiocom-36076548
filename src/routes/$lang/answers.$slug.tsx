@@ -1,7 +1,7 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { head } from "@/pages/AnswerDetail.meta";
 import { AnswerDetailPage } from "@/pages/AnswerDetail";
-import { ANSWER_SLUGS } from "@/data/answers";
+import { ANSWER_SLUGS } from "@/data/answer-slugs";
 
 /**
  * `/{lang}/answers/{slug}`.
@@ -16,7 +16,7 @@ import { ANSWER_SLUGS } from "@/data/answers";
  */
 export const Route = createFileRoute("/$lang/answers/$slug")({
   beforeLoad: ({ params }) => {
-    if (!ANSWER_SLUGS.includes(params.slug)) throw notFound();
+    if (!(ANSWER_SLUGS as readonly string[]).includes(params.slug)) throw notFound();
   },
   head,
   component: AnswerDetailPage,

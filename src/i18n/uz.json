@@ -560,7 +560,7 @@
       }
     ],
     "flow_title": "Ta'mirlash bosqichma-bosqich",
-    "advantages_title": "Nega bizga",
+    "advantages_title": "Nega ratsiyani bizda ta'mirlash kerak",
     "request_repair_sub": "Nosozlikni tavsiflang — diagnostika va qat'iy narx bilan qaytamiz."
   },
   "footer": {
@@ -742,8 +742,8 @@
     "radiocom_desc": "Radiocom'ning o'z liniyasi: analog RC va raqamli RCD. Kafolat va ta'mirlash — o'z servisimizda.",
     "motorola_title": "Motorola ratsiyalari",
     "motorola_desc": "Talkabout, XT va TLKR — chastota ruxsatnomasi kerak bo'lmaydigan Motorola ratsiyalari.",
-    "lineup": "Model qatori",
-    "why_title": "Nega bizdan sotib olish kerak",
+    "lineup": "Ratsiyalar model qatori",
+    "why_title": "Nega ratsiyalarni bizdan sotib olish kerak",
     "compare_cta": "Sizga qaysi ratsiya mos keladi?",
     "compare_sub": "Modellarni masofa, himoya va narx bo'yicha solishtiring.",
     "all_models": "Barcha modellar"
@@ -757,7 +757,7 @@
     "highlights": "Asosiysi qisqacha",
     "in_box": "To'plamda",
     "features": "Imkoniyatlar",
-    "where_used": "Qayerda qo'llaniladi",
+    "where_used": "Bu ratsiya qayerda qo'llaniladi",
     "accessories": "Mos aksessuarlar",
     "spec_table": "Xususiyatlar",
     "config": "Kimga mos",
@@ -768,7 +768,7 @@
     "range_open": "Ochiq joyda",
     "price_on_request": "Narx so'rov bo'yicha",
     "back_to_brand": "Barcha modellar",
-    "compare_title": "Modellarni solishtirish",
+    "compare_title": "Motorola va Radiocom ratsiyalari solishtiruvi",
     "compare_sub": "Radiocom va Motorolaning barcha modellari masofa, himoya va narx bo'yicha.",
     "faq_title": "Ko'p so'raladigan savollar",
     "design": "Dizayn",
@@ -797,7 +797,7 @@
     "industries": "Tarmoqlar"
   },
   "clients": {
-    "title": "Bizga ishonishadi",
+    "title": "O'zbekistonda bizga ishonishadi",
     "sub": "O'zbekiston sanoati, banklari, mehmonxonalari, savdo tarmoqlari va davlat idoralari."
   },
   "answers": {

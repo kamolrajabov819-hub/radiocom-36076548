@@ -32,7 +32,12 @@
  * a card that is missing or is not 1200x630.
  */
 import { spawnSync } from "node:child_process";
-import { answers } from "../src/data/answers";
+import { publishedAnswers } from "../src/data/answers";
+// Drafts get a card too: it costs one image and means publishing a page is a
+// one-line move rather than a build step somebody forgets.
+import { draftAnswers } from "../src/data/answers-draft";
+
+const answers = [...publishedAnswers, ...draftAnswers];
 
 /** Every non-product card, as `slug -> source image under src/assets/`. */
 const PAGES: Record<string, string> = {

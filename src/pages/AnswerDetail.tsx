@@ -9,10 +9,12 @@ import { Section, SectionHead } from "@/components/Section";
 import { Faq } from "@/components/Faq";
 import { ProductCard } from "@/components/ProductCard";
 import { openLead } from "@/components/LeadFormSheet";
-import { answerBySlug, answerPicks } from "@/data/answers";
+import { answerBySlug } from "@/data/answers";
+import { answerContent, answerPicks } from "@/data/answers-content";
 import { visibleProducts } from "@/data/products";
 import { pick } from "@/data/spec-dict";
 import { fadeUpAt, spring } from "@/lib/springs";
+import { faqSchema, howToSchema } from "@/lib/seo";
 
 /**
  * One answers page.
@@ -39,11 +41,43 @@ export function AnswerDetailPage() {
   // during hydration if the two ever disagree.
   if (!a) return null;
 
-  const picks = answerPicks(a, visibleProducts);
-  const faq = a.faq.map((f) => ({ q: pick(f.q, lang), a: pick(f.a, lang) }));
+  const content = answerContent[a.slug];
+  const picks = answerPicks(content, visibleProducts);
+  const faq = content.faq.map((f) => ({ q: pick(f.q, lang), a: pick(f.a, lang) }));
+  const steps = content.steps ?? [];
 
   return (
     <div ref={page} className="page-anim page-tight">
+      {/* FAQPage and HowTo live here rather than in `head`: both quote the body
+          copy, and `head` cannot import it without adding 37 KB to every route
+          on the site. This renders on the server, so a crawler sees
+          them in the delivered HTML — JSON-LD is valid outside `<head>`. The
+          text is the same text rendered below, which is what keeps the markup
+          honest. */}
+      {faq.length ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(faq, lang)) }}
+        />
+      ) : null}
+      {steps.length ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              howToSchema(
+                {
+                  name: pick(a.question, lang),
+                  description: pick(a.answer, lang),
+                  path: `/answers/${a.slug}`,
+                  steps: steps.map((s) => ({ name: pick(s.name, lang), text: pick(s.text, lang) })),
+                },
+                lang,
+              ),
+            ),
+          }}
+        />
+      ) : null}
       {/* ── Question and the direct answer ─────────────────────── */}
       <Section band="plain">
         <motion.div
@@ -67,11 +101,11 @@ export function AnswerDetailPage() {
       </Section>
 
       {/* ── Steps, where the page is a procedure ───────────────── */}
-      {a.steps?.length ? (
+      {steps.length ? (
         <Section band="soft" tight>
           <SectionHead align="left" spacing="tight" title={t("answers.steps_title")} />
           <ol className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {a.steps.map((s, i) => (
+            {steps.map((s, i) => (
               <motion.li
                 key={i}
                 id={`step-${i + 1}`}
@@ -94,7 +128,7 @@ export function AnswerDetailPage() {
       {/* ── The reasoning ──────────────────────────────────────── */}
       <Section band="plain">
         <div className="flex flex-col gap-14">
-          {a.sections.map((s, i) => (
+          {content.sections.map((s, i) => (
             <motion.div key={i} {...fadeUpAt(i)} className="measure">
               <h2 className="type-headline text-crisp">{brandCase(pick(s.heading, lang))}</h2>
               <p className="subhead mt-4 text-[17px] leading-relaxed">
@@ -133,11 +167,11 @@ export function AnswerDetailPage() {
       ) : null}
 
       {/* ── Sibling answers, so the section reads as a cluster ─── */}
-      {a.related.length ? (
+      {content.related.length ? (
         <Section band="soft" tight>
           <SectionHead align="left" spacing="tight" title={t("answers.related_title")} />
           <div className="grid gap-4 md:grid-cols-3">
-            {a.related.map((slug, i) => {
+            {content.related.map((slug, i) => {
               const r = answerBySlug(slug);
               if (!r) return null;
               return (
