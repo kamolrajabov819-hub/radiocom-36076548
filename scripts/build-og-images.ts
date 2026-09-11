@@ -32,6 +32,12 @@
  * a card that is missing or is not 1200x630.
  */
 import { spawnSync } from "node:child_process";
+import { publishedAnswers } from "../src/data/answers";
+// Drafts get a card too: it costs one image and means publishing a page is a
+// one-line move rather than a build step somebody forgets.
+import { draftAnswers } from "../src/data/answers-draft";
+
+const answers = [...publishedAnswers, ...draftAnswers];
 
 /** Every non-product card, as `slug -> source image under src/assets/`. */
 const PAGES: Record<string, string> = {
@@ -48,6 +54,10 @@ const PAGES: Record<string, string> = {
   "industries-transport": "industry-transport.jpg",
   "industries-horeca": "industry-horeca.jpg",
   "industries-manufacturing": "industry-manufacturing.jpg",
+  // The answers section. Each card reuses photography the site already ships —
+  // `answers.ts` names the source per page, so the two cannot drift apart.
+  answers: "cutout/radio-single-cutout.webp",
+  ...Object.fromEntries(answers.map((a) => [`answers-${a.slug}`, a.ogCard])),
   search: "cutout/hands-scattered-cutout.webp",
   sitemap: "cutout/radio-single-cutout.webp",
 };

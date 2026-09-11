@@ -16,7 +16,8 @@
     "radiocom": "Radiocom",
     "motorola": "Motorola",
     "compare": "Solishtirish",
-    "search": "Qidiruv"
+    "search": "Qidiruv",
+    "answers": "Javoblar"
   },
   "hero": {
     "eyebrow": "Rasmiy distribyutor · Toshkent",
@@ -559,7 +560,7 @@
       }
     ],
     "flow_title": "Ta'mirlash bosqichma-bosqich",
-    "advantages_title": "Nega bizga",
+    "advantages_title": "Nega ratsiyani bizda ta'mirlash kerak",
     "request_repair_sub": "Nosozlikni tavsiflang — diagnostika va qat'iy narx bilan qaytamiz."
   },
   "footer": {
@@ -688,7 +689,8 @@
       "motorola": "Motorola",
       "compare": "Solishtirish",
       "specs": "Xususiyatlar",
-      "search": "Qidiruv"
+      "search": "Qidiruv",
+      "answers": "Javoblar"
     },
     "section": {
       "poc_name": "PoC ratsiyalar",
@@ -724,6 +726,10 @@
     },
     "sitemap": {
       "desc": "Radiocom'ning barcha sahifalari bitta ro'yxatda: Motorola va Radiocom RC ratsiyalari, xususiyatlar va narxlar, sohalar, Toshkentda ta'mir."
+    },
+    "answers": {
+      "title": "Ratsiyalar haqida hammasi: savol-javob | Radiocom",
+      "desc": "Ratsiyani qanday tanlash, haqiqiy masofa qancha, Toshkentda narxi qancha va kafolat nimani qoplaydi. Yettita javob va 21 model mavjud."
     }
   },
   "brand": {
@@ -736,8 +742,8 @@
     "radiocom_desc": "Radiocom'ning o'z liniyasi: analog RC va raqamli RCD. Kafolat va ta'mirlash — o'z servisimizda.",
     "motorola_title": "Motorola ratsiyalari",
     "motorola_desc": "Talkabout, XT va TLKR — chastota ruxsatnomasi kerak bo'lmaydigan Motorola ratsiyalari.",
-    "lineup": "Model qatori",
-    "why_title": "Nega bizdan sotib olish kerak",
+    "lineup": "Ratsiyalar model qatori",
+    "why_title": "Nega ratsiyalarni bizdan sotib olish kerak",
     "compare_cta": "Sizga qaysi ratsiya mos keladi?",
     "compare_sub": "Modellarni masofa, himoya va narx bo'yicha solishtiring.",
     "all_models": "Barcha modellar"
@@ -751,7 +757,7 @@
     "highlights": "Asosiysi qisqacha",
     "in_box": "To'plamda",
     "features": "Imkoniyatlar",
-    "where_used": "Qayerda qo'llaniladi",
+    "where_used": "Bu ratsiya qayerda qo'llaniladi",
     "accessories": "Mos aksessuarlar",
     "spec_table": "Xususiyatlar",
     "config": "Kimga mos",
@@ -762,7 +768,7 @@
     "range_open": "Ochiq joyda",
     "price_on_request": "Narx so'rov bo'yicha",
     "back_to_brand": "Barcha modellar",
-    "compare_title": "Modellarni solishtirish",
+    "compare_title": "Motorola va Radiocom ratsiyalari solishtiruvi",
     "compare_sub": "Radiocom va Motorolaning barcha modellari masofa, himoya va narx bo'yicha.",
     "faq_title": "Ko'p so'raladigan savollar",
     "design": "Dizayn",
@@ -791,7 +797,16 @@
     "industries": "Tarmoqlar"
   },
   "clients": {
-    "title": "Bizga ishonishadi",
+    "title": "O'zbekistonda bizga ishonishadi",
     "sub": "O'zbekiston sanoati, banklari, mehmonxonalari, savdo tarmoqlari va davlat idoralari."
+  },
+  "answers": {
+    "eyebrow": "Javoblar",
+    "title": "Ratsiyalar haqida ko'p beriladigan savollarga javoblar",
+    "sub": "Qanday tanlash, haqiqiy masofa qanday bo'ladi, qancha turadi va ratsiya buzilsa nima qilish kerak. Sotib olishdan oldin javob beradigan yettita savol.",
+    "back": "Barcha javoblar",
+    "steps_title": "Bosqichma-bosqich",
+    "step_label": "{{n}}-bosqich",
+    "related_title": "Keyingi o'qish"
   }
 }

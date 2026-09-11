@@ -33,6 +33,8 @@ export function LocaleLink({
     | "/service"
     | "/industries"
     | "/industries/$slug"
+    | "/answers"
+    | "/answers/$slug"
     | "/search"
     | "/sitemap";
   params?: Record<string, string>;
