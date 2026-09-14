@@ -41,6 +41,8 @@ const ROUTES = [
   "/compare",
   "/industries",
   "/industries/construction",
+  "/answers",
+  "/answers/how-to-choose",
 ];
 
 const browser = await chromium.launch({

@@ -35,6 +35,8 @@ const ROUTES = [
   "/compare",
   "/industries",
   "/industries/construction",
+  "/answers",
+  "/answers/how-to-choose",
   "/search",
   "/sitemap",
 ];

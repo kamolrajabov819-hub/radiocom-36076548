@@ -47,6 +47,7 @@ import { head as searchHead } from "../src/pages/Search.meta";
 import { head as industryHead } from "../src/pages/IndustryDetail.meta";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
+import { publishedAnswers } from "../src/data/answers";
 
 let fail = 0;
 const bad = (m: string) => {
@@ -119,16 +120,24 @@ console.log(
 // 4. robots + llms
 const robots = readFileSync("public/robots.txt", "utf8");
 if (!robots.includes(`Sitemap: ${SITE_URL}/sitemap.xml`)) bad("robots.txt missing sitemap");
-const llms = readFileSync("public/llms.txt", "utf8");
-if ((llms.match(/^- \[/gm) || []).length !== visibleProducts.length)
-  bad("llms.txt product count drifted");
+// Product and answer links share the `- [text](url)` shape, so they are counted
+// by the URL they point at rather than by the bullet. Counting bullets was
+// enough while the catalogue was the only list in the file; it broke the moment
+// a second list arrived, and it would have broken silently in the other
+// direction too — seven missing products masked by seven answers.
+const productLinks = (text: string) =>
+  (text.match(/^- \[[^\]]*\]\(https:\/\/[^)]*\/(?:radiocom|motorola)\//gm) || []).length;
+const answerLinks = (text: string) =>
+  (text.match(/^- \[[^\]]*\]\(https:\/\/[^)]*\/answers\//gm) || []).length;
 // Each locale's llms.txt must carry the whole catalogue in that language, or
 // an answer engine asked in Uzbek gets a Russian answer or none at all.
 for (const l of LANGS) {
   const f = l === "ru" ? "public/llms.txt" : `public/llms.${l}.txt`;
   const text = readFileSync(f, "utf8");
-  if ((text.match(/^- \[/gm) || []).length !== visibleProducts.length)
-    bad(`${f} product count drifted`);
+  if (productLinks(text) !== visibleProducts.length)
+    bad(`${f} lists ${productLinks(text)} products, catalogue has ${visibleProducts.length}`);
+  if (answerLinks(text) !== publishedAnswers.length)
+    bad(`${f} lists ${answerLinks(text)} answers, ${publishedAnswers.length} are published`);
   if (!text.includes(`${SITE_URL}/${l}/radiocom/`) && !text.includes(`${SITE_URL}/${l}/motorola/`))
     bad(`${f} links the wrong locale`);
 }

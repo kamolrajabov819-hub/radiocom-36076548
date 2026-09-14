@@ -33,6 +33,7 @@ const PAGES = [
   { to: "/poc", key: "nav.poc" },
   { to: "/service", key: "nav.service" },
   { to: "/industries", key: "nav.industries" },
+  { to: "/answers", key: "nav.answers" },
   { to: "/search", key: "nav.search" },
 ] as const;
 

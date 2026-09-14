@@ -45,6 +45,9 @@ import { head as industriesIndexHead } from "../src/pages/IndustriesIndex.meta";
 import { head as industryHead } from "../src/pages/IndustryDetail.meta";
 import { head as sitemapHead } from "../src/pages/Sitemap.meta";
 import { head as searchHead } from "../src/pages/Search.meta";
+import { head as answersHead } from "../src/pages/Answers.meta";
+import { head as answerHead } from "../src/pages/AnswerDetail.meta";
+import { publishedAnswers } from "../src/data/answers";
 import { brandHead } from "../src/pages/Brand.meta";
 import { head as productHead } from "../src/pages/ProductStory.meta";
 
@@ -84,6 +87,15 @@ for (const lang of LANGS) {
     cases.push({
       label: `${lang} /industries/${slug}`,
       head: industryHead({ params: { lang, slug } }) as Head,
+    });
+  // The answers section. Every published page, not a sample: each one carries
+  // its own hand-written title and description rather than a shared template,
+  // so one page overflowing says nothing about the next.
+  cases.push({ label: `${lang} /answers`, head: answersHead({ params: { lang } }) as Head });
+  for (const a of publishedAnswers)
+    cases.push({
+      label: `${lang} /answers/${a.slug}`,
+      head: answerHead({ params: { lang, slug: a.slug } }) as Head,
     });
   // `brandHead` is curried by brand, unlike the others.
   for (const brand of ["radiocom", "motorola"] as const) {

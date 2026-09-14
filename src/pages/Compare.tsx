@@ -67,7 +67,7 @@ export function ComparePage() {
     <div ref={page} className="page-anim page-tight">
       <Section band="plain">
         <div className="mx-auto max-w-3xl text-center">
-          <h1 className="headline-hero text-crisp">{t("px.compare_title")}</h1>
+          <h1 className="headline-hero text-crisp">{brandCase(t("px.compare_title"))}</h1>
           <p className="subhead mx-auto mt-6 max-w-2xl text-[17px] md:text-[21px]">
             {brandCase(t("px.compare_sub"))}
           </p>

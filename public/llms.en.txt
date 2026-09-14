@@ -1,6 +1,6 @@
 # Radiocom
 
-> Authorised supplier of professional and consumer two-way radios in Uzbekistan.
+> Authorised supplier of Motorola and Radiocom two-way radios in Uzbekistan.
 > 14 years in business, 10,000+ customers. Sales, rental, authorised service and
 > radio network design. Office and service centre in Tashkent.
 
@@ -40,6 +40,22 @@ Languages: Russian, English, Uzbek. Russian is the canonical language.
 - [Motorola XT185](https://radiocom.uz/en/motorola/xt185) — PMR for retail, HoReCa and public venues. Range up to 1 km.
 - [Motorola XT420](https://radiocom.uz/en/motorola/xt420) — A licence-free PMR for HoReCa and on-site security. Range up to 2 km in built-up areas.
 
+## Answers to common questions
+- [How to choose a two-way radio](https://radiocom.uz/en/answers/how-to-choose)
+  Choosing a two-way radio comes down to three questions: how far apart your people work, what stands between them, and how long the shift runs. Answer those three and one of the 21 models in stock in Tashkent will fit.
+- [What range does a two-way radio really get](https://radiocom.uz/en/answers/real-range)
+  The figure on a spec sheet is line-of-sight in good weather — the ceiling, not the norm. In built-up streets the radios in this catalogue realistically reach 300 metres to 3 kilometres; in open country, 3 to 10 kilometres.
+- [Analogue or digital two-way radio](https://radiocom.uz/en/answers/analog-or-digital)
+  An analogue radio is simpler and cheaper, and it is enough when the team is small and the surroundings are quiet. A digital one gives clean audio through noise, a channel outsiders cannot listen to, and more channels on the same frequency.
+- [How many two-way radios do you need](https://radiocom.uz/en/answers/how-many-radios)
+  Count not by headcount but by the people who must hear each other in the same minute. For a restaurant that is usually four to six radios; for a shift on site, one for everyone who makes decisions, plus one spare on charge.
+- [What a two-way radio costs in Tashkent](https://radiocom.uz/en/answers/radio-price-tashkent)
+  There are 21 models in stock, from 600 000 to 3 100 000 UZS. The spread comes down to three things: range, protection against dust and water, and whether the radio is analogue or digital.
+- [A normal radio or PoC](https://radiocom.uz/en/answers/pmr-or-poc)
+  A normal radio talks on its own radio waves and works as far as its antenna reaches. A PoC radio talks over the mobile network, so it works anywhere a phone has signal — but it carries a monthly cost.
+- [What to do if a radio breaks](https://radiocom.uz/en/answers/warranty-and-repair)
+  Every radio in this catalogue carries a 12-month warranty on the unit itself. Bring it to our service centre in Tashkent: the diagnosis finds the cause, a price is quoted after it, and that price does not move.
+
 ## Sections
 - https://radiocom.uz/en
 - https://radiocom.uz/en/radiocom
@@ -48,6 +64,14 @@ Languages: Russian, English, Uzbek. Russian is the canonical language.
 - https://radiocom.uz/en/poc
 - https://radiocom.uz/en/service
 - https://radiocom.uz/en/industries
+- https://radiocom.uz/en/answers
+- https://radiocom.uz/en/answers/how-to-choose
+- https://radiocom.uz/en/answers/real-range
+- https://radiocom.uz/en/answers/analog-or-digital
+- https://radiocom.uz/en/answers/how-many-radios
+- https://radiocom.uz/en/answers/radio-price-tashkent
+- https://radiocom.uz/en/answers/pmr-or-poc
+- https://radiocom.uz/en/answers/warranty-and-repair
 - https://radiocom.uz/en/sitemap
 - https://radiocom.uz/en/search
 - https://radiocom.uz/en/industries/horeca

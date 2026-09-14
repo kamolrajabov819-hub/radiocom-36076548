@@ -35,6 +35,7 @@ export function Footer() {
             <FLink to="/poc">{t("nav.poc")}</FLink>
             <FLink to="/service">{t("nav.service")}</FLink>
             <FLink to="/industries">{t("nav.industries")}</FLink>
+            <FLink to="/answers">{t("nav.answers")}</FLink>
             <FLink to="/search">{t("nav.search")}</FLink>
             <FLink to="/sitemap">{t("sitemap.title")}</FLink>
           </FooterCol>
@@ -123,6 +124,7 @@ function FLink({
     | "/poc"
     | "/service"
     | "/industries"
+    | "/answers"
     | "/search"
     | "/sitemap";
   children: React.ReactNode;

@@ -1,6 +1,6 @@
 # Radiocom
 
-> O'zbekistonda professional va havaskor radiostansiyalarning rasmiy yetkazib beruvchisi.
+> O'zbekistonda Motorola va Radiocom ratsiyalarining rasmiy yetkazib beruvchisi.
 > Bozorda 14 yil, 10 000+ mijoz. Savdo, ijara, vakolatli servis va radioaloqa
 > tizimlarini loyihalash. Ofis va servis markazi Toshkentda.
 
@@ -40,6 +40,22 @@ Tillar: rus, ingliz, o'zbek. Kanonik til — rus tili.
 - [Motorola XT185](https://radiocom.uz/uz/motorola/xt185) — Chakana savdo, HoReCa va jamoat joylari uchun PMR. Masofa 1 km gacha.
 - [Motorola XT420](https://radiocom.uz/uz/motorola/xt420) — HoReCa va obyekt qo'riqlash uchun litsenziyasiz PMR. Masofa shaharda 2 km gacha.
 
+## Ko'p beriladigan savollarga javoblar
+- [Ratsiyani qanday tanlash kerak](https://radiocom.uz/uz/answers/how-to-choose)
+  Ratsiya tanlash uchta savolga keladi: odamlar qanday masofada ishlaydi, ular orasida nima turibdi va smena necha soat davom etadi. Shu uchtasiga javob bering — Toshkentda mavjud 21 modeldan biri mos keladi.
+- [Ratsiyaning haqiqiy masofasi qanday](https://radiocom.uz/uz/answers/real-range)
+  Xususiyatlardagi raqam — yaxshi ob-havoda to'g'ridan-to'g'ri ko'rinish, ya'ni yuqori chegara. Zich qurilishda bu katalogdagi ratsiyalar haqiqatda 300 metrdan 3 kilometrgacha, ochiq joyda — 3 dan 10 kilometrgacha oladi.
+- [Analog yoki raqamli ratsiya](https://radiocom.uz/uz/answers/analog-or-digital)
+  Analog ratsiya sodda va arzon, odam kam va atrof tinch bo'lganda yetarli. Raqamli shovqinda toza ovoz, begonalar eshitolmaydigan kanal va o'sha chastotada ko'proq kanal beradi.
+- [Nechta ratsiya kerak](https://radiocom.uz/uz/answers/how-many-radios)
+  Shtat bo'yicha emas, bir daqiqada bir-birini eshitishi kerak bo'lgan odamlar bo'yicha hisoblang. Restoran uchun bu odatda 4–6 ratsiya, ob'ektdagi smena uchun — qaror qabul qiladigan har bir kishiga bittadan, ustiga quvvatda turadigan bitta zaxira.
+- [Toshkentda ratsiya qancha turadi](https://radiocom.uz/uz/answers/radio-price-tashkent)
+  Mavjud 21 model narxi 600 000 dan 3 100 000 so'mgacha. Farq uchta narsaga bog'liq: masofa, chang va suvdan himoya va ratsiya analog yoki raqamli ekani.
+- [Oddiy ratsiya yoki PoC](https://radiocom.uz/uz/answers/pmr-or-poc)
+  Oddiy ratsiya o'z radioto'lqinlarida gapiradi va antennasi yetgan joyda ishlaydi. PoC ratsiyasi mobil tarmoq orqali gapiradi, shuning uchun telefon tutadigan hamma joyda aloqa bor — lekin uning oylik to'lovi bor.
+- [Ratsiya buzilsa nima qilish kerak](https://radiocom.uz/uz/answers/warranty-and-repair)
+  Katalogdagi har bir ratsiyaga apparatning o'ziga 12 oy kafolat amal qiladi. Uni Toshkentdagi servisimizga olib keling: diagnostika sababni ko'rsatadi, undan keyin narx aytiladi va u boshqa o'zgarmaydi.
+
 ## Bo'limlar
 - https://radiocom.uz/uz
 - https://radiocom.uz/uz/radiocom
@@ -48,6 +64,14 @@ Tillar: rus, ingliz, o'zbek. Kanonik til — rus tili.
 - https://radiocom.uz/uz/poc
 - https://radiocom.uz/uz/service
 - https://radiocom.uz/uz/industries
+- https://radiocom.uz/uz/answers
+- https://radiocom.uz/uz/answers/how-to-choose
+- https://radiocom.uz/uz/answers/real-range
+- https://radiocom.uz/uz/answers/analog-or-digital
+- https://radiocom.uz/uz/answers/how-many-radios
+- https://radiocom.uz/uz/answers/radio-price-tashkent
+- https://radiocom.uz/uz/answers/pmr-or-poc
+- https://radiocom.uz/uz/answers/warranty-and-repair
 - https://radiocom.uz/uz/sitemap
 - https://radiocom.uz/uz/search
 - https://radiocom.uz/uz/industries/horeca

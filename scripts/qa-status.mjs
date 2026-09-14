@@ -33,6 +33,13 @@ const CASES = [
   ["/ru/radiocom/rcd-70/specs", 200, "a real model's specs"],
 
   // Parameters that match the route pattern but name nothing.
+  ["/ru/answers", 200, "the answers index"],
+  ["/ru/answers/how-to-choose", 200, "a published answer"],
+  // The licensing page is written but held as a draft. It must be as absent
+  // as a slug that never existed — a soft 200 would put an unconfirmed legal
+  // claim in front of a reader and in the index.
+  ["/ru/answers/radio-licence-uzbekistan", 404, "a drafted answer"],
+  ["/ru/answers/not-a-real-answer", 404, "unknown answer slug"],
   ["/ru/industries/not-a-real-industry", 404, "unknown industry slug"],
   ["/ru/industries/../../etc", 404, "unknown industry slug (traversal-shaped)"],
   ["/xx", 404, "unknown locale"],

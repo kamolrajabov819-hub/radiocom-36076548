@@ -623,6 +623,115 @@ export function faqSchema(items: { q: string; a: string }[], lang: SeoLang) {
   };
 }
 
+/**
+ * Article for an answers page.
+ *
+ * Deliberately *not* combined with `FAQPage` on the same node. A page may emit
+ * both — an `Article` describing the page and a `FAQPage` describing its
+ * follow-up questions — but they have to be separate top-level nodes. Nesting
+ * `mainEntity: FAQPage` inside an Article is the shape Google reads as a single
+ * confused node, and it suppresses both rich results rather than picking one.
+ *
+ * `speakable` points at the direct-answer paragraph. That paragraph is written
+ * to stand alone — it is the passage an answer engine quotes and the one a
+ * voice assistant reads — so it is the only part of the page worth marking.
+ */
+export function articleSchema(
+  opts: {
+    headline: string;
+    description: string;
+    path: string;
+    /** The two-sentence direct answer, verbatim as rendered. */
+    answer: string;
+    image?: string;
+  },
+  lang: SeoLang,
+) {
+  const url = absolute(localePath(lang, opts.path));
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": `${url}#article`,
+    headline: opts.headline,
+    description: opts.description,
+    inLanguage: lang,
+    url,
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    // The site is the author and the publisher. An invented byline would be a
+    // fabricated E-E-A-T signal, which is worse than none.
+    author: { "@id": `${SITE_URL}/#organization` },
+    publisher: { "@id": `${SITE_URL}/#organization` },
+    datePublished: CONTENT_DATE,
+    dateModified: CONTENT_DATE,
+    ...(opts.image ? { image: absolute(opts.image) } : {}),
+    abstract: opts.answer,
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["[data-direct-answer]"],
+    },
+  };
+}
+
+/**
+ * HowTo, for a page that is genuinely a procedure.
+ *
+ * Only one answers page qualifies. `HowTo` on a page that is really an article
+ * with subheadings is the kind of stretch that gets structured data ignored
+ * site-wide, so this is called from exactly one place and `verify-answers`
+ * asserts it stays that way.
+ */
+export function howToSchema(
+  opts: {
+    name: string;
+    description: string;
+    path: string;
+    steps: { name: string; text: string }[];
+  },
+  lang: SeoLang,
+) {
+  const url = absolute(localePath(lang, opts.path));
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "@id": `${url}#howto`,
+    name: opts.name,
+    description: opts.description,
+    inLanguage: lang,
+    step: opts.steps.map((s, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+      url: `${url}#step-${i + 1}`,
+    })),
+  };
+}
+
+/**
+ * Search-engine ownership tokens, emitted only when the environment supplies
+ * them.
+ *
+ * Google Search Console and Yandex.Webmaster both verify a property by a meta
+ * tag whose content is an opaque token. Hardcoding one would put a credential
+ * in the repository and make a re-verification a code change; leaving them out
+ * entirely means the property cannot be claimed at all. Reading them from the
+ * build environment is the middle path — set the variable in Netlify, redeploy,
+ * and the tag appears.
+ *
+ * Yandex matters here specifically. This is a Tashkent business, and Yandex
+ * holds real search share in Uzbekistan alongside Google; the site addressed
+ * neither webmaster tool before this.
+ */
+export function verificationMeta(): { name: string; content: string }[] {
+  const tokens: [string, string | undefined][] = [
+    ["google-site-verification", process.env.GOOGLE_SITE_VERIFICATION],
+    ["yandex-verification", process.env.YANDEX_VERIFICATION],
+  ];
+  return tokens
+    .filter((entry): entry is [string, string] => Boolean(entry[1]))
+    .map(([name, content]) => ({ name, content }));
+}
+
 /** The repair/service offering — feeds "ремонт рации Ташкент" style queries. */
 export function serviceSchema(
   opts: { name: string; description: string; path: string },

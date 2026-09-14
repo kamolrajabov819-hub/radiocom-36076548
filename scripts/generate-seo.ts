@@ -15,6 +15,7 @@ import { createHash } from "node:crypto";
 import { legacyCatalogTarget, products, visibleProducts } from "../src/data/products";
 import { specs } from "../src/data/specs";
 import { SITE_URL, LANGS, localePath, productPath, ORG_DESCRIPTION } from "../src/lib/seo";
+import { publishedAnswers } from "../src/data/answers";
 import { entries, renderSitemap } from "./lib/sitemap";
 
 // The page list and the XML renderer now live in `scripts/lib/sitemap.ts`,
@@ -108,7 +109,7 @@ const byBrand = visibleProducts.reduce<Record<string, typeof products>>((acc, p)
 const LLMS_COPY = {
   ru: {
     summary:
-      "Официальный поставщик профессиональных и любительских радиостанций в Узбекистане.\n" +
+      "Официальный поставщик раций Motorola и Radiocom в Узбекистане.\n" +
       "> 14 лет на рынке, 10 000+ клиентов. Продажа, аренда, авторизованный сервис и\n" +
       "> проектирование систем радиосвязи. Офис и сервисный центр в Ташкенте.",
     languages: "Языки: русский, английский, узбекский. Канонический язык — русский.",
@@ -118,6 +119,7 @@ const LLMS_COPY = {
     hours: "- Часы работы: Пн-Пт 09:00-18:00",
     catalogue: (n: number) => `## Каталог (${n} моделей)`,
     sections: "## Разделы",
+    answersHead: "## Ответы на частые вопросы",
     range: (v: string) => `Дальность ${v}.`,
     note:
       "## Примечание о дальности\nУказанная дальность рассчитана при прямой видимости и оптимальной погоде.\n" +
@@ -125,7 +127,7 @@ const LLMS_COPY = {
   },
   en: {
     summary:
-      "Authorised supplier of professional and consumer two-way radios in Uzbekistan.\n" +
+      "Authorised supplier of Motorola and Radiocom two-way radios in Uzbekistan.\n" +
       "> 14 years in business, 10,000+ customers. Sales, rental, authorised service and\n" +
       "> radio network design. Office and service centre in Tashkent.",
     languages: "Languages: Russian, English, Uzbek. Russian is the canonical language.",
@@ -135,6 +137,7 @@ const LLMS_COPY = {
     hours: "- Opening hours: Mon-Fri 09:00-18:00",
     catalogue: (n: number) => `## Catalogue (${n} models)`,
     sections: "## Sections",
+    answersHead: "## Answers to common questions",
     range: (v: string) => `Range ${v}.`,
     note:
       "## A note on range\nQuoted range assumes line of sight and good conditions.\n" +
@@ -142,7 +145,7 @@ const LLMS_COPY = {
   },
   uz: {
     summary:
-      "O'zbekistonda professional va havaskor radiostansiyalarning rasmiy yetkazib beruvchisi.\n" +
+      "O'zbekistonda Motorola va Radiocom ratsiyalarining rasmiy yetkazib beruvchisi.\n" +
       "> Bozorda 14 yil, 10 000+ mijoz. Savdo, ijara, vakolatli servis va radioaloqa\n" +
       "> tizimlarini loyihalash. Ofis va servis markazi Toshkentda.",
     languages: "Tillar: rus, ingliz, o'zbek. Kanonik til — rus tili.",
@@ -152,6 +155,7 @@ const LLMS_COPY = {
     hours: "- Ish vaqti: Du-Ju 09:00-18:00",
     catalogue: (n: number) => `## Katalog (${n} model)`,
     sections: "## Bo'limlar",
+    answersHead: "## Ko'p beriladigan savollarga javoblar",
     range: (v: string) => `Masofa ${v}.`,
     note:
       "## Masofa haqida izoh\nKo'rsatilgan masofa to'g'ridan-to'g'ri ko'rinish va qulay ob-havoda hisoblangan.\n" +
@@ -188,6 +192,11 @@ ${Object.entries(byBrand)
         .join("\n"),
   )
   .join("\n\n")}
+
+${c.answersHead}
+${publishedAnswers
+  .map((a) => `- [${a.question[lang]}](${SITE_URL}/${lang}/answers/${a.slug})\n  ${a.answer[lang]}`)
+  .join("\n")}
 
 ${c.sections}
 ${entries

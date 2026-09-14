@@ -22,6 +22,7 @@
 import { contentDate } from "./content-date";
 import { visibleProducts } from "../../src/data/products";
 import { INDUSTRY_SLUGS } from "../../src/data/industries";
+import { publishedAnswers } from "../../src/data/answers";
 import {
   SITE_URL,
   LANGS,
@@ -61,6 +62,19 @@ export const entries: Entry[] = [
   { path: "/poc", changefreq: "monthly", priority: "0.8" },
   { path: "/service", changefreq: "monthly", priority: "0.8" },
   { path: "/industries", changefreq: "monthly", priority: "0.7" },
+  // The answers section. Higher priority than it looks like it deserves,
+  // because these are the only pages on the site that target a question rather
+  // than a product — they are the entry point for everyone who does not yet
+  // know which radio they want, and the pages an AI answer engine can cite.
+  //
+  // `publishedAnswers`, not `answers`: a draft is written but unpublished, and
+  // listing one here would submit a URL that 404s.
+  { path: "/answers", changefreq: "monthly", priority: "0.8" },
+  ...publishedAnswers.map((a) => ({
+    path: `/answers/${a.slug}`,
+    changefreq: "monthly",
+    priority: "0.7",
+  })),
   // The HTML sitemap is the strongest honest lever on the algorithmic sitelinks
   // block — one page linking every route by its real name. It is deliberately
   // low priority: it is a map, not a destination.
