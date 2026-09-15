@@ -133,10 +133,17 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
                   params={{ brand: p.brandSlug, model: p.slug }}
                   className="group block rounded-[12px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-4"
                 >
+                  {/* Straight `image` now. This used to be `p.strip ?? p.image`,
+                      with the variants suppressed whenever `strip` was set —
+                      five Radiocom models had no product shot at all, so the
+                      chip showed the radio crudely cropped back out of their kit
+                      flat-lay, at a size no `@800` sibling was honest about. The
+                      15.09.26 shoot gave all five a real front shot, so the
+                      workaround and its suppressed srcSet both go. */}
                   <ModelStripItem
-                    image={p.strip ?? p.image}
-                    imageSmall={p.strip ? undefined : p.imageSmall}
-                    imageTiny={p.strip ? undefined : p.imageTiny}
+                    image={p.image}
+                    imageSmall={p.imageSmall}
+                    imageTiny={p.imageTiny}
                     label={shortName(p.name)}
                   />
                 </LocaleLink>

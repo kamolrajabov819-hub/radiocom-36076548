@@ -6,7 +6,7 @@ description: Query the RADIOCOM two-way radio catalogue — models, manufacturer
 # RADIOCOM catalogue
 
 RADIOCOM sells and services two-way radios in Tashkent, Uzbekistan. The
-catalogue holds 21 models across two brands: Radiocom RC
+catalogue holds 22 models across two brands: Radiocom RC
 (analogue RC, digital DMR RCD) and Motorola (Talkabout, XT, TLKR, CLP).
 
 ## MCP server

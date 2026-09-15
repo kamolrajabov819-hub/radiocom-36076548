@@ -852,3 +852,61 @@ records under `_agents.radiocom.uz` and the zone signed with DNSSEC, done at the
 DNS host by whoever controls the domain. Say the word and I will write the exact
 records out to paste.
 
+
+## The 15.09.26 photography — what landed, and the four things it did not answer
+
+62 images arrived in `c02609c`. 53 are two-way radios and are now the catalogue;
+`scripts/build-catalog-photos.ts` holds the mapping and the processing rules.
+Four loose ends, none of them blocking:
+
+### 1. Nine of the 62 are not radios
+
+Motorola MBP36XL, MBP481, Peekaboo, VM65 Connect and VM34, two unidentified
+Motorola audio monitors, and two Kodak units (C225 plus one more I could not
+name). They are parked in `docs/photography/monitors/`, outside `src/` so
+nothing bundles them, with a README listing each one.
+
+They have no home because `products.ts` is a catalogue of two-way radios.
+Giving them one means a new category — its own brand slug, routes, OG cards and
+three locales of copy. **What I need before that can start: the model name for
+the four I could not identify, and a price and spec set for all nine.** Those
+come off the price list. I will not guess them.
+
+### 2. T82 Extreme RSM is now published, on a price that is not on the price list
+
+`Motorola Talkabout T82 Extreme RSM` was hidden for two reasons: no photograph,
+and absence from the 29.06.26 price list. The shoot closed the first — the case
+with two radios and both remote speaker microphones is
+`t82-extreme-rsm-hero.webp`, and the microphones are what distinguish the SKU.
+
+The second is still open. The entry carries **1 700 000 сум**, the same figure
+as the plain T82 Extreme, and publishing it puts that number in front of
+customers and into `Offer` structured data. **Confirm it against the current
+price list, or send a correction.**
+
+### 3. One upload is a duplicate
+
+`RCD - 70 PRO frontside (2).webp` is the same frame as
+`RCD - 70 PRO frontside.webp` — different bytes, identical 744×1451 subject box.
+It is named in the `SKIPPED` table in `build-catalog-photos.ts` rather than used,
+because a gallery that shows the same photograph twice reads as a mistake. If it
+is meant to be a different angle, send the one you intended.
+
+### 4. Fifteen frames still carry the RADIOCOM watermark
+
+`InBox` on each product page pairs the parts list with the last gallery frame,
+and the only photographs that show what is actually in the box — charger,
+earpiece, spare battery, belt clip, laid out — are the older watermarked
+flat-lays. The new "with box" frames show a sealed retail box, which is a
+different claim, so the old ones stayed. They are reframed to match the rest of
+the set but the watermark is baked into the pixels.
+
+**An unwatermarked flat-lay per model would retire the last of the old
+photography.** Nine models need one: RCD-70/60/50/40/30, RC-50/20/10, and T72,
+XT185, T42 red, T42 blue, T62 red, T62 blue, TLKR T92 H2O.
+
+### Still hidden, still for the same reason
+
+`Motorola CLP 446` and `CLK 446` have no photograph in this shoot either, so they
+stay `hidden: true`. `verify-assets` now fails the build if a *visible* product
+ever has an empty `image`, so the pair cannot be un-hidden by accident.
