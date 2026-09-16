@@ -90,22 +90,21 @@ logo = logo.resize((LOGO_W, max(1, round(logo.height * LOGO_W / logo.width))), I
 import glob
 for path in sorted(glob.glob(os.path.join(src_root, "catalog", "*.webp"))):
     name = os.path.basename(path)
-    if "@800" in name:
+    if "@800" in name or "@400" in name:
         continue
     # Doubled backslash, deliberately: this Python lives inside a JS template
     # literal, which consumes a lone backslash before a non-escape character.
     # Written singly, the regex reaching Python matched any character where a
     # literal dot was meant. (No backticks in this block -- they would close
     # the template literal.)
-    m = re.match(r"^(.*)-(hero|device)\\.webp$", name)
+    m = re.match(r"^(.*)-hero\\.webp$", name)
     if not m:
         continue
-    slug = m.group(1)
-    # '-hero' wins where a model has both; '-device' is the cropped strip shot.
-    key = "product-" + slug
-    if key in plan and m.group(2) == "device":
-        continue
-    plan[key] = os.path.join("catalog", name)
+    # '-device' used to be a second, lower-priority source here: five Radiocom
+    # models had no product shot, so their card fell back to the radio cropped
+    # out of a kit flat-lay. The 15.09.26 shoot gave every model a real '-hero',
+    # so the fallback and its tie-break are gone.
+    plan["product-" + m.group(1)] = os.path.join("catalog", name)
 
 written, skipped = 0, []
 for slug, rel in plan.items():

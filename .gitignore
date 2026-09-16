@@ -43,3 +43,7 @@ gtm-reports/
 # Apple reference material (never shipped)
 refs/
 scripts/.tmp/
+
+# Studio originals for scripts/build-catalog-photos.ts (never shipped).
+# 2400x1792 camera files; they live in git history at c02609c.
+raw-catalog/

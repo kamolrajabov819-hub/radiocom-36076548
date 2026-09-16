@@ -35,7 +35,7 @@
  *
  * ── Every number here is traceable ──────────────────────────────────────────
  *
- * Figures come from `products.ts` and `specs.ts` and nowhere else — 21 visible
+ * Figures come from `products.ts` and `specs.ts` and nowhere else — 22 visible
  * models, 600 000–3 100 000 сум, 300 м–3 км in town against 3–10 км in the
  * open. `verify-answers` re-derives them from the catalogue and fails when the
  * prose and the data disagree, which is what stops the copy going stale the
@@ -84,7 +84,7 @@ export type Answer = {
    * interlock that stops an unconfirmed legal claim reaching production.
    *
    * One page is a draft today: `radio-licence-uzbekistan`. The catalogue proves
-   * 17 of 21 visible models publish 446.0–446.1 МГц and that four publish no
+   * 18 of 22 visible models publish 446.0–446.1 МГц and that four publish no
    * frequency at all, but whether that band is licence-exempt under Uzbek law
    * is a legal question this repository cannot settle. Clearing it needs the
    * actual Госкомсвязи РУз rule, not a better guess.
@@ -104,9 +104,9 @@ export const publishedAnswers: Answer[] = [
       uz: "Ratsiyani qanday tanlash kerak",
     },
     answer: {
-      ru: "Выбор рации сводится к трём вопросам: на каком расстоянии работают люди, что стоит между ними и сколько часов длится смена. Ответьте на эти три — и подойдёт одна из 21 модели, которые есть в наличии в Ташкенте.",
-      en: "Choosing a two-way radio comes down to three questions: how far apart your people work, what stands between them, and how long the shift runs. Answer those three and one of the 21 models in stock in Tashkent will fit.",
-      uz: "Ratsiya tanlash uchta savolga keladi: odamlar qanday masofada ishlaydi, ular orasida nima turibdi va smena necha soat davom etadi. Shu uchtasiga javob bering — Toshkentda mavjud 21 modeldan biri mos keladi.",
+      ru: "Выбор рации сводится к трём вопросам: на каком расстоянии работают люди, что стоит между ними и сколько часов длится смена. Ответьте на эти три — и подойдёт одна из 22 моделей, которые есть в наличии в Ташкенте.",
+      en: "Choosing a two-way radio comes down to three questions: how far apart your people work, what stands between them, and how long the shift runs. Answer those three and one of the 22 models in stock in Tashkent will fit.",
+      uz: "Ratsiya tanlash uchta savolga keladi: odamlar qanday masofada ishlaydi, ular orasida nima turibdi va smena necha soat davom etadi. Shu uchtasiga javob bering — Toshkentda mavjud 22 modeldan biri mos keladi.",
     },
     metaTitle: {
       ru: "Как выбрать рацию — 5 шагов",
@@ -114,9 +114,9 @@ export const publishedAnswers: Answer[] = [
       uz: "Ratsiyani qanday tanlash — 5 bosqich",
     },
     metaDesc: {
-      ru: "Как выбрать рацию: расстояние, препятствия, длительность смены, аналоговая или цифровая. Пять шагов и 21 модель в наличии в Ташкенте с ценами.",
-      en: "How to choose a two-way radio: distance, obstacles, shift length, analogue or digital. Five steps, and 21 models in stock in Tashkent with prices.",
-      uz: "Ratsiyani qanday tanlash: masofa, to'siqlar, smena uzunligi, analog yoki raqamli. Besh bosqich va Toshkentda narxlari bilan 21 model.",
+      ru: "Как выбрать рацию: расстояние, препятствия, длительность смены, аналоговая или цифровая. Пять шагов и 22 модели в наличии в Ташкенте с ценами.",
+      en: "How to choose a two-way radio: distance, obstacles, shift length, analogue or digital. Five steps, and 22 models in stock in Tashkent with prices.",
+      uz: "Ratsiyani qanday tanlash: masofa, to'siqlar, smena uzunligi, analog yoki raqamli. Besh bosqich va Toshkentda narxlari bilan 22 model.",
     },
     ogCard: "cutout/hands-compare-cutout.webp",
   },
@@ -200,9 +200,9 @@ export const publishedAnswers: Answer[] = [
       uz: "Toshkentda ratsiya qancha turadi",
     },
     answer: {
-      ru: "В наличии 21 модель по цене от 600 000 до 3 100 000 сум. Разброс объясняется тремя вещами: дальностью, защитой от пыли и воды и тем, аналоговая рация или цифровая.",
-      en: "There are 21 models in stock, from 600 000 to 3 100 000 UZS. The spread comes down to three things: range, protection against dust and water, and whether the radio is analogue or digital.",
-      uz: "Mavjud 21 model narxi 600 000 dan 3 100 000 so'mgacha. Farq uchta narsaga bog'liq: masofa, chang va suvdan himoya va ratsiya analog yoki raqamli ekani.",
+      ru: "В наличии 22 модели по цене от 600 000 до 3 100 000 сум. Разброс объясняется тремя вещами: дальностью, защитой от пыли и воды и тем, аналоговая рация или цифровая.",
+      en: "There are 22 models in stock, from 600 000 to 3 100 000 UZS. The spread comes down to three things: range, protection against dust and water, and whether the radio is analogue or digital.",
+      uz: "Mavjud 22 model narxi 600 000 dan 3 100 000 so'mgacha. Farq uchta narsaga bog'liq: masofa, chang va suvdan himoya va ratsiya analog yoki raqamli ekani.",
     },
     metaTitle: {
       ru: "Цена рации в Ташкенте — от 600 000 сум",
@@ -210,9 +210,9 @@ export const publishedAnswers: Answer[] = [
       uz: "Toshkentda ratsiya narxi — 600 000 so'mdan",
     },
     metaDesc: {
-      ru: "Сколько стоит рация в Ташкенте: 21 модель от 600 000 до 3 100 000 сум. От чего зависит цена, что входит в комплект и почему дешёвая выходит дороже.",
-      en: "What a two-way radio costs in Tashkent: 21 models from 600 000 to 3 100 000 UZS. What sets the price, what is in the box, and why cheap ends up dearer.",
-      uz: "Toshkentda ratsiya qancha turadi: 600 000 dan 3 100 000 so'mgacha 21 model. Narx nimaga bog'liq, komplektda nima bor va nega arzoni qimmatga tushadi.",
+      ru: "Сколько стоит рация в Ташкенте: 22 модели от 600 000 до 3 100 000 сум. От чего зависит цена, что входит в комплект и почему дешёвая выходит дороже.",
+      en: "What a two-way radio costs in Tashkent: 22 models from 600 000 to 3 100 000 UZS. What sets the price, what is in the box, and why cheap ends up dearer.",
+      uz: "Toshkentda ratsiya qancha turadi: 600 000 dan 3 100 000 so'mgacha 22 model. Narx nimaga bog'liq, komplektda nima bor va nega arzoni qimmatga tushadi.",
     },
     ogCard: "cutout/hands-scattered-cutout.webp",
   },

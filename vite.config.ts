@@ -19,6 +19,28 @@ export default defineConfig({
 
   vite: {
     define: { __CONTENT_DATE__: JSON.stringify(CONTENT_DATE) },
+
+    build: {
+      /**
+       * Never base64-inline a product photograph, however small it encodes.
+       *
+       * Vite inlines any asset under 4 KB as a `data:` URI. That is a good
+       * default for an icon and a bad one here, and the 15.09.26 photography
+       * made it bite: those frames sit on a pure white ground, white compresses
+       * to almost nothing, and six `@400` variants came out under the limit.
+       * Vite inlined them — 26 KB of base64 in the entry chunk, which every
+       * visitor then downloads on every page, including the pages that never
+       * show that radio. Measured: the entry chunk went 611 -> 640 KB and
+       * `qa-weight` failed on both its ceilings.
+       *
+       * base64 also costs a third more bytes than the file it encodes, and an
+       * inlined asset can never be cached separately or fetched in parallel.
+       * So: catalogue images are always emitted as files. Everything else keeps
+       * Vite's default, which is why this returns `undefined` rather than 0.
+       */
+      assetsInlineLimit: (filePath: string) =>
+        /[\\/]assets[\\/]catalog[\\/]/.test(filePath) ? false : undefined,
+    },
   },
 
   tanstackStart: {

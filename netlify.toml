@@ -100,7 +100,7 @@
 
 [[redirects]]
   from = "/ru/catalog/m-t82-extreme-rsm"
-  to = "/ru/motorola"
+  to = "/ru/motorola/t82-extreme-rsm"
   status = 301
   force = true
 
@@ -244,7 +244,7 @@
 
 [[redirects]]
   from = "/en/catalog/m-t82-extreme-rsm"
-  to = "/en/motorola"
+  to = "/en/motorola/t82-extreme-rsm"
   status = 301
   force = true
 
@@ -388,7 +388,7 @@
 
 [[redirects]]
   from = "/uz/catalog/m-t82-extreme-rsm"
-  to = "/uz/motorola"
+  to = "/uz/motorola/t82-extreme-rsm"
   status = 301
   force = true
 

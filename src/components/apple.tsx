@@ -1021,8 +1021,12 @@ export function ModelStripItem({
           }
           sizes={imageSmall ? "104px" : undefined}
           alt=""
-          width={152}
-          height={104}
+          /* 1:1, because every file in `src/assets/catalog` is now 1600x1600 —
+             `build-catalog-photos.ts` reframes the whole set to one square so a
+             single declaration is honest everywhere. 152x104 was the old
+             landscape guess and reserved a box the image never filled. */
+          width={1600}
+          height={1600}
           loading="lazy"
           decoding="async"
           className="max-h-[96px] w-auto object-contain mix-blend-multiply transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"

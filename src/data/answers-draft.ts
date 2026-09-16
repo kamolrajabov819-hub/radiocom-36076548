@@ -18,7 +18,7 @@
  * ── The one draft, and what would clear it ──────────────────────────────────
  *
  * `radio-licence-uzbekistan` is the highest-value page in the section and the
- * one this repository cannot finish. The catalogue proves 17 of 21 visible
+ * one this repository cannot finish. The catalogue proves 18 of 22 visible
  * models publish 446.0–446.1 МГц and that four publish no frequency at all.
  * Whether that band is licence-exempt under Uzbek law is a legal question no
  * file here can settle, and the site already implies an answer on the HoReCa
@@ -39,9 +39,9 @@ export const draftAnswers: Answer[] = [
       uz: "O'zbekistonda ratsiya uchun ruxsatnoma kerakmi",
     },
     answer: {
-      ru: "TODO-LEGAL: подтвердить у Госкомсвязи РУз и переписать одним предложением. Черновик: большинству раций из этого каталога — 17 из 21 модели работают в диапазоне 446.0–446.1 МГц — оформление частот не требуется. Для остальных моделей мы сопровождаем оформление сами.",
-      en: "TODO-LEGAL: confirm with the Uzbek communications regulator and rewrite in one sentence. Draft: most radios in this catalogue — 17 of 21 models operate on 446.0–446.1 MHz — need no frequency paperwork. For the rest we handle the filing ourselves.",
-      uz: "TODO-LEGAL: O'zbekiston Aloqa qo'mitasi bilan tasdiqlash va bitta gap bilan qayta yozish. Qoralama: bu katalogdagi ratsiyalarning ko'pchiligi — 21 modeldan 17 tasi 446.0–446.1 MGts diapazonida ishlaydi — chastota rasmiylashtirishni talab qilmaydi. Qolganlari uchun rasmiylashtirishni o'zimiz olib boramiz.",
+      ru: "TODO-LEGAL: подтвердить у Госкомсвязи РУз и переписать одним предложением. Черновик: большинству раций из этого каталога — 18 из 22 моделей работают в диапазоне 446.0–446.1 МГц — оформление частот не требуется. Для остальных моделей мы сопровождаем оформление сами.",
+      en: "TODO-LEGAL: confirm with the Uzbek communications regulator and rewrite in one sentence. Draft: most radios in this catalogue — 18 of 22 models operate on 446.0–446.1 MHz — need no frequency paperwork. For the rest we handle the filing ourselves.",
+      uz: "TODO-LEGAL: O'zbekiston Aloqa qo'mitasi bilan tasdiqlash va bitta gap bilan qayta yozish. Qoralama: bu katalogdagi ratsiyalarning ko'pchiligi — 22 modeldan 18 tasi 446.0–446.1 MGts diapazonida ishlaydi — chastota rasmiylashtirishni talab qilmaydi. Qolganlari uchun rasmiylashtirishni o'zimiz olib boramiz.",
     },
     metaTitle: {
       ru: "Нужно ли разрешение на рацию в Узбекистане",
@@ -69,9 +69,9 @@ export const draftContent: Record<string, AnswerContent> = {
           uz: "Katalog bo'yicha aniq bilganimiz",
         },
         body: {
-          ru: "17 из 21 модели в наличии указывают в характеристиках диапазон 446.0–446.1 МГц. Четыре модели — RCD-70, RCD-60, RCD-50 и Motorola T72 — частоту в характеристиках не публикуют, поэтому по ним ничего утверждать нельзя без данных производителя.",
-          en: "17 of the 21 models in stock state 446.0–446.1 MHz in their specifications. Four — the RCD-70, RCD-60, RCD-50 and Motorola T72 — publish no frequency, so nothing can be asserted about them without the manufacturer's data.",
-          uz: "Mavjud 21 modeldan 17 tasi xususiyatlarida 446.0–446.1 MGts diapazonini ko'rsatadi. To'rtta model — RCD-70, RCD-60, RCD-50 va Motorola T72 — chastotani e'lon qilmaydi, shuning uchun ishlab chiqaruvchi ma'lumotisiz ular haqida hech narsa aytib bo'lmaydi.",
+          ru: "18 из 22 моделей в наличии указывают в характеристиках диапазон 446.0–446.1 МГц. Четыре модели — RCD-70, RCD-60, RCD-50 и Motorola T72 — частоту в характеристиках не публикуют, поэтому по ним ничего утверждать нельзя без данных производителя.",
+          en: "18 of the 22 models in stock state 446.0–446.1 MHz in their specifications. Four — the RCD-70, RCD-60, RCD-50 and Motorola T72 — publish no frequency, so nothing can be asserted about them without the manufacturer's data.",
+          uz: "Mavjud 22 modeldan 18 tasi xususiyatlarida 446.0–446.1 MGts diapazonini ko'rsatadi. To'rtta model — RCD-70, RCD-60, RCD-50 va Motorola T72 — chastotani e'lon qilmaydi, shuning uchun ishlab chiqaruvchi ma'lumotisiz ular haqida hech narsa aytib bo'lmaydi.",
         },
       },
       {

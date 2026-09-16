@@ -149,17 +149,25 @@ const allContent: Record<string, (typeof answerContent)[string]> = {
   // losing it would leave this rule matching nothing while still reporting ok.
   const fmt = (n: number) => n.toLocaleString("ru-RU").replace(/[\u00A0 ,]/g, " ");
 
+  // Russian declines the noun after a numeral, and the two pages need different
+  // cases, so neither suffix can be a constant. It was one before — hardcoded
+  // «модель» and «модели», correct only while the catalogue held 21 — and the
+  // 22nd model made the gate demand the ungrammatical «22 модель».
+  //
+  // Nominative, as after a bare numeral: 21 модель, 22 модели, 25 моделей.
+  const nomModel = (n: number) =>
+    n % 10 === 1 && n % 100 !== 11
+      ? "модель"
+      : [2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100)
+        ? "модели"
+        : "моделей";
+  // Genitive, as after «из»: из 21 модели, из 22 моделей.
+  const genModel = (n: number) => (n % 10 === 1 && n % 100 !== 11 ? "модели" : "моделей");
+
+  const n = visibleProducts.length;
   const expected: { what: string; needle: string; on: string }[] = [
-    {
-      what: "visible model count",
-      needle: `${visibleProducts.length} модели`,
-      on: "how-to-choose",
-    },
-    {
-      what: "visible model count",
-      needle: `${visibleProducts.length} модель`,
-      on: "radio-price-tashkent",
-    },
+    { what: "visible model count", needle: `${n} ${genModel(n)}`, on: "how-to-choose" },
+    { what: "visible model count", needle: `${n} ${nomModel(n)}`, on: "radio-price-tashkent" },
     { what: "lowest price", needle: fmt(priced[0]), on: "radio-price-tashkent" },
     { what: "highest price", needle: fmt(priced.at(-1)!), on: "radio-price-tashkent" },
   ];

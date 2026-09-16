@@ -117,9 +117,27 @@ export function ProductSpecsPage() {
               <div className="flex justify-center">
                 <img
                   src={p.image}
+                  /* This card renders the radio 180px tall and had no `srcSet`
+                     at all, so it pulled the 1600px master into that slot — and
+                     did it eagerly, at high priority, competing with the real
+                     LCP. `imageSmall`/`imageTiny` are real imports on every
+                     product, so the browser can pick 400w here at DPR 1 and
+                     800w at DPR 2 instead. */
+                  srcSet={
+                    p.imageSmall
+                      ? [
+                          p.imageTiny && `${p.imageTiny} 400w`,
+                          `${p.imageSmall} 800w`,
+                          `${p.image} 1600w`,
+                        ]
+                          .filter(Boolean)
+                          .join(", ")
+                      : undefined
+                  }
+                  sizes={p.imageSmall ? "180px" : undefined}
                   alt=""
-                  width={1024}
-                  height={1024}
+                  width={1600}
+                  height={1600}
                   loading="eager"
                   decoding="sync"
                   fetchPriority="high"

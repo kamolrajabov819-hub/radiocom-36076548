@@ -275,11 +275,11 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
  * repo it is buildable, and it is the one place on the site where a buyer sees
  * the radio from more than one angle before committing.
  *
- * It renders only when the model actually has gallery frames. Twelve of the
- * twenty-one visible models do; the rest get no section rather than a hero
- * photograph shown twice under a heading promising a closer look. The stat
- * panels underneath carry the two range figures at display size — the numbers
- * that decide the purchase, stated once at a size that matches their weight.
+ * Twenty-one of the twenty-two visible models now carry gallery frames — it
+ * was twelve of twenty-one before the 15.09.26 shoot — so this section is the
+ * rule rather than the exception. The stat panels underneath carry the two
+ * range figures at display size: the numbers that decide the purchase, stated
+ * once at a size that matches their weight.
  */
 
 /**
@@ -291,11 +291,13 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
  * so the lookup has to be by index and has to tolerate a model that has the
  * master but not the variants.
  *
- * The descriptors are nominal: the variant pipeline scales by the longest
- * edge, so a portrait frame's `@800` is narrower than 800px. Measured across
- * all 56 routes this costs nothing — the browser never picks a too-small
- * candidate in these slots — but see TODO-content.md, because it is only
- * true for the slot sizes the page uses today.
+ * The descriptors are exact now, which they were not before. The variant
+ * pipeline scales by the longest edge, so a portrait frame's `@800` came out
+ * narrower than 800px and every descriptor here was nominal — true only for
+ * the slot sizes the page happened to use. `build-catalog-photos.ts` reframes
+ * the whole catalogue to 1600x1600, so `@800` is 800px wide and `@400` is
+ * 400px wide, for every frame. See TODO-content.md, where this was logged as a
+ * known inaccuracy.
  */
 function frameSrcSet(p: Product, i: number): string | undefined {
   if (!p.gallery?.length) {
@@ -310,12 +312,16 @@ function frameSrcSet(p: Product, i: number): string | undefined {
 
 function Design({ p, lang }: { p: Product; lang: Lang }) {
   const { t } = useTranslation();
-  // Nine of the twenty-one visible models have no gallery frames, and for those
-  // the whole section used to disappear — the page went from a shelf of numbers
-  // straight to the closing CTA and ended abruptly. The hero shot is the one
-  // frame every model has, so those pages get the same section built around it:
+  // One of the twenty-two visible models has no gallery frames — T82 Extreme
+  // RSM, whose only photograph is its kit shot — and for a model like that the
+  // whole section used to disappear: the page went from a shelf of numbers
+  // straight to the closing CTA and ended abruptly. The hero is the one frame
+  // every model has, so it gets the same section built around that instead:
   // one photograph, the same caption, the same stat panels. Fewer frames, not a
   // missing section.
+  //
+  // It was nine of twenty-one before the 15.09.26 shoot, which is the measure
+  // of what that photography closed.
   const gallery = p.gallery ?? [];
   const [wide, ...rest] = gallery.length ? gallery : [p.image];
   const spec = specs[p.id];
@@ -357,7 +363,7 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
             sizes="(min-width: 1280px) 1200px, 92vw"
             alt={`${p.name} — ${t("px.design")}`}
             width={1600}
-            height={1067}
+            height={1600}
             loading="lazy"
             decoding="async"
             // `multiply` for the same reason every other product image on the
@@ -452,7 +458,7 @@ function Design({ p, lang }: { p: Product; lang: Lang }) {
                 sizes="(min-width: 640px) 600px, 92vw"
                 alt={`${p.name} — ${i + 2}`}
                 width={1600}
-                height={1067}
+                height={1600}
                 loading="lazy"
                 decoding="async"
                 className="h-[clamp(220px,26vw,340px)] w-full object-contain mix-blend-multiply"
@@ -571,8 +577,8 @@ function InBox({ p, lang }: { p: Product; lang: Lang }) {
               alt=""
               loading="lazy"
               decoding="async"
-              width={1080}
-              height={1080}
+              width={1600}
+              height={1600}
               className="mx-auto h-auto w-full max-w-[380px] object-contain mix-blend-multiply"
             />
           </div>
