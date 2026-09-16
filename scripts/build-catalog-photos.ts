@@ -15,23 +15,29 @@
  *  1. **Crop**, for the three frames with the studio rig in shot — a softbox,
  *     a C-stand and white flats.
  *
- *  2. **Flatten.** The upload's ground is not white: it is a grey-lavender
+ *  2. **Matte.** The upload's ground is not white: it is a grey-lavender
  *     vignette, luminance 189-255, spreading up to 64 within a single frame.
  *     Every catalog `<img>` on this site is composited with
- *     `mix-blend-multiply` against a white page, so an unflattened frame would
- *     show as a grey rectangle in every card. The gradient is estimated by
- *     diffusing a 7% border ring inwards — 60 Gaussian passes at 1/8 scale,
- *     re-asserting the known border each pass — then divided out. That removes
- *     the vignette without ever having to find the subject's edge, which is why
- *     it is used here in preference to matting: a border flood-fill walks
- *     straight through the soft body shading and eats the black RCD-70, the
- *     white T42 bodies and the grey XT185, and a background-model matte leaves
- *     a halo where the contact reflection reads as subject. Measured: 48 of 53
- *     land on a border minimum of 240 or better, and the five that do not are
- *     exactly the frames where real subject matter touches the edge.
+ *     `mix-blend-multiply` against a white page, so the grey has to go.
+ *
+ *     It goes by matting, and **the product's own pixels are never modified**.
+ *     That is not a stylistic preference, it is the correction for how this
+ *     shipped the first time. The first version divided each pixel by the
+ *     background model — `pixel / bg * 255` — which does whiten the ground, but
+ *     applies the same multiplier to the radio. Measured on the frames it
+ *     mangled: the RCD-70's casing went from luminance 17.8 to 32.0, the
+ *     RCD-60's from 18.4 to 34.6, and the RC-50's from 21.2 to **44.5** — more
+ *     than doubled. Black radios rendered as grey ones and the whole catalogue
+ *     looked washed out. Nobody asked for the photographs to be re-graded; the
+ *     ask was to remove the background.
+ *
+ *     So: estimate the ground by diffusing a 7% border ring inwards, mark the
+ *     product where the frame departs from that estimate, and composite the
+ *     *original* pixels over white through that mask. Where alpha is 1 the
+ *     output is the upload, byte for byte.
  *
  *     Crop has to come first or the rig poisons the border ring the model is
- *     built from. On `Motorola_T42_Quad_with_box` that is the difference
+ *     built from. On `Motorola T42 Quad with box` that is the difference
  *     between a border minimum of 9 and of 178.
  *
  *  3. **Reframe**, which is what actually delivers "every radio in one
@@ -53,23 +59,38 @@
  * `build-poc-cutouts.ts`: it keeps `bun.lock` untouched. PIL and numpy are
  * present; scipy, rembg and ImageMagick are not.
  *
- * The 53 originals are not in the working tree. They are in git history at
- * commit `c02609c`, where they were uploaded, and this script deletes them from
- * `src/assets/raw-catalog/` after a successful run — the same bargain
- * `import-catalog-photos.ts` struck, for the same reason: 2400x1792 camera
- * files are ~5 MB that every clone would carry and no browser would ever
- * request, and `inventory-assets.ts` would count them as site assets. To re-run
- * this, restore them first:
+ * The 53 originals live at `raw-catalog/` in the repo root, gitignored, and
+ * they stay there: this script reads them on every run rather than consuming
+ * them. They sit outside `src/assets/` deliberately — `inventory-assets.ts`
+ * walks that tree and would list 53 camera files as site assets, and no clone
+ * should carry ~5 MB of pixels no browser will ever request. They are also in
+ * git history at `c02609c`, where they were uploaded, so to restore them:
  *
- *   mkdir -p src/assets/raw-catalog
+ *   mkdir -p raw-catalog
  *   git show --name-only --format= c02609c | while IFS= read -r f; do
- *     [ -n "$f" ] && git show "c02609c:$f" > "src/assets/raw-catalog/$f"
+ *     [ -n "$f" ] && git show "c02609c:$f" > "raw-catalog/$f"
  *   done
  *
+ * Rewriting a master invalidates three files derived from it — its `@800` and
+ * `@400` siblings and its `public/og/product-<slug>.jpg` card — and leaving
+ * those behind is exactly how the whitened radios reached production. The
+ * masters were corrected; the derivatives were not; and `srcSet` picks a
+ * derivative at most viewport sizes, so the fix was invisible. Measured on the
+ * files that shipped, the stale `@800` read luminance 16.4 where its own master
+ * read 7.2.
+ *
+ * So this script deletes them, which turns two gates that already exist into
+ * tripwires for that mistake: `verify-assets` requires every `@800`/`@400` that
+ * `products.ts` imports to be on disk, and `verify-seo` gate 21 requires every
+ * social card at exactly 1200x630. Skip the two follow-up commands and the
+ * build fails loudly rather than shipping last week's pixels.
+ *
  * Run: bun scripts/build-catalog-photos.ts
- * Then: bun scripts/build-image-variants.ts   (for the @800/@400 siblings)
+ * Then: bun scripts/build-image-variants.ts   (the @800/@400 siblings)
+ *       bun scripts/build-og-images.ts        (the social cards)
  */
 import { spawnSync } from "node:child_process";
+import { existsSync, rmSync } from "node:fs";
 
 /**
  * `uploaded filename` -> `slug-variant`, built by looking at all 53 frames.
@@ -210,10 +231,11 @@ export const KEPT = [
 
 const PY = `
 import json, os, sys
+from collections import deque
 import numpy as np
 from PIL import Image, ImageFilter
 
-SRC, DST = "src/assets/raw-catalog", "src/assets/catalog"
+SRC, DST = "raw-catalog", "src/assets/catalog"
 OUT, QUALITY = 1600, 82
 # Locate the subject on the flattened frame. The ground is 255 by then; 248
 # leaves room for encoder noise without reaching into a contact reflection.
@@ -222,6 +244,9 @@ FIND = 248
 # is tall is held to TARGET_W instead, so a four-radio group scales down only as
 # far as its own width demands.
 TARGET_H, TARGET_W = 0.82, 0.88
+# A pixel is product when it differs from the background model by DIFF and is
+# darker than DARK. See matte() for the measurement behind both.
+DIFF, DARK, FEATHER = 18.0, 215.0, 1.0
 # Diffusion parameters for the background model. A wide blur over few passes
 # looked equivalent and ran six times faster, and for 52 of the 53 frames it
 # was — but 'Motorola T42 Frontside (2).webp' carries the steepest vignette in
@@ -245,42 +270,81 @@ CROPS = {
     "motorola-talkabout-t42-triple with box.webp": (0.06, 0.28, 0.93, 1.00),
 }
 
-def flatten(im):
-    """Divide out the studio gradient so the ground lands on pure white."""
+def matte(im):
+    """Cut the studio ground away. Never touch the product's own pixels."""
     W, H = im.size
     s = im.resize((max(8, W // 8), max(8, H // 8)), Image.LANCZOS)
-    a = np.asarray(s).astype(np.float32)
-    h, w, _ = a.shape
+    a8 = np.asarray(s).astype(np.float32)
+    h, w, _ = a8.shape
     b = max(3, int(min(h, w) * 0.07))
     ring = np.zeros((h, w), bool)
     ring[:b, :] = ring[-b:, :] = ring[:, :b] = ring[:, -b:] = True
 
-    # The ring is "known background" — but a subject that runs off the frame
-    # sits inside it and gets divided out to white. That is not hypothetical:
-    # the two battery covers in 'Motorola T42 corner side.webp' reach y=0.94H,
-    # just inside a 7% ring, and came out bleached from black to silver.
-    #
-    # So reject the ring's own outliers instead of hand-tuning a width per
-    # image: anything meaningfully darker than the ring's median is subject,
-    # not ground, and is left for the diffusion to fill in from its neighbours.
-    lum = 0.299 * a[:, :, 0] + 0.587 * a[:, :, 1] + 0.114 * a[:, :, 2]
-    known = ring & (lum >= np.median(lum[ring]) - 12)
-    # A ring that is mostly subject leaves the model nothing to stand on, so
-    # below 60% surviving, trust the whole ring and accept the local error.
+    # The ring is "known background" - but a subject that runs off the frame
+    # sits inside it and would be matted away. That is not hypothetical: the two
+    # battery covers in 'Motorola T42 corner side.webp' reach y=0.94H, just
+    # inside a 7% ring. So reject the ring's own outliers instead of hand-tuning
+    # a width per image: anything meaningfully darker than the ring's median is
+    # subject, not ground.
+    lum8 = 0.299 * a8[:, :, 0] + 0.587 * a8[:, :, 1] + 0.114 * a8[:, :, 2]
+    known = ring & (lum8 >= np.median(lum8[ring]) - 12)
     if known.sum() < ring.sum() * 0.6:
         known = ring
-    est = a.copy()
+
+    est = a8.copy()
     for _ in range(PASSES):
         est = np.asarray(
             Image.fromarray(np.clip(est, 0, 255).astype(np.uint8))
                  .filter(ImageFilter.GaussianBlur(BLUR))
         ).astype(np.float32)
-        est[known] = a[known]           # the border is measured, never guessed
+        est[known] = a8[known]          # the border is measured, never guessed
     bg = np.asarray(
         Image.fromarray(np.clip(est, 0, 255).astype(np.uint8)).resize((W, H), Image.BICUBIC)
     ).astype(np.float32)
-    flat = np.clip(np.asarray(im).astype(np.float32) / np.maximum(bg, 1.0) * 255.0, 0, 255)
-    return flat.astype(np.uint8)
+
+    a = np.asarray(im).astype(np.float32)
+    d = np.abs(a - bg).max(axis=2)
+    lum = 0.299 * a[:, :, 0] + 0.587 * a[:, :, 1] + 0.114 * a[:, :, 2]
+
+    # Two conditions, and the second is what keeps the soft cast shadow out.
+    # Measured on 'RCD - 70 PRO frontside.webp': pixels differing from the
+    # background model by >= DIFF have a median luminance of 41 inside the
+    # product and 238 in the shadow beside it, whose darkest pixel is 226. A
+    # cast shadow on a light ground simply never gets as dark as a product.
+    core = (d >= DIFF) & (lum < DARK)
+
+    cm = Image.fromarray((core * 255).astype(np.uint8))
+    cm = cm.filter(ImageFilter.MaxFilter(5)).filter(ImageFilter.MinFilter(5))
+    # Fill enclosed holes, which is how a light body rides back in: the white
+    # T42 casings are far above DARK, but they are ringed by the dark antenna,
+    # seams and belt clip, so the silhouette closes around them.
+    solid = fill_holes(np.asarray(cm) > 127)
+
+    alpha = np.asarray(
+        Image.fromarray((solid * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(FEATHER))
+    ).astype(np.float32) / 255.0
+    out = a * alpha[..., None] + 255.0 * (1.0 - alpha[..., None])
+    return np.clip(out, 0, 255).astype(np.uint8)
+
+def fill_holes(mask):
+    """True where mask is True or enclosed by it. BFS inward from the border."""
+    h, w = mask.shape
+    outside = np.zeros((h, w), bool)
+    q = deque()
+    for x in range(w):
+        for y in (0, h - 1):
+            if not mask[y, x] and not outside[y, x]:
+                outside[y, x] = True; q.append((y, x))
+    for y in range(h):
+        for x in (0, w - 1):
+            if not mask[y, x] and not outside[y, x]:
+                outside[y, x] = True; q.append((y, x))
+    while q:
+        y, x = q.popleft()
+        for ny, nx in ((y+1, x), (y-1, x), (y, x+1), (y, x-1)):
+            if 0 <= ny < h and 0 <= nx < w and not mask[ny, nx] and not outside[ny, nx]:
+                outside[ny, nx] = True; q.append((ny, nx))
+    return ~outside
 
 def subject_box(a):
     lum = 0.299 * a[:, :, 0] + 0.587 * a[:, :, 1] + 0.114 * a[:, :, 2]
@@ -299,8 +363,9 @@ for name, stem in sorted(PHOTO_MAP.items(), key=lambda kv: kv[1]):
     if not os.path.exists(path):
         raise SystemExit(
             f"missing upload: {path}\\n"
-            "The originals live in git history at c02609c, not in the working "
-            "tree. See the header of this file for the restore command."
+            "The originals are gitignored at raw-catalog/ and archived in git "
+            "history at c02609c. See the header of this file for how to "
+            "restore them."
         )
     im = Image.open(path).convert("RGB")
 
@@ -309,7 +374,7 @@ for name, stem in sorted(PHOTO_MAP.items(), key=lambda kv: kv[1]):
         W, H = im.size
         im = im.crop((int(l * W), int(t * H), int(r * W), int(b * H)))
 
-    flat = flatten(im)
+    flat = matte(im)
     box = subject_box(flat)
     if box is None:
         raise SystemExit(f"{name}: no subject found above luma {FIND}")
@@ -355,6 +420,18 @@ for stem in KEPT:
     x0, y0, x1, y1 = box
     sw, sh = x1 - x0, y1 - y0
     side = max(sh / TARGET_H, sw / TARGET_W)
+
+    # This pass reads and writes the same path, so a re-run would re-encode a
+    # frame it has already framed. The geometry is stable - measured across
+    # four frames, a second pass reproduced the subject box to the pixel - but
+    # the WebP generation loss is not, and it accumulates on every run. On an
+    # already-framed frame side recomputes to 1602 against OUT=1600, so
+    # "square at OUT, and side within 1% of it" identifies that case exactly.
+    if im.size == (OUT, OUT) and abs(side - OUT) / OUT < 0.01:
+        rows.append((stem + " (kept, framed)", sw, sh,
+                     round(100 * sh / side), round(100 * sw / side), -1))
+        continue
+
     cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
     bg = (255, 255, 255, 0) if alpha else (255, 255, 255)
     canvas = Image.new("RGBA" if alpha else "RGB", (int(round(side)), int(round(side))), bg)
@@ -362,17 +439,39 @@ for stem in KEPT:
     if canvas.size[0] != OUT:
         canvas = canvas.resize((OUT, OUT), Image.LANCZOS)
     canvas.save(path, "WEBP", quality=QUALITY, method=6)
-    rows.append((stem + " (kept)", sw, sh, round(100 * sh / side), round(100 * sw / side), -1))
+    rows.append((stem + " (kept, reframed)", sw, sh, round(100 * sh / side), round(100 * sw / side), -1))
 
 print(f"  {'stem':<26}{'subject':>12}{'height':>8}{'width':>7}{'edge':>7}")
 for r in rows:
     print(f"  {r[0]:<26}{str(r[1]) + 'x' + str(r[2]):>12}{str(r[3]) + '%':>8}{str(r[4]) + '%':>7}{('-' if r[5] < 0 else str(r[5])):>7}")
-print(f"\\n  {len(rows)} written to {DST} at {OUT}x{OUT} ({len(rows) - len(KEPT)} from the shoot, {len(KEPT)} kept frames reframed)")
+print(f"\\n  {len(rows)} written to {DST} at {OUT}x{OUT} ({len(rows) - len(KEPT)} from the shoot, {len(KEPT)} kept frames)")
 `;
 
 const r = spawnSync("python3", ["-c", PY, JSON.stringify(PHOTO_MAP), JSON.stringify(KEPT)], {
   stdio: "inherit",
 });
+if (r.status === 0) {
+  // Every file derived from a master this run rewrote is now stale. Dropping
+  // them here is what makes `verify` catch a half-finished regeneration — see
+  // the note in the header on how the whitened radios reached production.
+  let dropped = 0;
+  const drop = (path: string) => {
+    if (!existsSync(path)) return;
+    rmSync(path);
+    dropped++;
+  };
+  for (const stem of [...Object.values(PHOTO_MAP), ...KEPT]) {
+    drop(`src/assets/catalog/${stem}@800.webp`);
+    drop(`src/assets/catalog/${stem}@400.webp`);
+    // `build-og-images.ts` builds one card per `*-hero.webp`, named for the
+    // slug the stem carries.
+    const hero = /^(.*)-hero$/.exec(stem);
+    if (hero) drop(`public/og/product-${hero[1]}.jpg`);
+  }
+  console.log(`\n  dropped ${dropped} stale derivative(s). Now run:`);
+  console.log("    bun scripts/build-image-variants.ts");
+  console.log("    bun scripts/build-og-images.ts");
+}
 if (Object.keys(SKIPPED).length) {
   console.log(`\n  skipped ${Object.keys(SKIPPED).length}:`);
   for (const [f, why] of Object.entries(SKIPPED)) console.log(`    ${f} — ${why}`);

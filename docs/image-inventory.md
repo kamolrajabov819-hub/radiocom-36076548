@@ -7,146 +7,146 @@ which the script leaves alone.
 - **279** local source images
 - **107** `@800` responsive variants
 - **0** `.asset.json` CDN pointers (no local bytes)
-- Total local weight: **20.2 MB**
+- Total local weight: **19.2 MB**
 
 ## Local source images
 
 | File | Format | Dimensions | Ratio | Size | Alpha | @800 |
 |---|---|---|---|---|---|---|
 | `bento-network-light.jpg` | jpg | 1400×1400 | 1:1 | 35 KB | no | — |
-| `catalog/rc-10-box.webp` | webp | 1600×1600 | 1:1 | 167 KB | no | yes |
-| `catalog/rc-10-box@400.webp` | webp | 400×400 | 1:1 | 14 KB | no | — |
-| `catalog/rc-10-hero.webp` | webp | 1600×1600 | 1:1 | 84 KB | no | yes |
-| `catalog/rc-10-hero@400.webp` | webp | 400×400 | 1:1 | 5 KB | no | — |
-| `catalog/rc-10-kit.webp` | webp | 1600×1600 | 1:1 | 63 KB | no | yes |
+| `catalog/rc-10-box.webp` | webp | 1600×1600 | 1:1 | 106 KB | no | yes |
+| `catalog/rc-10-box@400.webp` | webp | 400×400 | 1:1 | 11 KB | no | — |
+| `catalog/rc-10-hero.webp` | webp | 1600×1600 | 1:1 | 68 KB | no | yes |
+| `catalog/rc-10-hero@400.webp` | webp | 400×400 | 1:1 | 4 KB | no | — |
+| `catalog/rc-10-kit.webp` | webp | 1600×1600 | 1:1 | 62 KB | no | yes |
 | `catalog/rc-10-kit@400.webp` | webp | 400×400 | 1:1 | 12 KB | no | — |
-| `catalog/rc-20-box.webp` | webp | 1600×1600 | 1:1 | 127 KB | no | yes |
-| `catalog/rc-20-box@400.webp` | webp | 400×400 | 1:1 | 8 KB | no | — |
-| `catalog/rc-20-hero.webp` | webp | 1600×1600 | 1:1 | 44 KB | no | yes |
-| `catalog/rc-20-hero@400.webp` | webp | 400×400 | 1:1 | 4 KB | no | — |
-| `catalog/rc-20-kit.webp` | webp | 1600×1600 | 1:1 | 72 KB | no | yes |
+| `catalog/rc-20-box.webp` | webp | 1600×1600 | 1:1 | 150 KB | no | yes |
+| `catalog/rc-20-box@400.webp` | webp | 400×400 | 1:1 | 11 KB | no | — |
+| `catalog/rc-20-hero.webp` | webp | 1600×1600 | 1:1 | 36 KB | no | yes |
+| `catalog/rc-20-hero@400.webp` | webp | 400×400 | 1:1 | 3 KB | no | — |
+| `catalog/rc-20-kit.webp` | webp | 1600×1600 | 1:1 | 69 KB | no | yes |
 | `catalog/rc-20-kit@400.webp` | webp | 400×400 | 1:1 | 12 KB | no | — |
-| `catalog/rc-50-box.webp` | webp | 1600×1600 | 1:1 | 162 KB | no | yes |
-| `catalog/rc-50-box@400.webp` | webp | 400×400 | 1:1 | 9 KB | no | — |
-| `catalog/rc-50-hero.webp` | webp | 1600×1600 | 1:1 | 58 KB | no | yes |
+| `catalog/rc-50-box.webp` | webp | 1600×1600 | 1:1 | 121 KB | no | yes |
+| `catalog/rc-50-box@400.webp` | webp | 400×400 | 1:1 | 8 KB | no | — |
+| `catalog/rc-50-hero.webp` | webp | 1600×1600 | 1:1 | 54 KB | no | yes |
 | `catalog/rc-50-hero@400.webp` | webp | 400×400 | 1:1 | 3 KB | no | — |
-| `catalog/rc-50-kit.webp` | webp | 1600×1600 | 1:1 | 46 KB | no | yes |
+| `catalog/rc-50-kit.webp` | webp | 1600×1600 | 1:1 | 45 KB | no | yes |
 | `catalog/rc-50-kit@400.webp` | webp | 400×400 | 1:1 | 8 KB | no | — |
-| `catalog/rcd-30-box.webp` | webp | 1600×1600 | 1:1 | 106 KB | no | yes |
-| `catalog/rcd-30-box@400.webp` | webp | 400×400 | 1:1 | 8 KB | no | — |
-| `catalog/rcd-30-hero.webp` | webp | 1600×1600 | 1:1 | 65 KB | no | yes |
+| `catalog/rcd-30-box.webp` | webp | 1600×1600 | 1:1 | 81 KB | no | yes |
+| `catalog/rcd-30-box@400.webp` | webp | 400×400 | 1:1 | 7 KB | no | — |
+| `catalog/rcd-30-hero.webp` | webp | 1600×1600 | 1:1 | 51 KB | no | yes |
 | `catalog/rcd-30-hero@400.webp` | webp | 400×400 | 1:1 | 3 KB | no | — |
-| `catalog/rcd-30-kit.webp` | webp | 1600×1600 | 1:1 | 59 KB | no | yes |
+| `catalog/rcd-30-kit.webp` | webp | 1600×1600 | 1:1 | 58 KB | no | yes |
 | `catalog/rcd-30-kit@400.webp` | webp | 400×400 | 1:1 | 10 KB | no | — |
-| `catalog/rcd-40-box.webp` | webp | 1600×1600 | 1:1 | 163 KB | no | yes |
-| `catalog/rcd-40-box@400.webp` | webp | 400×400 | 1:1 | 11 KB | no | — |
-| `catalog/rcd-40-hero.webp` | webp | 1600×1600 | 1:1 | 104 KB | no | yes |
-| `catalog/rcd-40-hero@400.webp` | webp | 400×400 | 1:1 | 4 KB | no | — |
+| `catalog/rcd-40-box.webp` | webp | 1600×1600 | 1:1 | 121 KB | no | yes |
+| `catalog/rcd-40-box@400.webp` | webp | 400×400 | 1:1 | 8 KB | no | — |
+| `catalog/rcd-40-hero.webp` | webp | 1600×1600 | 1:1 | 89 KB | no | yes |
+| `catalog/rcd-40-hero@400.webp` | webp | 400×400 | 1:1 | 3 KB | no | — |
 | `catalog/rcd-40-kit.webp` | webp | 1600×1600 | 1:1 | 70 KB | no | yes |
 | `catalog/rcd-40-kit@400.webp` | webp | 400×400 | 1:1 | 10 KB | no | — |
-| `catalog/rcd-50-box.webp` | webp | 1600×1600 | 1:1 | 182 KB | no | yes |
-| `catalog/rcd-50-box@400.webp` | webp | 400×400 | 1:1 | 15 KB | no | — |
-| `catalog/rcd-50-hero.webp` | webp | 1600×1600 | 1:1 | 89 KB | no | yes |
-| `catalog/rcd-50-hero@400.webp` | webp | 400×400 | 1:1 | 5 KB | no | — |
-| `catalog/rcd-50-kit.webp` | webp | 1600×1600 | 1:1 | 81 KB | no | yes |
+| `catalog/rcd-50-box.webp` | webp | 1600×1600 | 1:1 | 134 KB | no | yes |
+| `catalog/rcd-50-box@400.webp` | webp | 400×400 | 1:1 | 13 KB | no | — |
+| `catalog/rcd-50-hero.webp` | webp | 1600×1600 | 1:1 | 76 KB | no | yes |
+| `catalog/rcd-50-hero@400.webp` | webp | 400×400 | 1:1 | 4 KB | no | — |
+| `catalog/rcd-50-kit.webp` | webp | 1600×1600 | 1:1 | 78 KB | no | yes |
 | `catalog/rcd-50-kit@400.webp` | webp | 400×400 | 1:1 | 11 KB | no | — |
-| `catalog/rcd-60-box.webp` | webp | 1600×1600 | 1:1 | 211 KB | no | yes |
+| `catalog/rcd-60-box.webp` | webp | 1600×1600 | 1:1 | 174 KB | no | yes |
 | `catalog/rcd-60-box@400.webp` | webp | 400×400 | 1:1 | 20 KB | no | — |
-| `catalog/rcd-60-hero.webp` | webp | 1600×1600 | 1:1 | 70 KB | no | yes |
+| `catalog/rcd-60-hero.webp` | webp | 1600×1600 | 1:1 | 61 KB | no | yes |
 | `catalog/rcd-60-hero@400.webp` | webp | 400×400 | 1:1 | 4 KB | no | — |
-| `catalog/rcd-60-kit.webp` | webp | 1600×1600 | 1:1 | 69 KB | no | yes |
-| `catalog/rcd-60-kit@400.webp` | webp | 400×400 | 1:1 | 10 KB | no | — |
-| `catalog/rcd-70-box.webp` | webp | 1600×1600 | 1:1 | 124 KB | no | yes |
-| `catalog/rcd-70-box@400.webp` | webp | 400×400 | 1:1 | 13 KB | no | — |
-| `catalog/rcd-70-hero.webp` | webp | 1600×1600 | 1:1 | 46 KB | no | yes |
+| `catalog/rcd-60-kit.webp` | webp | 1600×1600 | 1:1 | 67 KB | no | yes |
+| `catalog/rcd-60-kit@400.webp` | webp | 400×400 | 1:1 | 11 KB | no | — |
+| `catalog/rcd-70-box.webp` | webp | 1600×1600 | 1:1 | 85 KB | no | yes |
+| `catalog/rcd-70-box@400.webp` | webp | 400×400 | 1:1 | 11 KB | no | — |
+| `catalog/rcd-70-hero.webp` | webp | 1600×1600 | 1:1 | 36 KB | no | yes |
 | `catalog/rcd-70-hero@400.webp` | webp | 400×400 | 1:1 | 4 KB | no | — |
-| `catalog/rcd-70-kit.webp` | webp | 1600×1600 | 1:1 | 74 KB | no | yes |
+| `catalog/rcd-70-kit.webp` | webp | 1600×1600 | 1:1 | 72 KB | no | yes |
 | `catalog/rcd-70-kit@400.webp` | webp | 400×400 | 1:1 | 12 KB | no | — |
-| `catalog/t42-blue-box.webp` | webp | 1600×1600 | 1:1 | 121 KB | **yes** (cutout) | yes |
+| `catalog/t42-blue-box.webp` | webp | 1600×1600 | 1:1 | 118 KB | **yes** (cutout) | yes |
 | `catalog/t42-blue-box@400.webp` | webp | 400×400 | 1:1 | 21 KB | **yes** (cutout) | — |
-| `catalog/t42-blue-hero.webp` | webp | 1600×1600 | 1:1 | 33 KB | no | yes |
-| `catalog/t42-blue-hero@400.webp` | webp | 400×400 | 1:1 | 3 KB | no | — |
-| `catalog/t42-blue-pair.webp` | webp | 1600×1600 | 1:1 | 78 KB | no | yes |
-| `catalog/t42-blue-pair@400.webp` | webp | 400×400 | 1:1 | 10 KB | no | — |
-| `catalog/t42-quad-back.webp` | webp | 1600×1600 | 1:1 | 46 KB | no | yes |
+| `catalog/t42-blue-hero.webp` | webp | 1600×1600 | 1:1 | 62 KB | no | yes |
+| `catalog/t42-blue-hero@400.webp` | webp | 400×400 | 1:1 | 5 KB | no | — |
+| `catalog/t42-blue-pair.webp` | webp | 1600×1600 | 1:1 | 62 KB | no | yes |
+| `catalog/t42-blue-pair@400.webp` | webp | 400×400 | 1:1 | 8 KB | no | — |
+| `catalog/t42-quad-back.webp` | webp | 1600×1600 | 1:1 | 45 KB | no | yes |
 | `catalog/t42-quad-back@400.webp` | webp | 400×400 | 1:1 | 8 KB | no | — |
-| `catalog/t42-quad-case.webp` | webp | 1600×1600 | 1:1 | 58 KB | no | yes |
+| `catalog/t42-quad-case.webp` | webp | 1600×1600 | 1:1 | 56 KB | no | yes |
 | `catalog/t42-quad-case@400.webp` | webp | 400×400 | 1:1 | 8 KB | no | — |
-| `catalog/t42-quad-hero.webp` | webp | 1600×1600 | 1:1 | 62 KB | no | yes |
-| `catalog/t42-quad-hero@400.webp` | webp | 400×400 | 1:1 | 10 KB | no | — |
-| `catalog/t42-red-box.webp` | webp | 1600×1600 | 1:1 | 122 KB | **yes** (cutout) | yes |
+| `catalog/t42-quad-hero.webp` | webp | 1600×1600 | 1:1 | 68 KB | no | yes |
+| `catalog/t42-quad-hero@400.webp` | webp | 400×400 | 1:1 | 12 KB | no | — |
+| `catalog/t42-red-box.webp` | webp | 1600×1600 | 1:1 | 119 KB | **yes** (cutout) | yes |
 | `catalog/t42-red-box@400.webp` | webp | 400×400 | 1:1 | 21 KB | **yes** (cutout) | — |
-| `catalog/t42-red-hero.webp` | webp | 1600×1600 | 1:1 | 87 KB | no | yes |
-| `catalog/t42-red-hero@400.webp` | webp | 400×400 | 1:1 | 7 KB | no | — |
-| `catalog/t42-red-pair.webp` | webp | 1600×1600 | 1:1 | 93 KB | no | yes |
-| `catalog/t42-red-pair@400.webp` | webp | 400×400 | 1:1 | 10 KB | no | — |
-| `catalog/t42-triple-back.webp` | webp | 1600×1600 | 1:1 | 49 KB | no | yes |
-| `catalog/t42-triple-back@400.webp` | webp | 400×400 | 1:1 | 6 KB | no | — |
+| `catalog/t42-red-hero.webp` | webp | 1600×1600 | 1:1 | 72 KB | no | yes |
+| `catalog/t42-red-hero@400.webp` | webp | 400×400 | 1:1 | 6 KB | no | — |
+| `catalog/t42-red-pair.webp` | webp | 1600×1600 | 1:1 | 72 KB | no | yes |
+| `catalog/t42-red-pair@400.webp` | webp | 400×400 | 1:1 | 8 KB | no | — |
+| `catalog/t42-triple-back.webp` | webp | 1600×1600 | 1:1 | 46 KB | no | yes |
+| `catalog/t42-triple-back@400.webp` | webp | 400×400 | 1:1 | 7 KB | no | — |
 | `catalog/t42-triple-case.webp` | webp | 1600×1600 | 1:1 | 63 KB | no | yes |
-| `catalog/t42-triple-case@400.webp` | webp | 400×400 | 1:1 | 9 KB | no | — |
-| `catalog/t42-triple-hero.webp` | webp | 1600×1600 | 1:1 | 64 KB | no | yes |
-| `catalog/t42-triple-hero@400.webp` | webp | 400×400 | 1:1 | 11 KB | no | — |
-| `catalog/t42-triple-side.webp` | webp | 1600×1600 | 1:1 | 25 KB | no | yes |
-| `catalog/t42-triple-side@400.webp` | webp | 400×400 | 1:1 | 4 KB | no | — |
-| `catalog/t62-blue-box.webp` | webp | 1600×1600 | 1:1 | 133 KB | **yes** (cutout) | yes |
-| `catalog/t62-blue-box@400.webp` | webp | 400×400 | 1:1 | 24 KB | **yes** (cutout) | — |
-| `catalog/t62-blue-case.webp` | webp | 1600×1600 | 1:1 | 97 KB | no | yes |
-| `catalog/t62-blue-case@400.webp` | webp | 400×400 | 1:1 | 14 KB | no | — |
-| `catalog/t62-blue-hero.webp` | webp | 1600×1600 | 1:1 | 74 KB | no | yes |
-| `catalog/t62-blue-hero@400.webp` | webp | 400×400 | 1:1 | 5 KB | no | — |
-| `catalog/t62-red-case.webp` | webp | 1600×1600 | 1:1 | 66 KB | no | yes |
-| `catalog/t62-red-case@400.webp` | webp | 400×400 | 1:1 | 8 KB | no | — |
-| `catalog/t62-red-hero.webp` | webp | 1600×1600 | 1:1 | 62 KB | no | yes |
-| `catalog/t62-red-hero@400.webp` | webp | 400×400 | 1:1 | 5 KB | no | — |
-| `catalog/t62-red-kit.webp` | webp | 1600×1600 | 1:1 | 134 KB | **yes** (cutout) | yes |
-| `catalog/t62-red-kit@400.webp` | webp | 400×400 | 1:1 | 24 KB | **yes** (cutout) | — |
-| `catalog/t72-box.webp` | webp | 1600×1600 | 1:1 | 115 KB | **yes** (cutout) | yes |
+| `catalog/t42-triple-case@400.webp` | webp | 400×400 | 1:1 | 8 KB | no | — |
+| `catalog/t42-triple-hero.webp` | webp | 1600×1600 | 1:1 | 75 KB | no | yes |
+| `catalog/t42-triple-hero@400.webp` | webp | 400×400 | 1:1 | 14 KB | no | — |
+| `catalog/t42-triple-side.webp` | webp | 1600×1600 | 1:1 | 24 KB | no | yes |
+| `catalog/t42-triple-side@400.webp` | webp | 400×400 | 1:1 | 5 KB | no | — |
+| `catalog/t62-blue-box.webp` | webp | 1600×1600 | 1:1 | 130 KB | **yes** (cutout) | yes |
+| `catalog/t62-blue-box@400.webp` | webp | 400×400 | 1:1 | 23 KB | **yes** (cutout) | — |
+| `catalog/t62-blue-case.webp` | webp | 1600×1600 | 1:1 | 82 KB | no | yes |
+| `catalog/t62-blue-case@400.webp` | webp | 400×400 | 1:1 | 13 KB | no | — |
+| `catalog/t62-blue-hero.webp` | webp | 1600×1600 | 1:1 | 58 KB | no | yes |
+| `catalog/t62-blue-hero@400.webp` | webp | 400×400 | 1:1 | 4 KB | no | — |
+| `catalog/t62-red-case.webp` | webp | 1600×1600 | 1:1 | 79 KB | no | yes |
+| `catalog/t62-red-case@400.webp` | webp | 400×400 | 1:1 | 11 KB | no | — |
+| `catalog/t62-red-hero.webp` | webp | 1600×1600 | 1:1 | 49 KB | no | yes |
+| `catalog/t62-red-hero@400.webp` | webp | 400×400 | 1:1 | 4 KB | no | — |
+| `catalog/t62-red-kit.webp` | webp | 1600×1600 | 1:1 | 131 KB | **yes** (cutout) | yes |
+| `catalog/t62-red-kit@400.webp` | webp | 400×400 | 1:1 | 23 KB | **yes** (cutout) | — |
+| `catalog/t72-box.webp` | webp | 1600×1600 | 1:1 | 114 KB | **yes** (cutout) | yes |
 | `catalog/t72-box@400.webp` | webp | 400×400 | 1:1 | 20 KB | **yes** (cutout) | — |
-| `catalog/t72-hero.webp` | webp | 1600×1600 | 1:1 | 35 KB | no | yes |
+| `catalog/t72-hero.webp` | webp | 1600×1600 | 1:1 | 30 KB | no | yes |
 | `catalog/t72-hero@400.webp` | webp | 400×400 | 1:1 | 6 KB | no | — |
-| `catalog/t82-box.webp` | webp | 1600×1600 | 1:1 | 86 KB | no | yes |
-| `catalog/t82-box@400.webp` | webp | 400×400 | 1:1 | 11 KB | no | — |
-| `catalog/t82-case.webp` | webp | 1600×1600 | 1:1 | 101 KB | no | yes |
-| `catalog/t82-case@400.webp` | webp | 400×400 | 1:1 | 14 KB | no | — |
-| `catalog/t82-extreme-back.webp` | webp | 1600×1600 | 1:1 | 43 KB | no | yes |
-| `catalog/t82-extreme-back@400.webp` | webp | 400×400 | 1:1 | 5 KB | no | — |
-| `catalog/t82-extreme-box.webp` | webp | 1600×1600 | 1:1 | 172 KB | no | yes |
-| `catalog/t82-extreme-box@400.webp` | webp | 400×400 | 1:1 | 10 KB | no | — |
-| `catalog/t82-extreme-case.webp` | webp | 1600×1600 | 1:1 | 136 KB | no | yes |
+| `catalog/t82-box.webp` | webp | 1600×1600 | 1:1 | 70 KB | no | yes |
+| `catalog/t82-box@400.webp` | webp | 400×400 | 1:1 | 10 KB | no | — |
+| `catalog/t82-case.webp` | webp | 1600×1600 | 1:1 | 78 KB | no | yes |
+| `catalog/t82-case@400.webp` | webp | 400×400 | 1:1 | 12 KB | no | — |
+| `catalog/t82-extreme-back.webp` | webp | 1600×1600 | 1:1 | 32 KB | no | yes |
+| `catalog/t82-extreme-back@400.webp` | webp | 400×400 | 1:1 | 4 KB | no | — |
+| `catalog/t82-extreme-box.webp` | webp | 1600×1600 | 1:1 | 131 KB | no | yes |
+| `catalog/t82-extreme-box@400.webp` | webp | 400×400 | 1:1 | 9 KB | no | — |
+| `catalog/t82-extreme-case.webp` | webp | 1600×1600 | 1:1 | 121 KB | no | yes |
 | `catalog/t82-extreme-case@400.webp` | webp | 400×400 | 1:1 | 17 KB | no | — |
-| `catalog/t82-extreme-hero.webp` | webp | 1600×1600 | 1:1 | 101 KB | no | yes |
-| `catalog/t82-extreme-hero@400.webp` | webp | 400×400 | 1:1 | 9 KB | no | — |
-| `catalog/t82-extreme-pair.webp` | webp | 1600×1600 | 1:1 | 122 KB | no | yes |
-| `catalog/t82-extreme-pair@400.webp` | webp | 400×400 | 1:1 | 8 KB | no | — |
-| `catalog/t82-extreme-quad-back.webp` | webp | 1600×1600 | 1:1 | 135 KB | no | yes |
-| `catalog/t82-extreme-quad-back@400.webp` | webp | 400×400 | 1:1 | 11 KB | no | — |
-| `catalog/t82-extreme-quad-box.webp` | webp | 1600×1600 | 1:1 | 109 KB | no | yes |
+| `catalog/t82-extreme-hero.webp` | webp | 1600×1600 | 1:1 | 71 KB | no | yes |
+| `catalog/t82-extreme-hero@400.webp` | webp | 400×400 | 1:1 | 8 KB | no | — |
+| `catalog/t82-extreme-pair.webp` | webp | 1600×1600 | 1:1 | 90 KB | no | yes |
+| `catalog/t82-extreme-pair@400.webp` | webp | 400×400 | 1:1 | 7 KB | no | — |
+| `catalog/t82-extreme-quad-back.webp` | webp | 1600×1600 | 1:1 | 103 KB | no | yes |
+| `catalog/t82-extreme-quad-back@400.webp` | webp | 400×400 | 1:1 | 10 KB | no | — |
+| `catalog/t82-extreme-quad-box.webp` | webp | 1600×1600 | 1:1 | 89 KB | no | yes |
 | `catalog/t82-extreme-quad-box@400.webp` | webp | 400×400 | 1:1 | 9 KB | no | — |
-| `catalog/t82-extreme-quad-case.webp` | webp | 1600×1600 | 1:1 | 159 KB | no | yes |
+| `catalog/t82-extreme-quad-case.webp` | webp | 1600×1600 | 1:1 | 139 KB | no | yes |
 | `catalog/t82-extreme-quad-case@400.webp` | webp | 400×400 | 1:1 | 19 KB | no | — |
-| `catalog/t82-extreme-quad-hero.webp` | webp | 1600×1600 | 1:1 | 91 KB | no | yes |
+| `catalog/t82-extreme-quad-hero.webp` | webp | 1600×1600 | 1:1 | 71 KB | no | yes |
 | `catalog/t82-extreme-quad-hero@400.webp` | webp | 400×400 | 1:1 | 9 KB | no | — |
-| `catalog/t82-extreme-rsm-hero.webp` | webp | 1600×1600 | 1:1 | 175 KB | no | yes |
-| `catalog/t82-extreme-rsm-hero@400.webp` | webp | 400×400 | 1:1 | 22 KB | no | — |
-| `catalog/t82-extreme-side.webp` | webp | 1600×1600 | 1:1 | 37 KB | no | yes |
-| `catalog/t82-extreme-side@400.webp` | webp | 400×400 | 1:1 | 5 KB | no | — |
-| `catalog/t82-hero.webp` | webp | 1600×1600 | 1:1 | 52 KB | no | yes |
-| `catalog/t82-hero@400.webp` | webp | 400×400 | 1:1 | 5 KB | no | — |
-| `catalog/t82-side.webp` | webp | 1600×1600 | 1:1 | 75 KB | no | yes |
-| `catalog/t82-side@400.webp` | webp | 400×400 | 1:1 | 9 KB | no | — |
-| `catalog/tlkr-t92h2o-hero.webp` | webp | 1600×1600 | 1:1 | 43 KB | no | yes |
+| `catalog/t82-extreme-rsm-hero.webp` | webp | 1600×1600 | 1:1 | 130 KB | no | yes |
+| `catalog/t82-extreme-rsm-hero@400.webp` | webp | 400×400 | 1:1 | 19 KB | no | — |
+| `catalog/t82-extreme-side.webp` | webp | 1600×1600 | 1:1 | 30 KB | no | yes |
+| `catalog/t82-extreme-side@400.webp` | webp | 400×400 | 1:1 | 4 KB | no | — |
+| `catalog/t82-hero.webp` | webp | 1600×1600 | 1:1 | 44 KB | no | yes |
+| `catalog/t82-hero@400.webp` | webp | 400×400 | 1:1 | 4 KB | no | — |
+| `catalog/t82-side.webp` | webp | 1600×1600 | 1:1 | 60 KB | no | yes |
+| `catalog/t82-side@400.webp` | webp | 400×400 | 1:1 | 8 KB | no | — |
+| `catalog/tlkr-t92h2o-hero.webp` | webp | 1600×1600 | 1:1 | 37 KB | no | yes |
 | `catalog/tlkr-t92h2o-hero@400.webp` | webp | 400×400 | 1:1 | 5 KB | no | — |
-| `catalog/tlkr-t92h2o-kit.webp` | webp | 1600×1600 | 1:1 | 184 KB | **yes** (cutout) | yes |
+| `catalog/tlkr-t92h2o-kit.webp` | webp | 1600×1600 | 1:1 | 183 KB | **yes** (cutout) | yes |
 | `catalog/tlkr-t92h2o-kit@400.webp` | webp | 400×400 | 1:1 | 23 KB | **yes** (cutout) | — |
-| `catalog/tlkr-t92h2o-views.webp` | webp | 1600×1600 | 1:1 | 82 KB | no | yes |
-| `catalog/tlkr-t92h2o-views@400.webp` | webp | 400×400 | 1:1 | 11 KB | no | — |
-| `catalog/xt185-hero.webp` | webp | 1600×1600 | 1:1 | 84 KB | no | yes |
+| `catalog/tlkr-t92h2o-views.webp` | webp | 1600×1600 | 1:1 | 69 KB | no | yes |
+| `catalog/tlkr-t92h2o-views@400.webp` | webp | 400×400 | 1:1 | 10 KB | no | — |
+| `catalog/xt185-hero.webp` | webp | 1600×1600 | 1:1 | 69 KB | no | yes |
 | `catalog/xt185-hero@400.webp` | webp | 400×400 | 1:1 | 4 KB | no | — |
-| `catalog/xt185-kit.webp` | webp | 1600×1600 | 1:1 | 126 KB | **yes** (cutout) | yes |
+| `catalog/xt185-kit.webp` | webp | 1600×1600 | 1:1 | 125 KB | **yes** (cutout) | yes |
 | `catalog/xt185-kit@400.webp` | webp | 400×400 | 1:1 | 21 KB | **yes** (cutout) | — |
-| `catalog/xt420-box.webp` | webp | 1600×1600 | 1:1 | 113 KB | no | yes |
-| `catalog/xt420-box@400.webp` | webp | 400×400 | 1:1 | 13 KB | no | — |
-| `catalog/xt420-hero.webp` | webp | 1600×1600 | 1:1 | 82 KB | no | yes |
+| `catalog/xt420-box.webp` | webp | 1600×1600 | 1:1 | 93 KB | no | yes |
+| `catalog/xt420-box@400.webp` | webp | 400×400 | 1:1 | 12 KB | no | — |
+| `catalog/xt420-hero.webp` | webp | 1600×1600 | 1:1 | 66 KB | no | yes |
 | `catalog/xt420-hero@400.webp` | webp | 400×400 | 1:1 | 3 KB | no | — |
 | `companies-trust/adliya-vazirligi.webp` | webp | 156×154 | 1.01 | 8 KB | **yes** (cutout) | — |
 | `companies-trust/agmk.webp` | webp | 156×154 | 1.01 | 6 KB | **yes** (cutout) | — |
@@ -297,73 +297,73 @@ which the script leaves alone.
 
 | File | Dimensions | Size |
 |---|---|---|
-| `catalog/rc-10-box@800.webp` | 800×800 | 51 KB |
-| `catalog/rc-10-hero@800.webp` | 800×800 | 20 KB |
+| `catalog/rc-10-box@800.webp` | 800×800 | 37 KB |
+| `catalog/rc-10-hero@800.webp` | 800×800 | 16 KB |
 | `catalog/rc-10-kit@800.webp` | 800×800 | 29 KB |
-| `catalog/rc-20-box@800.webp` | 800×800 | 34 KB |
-| `catalog/rc-20-hero@800.webp` | 800×800 | 12 KB |
+| `catalog/rc-20-box@800.webp` | 800×800 | 46 KB |
+| `catalog/rc-20-hero@800.webp` | 800×800 | 10 KB |
 | `catalog/rc-20-kit@800.webp` | 800×800 | 33 KB |
-| `catalog/rc-50-box@800.webp` | 800×800 | 42 KB |
+| `catalog/rc-50-box@800.webp` | 800×800 | 35 KB |
 | `catalog/rc-50-hero@800.webp` | 800×800 | 11 KB |
 | `catalog/rc-50-kit@800.webp` | 800×800 | 21 KB |
-| `catalog/rcd-30-box@800.webp` | 800×800 | 28 KB |
-| `catalog/rcd-30-hero@800.webp` | 800×800 | 12 KB |
-| `catalog/rcd-30-kit@800.webp` | 800×800 | 26 KB |
-| `catalog/rcd-40-box@800.webp` | 800×800 | 41 KB |
-| `catalog/rcd-40-hero@800.webp` | 800×800 | 20 KB |
-| `catalog/rcd-40-kit@800.webp` | 800×800 | 30 KB |
-| `catalog/rcd-50-box@800.webp` | 800×800 | 53 KB |
-| `catalog/rcd-50-hero@800.webp` | 800×800 | 20 KB |
-| `catalog/rcd-50-kit@800.webp` | 800×800 | 34 KB |
-| `catalog/rcd-60-box@800.webp` | 800×800 | 65 KB |
-| `catalog/rcd-60-hero@800.webp` | 800×800 | 16 KB |
-| `catalog/rcd-60-kit@800.webp` | 800×800 | 29 KB |
-| `catalog/rcd-70-box@800.webp` | 800×800 | 42 KB |
-| `catalog/rcd-70-hero@800.webp` | 800×800 | 13 KB |
+| `catalog/rcd-30-box@800.webp` | 800×800 | 22 KB |
+| `catalog/rcd-30-hero@800.webp` | 800×800 | 10 KB |
+| `catalog/rcd-30-kit@800.webp` | 800×800 | 25 KB |
+| `catalog/rcd-40-box@800.webp` | 800×800 | 31 KB |
+| `catalog/rcd-40-hero@800.webp` | 800×800 | 17 KB |
+| `catalog/rcd-40-kit@800.webp` | 800×800 | 29 KB |
+| `catalog/rcd-50-box@800.webp` | 800×800 | 42 KB |
+| `catalog/rcd-50-hero@800.webp` | 800×800 | 17 KB |
+| `catalog/rcd-50-kit@800.webp` | 800×800 | 33 KB |
+| `catalog/rcd-60-box@800.webp` | 800×800 | 62 KB |
+| `catalog/rcd-60-hero@800.webp` | 800×800 | 14 KB |
+| `catalog/rcd-60-kit@800.webp` | 800×800 | 28 KB |
+| `catalog/rcd-70-box@800.webp` | 800×800 | 32 KB |
+| `catalog/rcd-70-hero@800.webp` | 800×800 | 11 KB |
 | `catalog/rcd-70-kit@800.webp` | 800×800 | 31 KB |
 | `catalog/t42-blue-box@800.webp` | 800×800 | 50 KB |
-| `catalog/t42-blue-hero@800.webp` | 800×800 | 9 KB |
-| `catalog/t42-blue-pair@800.webp` | 800×800 | 25 KB |
-| `catalog/t42-quad-back@800.webp` | 800×800 | 18 KB |
-| `catalog/t42-quad-case@800.webp` | 800×800 | 22 KB |
-| `catalog/t42-quad-hero@800.webp` | 800×800 | 26 KB |
-| `catalog/t42-red-box@800.webp` | 800×800 | 50 KB |
-| `catalog/t42-red-hero@800.webp` | 800×800 | 23 KB |
-| `catalog/t42-red-pair@800.webp` | 800×800 | 25 KB |
-| `catalog/t42-triple-back@800.webp` | 800×800 | 15 KB |
-| `catalog/t42-triple-case@800.webp` | 800×800 | 24 KB |
-| `catalog/t42-triple-hero@800.webp` | 800×800 | 28 KB |
+| `catalog/t42-blue-hero@800.webp` | 800×800 | 17 KB |
+| `catalog/t42-blue-pair@800.webp` | 800×800 | 20 KB |
+| `catalog/t42-quad-back@800.webp` | 800×800 | 19 KB |
+| `catalog/t42-quad-case@800.webp` | 800×800 | 21 KB |
+| `catalog/t42-quad-hero@800.webp` | 800×800 | 30 KB |
+| `catalog/t42-red-box@800.webp` | 800×800 | 48 KB |
+| `catalog/t42-red-hero@800.webp` | 800×800 | 19 KB |
+| `catalog/t42-red-pair@800.webp` | 800×800 | 21 KB |
+| `catalog/t42-triple-back@800.webp` | 800×800 | 16 KB |
+| `catalog/t42-triple-case@800.webp` | 800×800 | 23 KB |
+| `catalog/t42-triple-hero@800.webp` | 800×800 | 35 KB |
 | `catalog/t42-triple-side@800.webp` | 800×800 | 10 KB |
 | `catalog/t62-blue-box@800.webp` | 800×800 | 56 KB |
-| `catalog/t62-blue-case@800.webp` | 800×800 | 37 KB |
-| `catalog/t62-blue-hero@800.webp` | 800×800 | 15 KB |
-| `catalog/t62-red-case@800.webp` | 800×800 | 22 KB |
-| `catalog/t62-red-hero@800.webp` | 800×800 | 14 KB |
-| `catalog/t62-red-kit@800.webp` | 800×800 | 55 KB |
+| `catalog/t62-blue-case@800.webp` | 800×800 | 34 KB |
+| `catalog/t62-blue-hero@800.webp` | 800×800 | 12 KB |
+| `catalog/t62-red-case@800.webp` | 800×800 | 28 KB |
+| `catalog/t62-red-hero@800.webp` | 800×800 | 11 KB |
+| `catalog/t62-red-kit@800.webp` | 800×800 | 56 KB |
 | `catalog/t72-box@800.webp` | 800×800 | 47 KB |
-| `catalog/t72-hero@800.webp` | 800×800 | 14 KB |
-| `catalog/t82-box@800.webp` | 800×800 | 29 KB |
-| `catalog/t82-case@800.webp` | 800×800 | 36 KB |
-| `catalog/t82-extreme-back@800.webp` | 800×800 | 13 KB |
-| `catalog/t82-extreme-box@800.webp` | 800×800 | 43 KB |
-| `catalog/t82-extreme-case@800.webp` | 800×800 | 47 KB |
-| `catalog/t82-extreme-hero@800.webp` | 800×800 | 28 KB |
-| `catalog/t82-extreme-pair@800.webp` | 800×800 | 27 KB |
-| `catalog/t82-extreme-quad-back@800.webp` | 800×800 | 35 KB |
-| `catalog/t82-extreme-quad-box@800.webp` | 800×800 | 27 KB |
-| `catalog/t82-extreme-quad-case@800.webp` | 800×800 | 55 KB |
-| `catalog/t82-extreme-quad-hero@800.webp` | 800×800 | 27 KB |
-| `catalog/t82-extreme-rsm-hero@800.webp` | 800×800 | 62 KB |
-| `catalog/t82-extreme-side@800.webp` | 800×800 | 12 KB |
-| `catalog/t82-hero@800.webp` | 800×800 | 15 KB |
-| `catalog/t82-side@800.webp` | 800×800 | 23 KB |
-| `catalog/tlkr-t92h2o-hero@800.webp` | 800×800 | 13 KB |
+| `catalog/t72-hero@800.webp` | 800×800 | 13 KB |
+| `catalog/t82-box@800.webp` | 800×800 | 25 KB |
+| `catalog/t82-case@800.webp` | 800×800 | 31 KB |
+| `catalog/t82-extreme-back@800.webp` | 800×800 | 11 KB |
+| `catalog/t82-extreme-box@800.webp` | 800×800 | 33 KB |
+| `catalog/t82-extreme-case@800.webp` | 800×800 | 46 KB |
+| `catalog/t82-extreme-hero@800.webp` | 800×800 | 22 KB |
+| `catalog/t82-extreme-pair@800.webp` | 800×800 | 20 KB |
+| `catalog/t82-extreme-quad-back@800.webp` | 800×800 | 28 KB |
+| `catalog/t82-extreme-quad-box@800.webp` | 800×800 | 25 KB |
+| `catalog/t82-extreme-quad-case@800.webp` | 800×800 | 52 KB |
+| `catalog/t82-extreme-quad-hero@800.webp` | 800×800 | 23 KB |
+| `catalog/t82-extreme-rsm-hero@800.webp` | 800×800 | 50 KB |
+| `catalog/t82-extreme-side@800.webp` | 800×800 | 10 KB |
+| `catalog/t82-hero@800.webp` | 800×800 | 12 KB |
+| `catalog/t82-side@800.webp` | 800×800 | 20 KB |
+| `catalog/tlkr-t92h2o-hero@800.webp` | 800×800 | 12 KB |
 | `catalog/tlkr-t92h2o-kit@800.webp` | 800×800 | 65 KB |
-| `catalog/tlkr-t92h2o-views@800.webp` | 800×800 | 28 KB |
-| `catalog/xt185-hero@800.webp` | 800×800 | 17 KB |
+| `catalog/tlkr-t92h2o-views@800.webp` | 800×800 | 26 KB |
+| `catalog/xt185-hero@800.webp` | 800×800 | 13 KB |
 | `catalog/xt185-kit@800.webp` | 800×800 | 51 KB |
-| `catalog/xt420-box@800.webp` | 800×800 | 34 KB |
-| `catalog/xt420-hero@800.webp` | 800×800 | 16 KB |
+| `catalog/xt420-box@800.webp` | 800×800 | 30 KB |
+| `catalog/xt420-hero@800.webp` | 800×800 | 12 KB |
 | `cutout/four-aligned-cutout@800.webp` | 800×651 | 60 KB |
 | `cutout/four-arranged-cutout@800.webp` | 800×606 | 68 KB |
 | `cutout/hand-radio-cutout@800.webp` | 597×800 | 32 KB |
