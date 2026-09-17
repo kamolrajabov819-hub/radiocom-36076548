@@ -286,7 +286,7 @@ export function IndustryPage() {
             {brandCase(t("brand.radiocom_title"))} <ChevronRight className="h-4 w-4" aria-hidden />
           </LocaleLink>
           <LocaleLink to="/motorola" className="pill-link">
-            {t("brand.motorola_title")} <ChevronRight className="h-4 w-4" aria-hidden />
+            {brandCase(t("brand.motorola_title"))} <ChevronRight className="h-4 w-4" aria-hidden />
           </LocaleLink>
         </div>
       </Section>

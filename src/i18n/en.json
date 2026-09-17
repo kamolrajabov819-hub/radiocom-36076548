@@ -386,7 +386,7 @@
   "catalog": {
     "title_a": "Multi-brand",
     "title_b": "catalog.",
-    "sub": "22 Motorola and Radiocom models — from a light radio for the dining room to a rugged digital one for a building site. Prices, specs and stock in Tashkent.",
+    "sub": "21 Motorola and Radiocom models — from a light radio for the dining room to a rugged digital one for a building site. Prices, specs and stock in Tashkent.",
     "filters": "Filters",
     "categories": "Categories",
     "brands": "Brands",
@@ -658,7 +658,7 @@
   "meta": {
     "home": {
       "title": "Two-Way Radios in Tashkent — Motorola, Radiocom | Radiocom",
-      "desc": "Motorola and Radiocom two-way radios in Tashkent: 22 models in stock, 14 years in business, 10 000+ clients. Free trial, 12-month warranty, our own service."
+      "desc": "Motorola and Radiocom two-way radios in Tashkent: 21 models in stock, 14 years in business, 10 000+ clients. Free trial, 12-month warranty, our own service."
     },
     "poc": {
       "title": "PoC radios — talk over the mobile network | Radiocom",
@@ -728,14 +728,14 @@
     },
     "search": {
       "title": "Search the two-way radio catalogue — Radiocom",
-      "desc": "Search for a radio by name, range or dust and water protection. 22 Motorola and Radiocom models in stock in Tashkent, with prices and specifications."
+      "desc": "Search for a radio by name, range or dust and water protection. 21 Motorola and Radiocom models in stock in Tashkent, with prices and specifications."
     },
     "sitemap": {
       "desc": "Every Radiocom page in one list: Motorola and Radiocom RC two-way radios, specs and prices, industry pages, and repair service in Tashkent."
     },
     "answers": {
       "title": "All about two-way radios: common questions | Radiocom",
-      "desc": "How to choose a radio, what range you really get, what it costs in Tashkent and what the warranty covers. Seven answers and 22 models in stock."
+      "desc": "How to choose a radio, what range you really get, what it costs in Tashkent and what the warranty covers. Seven answers and 21 models in stock."
     }
   },
   "brand": {
@@ -755,7 +755,6 @@
     "all_models": "All models"
   },
   "px": {
-    "from": "From",
     "learn_more": "Learn more",
     "buy": "Request a quote",
     "specs_link": "Specs and price",

@@ -14,7 +14,7 @@ Languages: Russian, English, Uzbek. Russian is the canonical language.
 - Phone: +998 78 113-16-18
 - Opening hours: Mon-Fri 09:00-18:00
 
-## Catalogue (22 models)
+## Catalogue (21 models)
 ### Radiocom RC
 - [Radiocom RCD-70 PRO](https://radiocom.uz/en/radiocom/rcd-70) — The RCD flagship: digital DMR, GPS and IP67 protection. Range up to 3 km.
 - [Radiocom RCD-60 PRO](https://radiocom.uz/en/radiocom/rcd-60) — A digital radio with display and keypad, fully equipped. Range up to 2.5 km.
@@ -28,7 +28,6 @@ Languages: Russian, English, Uzbek. Russian is the canonical language.
 ### Motorola
 - [Motorola Talkabout T82 Extreme](https://radiocom.uz/en/motorola/t82-extreme) — A rugged radio for working outdoors. No licence needed. Range up to 1.5 km.
 - [Motorola Talkabout T82 Extreme Quad](https://radiocom.uz/en/motorola/t82-extreme-quad) — A four-radio kit for organised crews. Range up to 1.5 km.
-- [Motorola Talkabout T82 Extreme RSM](https://radiocom.uz/en/motorola/t82-extreme-rsm) — T82 Extreme bundled with RSM remote speaker microphones for noisy sites. Range up to 1.5 km.
 - [Motorola Talkabout T82](https://radiocom.uz/en/motorola/t82) — A compact PMR radio for teams and events. Range up to 1.5 km.
 - [Motorola Talkabout T72](https://radiocom.uz/en/motorola/t72) — A current-generation PMR built for active outdoor use. Range up to 1 km.
 - [Motorola Talkabout T62 Red](https://radiocom.uz/en/motorola/t62-red) — A styled PMR in a red shell, with dependable reception. Range up to 900 m.
@@ -43,7 +42,7 @@ Languages: Russian, English, Uzbek. Russian is the canonical language.
 
 ## Answers to common questions
 - [How to choose a two-way radio](https://radiocom.uz/en/answers/how-to-choose)
-  Choosing a two-way radio comes down to three questions: how far apart your people work, what stands between them, and how long the shift runs. Answer those three and one of the 22 models in stock in Tashkent will fit.
+  Choosing a two-way radio comes down to three questions: how far apart your people work, what stands between them, and how long the shift runs. Answer those three and one of the 21 models in stock in Tashkent will fit.
 - [What range does a two-way radio really get](https://radiocom.uz/en/answers/real-range)
   The figure on a spec sheet is line-of-sight in good weather — the ceiling, not the norm. In built-up streets the radios in this catalogue realistically reach 300 metres to 3 kilometres; in open country, 3 to 10 kilometres.
 - [Analogue or digital two-way radio](https://radiocom.uz/en/answers/analog-or-digital)
@@ -51,7 +50,7 @@ Languages: Russian, English, Uzbek. Russian is the canonical language.
 - [How many two-way radios do you need](https://radiocom.uz/en/answers/how-many-radios)
   Count not by headcount but by the people who must hear each other in the same minute. For a restaurant that is usually four to six radios; for a shift on site, one for everyone who makes decisions, plus one spare on charge.
 - [What a two-way radio costs in Tashkent](https://radiocom.uz/en/answers/radio-price-tashkent)
-  There are 22 models in stock, from 600 000 to 3 100 000 UZS. The spread comes down to three things: range, protection against dust and water, and whether the radio is analogue or digital.
+  There are 21 models in stock, from 600 000 to 2 800 000 UZS. The spread comes down to three things: range, protection against dust and water, and whether the radio is analogue or digital.
 - [A normal radio or PoC](https://radiocom.uz/en/answers/pmr-or-poc)
   A normal radio talks on its own radio waves and works as far as its antenna reaches. A PoC radio talks over the mobile network, so it works anywhere a phone has signal — but it carries a monthly cost.
 - [What to do if a radio breaks](https://radiocom.uz/en/answers/warranty-and-repair)

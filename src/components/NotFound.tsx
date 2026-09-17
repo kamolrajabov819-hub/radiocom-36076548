@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { LocaleProvider } from "@/components/LocaleProvider";
 import { localePath } from "@/lib/seo";
 import { useLang } from "@/lib/locale";
+import { brandCase } from "@/lib/brand";
 
 /**
  * The 404 page, in its own module because it has two callers.
@@ -69,7 +70,7 @@ function NotFoundBody() {
               {NF_LINKS.map((l) => (
                 <li key={l.to}>
                   <Link to={localePath(lang, l.to)} className="pill pill-ghost">
-                    {t(l.key)}
+                    {brandCase(t(l.key))}
                   </Link>
                 </li>
               ))}

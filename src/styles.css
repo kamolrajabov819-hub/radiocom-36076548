@@ -244,6 +244,30 @@
   font-size: clamp(2.25rem, 5.8vw, 6rem);
 }
 
+/*
+ * The compare page's h1, and nothing else.
+ *
+ * «Сравнение раций Motorola и RADIOCOM» is the longest heading on the site —
+ * three proper nouns, no short words to break on — and at `headline-hero`'s own
+ * ceiling it wrapped to three lines on a desktop, four in Uzbek.
+ *
+ * Measured at 1440 and 1024 in all three locales: 3.5rem is the largest ceiling
+ * that holds two lines in every one of them. 3.75rem still breaks English to
+ * three, which is why this is not rounded up.
+ *
+ * The floor and the rate are `headline-hero`'s, so this is that same type ramp
+ * with a lower ceiling rather than a second scale. On a 390px phone the string
+ * needs three lines at any size that fits the column at all; that is what the
+ * floor is there for.
+ *
+ * Note this is the exception, not the pattern: `Service.tsx` documents the
+ * site's usual answer to a hero breaking a line too many, which is to widen the
+ * measure and leave the scale alone.
+ */
+@utility headline-hero-compare {
+  font-size: clamp(2.25rem, 5.8vw, 3.5rem);
+}
+
 @utility subhead {
   color: var(--cool);
   font-weight: 400;

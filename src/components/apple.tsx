@@ -574,23 +574,48 @@ export function CompareTable({
                 <span className="sr-only">{rowHeaderLabel ?? "Specification"}</span>
               </th>
               {columns.map((c) => (
-                <th key={c.id} scope="col" className="px-3 pb-8 align-bottom md:px-5">
-                  {c.media ? <div className="mb-4 flex justify-center">{c.media}</div> : null}
-                  <div
-                    className={`text-[19px] font-semibold tracking-[-0.02em] md:text-[21px] ${
-                      c.highlight ? "text-signal" : "text-crisp"
-                    }`}
-                  >
-                    {c.name}
-                  </div>
-                  {c.tagline ? (
-                    <div className="mx-auto mt-1.5 max-w-[15rem] text-[13px] font-normal leading-snug text-cool">
-                      {c.tagline}
+                // `align-top` with a full-height flex column inside, not
+                // `align-bottom`.
+                //
+                // Bottom-aligning the header stacks is what put the radios on
+                // the compare page at eight different heights. The stack is
+                // media -> name -> tagline -> price, and the name wraps to one
+                // or two lines depending on the model, so aligning the bottoms
+                // lines up the prices and pushes every image to its own
+                // height. The photographs are the first thing read across that
+                // row, and they read as a mistake.
+                //
+                // Anchoring the top instead levels the images — they already
+                // carry a fixed height at the call site — and `mt-auto` on the
+                // price keeps the baseline that bottom alignment used to give
+                // for free. A table cell always fills its row's height, so the
+                // `h-full` child resolves against a real number.
+                <th key={c.id} scope="col" className="px-3 pb-8 align-top md:px-5">
+                  <div className="flex h-full flex-col">
+                    {c.media ? (
+                      <div className="mb-4 flex shrink-0 justify-center">{c.media}</div>
+                    ) : null}
+                    {/* `min-h` of two lines so a one-line name and a two-line
+                        name occupy the same band, which is what keeps the
+                        taglines under them aligned too. `leading-tight` makes
+                        that height exact rather than a guess at the inherited
+                        line box. */}
+                    <div
+                      className={`min-h-[2.5em] shrink-0 leading-tight text-[19px] font-semibold tracking-[-0.02em] md:text-[21px] ${
+                        c.highlight ? "text-signal" : "text-crisp"
+                      }`}
+                    >
+                      {c.name}
                     </div>
-                  ) : null}
-                  {c.note ? (
-                    <div className="mt-2 text-[13px] font-normal text-cool">{c.note}</div>
-                  ) : null}
+                    {c.tagline ? (
+                      <div className="mx-auto mt-1.5 max-w-[15rem] text-[13px] font-normal leading-snug text-cool">
+                        {c.tagline}
+                      </div>
+                    ) : null}
+                    {c.note ? (
+                      <div className="mt-auto pt-3 text-[13px] font-normal text-cool">{c.note}</div>
+                    ) : null}
+                  </div>
                 </th>
               ))}
             </tr>

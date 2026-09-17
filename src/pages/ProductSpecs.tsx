@@ -226,7 +226,9 @@ export function ProductSpecsPage() {
                     >
                       {pick(r.label, lang)}
                     </th>
-                    <td className="py-5 align-top text-[17px] text-crisp">{pick(r.value, lang)}</td>
+                    <td className="py-5 align-top text-[17px] text-crisp">
+                      {brandCase(pick(r.value, lang))}
+                    </td>
                   </tr>
                 ))}
               </tbody>

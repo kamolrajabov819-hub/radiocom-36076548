@@ -29,7 +29,7 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 border-b border-border pb-12">
           <FooterCol title={t("footer.nav_col")}>
             <FLink to="/">{t("nav.home")}</FLink>
-            <FLink to="/radiocom">{brandCase(t("nav.radiocom"))}</FLink>
+            <FLink to="/radiocom">{t("nav.radiocom")}</FLink>
             <FLink to="/motorola">{t("nav.motorola")}</FLink>
             <FLink to="/compare">{t("nav.compare")}</FLink>
             <FLink to="/poc">{t("nav.poc")}</FLink>
@@ -139,7 +139,7 @@ function FLink({
         to={to}
         className="inline-flex min-h-11 items-center text-[13px] text-crisp/70 transition-colors hover:text-crisp"
       >
-        {children}
+        {brandCase(children)}
       </LocaleLink>
     </li>
   );

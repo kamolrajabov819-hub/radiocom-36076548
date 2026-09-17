@@ -522,7 +522,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
       t82ExtremeBox400,
     ],
     tags: [...TALK, "IPx4"],
-    price: 1_700_000,
+    price: 1_500_000,
     rangeCity: upToKm("1,5"),
     rangeOpen: upToKm("10"),
     industries: ["horeca", "security", "construction"],
@@ -544,7 +544,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     gallerySmall: [t82ExtremeQuadBack800, t82ExtremeQuadCase800, t82ExtremeQuadBox800],
     galleryTiny: [t82ExtremeQuadBack400, t82ExtremeQuadCase400, t82ExtremeQuadBox400],
     tags: [...TALK, "Quad", "IPx4"],
-    price: 3_100_000,
+    price: 2_800_000,
     rangeCity: upToKm("1,5"),
     rangeOpen: upToKm("10"),
     industries: ["horeca", "security", "construction"],
@@ -559,15 +559,22 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     name: "Motorola Talkabout T82 Extreme RSM",
     brand: MOT,
     category: "amateur",
-    // Published as of the 15.09.26 shoot, which is the first photograph of
-    // this SKU: the case with both radios and both remote speaker microphones,
-    // which is exactly what distinguishes it from the plain T82 Extreme. The
-    // hero is that kit shot rather than a radio alone, because the microphones
-    // are the product.
+    // Hidden again, and this entry is the one the CL models' notes point at.
     //
-    // The price below is the one already in this array. It is NOT on the
-    // 29.06.26 price list — that gap was the second reason this stayed hidden,
-    // and it has not closed. See TODO-content.md.
+    // Two things kept it hidden originally: no photograph, and no line on the
+    // price list. The 15.09.26 shoot closed the first — the hero below is the
+    // case with both radios and both remote speaker microphones, which is
+    // exactly what distinguishes this SKU — so it was published on the price
+    // already in this array.
+    //
+    // The second gap never closed, and the revised price list makes it worse
+    // rather than better: it cuts plain T82 Extreme to 1 500 000, so this
+    // bundle would have sat 200 000 above a kit it used to match, on a figure
+    // no list backs. A visible model quoting a price the downloadable price
+    // list contradicts is worse than one that is absent, so it waits for a
+    // real figure. Hidden rather than deleted, so its /catalog 301 keeps
+    // resolving. See TODO-content.md.
+    hidden: true,
     image: t82ExtremeRsmHero,
     imageSmall: t82ExtremeRsmHero800,
     imageTiny: t82ExtremeRsmHero400,
@@ -594,7 +601,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     gallerySmall: [t82Side800, t82Case800, t82Box800],
     galleryTiny: [t82Side400, t82Case400, t82Box400],
     tags: TALK,
-    price: 1_500_000,
+    price: 1_300_000,
     rangeCity: upToKm("1,5"),
     rangeOpen: upToKm("10"),
     industries: ["horeca", "security"],
@@ -638,7 +645,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     gallerySmall: [t62RedCase800, t62RedKit800],
     galleryTiny: [t62RedCase400, t62RedKit400],
     tags: TALK,
-    price: 1_100_000,
+    price: 1_000_000,
     rangeCity: upToM("900"),
     rangeOpen: upToKm("8"),
     industries: ["horeca"],
@@ -660,7 +667,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     gallerySmall: [t62BlueCase800, t62BlueBox800],
     galleryTiny: [t62BlueCase400, t62BlueBox400],
     tags: TALK,
-    price: 1_100_000,
+    price: 1_000_000,
     rangeCity: upToM("900"),
     rangeOpen: upToKm("8"),
     industries: ["horeca"],
@@ -770,7 +777,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     gallerySmall: [tlkrViews800, tlkrKit800],
     galleryTiny: [tlkrViews400, tlkrKit400],
     tags: [...TALK, "IP67", "Float"],
-    price: 1_800_000,
+    price: 1_700_000,
     rangeCity: upToKm("1,5"),
     rangeOpen: upToKm("10"),
     industries: ["horeca", "construction", "security"],
