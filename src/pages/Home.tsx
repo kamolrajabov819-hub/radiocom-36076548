@@ -393,7 +393,13 @@ function ValueShelf() {
             one hand offering a radio, two presenting the sealed RCD-70 box. An
             icon of a lorry is a pictogram of the idea; this is the thing
             itself. The other two claims ("free test", "35+ models") have no
-            equivalent frame, and inventing one is what the brief rules out. */}
+            equivalent frame, and inventing one is what the brief rules out.
+
+            «35+ моделей» counts what Radiocom can order in, not what this site
+            lists — `products.ts` carries 21 visible models, and that gap is
+            intentional. Confirmed by the owner. Do not "correct" the figure to
+            match the catalogue; if it should ever track the catalogue instead,
+            that is a decision to take with them, not a drift to tidy up. */}
         {[
           { key: "delivery", Icon: Truck, photo: retailBox, photoTiny: retailBox400 },
           { key: "test", Icon: Sparkles },

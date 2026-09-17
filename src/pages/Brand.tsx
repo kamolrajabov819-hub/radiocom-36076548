@@ -50,7 +50,9 @@ import {
   productsOfBrand,
   shortName,
   priceFrom,
+  priceTo,
   formatPrice,
+  formatPriceRange,
   categoryLabels,
   type BrandSlug,
   type Category,
@@ -87,6 +89,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
   const lang = useLang();
   const list = productsOfBrand(brandSlug);
   const floor = priceFrom(list);
+  const ceiling = priceTo(list);
 
   const [facet, setFacet] = useState<Facet>("all");
 
@@ -175,9 +178,14 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
           className="mb-8 flex flex-wrap items-baseline justify-between gap-4 md:mb-10"
         >
           <h2 className="type-headline text-crisp">{t("brand.lineup")}</h2>
+          {/* The span, not the floor. «От» came off every price on the site, so
+              a lone cheapest figure here read as one price for the whole
+              line-up — the one place the word had been carrying meaning rather
+              than hedging it. */}
           {floor != null ? (
             <p className="text-[14px] text-cool">
-              {list.length} {t("brand.models")} · <TintTag>{formatPrice(floor, lang)}</TintTag>
+              {list.length} {t("brand.models")} ·{" "}
+              <TintTag>{formatPriceRange(floor, ceiling, lang)}</TintTag>
             </p>
           ) : null}
         </div>

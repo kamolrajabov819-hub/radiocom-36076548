@@ -957,10 +957,26 @@ export function productBySlug(brandSlug: BrandSlug, slug: string): Product | und
   return visibleProducts.find((p) => p.brandSlug === brandSlug && p.slug === slug);
 }
 
-/** Cheapest price in a brand's line-up, for the "from N сум" on brand cards. */
+/**
+ * The ends of a brand line-up's price span, for the summary line above it.
+ *
+ * Both skip the models priced "on request" rather than counting them as zero,
+ * and both return `null` for a line-up with no published price at all — which
+ * is what lets the caller drop the line entirely instead of rendering a range
+ * with nothing in it.
+ */
+function knownPrices(list: Product[]): number[] {
+  return list.map((p) => p.price).filter((n): n is number => n != null);
+}
+
 export function priceFrom(list: Product[]): number | null {
-  const known = list.map((p) => p.price).filter((n): n is number => n != null);
+  const known = knownPrices(list);
   return known.length ? Math.min(...known) : null;
+}
+
+export function priceTo(list: Product[]): number | null {
+  const known = knownPrices(list);
+  return known.length ? Math.max(...known) : null;
 }
 
 export const categoryLabels: Record<Category, { ru: string; en: string; uz: string }> = {
@@ -970,10 +986,42 @@ export const categoryLabels: Record<Category, { ru: string; en: string; uz: stri
 
 export const allBrands: Brand[] = ["Radiocom RC", "Motorola"];
 
+/**
+ * Digits only, space-grouped. The `replace` is a fallback, not decoration: an
+ * environment without the ru-RU locale data falls back to en-US and returns
+ * "600,000", which reads as a decimal to a Russian or Uzbek reader.
+ */
+function groupDigits(price: number): string {
+  return price.toLocaleString("ru-RU").replace(/,/g, " ");
+}
+
+function priceSuffix(lang: "ru" | "en" | "uz"): string {
+  return lang === "en" ? "UZS" : lang === "uz" ? "so'm" : "сум";
+}
+
 export function formatPrice(price: number | null, lang: "ru" | "en" | "uz"): string {
   if (price == null) {
     return lang === "en" ? "On request" : lang === "uz" ? "Kelishiladi" : "Договорная";
   }
-  const suffix = lang === "en" ? "UZS" : lang === "uz" ? "so'm" : "сум";
-  return `${price.toLocaleString("ru-RU").replace(/,/g, " ")} ${suffix}`;
+  return `${groupDigits(price)} ${priceSuffix(lang)}`;
+}
+
+/**
+ * A line-up's price span as one string: "600 000 – 2 800 000 сум".
+ *
+ * The currency is named once, at the end, rather than after each figure —
+ * "600 000 сум – 2 800 000 сум" is the same information read twice.
+ *
+ * Collapsing to a single price when the ends meet is not a nicety. A brand can
+ * arrive at one published price two ways: it lists one model, or every model it
+ * lists costs the same. Both would otherwise render "600 000 – 600 000 сум",
+ * which reads as a mistake in the data rather than a range with no width.
+ */
+export function formatPriceRange(
+  lo: number | null,
+  hi: number | null,
+  lang: "ru" | "en" | "uz",
+): string {
+  if (lo == null || hi == null || hi === lo) return formatPrice(lo ?? hi, lang);
+  return `${groupDigits(lo)} – ${groupDigits(hi)} ${priceSuffix(lang)}`;
 }
