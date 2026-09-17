@@ -314,7 +314,7 @@ export function Nav() {
             >
               {links.map((l) => (
                 <LocaleLink key={l.to} to={l.to} className="headline text-4xl text-crisp">
-                  {l.label}
+                  {brandCase(l.label)}
                 </LocaleLink>
               ))}
               <LocaleLink to="/search" className="headline text-4xl text-crisp">

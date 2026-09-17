@@ -177,8 +177,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
           <h2 className="type-headline text-crisp">{t("brand.lineup")}</h2>
           {floor != null ? (
             <p className="text-[14px] text-cool">
-              {list.length} {t("brand.models")} · {t("px.from")}{" "}
-              <TintTag>{formatPrice(floor, lang)}</TintTag>
+              {list.length} {t("brand.models")} · <TintTag>{formatPrice(floor, lang)}</TintTag>
             </p>
           ) : null}
         </div>
@@ -524,9 +523,7 @@ function LineupCard({ p, lang, idx }: { p: Product; lang: Lang; idx: number }) {
 
       <div className="mt-auto pt-5 text-[13px] text-cool">
         {p.price != null ? (
-          <>
-            {t("px.from")} <TintTag>{formatPrice(p.price, lang)}</TintTag>
-          </>
+          <TintTag>{formatPrice(p.price, lang)}</TintTag>
         ) : (
           t("px.price_on_request")
         )}

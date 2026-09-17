@@ -1,9 +1,12 @@
 /**
- * Every visible "Radiocom" on the site must render as RADIOCOM.
+ * Every visible "Radiocom" and "Motorola" must render in capitals.
  *
  * The wordmark in the header is all-caps. Body copy that reads "Radiocom" next
  * to it is the site disagreeing with its own logo, and auditing that by hand
  * across three locales and ~115 translation strings is how one gets missed.
+ * Motorola joined the check when it joined `brandCase()`: the two brands are
+ * named together often enough that one of them slipping back to title case is
+ * exactly the kind of thing a reader notices and a grep does not.
  *
  * The check is on what the reader sees, not on what the source says: walk every
  * text node in the body, and for each one containing the brand as a proper
@@ -95,7 +98,7 @@ for (const lang of ["ru", "en", "uz"]) {
       let n;
       while ((n = walk.nextNode())) {
         const text = n.textContent ?? "";
-        if (!/\bRadiocom\b/.test(text)) continue;
+        if (!/\b(?:Radiocom|Motorola)\b/.test(text)) continue;
         const el = n.parentElement;
         if (!el) continue;
         // The document's own machine-readable copies keep their real casing.
@@ -125,7 +128,7 @@ for (const lang of ["ru", "en", "uz"]) {
 await b.close();
 
 if (bad) {
-  console.log(`\nqa-brand: ${bad} visible "Radiocom" not rendered as RADIOCOM`);
+  console.log(`\nqa-brand: ${bad} visible brand mention(s) not rendered in capitals`);
   process.exit(1);
 }
-console.log(`qa-brand: ok — all ${seen} visible brand mentions render as RADIOCOM`);
+console.log(`qa-brand: ok — all ${seen} visible brand mentions render in capitals`);

@@ -131,11 +131,7 @@ function Hero({ p, lang }: { p: Product; lang: Lang }) {
 
       <div className="mt-8 md:mt-12">
         <PricePill
-          price={
-            p.price != null
-              ? `${t("px.from")} ${formatPrice(p.price, lang)}`
-              : t("px.price_on_request")
-          }
+          price={p.price != null ? formatPrice(p.price, lang) : t("px.price_on_request")}
           note={t("px.warranty")}
           action={{ label: t("px.buy"), onClick: () => openLead({ title: p.name }) }}
         />
@@ -255,7 +251,7 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
               <div
                 className={cn("mt-8 font-semibold leading-[1.15] tracking-[-0.02em]", sizeClass)}
               >
-                {c.value}
+                {brandCase(c.value)}
               </div>
             </article>
           );
@@ -505,7 +501,7 @@ function Features({ p, lang }: { p: Product; lang: Lang }) {
             className="flex items-start gap-3 border-b border-border py-5 text-[15px] leading-relaxed text-crisp"
           >
             <Check className="mt-1 h-4 w-4 shrink-0 text-signal" strokeWidth={2.5} aria-hidden />
-            <span>{pick(f, lang)}</span>
+            <span>{brandCase(pick(f, lang))}</span>
           </li>
         ))}
       </ul>
@@ -657,7 +653,7 @@ function Closing({ p, lang }: { p: Product; lang: Lang }) {
         <h2 className="type-headline text-crisp">{t("px.specs_link")}</h2>
         <p className="subhead mt-4 text-[17px]">
           {p.price != null
-            ? `${t("px.from")} ${formatPrice(p.price, lang)} · ${t("px.warranty")}`
+            ? `${formatPrice(p.price, lang)} · ${t("px.warranty")}`
             : t("px.price_on_request")}
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">

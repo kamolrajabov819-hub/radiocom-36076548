@@ -1,10 +1,15 @@
 import { Fragment, type ReactNode } from "react";
 
 /**
- * Render the brand as RADIOCOM without writing RADIOCOM into the document.
+ * Render the brands as RADIOCOM and MOTOROLA without writing them into the
+ * document in capitals.
  *
  * The wordmark in the header is all-caps, so body copy that reads "Radiocom"
  * beside it is the site disagreeing with its own logo. This closes that gap.
+ * Motorola is here for the same reason from the other direction: the two
+ * brands sit side by side in nav links, table headings and the compare page's
+ * own h1, and setting one in capitals and the other in title case reads as an
+ * accident rather than a distinction.
  *
  * It does it in CSS rather than by uppercasing the string, and the difference
  * matters in three places:
@@ -21,9 +26,10 @@ import { Fragment, type ReactNode } from "react";
  *  - **Selecting and searching.** Copy pastes as "Radiocom"; find-in-page for
  *    "Radiocom" still matches.
  *
- * The match is deliberately case-sensitive and word-bounded: it takes the
- * brand as a proper noun, and leaves `radiocom.uz`, `@radiocom` and any string
- * already written in caps exactly as the author wrote them.
+ * The match is deliberately case-sensitive and word-bounded: it takes each
+ * brand as a proper noun, and leaves `radiocom.uz`, `@radiocom`, the
+ * `motorola` in a slug or route, and any string already written in caps
+ * exactly as the author wrote them.
  */
 export function brandCase(text: ReactNode): ReactNode {
   // Takes `ReactNode` rather than `string` so it can sit on a component prop
@@ -33,7 +39,7 @@ export function brandCase(text: ReactNode): ReactNode {
   if (typeof text !== "string") return text;
   // `split` with a capturing group keeps the separators, so the captures land
   // on the odd indices and the surrounding text is preserved byte for byte.
-  const parts = text.split(/\b(Radiocom)\b/g);
+  const parts = text.split(/\b(Radiocom|Motorola)\b/g);
   if (parts.length === 1) return text;
   return (
     // The outer span is not decoration. Several call sites render into a flex

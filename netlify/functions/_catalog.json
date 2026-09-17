@@ -1906,7 +1906,7 @@
         "License-free",
         "IPx4"
       ],
-      "price": 1700000,
+      "price": 1500000,
       "blurb": {
         "ru": "Защищённая рация для работы на улице. Разрешение не нужно.",
         "en": "A rugged radio for working outdoors. No licence needed.",
@@ -2153,7 +2153,7 @@
         "Quad",
         "IPx4"
       ],
-      "price": 3100000,
+      "price": 2800000,
       "blurb": {
         "ru": "Комплект из 4 раций для организованных бригад.",
         "en": "A four-radio kit for organised crews.",
@@ -2389,253 +2389,6 @@
       }
     },
     {
-      "slug": "t82-extreme-rsm",
-      "brandSlug": "motorola",
-      "brand": "Motorola",
-      "name": "Motorola Talkabout T82 Extreme RSM",
-      "category": "amateur",
-      "tags": [
-        "PMR446",
-        "License-free",
-        "RSM",
-        "IPx4"
-      ],
-      "price": 1700000,
-      "blurb": {
-        "ru": "T82 Extreme в комплекте с выносными микрофонами RSM для работы в шуме.",
-        "en": "T82 Extreme bundled with RSM remote speaker microphones for noisy sites.",
-        "uz": "Shovqinli joylarda ishlash uchun RSM tashqi mikrofonlari bilan T82 Extreme."
-      },
-      "rangeCity": {
-        "ru": "до 1,5 км",
-        "en": "up to 1.5 km",
-        "uz": "1,5 km gacha"
-      },
-      "rangeOpen": {
-        "ru": "до 10 км",
-        "en": "up to 10 km",
-        "uz": "10 km gacha"
-      },
-      "url": {
-        "ru": "https://radiocom.uz/ru/motorola/t82-extreme-rsm",
-        "en": "https://radiocom.uz/en/motorola/t82-extreme-rsm",
-        "uz": "https://radiocom.uz/uz/motorola/t82-extreme-rsm"
-      },
-      "specs": {
-        "rows": [
-          {
-            "label": {
-              "ru": "Стандарт",
-              "en": "Standard",
-              "uz": "Standart"
-            },
-            "value": {
-              "ru": "PMR",
-              "en": "PMR",
-              "uz": "PMR"
-            }
-          },
-          {
-            "label": {
-              "ru": "Диапазон частот",
-              "en": "Frequency range",
-              "uz": "Chastota diapazoni"
-            },
-            "value": {
-              "ru": "446–446.1 МГц",
-              "en": "446–446.1 MHz",
-              "uz": "446–446.1 MGts"
-            }
-          },
-          {
-            "label": {
-              "ru": "Радиус действия",
-              "en": "Range",
-              "uz": "Ishlash radiusi"
-            },
-            "value": {
-              "ru": "до 1,5 км в городе, до 10 км на открытой местности",
-              "en": "up to 1.5 km in built-up areas, up to 10 km in the open",
-              "uz": "shaharda 1,5 km gacha, ochiq joyda 10 km gacha"
-            }
-          },
-          {
-            "label": {
-              "ru": "Класс защиты",
-              "en": "Ingress protection",
-              "uz": "Himoya darajasi"
-            },
-            "value": {
-              "ru": "IPX4",
-              "en": "IPX4",
-              "uz": "IPX4"
-            }
-          },
-          {
-            "label": {
-              "ru": "Количество каналов",
-              "en": "Channels",
-              "uz": "Kanallar soni"
-            },
-            "value": {
-              "ru": "8 каналов + 121 кодов",
-              "en": "8 channels + 121 codes",
-              "uz": "8 kanal + 121 kod"
-            }
-          },
-          {
-            "label": {
-              "ru": "Мелодии вызова",
-              "en": "Call tones",
-              "uz": "Chaqiruv ohanglari"
-            },
-            "value": {
-              "ru": "20 мелодий вызова",
-              "en": "20 call tones",
-              "uz": "20 chaqiruv ohangi"
-            }
-          },
-          {
-            "label": {
-              "ru": "Мощность передатчика",
-              "en": "Transmit power",
-              "uz": "Uzatgich quvvati"
-            },
-            "value": {
-              "ru": "0,5 Вт",
-              "en": "0,5 W",
-              "uz": "0,5 Vt"
-            }
-          },
-          {
-            "label": {
-              "ru": "Размеры (Ш×В×Т)",
-              "en": "Dimensions (W×H×D)",
-              "uz": "O'lchamlar (K×B×Ch)"
-            },
-            "value": {
-              "ru": "57×181×33 мм",
-              "en": "57×181×33 mm",
-              "uz": "57×181×33 mm"
-            }
-          }
-        ],
-        "inBox": [
-          {
-            "item": {
-              "ru": "Радиостанция",
-              "en": "Two-way radio",
-              "uz": "Radiostansiya"
-            },
-            "qty": 2
-          },
-          {
-            "item": {
-              "ru": "Клипса на пояс",
-              "en": "Belt clip",
-              "uz": "Kamarga qisqich"
-            },
-            "qty": 2
-          },
-          {
-            "item": {
-              "ru": "Micro-USB зарядка",
-              "en": "Micro-USB charger",
-              "uz": "Micro-USB quvvatlagich"
-            },
-            "qty": 1
-          },
-          {
-            "item": {
-              "ru": "Аккумулятор Ni-MH 800 мА·ч",
-              "en": "Ni-MH battery, 800 mAh",
-              "uz": "Ni-MH akkumulyator, 800 mA·soat"
-            },
-            "qty": 2
-          },
-          {
-            "item": {
-              "ru": "Выносной микрофон RSM",
-              "en": "RSM remote speaker microphone",
-              "uz": "RSM tashqi mikrofoni"
-            },
-            "qty": 2
-          },
-          {
-            "item": {
-              "ru": "Подвеска",
-              "en": "Lanyard",
-              "uz": "Bo'yin bog'ichi"
-            },
-            "qty": 2
-          },
-          {
-            "item": {
-              "ru": "Переносной чемоданчик",
-              "en": "Carry case",
-              "uz": "Tashish chemodani"
-            },
-            "qty": null
-          },
-          {
-            "item": {
-              "ru": "Инструкция по эксплуатации",
-              "en": "User manual",
-              "uz": "Foydalanish qo'llanmasi"
-            },
-            "qty": null
-          }
-        ],
-        "features": [
-          {
-            "ru": "Бесплатные вызовы",
-            "en": "Free calls",
-            "uz": "Bepul chaqiruvlar"
-          },
-          {
-            "ru": "Перезаряжаемые никель-металлгидридные аккумуляторы",
-            "en": "Rechargeable nickel-metal hydride batteries",
-            "uz": "Qayta quvvatlanadigan nikel-metallgidrid akkumulyatorlar"
-          },
-          {
-            "ru": "Система передачи сигнала с голосовым управлением VOX",
-            "en": "VOX voice-operated transmission",
-            "uz": "VOX ovozli boshqarish tizimi"
-          },
-          {
-            "ru": "Сканирование и мониторинг каналов",
-            "en": "Channel scanning and monitoring",
-            "uz": "Kanallarni skanerlash va monitoring"
-          },
-          {
-            "ru": "Функция Room Monitor",
-            "en": "Room Monitor",
-            "uz": "Room Monitor funksiyasi"
-          },
-          {
-            "ru": "ЖК-дисплей с подсветкой",
-            "en": "Backlit LCD display",
-            "uz": "Yoritilgan LCD displey"
-          },
-          {
-            "ru": "Блокировка клавиатуры",
-            "en": "Keypad lock",
-            "uz": "Klaviatura blokirovkasi"
-          },
-          {
-            "ru": "Индикатор заряда батареи",
-            "en": "Battery level indicator",
-            "uz": "Batareya zaryadi indikatori"
-          },
-          {
-            "ru": "Разъём для гарнитуры",
-            "en": "Headset connector",
-            "uz": "Garnitura uchun ulagich"
-          }
-        ]
-      }
-    },
-    {
       "slug": "t82",
       "brandSlug": "motorola",
       "brand": "Motorola",
@@ -2645,7 +2398,7 @@
         "PMR446",
         "License-free"
       ],
-      "price": 1500000,
+      "price": 1300000,
       "blurb": {
         "ru": "Компактная PMR-рация для команд и мероприятий.",
         "en": "A compact PMR radio for teams and events.",
@@ -3101,7 +2854,7 @@
         "PMR446",
         "License-free"
       ],
-      "price": 1100000,
+      "price": 1000000,
       "blurb": {
         "ru": "Стильная PMR в красном корпусе с надёжным приёмом.",
         "en": "A styled PMR in a red shell, with dependable reception.",
@@ -3334,7 +3087,7 @@
         "PMR446",
         "License-free"
       ],
-      "price": 1100000,
+      "price": 1000000,
       "blurb": {
         "ru": "Та же T62 в синем корпусе — для команд и семьи.",
         "en": "The same T62 in blue — for teams and families.",
@@ -4291,7 +4044,7 @@
         "IP67",
         "Float"
       ],
-      "price": 1800000,
+      "price": 1700000,
       "blurb": {
         "ru": "Плавает, водозащищена IP67 — для воды и стройки.",
         "en": "It floats, and it is IP67 waterproof — for water and building sites.",
