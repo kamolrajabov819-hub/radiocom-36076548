@@ -375,7 +375,7 @@ function ValueShelf() {
               srcSmall={radiosPair800}
               srcTiny={radiosPair400}
               alt=""
-              width={1149}
+              width={1164}
               height={1600}
               fit="contain"
               sizes="(max-width: 640px) 62vw, (max-width: 1024px) 40vw, 260px"
@@ -496,7 +496,7 @@ function NetworkSplit() {
         >
           <img
             src={bentoDetail}
-            srcSet={`${bentoDetail800} 597w, ${bentoDetail} 1195w`}
+            srcSet={`${bentoDetail800} 598w, ${bentoDetail} 1195w`}
             sizes="(min-width: 768px) 692px, 94vw"
             alt=""
             loading="lazy"

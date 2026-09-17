@@ -7,7 +7,7 @@ which the script leaves alone.
 - **279** local source images
 - **107** `@800` responsive variants
 - **0** `.asset.json` CDN pointers (no local bytes)
-- Total local weight: **19.2 MB**
+- Total local weight: **19.0 MB**
 
 ## Local source images
 
@@ -226,8 +226,8 @@ which the script leaves alone.
 | `cutout/pair-crossed-cutout@400.webp` | webp | 258×400 | 0.65 | 23 KB | **yes** (cutout) | — |
 | `cutout/pair-displayed-cutout.webp` | webp | 955×1600 | 0.60 | 190 KB | **yes** (cutout) | yes |
 | `cutout/pair-displayed-cutout@400.webp` | webp | 239×400 | 0.60 | 18 KB | **yes** (cutout) | — |
-| `cutout/pair-floating-cutout.webp` | webp | 1149×1600 | 0.72 | 197 KB | **yes** (cutout) | yes |
-| `cutout/pair-floating-cutout@400.webp` | webp | 287×400 | 0.72 | 22 KB | **yes** (cutout) | — |
+| `cutout/pair-floating-cutout.webp` | webp | 1164×1600 | 0.73 | 219 KB | **yes** (cutout) | yes |
+| `cutout/pair-floating-cutout@400.webp` | webp | 291×400 | 0.73 | 21 KB | **yes** (cutout) | — |
 | `cutout/poc-fleet-fan-cutout.webp` | webp | 1317×1274 | 1.03 | 189 KB | **yes** (cutout) | yes |
 | `cutout/poc-fleet-fan-cutout@400.webp` | webp | 400×387 | 1.03 | 32 KB | **yes** (cutout) | — |
 | `cutout/poc-handover-box-cutout.webp` | webp | 1600×847 | 1.89 | 81 KB | **yes** (cutout) | yes |
@@ -242,26 +242,26 @@ which the script leaves alone.
 | `cutout/radios-fan-cutout@400.webp` | webp | 400×268 | 1.49 | 23 KB | **yes** (cutout) | — |
 | `hero-rcd60-cutout.webp` | webp | 597×753 | 0.79 | 68 KB | **yes** (cutout) | yes |
 | `hero-rcd60-light.jpg` | jpg | 1264×848 | 1.49 | 119 KB | no | — |
-| `industry-construction-poster.webp` | webp | 600×900 | 2:3 | 98 KB | no | yes |
-| `industry-construction-poster@400.webp` | webp | 267×400 | 0.67 | 28 KB | no | — |
-| `industry-construction.jpg` | jpg | 1400×900 | 14:9 | 288 KB | no | yes |
-| `industry-construction@400.jpg` | jpg | 400×257 | 1.56 | 32 KB | no | — |
+| `industry-construction-poster.webp` | webp | 600×900 | 2:3 | 53 KB | no | yes |
+| `industry-construction-poster@400.webp` | webp | 267×400 | 0.67 | 14 KB | no | — |
+| `industry-construction.jpg` | jpg | 1400×900 | 14:9 | 203 KB | no | yes |
+| `industry-construction@400.jpg` | jpg | 400×257 | 1.56 | 22 KB | no | — |
 | `industry-horeca-poster.webp` | webp | 600×900 | 2:3 | 51 KB | no | yes |
 | `industry-horeca-poster@400.webp` | webp | 267×400 | 0.67 | 16 KB | no | — |
 | `industry-horeca.jpg` | jpg | 1400×900 | 14:9 | 200 KB | no | yes |
 | `industry-horeca@400.jpg` | jpg | 400×257 | 1.56 | 28 KB | no | — |
-| `industry-manufacturing-poster.webp` | webp | 600×900 | 2:3 | 99 KB | no | yes |
+| `industry-manufacturing-poster.webp` | webp | 600×900 | 2:3 | 89 KB | no | yes |
 | `industry-manufacturing-poster@400.webp` | webp | 267×400 | 0.67 | 25 KB | no | — |
-| `industry-manufacturing.jpg` | jpg | 1400×900 | 14:9 | 289 KB | no | yes |
-| `industry-manufacturing@400.jpg` | jpg | 400×257 | 1.56 | 31 KB | no | — |
+| `industry-manufacturing.jpg` | jpg | 1400×900 | 14:9 | 286 KB | no | yes |
+| `industry-manufacturing@400.jpg` | jpg | 400×257 | 1.56 | 33 KB | no | — |
 | `industry-mining-poster.webp` | webp | 600×900 | 2:3 | 24 KB | no | yes |
 | `industry-mining-poster@400.webp` | webp | 267×400 | 0.67 | 9 KB | no | — |
 | `industry-mining.jpg` | jpg | 1400×900 | 14:9 | 95 KB | no | yes |
 | `industry-mining@400.jpg` | jpg | 400×257 | 1.56 | 15 KB | no | — |
-| `industry-security-poster.webp` | webp | 600×900 | 2:3 | 30 KB | no | yes |
-| `industry-security-poster@400.webp` | webp | 267×400 | 0.67 | 10 KB | no | — |
-| `industry-security.jpg` | jpg | 1400×900 | 14:9 | 110 KB | no | yes |
-| `industry-security@400.jpg` | jpg | 400×257 | 1.56 | 17 KB | no | — |
+| `industry-security-poster.webp` | webp | 600×900 | 2:3 | 22 KB | no | yes |
+| `industry-security-poster@400.webp` | webp | 267×400 | 0.67 | 7 KB | no | — |
+| `industry-security.jpg` | jpg | 1400×900 | 14:9 | 120 KB | no | yes |
+| `industry-security@400.jpg` | jpg | 400×257 | 1.56 | 18 KB | no | — |
 | `industry-transport-poster.webp` | webp | 600×900 | 2:3 | 119 KB | no | yes |
 | `industry-transport-poster@400.webp` | webp | 267×400 | 0.67 | 29 KB | no | — |
 | `industry-transport.jpg` | jpg | 1400×900 | 14:9 | 337 KB | no | yes |
@@ -279,8 +279,8 @@ which the script leaves alone.
 | `product/radio-kit-flatlay.webp` | webp | 1600×2143 | 0.75 | 117 KB | no | yes |
 | `product/radio-kit-flatlay@400.webp` | webp | 299×400 | 0.75 | 6 KB | no | — |
 | `radio-accessories-cutout.png` | png | 1792×2400 | 0.75 | 1.9 MB | **yes** (cutout) | — |
-| `radio-macro-cutout.webp` | webp | 1195×1600 | 0.75 | 204 KB | **yes** (cutout) | yes |
-| `radio-macro-cutout@400.webp` | webp | 298×400 | 0.74 | 25 KB | **yes** (cutout) | — |
+| `radio-macro-cutout.webp` | webp | 1195×1600 | 0.75 | 231 KB | **yes** (cutout) | yes |
+| `radio-macro-cutout@400.webp` | webp | 299×400 | 0.75 | 23 KB | **yes** (cutout) | — |
 | `radiocom-logo.webp` | webp | 600×105 | 5.71 | 19 KB | **yes** (cutout) | — |
 | `radiocom-logo@300.webp` | webp | 300×52 | 5.77 | 8 KB | **yes** (cutout) | — |
 | `radiocom-rcd60.jpg` | jpg | 1260×1260 | 1:1 | 113 KB | no | — |
@@ -377,7 +377,7 @@ which the script leaves alone.
 | `cutout/macro-display-cutout@800.webp` | 731×800 | 48 KB |
 | `cutout/pair-crossed-cutout@800.webp` | 515×800 | 53 KB |
 | `cutout/pair-displayed-cutout@800.webp` | 478×800 | 48 KB |
-| `cutout/pair-floating-cutout@800.webp` | 574×800 | 63 KB |
+| `cutout/pair-floating-cutout@800.webp` | 582×800 | 59 KB |
 | `cutout/poc-fleet-fan-cutout@800.webp` | 800×774 | 96 KB |
 | `cutout/poc-handover-box-cutout@800.webp` | 800×424 | 34 KB |
 | `cutout/poc-radio-held-cutout@800.webp` | 521×800 | 51 KB |
@@ -385,21 +385,21 @@ which the script leaves alone.
 | `cutout/radio-single-cutout@800.webp` | 717×800 | 55 KB |
 | `cutout/radios-fan-cutout@800.webp` | 800×536 | 61 KB |
 | `hero-rcd60-cutout@800.webp` | 316×399 | 31 KB |
-| `industry-construction-poster@800.webp` | 533×800 | 78 KB |
-| `industry-construction@800.jpg` | 800×514 | 113 KB |
+| `industry-construction-poster@800.webp` | 533×800 | 35 KB |
+| `industry-construction@800.jpg` | 800×514 | 71 KB |
 | `industry-horeca-poster@800.webp` | 533×800 | 40 KB |
 | `industry-horeca@800.jpg` | 800×514 | 85 KB |
-| `industry-manufacturing-poster@800.webp` | 533×800 | 76 KB |
-| `industry-manufacturing@800.jpg` | 800×514 | 104 KB |
+| `industry-manufacturing-poster@800.webp` | 533×800 | 62 KB |
+| `industry-manufacturing@800.jpg` | 800×514 | 105 KB |
 | `industry-mining-poster@800.webp` | 533×800 | 19 KB |
 | `industry-mining@800.jpg` | 800×514 | 41 KB |
-| `industry-security-poster@800.webp` | 533×800 | 24 KB |
-| `industry-security@800.jpg` | 800×514 | 47 KB |
+| `industry-security-poster@800.webp` | 533×800 | 15 KB |
+| `industry-security@800.jpg` | 800×514 | 48 KB |
 | `industry-transport-poster@800.webp` | 533×800 | 91 KB |
 | `industry-transport@800.jpg` | 800×514 | 118 KB |
 | `product/poc-network-radio@800.webp` | 800×1071 | 19 KB |
 | `product/radio-kit-flatlay@800.webp` | 800×1071 | 28 KB |
-| `radio-macro-cutout@800.webp` | 597×800 | 73 KB |
+| `radio-macro-cutout@800.webp` | 598×800 | 70 KB |
 | `radios-pair-angled-cutout@800.webp` | 800×800 | 35 KB |
 | `radios-pair-crossed-cutout@800.webp` | 597×800 | 45 KB |
 | `radios-pair-front-back-cutout@800.webp` | 597×800 | 38 KB |
