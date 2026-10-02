@@ -86,26 +86,70 @@ search icon's anchor text (it has an `aria-label`), SPF/DMARC on netlify.app DNS
 
 ## Lighthouse — mobile, before and after
 
-Local `node-server` build, Lighthouse 12.8.2, simulated mobile throttling,
-`/opt/pw-browsers` Chromium. The local server sends no compression, so absolute
-numbers are worse than on Netlify (SEOptimer measured FCP 3.5 s / LCP 5.8 s on
-the staging host); the comparison between columns is what matters.
+**Method.** Local `node-server` builds of `main` (before) and this branch
+(after), each behind a small gzip proxy — Netlify compresses responses and the
+bare node server does not, and without compression Lighthouse mostly measures
+transfer of uncompressed JavaScript. Lighthouse 12.8.2, mobile form factor,
+Playwright's Chromium. TTFB is ~20 ms locally, so these numbers say nothing
+about server time; the CDN cache and the Functions region are what fix that
+in production (findings 10 and 11).
 
-| Page                        | Score before | FCP before | LCP before | CLS before | Score after | FCP after | LCP after | CLS after |
-| --------------------------- | ------------ | ---------- | ---------- | ---------- | ----------- | --------- | --------- | --------- |
-| /ru                         | 0.60         | 6.5 s      | 8.3 s      | 0          |             |           |           |           |
-| /uz                         | 0.60         | 6.5 s      | 8.3 s      | 0          |             |           |           |           |
-| /ru/radiocom                | 0.60         | 6.1 s      | 8.6 s      | 0.031      |             |           |           |           |
-| /ru/motorola                | 0.60         | 6.0 s      | 8.9 s      | 0.036      |             |           |           |           |
-| /ru/poc                     | 0.60         | 6.4 s      | 7.6 s      | 0          |             |           |           |           |
-| /ru/service                 | 0.60         | 6.3 s      | 8.3 s      | 0          |             |           |           |           |
-| /ru/industries/horeca       | 0.59         | 6.7 s      | 8.2 s      | 0          |             |           |           |           |
-| /ru/industries/construction | 0.59         | 6.7 s      | 8.2 s      | 0          |             |           |           |           |
-| /ru/radiocom/rcd-70         | 0.61         | 6.2 s      | 6.9 s      | 0          |             |           |           |           |
+**Applied throttling** (`--throttling-method=devtools`: the network and CPU
+really are slowed, so a heading waiting on hydration really waits). This is
+the closest to what a phone sees, and the column the targets apply to.
 
-GTM's cost cannot be measured here (no container ID, and googletagmanager.com
-is unreachable). Measure it on a deploy preview once `VITE_GTM_ID` is set; the
-target is no regression in LCP.
+| Page                  | Score before | LCP before | CLS before | Score after | LCP after | CLS after |
+| --------------------- | ------------ | ---------- | ---------- | ----------- | --------- | --------- |
+| /ru                   | 0.90         | 2.5 s      | 0          | 0.93        | 2.7 s     | 0.001     |
+| /ru/radiocom          | 0.71         | 6.5 s      | 0.032      | 0.95        | 2.0 s     | 0.031     |
+| /ru/poc               | 0.78         | 5.2 s      | 0          | 0.96        | 2.4 s     | 0         |
+| /ru/industries/horeca | 0.80         | 4.0 s      | 0          | 0.81        | 4.2 s     | 0         |
+
+FCP is 1.9–2.1 s on all four, before and after.
+
+**Simulated throttling** (Lighthouse's default, which models the network from
+an unthrottled trace), on every landing page:
+
+| Page                        | Score before | FCP before | LCP before | Score after | FCP after | LCP after |
+| --------------------------- | ------------ | ---------- | ---------- | ----------- | --------- | --------- |
+| /ru                         | 0.74         | 3.1 s      | 4.7 s      | 0.80        | 2.9 s     | 4.3 s     |
+| /uz                         | 0.78         | 2.9 s      | 4.7 s      | 0.80        | 2.9 s     | 4.2 s     |
+| /ru/radiocom                | 0.80         | 2.6 s      | 4.6 s      | 0.89        | 2.6 s     | 3.3 s     |
+| /ru/motorola                | 0.79         | 2.6 s      | 4.7 s      | 0.86        | 2.6 s     | 3.6 s     |
+| /ru/poc                     | 0.85         | 2.8 s      | 3.7 s      | 0.86        | 2.8 s     | 3.6 s     |
+| /ru/service                 | 0.78         | 2.8 s      | 4.8 s      | 0.82        | 2.8 s     | 4.1 s     |
+| /ru/industries/horeca       | 0.80         | 2.9 s      | 4.4 s      | 0.81        | 3.1 s     | 4.1 s     |
+| /ru/industries/construction | 0.81         | 2.9 s      | 4.2 s      | 0.81        | 3.0 s     | 4.1 s     |
+| /ru/radiocom/rcd-70         | 0.89         | 2.6 s      | 3.3 s      | 0.89        | 2.6 s     | 3.2 s     |
+
+CLS is unchanged on every page in this table (0, or 0.031–0.036 on the brand
+pages).
+
+**What moved, and why.**
+
+- The big wins are the pages whose LCP element was itself held at
+  `opacity: 0` until hydration: the brand pages' heading (6.5 s → 2.0 s) and
+  the PoC device photo (5.2 s → 2.4 s).
+- The home page's LCP is its hero photograph, which was never hidden, so it
+  barely moves. Painting the text immediately exposed a font swap the
+  invisible hero used to hide: CLS rose to 0.141 when Inter replaced the
+  fallback and reflowed the heading. Metric-matched fallback faces
+  (`styles.css`, "Inter Fallback") brought it back to 0.001.
+- **Still over the 2.5 s target:** home at 2.7 s and the industry pages at
+  4.1–4.2 s. On the HoReCa page the 87 KB hero photograph starts at 0.6 s
+  together with ~250 KB (gzipped) of JavaScript and both fonts, and shares the
+  throttled bandwidth with them until 4.1 s. That is the open "no code
+  splitting" item in `AGENTS.md` — Framer Motion, GSAP and the router land in
+  every route's eager chunks — and it is the next performance job. It is not
+  in this PR.
+
+Without compression (the bare local server) every page scored 0.59–0.61 with
+LCP 6.9–8.9 s, before and after alike; transfer of uncompressed JavaScript
+swamps everything else in that setup.
+
+GTM's own cost is not in these numbers (no container ID here, and
+googletagmanager.com is unreachable). Measure it on a deploy preview once
+`VITE_GTM_ID` is set; the target is no LCP regression.
 
 ## What waits on the exports
 
