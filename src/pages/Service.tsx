@@ -21,6 +21,7 @@ import advCertified from "@/assets/cutout/hands-compare-cutout.webp";
 import advCertified800 from "@/assets/cutout/hands-compare-cutout@800.webp";
 import partsRetailBox from "@/assets/cutout/hand-retail-box-cutout@800.webp";
 import { openLead } from "@/components/LeadFormSheet";
+import { PHONE_SERVICE, telHref } from "@/lib/contacts";
 import { spring } from "@/lib/springs";
 import { ProductShot } from "@/components/ProductShot";
 import { SectionHead } from "@/components/Section";
@@ -125,8 +126,8 @@ function Hero() {
           >
             {t("service.request_repair")}
           </button>
-          <a href="tel:+998939800710" className="pill-link">
-            +998 93 980-07-10
+          <a href={telHref(PHONE_SERVICE)} className="pill-link">
+            {PHONE_SERVICE.display}
           </a>
         </motion.div>
       </div>

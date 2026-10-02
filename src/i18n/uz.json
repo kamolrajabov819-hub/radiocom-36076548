@@ -565,7 +565,7 @@
   },
   "footer": {
     "hours": "Du-Ju · 09:00–18:00",
-    "address": "Toshkent, O'zbekiston Ovozi 2 (Tata mehmonxonasi, 1-qavat)",
+    "address": "Toshkent, O'zbekiston Ovozi 2 (Tata mehmonxonasi, 1–2-qavat)",
     "rights": "© Radiocom. Barcha huquqlar himoyalangan.",
     "follow": "Bizni kuzatib boring",
     "map_title": "Radiocom · Toshkent",
@@ -658,7 +658,7 @@
   "meta": {
     "home": {
       "title": "Toshkentda ratsiyalar — Motorola va Radiocom | Radiocom",
-      "desc": "Toshkentda Motorola va Radiocom ratsiyalari: 21 model mavjud, bozorda 14 yil, 10 000+ mijoz. Bepul sinov, 12 oy kafolat, o'z servisimiz."
+      "desc": "Toshkentda Motorola va Radiocom ratsiyalari: 35+ model, bozorda 14 yil, 10 000+ mijoz. Bepul sinov, 12 oy kafolat, o'z servisimiz."
     },
     "poc": {
       "title": "PoC ratsiyalari — mobil tarmoq orqali aloqa | Radiocom",
@@ -722,14 +722,14 @@
     },
     "search": {
       "title": "Ratsiyalar katalogi bo'yicha qidiruv — Radiocom",
-      "desc": "Ratsiyani nomi, masofasi yoki chang va suvdan himoyasi bo'yicha qidiring. Toshkentda Motorola va Radiocom'ning 21 modeli, narx va xususiyatlari bilan."
+      "desc": "Ratsiyani nomi, masofasi yoki chang va suvdan himoyasi bo'yicha qidiring. Toshkentda mavjud Motorola va Radiocom ratsiyalari — narx va xususiyatlari bilan."
     },
     "sitemap": {
       "desc": "Radiocom'ning barcha sahifalari bitta ro'yxatda: Motorola va Radiocom RC ratsiyalari, xususiyatlar va narxlar, sohalar, Toshkentda ta'mir."
     },
     "answers": {
       "title": "Ratsiyalar haqida hammasi: savol-javob | Radiocom",
-      "desc": "Ratsiyani qanday tanlash, haqiqiy masofa qancha, Toshkentda narxi qancha va kafolat nimani qoplaydi. Yettita javob va 21 model mavjud."
+      "desc": "Ratsiyani qanday tanlash, haqiqiy masofa qancha, Toshkentda narxi qancha va kafolat nimani qoplaydi. Yettita javob va 35+ model mavjud."
     }
   },
   "brand": {
