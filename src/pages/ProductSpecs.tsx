@@ -133,7 +133,7 @@ export function ProductSpecsPage() {
                       : undefined
                   }
                   sizes={p.imageSmall ? "180px" : undefined}
-                  alt=""
+                  alt={p.name}
                   width={1600}
                   height={1600}
                   loading="eager"

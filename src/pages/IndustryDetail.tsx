@@ -77,7 +77,7 @@ export function IndustryPage() {
               src={IMAGES[s]}
               srcSet={SRCSET[s]}
               sizes="110vw"
-              alt=""
+              alt={t(`industries.${s}.photo_alt`)}
               width={1400}
               height={900}
               fetchPriority="high"

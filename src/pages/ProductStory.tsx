@@ -207,7 +207,7 @@ function Highlights({ p, lang }: { p: Product; lang: Lang }) {
               src={p.image}
               srcSet={p.imageSmall ? `${p.imageSmall} 800w, ${p.image} 1600w` : undefined}
               sizes={p.imageSmall ? "(min-width: 1024px) 280px, 64vw" : undefined}
-              alt=""
+              alt={p.name}
               width={1024}
               height={1024}
               loading="lazy"
@@ -570,7 +570,7 @@ function InBox({ p, lang }: { p: Product; lang: Lang }) {
               /* `max-w-[380px]`, and that cap is the whole point: this panel
                  was pulling the 1080px master for a 298px slot. */
               sizes="380px"
-              alt=""
+              alt={t("alt.product_kit", { name: p.name })}
               loading="lazy"
               decoding="async"
               width={1600}
@@ -625,6 +625,7 @@ function WhereUsed({ p, lang }: { p: Product; lang: Lang }) {
             idx={i}
             className="w-[62vw] shrink-0 snap-start sm:w-[38vw] lg:w-[calc((100%-3rem)/4)]"
             image={INDUSTRY_POSTERS[slug]}
+            imageAlt={t(`industries.${slug}.photo_alt`)}
             srcSet={INDUSTRY_POSTER_SRCSET[slug]}
             eyebrow={t(`industries.${slug}.short`)}
             title={t(`industries.${slug}.name`)}

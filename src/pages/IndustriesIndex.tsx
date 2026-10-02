@@ -70,7 +70,7 @@ export function IndustriesOverview() {
               >
                 <img
                   src={IMAGES[s]}
-                  alt=""
+                  alt={t(`industries.${s}.photo_alt`)}
                   loading={i < 2 ? "eager" : "lazy"}
                   width={1600}
                   height={1000}

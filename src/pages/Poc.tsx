@@ -257,9 +257,33 @@ function StatBand() {
  * the column's full width back so its subject carries comparable weight.
  */
 const FEATURES = [
-  { id: "media", src: shotMedia, small: shotMedia800, w: 1600, h: 847, cap: "max-w-[560px]" },
-  { id: "gps", src: shotGps, small: shotGps800, w: 1038, h: 1600, cap: "max-w-[480px]" },
-  { id: "scale", src: shotScale, small: shotScale800, w: 1317, h: 1274, cap: "max-w-[480px]" },
+  {
+    id: "media",
+    src: shotMedia,
+    small: shotMedia800,
+    alt: "alt.poc_box",
+    w: 1600,
+    h: 847,
+    cap: "max-w-[560px]",
+  },
+  {
+    id: "gps",
+    src: shotGps,
+    small: shotGps800,
+    alt: "alt.poc_hand",
+    w: 1038,
+    h: 1600,
+    cap: "max-w-[480px]",
+  },
+  {
+    id: "scale",
+    src: shotScale,
+    small: shotScale800,
+    alt: "alt.poc_fleet",
+    w: 1317,
+    h: 1274,
+    cap: "max-w-[480px]",
+  },
 ] as const;
 
 function FeatureSequence() {
@@ -291,7 +315,7 @@ function FeatureSequence() {
                 src={f.src}
                 srcSmall={f.small}
                 cutout
-                alt=""
+                alt={t(f.alt)}
                 width={f.w}
                 height={f.h}
                 sizes="(max-width: 768px) 84vw, 560px"

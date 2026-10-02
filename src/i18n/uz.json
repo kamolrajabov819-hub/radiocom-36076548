@@ -102,7 +102,8 @@
       "seo": "HoReCa",
       "h1": "Mehmonxona va restoranlar uchun ratsiyalar",
       "clients": "",
-      "meta_desc": "Mehmonxona, restoran va tadbirlar uchun ratsiyalar. Motorola CLP 446 va CLK 446: 7400 m² gacha qamrov, 68 g og'irlik, garnitura to'plamda. Bepul sinov."
+      "meta_desc": "Mehmonxona, restoran va tadbirlar uchun ratsiyalar. Motorola CLP 446 va CLK 446: 7400 m² gacha qamrov, 68 g og'irlik, garnitura to'plamda. Bepul sinov.",
+      "photo_alt": "Mehmonlar o'tirgan restoran zali"
     },
     "construction": {
       "name": "Qurilish",
@@ -151,7 +152,8 @@
       "seo": "Qurilish",
       "h1": "Qurilish uchun ratsiyalar",
       "clients": "",
-      "meta_desc": "Toshkentda qurilish uchun ratsiyalar: RCD-70 PRO chang va suvdan IP67 himoyasi bilan, ochiq joyda 10 km gacha, maydon shovqinida toza ovoz. Sinov bepul."
+      "meta_desc": "Toshkentda qurilish uchun ratsiyalar: RCD-70 PRO chang va suvdan IP67 himoyasi bilan, ochiq joyda 10 km gacha, maydon shovqinida toza ovoz. Sinov bepul.",
+      "photo_alt": "Qurilish maydonida kaska va jilet kiygan quruvchilar, ortida minorali kranlar"
     },
     "security": {
       "name": "Xavfsizlik",
@@ -200,7 +202,8 @@
       "seo": "Xavfsizlik xizmatlari",
       "h1": "Xavfsizlik uchun ratsiyalar",
       "clients": "",
-      "meta_desc": "Toshkentda qo'riqlash xizmatlari uchun ratsiyalar: AES-256 shifrlash, trevoga tugmasi, RCD-70 PRO'da GPS, zich qurilishda 3 km gacha. 12 oy kafolat."
+      "meta_desc": "Toshkentda qo'riqlash xizmatlari uchun ratsiyalar: AES-256 shifrlash, trevoga tugmasi, RCD-70 PRO'da GPS, zich qurilishda 3 km gacha. 12 oy kafolat.",
+      "photo_alt": "Videokuzatuv monitorlari oldida ratsiyada gaplashayotgan qo'riqchi ayol"
     },
     "mining": {
       "name": "Kon · Neft · Gaz",
@@ -249,7 +252,8 @@
       "seo": "Kon, neft va gaz",
       "h1": "Kon, neft va gaz uchun ratsiyalar",
       "clients": "Bizga ishonishadi: Uz-Kor Gas Chemical, ERIELL, ENTER Engineering, HYUNDAI Engineering, SAMSUNG Engineering Construction.",
-      "meta_desc": "Konchilik, neft va gaz uchun ratsiyalar: chang va suvdan IP67 himoya, AES-256 shifrlash, bir smenaga 3600 mA·s batareya. ERIELL va ENTER Engineering."
+      "meta_desc": "Konchilik, neft va gaz uchun ratsiyalar: chang va suvdan IP67 himoya, AES-256 shifrlash, bir smenaga 3600 mA·s batareya. ERIELL va ENTER Engineering.",
+      "photo_alt": "Quyosh botayotgan paytda neft konidagi tebranma nasos"
     },
     "transport": {
       "name": "Transport · Logistika",
@@ -298,7 +302,8 @@
       "seo": "Transport va logistika",
       "h1": "Transport va logistika uchun ratsiyalar",
       "clients": "",
-      "meta_desc": "Transport va logistika uchun ratsiyalar: dispetcher ekipajni xaritada ko'radi, trassada 10 km gacha, rulda bir smenaga 3600 mA·s. Sinov bepul."
+      "meta_desc": "Transport va logistika uchun ratsiyalar: dispetcher ekipajni xaritada ko'radi, trassada 10 km gacha, rulda bir smenaga 3600 mA·s. Sinov bepul.",
+      "photo_alt": "Yuqoridan ko'rinish: konteyner terminali va temir yo'l izlari"
     },
     "manufacturing": {
       "name": "Ishlab chiqarish · Ombor",
@@ -347,7 +352,8 @@
       "seo": "Ishlab chiqarish va omborlar",
       "h1": "Ishlab chiqarish va omborlar uchun ratsiyalar",
       "clients": "",
-      "meta_desc": "Toshkentda ishlab chiqarish va omborlar uchun ratsiyalar: sexlarda 2,5 km, abonent to'lovsiz o'z chastotangiz, skanerli terminallar. Bepul sinov."
+      "meta_desc": "Toshkentda ishlab chiqarish va omborlar uchun ratsiyalar: sexlarda 2,5 km, abonent to'lovsiz o'z chastotangiz, skanerli terminallar. Bepul sinov.",
+      "photo_alt": "Dastgohlar va maxsus kiyimdagi ishchilar bo'lgan ishlab chiqarish sexi"
     },
     "banner_title": "Qaysi ratsiya biznesingizga mos kelishini bilmayapsizmi?",
     "banner_sub": "Ob'ektingiz qanday ekanini ayting — 15 daqiqada ratsiya tanlaymiz.",
@@ -812,5 +818,20 @@
     "steps_title": "Bosqichma-bosqich",
     "step_label": "{{n}}-bosqich",
     "related_title": "Keyingi o'qish"
+  },
+  "alt": {
+    "kit": "Radiocom ratsiyasi to'plami bilan: akkumulyator, adapterli quvvatlash stakani, garnitura va kabel",
+    "pair": "Ikkita Radiocom ratsiyasi",
+    "retail_box": "Qo'ldagi Radiocom ratsiyasi va Radiocom RCD-70 PRO qutisi",
+    "display": "Ratsiya ekrani va tugmalari yaqindan",
+    "radio_macro": "Radiocom ratsiyasining antennasi va boshqaruv tugmalari yaqindan",
+    "service_bench": "Servis markazi stolidagi ratsiya: asboblar, yechib olingan akkumulyator va antenna",
+    "compare_hands": "Qo'lda ushlab turilgan displeyli ikkita Radiocom ratsiyasi",
+    "tradein": "Ratsiya almashtirish: bir qo'lda eskisi, ikkinchisida yangisi",
+    "radios_fan": "Bir qatorda turgan Radiocom ratsiyalari",
+    "poc_box": "Qo'ldagi PoC ratsiyasi va uning qutisi",
+    "poc_hand": "Qo'ldagi PoC ratsiyasi",
+    "poc_fleet": "Displeyli va displeysiz PoC ratsiyalari",
+    "product_kit": "{{name}}: yetkazib berish to'plami"
   }
 }

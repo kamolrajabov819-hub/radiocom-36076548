@@ -326,7 +326,7 @@ function ValueShelf() {
               cutout
               srcSmall={kitWide800}
               srcTiny={kitWide400}
-              alt=""
+              alt={t("alt.kit")}
               width={1600}
               height={1111}
               sizes="(max-width: 640px) 78vw, (max-width: 1024px) 62vw, 560px"
@@ -363,7 +363,7 @@ function ValueShelf() {
               cutout
               srcSmall={radiosPair800}
               srcTiny={radiosPair400}
-              alt=""
+              alt={t("alt.pair")}
               width={1164}
               height={1600}
               fit="contain"
@@ -402,7 +402,7 @@ function ValueShelf() {
                      800px file because it had no `srcSet` at all. */
                   srcSet={it.photoTiny ? `${it.photoTiny} 400w, ${it.photo} 800w` : undefined}
                   sizes={it.photoTiny ? "280px" : undefined}
-                  alt=""
+                  alt={t("alt.retail_box")}
                   loading="lazy"
                   decoding="async"
                   width={800}
@@ -457,7 +457,7 @@ function ValueShelf() {
                 cutout
                 srcSmall={macroWide800}
                 srcTiny={macroWide400}
-                alt=""
+                alt={t("alt.display")}
                 width={1463}
                 height={1600}
                 fit="contain"
@@ -487,7 +487,7 @@ function NetworkSplit() {
             src={bentoDetail}
             srcSet={`${bentoDetail800} 598w, ${bentoDetail} 1195w`}
             sizes="(min-width: 768px) 692px, 94vw"
-            alt=""
+            alt={t("alt.radio_macro")}
             loading="lazy"
             width={1195}
             height={1600}
@@ -549,7 +549,7 @@ function IndustriesTeaser() {
                      file instead of the 800px one. */
                   srcSet={INDUSTRY_IMAGE_SRCSET[it.slug]}
                   sizes="(min-width: 768px) 456px, 92vw"
-                  alt=""
+                  alt={t(`industries.${it.slug}.photo_alt`)}
                   loading="lazy"
                   width={1400}
                   height={900}

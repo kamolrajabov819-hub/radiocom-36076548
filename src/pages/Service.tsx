@@ -49,6 +49,7 @@ export function ServicePage() {
 }
 
 function BenchStrip() {
+  const { t } = useTranslation();
   return (
     <section className="bg-pitch">
       <div className="shell">
@@ -59,7 +60,7 @@ function BenchStrip() {
             /* Shell-width, then `scale-110`. 151 KB of 1264px master was
                going into a 381px slot on a phone. */
             sizes="(min-width: 1280px) 1280px, 98vw"
-            alt=""
+            alt={t("alt.service_bench")}
             loading="lazy"
             width={1264}
             height={848}
@@ -236,7 +237,7 @@ function Advantages() {
                   src={advCertified}
                   cutout
                   srcSmall={advCertified800}
-                  alt=""
+                  alt={t("alt.compare_hands")}
                   width={1600}
                   height={1600}
                   fit="contain"
@@ -272,7 +273,7 @@ function Advantages() {
             media={
               <img
                 src={partsRetailBox}
-                alt=""
+                alt={t("alt.retail_box")}
                 loading="lazy"
                 decoding="async"
                 width={800}
