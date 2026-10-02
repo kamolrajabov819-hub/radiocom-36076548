@@ -16,6 +16,8 @@ import { legacyCatalogTarget, products, visibleProducts } from "../src/data/prod
 import { specs } from "../src/data/specs";
 import { SITE_URL, LANGS, localePath, productPath, ORG_DESCRIPTION } from "../src/lib/seo";
 import { publishedAnswers } from "../src/data/answers";
+import { PHONE_LANDLINE, PHONE_PRIMARY, TELEGRAM_URL } from "../src/lib/contacts";
+import { MARKETING_KEYS } from "../src/lib/marketing-params";
 import { entries, renderSitemap } from "./lib/sitemap";
 
 // The page list and the XML renderer now live in `scripts/lib/sitemap.ts`,
@@ -69,6 +71,12 @@ Allow: /
 Disallow: /api/
 Disallow: /.netlify/
 
+# Yandex: ad and campaign parameters do not change a page. Without this, every
+# tagged ad URL Yandex finds is crawled as a separate copy of the page it lands
+# on. Google ignores the directive and relies on the canonical, which these
+# pages already carry.
+Clean-param: ${MARKETING_KEYS.join("&")}
+
 # AI answer engines — explicitly welcome.
 User-agent: GPTBot
 Allow: /
@@ -115,7 +123,7 @@ const LLMS_COPY = {
     languages: "Языки: русский, английский, узбекский. Канонический язык — русский.",
     contacts: "## Контакты",
     address: "- Адрес: ул. Узбекистон Овози, 2, Ташкент, Узбекистан",
-    phone: "- Телефон: +998 78 113-16-18",
+    phone: `- Телефон: ${PHONE_PRIMARY.display}, ${PHONE_LANDLINE.display} · Telegram: ${TELEGRAM_URL}`,
     hours: "- Часы работы: Пн-Пт 09:00-18:00",
     catalogue: (n: number) => `## Каталог (${n} моделей)`,
     sections: "## Разделы",
@@ -133,7 +141,7 @@ const LLMS_COPY = {
     languages: "Languages: Russian, English, Uzbek. Russian is the canonical language.",
     contacts: "## Contacts",
     address: "- Address: Uzbekiston Ovozi 2, Tashkent, Uzbekistan",
-    phone: "- Phone: +998 78 113-16-18",
+    phone: `- Phone: ${PHONE_PRIMARY.display}, ${PHONE_LANDLINE.display} · Telegram: ${TELEGRAM_URL}`,
     hours: "- Opening hours: Mon-Fri 09:00-18:00",
     catalogue: (n: number) => `## Catalogue (${n} models)`,
     sections: "## Sections",
@@ -151,7 +159,7 @@ const LLMS_COPY = {
     languages: "Tillar: rus, ingliz, o'zbek. Kanonik til — rus tili.",
     contacts: "## Kontaktlar",
     address: "- Manzil: O'zbekiston Ovozi 2, Toshkent, O'zbekiston",
-    phone: "- Telefon: +998 78 113-16-18",
+    phone: `- Telefon: ${PHONE_PRIMARY.display}, ${PHONE_LANDLINE.display} · Telegram: ${TELEGRAM_URL}`,
     hours: "- Ish vaqti: Du-Ju 09:00-18:00",
     catalogue: (n: number) => `## Katalog (${n} model)`,
     sections: "## Bo'limlar",

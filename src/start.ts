@@ -1,6 +1,7 @@
 import { createStart, createMiddleware } from "@tanstack/react-start";
 
 import { renderErrorPage } from "./lib/error-page";
+import { rewriteLocation } from "./lib/marketing-params";
 
 /**
  * Attaches the Supabase bearer token to serverFn RPCs — but loads Supabase
@@ -115,6 +116,84 @@ function withHeaders(res: Response, add: Record<string, string>): Response {
 
 const isHtml = (res: Response) => (res.headers.get("content-type") ?? "").includes("text/html");
 
+/**
+ * CDN caching for server-rendered pages.
+ *
+ * Netlify does not cache function responses unless told to, so every page
+ * view ran the whole React render — 0.5–2.2 s of server time measured by the
+ * SEO checkers, before the first byte. These headers put the HTML on Netlify's
+ * edge for an hour and let it serve a stale copy for a week while it
+ * revalidates in the background. A deploy invalidates all of it, so a release
+ * is never hidden behind a cached page.
+ *
+ *   Cache-Control               the browser always revalidates. Only the CDN
+ *                               holds the page.
+ *   Netlify-CDN-Cache-Control   the edge, `durable` so every edge node shares
+ *                               one copy rather than each rendering its own.
+ *   Netlify-Vary                the cache key: the path, the search query `q`
+ *                               (the only parameter that changes a page) and
+ *                               `Accept`, because the same URL answers
+ *                               `Accept: text/markdown` with Markdown. Every
+ *                               other parameter — `utm_*`, `gclid`, `yclid` —
+ *                               is left out of the key, so an ad click is
+ *                               served the cached page instead of a fresh
+ *                               render per click ID.
+ *
+ * Only a request with **no query string at all** may fill the cache. A request
+ * carrying `?gclid=…` is still *served* from the clean entry (the key ignores
+ * gclid) but never *creates* one, so no visitor's parameters are ever baked
+ * into a page that is then handed to someone else. Redirects, 404s and 500s
+ * are never cached: a cached `/` → `/ru` would be served for the WordPress URLs
+ * that also arrive at `/`, which must go elsewhere.
+ */
+function cacheHeaders(request: Request, res: Response): Record<string, string> {
+  if (request.method !== "GET" || res.status !== 200) return {};
+  if (new URL(request.url).search !== "") return {};
+  return {
+    "Cache-Control": "public, max-age=0, must-revalidate",
+    "Netlify-CDN-Cache-Control": "public, durable, max-age=3600, stale-while-revalidate=604800",
+    "Netlify-Vary": "query=q,header=Accept",
+    Vary: "Accept",
+  };
+}
+
+/**
+ * Every redirect keeps the visit's marketing parameters, byte for byte.
+ *
+ * The router rebuilds a redirect's query from its parsed search, which drops
+ * it entirely when a route does not ask for it and corrupts it when it does
+ * (`yclid` is parsed into a rounded Number — see `lib/marketing-params.ts`).
+ * So this runs outermost and fixes the `Location` of every same-origin
+ * redirect on its way out: the router's marketing segments are removed and the
+ * request's raw ones appended. `/?gclid=x&utm_source=y` reaches
+ * `/ru?gclid=x&utm_source=y` with both values exactly as the ad wrote them.
+ *
+ * It also makes the router's own canonical redirect permanent. TanStack throws
+ * one when a URL is not in its normal form (a trailing slash, for instance)
+ * and gives it the default 307, which tells a search engine the old URL is
+ * still the real one. For a GET it is a 301.
+ */
+const redirectParamsMiddleware = createMiddleware().server(async ({ request, next }) => {
+  const result = await next();
+  const res = result.response;
+  if (res.status < 300 || res.status >= 400) return result;
+  const location = res.headers.get("location");
+  if (!location) return result;
+
+  const rewritten = rewriteLocation(location, request.url);
+  if (rewritten === null) return result;
+
+  const temporary = res.status === 302 || res.status === 307;
+  const status = temporary && request.method === "GET" ? 301 : res.status;
+  try {
+    const headers = new Headers(res.headers);
+    headers.set("location", rewritten);
+    return { ...result, response: new Response(null, { status, headers }) };
+  } catch {
+    return result;
+  }
+});
+
 const agentAcceptMiddleware = createMiddleware().server(async ({ request, next }) => {
   const accept = request.headers.get("accept") ?? "*/*";
   const pathname = new URL(request.url).pathname;
@@ -132,7 +211,10 @@ const agentAcceptMiddleware = createMiddleware().server(async ({ request, next }
     if (!isHtml(result.response)) return result;
     return {
       ...result,
-      response: withHeaders(result.response, { Link: linkHeader(pathname, true) }),
+      response: withHeaders(result.response, {
+        Link: linkHeader(pathname, true),
+        ...cacheHeaders(request, result.response),
+      }),
     };
   }
 
@@ -158,6 +240,8 @@ const agentAcceptMiddleware = createMiddleware().server(async ({ request, next }
     if (!html.trimStart().toLowerCase().startsWith("<!doctype")) return result;
     const { htmlToMarkdown } = await import("./lib/html-to-markdown");
     const markdown = htmlToMarkdown(html, new URL(request.url).origin);
+    const cache = cacheHeaders(request, response);
+    delete cache.Vary; // set below, lowercase, for every Markdown response
     return new Response(markdown, {
       status: response.status,
       headers: {
@@ -166,6 +250,7 @@ const agentAcceptMiddleware = createMiddleware().server(async ({ request, next }
         vary: "Accept",
         "x-markdown-tokens": String(Math.ceil(markdown.length / 4)),
         link: linkHeader(pathname, false),
+        ...cache,
       },
     });
   } catch {
@@ -190,7 +275,9 @@ const errorMiddleware = createMiddleware().server(async ({ next }) => {
 
 export const startInstance = createStart(() => ({
   functionMiddleware: [attachSupabaseAuth],
-  // `agentAcceptMiddleware` first: it decides what to do with a non-HTML
-  // `Accept` before `errorMiddleware` wraps the render.
-  requestMiddleware: [agentAcceptMiddleware, errorMiddleware],
+  // `redirectParamsMiddleware` outermost, so it sees every response on its way
+  // out, the Markdown branch included. Then `agentAcceptMiddleware`: it decides
+  // what to do with a non-HTML `Accept` before `errorMiddleware` wraps the
+  // render.
+  requestMiddleware: [redirectParamsMiddleware, agentAcceptMiddleware, errorMiddleware],
 }));
