@@ -188,15 +188,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     // schema (Product, BreadcrumbList, ItemList, SiteNavigationElement), which
     // is where anything locale-dependent belongs: the root head() has no route
     // params, so it cannot know which language it is rendering.
-    scripts: [
-      // Google Tag Manager, only when the build was given a container ID. The
-      // loader sits first so the tag starts fetching before anything else on
-      // the page; it is `async`, so nothing waits for it. See `analytics.ts`.
-      ...(GTM_ID ? [{ children: gtmSnippet(GTM_ID) }] : []),
-      jsonLd(organizationSchema()),
-      jsonLd(localBusinessSchema()),
-      jsonLd(webSiteSchema()),
-    ],
+    scripts: [jsonLd(organizationSchema()), jsonLd(localBusinessSchema()), jsonLd(webSiteSchema())],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -214,6 +206,21 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang={lang}>
       <head>
+        {/*
+          Google Tag Manager, only when the build was given a container ID
+          (see `analytics.ts`). Here, not in `head().scripts`: `HeadContent`
+          re-inserts route scripts on every client-side navigation, and the
+          loader ran again each time — four `gtm.js` fetches across three page
+          views in testing, each one re-initialising the container. A static
+          element in the shell is rendered once and never re-created.
+
+          React 19 hoists the stylesheet above everything in <head>, and an
+          inline script after a pending stylesheet waits for it, so in practice
+          this runs once the CSS has arrived — at about first paint, which is a
+          fine moment for a tag manager to start. The snippet itself only
+          queues an async fetch; nothing waits on GTM.
+        */}
+        {GTM_ID ? <script dangerouslySetInnerHTML={{ __html: gtmSnippet(GTM_ID) }} /> : null}
         <HeadContent />
         <noscript>
           <style>{NO_SCRIPT_REVEAL}</style>
