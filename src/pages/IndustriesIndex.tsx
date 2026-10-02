@@ -11,7 +11,7 @@ import securityImg from "@/assets/industry-security.jpg";
 import miningImg from "@/assets/industry-mining.jpg";
 import transportImg from "@/assets/industry-transport.jpg";
 import manufacturingImg from "@/assets/industry-manufacturing.jpg";
-import { spring } from "@/lib/springs";
+import { rise, spring } from "@/lib/springs";
 
 const IMAGES: Record<string, string> = {
   horeca: horecaImg,
@@ -39,22 +39,13 @@ export function IndustriesOverview() {
           at all — a gap `qa-motion` reported before this was fixed. */}
       <Section band="plain" className="pt-32 text-center md:pt-40" tight>
         <div className="mx-auto max-w-3xl">
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={spring}
-            className="type-display text-crisp"
-          >
+          {/* CSS entrance, not Framer's `initial` — see `hero-rise` in styles.css. */}
+          <h1 className="hero-rise type-display text-crisp" style={rise(0)}>
             {t("industries.title")}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...spring, delay: 0.1 }}
-            className="subhead mt-4 text-lg md:text-xl"
-          >
+          </h1>
+          <p className="hero-rise subhead mt-4 text-lg md:text-xl" style={rise(1)}>
             {t("industries.overview_sub")}
-          </motion.p>
+          </p>
         </div>
       </Section>
 

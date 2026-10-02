@@ -964,8 +964,47 @@
     transform: translateY(0);
   }
 }
+/* Only between pages, never on the first load.
+ *
+ * On the first load this faded every page in from `opacity: 0` over 0.6s, so
+ * nothing on the first screen could paint — and count as First Contentful
+ * Paint — until the fade began, and a phone on a slow connection met a blank
+ * page. Moving between pages is where the transition belongs, and that is
+ * what `data-navigated` marks: `__root.tsx` sets it on `<html>` at the first
+ * client-side navigation. */
 @utility page-anim {
+  animation: none;
+}
+:root[data-navigated] .page-anim {
   animation: page-in 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* First-screen entrance — the heading, the offer line and the calls to action.
+ *
+ * These used Framer Motion's `initial={{ opacity: 0 }}`, which renders into the
+ * server HTML as `style="opacity:0"`. Nothing in the hero could be seen until
+ * the JavaScript bundle had downloaded and hydrated — FCP 6.5s and LCP 8.3s on
+ * a throttled phone, and invisible outright with scripts off. This keeps the
+ * movement and drops the fade: a CSS animation of `transform` only, so the text
+ * is at full opacity from the very first frame, with or without JavaScript.
+ *
+ * `--rise-i` staggers siblings by 60ms; `backwards` holds each at its start
+ * offset during its delay. The whole sequence ends inside 1.1s, before
+ * `qa-blend` samples the page, and resolves to `transform: none` — no lingering
+ * stacking context to break a `mix-blend-multiply` photograph (see `.reveal`).
+ * Text and buttons only: never the hero art, and never `[data-hero-copy]`,
+ * which GSAP scrubs on the home page. */
+@keyframes rise-in {
+  from {
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+@utility hero-rise {
+  animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: calc(var(--rise-i, 0) * 60ms);
 }
 
 /* Reduced motion — respect user preference site-wide */
@@ -1045,6 +1084,9 @@
   *::before,
   *::after {
     animation-duration: 0.001ms !important;
+    /* The duration alone is not enough: a staggered entrance with
+       `fill-mode: backwards` would sit at its offset for its whole delay. */
+    animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;

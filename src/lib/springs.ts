@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import type { Transition } from "framer-motion";
 
 /**
@@ -33,4 +34,17 @@ export function fadeUpAt(index: number) {
     viewport: { once: true, amount: 0.2 },
     transition: { ...spring, delay: index * 0.06 },
   };
+}
+
+/**
+ * Position in the first-screen entrance — the `hero-rise` utility in
+ * `styles.css`, staggered 60ms per index.
+ *
+ * The first screen does not use `fadeUp` or `initial`: those render
+ * `opacity:0` into the server HTML, and the heading stays invisible until the
+ * bundle hydrates. `hero-rise` animates `transform` only, in CSS, so the text is
+ * painted from the first frame. Use as `className="hero-rise" style={rise(2)}`.
+ */
+export function rise(index: number): CSSProperties {
+  return { "--rise-i": index } as CSSProperties;
 }

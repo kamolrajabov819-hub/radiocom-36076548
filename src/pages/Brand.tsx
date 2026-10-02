@@ -1,11 +1,10 @@
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
 import { brandCase } from "@/lib/brand";
 import { useScrollChoreography } from "@/lib/motion";
-import { spring } from "@/lib/springs";
+import { rise } from "@/lib/springs";
 import { Section } from "@/components/Section";
 import {
   DuoCard,
@@ -113,16 +112,18 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
     <div ref={page} className="page-anim page-tight">
       {/* ── Family name + model strip ──────────────────────── */}
       <Section band="plain">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={spring}
-        >
-          <h1 className="type-display text-crisp">{brandCase(t(`brand.${brandSlug}_title`))}</h1>
-          <p className="subhead measure mt-5 text-[17px] leading-relaxed md:text-[21px]">
+        {/* CSS entrance, not Framer's `initial` — see `hero-rise` in styles.css. */}
+        <div>
+          <h1 className="hero-rise type-display text-crisp" style={rise(0)}>
+            {brandCase(t(`brand.${brandSlug}_title`))}
+          </h1>
+          <p
+            className="hero-rise subhead measure mt-5 text-[17px] leading-relaxed md:text-[21px]"
+            style={rise(1)}
+          >
             {brandCase(t(`brand.${brandSlug}_desc`))}
           </p>
-        </motion.div>
+        </div>
 
         <div className="mt-8">
           <ModelStrip label={t("brand.lineup")}>
