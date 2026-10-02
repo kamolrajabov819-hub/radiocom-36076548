@@ -1,6 +1,7 @@
 import { createStart, createMiddleware } from "@tanstack/react-start";
 
 import { renderErrorPage } from "./lib/error-page";
+import { resolveLegacy } from "./lib/legacy-redirects";
 import { rewriteLocation } from "./lib/marketing-params";
 
 /**
@@ -172,10 +173,52 @@ function cacheHeaders(request: Request, res: Response): Record<string, string> {
  * one when a URL is not in its normal form (a trailing slash, for instance)
  * and gives it the default 307, which tells a search engine the old URL is
  * still the real one. For a GET it is a 301.
+ *
+ * And it is where the old WordPress URLs are answered (`lib/legacy-redirects.ts`),
+ * before the router runs, because this is the only place that sees the raw URL:
+ * the router has already parsed `?page_id=1249` into a Number by the time a
+ * route could look at it. A URL with a replacement is a 301 straight to it; a
+ * URL with none renders the router's 404 page and is answered 410, which tells
+ * a search engine the page is gone on purpose rather than missing.
  */
+/** The answer for an old WordPress file or feed path that the router would only redirect. */
+const GONE_PAGE =
+  '<!doctype html><html lang="ru"><head><meta charset="utf-8">' +
+  '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+  '<meta name="robots" content="noindex"><title>Страница удалена — Radiocom</title></head>' +
+  '<body style="font:16px/1.5 system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;margin:0">' +
+  '<main style="text-align:center;padding:1.5rem"><h1 style="font-size:1.25rem">Этой страницы больше нет</h1>' +
+  '<p><a href="/ru">Рации Motorola и Radiocom — на главную</a></p></main></body></html>';
+
 const redirectParamsMiddleware = createMiddleware().server(async ({ request, next }) => {
+  const legacy =
+    request.method === "GET" || request.method === "HEAD"
+      ? resolveLegacy(new URL(request.url))
+      : null;
+  if (legacy && legacy !== "gone") {
+    const location = rewriteLocation(legacy.path, request.url) ?? legacy.path;
+    return new Response(null, { status: 301, headers: { location } });
+  }
+
   const result = await next();
   const res = result.response;
+  if (legacy === "gone") {
+    // The router's own 404 page, re-stamped 410 — unless the router answered
+    // with its trailing-slash redirect first (`/feed/`, `/wp-admin/`), which
+    // would make a dead URL take two hops to say so.
+    try {
+      const response =
+        res.status === 404
+          ? new Response(res.body, { status: 410, statusText: "Gone", headers: res.headers })
+          : new Response(GONE_PAGE, {
+              status: 410,
+              headers: { "content-type": "text/html; charset=utf-8" },
+            });
+      return { ...result, response };
+    } catch {
+      return result;
+    }
+  }
   if (res.status < 300 || res.status >= 400) return result;
   const location = res.headers.get("location");
   if (!location) return result;
