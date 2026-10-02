@@ -439,7 +439,10 @@
     "submit": "Yuborish",
     "success": "Ariza yuborildi. Tez orada bog'lanamiz.",
     "test_title": "Bepul mutaxassis chaqirig'i",
-    "trust_line": "15 daqiqada javob · Du–Ju 9:00–18:00"
+    "trust_line": "15 daqiqada javob · Du–Ju 9:00–18:00",
+    "error_title": "Ariza yuborilmadi.",
+    "error_sub": "Bizga qo'ng'iroq qiling yoki Telegram'da yozing — menejer javob beradi.",
+    "retry": "Qayta yuborish"
   },
   "poc": {
     "kicker": "PoC RATSIYALARI · MOBIL TARMOQ ORQALI ALOQA",
@@ -640,7 +643,9 @@
   "contact": {
     "eyebrow": "Kontaktlar",
     "title": "Ofisimizga tashrif buyuring",
-    "sub": "Jihozlarni jonli ko'rsatamiz, vazifangizga mos modelni tanlaymiz va bepul sinov rasmiylashtiramiz."
+    "sub": "Jihozlarni jonli ko'rsatamiz, vazifangizga mos modelni tanlaymiz va bepul sinov rasmiylashtiramiz.",
+    "call": "Qo'ng'iroq qilish",
+    "telegram": "Telegram'da yozish"
   },
   "error": {
     "nf_code": "404",

@@ -439,7 +439,10 @@
     "submit": "Send request",
     "success": "Request sent. We’ll be in touch.",
     "test_title": "Free on-site test",
-    "trust_line": "We reply in 15 min · Mon–Fri 9:00–18:00"
+    "trust_line": "We reply in 15 min · Mon–Fri 9:00–18:00",
+    "error_title": "Your request didn’t go through.",
+    "error_sub": "Call us or message us on Telegram — a manager will answer.",
+    "retry": "Try again"
   },
   "poc": {
     "kicker": "PoC RADIOS · TALKING OVER THE MOBILE NETWORK",
@@ -640,7 +643,9 @@
   "contact": {
     "eyebrow": "Contacts",
     "title": "Visit our office",
-    "sub": "See the equipment in person, pick the right model for your task and book a free trial."
+    "sub": "See the equipment in person, pick the right model for your task and book a free trial.",
+    "call": "Call",
+    "telegram": "Message on Telegram"
   },
   "error": {
     "nf_code": "404",
