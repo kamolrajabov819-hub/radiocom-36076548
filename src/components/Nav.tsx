@@ -4,7 +4,8 @@ import { brandCase } from "@/lib/brand";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { Menu, X, ChevronDown, Search } from "lucide-react";
+import { Menu, X, ChevronDown, Search, Phone } from "lucide-react";
+import { PHONE_PRIMARY, telHref } from "@/lib/contacts";
 import { LangToggle } from "./LangToggle";
 import { openLead } from "./LeadFormSheet";
 import { INDUSTRY_SLUGS } from "@/data/industries";
@@ -83,7 +84,7 @@ export function Nav() {
 
   return (
     <>
-      <header className="frost-nav fixed top-0 left-0 right-0 z-40">
+      <header data-placement="header" className="frost-nav fixed top-0 left-0 right-0 z-40">
         <div className="shell shell-wide h-12 flex items-center justify-between gap-4">
           {/* Wordmark — leftmost, in normal flow, at every width.
           
@@ -242,6 +243,16 @@ export function Nav() {
             >
               <Search className="h-[18px] w-[18px]" aria-hidden />
             </LocaleLink>
+            {/* The number itself, not only an icon: on a desktop a visitor
+                copies or dials it from another phone, and a business that
+                hides its number in the chrome reads as one that does not want
+                calls. */}
+            <a
+              href={telHref(PHONE_PRIMARY)}
+              className="inline-flex min-h-11 items-center whitespace-nowrap px-2 text-[13px] font-medium text-crisp transition-colors hover:text-signal"
+            >
+              {PHONE_PRIMARY.display}
+            </a>
             <LangToggle />
             {/* `px-3`, a call-site override on top of `pill-sm` — already the
                 smallest tier the button system has (styles.css:294-298).
@@ -259,6 +270,13 @@ export function Nav() {
 
           {/* Mobile */}
           <div className="xl:hidden flex items-center gap-2">
+            <a
+              href={telHref(PHONE_PRIMARY)}
+              aria-label={`${t("contact.call")} ${PHONE_PRIMARY.display}`}
+              className="flex h-11 w-11 items-center justify-center rounded-full text-crisp transition-colors hover:bg-charcoal hover:text-signal"
+            >
+              <Phone className="h-5 w-5" aria-hidden />
+            </a>
             <LangToggle />
             <button
               ref={menuBtnRef}
@@ -306,6 +324,7 @@ export function Nav() {
               </button>
             </div>
             <motion.nav
+              data-placement="mobile-menu"
               aria-label={t("nav.menu")}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -344,6 +363,10 @@ export function Nav() {
               >
                 {t("nav.get_quote")}
               </button>
+              <a href={telHref(PHONE_PRIMARY)} className="pill pill-ghost w-full mt-3">
+                <Phone className="h-4 w-4" aria-hidden />
+                {PHONE_PRIMARY.display}
+              </a>
             </motion.nav>
           </motion.div>
         )}
