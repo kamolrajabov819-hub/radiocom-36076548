@@ -1,7 +1,6 @@
 import { Phone, Send } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { PHONE_PRIMARY, TELEGRAM_URL, telHref } from "@/lib/contacts";
-import { cn } from "@/lib/utils";
 
 /**
  * The two ways to reach a person right now: call the primary number, or open
@@ -21,7 +20,13 @@ export function ContactActions({
 }) {
   const { t } = useTranslation();
   return (
-    <div data-placement={placement} className={cn("flex flex-wrap items-center gap-3", className)}>
+    // A plain join, not `cn()`: this renders in the site chrome on every page,
+    // and `cn` would pull tailwind-merge — 26 KB — into every route's eager
+    // bundle for one class list that never conflicts (`qa-weight` caught it).
+    <div
+      data-placement={placement}
+      className={`flex flex-wrap items-center gap-3 ${className ?? ""}`}
+    >
       <a href={telHref(PHONE_PRIMARY)} className="pill pill-accent">
         <Phone className="h-4 w-4" aria-hidden />
         {PHONE_PRIMARY.display}
