@@ -17,9 +17,20 @@
    is Apple-licensed and shipping it would be a licence breach as well as a
    giveaway.
 
-   `font-display: swap` keeps text visible during the swap period, and because
-   the fallback stack below is metric-similar the reflow is small. Vite
+   `font-display: swap` keeps text visible during the swap period. Vite
    fingerprints these via url(), so they cache immutably.
+
+   The swap used to be invisible because the hero was invisible: it sat at
+   `opacity: 0` until hydration, by which time Inter had arrived. Once the
+   first screen painted immediately, the swap from the fallback reflowed the
+   heading and pushed the hero photograph down — CLS 0.141 on the home page,
+   over the 0.1 line. The "Inter Fallback" faces below remove that: a local
+   Arial (or Helvetica, Liberation Sans or Roboto) scaled and re-metred to take
+   the same space as Inter, so the swap changes the letterforms and nothing
+   else. The numbers are derived, not tuned by eye, from the capsize metrics
+   (@capsizecss/metrics 4.3): size-adjust = Inter's average character width
+   over the fallback's; ascent/descent = Inter's, divided by that. Bold gets
+   its own faces because Arial Bold and Roboto Bold differ by 6% in width.
    ──────────────────────────────────────────────────────────── */
 @font-face {
   font-family: "Inter";
@@ -38,6 +49,36 @@
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
     U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Inter Fallback";
+  font-weight: 100 500;
+  src: local("Arial"), local("ArialMT"), local("Helvetica"), local("Liberation Sans"),
+    local("LiberationSans"), local("Roboto"), local("Roboto-Regular");
+  size-adjust: 107.12%;
+  ascent-override: 90.44%;
+  descent-override: 22.52%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Inter Fallback";
+  font-weight: 600 900;
+  src: local("Arial Bold"), local("Arial-BoldMT"), local("Liberation Sans Bold"),
+    local("LiberationSans-Bold");
+  size-adjust: 101.53%;
+  ascent-override: 95.41%;
+  descent-override: 23.76%;
+  line-gap-override: 0%;
+}
+/* Android has Roboto and no Arial; its bold is narrower than Arial's. */
+@font-face {
+  font-family: "Inter Fallback Roboto";
+  font-weight: 600 900;
+  src: local("Roboto Bold"), local("Roboto-Bold");
+  size-adjust: 107.78%;
+  ascent-override: 89.88%;
+  descent-override: 22.38%;
+  line-gap-override: 0%;
 }
 
 @theme inline {
@@ -77,8 +118,8 @@
   --color-signal: var(--signal);
   --color-signal-text: var(--signal-text);
 
-  --font-display: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Inter", "Inter Fallback", "Inter Fallback Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans: "Inter", "Inter Fallback", "Inter Fallback Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "Inter", system-ui, -apple-system, sans-serif;
 }
 
