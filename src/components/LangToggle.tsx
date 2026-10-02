@@ -79,7 +79,7 @@ export function LangToggle() {
               e.preventDefault();
               router.navigate({ href });
             }}
-            className={`relative flex min-w-[40px] items-center justify-center rounded-full px-3 py-1.5 transition-colors after:absolute after:inset-x-0 after:top-1/2 after:h-11 after:-translate-y-1/2 after:content-[''] ${
+            className={`relative flex min-w-[38px] items-center justify-center rounded-full px-2.5 py-1.5 transition-colors min-[390px]:min-w-[40px] min-[390px]:px-3 after:absolute after:inset-x-0 after:top-1/2 after:h-11 after:-translate-y-1/2 after:content-[''] ${
               current === l ? "bg-pitch text-crisp shadow-sm" : "text-cool hover:text-crisp"
             }`}
           >

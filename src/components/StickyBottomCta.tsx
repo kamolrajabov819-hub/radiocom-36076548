@@ -62,10 +62,13 @@ export function StickyBottomCta() {
         <Send className="h-5 w-5" aria-hidden />
       </a>
       <button
-        onClick={() => openLead({ title: t("lead.sticky_cta") })}
+        onClick={() => openLead({ title: t("lead.float") })}
         className="pill pill-accent min-w-0 flex-1 py-4 shadow-2xl"
       >
-        <span className="truncate">{t("lead.sticky_cta")}</span>
+        {/* «Бесплатный тест», not «Бесплатное тестирование»: beside the call
+            and Telegram buttons a 360px phone has room for about fifteen
+            characters, and the long form was cut to «Бесплатное тестир…». */}
+        <span className="truncate">{t("lead.float")}</span>
       </button>
     </div>
   );

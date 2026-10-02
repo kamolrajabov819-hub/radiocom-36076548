@@ -85,7 +85,13 @@ export function Nav() {
   return (
     <>
       <header data-placement="header" className="frost-nav fixed top-0 left-0 right-0 z-40">
-        <div className="shell shell-wide h-12 flex items-center justify-between gap-4">
+        {/* `gap-2` below `xl`, and the phone sizes on the logo and the language
+            chips: the call icon added to the phone header made the row 369px
+            of content — wordmark, call, three language chips, menu — and from
+            412px down it pushed the menu button off the right edge. At 360,
+            the commonest Android width here, the row now fits with 12px to
+            spare. Nothing changes from 390 up except the gaps. */}
+        <div className="shell shell-wide h-12 flex items-center justify-between gap-2 xl:gap-4">
           {/* Wordmark — leftmost, in normal flow, at every width.
           
               It used to be `lg:absolute lg:left-1/2 lg:-translate-x-1/2`,
@@ -103,7 +109,7 @@ export function Nav() {
               height={32}
               srcSet={`${logoAsset300} 300w, ${logoAsset} 600w`}
               sizes="180px"
-              className="h-[22px] w-auto"
+              className="h-[18px] w-auto min-[390px]:h-[22px]"
             />
           </LocaleLink>
 
@@ -269,7 +275,7 @@ export function Nav() {
           </div>
 
           {/* Mobile */}
-          <div className="xl:hidden flex items-center gap-2">
+          <div className="xl:hidden flex items-center gap-1">
             <a
               href={telHref(PHONE_PRIMARY)}
               aria-label={`${t("contact.call")} ${PHONE_PRIMARY.display}`}
