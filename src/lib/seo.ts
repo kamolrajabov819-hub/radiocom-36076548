@@ -12,6 +12,14 @@
 
 import type { LinkHTMLAttributes } from "react";
 import type { Product } from "@/data/products";
+import {
+  EMAIL_SALES,
+  INSTAGRAM_URL,
+  PHONE_LANDLINE,
+  PHONE_PRIMARY,
+  PHONE_SERVICE,
+  TELEGRAM_URL,
+} from "@/lib/contacts";
 
 export const LANGS = ["ru", "en", "uz"] as const;
 export type SeoLang = (typeof LANGS)[number];
@@ -38,17 +46,19 @@ export const SITE_NAME = "Radiocom";
 
 export const BUSINESS = {
   legalName: "Radiocom",
-  phones: ["+998781131618", "+998939800710", "+998933890710"],
-  street: "ул. Узбекистон Овози, 2 (Гостиница Тата, 1 этаж)",
+  /** Primary first: `telephone` in both identity nodes is `phones[0]`. */
+  phones: [PHONE_PRIMARY.e164, PHONE_LANDLINE.e164, PHONE_SERVICE.e164],
+  servicePhone: PHONE_SERVICE.e164,
+  street: "ул. Узбекистон Овози, 2 (Гостиница Тата, 1–2 этаж)",
   city: "Ташкент",
   region: "Toshkent",
   country: "UZ",
   postalCode: "100000",
   /** Office coordinates — Uzbekiston Ovozi 2, Tashkent. */
   geo: { lat: 41.3111, lng: 69.2797 },
-  email: "sales@radiocom.uz",
+  email: EMAIL_SALES,
   openingHours: "Mo-Fr 09:00-18:00",
-  sameAs: ["https://t.me/radiocom_uz", "https://www.instagram.com/radiocom_uzb"],
+  sameAs: [TELEGRAM_URL, INSTAGRAM_URL],
 } as const;
 
 /**
@@ -103,7 +113,7 @@ export const YEARS_TRADING = new Date().getFullYear() - FOUNDED_YEAR;
  * without the build saying so.
  */
 export const ORG_DESCRIPTION =
-  "Рации Motorola и Radiocom в Ташкенте: 21 модель в наличии, 14 лет на рынке, " +
+  "Рации Motorola и Radiocom в Ташкенте: 35+ моделей, 14 лет на рынке, " +
   "10 000+ клиентов. Бесплатный тест, гарантия 12 месяцев, свой сервис.";
 
 /** Absolute URL for a site-relative path. */
@@ -397,7 +407,7 @@ export function organizationSchema() {
     contactPoint: BUSINESS.phones.map((telephone) => ({
       "@type": "ContactPoint",
       telephone,
-      contactType: "sales",
+      contactType: telephone === BUSINESS.servicePhone ? "technical support" : "sales",
       areaServed: "UZ",
       availableLanguage: ["ru", "uz", "en"],
     })),
@@ -750,7 +760,7 @@ export function serviceSchema(
     availableChannel: {
       "@type": "ServiceChannel",
       serviceUrl: absolute(localePath(lang, opts.path)),
-      servicePhone: BUSINESS.phones[0],
+      servicePhone: BUSINESS.servicePhone,
       serviceLocation: { "@id": `${SITE_URL}/#localbusiness` },
     },
   };

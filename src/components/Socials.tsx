@@ -1,14 +1,11 @@
 import { Instagram, Facebook, Send } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { FACEBOOK_URL, INSTAGRAM_URL, TELEGRAM_URL } from "@/lib/contacts";
 
 const links = [
-  { href: "https://www.instagram.com/radiocom_uzb", Icon: Instagram, label: "Instagram" },
-  {
-    href: "https://www.facebook.com/people/Radiocom-%D0%A0%D0%B0%D1%86%D0%B8%D0%B8-Motorola-%D0%B2-%D0%A3%D0%B7%D0%B1%D0%B5%D0%BA%D0%B8%D1%81%D1%82%D0%B0%D0%BD%D0%B5/100085709424020/",
-    Icon: Facebook,
-    label: "Facebook",
-  },
-  { href: "https://t.me/uz_Radiocom", Icon: Send, label: "Telegram" },
+  { href: INSTAGRAM_URL, Icon: Instagram, label: "Instagram" },
+  { href: FACEBOOK_URL, Icon: Facebook, label: "Facebook" },
+  { href: TELEGRAM_URL, Icon: Send, label: "Telegram" },
 ];
 
 export function Socials() {

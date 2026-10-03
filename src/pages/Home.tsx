@@ -51,7 +51,7 @@ import { visibleProducts } from "@/data/products";
 import { ProductCard } from "@/components/ProductCard";
 import { CountUp } from "@/components/CountUp";
 import { TrustedBy } from "@/components/TrustedBy";
-import { spring, fadeUpAt } from "@/lib/springs";
+import { spring, fadeUpAt, rise } from "@/lib/springs";
 import { DESKTOP, useGsap, useScrollChoreography } from "@/lib/motion";
 
 export function HomePage() {
@@ -131,14 +131,14 @@ function Hero() {
       </div>
 
       <div data-hero-copy className="relative z-10 shell px-6 text-center md:px-10">
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...spring, delay: 0.05 }}
-          className="eyebrow-sweep mb-5 text-[13px] font-medium tracking-wide"
-        >
-          {t("home.hero.eyebrow")}
-        </motion.div>
+        {/* The first screen is plain markup with a CSS entrance (`hero-rise`),
+            not Framer's `initial`: that rendered `opacity:0` into the server
+            HTML, so the heading, the offer and the button stayed invisible until
+            the bundle hydrated. The sweep moves to an inner span because one
+            element cannot run both animations. */}
+        <div className="hero-rise mb-5 text-[13px] font-medium tracking-wide" style={rise(0)}>
+          <span className="eyebrow-sweep">{t("home.hero.eyebrow")}</span>
+        </div>
 
         <h1 className="headline-hero text-crisp">
           {lines.map((line, li) => (
@@ -156,18 +156,13 @@ function Hero() {
                 {line.split(" ").map((w, i) => (
                   <Fragment key={i}>
                     {i > 0 && " "}
-                    <motion.span
-                      initial={{ opacity: 0, y: 24 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ ...spring, delay: 0.1 + (li * 2 + i) * 0.04 }}
-                      className="inline-block"
-                    >
+                    <span className="hero-rise inline-block" style={rise(1 + li * 2 + i)}>
                       {/* The h1 names Radiocom now, and this loop is the one
                           headline on the site that was not going through
                           `brandCase` — so the hero read "Radiocom" beside a
                           wordmark that reads RADIOCOM. */}
                       {brandCase(w)}
-                    </motion.span>
+                    </span>
                   </Fragment>
                 ))}
               </span>
@@ -175,20 +170,14 @@ function Hero() {
           ))}
         </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...spring, delay: 0.35 }}
-          className="subhead mx-auto mt-6 max-w-3xl text-lg md:text-2xl"
-        >
+        <p className="hero-rise subhead mx-auto mt-6 max-w-3xl text-lg md:text-2xl" style={rise(6)}>
           {brandCase(t("home.hero.sub"))}
-        </motion.p>
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...spring, delay: 0.45 }}
-          className="mt-9 flex flex-wrap items-center justify-center gap-3 md:gap-4"
+        <div
+          data-placement="hero"
+          className="hero-rise mt-9 flex flex-wrap items-center justify-center gap-3 md:gap-4"
+          style={rise(7)}
         >
           <Magnetic>
             <button
@@ -201,7 +190,7 @@ function Hero() {
           <LocaleLink to="/radiocom" className="pill-link">
             {t("home.hero.cta_secondary")} <ChevronRight className="h-4 w-4" aria-hidden />
           </LocaleLink>
-        </motion.div>
+        </div>
       </div>
 
       <div
@@ -337,7 +326,7 @@ function ValueShelf() {
               cutout
               srcSmall={kitWide800}
               srcTiny={kitWide400}
-              alt=""
+              alt={t("alt.kit")}
               width={1600}
               height={1111}
               sizes="(max-width: 640px) 78vw, (max-width: 1024px) 62vw, 560px"
@@ -374,7 +363,7 @@ function ValueShelf() {
               cutout
               srcSmall={radiosPair800}
               srcTiny={radiosPair400}
-              alt=""
+              alt={t("alt.pair")}
               width={1164}
               height={1600}
               fit="contain"
@@ -413,7 +402,7 @@ function ValueShelf() {
                      800px file because it had no `srcSet` at all. */
                   srcSet={it.photoTiny ? `${it.photoTiny} 400w, ${it.photo} 800w` : undefined}
                   sizes={it.photoTiny ? "280px" : undefined}
-                  alt=""
+                  alt={t("alt.retail_box")}
                   loading="lazy"
                   decoding="async"
                   width={800}
@@ -468,7 +457,7 @@ function ValueShelf() {
                 cutout
                 srcSmall={macroWide800}
                 srcTiny={macroWide400}
-                alt=""
+                alt={t("alt.display")}
                 width={1463}
                 height={1600}
                 fit="contain"
@@ -498,7 +487,7 @@ function NetworkSplit() {
             src={bentoDetail}
             srcSet={`${bentoDetail800} 598w, ${bentoDetail} 1195w`}
             sizes="(min-width: 768px) 692px, 94vw"
-            alt=""
+            alt={t("alt.radio_macro")}
             loading="lazy"
             width={1195}
             height={1600}
@@ -560,7 +549,7 @@ function IndustriesTeaser() {
                      file instead of the 800px one. */
                   srcSet={INDUSTRY_IMAGE_SRCSET[it.slug]}
                   sizes="(min-width: 768px) 456px, 92vw"
-                  alt=""
+                  alt={t(`industries.${it.slug}.photo_alt`)}
                   loading="lazy"
                   width={1400}
                   height={900}

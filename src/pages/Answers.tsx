@@ -7,7 +7,7 @@ import { brandCase } from "@/lib/brand";
 import { Section, SectionHead } from "@/components/Section";
 import { publishedAnswers } from "@/data/answers";
 import { pick } from "@/data/spec-dict";
-import { fadeUpAt, spring } from "@/lib/springs";
+import { fadeUpAt } from "@/lib/springs";
 import { TrustedBy } from "@/components/TrustedBy";
 
 /**
@@ -26,19 +26,16 @@ export function AnswersPage() {
   return (
     <div ref={page} className="page-anim page-tight">
       <Section band="plain">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={spring}
-        >
-          <div className="eyebrow-sweep mb-4 text-[13px] font-medium tracking-wide">
-            {t("answers.eyebrow")}
+        {/* CSS entrance, not Framer's `initial` — see `hero-rise` in styles.css. */}
+        <div className="hero-rise">
+          <div className="mb-4 text-[13px] font-medium tracking-wide">
+            <span className="eyebrow-sweep">{t("answers.eyebrow")}</span>
           </div>
           <h1 className="type-display text-crisp">{t("answers.title")}</h1>
           <p className="subhead measure mt-5 text-[17px] leading-relaxed md:text-[21px]">
             {brandCase(t("answers.sub"))}
           </p>
-        </motion.div>
+        </div>
       </Section>
 
       <Section band="soft">

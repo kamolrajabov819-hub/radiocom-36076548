@@ -12,17 +12,32 @@
  *      a static import would silently make it true on all of them, and no
  *      other check would notice.
  *
- * Usage: node scripts/qa-console.mjs <url> [url...]
+ * Usage: node scripts/qa-console.mjs [url...]
+ * With no URLs it checks every ad landing page (docs/seo/PLAN.md) on the local
+ * build at http://127.0.0.1:4173 — which is how `bun run qa` runs it.
  * Exits non-zero on any console error or failed request.
  */
 import { chromium } from "playwright-core";
 
 const CHROME = "/opt/pw-browsers/chromium-1194/chrome-linux/chrome";
-const urls = process.argv.slice(2);
-if (!urls.length) {
-  console.error("usage: node scripts/qa-console.mjs <url> [url...]");
-  process.exit(2);
-}
+const LANDING = [
+  "/ru",
+  "/uz",
+  "/ru/radiocom",
+  "/ru/motorola",
+  "/ru/poc",
+  "/ru/service",
+  "/ru/industries/horeca",
+  "/ru/industries/construction",
+  "/ru/industries/security",
+  "/ru/industries/mining",
+  "/ru/industries/transport",
+  "/ru/industries/manufacturing",
+  "/ru/radiocom/rcd-70",
+  "/ru/motorola/t82-extreme",
+];
+const args = process.argv.slice(2);
+const urls = args.length ? args : LANDING.map((p) => `http://127.0.0.1:4173${p}`);
 
 const browser = await chromium.launch({ executablePath: CHROME });
 let bad = 0;

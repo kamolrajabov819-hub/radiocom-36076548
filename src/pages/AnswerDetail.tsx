@@ -13,7 +13,7 @@ import { answerBySlug } from "@/data/answers";
 import { answerContent, answerPicks } from "@/data/answers-content";
 import { visibleProducts } from "@/data/products";
 import { pick } from "@/data/spec-dict";
-import { fadeUpAt, spring } from "@/lib/springs";
+import { fadeUpAt } from "@/lib/springs";
 import { faqSchema, howToSchema } from "@/lib/seo";
 
 /**
@@ -80,11 +80,10 @@ export function AnswerDetailPage() {
       ) : null}
       {/* ── Question and the direct answer ─────────────────────── */}
       <Section band="plain">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={spring}
-        >
+        {/* CSS entrance, not Framer's `initial` — see `hero-rise` in styles.css.
+            This block holds the direct answer, the passage most worth having
+            in the server HTML at full opacity. */}
+        <div className="hero-rise">
           <LocaleLink to="/answers" className="pill-link mb-6 inline-flex">
             ← {t("answers.back")}
           </LocaleLink>
@@ -97,7 +96,7 @@ export function AnswerDetailPage() {
           >
             {brandCase(pick(a.answer, lang))}
           </p>
-        </motion.div>
+        </div>
       </Section>
 
       {/* ── Steps, where the page is a procedure ───────────────── */}

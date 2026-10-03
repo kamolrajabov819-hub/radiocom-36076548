@@ -1,7 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
 import { useScrollChoreography } from "@/lib/motion";
-import { spring } from "@/lib/springs";
 import { notFound, useParams } from "@tanstack/react-router";
 import { Check, ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
@@ -83,13 +81,13 @@ export function ProductSpecsPage() {
             would have put a price card ahead of the page's heading. Below `lg`
             the columns stack and source order governs, which is the order that
             reads correctly on a phone. */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={spring}
-          className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)]"
-        >
-          <div className="lg:order-2">
+        {/* No Framer `initial` on this grid: it rendered the whole first
+            screen — name, price and the request button — at opacity 0 in the
+            server HTML. The rise is on the text column only; the buy box holds
+            a multiply-blended product shot on a tinted card, and a transform on
+            its ancestor would strand the blend (see `hero-rise`). */}
+        <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)]">
+          <div className="hero-rise lg:order-2">
             <h1 className="type-headline text-balance text-crisp">{brandCase(p.name)}</h1>
             <p className="subhead mt-4 max-w-xl text-[17px]">{pick(p.blurb, lang)}</p>
 
@@ -112,7 +110,7 @@ export function ProductSpecsPage() {
 
           {/* Buy card. Sticky on desktop so the price stays with the reader
               while they scroll the full table below. */}
-          <aside className="lg:order-1 lg:sticky lg:top-24">
+          <aside data-placement="buy-box" className="lg:order-1 lg:sticky lg:top-24">
             <div className="rounded-[28px] bg-charcoal p-7 md:p-8">
               <div className="flex justify-center">
                 <img
@@ -135,7 +133,7 @@ export function ProductSpecsPage() {
                       : undefined
                   }
                   sizes={p.imageSmall ? "180px" : undefined}
-                  alt=""
+                  alt={p.name}
                   width={1600}
                   height={1600}
                   loading="eager"
@@ -193,7 +191,7 @@ export function ProductSpecsPage() {
               </div>
             </div>
           </aside>
-        </motion.div>
+        </div>
       </Section>
 
       {/* ── Full specification table ──────────────────────── */}

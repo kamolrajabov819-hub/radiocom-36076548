@@ -102,7 +102,8 @@
       "seo": "HoReCa",
       "h1": "Two-way radios for hotels and restaurants",
       "clients": "",
-      "meta_desc": "Two-way radios for hotels, restaurants and events in Tashkent. Motorola CLP 446 and CLK 446: up to 7,400 m² of coverage, 68 g, earpiece in the box. Free trial."
+      "meta_desc": "Two-way radios for hotels, restaurants and events in Tashkent. Motorola CLP 446 and CLK 446: up to 7,400 m² of coverage, 68 g, earpiece in the box. Free trial.",
+      "photo_alt": "A restaurant dining room with guests"
     },
     "construction": {
       "name": "Construction",
@@ -151,7 +152,8 @@
       "seo": "Construction",
       "h1": "Two-way radios for construction",
       "clients": "",
-      "meta_desc": "Radios for building sites in Tashkent: the RCD-70 PRO has IP67 dust and water protection, reaches 10 km in the open, and stays clear through site noise."
+      "meta_desc": "Radios for building sites in Tashkent: the RCD-70 PRO has IP67 dust and water protection, reaches 10 km in the open, and stays clear through site noise.",
+      "photo_alt": "Builders in hard hats and vests on site, tower cranes behind them"
     },
     "security": {
       "name": "Security",
@@ -200,7 +202,8 @@
       "seo": "Security",
       "h1": "Two-way radios for security",
       "clients": "",
-      "meta_desc": "Radios for security teams in Tashkent: AES-256 encryption, an alarm button, GPS on the RCD-70 PRO and up to 3 km through built-up streets. 12-month warranty."
+      "meta_desc": "Radios for security teams in Tashkent: AES-256 encryption, an alarm button, GPS on the RCD-70 PRO and up to 3 km through built-up streets. 12-month warranty.",
+      "photo_alt": "A security officer on the radio in front of CCTV monitors"
     },
     "mining": {
       "name": "Mining · Oil · Gas",
@@ -249,7 +252,8 @@
       "seo": "Mining, Oil and Gas",
       "h1": "Two-way radios for mining, oil and gas",
       "clients": "Trusted by: Uz-Kor Gas Chemical, ERIELL, ENTER Engineering, HYUNDAI Engineering, SAMSUNG Engineering Construction.",
-      "meta_desc": "Two-way radios for mining, oil and gas: IP67 against dust and water, AES-256 encryption, a 3600 mAh battery that lasts a shift. ERIELL and ENTER Engineering."
+      "meta_desc": "Two-way radios for mining, oil and gas: IP67 against dust and water, AES-256 encryption, a 3600 mAh battery that lasts a shift. ERIELL and ENTER Engineering.",
+      "photo_alt": "A pumpjack working an oil field at sunset"
     },
     "transport": {
       "name": "Transport · Logistics",
@@ -298,7 +302,8 @@
       "seo": "Transport and Logistics",
       "h1": "Two-way radios for transport and logistics",
       "clients": "",
-      "meta_desc": "Radios for transport and logistics: the dispatcher sees every crew on a map, up to 10 km on the highway, 3600 mAh for a shift at the wheel. Free trial."
+      "meta_desc": "Radios for transport and logistics: the dispatcher sees every crew on a map, up to 10 km on the highway, 3600 mAh for a shift at the wheel. Free trial.",
+      "photo_alt": "A container terminal and rail yard from above"
     },
     "manufacturing": {
       "name": "Manufacturing · Warehousing",
@@ -347,7 +352,8 @@
       "seo": "Manufacturing and Warehousing",
       "h1": "Two-way radios for manufacturing and warehouses",
       "clients": "",
-      "meta_desc": "Radios for factories and warehouses in Tashkent: 2.5 km across the shop floor, your own frequency with no monthly fee, warehouse scanners. Free trial."
+      "meta_desc": "Radios for factories and warehouses in Tashkent: 2.5 km across the shop floor, your own frequency with no monthly fee, warehouse scanners. Free trial.",
+      "photo_alt": "A factory floor with machines and workers in workwear"
     },
     "banner_title": "Not sure which radio fits your operation?",
     "banner_sub": "Tell us what your site is like and we will pick the radios in 15 minutes.",
@@ -439,7 +445,10 @@
     "submit": "Send request",
     "success": "Request sent. We’ll be in touch.",
     "test_title": "Free on-site test",
-    "trust_line": "We reply in 15 min · Mon–Fri 9:00–18:00"
+    "trust_line": "We reply in 15 min · Mon–Fri 9:00–18:00",
+    "error_title": "Your request didn’t go through.",
+    "error_sub": "Call us or message us on Telegram — a manager will answer.",
+    "retry": "Try again"
   },
   "poc": {
     "kicker": "PoC RADIOS · TALKING OVER THE MOBILE NETWORK",
@@ -565,7 +574,7 @@
   },
   "footer": {
     "hours": "Mon-Fri · 09:00–18:00",
-    "address": "Tashkent, Uzbekiston Ovozi 2 (Tata Hotel, 1st floor)",
+    "address": "Tashkent, Uzbekiston Ovozi 2 (Tata Hotel, 1st–2nd floor)",
     "rights": "© Radiocom. All rights reserved.",
     "follow": "Follow us on",
     "map_title": "Radiocom · Tashkent",
@@ -640,7 +649,9 @@
   "contact": {
     "eyebrow": "Contacts",
     "title": "Visit our office",
-    "sub": "See the equipment in person, pick the right model for your task and book a free trial."
+    "sub": "See the equipment in person, pick the right model for your task and book a free trial.",
+    "call": "Call",
+    "telegram": "Message on Telegram"
   },
   "error": {
     "nf_code": "404",
@@ -658,7 +669,7 @@
   "meta": {
     "home": {
       "title": "Two-Way Radios in Tashkent — Motorola, Radiocom | Radiocom",
-      "desc": "Motorola and Radiocom two-way radios in Tashkent: 21 models in stock, 14 years in business, 10 000+ clients. Free trial, 12-month warranty, our own service."
+      "desc": "Motorola and Radiocom two-way radios in Tashkent: 35+ models, 14 years in business, 10 000+ clients. Free trial, 12-month warranty, our own service."
     },
     "poc": {
       "title": "PoC radios — talk over the mobile network | Radiocom",
@@ -728,14 +739,14 @@
     },
     "search": {
       "title": "Search the two-way radio catalogue — Radiocom",
-      "desc": "Search for a radio by name, range or dust and water protection. 21 Motorola and Radiocom models in stock in Tashkent, with prices and specifications."
+      "desc": "Search for a radio by name, range or dust and water protection. Motorola and Radiocom radios in stock in Tashkent, with prices and specifications."
     },
     "sitemap": {
       "desc": "Every Radiocom page in one list: Motorola and Radiocom RC two-way radios, specs and prices, industry pages, and repair service in Tashkent."
     },
     "answers": {
       "title": "All about two-way radios: common questions | Radiocom",
-      "desc": "How to choose a radio, what range you really get, what it costs in Tashkent and what the warranty covers. Seven answers and 21 models in stock."
+      "desc": "How to choose a radio, what range you really get, what it costs in Tashkent and what the warranty covers. Seven answers and 35+ models in stock."
     }
   },
   "brand": {
@@ -813,5 +824,20 @@
     "steps_title": "Step by step",
     "step_label": "Step {{n}}",
     "related_title": "Read next"
+  },
+  "alt": {
+    "kit": "A Radiocom radio with its kit: battery, charging cradle with adapter, earpiece and cable",
+    "pair": "Two Radiocom radios",
+    "retail_box": "A Radiocom radio in hand and a boxed Radiocom RCD-70 PRO",
+    "display": "Close-up of a radio’s display and keys",
+    "radio_macro": "Close-up of a Radiocom radio’s antenna and knobs",
+    "service_bench": "A radio on the service bench, with tools and its battery and antenna removed",
+    "compare_hands": "Two Radiocom radios with displays, held side by side",
+    "tradein": "A radio trade-in: the old one in one hand, the new one in the other",
+    "radios_fan": "A row of Radiocom radios",
+    "poc_box": "A PoC radio in hand and its box",
+    "poc_hand": "A PoC radio in hand",
+    "poc_fleet": "PoC radios with and without a display",
+    "product_kit": "{{name}}: what’s in the box"
   }
 }

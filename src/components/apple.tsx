@@ -1197,6 +1197,7 @@ export function PosterCard({
   eyebrow,
   title,
   image,
+  imageAlt = "",
   srcSet,
   href,
   idx = 0,
@@ -1204,6 +1205,8 @@ export function PosterCard({
 }: {
   eyebrow?: string;
   title: string;
+  /** What the photograph shows. The title names the industry, not the picture. */
+  imageAlt?: string;
   image: string;
   /**
    * Candidates for `image`. The card already declared a `sizes` of 220px /
@@ -1227,7 +1230,7 @@ export function PosterCard({
       <img
         src={image}
         srcSet={srcSet}
-        alt=""
+        alt={imageAlt}
         loading="lazy"
         decoding="async"
         width={600}

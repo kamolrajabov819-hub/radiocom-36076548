@@ -47,3 +47,7 @@ scripts/.tmp/
 # Studio originals for scripts/build-catalog-photos.ts (never shipped).
 # 2400x1792 camera files; they live in git history at c02609c.
 raw-catalog/
+
+# Raw third-party keyword/traffic exports (Wordstat, GKP, Ahrefs, GSC). Derived
+# results live in docs/seo/; the raw files never go into git.
+seo-input/

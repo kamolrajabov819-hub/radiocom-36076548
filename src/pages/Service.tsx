@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { useScrollChoreography } from "@/lib/motion";
 import { useTranslation } from "react-i18next";
 import { brandCase } from "@/lib/brand";
@@ -21,7 +20,8 @@ import advCertified from "@/assets/cutout/hands-compare-cutout.webp";
 import advCertified800 from "@/assets/cutout/hands-compare-cutout@800.webp";
 import partsRetailBox from "@/assets/cutout/hand-retail-box-cutout@800.webp";
 import { openLead } from "@/components/LeadFormSheet";
-import { spring } from "@/lib/springs";
+import { PHONE_SERVICE, telHref } from "@/lib/contacts";
+import { rise } from "@/lib/springs";
 import { ProductShot } from "@/components/ProductShot";
 import { SectionHead } from "@/components/Section";
 import { Faq } from "@/components/Faq";
@@ -49,6 +49,7 @@ export function ServicePage() {
 }
 
 function BenchStrip() {
+  const { t } = useTranslation();
   return (
     <section className="bg-pitch">
       <div className="shell">
@@ -59,7 +60,7 @@ function BenchStrip() {
             /* Shell-width, then `scale-110`. 151 KB of 1264px master was
                going into a 381px slot on a phone. */
             sizes="(min-width: 1280px) 1280px, 98vw"
-            alt=""
+            alt={t("alt.service_bench")}
             loading="lazy"
             width={1264}
             height={848}
@@ -86,10 +87,9 @@ function Hero() {
           only the headline gets the extra width. */}
       <div className="max-w-6xl mx-auto">
         <div className="text-signal text-[13px] mb-4">{t("service.kicker")}</div>
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={spring}
+        {/* CSS entrance, not Framer's `initial` — see `hero-rise` in styles.css. */}
+        <h1
+          style={rise(0)}
           // `headline-hero`, the same scale every other hero on the site uses,
           // in the same `max-w-3xl` centred container the compare page uses.
           //
@@ -101,23 +101,17 @@ function Hero() {
           // line. `headline-hero` already carries `text-wrap: balance` and
           // `overflow-wrap: break-word`, so it wraps to two balanced lines like
           // every other hero rather than needing to be made small enough not to.
-          className="headline-hero text-crisp"
+          className="hero-rise headline-hero text-crisp"
         >
           {t("service.title_a")} {t("service.title_b")}
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...spring, delay: 0.1 }}
-          className="subhead mx-auto mt-5 max-w-2xl text-lg md:text-xl"
-        >
+        </h1>
+        <p className="hero-rise subhead mx-auto mt-5 max-w-2xl text-lg md:text-xl" style={rise(1)}>
           {brandCase(t("service.sub"))}
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...spring, delay: 0.2 }}
-          className="mt-8 flex items-center justify-center gap-4 flex-wrap"
+        </p>
+        <div
+          data-placement="hero"
+          className="hero-rise mt-8 flex items-center justify-center gap-4 flex-wrap"
+          style={rise(2)}
         >
           <button
             onClick={() => openLead({ title: t("service.request_repair") })}
@@ -125,10 +119,10 @@ function Hero() {
           >
             {t("service.request_repair")}
           </button>
-          <a href="tel:+998939800710" className="pill-link">
-            +998 93 980-07-10
+          <a href={telHref(PHONE_SERVICE)} className="pill-link">
+            {PHONE_SERVICE.display}
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -243,7 +237,7 @@ function Advantages() {
                   src={advCertified}
                   cutout
                   srcSmall={advCertified800}
-                  alt=""
+                  alt={t("alt.compare_hands")}
                   width={1600}
                   height={1600}
                   fit="contain"
@@ -279,7 +273,7 @@ function Advantages() {
             media={
               <img
                 src={partsRetailBox}
-                alt=""
+                alt={t("alt.retail_box")}
                 loading="lazy"
                 decoding="async"
                 width={800}

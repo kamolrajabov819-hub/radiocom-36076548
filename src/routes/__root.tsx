@@ -24,6 +24,14 @@ import {
   webSiteSchema,
 } from "@/lib/seo";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import {
+  gtmId,
+  gtmSnippet,
+  installClickTracking,
+  seedPageView,
+  trackPageView,
+} from "@/lib/analytics";
+import { captureAttribution } from "@/lib/attribution";
 import { getI18n } from "@/lib/i18n";
 import { useLang } from "@/lib/locale";
 import { useSmoothScroll } from "@/lib/motion";
@@ -77,6 +85,20 @@ function ErrorBody({ error, reset }: { error: Error; reset: () => void }) {
     </div>
   );
 }
+
+const GTM_ID = gtmId();
+
+/**
+ * The first screen, visible without JavaScript.
+ *
+ * Framer Motion renders each element's `initial` state into the server HTML,
+ * so everything that fades in on scroll arrives as `style="opacity:0"`. With
+ * JavaScript running that is the starting frame of an animation; with
+ * JavaScript off — some crawlers, some corporate browsers, a script that
+ * failed to load — it is content nobody can see. Inside `<noscript>`, this rule
+ * only ever applies to that second case.
+ */
+const NO_SCRIPT_REVEAL = '[style*="opacity:0"]{opacity:1!important;transform:none!important}';
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -184,9 +206,38 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang={lang}>
       <head>
+        {/*
+          Google Tag Manager, only when the build was given a container ID
+          (see `analytics.ts`). Here, not in `head().scripts`: `HeadContent`
+          re-inserts route scripts on every client-side navigation, and the
+          loader ran again each time — four `gtm.js` fetches across three page
+          views in testing, each one re-initialising the container. A static
+          element in the shell is rendered once and never re-created.
+
+          React 19 hoists the stylesheet above everything in <head>, and an
+          inline script after a pending stylesheet waits for it, so in practice
+          this runs once the CSS has arrived — at about first paint, which is a
+          fine moment for a tag manager to start. The snippet itself only
+          queues an async fetch; nothing waits on GTM.
+        */}
+        {GTM_ID ? <script dangerouslySetInnerHTML={{ __html: gtmSnippet(GTM_ID) }} /> : null}
         <HeadContent />
+        <noscript>
+          <style>{NO_SCRIPT_REVEAL}</style>
+        </noscript>
       </head>
       <body>
+        {GTM_ID ? (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              height="0"
+              width="0"
+              title="Google Tag Manager"
+              style={{ display: "none", visibility: "hidden" }}
+            />
+          </noscript>
+        ) : null}
         {children}
         <Scripts />
       </body>
@@ -209,6 +260,33 @@ function RootComponent() {
     if (typeof navigator === "undefined" || !("modelContext" in navigator)) return;
     void import("@/lib/webmcp").then((m) => m.registerWebMcpTools());
   }, []);
+
+  // Analytics plumbing, once per document: where this visit came from (kept
+  // for the lead form), the delegated contact-click listener, and a page view
+  // for every client-side navigation after the first.
+  const router = useRouter();
+  useEffect(() => {
+    captureAttribution();
+    seedPageView(window.location.pathname);
+    const stopClicks = installClickTracking();
+    const stopBefore = router.subscribe("onBeforeNavigate", (e) => {
+      // The page-in animation is for navigating *between* pages. On the first
+      // load it delayed the first paint of every page by its whole duration,
+      // so it only switches on once the visitor has moved.
+      if (e.fromLocation && e.pathChanged) document.documentElement.dataset.navigated = "";
+    });
+    const stopResolved = router.subscribe("onResolved", (e) => {
+      if (!e.fromLocation || !e.pathChanged) return;
+      const path = e.toLocation.pathname;
+      // A frame later, so the new route's <title> has been committed.
+      requestAnimationFrame(() => trackPageView(path, document.title, path.split("/")[1]));
+    });
+    return () => {
+      stopClicks();
+      stopBefore();
+      stopResolved();
+    };
+  }, [router]);
 
   return (
     <QueryClientProvider client={queryClient}>

@@ -1,17 +1,27 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { X, Loader2, Check } from "lucide-react";
 import { spring } from "@/lib/springs";
 import { PhoneInput } from "@/components/PhoneInput";
+import { ContactActions, HoneypotField } from "@/components/ContactActions";
+import { currentPage, track } from "@/lib/analytics";
+import { HONEYPOT_FIELD, submitLead } from "@/lib/lead";
+import { useLang } from "@/lib/locale";
 
 type Ctx = { open: boolean; title?: string; product?: string };
 let listeners: Array<(c: Ctx) => void> = [];
 let state: Ctx = { open: false };
 
+/**
+ * Open the request sheet. `title` names the call to action that opened it —
+ * every caller already passes one — and it now travels with the lead as `cta`,
+ * so the Telegram message says which button produced it.
+ */
 export function openLead(opts: { title?: string; product?: string } = {}) {
   state = { open: true, ...opts };
   listeners.forEach((l) => l(state));
+  track("lead_form_open", { cta: opts.title, product: opts.product, page: currentPage() });
 }
 function closeLead() {
   state = { ...state, open: false };
@@ -20,9 +30,14 @@ function closeLead() {
 
 export function LeadFormSheet() {
   const { t } = useTranslation();
+  const lang = useLang();
   const [ctx, setCtx] = useState<Ctx>(state);
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
+  const [failed, setFailed] = useState(false);
+  // A ref as well as the state: two taps inside one frame both read
+  // `sending === false` from the same render, and both would post.
+  const inFlight = useRef(false);
 
   useEffect(() => {
     const l = (c: Ctx) => setCtx({ ...c });
@@ -34,26 +49,32 @@ export function LeadFormSheet() {
 
   useEffect(() => {
     if (!ctx.open) {
-      const t = setTimeout(() => setSent(false), 400);
+      const t = setTimeout(() => {
+        setSent(false);
+        setFailed(false);
+      }, 400);
       return () => clearTimeout(t);
     }
   }, [ctx.open]);
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (inFlight.current) return;
+    inFlight.current = true;
     setSending(true);
-    const data = Object.fromEntries(new FormData(e.currentTarget));
-    try {
-      await fetch("/api/send-lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, product: ctx.product, source: "lead-sheet" }),
-      });
-    } catch (err) {
-      console.error("[lead] failed to send", err);
-    }
+    setFailed(false);
+    const ok = await submitLead(e.currentTarget, {
+      form: "lead-sheet",
+      cta: ctx.title,
+      product: ctx.product,
+      lang,
+    });
+    inFlight.current = false;
     setSending(false);
-    setSent(true);
+    // On failure the form stays mounted with everything the visitor typed, and
+    // the error below it offers the phone and Telegram instead.
+    if (ok) setSent(true);
+    else setFailed(true);
   };
 
   return (
@@ -67,6 +88,7 @@ export function LeadFormSheet() {
         >
           <div className="absolute inset-0 bg-black/40 backdrop-blur-md" onClick={closeLead} />
           <motion.aside
+            data-placement="lead-sheet"
             className="absolute right-0 top-0 h-full w-full max-w-[520px] bg-pitch overflow-y-auto md:rounded-l-3xl"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
@@ -103,7 +125,7 @@ export function LeadFormSheet() {
                       {ctx.product}
                     </div>
                   )}
-                  <form onSubmit={submit} className="space-y-4">
+                  <form onSubmit={submit} className="relative space-y-4">
                     <Field name="name" label={t("form.name")} required />
                     <Field name="phone" label={t("form.phone")} required type="tel" />
                     <Field name="qty" label={t("form.qty")} type="number" />
@@ -114,11 +136,23 @@ export function LeadFormSheet() {
                       className="pill pill-accent w-full mt-2 disabled:opacity-70"
                     >
                       {sending && <Loader2 className="w-4 h-4 animate-spin" />}
-                      {t("form.submit")}
+                      {failed ? t("form.retry") : t("form.submit")}
                     </button>
-                    <div className="text-center text-[12px] text-cool pt-2">
-                      {t("form.trust_line")}
-                    </div>
+                    {failed ? (
+                      <div role="alert" className="rounded-2xl bg-charcoal p-5">
+                        <p className="text-[15px] font-medium text-crisp">
+                          {t("form.error_title")}
+                        </p>
+                        <p className="mt-1 text-[13px] text-cool">{t("form.error_sub")}</p>
+                        <ContactActions placement="form-error" className="mt-4" />
+                      </div>
+                    ) : (
+                      <div className="text-center text-[12px] text-cool pt-2">
+                        {t("form.trust_line")}
+                      </div>
+                    )}
+                    {/* Last, so `space-y-4` spaces the visible fields as before. */}
+                    <HoneypotField name={HONEYPOT_FIELD} />
                   </form>
                 </>
               )}

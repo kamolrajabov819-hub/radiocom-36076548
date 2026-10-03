@@ -50,9 +50,13 @@ website for a lot of local searches. This is the highest-value item after §1.
 - The name, address and phone must match `src/lib/seo.ts` → `BUSINESS`
   **character for character**. Both engines cross-check, and a mismatched suite
   number or a differently formatted phone weakens the match:
-  - Radiocom · ул. Узбекистон Овози, 2 (Гостиница Тата, 1 этаж), Ташкент
-  - +998 78 113-16-18
+  - Radiocom · ул. Узбекистон Овози, 2 (Гостиница Тата, 1–2 этаж), Ташкент
+  - +998 93 389-07-10 (primary; the landline +998 78 113-16-18 as the second number)
+  - Telegram: t.me/DiyorRadiocom
   - Mon–Fri 09:00–18:00
+- Correct the listings that still show **+998 93 387-07-10** — orginfo.uz, the
+  old site and press coverage. The owner confirmed 389-07-10 on 2026-10-02, and
+  two numbers for one business is exactly the mismatch both engines penalise.
 - Add the real photographs — the office, the service bench, the shelf of
   stock. Profiles with photos convert far better than profiles without.
 

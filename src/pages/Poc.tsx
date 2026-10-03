@@ -46,7 +46,7 @@ import {
 } from "@/components/apple";
 import { ProductShot } from "@/components/ProductShot";
 import { TrustedBy } from "@/components/TrustedBy";
-import { spring, fadeUpAt } from "@/lib/springs";
+import { spring, fadeUpAt, rise } from "@/lib/springs";
 
 /**
  * The six rows of the PoC-vs-PMR matrix.
@@ -101,50 +101,41 @@ function PocHero() {
   return (
     <section ref={ref} className="relative overflow-hidden band-tint pt-32 pb-20 md:pt-44 md:pb-28">
       <div className="relative shell text-center">
-        <motion.div
-          initial={{ opacity: 0, y: -6 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={spring}
-          className="text-[13px] font-medium tracking-tight text-signal"
+        {/* CSS entrance, not Framer's `initial` — see `hero-rise` in styles.css.
+            The heading used a clip-reveal (`y: 110%` inside `overflow-hidden`),
+            which kept each line out of sight until the script ran; it is a
+            plain rise now, painted from the first frame. */}
+        <div
+          className="hero-rise text-[13px] font-medium tracking-tight text-signal"
+          style={rise(0)}
         >
           {t("poc.kicker")}
-        </motion.div>
+        </div>
 
         <h1 className="type-display mt-4 text-crisp">
           {[t("poc.title_a"), t("poc.title_b")].map((line, li) => (
-            // The separator between the two lines is a real space, outside the
-            // clipping box. Without it the h1 reaches a crawler and a screen
-            // reader as the two lines run together into one word.
+            // The separator between the two lines is a real space. Without it
+            // the h1 reaches a crawler and a screen reader as the two lines run
+            // together into one word.
             <Fragment key={li}>
               {li > 0 && " "}
-              <span className="block overflow-hidden pb-[0.14em] -mb-[0.14em]">
-                <motion.span
-                  className="inline-block max-w-full"
-                  initial={{ y: "110%", opacity: 0 }}
-                  animate={{ y: "0%", opacity: 1 }}
-                  transition={{ ...spring, delay: 0.08 + li * 0.09 }}
-                >
+              <span className="block">
+                <span className="hero-rise inline-block max-w-full" style={rise(1 + li)}>
                   {line}
-                </motion.span>
+                </span>
               </span>
             </Fragment>
           ))}
         </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...spring, delay: 0.26 }}
-          className="subhead type-body measure mx-auto mt-5 font-light"
-        >
+        <p className="hero-rise subhead type-body measure mx-auto mt-5 font-light" style={rise(3)}>
           {t("poc.sub")}
-        </motion.p>
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...spring, delay: 0.34 }}
-          className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3"
+        <div
+          data-placement="hero"
+          className="hero-rise mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3"
+          style={rise(4)}
         >
           <button onClick={() => openLead({ title: t("poc.kicker") })} className="pill pill-accent">
             {t("poc.cta_primary")}
@@ -152,13 +143,13 @@ function PocHero() {
           <a href="#poc-compare" className="pill-link">
             {t("poc.cta_secondary")}
           </a>
-        </motion.div>
+        </div>
 
+        {/* No `initial` here either: this is the page's LCP image, and it
+            arrived in the server HTML at opacity 0. The scroll-linked drift
+            stays. */}
         <motion.div
           style={{ y: deviceY, scale: deviceScale }}
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...spring, delay: 0.2 }}
           className="relative mx-auto mt-10 w-[min(78vw,1080px)] md:mt-14"
         >
           <ProductShot
@@ -266,9 +257,33 @@ function StatBand() {
  * the column's full width back so its subject carries comparable weight.
  */
 const FEATURES = [
-  { id: "media", src: shotMedia, small: shotMedia800, w: 1600, h: 847, cap: "max-w-[560px]" },
-  { id: "gps", src: shotGps, small: shotGps800, w: 1038, h: 1600, cap: "max-w-[480px]" },
-  { id: "scale", src: shotScale, small: shotScale800, w: 1317, h: 1274, cap: "max-w-[480px]" },
+  {
+    id: "media",
+    src: shotMedia,
+    small: shotMedia800,
+    alt: "alt.poc_box",
+    w: 1600,
+    h: 847,
+    cap: "max-w-[560px]",
+  },
+  {
+    id: "gps",
+    src: shotGps,
+    small: shotGps800,
+    alt: "alt.poc_hand",
+    w: 1038,
+    h: 1600,
+    cap: "max-w-[480px]",
+  },
+  {
+    id: "scale",
+    src: shotScale,
+    small: shotScale800,
+    alt: "alt.poc_fleet",
+    w: 1317,
+    h: 1274,
+    cap: "max-w-[480px]",
+  },
 ] as const;
 
 function FeatureSequence() {
@@ -300,7 +315,7 @@ function FeatureSequence() {
                 src={f.src}
                 srcSmall={f.small}
                 cutout
-                alt=""
+                alt={t(f.alt)}
                 width={f.w}
                 height={f.h}
                 sizes="(max-width: 768px) 84vw, 560px"

@@ -3,6 +3,7 @@ import { LocaleLink } from "@/components/LocaleLink";
 import { brandCase } from "@/lib/brand";
 import { Socials } from "./Socials";
 import { INDUSTRY_SLUGS } from "@/data/industries";
+import { EMAIL_INFO, EMAIL_SALES, PHONE_LANDLINE, PHONE_PRIMARY, telHref } from "@/lib/contacts";
 // The logo was a 1793x313 RGBA PNG at 341 KB, rendered at 22px tall. Lighthouse
 // caught it downloading ahead of the stylesheet on every page — roughly 1.7s of
 // a throttled mobile connection spent on a wordmark, before anything painted.
@@ -14,8 +15,11 @@ import logoAsset300 from "@/assets/radiocom-logo@300.webp";
 export function Footer() {
   const { t } = useTranslation();
   return (
-    <footer className="bg-charcoal">
-      <div className="shell shell-wide pt-16 pb-10">
+    <footer className="bg-charcoal" data-placement="footer">
+      {/* `pb-28` below `lg`: the sticky call/request bar sits over the last
+          88px of the viewport on a phone, and without the room it covers the
+          copyright line. */}
+      <div className="shell shell-wide pt-16 pb-28 lg:pb-10">
         <img
           src={logoAsset}
           alt="Radiocom"
@@ -53,41 +57,31 @@ export function Footer() {
             ))}
           </FooterCol>
           <FooterCol title={t("footer.contact_col")}>
-            <li>
-              <a
-                href="tel:+998781131618"
-                className="inline-flex min-h-11 items-center text-[13px] text-crisp/70 hover:text-crisp"
-              >
-                +998 78 113-16-18
-              </a>
-            </li>
-            <li>
-              <a
-                href="tel:+998933890710"
-                className="inline-flex min-h-11 items-center text-[13px] text-crisp/70 hover:text-crisp"
-              >
-                +998 93 389-07-10
-              </a>
-            </li>
-            <li>
-              <a
-                href="mailto:info@radiocom.uz"
-                className="inline-flex min-h-11 items-center text-[13px] text-crisp/70 hover:text-crisp"
-              >
-                info@radiocom.uz
-              </a>
-            </li>
-            <li>
-              <a
-                href="mailto:sales@radiocom.uz"
-                className="inline-flex min-h-11 items-center text-[13px] text-crisp/70 hover:text-crisp"
-              >
-                sales@radiocom.uz
-              </a>
-            </li>
+            {[PHONE_PRIMARY, PHONE_LANDLINE].map((p) => (
+              <li key={p.e164}>
+                <a
+                  href={telHref(p)}
+                  className="inline-flex min-h-11 items-center text-[13px] text-crisp/70 hover:text-crisp"
+                >
+                  {p.display}
+                </a>
+              </li>
+            ))}
+            {[EMAIL_INFO, EMAIL_SALES].map((email) => (
+              <li key={email}>
+                <a
+                  href={`mailto:${email}`}
+                  className="inline-flex min-h-11 items-center text-[13px] text-crisp/70 hover:text-crisp"
+                >
+                  {email}
+                </a>
+              </li>
+            ))}
           </FooterCol>
           <FooterCol title="Radiocom">
-            <li className="text-[13px] text-crisp/70 leading-relaxed">{t("footer.address")}</li>
+            <li className="text-[13px] text-crisp/70 leading-relaxed">
+              <address className="not-italic">{t("footer.address")}</address>
+            </li>
             <li className="text-[13px] text-crisp/70 mt-1">{t("footer.hours")}</li>
             <li className="pt-3">
               <Socials />

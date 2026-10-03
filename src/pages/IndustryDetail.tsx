@@ -22,7 +22,7 @@ import { TrustedBy } from "@/components/TrustedBy";
 // The client's own price list, dated 29.06.26. Replaces a CDN pointer to a
 // catalogue PDF that only existed on radiocom.lovable.app.
 import priceListPdf from "@/assets/radiocom-price-list.pdf";
-import { fadeUpAt, spring } from "@/lib/springs";
+import { fadeUpAt, rise } from "@/lib/springs";
 
 type Outcome = { n: string; u: string; l: string };
 type FAQ = { q: string; a: string };
@@ -47,9 +47,11 @@ export function IndustryPage() {
     <div ref={page} className="page-anim page-tight">
       {/* ── Cinematic hero ─────────────────────────────────── */}
       <section className="relative min-h-[78vh] overflow-hidden">
+        {/* Scale only. The opacity half of this (0.6 → 1) dimmed the page's
+            LCP photograph in the server HTML until the script ran. */}
         <motion.div
-          initial={{ scale: 1.08, opacity: 0.6 }}
-          animate={{ scale: 1, opacity: 1 }}
+          initial={{ scale: 1.08 }}
+          animate={{ scale: 1 }}
           transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
           className="absolute inset-0"
         >
@@ -75,7 +77,7 @@ export function IndustryPage() {
               src={IMAGES[s]}
               srcSet={SRCSET[s]}
               sizes="110vw"
-              alt=""
+              alt={t(`industries.${s}.photo_alt`)}
               width={1400}
               height={900}
               fetchPriority="high"
@@ -94,12 +96,8 @@ export function IndustryPage() {
           >
             ← {t("industries.view_all")}
           </LocaleLink>
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...spring, delay: 0.2 }}
-            className="headline-hero mt-6"
-          >
+          {/* CSS entrance, not Framer's `initial` — see `hero-rise` in styles.css. */}
+          <h1 className="hero-rise headline-hero mt-6" style={rise(0)}>
             {/* «Рации для строительства», not «Строительство.»
                 
                 The bare industry name told a visitor nothing they did not
@@ -110,20 +108,14 @@ export function IndustryPage() {
                 `для {{name}}` pattern, because Russian needs the genitive and
                 Uzbek a postposition, and neither survives interpolation. */}
             {t(`industries.${s}.h1`)}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...spring, delay: 0.3 }}
-            className="mt-6 max-w-xl text-lg text-white/80 md:text-xl"
-          >
+          </h1>
+          <p className="hero-rise mt-6 max-w-xl text-lg text-white/80 md:text-xl" style={rise(1)}>
             {t(`industries.${s}.desc`)}
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ...spring, delay: 0.4 }}
-            className="mt-8 flex flex-col gap-3 sm:flex-row"
+          </p>
+          <div
+            data-placement="hero"
+            className="hero-rise mt-8 flex flex-col gap-3 sm:flex-row"
+            style={rise(2)}
           >
             <button
               onClick={() => openLead({ title: `${t("industries.cta")} · ${industryName}` })}
@@ -138,7 +130,7 @@ export function IndustryPage() {
             >
               <FileDown className="h-4 w-4" aria-hidden /> {t("industries.cta_secondary")}
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -379,11 +371,30 @@ function StoryCard({
   );
 }
 
+/**
+ * A whole number at the start of an outcome figure, in any locale's grouping —
+ * "7400", «7 400», "7,400" — and what follows it. Null for anything that is
+ * not a plain count: a decimal ("0,5", "0.5"), a word first («до 10», "IP67"),
+ * or a number with anything but "+" or "%" after it ("10 km gacha").
+ *
+ * The parser this replaces read only bare digits and an optional ".", so in
+ * English "7,400" counted to 7 and pasted ",400" after it, and "0.5" was
+ * rounded to "1".
+ */
+function countable(value: string): { n: number; rest: string } | null {
+  const m = value.match(/^(\d{1,3}(?:[ ,\u00A0\u202F]\d{3})+|\d+)(.*)$/);
+  if (!m) return null;
+  const rest = m[2];
+  // Only a bare "+" or "%" may follow: anything else ("0,5", "10 km gacha",
+  // "24/7") is not a count and renders as written.
+  if (!/^[+%]?$/.test(rest.trim())) return null;
+  const n = Number(m[1].replace(/\D/g, ""));
+  return n > 0 ? { n, rest } : null;
+}
+
 /** A stat: the figure animates, the unit stays put beside it. */
 function OutcomeNumber({ value, unit }: { value: string; unit?: string }) {
-  const match = value.match(/^(\d+(?:\.\d+)?)(.*)$/);
-  const numeric = match ? parseFloat(match[1]) : NaN;
-  const canCount = Number.isFinite(numeric) && numeric < 10000;
+  const count = countable(value);
 
   return (
     <div className="flex items-baseline gap-2">
@@ -391,10 +402,10 @@ function OutcomeNumber({ value, unit }: { value: string; unit?: string }) {
         className="font-semibold tracking-tight text-crisp"
         style={{ fontSize: "clamp(3rem, 6vw, 4.5rem)", lineHeight: 1 }}
       >
-        {canCount ? (
+        {count ? (
           <>
-            <CountUp to={numeric} />
-            {match![2]}
+            <CountUp to={count.n} />
+            {count.rest}
           </>
         ) : (
           value

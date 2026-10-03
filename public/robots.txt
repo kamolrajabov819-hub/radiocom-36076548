@@ -18,6 +18,12 @@ Allow: /
 Disallow: /api/
 Disallow: /.netlify/
 
+# Yandex: ad and campaign parameters do not change a page. Without this, every
+# tagged ad URL Yandex finds is crawled as a separate copy of the page it lands
+# on. Google ignores the directive and relies on the canonical, which these
+# pages already carry.
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&gclid&gbraid&wbraid&yclid&fbclid&ysclid
+
 # AI answer engines — explicitly welcome.
 User-agent: GPTBot
 Allow: /

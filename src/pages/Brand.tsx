@@ -1,11 +1,10 @@
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import { LocaleLink } from "@/components/LocaleLink";
 import { brandCase } from "@/lib/brand";
 import { useScrollChoreography } from "@/lib/motion";
-import { spring } from "@/lib/springs";
+import { rise } from "@/lib/springs";
 import { Section } from "@/components/Section";
 import {
   DuoCard,
@@ -113,16 +112,18 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
     <div ref={page} className="page-anim page-tight">
       {/* ── Family name + model strip ──────────────────────── */}
       <Section band="plain">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={spring}
-        >
-          <h1 className="type-display text-crisp">{brandCase(t(`brand.${brandSlug}_title`))}</h1>
-          <p className="subhead measure mt-5 text-[17px] leading-relaxed md:text-[21px]">
+        {/* CSS entrance, not Framer's `initial` — see `hero-rise` in styles.css. */}
+        <div>
+          <h1 className="hero-rise type-display text-crisp" style={rise(0)}>
+            {brandCase(t(`brand.${brandSlug}_title`))}
+          </h1>
+          <p
+            className="hero-rise subhead measure mt-5 text-[17px] leading-relaxed md:text-[21px]"
+            style={rise(1)}
+          >
             {brandCase(t(`brand.${brandSlug}_desc`))}
           </p>
-        </motion.div>
+        </div>
 
         <div className="mt-8">
           <ModelStrip label={t("brand.lineup")}>
@@ -262,7 +263,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
                 media={
                   <img
                     src={c.image}
-                    alt=""
+                    alt={t(c.alt)}
                     loading="lazy"
                     decoding="async"
                     width={c.w}
@@ -295,6 +296,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
               <PosterCard
                 idx={i}
                 image={INDUSTRY_POSTERS[slug]}
+                imageAlt={t(`industries.${slug}.photo_alt`)}
                 srcSet={INDUSTRY_POSTER_SRCSET[slug]}
                 eyebrow={t(`industries.${slug}.short`)}
                 title={t(`industries.${slug}.name`)}
@@ -332,7 +334,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
                 // than importing the same asset a second time under another
                 // name — which would emit it twice through Vite.
                 src={whyWarranty}
-                alt=""
+                alt={t("alt.retail_box")}
                 loading="lazy"
                 decoding="async"
                 width={800}
@@ -358,7 +360,7 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
             media={
               <img
                 src={whyTradein}
-                alt=""
+                alt={t("alt.tradein")}
                 loading="lazy"
                 decoding="async"
                 width={800}
@@ -412,6 +414,7 @@ const WHY_CARDS = [
     title: "home.bento.warranty.sub",
     detail: "brand.sub",
     image: whyWarranty,
+    alt: "alt.retail_box",
     w: 800,
     h: 372,
   },
@@ -421,6 +424,7 @@ const WHY_CARDS = [
     title: "px.trial",
     detail: "brand.compare_sub",
     image: whyDelivery,
+    alt: "alt.pair",
     w: 574,
     h: 800,
   },
@@ -430,6 +434,7 @@ const WHY_CARDS = [
     title: "home.bento.service.sub",
     detail: "service.sub",
     image: whyService,
+    alt: "alt.radios_fan",
     w: 800,
     h: 536,
   },
@@ -439,6 +444,7 @@ const WHY_CARDS = [
     title: "home.bento.test.sub",
     detail: "px.trial",
     image: whyTest,
+    alt: "alt.compare_hands",
     w: 800,
     h: 800,
   },
@@ -448,6 +454,7 @@ const WHY_CARDS = [
     title: "home.bento.tradein.sub",
     detail: "tradein.desc",
     image: whyTradein,
+    alt: "alt.tradein",
     w: 800,
     h: 447,
   },
@@ -480,7 +487,7 @@ function LineupCard({ p, lang, idx }: { p: Product; lang: Lang; idx: number }) {
           sizes={
             p.imageSmall ? "(min-width: 1280px) 240px, (min-width: 640px) 45vw, 80vw" : undefined
           }
-          alt=""
+          alt={p.name}
           width={1024}
           height={1024}
           loading="lazy"
