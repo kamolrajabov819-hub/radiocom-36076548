@@ -28,9 +28,12 @@ Fast path:
 - **shadcn/Tailwind component work** → `ui-styling` (matches this stack exactly)
 - **Any generated UI text** → `ui-typography` applies silently (real quotes, correct dashes)
 - **SEO** → `seo` orchestrates; `seo-audit` fans out to the sub-agents. The site already has
-  hreflang, self-canonicals, a 105-URL sitemap, robots/llms.txt and Organization, LocalBusiness,
+  hreflang, self-canonicals, a 147-URL sitemap, robots/llms.txt and Organization, LocalBusiness,
   Product, Service, FAQPage and BreadcrumbList schema — check `src/lib/seo.ts` before assuming
   something is missing. `bun run verify` gates all of it and runs as part of `build`.
+  The keyword map is `docs/seo/keyword-map.md`. Long copy never goes in `src/i18n/*.json`
+  (eager on every route): it lives in `src/data/copy/` modules a route loader narrows to one
+  language, with figures as `{{placeholders}}` from the catalogue — see `src/data/copy/index.ts`.
   Still open: no responsive images (`srcset`/WebP) for the CDN product photos, no code
   splitting, Google Fonts render-blocking, and no blog or location pages.
   Script-backed skills need a one-time `.claude/skills/seo/bin/claude-seo setup`, which builds
