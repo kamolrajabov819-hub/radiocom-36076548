@@ -23,14 +23,7 @@ import { contentDate } from "./content-date";
 import { visibleProducts } from "../../src/data/products";
 import { INDUSTRY_SLUGS } from "../../src/data/industries";
 import { publishedAnswers } from "../../src/data/answers";
-import {
-  SITE_URL,
-  LANGS,
-  DEFAULT_SEO_LANG,
-  localePath,
-  productPath,
-  productSpecsPath,
-} from "../../src/lib/seo";
+import { SITE_URL, LANGS, DEFAULT_SEO_LANG, localePath, productPath } from "../../src/lib/seo";
 
 /**
  * `images` holds *source* paths. They mean nothing to a browser until
@@ -97,27 +90,21 @@ export const entries: Entry[] = [
     priority: "0.7",
   })),
   // Product pages carry the long-tail model queries — the highest-intent
-  // traffic. Each model now has two: the story page answers "what is this for"
-  // and the specs page answers "what does it cost and what is in it". They are
-  // separate URLs with separate titles because they serve separate queries
-  // ("Radiocom RCD-60" vs "Radiocom RCD-60 характеристики"), and both are
-  // built from `productPath`/`productSpecsPath` so the sitemap cannot drift
-  // from what the router serves.
-  ...visibleProducts.map((p) => ({
-    path: productPath(p),
-    changefreq: "weekly",
-    priority: "0.8",
-    images: imagesOf(p),
-  })),
-  ...visibleProducts.map((p) => ({
-    // The specs page shows the hero in its buy card and nothing else, so it
-    // advertises only that — listing the gallery here would claim the same
-    // photograph belongs to a page that does not show it.
-    path: productSpecsPath(p),
-    changefreq: "weekly",
-    priority: "0.7",
-    images: [p.image],
-  })),
+  // traffic. One URL per model: the product page now carries the full spec
+  // table too, so «{модель} характеристики» and «{модель} цена» have one owner
+  // (docs/seo/keyword-map.md), and `/specs` names the product page as its
+  // canonical — listing the `/specs` URL here as well would contradict it.
+  // Red T62 and T42 are out for the same reason: each names its blue twin as
+  // canonical (`canonicalOf` in products.ts). Both stay live, 200, for anyone
+  // who links to them.
+  ...visibleProducts
+    .filter((p) => !p.canonicalOf)
+    .map((p) => ({
+      path: productPath(p),
+      changefreq: "weekly",
+      priority: "0.8",
+      images: imagesOf(p),
+    })),
 ];
 
 /**

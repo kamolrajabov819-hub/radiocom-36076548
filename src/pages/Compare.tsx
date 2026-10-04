@@ -182,9 +182,12 @@ function ColumnActions({ p }: { p: Product }) {
       >
         {t("px.learn_more")}
       </LocaleLink>
+      {/* To the spec table on the product page, which `/specs` now names as
+          its canonical — not to `/specs` itself. */}
       <LocaleLink
-        to="/$brand/$model/specs"
+        to="/$brand/$model"
         params={{ brand: p.brandSlug, model: p.slug }}
+        hash="specs"
         className="pill-link text-[13px]"
       >
         {t("px.specs_link")} <ChevronRight className="h-4 w-4" aria-hidden />

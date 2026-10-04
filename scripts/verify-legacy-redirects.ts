@@ -29,7 +29,8 @@
  * Run: bun scripts/verify-legacy-redirects.ts [--md]
  */
 import { readFileSync } from "node:fs";
-import { LANGS, localePath } from "../src/lib/seo";
+import { LANGS, localePath, productPath } from "../src/lib/seo";
+import { visibleProducts } from "../src/data/products";
 import { entries } from "./lib/sitemap";
 import { WORDPRESS_KEYS, resolveLegacy } from "../src/lib/legacy-redirects";
 import { isMarketingKey, rewriteLocation } from "../src/lib/marketing-params";
@@ -41,6 +42,10 @@ const WP_KEYS = new Set<string>(WORDPRESS_KEYS);
 
 const live = new Set<string>(["/sitemap.xml"]);
 for (const e of entries) for (const l of LANGS) live.add(localePath(l, e.path));
+// Every visible product page is live, including the red T62/T42 that name a
+// blue twin as canonical and so are not in the sitemap: they answer 200, and
+// an old «t62-красная» URL belongs on the red page, not the blue one.
+for (const p of visibleProducts) for (const l of LANGS) live.add(localePath(l, productPath(p)));
 
 const problems: string[] = [];
 const rows: { url: string; target: string }[] = [];

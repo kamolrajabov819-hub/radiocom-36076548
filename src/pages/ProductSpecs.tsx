@@ -14,7 +14,8 @@ import {
   type BrandSlug,
   type Product,
 } from "@/data/products";
-import { specs, RANGE_NOTE } from "@/data/specs";
+import { specs } from "@/data/specs";
+import { SpecTable } from "@/components/SpecTable";
 import { pick, type Lang } from "@/data/spec-dict";
 import { brandCase } from "@/lib/brand";
 import { useLang } from "@/lib/locale";
@@ -88,7 +89,9 @@ export function ProductSpecsPage() {
             its ancestor would strand the blend (see `hero-rise`). */}
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)]">
           <div className="hero-rise lg:order-2">
-            <h1 className="type-headline text-balance text-crisp">{brandCase(p.name)}</h1>
+            <h1 className="type-headline text-balance text-crisp">
+              {brandCase(t("px.specs_h1", { name: p.name }))}
+            </h1>
             <p className="subhead mt-4 max-w-xl text-[17px]">{pick(p.blurb, lang)}</p>
 
             {/* At-a-glance only — deliberately *not* the first four rows of
@@ -210,31 +213,7 @@ export function ProductSpecsPage() {
               disagree. */}
           <HeadlineFigures p={p} lang={lang} />
 
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[520px] border-collapse text-left">
-              <caption className="sr-only">
-                {t("px.spec_table")} — {p.name}
-              </caption>
-              <tbody>
-                {spec.rows.map((r) => (
-                  <tr key={pick(r.label, lang)} className="border-b border-border">
-                    <th
-                      scope="row"
-                      className="w-[42%] py-5 pr-6 align-top text-[15px] font-normal text-cool"
-                    >
-                      {pick(r.label, lang)}
-                    </th>
-                    <td className="py-5 align-top text-[17px] text-crisp">
-                      {brandCase(pick(r.value, lang))}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p className="mt-6 max-w-2xl text-[13px] leading-relaxed text-cool">
-            {pick(RANGE_NOTE, lang)}
-          </p>
+          <SpecTable p={p} lang={lang} />
         </Section>
       ) : null}
 

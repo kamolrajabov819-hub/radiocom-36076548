@@ -450,7 +450,9 @@
       "desc": "Toshkentda va butun O'zbekistonda {{name}} uchun ratsiyalar: vazifangizga model tanlaymiz, bepul sinovga olib kelamiz, 12 oy kafolat va o'z servisimiz."
     },
     "product": {
-      "title": "{{name}} — Toshkentda sotib olish",
+      "title": "{{name}} ratsiyasi — Toshkentda narxi va xususiyatlari",
+      "title_mid": "{{name}} ratsiyasi — Toshkentda narxi",
+      "title_short": "{{name}} — Toshkentda narxi",
       "desc": "{{blurb}} Aloqa masofasi {{range}}. {{price}}. Rasmiy kafolat, bepul sinov."
     },
     "crumb": {
@@ -484,7 +486,7 @@
       "motorola_desc": "Toshkentda Motorola ratsiyalari: chastota ruxsatnomasi kerak bo'lmaydigan {{count}} ta Talkabout, XT va TLKR modeli. 12 oy kafolat, yetkazib berish va bepul sinov."
     },
     "specs": {
-      "title": "{{name}} — xususiyatlari va narxi | Radiocom",
+      "title": "{{name}}: xususiyatlari va komplekti",
       "desc": "{{name}} to'liq xususiyatlari: {{price}}. To'plam, masofa, himoya darajasi. 12 oy kafolat, O'zbekiston bo'ylab bepul yetkazib berish."
     },
     "compare": {
@@ -545,7 +547,10 @@
     "design_title": "Yaqindan ko'rib chiqing.",
     "range_lead": "Masofa relyef va binolarga bog'liq.",
     "spec_note": "Ishlab chiqaruvchining to'liq xususiyatlari quyidagi jadvalda.",
-    "spec_column": "Xususiyat"
+    "spec_column": "Xususiyat",
+    "h1": "{{name}} ratsiyasi",
+    "specs_h1": "{{name}} xususiyatlari",
+    "colour": "Rang"
   },
   "search": {
     "title": "Ratsiyalar katalogi bo'yicha qidiruv",

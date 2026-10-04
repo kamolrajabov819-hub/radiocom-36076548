@@ -15,7 +15,14 @@ import {
   statRowTier,
 } from "@/components/apple";
 import { openLead } from "@/components/LeadFormSheet";
-import { formatPrice, productBySlug, type BrandSlug, type Product } from "@/data/products";
+import {
+  colourTwins,
+  formatPrice,
+  productBySlug,
+  type BrandSlug,
+  type Product,
+} from "@/data/products";
+import { SpecTable } from "@/components/SpecTable";
 import { specs } from "@/data/specs";
 import { INDUSTRY_SLUGS, type IndustrySlug } from "@/data/industries";
 import { INDUSTRY_POSTERS, INDUSTRY_POSTER_SRCSET } from "@/data/industry-images";
@@ -64,6 +71,16 @@ export function ProductStoryPage() {
       {spec?.features?.length ? <Features p={p} lang={lang} /> : null}
       {spec?.inBox?.length ? <InBox p={p} lang={lang} /> : null}
       <WhereUsed p={p} lang={lang} />
+      {spec?.rows?.length ? (
+        // The full table, here as well as on `/specs`: this is the URL that
+        // owns «{модель} характеристики» now, and `/specs` canonicalises to it.
+        <Section band="soft" id="specs">
+          <div data-scrub-in>
+            <SectionHead align="left" spacing="tight" title={t("px.specs_h1", { name: p.name })} />
+          </div>
+          <SpecTable p={p} lang={lang} />
+        </Section>
+      ) : null}
       <Closing p={p} lang={lang} />
     </div>
   );
@@ -100,10 +117,16 @@ function Hero({ p, lang }: { p: Product; lang: Lang }) {
       </nav>
 
       <div className="mx-auto max-w-3xl text-center">
-        <h1 className="headline-hero text-balance text-crisp">{brandCase(p.name)}</h1>
+        {/* «Рация Motorola Talkabout T82» rather than the bare model name: the
+            keyword map's product query is «рация {модель}», and the h1 is where
+            a visitor from that search checks they landed right. */}
+        <h1 className="headline-hero text-balance text-crisp">
+          {brandCase(t("px.h1", { name: p.name }))}
+        </h1>
         <p className="subhead mx-auto mt-6 max-w-2xl text-[17px] md:text-[21px]">
           {pick(p.blurb, lang)}
         </p>
+        <ColourSwitch p={p} lang={lang} />
       </div>
 
       {/* The stage used to reserve 54vh and let the photograph fit inside it,
@@ -136,13 +159,12 @@ function Hero({ p, lang }: { p: Product; lang: Lang }) {
           action={{ label: t("px.buy"), onClick: () => openLead({ title: p.name }) }}
         />
         <div className="mt-5 flex justify-center">
-          <LocaleLink
-            to="/$brand/$model/specs"
-            params={{ brand: p.brandSlug, model: p.slug }}
-            className="pill-link"
-          >
+          {/* To the table on this page, not to `/specs`: that page now names
+              this one as its canonical, and linking to it would spend the
+              page's own authority on a URL it asked search engines to fold. */}
+          <a href="#specs" className="pill-link">
             {t("px.specs_link")} <ChevronRight className="h-4 w-4" aria-hidden />
-          </LocaleLink>
+          </a>
         </div>
       </div>
     </Section>
@@ -645,7 +667,7 @@ function WhereUsed({ p, lang }: { p: Product; lang: Lang }) {
   );
 }
 
-/* ── Closing: specs hand-off, compare, enquiry ────────────── */
+/* ── Closing: price, enquiry, compare ─────────────────────── */
 function Closing({ p, lang }: { p: Product; lang: Lang }) {
   const { t } = useTranslation();
   return (
@@ -658,18 +680,48 @@ function Closing({ p, lang }: { p: Product; lang: Lang }) {
             : t("px.price_on_request")}
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <LocaleLink
-            to="/$brand/$model/specs"
-            params={{ brand: p.brandSlug, model: p.slug }}
-            className="pill pill-accent"
-          >
-            {t("px.spec_table")}
-          </LocaleLink>
+          <button onClick={() => openLead({ title: p.name })} className="pill pill-accent">
+            {t("px.buy")}
+          </button>
           <LocaleLink to="/compare" className="pill-link">
             {t("brand.compare_cta")} <ChevronRight className="h-4 w-4" aria-hidden />
           </LocaleLink>
         </div>
       </div>
     </Section>
+  );
+}
+
+/**
+ * The colours this model is sold in — T62 and T42 come in red and blue, as two
+ * listings. Each colour page names the blue one as canonical, so the switch is
+ * what makes them read as one product with a choice rather than two
+ * near-identical pages. Nothing renders for a single-colour model.
+ */
+function ColourSwitch({ p, lang }: { p: Product; lang: Lang }) {
+  const { t } = useTranslation();
+  const twins = colourTwins(p);
+  if (twins.length < 2) return null;
+  return (
+    <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-[15px]">
+      <span className="text-cool">{t("px.colour")}:</span>
+      {twins.map((x) => {
+        const label = specs[x.id]?.colour ? pick(specs[x.id]!.colour!, lang) : x.name;
+        return x.id === p.id ? (
+          <span key={x.id} aria-current="true" className="pill pill-ghost">
+            {label}
+          </span>
+        ) : (
+          <LocaleLink
+            key={x.id}
+            to="/$brand/$model"
+            params={{ brand: x.brandSlug, model: x.slug }}
+            className="pill-link"
+          >
+            {label}
+          </LocaleLink>
+        );
+      })}
+    </div>
   );
 }

@@ -302,6 +302,16 @@ export type Product = {
    * generated `/catalog/{id}` 301 keeps working for URLs Google has indexed.
    */
   hidden?: true;
+  /**
+   * The colour twin this listing defers to in search. T62 and T42 are each
+   * sold in red and blue: the same radio, the same sheet, the same price, on
+   * two URLs that compete for one query («motorola t62»). The keyword map asks
+   * for one page per model; a 301 would retire a URL people have bookmarked,
+   * so the red page stays — linked, buyable, 200 — and names the blue one as
+   * its canonical, and only the blue one is in the sitemap. Blue because the
+   * old site's colourless T62 URL already redirects there.
+   */
+  canonicalOf?: string;
   tags: string[];
   price: number | null; // in сум; null = договорная
   rangeCity: L;
@@ -648,6 +658,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     gallery: [t62RedCase, t62RedKit],
     gallerySmall: [t62RedCase800, t62RedKit800],
     galleryTiny: [t62RedCase400, t62RedKit400],
+    canonicalOf: "m-t62-blue",
     tags: TALK,
     price: 1_000_000,
     rangeCity: upToM("900"),
@@ -736,6 +747,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     gallery: [t42RedPair, t42RedBox],
     gallerySmall: [t42RedPair800, t42RedBox800],
     galleryTiny: [t42RedPair400, t42RedBox400],
+    canonicalOf: "m-t42-blue",
     tags: TALK,
     price: 600_000,
     rangeCity: upToM("300"),
@@ -962,6 +974,18 @@ export function productBySlug(brandSlug: BrandSlug, slug: string): Product | und
 }
 
 /** Cheapest price in a brand's line-up, for the "from N сум" on brand cards. */
+/** The product whose URL is canonical for this one — itself, or its colour twin. */
+export function canonicalProduct(p: Product): Product {
+  return (p.canonicalOf && visibleProducts.find((x) => x.id === p.canonicalOf)) || p;
+}
+
+/** Every colour of this model, this one included; empty for a single-colour model. */
+export function colourTwins(p: Product): Product[] {
+  const base = (x: Product) => x.name.replace(/ (Red|Blue)$/, "");
+  if (base(p) === p.name) return [];
+  return visibleProducts.filter((x) => base(x) === base(p));
+}
+
 export function priceFrom(list: Product[]): number | null {
   const known = list.map((p) => p.price).filter((n): n is number => n != null);
   return known.length ? Math.min(...known) : null;

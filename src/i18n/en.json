@@ -450,7 +450,9 @@
       "desc": "Radios for {{name}} in Tashkent and across Uzbekistan: we match a model to your job, bring it out for a free trial, and back it with a 12-month warranty and our own service."
     },
     "product": {
-      "title": "{{name}} — buy in Tashkent",
+      "title": "{{name}} Two-Way Radio — Price in Tashkent, Specs",
+      "title_mid": "{{name}} — Price in Tashkent and Specs",
+      "title_short": "{{name}} — Price in Tashkent",
       "desc": "{{blurb}} Range {{range}}. {{price}}. Official warranty, free trial, delivery across Uzbekistan."
     },
     "crumb": {
@@ -488,7 +490,7 @@
       "motorola_desc_other": "Motorola radios in Tashkent: {{count}} Talkabout, XT and TLKR models that need no frequency permit. 12-month warranty, delivery and a free trial."
     },
     "specs": {
-      "title": "{{name}} — specifications and price | Radiocom",
+      "title": "{{name}} — Full Specifications",
       "desc": "Full specifications for the {{name}}: {{price}}. Box contents, range, ingress protection. 12-month warranty, free delivery across Uzbekistan."
     },
     "compare": {
@@ -549,7 +551,10 @@
     "design_title": "Take a closer look.",
     "range_lead": "Range depends on terrain and built-up area.",
     "spec_note": "The manufacturer’s full specification is in the table below.",
-    "spec_column": "Specification"
+    "spec_column": "Specification",
+    "h1": "{{name}}",
+    "specs_h1": "{{name}} specifications",
+    "colour": "Colour"
   },
   "search": {
     "title": "Search the radio catalogue",

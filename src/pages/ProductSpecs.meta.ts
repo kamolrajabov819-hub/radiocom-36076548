@@ -6,7 +6,7 @@
  * Keeping it here lets the route files name `component` explicitly, which is
  * what lets the splitter lift the page body into its own chunk.
  */
-import { formatPrice, isBrandSlug, productBySlug } from "@/data/products";
+import { canonicalProduct, formatPrice, isBrandSlug, productBySlug } from "@/data/products";
 import { pick } from "@/data/spec-dict";
 import { specs } from "@/data/specs";
 import { tFor } from "@/lib/i18n";
@@ -44,11 +44,15 @@ export const head = ({ params }: { params: { lang: SeoLang; brand: string; model
       lang: params.lang,
       title,
       description,
-      path,
+      // The product page, not this one: it carries the same table now, and
+      // the keyword map gives «{модель} характеристики» to one URL. This page
+      // stays live for the links that point at it; it just no longer competes
+      // with the product page for the query.
+      path: productPath(canonicalProduct(p)),
       ogCard: `product-${p.slug}`,
       type: "product",
     }),
-    links: localeLinks(params.lang, path),
+    links: localeLinks(params.lang, productPath(canonicalProduct(p))),
     scripts: [
       jsonLd(
         webPageSchema({

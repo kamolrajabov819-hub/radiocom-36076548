@@ -6,7 +6,7 @@
  * Keeping it here lets the route files name `component` explicitly, which is
  * what lets the splitter lift the page body into its own chunk.
  */
-import { formatPrice, isBrandSlug, productBySlug } from "@/data/products";
+import { canonicalProduct, formatPrice, isBrandSlug, productBySlug } from "@/data/products";
 import { pick } from "@/data/spec-dict";
 import { specs } from "@/data/specs";
 import { tFor } from "@/lib/i18n";
@@ -31,7 +31,17 @@ export const head = ({ params }: { params: { lang: SeoLang; brand: string; model
   if (!p) return {};
 
   const path = productPath(p);
-  const title = t("meta.product.title", { name: p.name });
+  // Red T62/T42 defer to their blue twin (`canonicalOf`); every other model is
+  // its own canonical.
+  const canonicalPath = productPath(canonicalProduct(p));
+  // «Рация {name} — цена в Ташкенте, характеристики», the keyword map's
+  // product title, where it fits in 65 characters; the longer model names
+  // («Motorola Talkabout T82 Extreme Quad») step down to a shorter form rather
+  // than be truncated in the result.
+  const title =
+    ["meta.product.title", "meta.product.title_mid", "meta.product.title_short"]
+      .map((k) => t(k, { name: p.name }))
+      .find((x) => x.length <= 65) ?? t("meta.product.title_short", { name: p.name });
   const description = t("meta.product.desc", {
     blurb: pick(p.blurb, params.lang),
     range: pick(p.rangeCity, params.lang),
@@ -44,13 +54,13 @@ export const head = ({ params }: { params: { lang: SeoLang; brand: string; model
       lang: params.lang,
       title,
       description,
-      path,
+      path: canonicalPath,
       ogCard: `product-${p.slug}`,
       type: "product",
       product: { price: p.price },
     }),
     links: [
-      ...localeLinks(params.lang, path),
+      ...localeLinks(params.lang, canonicalPath),
       // The hero photograph is the LCP element here, and its candidate set
       // must match the <img> in `Hero` exactly or the browser fetches the
       // image twice.
