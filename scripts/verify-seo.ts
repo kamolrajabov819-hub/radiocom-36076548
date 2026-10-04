@@ -22,6 +22,7 @@ import {
   FOUNDED_YEAR,
   YEARS_TRADING,
   CONTENT_DATE,
+  INFO_PAGES,
 } from "../src/lib/seo";
 import { productSchema } from "../src/lib/seo-product";
 // `visibleProducts` is what the site advertises; `products` is the full
@@ -714,6 +715,7 @@ console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
     "industries",
     "search",
     "sitemap",
+    ...INFO_PAGES,
     ...INDUSTRY_SLUGS.map((s) => `industries-${s}`),
     ...visibleProducts.map((p) => `product-${p.slug}`),
   ]);
@@ -776,6 +778,7 @@ console.log("ok  jsonLd() emits a flat, correctly typed ld+json script tag");
     check("/service", t("meta.service.title"), t("meta.service.desc"));
     check("/industries", t("meta.industries.title"), t("meta.industries.desc"));
     check("/search", t("meta.search.title"), t("meta.search.desc"));
+    for (const k of INFO_PAGES) check(`/${k}`, t(`meta.${k}.title`), t(`meta.${k}.desc`));
     for (const b of ["radiocom", "motorola"] as const)
       check(
         `/${b}`,

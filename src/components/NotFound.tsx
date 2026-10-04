@@ -43,6 +43,7 @@ const NF_LINKS = [
   { to: "/poc", key: "nav.poc" },
   { to: "/service", key: "nav.service" },
   { to: "/industries", key: "nav.industries" },
+  { to: "/contacts", key: "nav.contacts" },
 ] as const;
 
 function NotFoundBody() {

@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { brandCase } from "@/lib/brand";
 import { Fragment, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { Check, Radio, MapPin, MessagesSquare, Layers, Coins, Wifi } from "lucide-react";
+import { ChevronRight, Radio, MapPin, MessagesSquare, Wifi } from "lucide-react";
 // The hero — the pair shot you asked for, as its cutout rather than as
 // `product/radios-pair.webp`.
 //
@@ -36,13 +36,12 @@ import shotGps from "@/assets/cutout/poc-radio-in-hand-cutout.webp";
 import shotGps800 from "@/assets/cutout/poc-radio-in-hand-cutout@800.webp";
 import shotScale from "@/assets/cutout/poc-fleet-fan-cutout.webp";
 import shotScale800 from "@/assets/cutout/poc-fleet-fan-cutout@800.webp";
-import radioInHand from "@/assets/cutout/poc-radio-held-cutout.webp";
-import radioInHand800 from "@/assets/cutout/poc-radio-held-cutout@800.webp";
 import { openLead } from "@/components/LeadFormSheet";
+import { LocaleLink } from "@/components/LocaleLink";
 import { Section, SectionHead } from "@/components/Section";
 import {
   CompareTable,
-  HighlightsShelf,
+  DuoCard,
   StatPanel,
   statRowTier,
   type CompareColumn,
@@ -74,8 +73,7 @@ export function PoCPage() {
       <StatBand />
       <FeatureSequence />
       <Compare />
-      <NetworkDesign />
-      <Rental />
+      <NextSteps />
       <SeoText sections={copy.sections} band="soft" />
       <FaqBlock items={copy.faq} band="plain" />
       <TrustedBy />
@@ -384,110 +382,44 @@ function Compare() {
 }
 
 /* ─── Network design — the five steps as a shelf ──────────── */
-/**
- * Five steps do not divide into a three-column grid, and the earlier attempts
- * both showed it: first as a grid with an empty cell in the second row, then as
- * a list, which turned a five-beat sequence into a wall of rules.
- *
- * A shelf is what apple.com uses when the count does not fit the grid — the
- * cards run off the right edge and scroll, so the layout never has to resolve
- * into rows at all. Each card carries its step number as a large ghost numeral
- * behind the copy, which is the sequence made visible rather than stated.
- *
- * It uses `HighlightsShelf` now rather than a hand-rolled `overflow-x-auto`:
- * that component already owns the arrows, the scroll-position sync, the
- * focusable region and the accessible name this row was reimplementing.
- */
-function NetworkDesign() {
-  const { t } = useTranslation();
-  const steps = (t("poc.design.steps", { returnObjects: true }) as string[]) || [];
-  const icons = [MapPin, Layers, Radio, Check, Coins];
-
-  return (
-    <Section band="soft">
-      <SectionHead align="left" eyebrow={t("poc.design.kicker")} title={t("poc.design.title")} />
-      <HighlightsShelf label={t("poc.design.title")}>
-        {steps.map((step, i) => {
-          const Icon = icons[i] ?? Check;
-          return (
-            <article
-              key={step}
-              className="card-interactive group relative flex min-h-[360px] w-[78vw] shrink-0 snap-start flex-col overflow-hidden rounded-[28px] bg-pitch p-8 sm:w-[46vw] lg:w-[calc((100%-3rem)/4)]"
-            >
-              {/* The step number, at a scale you read as position, not as text. */}
-              <span
-                aria-hidden
-                className="pointer-events-none absolute -bottom-8 -right-3 select-none text-[150px] font-semibold leading-none tracking-[-0.05em] text-crisp/[0.05] transition-colors duration-500 group-hover:text-signal/[0.09]"
-              >
-                {i + 1}
-              </span>
-
-              <Icon
-                className="relative h-9 w-9 text-signal transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
-                strokeWidth={1.5}
-                aria-hidden
-              />
-
-              <div className="relative mt-auto">
-                <div className="text-[13px] font-medium uppercase tracking-[0.16em] text-cool">
-                  {t("poc.design.step_label", {
-                    defaultValue: String(i + 1).padStart(2, "0"),
-                    n: i + 1,
-                  })}
-                </div>
-                <h3 className="type-title mt-2 hyphens-auto break-words text-crisp">{step}</h3>
-              </div>
-            </article>
-          );
-        })}
-      </HighlightsShelf>
-    </Section>
-  );
-}
 
 /* ─── Rental — product on a stage, copy alongside ─────────── */
+
 /**
- * The image here used to be rendered with `mix-blend-multiply` inside a
- * `bg-pitch` card — and `--pitch` is white, despite the name. Multiply removes
- * white and keeps black, so a dark-background source came through as a hard
- * black rectangle sitting in a white box.
+ * Where the network design and rental blocks went.
  *
- * It is a cutout now, so there is no sweep to knock out and no blend at all —
- * see the note on `ProductShot`'s `cutout` prop for why blending one is worse
- * than leaving it alone.
+ * They used to be full sections here. The keyword map gives «организация
+ * радиосвязи» to /solutions and «аренда раций» to /rent, and a PoC page that
+ * also ranks for those competes with both — so the five steps now live on
+ * /solutions (`NetworkSteps`), the rental terms on /rent, and this page keeps
+ * one card for each.
  */
-function Rental() {
+function NextSteps() {
   const { t } = useTranslation();
   return (
-    <Section band="plain">
-      <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-16">
-        <motion.div {...fadeUpAt(0)} className="order-2 md:order-1">
-          <div className="text-[13px] font-medium uppercase tracking-[0.16em] text-signal">
-            {t("poc.rental.kicker")}
-          </div>
-          <h2 className="type-headline mt-3 text-crisp">{t("poc.rental.title")}</h2>
-          <p className="subhead measure mt-5 text-[17px]">{brandCase(t("poc.rental.desc"))}</p>
-          <button
-            onClick={() => openLead({ title: t("poc.rental.cta") })}
-            className="pill pill-accent mt-8"
-          >
-            {t("poc.rental.cta")}
-          </button>
-        </motion.div>
-
-        <motion.div {...fadeUpAt(1)} className="order-1 md:order-2" data-parallax="0.08">
-          <ProductShot
-            src={radioInHand}
-            srcSmall={radioInHand800}
-            cutout
-            alt={t("poc.rental.title")}
-            width={1042}
-            height={1600}
-            sizes="(max-width: 768px) 84vw, 520px"
-            className="mx-auto w-full max-w-[440px]"
-            imgClassName="max-h-[460px]"
-          />
-        </motion.div>
+    <Section band="soft">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <DuoCard
+          idx={0}
+          title={t("poc.design.title")}
+          body={t("meta.section.solutions_desc")}
+          link={
+            <LocaleLink to="/solutions" className="pill-link">
+              {t("meta.section.solutions_name")} <ChevronRight className="h-4 w-4" aria-hidden />
+            </LocaleLink>
+          }
+        />
+        <DuoCard
+          idx={1}
+          tone="dark"
+          title={t("poc.rental.title")}
+          body={brandCase(t("poc.rental.desc")) as string}
+          link={
+            <LocaleLink to="/rent" className="pill-link">
+              {t("meta.section.rent_name")} <ChevronRight className="h-4 w-4" aria-hidden />
+            </LocaleLink>
+          }
+        />
       </div>
     </Section>
   );

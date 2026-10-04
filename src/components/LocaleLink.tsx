@@ -36,7 +36,11 @@ export function LocaleLink({
     | "/answers"
     | "/answers/$slug"
     | "/search"
-    | "/sitemap";
+    | "/sitemap"
+    | "/rent"
+    | "/solutions"
+    | "/about"
+    | "/contacts";
   params?: Record<string, string>;
   children?: ReactNode;
 }) {

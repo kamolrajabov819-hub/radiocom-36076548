@@ -9,8 +9,12 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SolutionsRouteImport } from './routes/solutions'
 import { Route as ServiceRouteImport } from './routes/service'
+import { Route as RentRouteImport } from './routes/rent'
 import { Route as PocRouteImport } from './routes/poc'
+import { Route as ContactsRouteImport } from './routes/contacts'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as LangRouteImport } from './routes/$lang'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as IndustriesIndexRouteImport } from './routes/industries.index'
@@ -18,11 +22,15 @@ import { Route as CatalogIndexRouteImport } from './routes/catalog.index'
 import { Route as LangIndexRouteImport } from './routes/$lang/index'
 import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as CatalogIdRouteImport } from './routes/catalog.$id'
+import { Route as LangSolutionsRouteImport } from './routes/$lang/solutions'
 import { Route as LangSitemapRouteImport } from './routes/$lang/sitemap'
 import { Route as LangServiceRouteImport } from './routes/$lang/service'
 import { Route as LangSearchRouteImport } from './routes/$lang/search'
+import { Route as LangRentRouteImport } from './routes/$lang/rent'
 import { Route as LangPocRouteImport } from './routes/$lang/poc'
+import { Route as LangContactsRouteImport } from './routes/$lang/contacts'
 import { Route as LangCompareRouteImport } from './routes/$lang/compare'
+import { Route as LangAboutRouteImport } from './routes/$lang/about'
 import { Route as LangRadiocomIndexRouteImport } from './routes/$lang/radiocom.index'
 import { Route as LangMotorolaIndexRouteImport } from './routes/$lang/motorola.index'
 import { Route as LangIndustriesIndexRouteImport } from './routes/$lang/industries.index'
@@ -34,14 +42,34 @@ import { Route as LangAnswersSlugRouteImport } from './routes/$lang/answers.$slu
 import { Route as LangBrandModelIndexRouteImport } from './routes/$lang/$brand.$model.index'
 import { Route as LangBrandModelSpecsRouteImport } from './routes/$lang/$brand.$model.specs'
 
+const SolutionsRoute = SolutionsRouteImport.update({
+  id: '/solutions',
+  path: '/solutions',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServiceRoute = ServiceRouteImport.update({
   id: '/service',
   path: '/service',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RentRoute = RentRouteImport.update({
+  id: '/rent',
+  path: '/rent',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PocRoute = PocRouteImport.update({
   id: '/poc',
   path: '/poc',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactsRoute = ContactsRouteImport.update({
+  id: '/contacts',
+  path: '/contacts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LangRoute = LangRouteImport.update({
@@ -79,6 +107,11 @@ const CatalogIdRoute = CatalogIdRouteImport.update({
   path: '/catalog/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LangSolutionsRoute = LangSolutionsRouteImport.update({
+  id: '/solutions',
+  path: '/solutions',
+  getParentRoute: () => LangRoute,
+} as any)
 const LangSitemapRoute = LangSitemapRouteImport.update({
   id: '/sitemap',
   path: '/sitemap',
@@ -94,14 +127,29 @@ const LangSearchRoute = LangSearchRouteImport.update({
   path: '/search',
   getParentRoute: () => LangRoute,
 } as any)
+const LangRentRoute = LangRentRouteImport.update({
+  id: '/rent',
+  path: '/rent',
+  getParentRoute: () => LangRoute,
+} as any)
 const LangPocRoute = LangPocRouteImport.update({
   id: '/poc',
   path: '/poc',
   getParentRoute: () => LangRoute,
 } as any)
+const LangContactsRoute = LangContactsRouteImport.update({
+  id: '/contacts',
+  path: '/contacts',
+  getParentRoute: () => LangRoute,
+} as any)
 const LangCompareRoute = LangCompareRouteImport.update({
   id: '/compare',
   path: '/compare',
+  getParentRoute: () => LangRoute,
+} as any)
+const LangAboutRoute = LangAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => LangRoute,
 } as any)
 const LangRadiocomIndexRoute = LangRadiocomIndexRouteImport.update({
@@ -158,13 +206,21 @@ const LangBrandModelSpecsRoute = LangBrandModelSpecsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$lang': typeof LangRouteWithChildren
+  '/about': typeof AboutRoute
+  '/contacts': typeof ContactsRoute
   '/poc': typeof PocRoute
+  '/rent': typeof RentRoute
   '/service': typeof ServiceRoute
+  '/solutions': typeof SolutionsRoute
+  '/$lang/about': typeof LangAboutRoute
   '/$lang/compare': typeof LangCompareRoute
+  '/$lang/contacts': typeof LangContactsRoute
   '/$lang/poc': typeof LangPocRoute
+  '/$lang/rent': typeof LangRentRoute
   '/$lang/search': typeof LangSearchRoute
   '/$lang/service': typeof LangServiceRoute
   '/$lang/sitemap': typeof LangSitemapRoute
+  '/$lang/solutions': typeof LangSolutionsRoute
   '/catalog/$id': typeof CatalogIdRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/$lang/': typeof LangIndexRoute
@@ -183,13 +239,21 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contacts': typeof ContactsRoute
   '/poc': typeof PocRoute
+  '/rent': typeof RentRoute
   '/service': typeof ServiceRoute
+  '/solutions': typeof SolutionsRoute
+  '/$lang/about': typeof LangAboutRoute
   '/$lang/compare': typeof LangCompareRoute
+  '/$lang/contacts': typeof LangContactsRoute
   '/$lang/poc': typeof LangPocRoute
+  '/$lang/rent': typeof LangRentRoute
   '/$lang/search': typeof LangSearchRoute
   '/$lang/service': typeof LangServiceRoute
   '/$lang/sitemap': typeof LangSitemapRoute
+  '/$lang/solutions': typeof LangSolutionsRoute
   '/catalog/$id': typeof CatalogIdRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/$lang': typeof LangIndexRoute
@@ -210,13 +274,21 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$lang': typeof LangRouteWithChildren
+  '/about': typeof AboutRoute
+  '/contacts': typeof ContactsRoute
   '/poc': typeof PocRoute
+  '/rent': typeof RentRoute
   '/service': typeof ServiceRoute
+  '/solutions': typeof SolutionsRoute
+  '/$lang/about': typeof LangAboutRoute
   '/$lang/compare': typeof LangCompareRoute
+  '/$lang/contacts': typeof LangContactsRoute
   '/$lang/poc': typeof LangPocRoute
+  '/$lang/rent': typeof LangRentRoute
   '/$lang/search': typeof LangSearchRoute
   '/$lang/service': typeof LangServiceRoute
   '/$lang/sitemap': typeof LangSitemapRoute
+  '/$lang/solutions': typeof LangSolutionsRoute
   '/catalog/$id': typeof CatalogIdRoute
   '/industries/$slug': typeof IndustriesSlugRoute
   '/$lang/': typeof LangIndexRoute
@@ -238,13 +310,21 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/$lang'
+    | '/about'
+    | '/contacts'
     | '/poc'
+    | '/rent'
     | '/service'
+    | '/solutions'
+    | '/$lang/about'
     | '/$lang/compare'
+    | '/$lang/contacts'
     | '/$lang/poc'
+    | '/$lang/rent'
     | '/$lang/search'
     | '/$lang/service'
     | '/$lang/sitemap'
+    | '/$lang/solutions'
     | '/catalog/$id'
     | '/industries/$slug'
     | '/$lang/'
@@ -263,13 +343,21 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
+    | '/contacts'
     | '/poc'
+    | '/rent'
     | '/service'
+    | '/solutions'
+    | '/$lang/about'
     | '/$lang/compare'
+    | '/$lang/contacts'
     | '/$lang/poc'
+    | '/$lang/rent'
     | '/$lang/search'
     | '/$lang/service'
     | '/$lang/sitemap'
+    | '/$lang/solutions'
     | '/catalog/$id'
     | '/industries/$slug'
     | '/$lang'
@@ -289,13 +377,21 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/$lang'
+    | '/about'
+    | '/contacts'
     | '/poc'
+    | '/rent'
     | '/service'
+    | '/solutions'
+    | '/$lang/about'
     | '/$lang/compare'
+    | '/$lang/contacts'
     | '/$lang/poc'
+    | '/$lang/rent'
     | '/$lang/search'
     | '/$lang/service'
     | '/$lang/sitemap'
+    | '/$lang/solutions'
     | '/catalog/$id'
     | '/industries/$slug'
     | '/$lang/'
@@ -316,8 +412,12 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LangRoute: typeof LangRouteWithChildren
+  AboutRoute: typeof AboutRoute
+  ContactsRoute: typeof ContactsRoute
   PocRoute: typeof PocRoute
+  RentRoute: typeof RentRoute
   ServiceRoute: typeof ServiceRoute
+  SolutionsRoute: typeof SolutionsRoute
   CatalogIdRoute: typeof CatalogIdRoute
   IndustriesSlugRoute: typeof IndustriesSlugRoute
   CatalogIndexRoute: typeof CatalogIndexRoute
@@ -326,6 +426,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/solutions': {
+      id: '/solutions'
+      path: '/solutions'
+      fullPath: '/solutions'
+      preLoaderRoute: typeof SolutionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/service': {
       id: '/service'
       path: '/service'
@@ -333,11 +440,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServiceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/rent': {
+      id: '/rent'
+      path: '/rent'
+      fullPath: '/rent'
+      preLoaderRoute: typeof RentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/poc': {
       id: '/poc'
       path: '/poc'
       fullPath: '/poc'
       preLoaderRoute: typeof PocRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contacts': {
+      id: '/contacts'
+      path: '/contacts'
+      fullPath: '/contacts'
+      preLoaderRoute: typeof ContactsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/$lang': {
@@ -389,6 +517,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CatalogIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$lang/solutions': {
+      id: '/$lang/solutions'
+      path: '/solutions'
+      fullPath: '/$lang/solutions'
+      preLoaderRoute: typeof LangSolutionsRouteImport
+      parentRoute: typeof LangRoute
+    }
     '/$lang/sitemap': {
       id: '/$lang/sitemap'
       path: '/sitemap'
@@ -410,6 +545,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangSearchRouteImport
       parentRoute: typeof LangRoute
     }
+    '/$lang/rent': {
+      id: '/$lang/rent'
+      path: '/rent'
+      fullPath: '/$lang/rent'
+      preLoaderRoute: typeof LangRentRouteImport
+      parentRoute: typeof LangRoute
+    }
     '/$lang/poc': {
       id: '/$lang/poc'
       path: '/poc'
@@ -417,11 +559,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LangPocRouteImport
       parentRoute: typeof LangRoute
     }
+    '/$lang/contacts': {
+      id: '/$lang/contacts'
+      path: '/contacts'
+      fullPath: '/$lang/contacts'
+      preLoaderRoute: typeof LangContactsRouteImport
+      parentRoute: typeof LangRoute
+    }
     '/$lang/compare': {
       id: '/$lang/compare'
       path: '/compare'
       fullPath: '/$lang/compare'
       preLoaderRoute: typeof LangCompareRouteImport
+      parentRoute: typeof LangRoute
+    }
+    '/$lang/about': {
+      id: '/$lang/about'
+      path: '/about'
+      fullPath: '/$lang/about'
+      preLoaderRoute: typeof LangAboutRouteImport
       parentRoute: typeof LangRoute
     }
     '/$lang/radiocom/': {
@@ -498,11 +654,15 @@ declare module '@tanstack/react-router' {
 }
 
 interface LangRouteChildren {
+  LangAboutRoute: typeof LangAboutRoute
   LangCompareRoute: typeof LangCompareRoute
+  LangContactsRoute: typeof LangContactsRoute
   LangPocRoute: typeof LangPocRoute
+  LangRentRoute: typeof LangRentRoute
   LangSearchRoute: typeof LangSearchRoute
   LangServiceRoute: typeof LangServiceRoute
   LangSitemapRoute: typeof LangSitemapRoute
+  LangSolutionsRoute: typeof LangSolutionsRoute
   LangIndexRoute: typeof LangIndexRoute
   LangAnswersSlugRoute: typeof LangAnswersSlugRoute
   LangCatalogIdRoute: typeof LangCatalogIdRoute
@@ -517,11 +677,15 @@ interface LangRouteChildren {
 }
 
 const LangRouteChildren: LangRouteChildren = {
+  LangAboutRoute: LangAboutRoute,
   LangCompareRoute: LangCompareRoute,
+  LangContactsRoute: LangContactsRoute,
   LangPocRoute: LangPocRoute,
+  LangRentRoute: LangRentRoute,
   LangSearchRoute: LangSearchRoute,
   LangServiceRoute: LangServiceRoute,
   LangSitemapRoute: LangSitemapRoute,
+  LangSolutionsRoute: LangSolutionsRoute,
   LangIndexRoute: LangIndexRoute,
   LangAnswersSlugRoute: LangAnswersSlugRoute,
   LangCatalogIdRoute: LangCatalogIdRoute,
@@ -540,8 +704,12 @@ const LangRouteWithChildren = LangRoute._addFileChildren(LangRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LangRoute: LangRouteWithChildren,
+  AboutRoute: AboutRoute,
+  ContactsRoute: ContactsRoute,
   PocRoute: PocRoute,
+  RentRoute: RentRoute,
   ServiceRoute: ServiceRoute,
+  SolutionsRoute: SolutionsRoute,
   CatalogIdRoute: CatalogIdRoute,
   IndustriesSlugRoute: IndustriesSlugRoute,
   CatalogIndexRoute: CatalogIndexRoute,

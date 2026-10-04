@@ -345,6 +345,16 @@ export function Nav() {
               <LocaleLink to="/search" className="headline text-4xl text-crisp">
                 {t("nav.search")}
               </LocaleLink>
+              {/* The pages the keyword map added. Not in the desktop row,
+                  which is full at 1280px (qa-overflow), so they are here, in
+                  the footer, and linked from the home page's copy. */}
+              <div className="flex flex-col gap-3">
+                {(["/rent", "/solutions", "/about", "/contacts"] as const).map((to) => (
+                  <LocaleLink key={to} to={to} className="text-crisp/90 text-lg">
+                    {t(`nav.${to.slice(1)}`)}
+                  </LocaleLink>
+                ))}
+              </div>
               <div className="pt-6 border-t border-border">
                 <div className="text-cool text-[13px] mb-4">{t("nav.industries")}</div>
                 <div className="flex flex-col gap-3">

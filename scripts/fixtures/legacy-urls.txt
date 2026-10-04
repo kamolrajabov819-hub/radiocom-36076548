@@ -13,10 +13,10 @@
 /?lang=oz&paged=4	/uz
 /?lang=rupage/2	/ru
 /?paged=3	/ru
-/?page_id=1249	/ru
-/?page_id=1270	/en
-/?page_id=628	/uz
-/?page_id=1249&lang=ru	/ru
+/?page_id=1249	/ru/about
+/?page_id=1270	/en/about
+/?page_id=628	/uz/about
+/?page_id=1249&lang=ru	/ru/about
 /?page_id=94&lang=ru	/ru/poc
 /?page_id=1292&lang=en	/en/poc
 /?page_id=635&lang=oz	/uz/poc

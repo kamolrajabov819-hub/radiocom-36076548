@@ -748,7 +748,15 @@ export function verificationMeta(): { name: string; content: string }[] {
 
 /** The repair/service offering — feeds "ремонт рации Ташкент" style queries. */
 export function serviceSchema(
-  opts: { name: string; description: string; path: string },
+  opts: {
+    name: string;
+    description: string;
+    path: string;
+    /** Defaults to repair, the service page's; /rent and /solutions pass their own. */
+    serviceType?: string;
+    /** Defaults to the service line; the sales pages pass the primary number. */
+    phone?: string;
+  },
   lang: SeoLang,
 ) {
   return {
@@ -758,13 +766,13 @@ export function serviceSchema(
     description: opts.description,
     inLanguage: lang,
     url: absolute(localePath(lang, opts.path)),
-    serviceType: "Two-way radio repair and maintenance",
+    serviceType: opts.serviceType ?? "Two-way radio repair and maintenance",
     provider: { "@id": `${SITE_URL}/#organization` },
     areaServed: { "@type": "Country", name: "Uzbekistan" },
     availableChannel: {
       "@type": "ServiceChannel",
       serviceUrl: absolute(localePath(lang, opts.path)),
-      servicePhone: BUSINESS.servicePhone,
+      servicePhone: opts.phone ?? BUSINESS.servicePhone,
       serviceLocation: { "@id": `${SITE_URL}/#localbusiness` },
     },
   };
@@ -806,12 +814,22 @@ export function siteNavigationSchema(
  * Only the paths and keys are structural; the copy is resolved per language at
  * the call site.
  */
+/**
+ * The pages added with the keyword map (docs/seo/keyword-map.md): each has its
+ * `meta.<key>.title/desc` strings, an OG card `public/og/<key>.jpg` and a
+ * sitemap entry, and verify-seo walks this list rather than four literals.
+ */
+export const INFO_PAGES = ["rent", "solutions", "about", "contacts"] as const;
+export type InfoPage = (typeof INFO_PAGES)[number];
+
 export const SITE_SECTIONS = [
   { key: "radiocom", path: "/radiocom" },
   { key: "motorola", path: "/motorola" },
   { key: "compare", path: "/compare" },
   { key: "poc", path: "/poc" },
   { key: "service", path: "/service" },
+  { key: "rent", path: "/rent" },
+  { key: "solutions", path: "/solutions" },
   { key: "industries", path: "/industries" },
   { key: "search", path: "/search" },
 ] as const;
@@ -849,11 +867,16 @@ export function webPageSchema(opts: {
   name: string;
   description: string;
   image?: string;
+  /** A more specific WebPage subtype, where the page is one (/about, /contacts). */
+  type?: "WebPage" | "AboutPage" | "ContactPage";
+  /** What the page is about — the business node, for /about and /contacts. */
+  about?: string;
 }) {
   const url = absolute(localePath(opts.lang, opts.path));
   return {
     "@context": "https://schema.org",
-    "@type": "WebPage",
+    "@type": opts.type ?? "WebPage",
+    ...(opts.about ? { about: { "@id": opts.about } } : {}),
     "@id": `${url}#webpage`,
     url,
     name: opts.name,

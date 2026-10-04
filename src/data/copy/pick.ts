@@ -43,6 +43,12 @@ export function pickDeep<T>(value: T, lang: Lang): Picked<T> {
  * the old one.
  */
 export type PageCopy = {
+  /**
+   * The first screen of a page whose body is this copy (the pages added with
+   * the keyword map: /rent, /solutions, /about, /contacts). Kept here rather
+   * than in the locale JSON, which is eager on every route.
+   */
+  hero?: { kicker: L; title: L; sub: L };
   /** Two to four `h2` sections, each a list of paragraphs. */
   sections: { heading: L; body: L[] }[];
   /** Rendered by `FaqBlock`, which emits `FAQPage` from the same array. */

@@ -26,6 +26,9 @@ const COMMERCIAL = [
   "/poc",
   "/service",
   "/answers",
+  "/rent",
+  "/solutions",
+  "/contacts",
 ];
 
 export function StickyBottomCta() {

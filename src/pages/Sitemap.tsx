@@ -32,8 +32,12 @@ const PAGES = [
   { to: "/compare", key: "nav.compare" },
   { to: "/poc", key: "nav.poc" },
   { to: "/service", key: "nav.service" },
+  { to: "/rent", key: "nav.rent" },
+  { to: "/solutions", key: "nav.solutions" },
   { to: "/industries", key: "nav.industries" },
   { to: "/answers", key: "nav.answers" },
+  { to: "/about", key: "nav.about" },
+  { to: "/contacts", key: "nav.contacts" },
   { to: "/search", key: "nav.search" },
 ] as const;
 

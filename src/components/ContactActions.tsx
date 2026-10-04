@@ -14,9 +14,15 @@ import { PHONE_PRIMARY, TELEGRAM_URL, telHref } from "@/lib/contacts";
 export function ContactActions({
   placement,
   className,
+  secondary = false,
 }: {
   placement: string;
   className?: string;
+  /**
+   * Call as a ghost pill rather than the accent one — for a first screen that
+   * already has its own accent action, where two red pills would compete.
+   */
+  secondary?: boolean;
 }) {
   const { t } = useTranslation();
   return (
@@ -27,7 +33,10 @@ export function ContactActions({
       data-placement={placement}
       className={`flex flex-wrap items-center gap-3 ${className ?? ""}`}
     >
-      <a href={telHref(PHONE_PRIMARY)} className="pill pill-accent">
+      <a
+        href={telHref(PHONE_PRIMARY)}
+        className={`pill ${secondary ? "pill-ghost" : "pill-accent"}`}
+      >
         <Phone className="h-4 w-4" aria-hidden />
         {PHONE_PRIMARY.display}
       </a>

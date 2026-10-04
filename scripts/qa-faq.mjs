@@ -21,9 +21,12 @@ const SLUGS = ["horeca", "construction", "security", "mining", "transport", "man
 const LOCALES = ["ru", "en", "uz"];
 const CHROME = "/opt/pw-browsers/chromium-1194/chrome-linux/chrome";
 
+// Every page with a FAQ. Home, the brand pages, PoC and the four pages the
+// keyword map added gained theirs with the keyword copy.
+const PAGES = ["", "/radiocom", "/motorola", "/poc", "/service", "/rent", "/solutions", "/about", "/contacts"];
 const routes = [
   ...LOCALES.flatMap((l) => SLUGS.map((s) => `/${l}/industries/${s}`)),
-  ...LOCALES.map((l) => `/${l}/service`),
+  ...LOCALES.flatMap((l) => PAGES.map((p) => `/${l}${p}`)),
 ];
 
 const b = await chromium.launch({ executablePath: CHROME });

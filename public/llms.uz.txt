@@ -64,6 +64,10 @@ Tillar: rus, ingliz, o'zbek. Kanonik til — rus tili.
 - https://radiocom.uz/uz/poc
 - https://radiocom.uz/uz/service
 - https://radiocom.uz/uz/industries
+- https://radiocom.uz/uz/rent
+- https://radiocom.uz/uz/solutions
+- https://radiocom.uz/uz/about
+- https://radiocom.uz/uz/contacts
 - https://radiocom.uz/uz/answers
 - https://radiocom.uz/uz/answers/how-to-choose
 - https://radiocom.uz/uz/answers/real-range

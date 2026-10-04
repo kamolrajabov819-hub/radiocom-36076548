@@ -60,6 +60,11 @@ const PAGES: Record<string, string> = {
   ...Object.fromEntries(answers.map((a) => [`answers-${a.slug}`, a.ogCard])),
   search: "cutout/hands-scattered-cutout.webp",
   sitemap: "cutout/radio-single-cutout.webp",
+  // The pages the keyword map added. Each reuses photography the page shows.
+  rent: "catalog/t82-hero.webp", // a Motorola: the rental fleet is Motorola
+  solutions: "cutout/hands-scattered-cutout.webp",
+  about: "cutout/lineup-seven-cutout.webp",
+  contacts: "cutout/hand-radio-cutout.webp",
 };
 
 // Product cards are discovered from `src/assets/catalog/` rather than by

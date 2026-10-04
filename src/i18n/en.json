@@ -17,7 +17,11 @@
     "motorola": "Motorola",
     "compare": "Compare",
     "search": "Search",
-    "answers": "Answers"
+    "answers": "Answers",
+    "rent": "Rental",
+    "solutions": "Radio networks",
+    "about": "About us",
+    "contacts": "Contacts"
   },
   "hero": {
     "eyebrow": "Authorized distributor · Tashkent",
@@ -463,7 +467,11 @@
       "compare": "Compare",
       "specs": "Specs",
       "search": "Search",
-      "answers": "Answers"
+      "answers": "Answers",
+      "rent": "Rental",
+      "solutions": "Radio networks",
+      "about": "About",
+      "contacts": "Contacts"
     },
     "section": {
       "poc_name": "PoC radios",
@@ -477,7 +485,11 @@
       "motorola_name": "Motorola radios",
       "motorola_desc": "Talkabout, XT and TLKR — radios that need no frequency permit.",
       "compare_name": "Compare models",
-      "compare_desc": "Every radio by range, standard, ingress protection and price in one table."
+      "compare_desc": "Every radio by range, standard, ingress protection and price in one table.",
+      "rent_name": "Radio rental",
+      "rent_desc": "Motorola radios to rent, from one day to five years, set up and with accessories.",
+      "solutions_name": "Turnkey radio networks",
+      "solutions_desc": "A radio network designed for your business: signal survey, repeaters, frequencies, commissioning."
     },
     "brand": {
       "radiocom_title": "Radiocom RC and RCD Radios — Digital and Analogue, Prices",
@@ -507,6 +519,22 @@
     "answers": {
       "title": "All about two-way radios: common questions | Radiocom",
       "desc": "How to choose a radio, what range you really get, what it costs in Tashkent and what the warranty covers. Seven answers and 35+ models in stock."
+    },
+    "rent": {
+      "title": "Two-Way Radio Rental in Tashkent — Daily and for Events",
+      "desc": "Motorola radio rental in Tashkent: from one day to five years and more, with accessories, spare batteries and setup. For events and work sites."
+    },
+    "solutions": {
+      "title": "Turnkey Radio Networks for Business — Repeaters and Design",
+      "desc": "Radio networks for business: a site survey and signal measurement, network design, repeaters and antennas, frequency paperwork and commissioning."
+    },
+    "about": {
+      "title": "About Radiocom — Two-Way Radio Distributor in Tashkent Since 2012",
+      "desc": "Radiocom: Motorola distribution in Uzbekistan since 2012, our own Radiocom radio line, 35+ models and our own service centre in Tashkent."
+    },
+    "contacts": {
+      "title": "Radiocom Address and Contacts — Two-Way Radios in Tashkent",
+      "desc": "Radiocom's address: 2 Uzbekiston Ovozi St, Tashkent (Le Grande Plaza, formerly the Tata Hotel), floors 1–2. Mon–Fri 9:00–18:00, phones, Telegram, map."
     }
   },
   "brand": {
@@ -601,6 +629,16 @@
     "poc_box": "A PoC radio in hand and its box",
     "poc_hand": "A PoC radio in hand",
     "poc_fleet": "PoC radios with and without a display",
-    "product_kit": "{{name}}: what’s in the box"
+    "product_kit": "{{name}}: what’s in the box",
+    "team_radios": "Four people holding radios — posts talking to each other",
+    "lineup": "The Radiocom digital line-up: seven radios, front and back"
+  },
+  "contacts": {
+    "address": "Address",
+    "hours": "Opening hours",
+    "main": "Main number",
+    "landline": "Landline",
+    "service": "Service centre",
+    "email": "Email"
   }
 }

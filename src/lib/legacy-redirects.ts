@@ -109,7 +109,7 @@ function localeOf(lang: string): Locale | null {
 
 /* ─── The maps ──────────────────────────────────────────────── */
 
-type Section = "" | "radiocom" | "motorola" | "compare" | "poc" | "service";
+type Section = "" | "radiocom" | "motorola" | "compare" | "poc" | "service" | "about";
 const at = (l: Locale, section: Section) => ({ path: section ? `/${l}/${section}` : `/${l}` });
 const product = (l: Locale, brand: "radiocom" | "motorola", model: string) => ({
   path: `/${l}/${brand}/${model}`,
@@ -117,11 +117,11 @@ const product = (l: Locale, brand: "radiocom" | "motorola", model: string) => ({
 
 /** `?page_id=` — each id belonged to one language, which wins over a missing `lang`. */
 const PAGE_IDS: Record<string, { lang: Locale; section: Section }> = {
-  // «О компании». There is no About page yet; the language home is the
-  // nearest real equivalent (Phase 5 may add one and retarget these).
-  "1249": { lang: "ru", section: "" },
-  "1270": { lang: "en", section: "" },
-  "628": { lang: "uz", section: "" },
+  // «О компании» → the About page the keyword pass built (until then these
+  // went to the language home, the nearest real equivalent).
+  "1249": { lang: "ru", section: "about" },
+  "1270": { lang: "en", section: "about" },
+  "628": { lang: "uz", section: "about" },
   // PoC
   "94": { lang: "ru", section: "poc" },
   "1292": { lang: "en", section: "poc" },

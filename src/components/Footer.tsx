@@ -38,8 +38,12 @@ export function Footer() {
             <FLink to="/compare">{t("nav.compare")}</FLink>
             <FLink to="/poc">{t("nav.poc")}</FLink>
             <FLink to="/service">{t("nav.service")}</FLink>
+            <FLink to="/rent">{t("nav.rent")}</FLink>
+            <FLink to="/solutions">{t("nav.solutions")}</FLink>
             <FLink to="/industries">{t("nav.industries")}</FLink>
             <FLink to="/answers">{t("nav.answers")}</FLink>
+            <FLink to="/about">{t("nav.about")}</FLink>
+            <FLink to="/contacts">{t("nav.contacts")}</FLink>
             <FLink to="/search">{t("nav.search")}</FLink>
             <FLink to="/sitemap">{t("sitemap.title")}</FLink>
           </FooterCol>
@@ -120,7 +124,11 @@ function FLink({
     | "/industries"
     | "/answers"
     | "/search"
-    | "/sitemap";
+    | "/sitemap"
+    | "/rent"
+    | "/solutions"
+    | "/about"
+    | "/contacts";
   children: React.ReactNode;
 }) {
   return (

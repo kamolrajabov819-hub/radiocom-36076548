@@ -55,6 +55,13 @@ export const entries: Entry[] = [
   { path: "/poc", changefreq: "monthly", priority: "0.8" },
   { path: "/service", changefreq: "monthly", priority: "0.8" },
   { path: "/industries", changefreq: "monthly", priority: "0.7" },
+  // The pages the keyword map added (docs/seo/keyword-map.md): rental and
+  // network design as services in their own right, and the two pages a buyer
+  // checks before trusting a supplier.
+  { path: "/rent", changefreq: "monthly", priority: "0.8" },
+  { path: "/solutions", changefreq: "monthly", priority: "0.8" },
+  { path: "/about", changefreq: "monthly", priority: "0.5" },
+  { path: "/contacts", changefreq: "monthly", priority: "0.6" },
   // The answers section. Higher priority than it looks like it deserves,
   // because these are the only pages on the site that target a question rather
   // than a product — they are the entry point for everyone who does not yet

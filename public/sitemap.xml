@@ -213,6 +213,126 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://radiocom.uz/ru/rent</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/rent"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/rent"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/rent"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/rent"/>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/rent</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/rent"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/rent"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/rent"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/rent"/>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/rent</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/rent"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/rent"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/rent"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/rent"/>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/solutions</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/solutions"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/solutions"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/solutions"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/solutions"/>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/solutions</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/solutions"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/solutions"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/solutions"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/solutions"/>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/solutions</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/solutions"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/solutions"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/solutions"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/solutions"/>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/about</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/about"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/about"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/about"/>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/about</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/about"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/about"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/about"/>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/about</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/about"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/about"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/about"/>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/ru/contacts</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/contacts"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/contacts"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/contacts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/contacts"/>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/en/contacts</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/contacts"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/contacts"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/contacts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/contacts"/>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://radiocom.uz/uz/contacts</loc>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/contacts"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/contacts"/>
+    <xhtml:link rel="alternate" hreflang="uz" href="https://radiocom.uz/uz/contacts"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://radiocom.uz/ru/contacts"/>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://radiocom.uz/ru/answers</loc>
     <xhtml:link rel="alternate" hreflang="ru" href="https://radiocom.uz/ru/answers"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://radiocom.uz/en/answers"/>

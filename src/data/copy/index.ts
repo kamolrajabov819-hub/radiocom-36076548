@@ -25,6 +25,10 @@ export const pageCopyLoaders = {
   poc: () => import("@/data/copy/pages/poc"),
   service: () => import("@/data/copy/pages/service"),
   industries: () => import("@/data/copy/pages/industries"),
+  rent: () => import("@/data/copy/pages/rent"),
+  solutions: () => import("@/data/copy/pages/solutions"),
+  about: () => import("@/data/copy/pages/about"),
+  contacts: () => import("@/data/copy/pages/contacts"),
 } satisfies Record<string, () => Promise<{ default: PageCopy }>>;
 
 export type PageCopyKey = keyof typeof pageCopyLoaders;

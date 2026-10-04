@@ -94,6 +94,8 @@ const ROUTES = [
   "/ru/radiocom/rcd-70/specs",
   "/ru/poc",
   "/ru/service",
+  "/ru/rent",
+  "/ru/contacts",
   "/ru/compare",
   "/ru/industries",
   "/ru/industries/construction",

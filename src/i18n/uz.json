@@ -17,7 +17,11 @@
     "motorola": "Motorola",
     "compare": "Solishtirish",
     "search": "Qidiruv",
-    "answers": "Javoblar"
+    "answers": "Javoblar",
+    "rent": "Ijara",
+    "solutions": "Radiotarmoq",
+    "about": "Kompaniya haqida",
+    "contacts": "Kontaktlar"
   },
   "hero": {
     "eyebrow": "Rasmiy distribyutor · Toshkent",
@@ -463,7 +467,11 @@
       "compare": "Solishtirish",
       "specs": "Xususiyatlar",
       "search": "Qidiruv",
-      "answers": "Javoblar"
+      "answers": "Javoblar",
+      "rent": "Ijara",
+      "solutions": "Radiotarmoq",
+      "about": "Kompaniya haqida",
+      "contacts": "Kontaktlar"
     },
     "section": {
       "poc_name": "PoC ratsiyalar",
@@ -477,7 +485,11 @@
       "motorola_name": "Motorola ratsiyalari",
       "motorola_desc": "Talkabout, XT va TLKR — chastota ruxsatnomasi kerak bo'lmaydigan ratsiyalar.",
       "compare_name": "Modellarni solishtirish",
-      "compare_desc": "Barcha ratsiyalar masofa, standart, himoya darajasi va narx bo'yicha bitta jadvalda."
+      "compare_desc": "Barcha ratsiyalar masofa, standart, himoya darajasi va narx bo'yicha bitta jadvalda.",
+      "rent_name": "Ratsiya ijarasi",
+      "rent_desc": "Motorola ratsiyalari ijarasi — bir kundan besh yilgacha, sozlash va aksessuarlar bilan.",
+      "solutions_name": "Kalit topshiriladigan radioaloqa",
+      "solutions_desc": "Korxona uchun radiotarmoq loyihasi: aloqani o'lchash, retranslyatorlar, chastotalar va ishga tushirish."
     },
     "brand": {
       "radiocom_title": "Radiocom ratsiyalari — raqamli va analog ratsiyalar narxi",
@@ -503,6 +515,22 @@
     "answers": {
       "title": "Ratsiyalar haqida hammasi: savol-javob | Radiocom",
       "desc": "Ratsiyani qanday tanlash, haqiqiy masofa qancha, Toshkentda narxi qancha va kafolat nimani qoplaydi. Yettita javob va 35+ model mavjud."
+    },
+    "rent": {
+      "title": "Ratsiya ijarasi Toshkentda — kunlik va tadbirlar uchun",
+      "desc": "Toshkentda Motorola ratsiyalari ijarasi: bir kundan besh yilgacha va undan ko'proq, aksessuar, zaxira akkumulyator va sozlash bilan. Tadbir va ob'ektlar uchun."
+    },
+    "solutions": {
+      "title": "Korxona uchun radioaloqa — retranslyator, loyihalash",
+      "desc": "Korxonada radioaloqa tizimi: ob'ektga chiqish va aloqani o'lchash, tarmoq loyihasi, retranslyator va antennalar, chastotalar va ishga tushirish."
+    },
+    "about": {
+      "title": "Radiocom kompaniyasi — 2012-yildan beri Toshkentda ratsiyalar",
+      "desc": "Radiocom kompaniyasi: 2012-yildan beri O'zbekistonda Motorola distribyutsiyasi, o'z Radiocom liniyasi, 35+ model va Toshkentda o'z servis markazi."
+    },
+    "contacts": {
+      "title": "Radiocom manzil va kontaktlar — Toshkentda ratsiya do'koni",
+      "desc": "Radiocom manzili: Toshkent, O'zbekiston Ovozi ko'chasi, 2 (Le Grande Plaza, sobiq «Tata»), 1–2-qavatlar. Du–Ju 9:00–18:00, telefonlar, Telegram va xarita."
     }
   },
   "brand": {
@@ -597,6 +625,16 @@
     "poc_box": "Qo'ldagi PoC ratsiyasi va uning qutisi",
     "poc_hand": "Qo'ldagi PoC ratsiyasi",
     "poc_fleet": "Displeyli va displeysiz PoC ratsiyalari",
-    "product_kit": "{{name}}: yetkazib berish to'plami"
+    "product_kit": "{{name}}: yetkazib berish to'plami",
+    "team_radios": "Qo'lida ratsiya ushlagan to'rt kishi — postlar orasidagi aloqa",
+    "lineup": "Radiocom raqamli ratsiyalari liniyasi: yetti model old va orqa tomondan"
+  },
+  "contacts": {
+    "address": "Manzil",
+    "hours": "Ish vaqti",
+    "main": "Asosiy telefon",
+    "landline": "Shahar telefoni",
+    "service": "Servis markazi",
+    "email": "Elektron pochta"
   }
 }

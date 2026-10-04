@@ -127,7 +127,11 @@ export function SectionHead({
       | "/service"
       | "/industries"
       | "/search"
-      | "/sitemap";
+      | "/sitemap"
+      | "/rent"
+      | "/solutions"
+      | "/about"
+      | "/contacts";
     href?: string;
     onClick?: () => void;
   };

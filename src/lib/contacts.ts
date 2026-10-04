@@ -33,6 +33,8 @@ export const telHref = (p: Phone) => `tel:${p.e164}`;
 
 /** The manager's direct chat, and the company's only Telegram presence. */
 export const TELEGRAM_URL = "https://t.me/DiyorRadiocom";
+/** The same account as a handle, for text that names it rather than links it. */
+export const TELEGRAM_HANDLE = "@DiyorRadiocom";
 export const INSTAGRAM_URL = "https://www.instagram.com/radiocom_uzb";
 export const FACEBOOK_URL =
   "https://www.facebook.com/people/Radiocom-%D0%A0%D0%B0%D1%86%D0%B8%D0%B8-Motorola-%D0%B2-%D0%A3%D0%B7%D0%B1%D0%B5%D0%BA%D0%B8%D1%81%D1%82%D0%B0%D0%BD%D0%B5/100085709424020/";

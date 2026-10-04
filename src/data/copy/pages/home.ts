@@ -72,6 +72,20 @@ const copy: PageCopy = {
         },
       ],
     },
+    {
+      heading: {
+        ru: "Аренда, ремонт и связь под ключ",
+        en: "Rental, repair and turnkey radio",
+        uz: "Ijara, ta'mir va kalit topshiriladigan aloqa",
+      },
+      body: [
+        {
+          ru: "Если рации нужны на день или на сезон, их можно взять в [аренду раций](/rent) — от одного дня до пяти лет и дольше. [Ремонт раций](/service) Motorola и Radiocom делает наш сервисный центр, по гарантии и после неё. А когда расстояние или бетон мешают связи на большом объекте, мы занимаемся [организацией радиосвязи на предприятии](/solutions): замеряем связь, считаем покрытие и ставим антенны.",
+          en: "If you need radios for a day or a season, take them on [radio rental](/rent) — from one day to five years and beyond. [Radio repair](/service) for Motorola and Radiocom is done in our own service centre, under warranty and after it. And when distance or concrete cuts the signal on a large site, we build [a radio network for your business](/solutions): we measure the signal, calculate the coverage and put up the antennas.",
+          uz: "Ratsiyalar bir kunga yoki mavsumga kerak bo'lsa, ularni [ratsiya ijarasi](/rent) orqali olish mumkin — bir kundan besh yilgacha va undan ko'proq. Motorola va Radiocom [ratsiya ta'mirlash](/service) ishlarini o'z servis markazimiz kafolat davrida ham, undan keyin ham bajaradi. Katta ob'ektda masofa yoki beton aloqaga xalaqit bersa, [korxonada radioaloqa tizimi](/solutions)ni quramiz: aloqani o'lchaymiz, qamrovni hisoblaymiz va antennalar o'rnatamiz.",
+        },
+      ],
+    },
   ],
   faq: [
     {

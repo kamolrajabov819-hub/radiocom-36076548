@@ -35,9 +35,9 @@ const copy: PageCopy = {
       },
       body: [
         {
-          ru: "Там же, где мобильный интернет. Вышки уже построили операторы связи, поэтому для PoC не нужно ставить антенны и ретрансляторы и не нужны собственные частоты. Где сети нет — в глубоком подвале или далеко от вышек, — PoC молчит, как и телефон; там нужна обычная рация, например [цифровые рации Radiocom](/radiocom).",
-          en: "Wherever there is mobile data. The operators have already built the towers, so PoC needs no antennas, no repeaters and no frequencies of your own. Where there is no network — a deep basement, far from any tower — PoC goes quiet just as a phone does; that is a job for a conventional radio, such as the [digital Radiocom radios](/radiocom).",
-          uz: "Mobil internet bor joyda. Minoralarni aloqa operatorlari allaqachon qurgan, shuning uchun PoC uchun antenna va retranslyator o'rnatish ham, o'z chastotangiz ham kerak emas. Tarmoq yo'q joyda — chuqur yerto'lada yoki minoralardan uzoqda — PoC ham telefon kabi jim qoladi; u yerda oddiy ratsiya kerak, masalan [raqamli Radiocom ratsiyalari](/radiocom).",
+          ru: "Там же, где мобильный интернет. Вышки уже построили операторы связи, поэтому для PoC не нужно ставить антенны и ретрансляторы и не нужны собственные частоты. Где сети нет — в глубоком подвале или далеко от вышек, — PoC молчит, как и телефон; там нужна обычная рация, например [цифровые рации Radiocom](/radiocom), или [своя радиосеть на предприятии](/solutions).",
+          en: "Wherever there is mobile data. The operators have already built the towers, so PoC needs no antennas, no repeaters and no frequencies of your own. Where there is no network — a deep basement, far from any tower — PoC goes quiet just as a phone does; that is a job for a conventional radio, such as the [digital Radiocom radios](/radiocom), or for [a radio network of your own](/solutions).",
+          uz: "Mobil internet bor joyda. Minoralarni aloqa operatorlari allaqachon qurgan, shuning uchun PoC uchun antenna va retranslyator o'rnatish ham, o'z chastotangiz ham kerak emas. Tarmoq yo'q joyda — chuqur yerto'lada yoki minoralardan uzoqda — PoC ham telefon kabi jim qoladi; u yerda oddiy ratsiya kerak, masalan [raqamli Radiocom ratsiyalari](/radiocom), yoki [korxonaning o'z radiotarmog'i](/solutions).",
         },
       ],
     },

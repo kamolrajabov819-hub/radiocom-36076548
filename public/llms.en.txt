@@ -64,6 +64,10 @@ Languages: Russian, English, Uzbek. Russian is the canonical language.
 - https://radiocom.uz/en/poc
 - https://radiocom.uz/en/service
 - https://radiocom.uz/en/industries
+- https://radiocom.uz/en/rent
+- https://radiocom.uz/en/solutions
+- https://radiocom.uz/en/about
+- https://radiocom.uz/en/contacts
 - https://radiocom.uz/en/answers
 - https://radiocom.uz/en/answers/how-to-choose
 - https://radiocom.uz/en/answers/real-range

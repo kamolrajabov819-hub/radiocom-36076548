@@ -50,6 +50,8 @@ import { head as answerHead } from "../src/pages/AnswerDetail.meta";
 import { publishedAnswers } from "../src/data/answers";
 import { brandHead } from "../src/pages/Brand.meta";
 import { head as productHead } from "../src/pages/ProductStory.meta";
+import { infoHead } from "../src/pages/InfoPage.meta";
+import { INFO_PAGES } from "../src/lib/seo";
 
 const TITLE_MAX = 65;
 const DESC_MIN = 70;
@@ -77,6 +79,8 @@ for (const lang of LANGS) {
     head: industriesIndexHead({ params: { lang } }) as Head,
   });
   cases.push({ label: `${lang} /sitemap`, head: sitemapHead({ params: { lang } }) as Head });
+  for (const k of INFO_PAGES)
+    cases.push({ label: `${lang} /${k}`, head: infoHead(k)({ params: { lang } }) as Head });
   // The bare /search form, not a results page — `?q=` results are
   // noindex, follow, so they have no snippet to size.
   cases.push({

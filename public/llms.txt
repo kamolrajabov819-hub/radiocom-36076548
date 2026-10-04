@@ -64,6 +64,10 @@
 - https://radiocom.uz/ru/poc
 - https://radiocom.uz/ru/service
 - https://radiocom.uz/ru/industries
+- https://radiocom.uz/ru/rent
+- https://radiocom.uz/ru/solutions
+- https://radiocom.uz/ru/about
+- https://radiocom.uz/ru/contacts
 - https://radiocom.uz/ru/answers
 - https://radiocom.uz/ru/answers/how-to-choose
 - https://radiocom.uz/ru/answers/real-range
