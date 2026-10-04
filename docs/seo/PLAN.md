@@ -15,18 +15,25 @@ owner can do.
 
 ## Status
 
-| Phase | What                                                                                       | State                               |
-| ----- | ------------------------------------------------------------------------------------------ | ----------------------------------- |
-| 0     | This plan, owner questions                                                                 | done                                |
-| 1     | Ads readiness: tracking, forms, parameters, contact paths, counters, first screen, caching | PR (a)                              |
-| 2     | WordPress → new site redirects                                                             | PR (b), stacked on (a)              |
-| 3     | Keyword map                                                                                | **waiting on `seo-input/` exports** |
-| 4     | Landing-page copy                                                                          | after the Phase 3 checkpoint        |
-| 5     | New pages (catalogue hub, About, maybe rental)                                             | proposed after Phase 3              |
-| 6     | Verify and hand off                                                                        | —                                   |
+| Phase | What | State |
+| ----- | ---- | ----- |
+| 0 | This plan, owner questions | done |
+| 1 | Ads readiness: tracking, forms, parameters, contact paths, counters, first screen, caching | merged (#32) |
+| 2 | WordPress → new site redirects | #34 (reopened to `main`; #33 had merged into the stale stacked base) |
+| 3 | Keyword map | done, from the owner's map: [`keyword-map.md`](keyword-map.md), [`keyword-map.csv`](keyword-map.csv) |
+| 4 | Landing-page copy | done: home, both brands, compare, PoC, service, the industries hub and six industries, product pages |
+| 5 | New pages | done: /rent, /solutions, /about, /contacts and three answers (pmr446, what-is-dmr, ip67). Not built, with the reason for each: `keyword-map.md` |
+| 6 | Verify and hand off | the keyword-content PR |
 
-`seo-input/` was empty at the start of this session, and outbound access to
-radiocom.uz is blocked from the build environment. Phases 0–2 need neither.
+The Wordstat/GKP/Ahrefs exports never arrived. On 2026-10-04 the owner supplied their own keyword map instead and asked for it to be used, and for the remaining questions to be settled without them (see `OWNER-QUESTIONS.md`). Volumes are still unmeasured; `keyword-map.md` lists the checks to run before ad spend.
+
+## How the keyword copy is built
+
+- **Weight first.** All three locale JSONs ship to every visitor, and the eager baseline was 874.5 of 880 KB. So before any copy was written, the industry body copy moved to code-split modules: the baseline dropped to 847.2 KB.
+- **One module per page.** Copy lives in `src/data/copy/pages/*` (and `copy/industries/*`). A route loader narrows it to one language (`src/data/copy/index.ts`), so it ships in the HTML of the page that shows it and in no other route's JavaScript.
+- **No typed figures.** Prices, ranges, IP67 lists, DMR lists, battery capacities and run times are `{{placeholders}}` filled from `products.ts` and `specs.ts` (`copy/facts.ts`).
+- **`SeoText`** renders 2–4 h2 sections with `[anchor](/path)` links. **`FaqBlock`** renders the FAQ and its FAQPage from the same array.
+- **Gates.** `verify-content.ts` holds every copy module to the rules `verify-i18n` holds the JSON to, and adds: every link resolves to a sitemap page, every placeholder is supplied, Uzbek uses ASCII apostrophes and never glues a case suffix to a model list, and the home description's price is still the cheapest.
 
 ## Ad landing pages
 
@@ -151,7 +158,15 @@ GTM's own cost is not in these numbers (no container ID here, and
 googletagmanager.com is unreachable). Measure it on a deploy preview once
 `VITE_GTM_ID` is set; the target is no LCP regression.
 
-## What waits on the exports
+## What still waits on data
+
+- **Keyword volumes.** Run the primary keywords through Wordstat (Uzbekistan) and Keyword Planner, and adjust headings where the volume says so.
+- **`legacy/sitemap.xml`**, the 251 old URLs: `bun scripts/import-legacy-urls.ts` merges them into the redirect fixture.
+- **Ahrefs Top pages / GSC:** which "no equivalent" URLs should get a parent redirect instead of a 410.
+- **The owner questions** in `OWNER-QUESTIONS.md`: repair and rental prices, the accessories range, the unsourced industry testimonials and figures, and the industry photography.
+
+## (Original) What waited on the exports
+
 
 Put these in `seo-input/` (git-ignored) and say so:
 
