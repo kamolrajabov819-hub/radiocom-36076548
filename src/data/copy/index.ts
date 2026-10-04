@@ -22,6 +22,8 @@ export const pageCopyLoaders = {
   radiocom: () => import("@/data/copy/pages/radiocom"),
   motorola: () => import("@/data/copy/pages/motorola"),
   compare: () => import("@/data/copy/pages/compare"),
+  poc: () => import("@/data/copy/pages/poc"),
+  service: () => import("@/data/copy/pages/service"),
 } satisfies Record<string, () => Promise<{ default: PageCopy }>>;
 
 export type PageCopyKey = keyof typeof pageCopyLoaders;

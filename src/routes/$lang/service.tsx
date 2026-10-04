@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { head } from "@/pages/Service.meta";
 import { ServicePage } from "@/pages/Service";
+import { loadPageCopy } from "@/data/copy";
 
 /**
  * Properties spelled out rather than spread from an imported object.
@@ -13,4 +14,8 @@ import { ServicePage } from "@/pages/Service";
  * this way the plugin rewrites the `ServicePage` import into its own lazy
  * chunk. `head` stays eager, which is why it lives in its own light module.
  */
-export const Route = createFileRoute("/$lang/service")({ head, component: ServicePage });
+export const Route = createFileRoute("/$lang/service")({
+  loader: ({ params }) => loadPageCopy("service", params.lang),
+  head,
+  component: ServicePage,
+});

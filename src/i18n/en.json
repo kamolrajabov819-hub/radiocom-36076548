@@ -266,8 +266,8 @@
   },
   "service": {
     "kicker": "AUTHORIZED SERVICE CENTER",
-    "title_a": "Radio repair,",
-    "title_b": "you can trust.",
+    "title_a": "Two-way radio repair",
+    "title_b": "in Tashkent.",
     "sub": "We repair Motorola and Radiocom radios, under warranty and after it. Original parts, and once we have diagnosed the fault the price does not move.",
     "request_repair": "Request repair",
     "advantages": {
@@ -426,11 +426,11 @@
       "desc": "Motorola and Radiocom two-way radios in Tashkent from 600 000 UZS: 14 years in business, a free trial, a 12-month warranty and delivery across Uzbekistan."
     },
     "poc": {
-      "title": "PoC radios — talk over the mobile network | Radiocom",
-      "desc": "A PoC radio talks over the mobile network instead of its own antenna: it works anywhere a phone has signal. No repeaters. Network design and rental in Tashkent."
+      "title": "PoC Radios with a SIM Card — Talk Anywhere in Uzbekistan",
+      "desc": "PoC radios with a SIM card talk over the mobile network: they work anywhere a phone has signal, with no repeaters. Selection, network design and rental."
     },
     "service": {
-      "title": "Two-Way Radio Repair in Tashkent — Authorised Service | Radiocom",
+      "title": "Two-Way Radio Repair in Tashkent — Motorola and Radiocom Service",
       "desc": "We repair Motorola, Radiocom and Vertex Standard radios in Tashkent, under warranty and after it. Original parts, and the price does not move after diagnosis.",
       "schema_name": "Radiocom Authorised Service Centre",
       "schema_desc": "Repair of Motorola, Radiocom and Vertex Standard radios in Tashkent, under warranty and after it."

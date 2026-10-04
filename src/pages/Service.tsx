@@ -27,6 +27,9 @@ import { SectionHead } from "@/components/Section";
 import { Faq } from "@/components/Faq";
 import { BentoGrid, FeatureCard, HighlightsShelf } from "@/components/apple";
 import { TrustedBy } from "@/components/TrustedBy";
+import { useLoaderData } from "@tanstack/react-router";
+import { SeoText } from "@/components/SeoText";
+import { FaqBlock } from "@/components/FaqBlock";
 
 /** A title plus its supporting line. Both the repair stages and the
  *  advantages tiles use this shape; a bare string is what made them read as
@@ -34,7 +37,12 @@ import { TrustedBy } from "@/components/TrustedBy";
 type FlowStep = { t: string; d: string };
 
 export function ServicePage() {
+  const { t } = useTranslation();
   const page = useScrollChoreography();
+  // The repair SEO text and FAQ, from the route loader (`src/data/copy`).
+  const copy = useLoaderData({ from: "/$lang/service" });
+  // The return-policy rows below are a FAQ too; one FAQPage covers both lists.
+  const policy = t("service.policy", { returnObjects: true }) as Array<{ q: string; a: string }>;
 
   return (
     <div ref={page} className="page-anim page-tight">
@@ -42,6 +50,8 @@ export function ServicePage() {
       <BenchStrip />
       <Flow />
       <Advantages />
+      <SeoText sections={copy.sections} band="soft" />
+      <FaqBlock items={copy.faq} band="plain" alsoInSchema={policy} />
       <Policy />
       <TrustedBy />
     </div>

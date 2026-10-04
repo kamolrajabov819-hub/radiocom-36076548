@@ -1,4 +1,7 @@
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { useLoaderData } from "@tanstack/react-router";
+import { SeoText } from "@/components/SeoText";
+import { FaqBlock } from "@/components/FaqBlock";
 import { useScrollChoreography } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 import { brandCase } from "@/lib/brand";
@@ -62,6 +65,8 @@ const ROW_IDS = ["coverage", "infra", "media", "gps", "scale", "cost"] as const;
 
 export function PoCPage() {
   const page = useScrollChoreography();
+  // The PoC SEO text and FAQ, from the route loader (`src/data/copy`).
+  const copy = useLoaderData({ from: "/$lang/poc" });
 
   return (
     <div ref={page} className="page-anim page-tight">
@@ -71,6 +76,8 @@ export function PoCPage() {
       <Compare />
       <NetworkDesign />
       <Rental />
+      <SeoText sections={copy.sections} band="soft" />
+      <FaqBlock items={copy.faq} band="plain" />
       <TrustedBy />
     </div>
   );

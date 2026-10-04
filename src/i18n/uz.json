@@ -266,8 +266,8 @@
   },
   "service": {
     "kicker": "VAKOLATLI SERVIS MARKAZI",
-    "title_a": "Ratsiya ta'miri.",
-    "title_b": "Ishonchli.",
+    "title_a": "Toshkentda ratsiya",
+    "title_b": "ta'mirlash.",
     "sub": "Motorola va Radiocom ratsiyalarini ta'mirlaymiz — kafolat davrida ham, keyin ham. Original ehtiyot qismlar, diagnostikadan keyin narx o'zgarmaydi.",
     "request_repair": "Ta'mirlashga ariza",
     "advantages": {
@@ -426,12 +426,12 @@
       "desc": "Toshkentda Motorola va Radiocom ratsiyalari 600 000 so'mdan: bozorda 14 yil, bepul sinov, 12 oy kafolat, o'z servisimiz va O'zbekiston bo'ylab yetkazib berish."
     },
     "poc": {
-      "title": "PoC ratsiyalari — mobil tarmoq orqali aloqa | Radiocom",
-      "desc": "PoC ratsiyasi o'z antennasi orqali emas, mobil tarmoq orqali gapiradi: telefon tutgan joyda aloqa bor. Retranslyator kerak emas. Tarmoq loyihasi va ijara."
+      "title": "PoC ratsiyalar — SIM kartali, butun O'zbekiston bo'ylab aloqa",
+      "desc": "SIM kartali PoC ratsiyalar mobil tarmoq orqali ishlaydi: telefon tutgan hamma joyda aloqa bor, retranslyatorsiz. Tanlash, tarmoq loyihasi va ijara."
     },
     "service": {
-      "title": "Toshkentda ratsiya ta'miri — vakolatli servis | Radiocom",
-      "desc": "Toshkentda Motorola, Radiocom va Vertex Standard ratsiyalarini ta'mirlaymiz — kafolat bilan va keyin ham. Original qismlar, narx diagnostikadan keyin qat'iy.",
+      "title": "Ratsiya ta'mirlash Toshkentda — Motorola va Radiocom servisi",
+      "desc": "Toshkentda Motorola, Radiocom va Vertex Standard ratsiyalarini ta'mirlash — kafolat davrida va undan keyin. Original qismlar, narx diagnostikadan keyin qat'iy.",
       "schema_name": "Radiocom vakolatli servis markazi",
       "schema_desc": "Toshkentda Motorola, Radiocom va Vertex Standard ratsiyalarini ta'mirlash — kafolat davrida va keyin."
     },
