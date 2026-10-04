@@ -20,6 +20,10 @@ import { INDUSTRY_SLUGS } from "@/data/industries";
 import { INDUSTRY_POSTERS, INDUSTRY_POSTER_SRCSET } from "@/data/industry-images";
 import { openLead } from "@/components/LeadFormSheet";
 import { TrustedBy } from "@/components/TrustedBy";
+import { useLoaderData } from "@tanstack/react-router";
+import { SeoText } from "@/components/SeoText";
+import { FaqBlock } from "@/components/FaqBlock";
+import type { PageCopy, Picked } from "@/data/copy/pick";
 import priceListPdf from "@/assets/radiocom-price-list.pdf";
 // apple.com's "Why Apple is the best place to shop Mac" cards each carry a
 // photograph at the bottom; ours were text with an empty half. These are the
@@ -84,6 +88,9 @@ type Facet = Category | "all";
 export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
   const { t } = useTranslation();
   const lang = useLang();
+  // The brand's SEO text and FAQ from its route loader (`src/data/copy`), in
+  // this language. Not strict: the component serves both brand routes.
+  const copy = useLoaderData({ strict: false }) as Picked<PageCopy>;
   const list = productsOfBrand(brandSlug);
   const floor = priceFrom(list);
 
@@ -372,8 +379,12 @@ export function BrandPage({ brandSlug }: { brandSlug: BrandSlug }) {
         </div>
       </Section>
 
+      {/* ── What the search was asking ─────────────────────── */}
+      <SeoText sections={copy.sections} />
+      <FaqBlock items={copy.faq} />
+
       {/* ── Compare invitation ─────────────────────────────── */}
-      <Section band="soft">
+      <Section band="plain">
         <div data-scrub-in className="mx-auto max-w-2xl text-center">
           <h2 className="type-headline text-crisp">{t("brand.compare_cta")}</h2>
           <p className="subhead mt-4 text-[17px]">{t("brand.compare_sub")}</p>

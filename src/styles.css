@@ -502,6 +502,30 @@
   outline-color: var(--pitch);
 }
 
+/*
+ * A link inside running prose (`SeoText`, answers). `pill-link` is a
+ * standalone action with a 44px box; inside a sentence that box would push the
+ * lines apart, so this one keeps the line height and marks itself with an
+ * underline instead — colour alone is not enough to tell a link from emphasis.
+ * Same `--signal-text` for the same AA reason.
+ */
+@utility link-inline {
+  color: var(--signal-text);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: color-mix(in srgb, var(--signal-text) 35%, transparent);
+  transition: text-decoration-color 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-inline:hover {
+  text-decoration-color: currentColor;
+}
+.link-inline:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 /* Bento card */
 @utility bento-card {
   background: var(--charcoal);

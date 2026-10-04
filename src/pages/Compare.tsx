@@ -15,6 +15,8 @@ import {
 import { specs } from "@/data/specs";
 import { pick, type Lang } from "@/data/spec-dict";
 import { useLang } from "@/lib/locale";
+import { useLoaderData } from "@tanstack/react-router";
+import { SeoText } from "@/components/SeoText";
 
 /**
  * Cross-model comparison — apple.com's "Which one is right for you?".
@@ -62,6 +64,8 @@ export function ComparePage() {
   const lang = useLang();
 
   const page = useScrollChoreography();
+  // The long-range / IP67 / under-1M sections, from the route loader.
+  const copy = useLoaderData({ from: "/$lang/compare" });
 
   return (
     <div ref={page} className="page-anim page-tight">
@@ -79,7 +83,9 @@ export function ComparePage() {
       <BrandTable brandSlug="radiocom" lang={lang} band="soft" />
       <BrandTable brandSlug="motorola" lang={lang} band="plain" />
 
-      <Section band="soft" tight>
+      <SeoText sections={copy.sections} band="soft" />
+
+      <Section band="plain" tight>
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="type-headline text-crisp">{t("brand.compare_cta")}</h2>
           <p className="subhead mt-4 text-[17px]">{t("px.trial")}</p>

@@ -343,12 +343,12 @@
   },
   "home": {
     "hero": {
+      "h1": "Toshkentda ratsiyalar va radiostansiyalar",
       "title_a": "Butun smena",
       "title_b": "eshitadigan ratsiya.",
-      "sub": "Ratsiyalarni bepul sinov uchun o'zingizga olib kelamiz. Sotib olgandan keyin — 12 oy kafolat va o'z servis markazimiz.",
+      "sub": "Ish va dam olish uchun — {{price}}dan. Bepul sinovga olib boramiz, 12 oy kafolat beramiz va o'z servisimizda xizmat ko'rsatamiz.",
       "cta_primary": "Bepul sinovni band qilish",
-      "cta_secondary": "Modellarni ko'rish",
-      "eyebrow": "RASMIY YETKAZIB BERUVCHI · TOSHKENT"
+      "cta_secondary": "Modellarni ko'rish"
     },
     "feature": {
       "title": "Eng qiyin ob'ektlar uchun yaratilgan.",
@@ -422,8 +422,8 @@
   },
   "meta": {
     "home": {
-      "title": "Toshkentda ratsiyalar — Motorola va Radiocom | Radiocom",
-      "desc": "Toshkentda Motorola va Radiocom ratsiyalari: 35+ model, bozorda 14 yil, 10 000+ mijoz. Bepul sinov, 12 oy kafolat, o'z servisimiz."
+      "title": "Ratsiya sotib olish Toshkentda — Motorola va Radiocom narxlari",
+      "desc": "Toshkentda Motorola va Radiocom ratsiyalari 600 000 so'mdan: bozorda 14 yil, bepul sinov, 12 oy kafolat, o'z servisimiz va O'zbekiston bo'ylab yetkazib berish."
     },
     "poc": {
       "title": "PoC ratsiyalari — mobil tarmoq orqali aloqa | Radiocom",
@@ -472,18 +472,18 @@
       "compare_desc": "Barcha ratsiyalar masofa, standart, himoya darajasi va narx bo'yicha bitta jadvalda."
     },
     "brand": {
-      "radiocom_title": "Radiocom RC va RCD ratsiyalari — Toshkentda sotib olish",
-      "radiocom_desc": "Radiocom'ning {{count}} modeli: analog RC va raqamli RCD. Narxlar, xususiyatlar, 12 oy kafolat va butun O'zbekiston bo'ylab bepul sinov.",
-      "motorola_title": "Motorola ratsiyalari — Toshkentda sotib olish | Radiocom",
-      "motorola_desc": "Motorola'ning {{count}} modeli: Talkabout, XT va TLKR. Chastota ruxsatnomasi kerak emas. Kafolat, O'zbekiston bo'ylab yetkazish va bepul sinov."
+      "radiocom_title": "Radiocom ratsiyalari — raqamli va analog ratsiyalar narxi",
+      "radiocom_desc": "Radiocom ratsiyalari: {{count}} ta model — raqamli RCD va analog RC. Narxlar, xususiyatlar, 12 oy kafolat va butun O'zbekiston bo'ylab bepul sinov.",
+      "motorola_title": "Motorola ratsiyalari Toshkentda — T82, XT420 narxlari",
+      "motorola_desc": "Toshkentda Motorola ratsiyalari: chastota ruxsatnomasi kerak bo'lmaydigan {{count}} ta Talkabout, XT va TLKR modeli. 12 oy kafolat, yetkazib berish va bepul sinov."
     },
     "specs": {
       "title": "{{name}} — xususiyatlari va narxi | Radiocom",
       "desc": "{{name}} to'liq xususiyatlari: {{price}}. To'plam, masofa, himoya darajasi. 12 oy kafolat, O'zbekiston bo'ylab bepul yetkazib berish."
     },
     "compare": {
-      "title": "Ratsiyalarni solishtirish — {{count}} model | Radiocom",
-      "desc": "Motorola va Radiocom ratsiyalari bitta jadvalda: masofa, chang va suvdan himoya, narx va komplekt. Solishtiring va jamoangizga mosini tanlang."
+      "title": "Ratsiyalarni solishtirish — Motorola va Radiocom: masofa, narx",
+      "desc": "Ratsiyalarni bitta jadvalda solishtiring: Motorola va Radiocom masofasi shaharda va ochiq joyda, chang va suvdan himoya, narx va komplekt."
     },
     "search": {
       "title": "Ratsiyalar katalogi bo'yicha qidiruv — Radiocom",
@@ -503,7 +503,7 @@
     "sub": "Ishlab chiqaruvchilar bilan to'g'ridan-to'g'ri ishlaymiz: original qurilmalar, kafolat va Toshkentda servis.",
     "view": "Modellarni ko'rish",
     "models": "model",
-    "radiocom_title": "Radiocom RC va RCD ratsiyalari",
+    "radiocom_title": "Radiocom ratsiyalari",
     "radiocom_desc": "Radiocom'ning o'z liniyasi: analog RC va raqamli RCD. Kafolat va ta'mirlash — o'z servisimizda.",
     "motorola_title": "Motorola ratsiyalari",
     "motorola_desc": "Talkabout, XT va TLKR — chastota ruxsatnomasi kerak bo'lmaydigan Motorola ratsiyalari.",

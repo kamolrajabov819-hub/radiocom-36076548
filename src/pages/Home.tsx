@@ -47,7 +47,11 @@ import { Section, SectionHead } from "@/components/Section";
 import { BentoGrid, FeatureCard, StackedTile } from "@/components/apple";
 import { ProductShot } from "@/components/ProductShot";
 import { Magnetic } from "@/components/Magnetic";
-import { visibleProducts } from "@/data/products";
+import { formatPrice, priceFrom, visibleProducts } from "@/data/products";
+import { useLoaderData } from "@tanstack/react-router";
+import { SeoText } from "@/components/SeoText";
+import { FaqBlock } from "@/components/FaqBlock";
+import { useLang } from "@/lib/locale";
 import { ProductCard } from "@/components/ProductCard";
 import { CountUp } from "@/components/CountUp";
 import { TrustedBy } from "@/components/TrustedBy";
@@ -56,6 +60,9 @@ import { DESKTOP, useGsap, useScrollChoreography } from "@/lib/motion";
 
 export function HomePage() {
   const page = useScrollChoreography();
+  // The SEO text and FAQ, for this language, from the route loader — see
+  // `src/data/copy/index.ts`. After the commercial blocks, before the FAQ.
+  const copy = useLoaderData({ from: "/$lang/" });
 
   return (
     <div ref={page} className="page-anim">
@@ -66,6 +73,8 @@ export function HomePage() {
       <NetworkSplit />
       <IndustriesTeaser />
       <FeaturedCatalog />
+      <SeoText sections={copy.sections} />
+      <FaqBlock items={copy.faq} />
       <FinalCta />
       <TrustedBy />
     </div>
@@ -82,6 +91,7 @@ export function HomePage() {
    ───────────────────────────────────────────────────────────── */
 function Hero() {
   const { t } = useTranslation();
+  const lang = useLang();
   const scope = useRef<HTMLElement>(null);
   // Two lines, in this order, because that is the reading the client asked
   // for: the adjective lands first and the product follows it. Two keys
@@ -136,18 +146,26 @@ function Hero() {
             HTML, so the heading, the offer and the button stayed invisible until
             the bundle hydrated. The sweep moves to an inner span because one
             element cannot run both animations. */}
-        <div className="hero-rise mb-5 text-[13px] font-medium tracking-wide" style={rise(0)}>
-          <span className="eyebrow-sweep">{t("home.hero.eyebrow")}</span>
-        </div>
+        {/* The h1 says what is sold and where — «Рации в Ташкенте» — in the
+            slot above the slogan, the way apple.com names the product in a
+            plain line over a display tagline. The slogan stays, as a display
+            line rather than the heading: a search for «рации ташкент» lands on
+            a page whose h1 is that query, and the brand voice is unchanged. */}
+        <h1
+          className="hero-rise type-title mx-auto mb-4 max-w-3xl font-semibold text-crisp"
+          style={rise(0)}
+        >
+          {brandCase(t("home.hero.h1"))}
+        </h1>
 
-        <h1 className="headline-hero text-crisp">
+        <p className="headline-hero text-crisp">
           {lines.map((line, li) => (
             // `block`, so the second line always starts on its own row rather
             // than wherever the first happens to run out. The word spans stay
             // per-line so the reveal still plays left to right across both.
             //
             // The separators are real text, not `mr-[0.25em]`: the margin drew
-            // the gap but left the markup as one unbroken word, so the h1
+            // the gap but left the markup as one unbroken word, so the line
             // reached a crawler, a screen reader and the clipboard with no
             // spaces in it at all.
             <Fragment key={li}>
@@ -157,10 +175,6 @@ function Hero() {
                   <Fragment key={i}>
                     {i > 0 && " "}
                     <span className="hero-rise inline-block" style={rise(1 + li * 2 + i)}>
-                      {/* The h1 names Radiocom now, and this loop is the one
-                          headline on the site that was not going through
-                          `brandCase` — so the hero read "Radiocom" beside a
-                          wordmark that reads RADIOCOM. */}
                       {brandCase(w)}
                     </span>
                   </Fragment>
@@ -168,10 +182,13 @@ function Hero() {
               </span>
             </Fragment>
           ))}
-        </h1>
+        </p>
 
+        {/* The sentence that echoes the ad: what it is, who it is for, the
+            catalogue's real starting price (from products.ts, not typed), and
+            the free trial. */}
         <p className="hero-rise subhead mx-auto mt-6 max-w-3xl text-lg md:text-2xl" style={rise(6)}>
-          {brandCase(t("home.hero.sub"))}
+          {brandCase(t("home.hero.sub", { price: formatPrice(priceFrom(visibleProducts), lang) }))}
         </p>
 
         <div

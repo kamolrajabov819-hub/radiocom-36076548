@@ -343,12 +343,12 @@
   },
   "home": {
     "hero": {
+      "h1": "Two-way radios in Tashkent — Motorola and Radiocom",
       "title_a": "Radios the whole",
       "title_b": "shift can hear.",
-      "sub": "We bring the radios out to you for a free trial. After you buy: a 12-month warranty and our own service centre.",
+      "sub": "For work and leisure, from {{price}}. We bring them out for a free trial, back them with a 12-month warranty and service them ourselves.",
       "cta_primary": "Book Free Test",
-      "cta_secondary": "See the models",
-      "eyebrow": "OFFICIAL SUPPLIER · TASHKENT"
+      "cta_secondary": "See the models"
     },
     "feature": {
       "title": "Built for the toughest sites.",
@@ -422,8 +422,8 @@
   },
   "meta": {
     "home": {
-      "title": "Two-Way Radios in Tashkent — Motorola, Radiocom | Radiocom",
-      "desc": "Motorola and Radiocom two-way radios in Tashkent: 35+ models, 14 years in business, 10 000+ clients. Free trial, 12-month warranty, our own service."
+      "title": "Two-Way Radios in Tashkent — Buy Motorola and Radiocom",
+      "desc": "Motorola and Radiocom two-way radios in Tashkent from 600 000 UZS: 14 years in business, a free trial, a 12-month warranty and delivery across Uzbekistan."
     },
     "poc": {
       "title": "PoC radios — talk over the mobile network | Radiocom",
@@ -472,24 +472,22 @@
       "compare_desc": "Every radio by range, standard, ingress protection and price in one table."
     },
     "brand": {
-      "radiocom_title": "Radiocom RC and RCD radios — buy in Tashkent | Radiocom",
-      "radiocom_desc": "{{count}} Radiocom models: analogue RC and digital RCD. Prices, specifications, a 12-month warranty and a free trial anywhere in Uzbekistan.",
-      "motorola_title": "Motorola two-way radios — buy in Tashkent | Radiocom",
-      "motorola_desc": "{{count}} Motorola models: Talkabout, XT and TLKR. No frequency permit needed. Warranty, delivery across Uzbekistan and a free trial.",
-      "radiocom_desc_one": "{{count}} Radiocom model: analogue RC and digital RCD. Prices, specifications, a 12-month warranty and a free trial anywhere in Uzbekistan.",
-      "radiocom_desc_other": "{{count}} Radiocom models: analogue RC and digital RCD. Prices, specifications, a 12-month warranty and a free trial anywhere in Uzbekistan.",
-      "motorola_desc_one": "{{count}} Motorola model: Talkabout, XT and TLKR. No frequency permit needed. Warranty, delivery across Uzbekistan and a free trial.",
-      "motorola_desc_other": "{{count}} Motorola models: Talkabout, XT and TLKR. No frequency permit needed. Warranty, delivery across Uzbekistan and a free trial."
+      "radiocom_title": "Radiocom RC and RCD Radios — Digital and Analogue, Prices",
+      "radiocom_desc": "Radiocom radios: {{count}} models, digital RCD and analogue RC. Prices, specifications, a 12-month warranty and a free trial anywhere in Uzbekistan.",
+      "motorola_title": "Motorola Two-Way Radios in Tashkent — Talkabout T82, XT420",
+      "motorola_desc": "Motorola radios in Tashkent: {{count}} Talkabout, XT and TLKR models that need no frequency permit. 12-month warranty, delivery and a free trial.",
+      "radiocom_desc_one": "Radiocom radios: {{count}} model, digital RCD and analogue RC. Prices, specifications, a 12-month warranty and a free trial anywhere in Uzbekistan.",
+      "radiocom_desc_other": "Radiocom radios: {{count}} models, digital RCD and analogue RC. Prices, specifications, a 12-month warranty and a free trial anywhere in Uzbekistan.",
+      "motorola_desc_one": "Motorola radios in Tashkent: {{count}} Talkabout, XT and TLKR model that need no frequency permit. 12-month warranty, delivery and a free trial.",
+      "motorola_desc_other": "Motorola radios in Tashkent: {{count}} Talkabout, XT and TLKR models that need no frequency permit. 12-month warranty, delivery and a free trial."
     },
     "specs": {
       "title": "{{name}} — specifications and price | Radiocom",
       "desc": "Full specifications for the {{name}}: {{price}}. Box contents, range, ingress protection. 12-month warranty, free delivery across Uzbekistan."
     },
     "compare": {
-      "title": "Compare Motorola and Radiocom radios — {{count}} models | Radiocom",
-      "desc": "Motorola and Radiocom radios in one table: range, dust and water protection, price and what is in the box. Compare them and pick what suits your team.",
-      "title_one": "Compare Motorola and Radiocom radios — {{count}} model | Radiocom",
-      "title_other": "Compare Motorola and Radiocom radios — {{count}} models | Radiocom"
+      "title": "Compare Motorola and Radiocom Radios — Range, Protection, Price",
+      "desc": "Compare Motorola and Radiocom radios in one table: range in town and in the open, dust and water protection, price and what is in the box."
     },
     "search": {
       "title": "Search the two-way radio catalogue — Radiocom",
@@ -509,7 +507,7 @@
     "sub": "We work directly with manufacturers: genuine devices, warranty and service in Tashkent.",
     "view": "View models",
     "models": "models",
-    "radiocom_title": "Radiocom RC and RCD radios",
+    "radiocom_title": "Radiocom radios",
     "radiocom_desc": "Radiocom's own range: analogue RC and digital RCD. Warranty and repairs at our own service centre.",
     "motorola_title": "Motorola radios",
     "motorola_desc": "Talkabout, XT and TLKR — Motorola radios that need no frequency permit.",

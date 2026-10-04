@@ -117,8 +117,8 @@ export const YEARS_TRADING = new Date().getFullYear() - FOUNDED_YEAR;
  * without the build saying so.
  */
 export const ORG_DESCRIPTION =
-  "Рации Motorola и Radiocom в Ташкенте: 35+ моделей, 14 лет на рынке, " +
-  "10 000+ клиентов. Бесплатный тест, гарантия 12 месяцев, свой сервис.";
+  "Рации Motorola и Radiocom в Ташкенте от 600 000 сум: 14 лет на рынке, " +
+  "бесплатный тест, гарантия 12 месяцев, свой сервис и доставка по Узбекистану.";
 
 /** Absolute URL for a site-relative path. */
 export function absolute(path: string): string {

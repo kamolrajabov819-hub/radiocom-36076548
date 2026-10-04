@@ -22,7 +22,15 @@
  *      the tutuq belgisi) — not ‘ ’ ʻ ʼ, which split one word into two spellings
  *      for search and for the reader. This rule also covers `uz.json`;
  *   5. every `[anchor](/path)` link in the copy points at a page in the
- *      sitemap, so an internal link can never be a 404.
+ *      sitemap, so an internal link can never be a 404;
+ *   6. every `{{placeholder}}` is one `catalogueFacts()` fills, in every
+ *      locale — a figure the catalogue cannot supply is a figure nobody checked;
+ *   7. in Uzbek, a case suffix glued to a placeholder («{{ip67}}da») only
+ *      where the filled value ends in «so'm» («600 000 so'mdan»). Glued to a
+ *      model list it yields «TLKR-T92 H2Oda»; write «… modellarida» instead;
+ *   8. the one price that cannot be a placeholder — «от 600 000 сум» in
+ *      `meta.home.desc`, which verify-seo gate 26 pins verbatim to the
+ *      Organization schema — is still the catalogue's cheapest.
  *
  * Its own script, not a gate in `verify-seo.ts`: that file sits just under the
  * size at which Bun's transpiler cache breaks it (see `verify-contacts.ts`).
@@ -33,6 +41,7 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { answerContent } from "../src/data/answers-content";
 import { entries } from "./lib/sitemap";
+import { catalogueFacts } from "../src/data/copy/facts";
 
 const COPY_DIR = join(import.meta.dir, "../src/data/copy");
 
@@ -60,17 +69,17 @@ function collect(value: unknown, path: string, out: [string, L][]) {
 }
 
 const modules: [string, unknown][] = [["answers-content", answerContent]];
-// Everything under src/data/copy, subdirectories included (one module per
-// industry lives in copy/industries/). `pick.ts` holds the type, not copy.
-const walkDir = (dir: string, rel: string): string[] =>
-  readdirSync(dir).flatMap((f) =>
-    statSync(join(dir, f)).isDirectory()
-      ? walkDir(join(dir, f), `${rel}${f}/`)
-      : f.endsWith(".ts") && f !== "pick.ts"
-        ? [`${rel}${f}`]
-        : [],
+// Every module in a subdirectory of src/data/copy — `pages/` and
+// `industries/`. The files at its top level are the machinery (types, the
+// loader, the facts), not copy.
+const copyFiles = readdirSync(COPY_DIR)
+  .filter((d) => statSync(join(COPY_DIR, d)).isDirectory())
+  .flatMap((d) =>
+    readdirSync(join(COPY_DIR, d))
+      .filter((f) => f.endsWith(".ts"))
+      .map((f) => `${d}/${f}`),
   );
-for (const file of walkDir(COPY_DIR, "")) {
+for (const file of copyFiles) {
   modules.push([`copy/${file}`, await import(join(COPY_DIR, file))]);
 }
 
@@ -83,10 +92,19 @@ const RATIO = 0.6;
 const LINK = /\[([^\]]+)\]\(([^)]+)\)/g;
 const livePaths = new Set(entries.map((e) => e.path));
 
-const problems = { missing: [], cyrillic: [], short: [], curly: [], links: [] } as Record<
-  string,
-  string[]
->;
+const PLACEHOLDER = /\{\{(\w+)\}\}/g;
+const factKeys = new Set(Object.keys(catalogueFacts("ru")));
+const uzFacts = catalogueFacts("uz");
+
+const problems = {
+  missing: [],
+  cyrillic: [],
+  short: [],
+  curly: [],
+  links: [],
+  placeholders: [],
+  suffix: [],
+} as Record<string, string[]>;
 for (const [path, l] of strings) {
   const mayBeEmpty = path.endsWith(".u");
   for (const lang of ["ru", "en", "uz"] as const) {
@@ -102,6 +120,13 @@ for (const [path, l] of strings) {
   }
   if (CURLY.test(l.uz ?? "")) problems.curly.push(`${path}.uz: ${l.uz}`);
   for (const lang of ["ru", "en", "uz"] as const) {
+    for (const m of (l[lang] ?? "").matchAll(PLACEHOLDER))
+      if (!factKeys.has(m[1])) problems.placeholders.push(`${path}.${lang}: {{${m[1]}}}`);
+    // Rule 7.
+    if (lang === "uz")
+      for (const m of (l.uz ?? "").matchAll(/\{\{(\w+)\}\}([a-z'])/g))
+        if (!/so'm$/.test(uzFacts[m[1]] ?? ""))
+          problems.suffix.push(`${path}.uz: {{${m[1]}}}${m[2]}… (value «${uzFacts[m[1]]}»)`);
     for (const m of (l[lang] ?? "").matchAll(LINK)) {
       const target = m[2].split("#")[0];
       if (!livePaths.has(target)) problems.links.push(`${path}.${lang}: [${m[1]}](${m[2]})`);
@@ -120,6 +145,22 @@ for (const [path, l] of strings) {
   walk(JSON.parse(readFileSync(join(import.meta.dir, "../src/i18n/uz.json"), "utf8")), "");
 }
 
+// Rule 8.
+{
+  problems.homePrice = [];
+  for (const lang of ["ru", "en", "uz"] as const) {
+    const locale = JSON.parse(
+      readFileSync(join(import.meta.dir, `../src/i18n/${lang}.json`), "utf8"),
+    );
+    const desc: string = locale.meta.home.desc;
+    // `formatPrice` groups with a no-break space; the description is typed.
+    const flat = (x: string) => x.replace(/[\s\u00A0\u202F]+/g, " ");
+    const min = flat(catalogueFacts(lang).minPrice);
+    if (!flat(desc).includes(min))
+      problems.homePrice.push(`${lang} meta.home.desc does not quote ${min}: ${desc}`);
+  }
+}
+
 const report = (key: string, what: string) => {
   const list = problems[key];
   if (list.length) bad(`${list.length} ${what}:\n     ${list.join("\n     ")}`);
@@ -132,6 +173,9 @@ report(
 );
 report("curly", "Uzbek string(s) with a typographic apostrophe — use ASCII '");
 report("links", "copy link(s) to a path that is not in the sitemap");
+report("placeholders", "placeholder(s) catalogueFacts() does not supply");
+report("suffix", "Uzbek suffix(es) glued to a placeholder that does not end in «so'm»");
+report("homePrice", "home description(s) quoting a price that is no longer the cheapest");
 
 if (failed) process.exit(1);
 console.log(

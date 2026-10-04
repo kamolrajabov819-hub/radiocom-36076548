@@ -32,3 +32,32 @@ export function pickDeep<T>(value: T, lang: Lang): Picked<T> {
     ) as Picked<T>;
   return value as Picked<T>;
 }
+
+/**
+ * A landing page's long-form copy: the SEO text sections and the FAQ.
+ *
+ * Figures are never typed into this copy. A string may carry `{{name}}`
+ * placeholders that `catalogueFacts()` fills from `products.ts` and `specs.ts`
+ * when the page loads — the cheapest price, the longest range, which models
+ * are IP67 — so a price change in the catalogue cannot leave a paragraph quoting
+ * the old one.
+ */
+export type PageCopy = {
+  /** Two to four `h2` sections, each a list of paragraphs. */
+  sections: { heading: L; body: L[] }[];
+  /** Rendered by `FaqBlock`, which emits `FAQPage` from the same array. */
+  faq: { q: L; a: L }[];
+};
+
+/** Replace `{{name}}` with `vars[name]`. An unknown name is left visible, never blanked. */
+export const fill = (text: string, vars: Record<string, string>) =>
+  text.replace(/\{\{(\w+)\}\}/g, (m, k: string) => vars[k] ?? m);
+
+/** `fill` over every string in a value already narrowed by `pickDeep`. */
+export function fillDeep<T>(value: T, vars: Record<string, string>): T {
+  if (typeof value === "string") return fill(value, vars) as T;
+  if (Array.isArray(value)) return value.map((v) => fillDeep(v, vars)) as T;
+  if (value && typeof value === "object")
+    return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, fillDeep(v, vars)])) as T;
+  return value;
+}
