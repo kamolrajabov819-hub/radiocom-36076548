@@ -61,6 +61,14 @@ export const draftContent: Record<string, AnswerContent> = {
   "radio-licence-uzbekistan": {
     picks: ["m-t82-extreme", "rc-20", "rcd-70"],
     related: ["how-to-choose", "pmr-or-poc"],
+    cta: {
+      path: "/solutions",
+      anchor: {
+        ru: "Организация радиосвязи на предприятии",
+        en: "Radio networks for your business",
+        uz: "Korxonada radioaloqa tizimi",
+      },
+    },
     sections: [
       {
         heading: {

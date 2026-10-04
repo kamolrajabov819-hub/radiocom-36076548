@@ -52,6 +52,9 @@ export type AnswerSlug =
   | "radio-price-tashkent"
   | "pmr-or-poc"
   | "warranty-and-repair"
+  | "pmr446"
+  | "what-is-dmr"
+  | "ip67"
   | "radio-licence-uzbekistan";
 
 export type Answer = {
@@ -261,6 +264,78 @@ export const publishedAnswers: Answer[] = [
       ru: "Рация сломалась: что покрывает гарантия 12 месяцев, что в неё не входит, как проходит диагностика и почему цена после неё не меняется. Ташкент.",
       en: "A radio has broken: what the 12-month warranty covers, what it does not, how diagnosis works and why the price does not move after it. Tashkent.",
       uz: "Ratsiya buzildi: 12 oylik kafolat nimani qoplaydi, nima kirmaydi, diagnostika qanday o'tadi va nega undan keyin narx o'zgarmaydi. Toshkent.",
+    },
+    ogCard: "cutout/macro-display-cutout.webp",
+  },
+  {
+    slug: "pmr446",
+    question: {
+      ru: "Безлицензионные рации: что такое PMR446",
+      en: "Licence-free radios: what PMR446 is",
+      uz: "Litsenziyasiz ratsiyalar: PMR446 nima",
+    },
+    answer: {
+      ru: "PMR446 — диапазон частот около 446 МГц для маломощных раций, на которых говорят без разрешения на частоту и без абонентской платы. В нашем каталоге это рации Motorola Talkabout, TLKR и XT: мощность 0,5 Вт, связь напрямую от рации к рации.",
+      en: "PMR446 is a band of frequencies around 446 MHz for low-power radios that you talk on with no frequency permit and no monthly fee. In our catalogue these are the Motorola Talkabout, TLKR and XT: 0.5 W, talking directly from radio to radio.",
+      uz: "PMR446 — 446 MGts atrofidagi chastota diapazoni bo'lib, undagi kam quvvatli ratsiyalarda chastota ruxsatnomasisiz va oylik to'lovsiz gaplashiladi. Katalogimizda bular Motorola Talkabout, TLKR va XT ratsiyalari: quvvati 0,5 Vt, aloqa ratsiyadan ratsiyaga to'g'ridan-to'g'ri.",
+    },
+    metaTitle: {
+      ru: "Безлицензионные рации PMR446: что это и кому подходят",
+      en: "What licence-free PMR446 radios are and who they suit",
+      uz: "Litsenziyasiz PMR446 ratsiyalari: nima va kimga mos",
+    },
+    metaDesc: {
+      ru: "Что такое PMR446 и безлицензионные рации: диапазон 446 МГц, каналы и коды конфиденциальности, дальность Motorola Talkabout и кому они подходят.",
+      en: "What PMR446 and licence-free radios are: the 446 MHz band, channels and privacy codes, how far a Motorola Talkabout reaches, and who they suit.",
+      uz: "PMR446 va litsenziyasiz ratsiyalar nima: 446 MGts diapazoni, kanallar va maxfiylik kodlari, Motorola Talkabout masofasi va ular kimga mos.",
+    },
+    ogCard: "catalog/t82-extreme-hero.webp",
+  },
+  {
+    slug: "what-is-dmr",
+    question: {
+      ru: "Что такое DMR в рации",
+      en: "What DMR means on a two-way radio",
+      uz: "Ratsiyada DMR nima",
+    },
+    answer: {
+      ru: "DMR (Digital Mobile Radio) — открытый европейский стандарт цифровой радиосвязи: голос передаётся в цифре, поэтому звучит чище, а один канал делится на два временных слота. В нашем каталоге DMR — у цифровых раций Radiocom RCD-70, RCD-60, RCD-50 и RCD-30 PRO.",
+      en: "DMR (Digital Mobile Radio) is an open European standard for digital radio: voice travels as data, so it sounds cleaner, and one channel is split into two time slots. In our catalogue the digital Radiocom RCD-70, RCD-60, RCD-50 and RCD-30 PRO run DMR.",
+      uz: "DMR (Digital Mobile Radio) — raqamli radioaloqaning ochiq Yevropa standarti: ovoz raqamli uzatiladi, shuning uchun tozaroq eshitiladi, bitta kanal esa ikkita vaqt slotiga bo'linadi. Katalogimizda DMR raqamli Radiocom RCD-70, RCD-60, RCD-50 va RCD-30 PRO ratsiyalarida bor.",
+    },
+    metaTitle: {
+      ru: "Что такое DMR в рации: цифровая связь простыми словами",
+      en: "What DMR means on a two-way radio, in plain words",
+      uz: "Ratsiyada DMR nima: raqamli aloqa oddiy so'zlar bilan",
+    },
+    metaDesc: {
+      ru: "Что такое DMR: как работает цифровой стандарт, чем он лучше аналоговой связи, что дают шифрование и два слота на канал, и какие рации Radiocom его поддерживают.",
+      en: "What DMR is: how the digital standard works, how it beats analogue radio, what encryption and two slots per channel give you, and which Radiocom radios run it.",
+      uz: "DMR nima: raqamli standart qanday ishlaydi, analog aloqadan nimasi yaxshi, shifrlash va kanaldagi ikki slot nima beradi va qaysi Radiocom ratsiyalarida bor.",
+    },
+    ogCard: "cutout/lineup-seven-cutout.webp",
+  },
+  {
+    slug: "ip67",
+    question: {
+      ru: "Что значит IP67 у рации",
+      en: "What IP67 means on a two-way radio",
+      uz: "Ratsiyada IP67 nima degani",
+    },
+    answer: {
+      ru: "IP67 — класс защиты по стандарту IEC 60529: цифра 6 означает, что пыль внутрь не проникает, а 7 — что рация выдерживает погружение в воду на глубину до 1 метра на 30 минут. В нашем каталоге IP67 у Radiocom RCD-70 PRO, RCD-50 PRO и Motorola TLKR-T92 H2O.",
+      en: "IP67 is a protection rating under the IEC 60529 standard: the 6 means dust cannot get inside, and the 7 that the radio survives immersion in water up to 1 metre deep for 30 minutes. In our catalogue the Radiocom RCD-70 PRO, RCD-50 PRO and Motorola TLKR-T92 H2O are IP67.",
+      uz: "IP67 — IEC 60529 standarti bo'yicha himoya darajasi: 6 raqami ichkariga chang kirmasligini, 7 esa ratsiya 1 metrgacha chuqurlikda 30 daqiqa suvga cho'mishga chidashini bildiradi. Katalogimizda IP67 Radiocom RCD-70 PRO, RCD-50 PRO va Motorola TLKR-T92 H2O'da bor.",
+    },
+    metaTitle: {
+      ru: "Что значит IP67 у рации: защита от пыли и воды",
+      en: "What IP67 means on a radio: dust and water protection",
+      uz: "Ratsiyada IP67 nima degani: chang va suvdan himoya",
+    },
+    metaDesc: {
+      ru: "Что значит IP67 у рации: как читать класс защиты IP, чем IP67 отличается от IP54 и IPX4, и какие водонепроницаемые рации есть в наличии в Ташкенте.",
+      en: "What IP67 means on a radio: how to read an IP rating, how IP67 differs from IP54 and IPX4, and which waterproof radios are in stock in Tashkent.",
+      uz: "Ratsiyada IP67 nima degani: IP darajasini qanday o'qish, IP67'ning IP54 va IPX4'dan farqi va Toshkentda qaysi suv o'tkazmaydigan ratsiyalar bor.",
     },
     ogCard: "cutout/macro-display-cutout.webp",
   },

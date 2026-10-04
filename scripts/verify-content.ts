@@ -134,6 +134,10 @@ for (const [path, l] of strings) {
   }
 }
 
+// Rule 5 for the answers' structured `cta` links, which are not `[](…)` syntax.
+for (const [slug, c] of Object.entries(answerContent))
+  if (!livePaths.has(c.cta.path)) problems.links.push(`answers-content.${slug}.cta: ${c.cta.path}`);
+
 // Rule 4 for the locale file itself, which `verify-i18n` does not check.
 {
   const walk = (v: unknown, path: string) => {

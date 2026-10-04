@@ -1,4 +1,4 @@
-import { useParams } from "@tanstack/react-router";
+import { Link, useParams } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
@@ -135,6 +135,17 @@ export function AnswerDetailPage() {
               </p>
             </motion.div>
           ))}
+          {/* The commercial page this question leads to, anchored on that
+              page's primary keyword (the keyword map's rule for articles). */}
+          <div className="measure">
+            <Link
+              to={(content.cta.path === "/" ? `/${lang}` : `/${lang}${content.cta.path}`) as never}
+              className="pill-link text-[17px]"
+            >
+              {brandCase(pick(content.cta.anchor, lang))}{" "}
+              <ChevronRight className="h-4 w-4" aria-hidden />
+            </Link>
+          </div>
         </div>
       </Section>
 

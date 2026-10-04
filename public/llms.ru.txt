@@ -55,6 +55,12 @@
   Обычная рация говорит своими радиоволнами и работает там, куда добивает её антенна. PoC-рация говорит через мобильную сеть, поэтому связь есть везде, где ловит телефон, — но за неё платят ежемесячно.
 - [Что делать, если рация сломалась](https://radiocom.uz/ru/answers/warranty-and-repair)
   На каждую рацию из каталога действует гарантия 12 месяцев на сам аппарат. Привезите её в наш сервис в Ташкенте: диагностика покажет причину, после неё называется цена, и она больше не меняется.
+- [Безлицензионные рации: что такое PMR446](https://radiocom.uz/ru/answers/pmr446)
+  PMR446 — диапазон частот около 446 МГц для маломощных раций, на которых говорят без разрешения на частоту и без абонентской платы. В нашем каталоге это рации Motorola Talkabout, TLKR и XT: мощность 0,5 Вт, связь напрямую от рации к рации.
+- [Что такое DMR в рации](https://radiocom.uz/ru/answers/what-is-dmr)
+  DMR (Digital Mobile Radio) — открытый европейский стандарт цифровой радиосвязи: голос передаётся в цифре, поэтому звучит чище, а один канал делится на два временных слота. В нашем каталоге DMR — у цифровых раций Radiocom RCD-70, RCD-60, RCD-50 и RCD-30 PRO.
+- [Что значит IP67 у рации](https://radiocom.uz/ru/answers/ip67)
+  IP67 — класс защиты по стандарту IEC 60529: цифра 6 означает, что пыль внутрь не проникает, а 7 — что рация выдерживает погружение в воду на глубину до 1 метра на 30 минут. В нашем каталоге IP67 у Radiocom RCD-70 PRO, RCD-50 PRO и Motorola TLKR-T92 H2O.
 
 ## Разделы
 - https://radiocom.uz/ru
@@ -76,6 +82,9 @@
 - https://radiocom.uz/ru/answers/radio-price-tashkent
 - https://radiocom.uz/ru/answers/pmr-or-poc
 - https://radiocom.uz/ru/answers/warranty-and-repair
+- https://radiocom.uz/ru/answers/pmr446
+- https://radiocom.uz/ru/answers/what-is-dmr
+- https://radiocom.uz/ru/answers/ip67
 - https://radiocom.uz/ru/sitemap
 - https://radiocom.uz/ru/search
 - https://radiocom.uz/ru/industries/horeca

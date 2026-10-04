@@ -55,6 +55,12 @@ Languages: Russian, English, Uzbek. Russian is the canonical language.
   A normal radio talks on its own radio waves and works as far as its antenna reaches. A PoC radio talks over the mobile network, so it works anywhere a phone has signal — but it carries a monthly cost.
 - [What to do if a radio breaks](https://radiocom.uz/en/answers/warranty-and-repair)
   Every radio in this catalogue carries a 12-month warranty on the unit itself. Bring it to our service centre in Tashkent: the diagnosis finds the cause, a price is quoted after it, and that price does not move.
+- [Licence-free radios: what PMR446 is](https://radiocom.uz/en/answers/pmr446)
+  PMR446 is a band of frequencies around 446 MHz for low-power radios that you talk on with no frequency permit and no monthly fee. In our catalogue these are the Motorola Talkabout, TLKR and XT: 0.5 W, talking directly from radio to radio.
+- [What DMR means on a two-way radio](https://radiocom.uz/en/answers/what-is-dmr)
+  DMR (Digital Mobile Radio) is an open European standard for digital radio: voice travels as data, so it sounds cleaner, and one channel is split into two time slots. In our catalogue the digital Radiocom RCD-70, RCD-60, RCD-50 and RCD-30 PRO run DMR.
+- [What IP67 means on a two-way radio](https://radiocom.uz/en/answers/ip67)
+  IP67 is a protection rating under the IEC 60529 standard: the 6 means dust cannot get inside, and the 7 that the radio survives immersion in water up to 1 metre deep for 30 minutes. In our catalogue the Radiocom RCD-70 PRO, RCD-50 PRO and Motorola TLKR-T92 H2O are IP67.
 
 ## Sections
 - https://radiocom.uz/en
@@ -76,6 +82,9 @@ Languages: Russian, English, Uzbek. Russian is the canonical language.
 - https://radiocom.uz/en/answers/radio-price-tashkent
 - https://radiocom.uz/en/answers/pmr-or-poc
 - https://radiocom.uz/en/answers/warranty-and-repair
+- https://radiocom.uz/en/answers/pmr446
+- https://radiocom.uz/en/answers/what-is-dmr
+- https://radiocom.uz/en/answers/ip67
 - https://radiocom.uz/en/sitemap
 - https://radiocom.uz/en/search
 - https://radiocom.uz/en/industries/horeca

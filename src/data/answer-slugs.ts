@@ -25,4 +25,7 @@ export const ANSWER_SLUGS = [
   "radio-price-tashkent",
   "pmr-or-poc",
   "warranty-and-repair",
+  "pmr446",
+  "what-is-dmr",
+  "ip67",
 ] as const;

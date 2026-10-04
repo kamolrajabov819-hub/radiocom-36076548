@@ -40,12 +40,26 @@ export type AnswerContent = {
   picks: string[];
   /** Sibling pages to link. Keeps the section crawlable as a cluster. */
   related: string[];
+  /**
+   * The one commercial page this question leads to, linked with that page's
+   * primary keyword as the anchor (docs/seo/keyword-map.md) — informational
+   * traffic handed to the page that sells. `verify-content` checks the path.
+   */
+  cta: { path: string; anchor: L };
 };
 
 export const answerContent: Record<string, AnswerContent> = {
   "how-to-choose": {
     picks: ["rc-20", "rcd-50", "m-t82-extreme", "rcd-70"],
     related: ["real-range", "analog-or-digital", "radio-price-tashkent"],
+    cta: {
+      path: "/compare",
+      anchor: {
+        ru: "Сравнение раций",
+        en: "Compare two-way radios",
+        uz: "Ratsiyalarni solishtirish",
+      },
+    },
     sections: [
       {
         heading: {
@@ -168,6 +182,14 @@ export const answerContent: Record<string, AnswerContent> = {
   "real-range": {
     picks: ["rcd-70", "rcd-60", "m-t82-extreme", "m-t42-red"],
     related: ["how-to-choose", "pmr-or-poc", "analog-or-digital"],
+    cta: {
+      path: "/compare",
+      anchor: {
+        ru: "Сравнение раций по дальности",
+        en: "Compare radios by range",
+        uz: "Ratsiyalarni masofa bo'yicha solishtirish",
+      },
+    },
     sections: [
       {
         heading: {
@@ -236,6 +258,14 @@ export const answerContent: Record<string, AnswerContent> = {
   "analog-or-digital": {
     picks: ["rc-20", "rc-50", "rcd-50", "rcd-70"],
     related: ["how-to-choose", "real-range", "radio-price-tashkent"],
+    cta: {
+      path: "/radiocom",
+      anchor: {
+        ru: "Цифровые рации Radiocom RCD",
+        en: "Digital Radiocom RCD radios",
+        uz: "Raqamli Radiocom RCD ratsiyalari",
+      },
+    },
     sections: [
       {
         heading: { ru: "Звук в шуме", en: "Audio through noise", uz: "Shovqindagi ovoz" },
@@ -296,6 +326,10 @@ export const answerContent: Record<string, AnswerContent> = {
   "how-many-radios": {
     picks: ["m-xt185", "rc-20", "m-t42-quad", "rcd-50"],
     related: ["how-to-choose", "radio-price-tashkent", "real-range"],
+    cta: {
+      path: "/industries",
+      anchor: { ru: "Рации для бизнеса", en: "Radios for business", uz: "Biznes uchun ratsiyalar" },
+    },
     sections: [
       {
         heading: {
@@ -364,6 +398,14 @@ export const answerContent: Record<string, AnswerContent> = {
   "radio-price-tashkent": {
     picks: ["rc-10", "rc-20", "rcd-50", "m-t82-extreme-quad"],
     related: ["how-to-choose", "analog-or-digital", "how-many-radios"],
+    cta: {
+      path: "/",
+      anchor: {
+        ru: "Рации в Ташкенте",
+        en: "Two-way radios in Tashkent",
+        uz: "Toshkentda ratsiyalar",
+      },
+    },
     sections: [
       {
         heading: {
@@ -432,6 +474,7 @@ export const answerContent: Record<string, AnswerContent> = {
   "pmr-or-poc": {
     picks: ["rcd-70", "rcd-60", "rcd-50"],
     related: ["real-range", "how-to-choose", "analog-or-digital"],
+    cta: { path: "/poc", anchor: { ru: "PoC-рации", en: "PoC radios", uz: "PoC ratsiyalar" } },
     sections: [
       {
         heading: {
@@ -500,6 +543,14 @@ export const answerContent: Record<string, AnswerContent> = {
   "warranty-and-repair": {
     picks: ["rcd-70", "rcd-50", "rc-20"],
     related: ["how-to-choose", "radio-price-tashkent"],
+    cta: {
+      path: "/service",
+      anchor: {
+        ru: "Ремонт раций в Ташкенте",
+        en: "Two-way radio repair in Tashkent",
+        uz: "Toshkentda ratsiya ta'mirlash",
+      },
+    },
     sections: [
       {
         heading: {
@@ -561,6 +612,262 @@ export const answerContent: Record<string, AnswerContent> = {
           ru: "Приносите — посмотрим. Часть таких случаев ремонтируется, часть нет, и это видно только после разборки. Диагностика покажет, что дешевле: ремонт или замена.",
           en: "Bring it in and we will look. Some of those are repairable and some are not, and it only shows once it is opened up. The diagnosis tells you which is cheaper: repair or replacement.",
           uz: "Olib keling — ko'ramiz. Bunday holatlarning bir qismi ta'mirlanadi, bir qismi yo'q, bu faqat ochilgandan keyin ma'lum bo'ladi. Diagnostika qaysi biri arzonroq ekanini ko'rsatadi: ta'mir yoki almashtirish.",
+        },
+      },
+    ],
+  },
+  pmr446: {
+    picks: ["m-t82-extreme", "m-t82", "m-xt185", "m-tlkr-t92h2o"],
+    related: ["analog-or-digital", "pmr-or-poc", "real-range"],
+    cta: {
+      path: "/motorola",
+      anchor: { ru: "Рации Motorola", en: "Motorola radios", uz: "Motorola ratsiyalari" },
+    },
+    sections: [
+      {
+        heading: {
+          ru: "Как работают безлицензионные рации",
+          en: "How licence-free radios work",
+          uz: "Litsenziyasiz ratsiyalar qanday ishlaydi",
+        },
+        body: {
+          ru: "Рации PMR446 говорят напрямую друг с другом, без вышек, ретрансляторов и оператора: нажали кнопку — вас слышат все, кто на том же канале. Мощность у них небольшая, у моделей нашего каталога — 0,5 Вт, поэтому дальность зависит от местности: у Motorola T42 — до 4 км на открытом месте, у T82 и TLKR-T92 H2O — до 10 км по данным производителя, а в городе в разы меньше.",
+          en: "PMR446 radios talk directly to each other, with no towers, repeaters or operator: press the button and everyone on the same channel hears you. Their power is low — 0.5 W on the models in our catalogue — so range depends on the terrain: up to 4 km in the open for the Motorola T42, up to 10 km for the T82 and TLKR-T92 H2O by the manufacturer's figures, and several times less in town.",
+          uz: "PMR446 ratsiyalari minora, retranslyator va operatorsiz bir-biri bilan to'g'ridan-to'g'ri gaplashadi: tugmani bossangiz, o'sha kanaldagi hamma sizni eshitadi. Quvvati kichik — katalogimizdagi modellarda 0,5 Vt, shuning uchun masofa joyga bog'liq: Motorola T42 ochiq joyda 4 km gacha, T82 va TLKR-T92 H2O esa ishlab chiqaruvchi ma'lumotiga ko'ra 10 km gacha ishlaydi, shaharda esa bir necha baravar kam.",
+        },
+      },
+      {
+        heading: {
+          ru: "Каналы и коды конфиденциальности",
+          en: "Channels and privacy codes",
+          uz: "Kanallar va maxfiylik kodlari",
+        },
+        body: {
+          ru: "Talkabout T82, T62 и T42 работают на 8 каналах, T72, XT185 и XT420 — на 16. К каналу добавляется код конфиденциальности — у T82, T72 и T62 их 121: рация открывает звук только для своих, и чужие группы на том же канале вы не слышите. Но код не шифрует речь, поэтому для переговоров, которые нельзя подслушать, нужны цифровые рации с шифрованием.",
+          en: "The Talkabout T82, T62 and T42 work on 8 channels; the T72, XT185 and XT420 on 16. On top of the channel goes a privacy code — the T82, T72 and T62 have 121: the radio opens its speaker only for your group, so other groups on the same channel stay silent. A code does not encrypt speech, though, so calls that must not be overheard need digital radios with encryption.",
+          uz: "Talkabout T82, T62 va T42 8 ta kanalda, T72, XT185 va XT420 esa 16 ta kanalda ishlaydi. Kanalga maxfiylik kodi qo'shiladi — T82, T72 va T62'da ularning soni 121 ta: ratsiya ovozni faqat o'z guruhingiz uchun ochadi, o'sha kanaldagi begona guruhlarni eshitmaysiz. Lekin kod nutqni shifrlamaydi, shuning uchun eshitib bo'lmaydigan suhbatlar uchun shifrlashli raqamli ratsiyalar kerak.",
+        },
+      },
+      {
+        heading: {
+          ru: "Кому подходят рации PMR446",
+          en: "Who PMR446 radios suit",
+          uz: "PMR446 ratsiyalari kimga mos",
+        },
+        body: {
+          ru: "Безлицензионные рации — для задач, где люди работают рядом и не нужна защита переговоров: ресторан и отель, магазин и склад, мероприятие, семья, поход или рыбалка. Если смена работает на стройке, в охране или в шумном цеху, где важны дальность, защита корпуса и шифрование, смотрите цифровые рации стандарта DMR.",
+          en: "Licence-free radios suit work where people are close together and calls need no protection: a restaurant or hotel, a shop or warehouse, an event, a family, a hike or a fishing trip. If the shift is on a building site, in security or on a noisy shop floor, where range, a sealed casing and encryption matter, look at digital DMR radios.",
+          uz: "Litsenziyasiz ratsiyalar odamlar yaqin ishlaydigan va suhbatni himoya qilish shart bo'lmagan vazifalar uchun: restoran va mehmonxona, do'kon va ombor, tadbir, oila, sayohat yoki baliq ovi. Smena qurilishda, qo'riqlashda yoki shovqinli sexda ishlasa, ya'ni masofa, korpus himoyasi va shifrlash muhim bo'lsa, DMR standartidagi raqamli ratsiyalarni ko'ring.",
+        },
+      },
+    ],
+    faq: [
+      {
+        q: {
+          ru: "Чем PMR446 отличается от DMR?",
+          en: "How is PMR446 different from DMR?",
+          uz: "PMR446 DMR'dan nimasi bilan farq qiladi?",
+        },
+        a: {
+          ru: "PMR446 — это диапазон частот: рации Motorola из нашего каталога работают в нём в аналоговом режиме. DMR — цифровой стандарт: речь передаётся в цифре, её можно шифровать, а один канал вмещает два разговора.",
+          en: "PMR446 is a frequency band: the Motorola radios in our catalogue use it in analogue mode. DMR is a digital standard: speech travels as data, it can be encrypted, and one channel carries two conversations.",
+          uz: "PMR446 — chastota diapazoni: katalogimizdagi Motorola ratsiyalari unda analog rejimda ishlaydi. DMR esa raqamli standart: nutq raqamli uzatiladi, uni shifrlash mumkin, bitta kanal esa ikkita suhbatni sig'diradi.",
+        },
+      },
+      {
+        q: {
+          ru: "Можно ли подслушать безлицензионную рацию?",
+          en: "Can a licence-free radio be overheard?",
+          uz: "Litsenziyasiz ratsiyani eshitib olish mumkinmi?",
+        },
+        a: {
+          ru: "Да: аналоговый сигнал не шифруется, и любая рация на том же канале его примет. Код конфиденциальности скрывает чужие разговоры от вас, но не ваши — от других.",
+          en: "Yes: an analogue signal is not encrypted, and any radio on the same channel will pick it up. A privacy code hides other people's calls from you, not yours from them.",
+          uz: "Ha: analog signal shifrlanmaydi va o'sha kanaldagi har qanday ratsiya uni qabul qiladi. Maxfiylik kodi begona suhbatlarni sizdan yashiradi, lekin siznikini boshqalardan emas.",
+        },
+      },
+      {
+        q: {
+          ru: "Какая безлицензионная рация работает дальше всех?",
+          en: "Which licence-free radio has the longest range?",
+          uz: "Qaysi litsenziyasiz ratsiya eng uzoqqa ishlaydi?",
+        },
+        a: {
+          ru: "В нашем каталоге — Motorola T82, T82 Extreme и TLKR-T92 H2O: до 10 км на открытой местности по данным производителя. В городе и между этажами дальность в разы меньше.",
+          en: "In our catalogue, the Motorola T82, T82 Extreme and TLKR-T92 H2O: up to 10 km in open country by the manufacturer's figures. In town and between floors the range is several times shorter.",
+          uz: "Katalogimizda — Motorola T82, T82 Extreme va TLKR-T92 H2O: ishlab chiqaruvchi ma'lumotiga ko'ra ochiq joyda 10 km gacha. Shaharda va qavatlar orasida masofa bir necha baravar kam.",
+        },
+      },
+    ],
+  },
+  "what-is-dmr": {
+    picks: ["rcd-70", "rcd-60", "rcd-50", "rcd-30"],
+    related: ["analog-or-digital", "pmr-or-poc", "how-to-choose"],
+    cta: {
+      path: "/radiocom",
+      anchor: {
+        ru: "Цифровые рации Radiocom RCD",
+        en: "Digital Radiocom RCD radios",
+        uz: "Raqamli Radiocom RCD ratsiyalari",
+      },
+    },
+    sections: [
+      {
+        heading: { ru: "Как работает DMR", en: "How DMR works", uz: "DMR qanday ishlaydi" },
+        body: {
+          ru: "DMR — стандарт Европейского института телекоммуникационных стандартов (ETSI). Рация переводит голос в цифровой поток и передаёт его кусками, по очереди в двух временных слотах одного канала (TDMA). Поэтому на одной частоте можно вести два независимых разговора, а передатчик работает только в своём слоте и расходует аккумулятор экономнее.",
+          en: "DMR is a standard of the European Telecommunications Standards Institute (ETSI). The radio turns voice into a digital stream and sends it in bursts, taking turns in two time slots on one channel (TDMA). So one frequency carries two independent conversations, and the transmitter works only in its own slot, which is easier on the battery.",
+          uz: "DMR — Yevropa telekommunikatsiya standartlari instituti (ETSI) standarti. Ratsiya ovozni raqamli oqimga aylantiradi va uni bitta kanalning ikki vaqt slotida navbat bilan bo'laklab uzatadi (TDMA). Shuning uchun bitta chastotada ikkita mustaqil suhbat olib borish mumkin, uzatkich esa faqat o'z slotida ishlaydi va akkumulyatorni tejamliroq sarflaydi.",
+        },
+      },
+      {
+        heading: {
+          ru: "Чем DMR лучше аналоговой рации",
+          en: "What DMR does better than analogue",
+          uz: "DMR analog ratsiyadan nimasi bilan yaxshi",
+        },
+        body: {
+          ru: "Цифровой звук остаётся разборчивым почти до края зоны связи и в шуме объекта, где аналог уже хрипит. В цифре переговоры можно шифровать — у Radiocom RCD-70, RCD-60 и RCD-50 PRO шифрование AES-256, — а вызывать можно одного человека, группу или всех сразу. У RCD-70 PRO есть ещё GPS, а у всех RCD PRO — аналоговый режим для связи с обычными рациями.",
+          en: "Digital voice stays clear almost to the edge of coverage and over site noise, where analogue is already crackling. In digital mode calls can be encrypted — the Radiocom RCD-70, RCD-60 and RCD-50 PRO use AES-256 — and you can call one person, a group or everyone at once. The RCD-70 PRO adds GPS, and every RCD PRO has an analogue mode for talking to ordinary radios.",
+          uz: "Raqamli ovoz aloqa zonasining deyarli chetigacha va ob'ekt shovqinida ham aniq qoladi, analog esa u yerda allaqachon xirillaydi. Raqamli rejimda suhbatlarni shifrlash mumkin — Radiocom RCD-70, RCD-60 va RCD-50 PRO'da AES-256 shifrlash bor — bitta odamga, guruhga yoki hammaga birdaniga qo'ng'iroq qilish mumkin. RCD-70 PRO'da GPS ham bor, barcha RCD PRO'larda esa oddiy ratsiyalar bilan aloqa uchun analog rejim mavjud.",
+        },
+      },
+      {
+        heading: {
+          ru: "Кому нужна DMR-рация",
+          en: "Who needs a DMR radio",
+          uz: "DMR ratsiya kimga kerak",
+        },
+        body: {
+          ru: "DMR выбирают там, где важны чистый звук в шуме и защита переговоров: на стройке, в охране, на производстве, на карьере и месторождении. Для кафе, магазина или семьи обычно хватает безлицензионных аналоговых раций диапазона 446 МГц.",
+          en: "DMR is the choice where clean voice over noise and private calls matter: building sites, security, factories, quarries and oil fields. For a café, a shop or a family, licence-free analogue radios on 446 MHz are usually enough.",
+          uz: "DMR shovqinda toza ovoz va suhbat himoyasi muhim bo'lgan joylarda tanlanadi: qurilishda, qo'riqlashda, ishlab chiqarishda, karyer va konda. Kafe, do'kon yoki oila uchun odatda 446 MGts diapazonidagi litsenziyasiz analog ratsiyalar yetarli.",
+        },
+      },
+    ],
+    faq: [
+      {
+        q: {
+          ru: "Чем DMR отличается от PMR?",
+          en: "How is DMR different from PMR?",
+          uz: "DMR PMR'dan nimasi bilan farq qiladi?",
+        },
+        a: {
+          ru: "DMR — цифровой стандарт связи, PMR446 — диапазон частот около 446 МГц для маломощных безлицензионных раций. Рации Motorola из нашего каталога работают в PMR446 в аналоговом режиме, цифровые Radiocom RCD — по стандарту DMR.",
+          en: "DMR is a digital radio standard; PMR446 is a band around 446 MHz for low-power licence-free radios. The Motorola radios in our catalogue use PMR446 in analogue mode, while the digital Radiocom RCD radios run DMR.",
+          uz: "DMR — raqamli aloqa standarti, PMR446 esa kam quvvatli litsenziyasiz ratsiyalar uchun 446 MGts atrofidagi chastota diapazoni. Katalogimizdagi Motorola ratsiyalari PMR446'da analog rejimda, raqamli Radiocom RCD esa DMR standartida ishlaydi.",
+        },
+      },
+      {
+        q: {
+          ru: "Работают ли DMR-рации разных производителей вместе?",
+          en: "Do DMR radios from different makers work together?",
+          uz: "Turli ishlab chiqaruvchilarning DMR ratsiyalari birga ishlaydimi?",
+        },
+        a: {
+          ru: "DMR — открытый стандарт, поэтому рации разных производителей, как правило, связываются в цифре, если настроены на одну частоту, цветовой код и группу. Совместимость конкретных моделей лучше проверить на тесте.",
+          en: "DMR is an open standard, so radios from different makers usually talk in digital mode when set to the same frequency, colour code and group. It is worth checking specific models together on a trial.",
+          uz: "DMR ochiq standart, shuning uchun turli ishlab chiqaruvchilarning ratsiyalari bitta chastota, rang kodi va guruhga sozlanganda odatda raqamli rejimda bog'lanadi. Aniq modellar mosligini sinovda tekshirgan ma'qul.",
+        },
+      },
+      {
+        q: {
+          ru: "Какие рации Radiocom поддерживают DMR?",
+          en: "Which Radiocom radios support DMR?",
+          uz: "Qaysi Radiocom ratsiyalari DMR'ni qo'llab-quvvatlaydi?",
+        },
+        a: {
+          ru: "RCD-70 PRO, RCD-60 PRO, RCD-50 PRO и RCD-30 PRO. Все они работают и в аналоговом режиме.",
+          en: "The RCD-70 PRO, RCD-60 PRO, RCD-50 PRO and RCD-30 PRO. All of them also work in analogue mode.",
+          uz: "RCD-70 PRO, RCD-60 PRO, RCD-50 PRO va RCD-30 PRO. Ularning barchasi analog rejimda ham ishlaydi.",
+        },
+      },
+    ],
+  },
+  ip67: {
+    picks: ["rcd-70", "rcd-50", "m-tlkr-t92h2o", "m-t82-extreme"],
+    related: ["how-to-choose", "real-range", "analog-or-digital"],
+    cta: {
+      path: "/motorola/tlkr-t92h2o",
+      anchor: {
+        ru: "Рация Motorola TLKR-T92 H2O",
+        en: "The Motorola TLKR-T92 H2O",
+        uz: "Motorola TLKR-T92 H2O ratsiyasi",
+      },
+    },
+    sections: [
+      {
+        heading: {
+          ru: "Как читать класс защиты IP",
+          en: "How to read an IP rating",
+          uz: "IP himoya darajasini qanday o'qish",
+        },
+        body: {
+          ru: "Код IP по стандарту IEC 60529 состоит из двух цифр. Первая — защита от пыли и твёрдых частиц, от 0 до 6: шестёрка значит, что пыль внутрь не проходит совсем. Вторая — защита от воды, от 0 до 9: 4 — брызги с любой стороны, 5 — струи воды, 7 — погружение до 1 метра на 30 минут. Буква X вместо цифры означает, что по этому пункту рацию не испытывали.",
+          en: "An IP code under IEC 60529 has two digits. The first is protection from dust and solids, 0 to 6: a 6 means no dust gets in at all. The second is protection from water, 0 to 9: 4 is splashing from any direction, 5 is jets of water, 7 is immersion to 1 metre for 30 minutes. An X in place of a digit means the radio was not tested on that point.",
+          uz: "IEC 60529 standarti bo'yicha IP kodi ikki raqamdan iborat. Birinchisi — chang va qattiq zarralardan himoya, 0 dan 6 gacha: oltilik chang ichkariga umuman kirmasligini bildiradi. Ikkinchisi — suvdan himoya, 0 dan 9 gacha: 4 — har tomondan sachrashlar, 5 — suv oqimi, 7 — 30 daqiqa davomida 1 metrgacha cho'mish. Raqam o'rnidagi X harfi ratsiya bu bo'yicha sinovdan o'tkazilmaganini bildiradi.",
+        },
+      },
+      {
+        heading: {
+          ru: "Водонепроницаемая рация: какой класс нужен",
+          en: "A waterproof radio: which rating you need",
+          uz: "Suv o'tkazmaydigan ratsiya: qaysi daraja kerak",
+        },
+        body: {
+          ru: "Для стройки, карьера, улицы и работы у воды нужен IP67: в нашем каталоге это Radiocom RCD-70 PRO, RCD-50 PRO и Motorola TLKR-T92 H2O, которая к тому же держится на воде. Для склада, отеля или магазина, где рации страшны разве что дождь и брызги, хватает IP54–IP55 — такой класс у большинства профессиональных раций Radiocom.",
+          en: "For a building site, a quarry, outdoor work or work by the water you want IP67: in our catalogue that is the Radiocom RCD-70 PRO, RCD-50 PRO and the Motorola TLKR-T92 H2O, which also floats. For a warehouse, a hotel or a shop, where the worst a radio meets is rain and splashes, IP54–IP55 is enough — and most professional Radiocom radios have it.",
+          uz: "Qurilish, karyer, ochiq havo va suv yonidagi ish uchun IP67 kerak: katalogimizda bular Radiocom RCD-70 PRO, RCD-50 PRO va suvda cho'kmaydigan Motorola TLKR-T92 H2O. Ombor, mehmonxona yoki do'kon uchun, ya'ni ratsiyaga faqat yomg'ir va sachrashlar xavf solsa, IP54–IP55 yetarli — professional Radiocom ratsiyalarining ko'pchiligida aynan shunday himoya bor.",
+        },
+      },
+      {
+        heading: {
+          ru: "Что значит IPX4 у Motorola Talkabout",
+          en: "What IPX4 means on a Motorola Talkabout",
+          uz: "Motorola Talkabout'da IPX4 nima degani",
+        },
+        body: {
+          ru: "У Motorola T82 и T82 Extreme класс IPX4: рация защищена от брызг с любой стороны, а испытания на пыль не проводились. Под дождём такая рация работает, но в воду её лучше не ронять.",
+          en: "The Motorola T82 and T82 Extreme are rated IPX4: the radio is protected against splashing from any direction, and was not tested for dust. It will work in the rain, but it is best not dropped in water.",
+          uz: "Motorola T82 va T82 Extreme'da IPX4 darajasi bor: ratsiya har tomondan sachrashlardan himoyalangan, chang bo'yicha esa sinov o'tkazilmagan. Bunday ratsiya yomg'irda ishlaydi, lekin uni suvga tushirmagan ma'qul.",
+        },
+      },
+    ],
+    faq: [
+      {
+        q: {
+          ru: "Можно ли купаться с рацией IP67?",
+          en: "Can I swim with an IP67 radio?",
+          uz: "IP67 ratsiya bilan cho'milish mumkinmi?",
+        },
+        a: {
+          ru: "Нет: IP67 испытывают кратковременным погружением — до 1 метра на 30 минут. Рация переживёт падение в лужу или в воду, но не рассчитана на долгую работу под водой.",
+          en: "No: IP67 is tested with a brief immersion — up to 1 metre for 30 minutes. The radio will survive a fall into a puddle or into water, but it is not built to work under water for long.",
+          uz: "Yo'q: IP67 qisqa muddatli cho'mish bilan sinaladi — 30 daqiqa davomida 1 metrgacha. Ratsiya ko'lmakka yoki suvga tushib ketsa ham ishlaydi, lekin suv ostida uzoq ishlashga mo'ljallanmagan.",
+        },
+      },
+      {
+        q: {
+          ru: "Чем IP67 отличается от IP54?",
+          en: "How does IP67 differ from IP54?",
+          uz: "IP67 IP54'dan nimasi bilan farq qiladi?",
+        },
+        a: {
+          ru: "IP67 полностью пыленепроницаем и выдерживает погружение в воду. IP54 защищён от пыли частично и выдерживает только брызги с любой стороны.",
+          en: "IP67 is fully dust-tight and survives immersion in water. IP54 is partly protected from dust and withstands only splashing from any direction.",
+          uz: "IP67 changni umuman o'tkazmaydi va suvga cho'mishga chidaydi. IP54 changdan qisman himoyalangan va faqat har tomondan sachrashlarga chidaydi.",
+        },
+      },
+      {
+        q: {
+          ru: "Какие рации с защитой IP67 есть в наличии?",
+          en: "Which IP67 radios are in stock?",
+          uz: "Qaysi IP67 himoyali ratsiyalar mavjud?",
+        },
+        a: {
+          ru: "Radiocom RCD-70 PRO, Radiocom RCD-50 PRO и Motorola TLKR-T92 H2O. Привезём их на бесплатный тест на ваш объект.",
+          en: "The Radiocom RCD-70 PRO, the Radiocom RCD-50 PRO and the Motorola TLKR-T92 H2O. We will bring them to your site for a free trial.",
+          uz: "Radiocom RCD-70 PRO, Radiocom RCD-50 PRO va Motorola TLKR-T92 H2O. Ularni ob'ektingizga bepul sinovga olib boramiz.",
         },
       },
     ],

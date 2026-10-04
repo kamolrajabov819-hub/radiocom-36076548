@@ -55,6 +55,12 @@ Tillar: rus, ingliz, o'zbek. Kanonik til — rus tili.
   Oddiy ratsiya o'z radioto'lqinlarida gapiradi va antennasi yetgan joyda ishlaydi. PoC ratsiyasi mobil tarmoq orqali gapiradi, shuning uchun telefon tutadigan hamma joyda aloqa bor — lekin uning oylik to'lovi bor.
 - [Ratsiya buzilsa nima qilish kerak](https://radiocom.uz/uz/answers/warranty-and-repair)
   Katalogdagi har bir ratsiyaga apparatning o'ziga 12 oy kafolat amal qiladi. Uni Toshkentdagi servisimizga olib keling: diagnostika sababni ko'rsatadi, undan keyin narx aytiladi va u boshqa o'zgarmaydi.
+- [Litsenziyasiz ratsiyalar: PMR446 nima](https://radiocom.uz/uz/answers/pmr446)
+  PMR446 — 446 MGts atrofidagi chastota diapazoni bo'lib, undagi kam quvvatli ratsiyalarda chastota ruxsatnomasisiz va oylik to'lovsiz gaplashiladi. Katalogimizda bular Motorola Talkabout, TLKR va XT ratsiyalari: quvvati 0,5 Vt, aloqa ratsiyadan ratsiyaga to'g'ridan-to'g'ri.
+- [Ratsiyada DMR nima](https://radiocom.uz/uz/answers/what-is-dmr)
+  DMR (Digital Mobile Radio) — raqamli radioaloqaning ochiq Yevropa standarti: ovoz raqamli uzatiladi, shuning uchun tozaroq eshitiladi, bitta kanal esa ikkita vaqt slotiga bo'linadi. Katalogimizda DMR raqamli Radiocom RCD-70, RCD-60, RCD-50 va RCD-30 PRO ratsiyalarida bor.
+- [Ratsiyada IP67 nima degani](https://radiocom.uz/uz/answers/ip67)
+  IP67 — IEC 60529 standarti bo'yicha himoya darajasi: 6 raqami ichkariga chang kirmasligini, 7 esa ratsiya 1 metrgacha chuqurlikda 30 daqiqa suvga cho'mishga chidashini bildiradi. Katalogimizda IP67 Radiocom RCD-70 PRO, RCD-50 PRO va Motorola TLKR-T92 H2O'da bor.
 
 ## Bo'limlar
 - https://radiocom.uz/uz
@@ -76,6 +82,9 @@ Tillar: rus, ingliz, o'zbek. Kanonik til — rus tili.
 - https://radiocom.uz/uz/answers/radio-price-tashkent
 - https://radiocom.uz/uz/answers/pmr-or-poc
 - https://radiocom.uz/uz/answers/warranty-and-repair
+- https://radiocom.uz/uz/answers/pmr446
+- https://radiocom.uz/uz/answers/what-is-dmr
+- https://radiocom.uz/uz/answers/ip67
 - https://radiocom.uz/uz/sitemap
 - https://radiocom.uz/uz/search
 - https://radiocom.uz/uz/industries/horeca
