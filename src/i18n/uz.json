@@ -87,7 +87,7 @@
       "h1": "Qo'riqlash uchun ratsiyalar",
       "meta_desc": "Toshkentda qo'riqlash uchun ratsiyalar: AES-256 shifrlash, trevoga tugmasi, RCD-70 PRO'da GPS, zich qurilishda 3 km gacha. 12 oy kafolat.",
       "meta_title": "Qo'riqlash uchun ratsiyalar — tanlash, narxlar, bepul sinov",
-      "photo_alt": "Videokuzatuv monitorlari oldida ratsiyada gaplashayotgan qo'riqchi ayol"
+      "photo_alt": "Videokuzatuv monitorlari oldida ratsiya orqali gaplashayotgan qo'riqchi ayol"
     },
     "mining": {
       "name": "Kon · Neft · Gaz",
@@ -97,7 +97,7 @@
       "h1": "Kon sanoati uchun ratsiyalar",
       "meta_desc": "Kon sanoati, neft va gaz uchun ratsiyalar: chang va suvdan IP67 himoya, AES-256 shifrlash, bir smenaga 3600 mA·soat batareya. ERIELL va ENTER Engineering.",
       "meta_title": "Kon sanoati uchun ratsiyalar — tanlash, narxlar, bepul sinov",
-      "photo_alt": "Quyosh botayotgan paytda neft konidagi tebranma nasos"
+      "photo_alt": "Quyosh botayotganda neft konida ishlayotgan nasos"
     },
     "transport": {
       "name": "Transport · Logistika",
@@ -211,7 +211,7 @@
     "test_title": "Bepul mutaxassis chaqirig'i",
     "trust_line": "15 daqiqada javob · Du–Ju 9:00–18:00",
     "error_title": "Ariza yuborilmadi.",
-    "error_sub": "Bizga qo'ng'iroq qiling yoki Telegram'da yozing — menejer javob beradi.",
+    "error_sub": "Bizga qo'ng'iroq qiling yoki Telegram orqali yozing — menejer javob beradi.",
     "retry": "Qayta yuborish"
   },
   "poc": {
@@ -415,7 +415,7 @@
     "title": "Ofisimizga tashrif buyuring",
     "sub": "Jihozlarni jonli ko'rsatamiz, vazifangizga mos modelni tanlaymiz va bepul sinov rasmiylashtiramiz.",
     "call": "Qo'ng'iroq qilish",
-    "telegram": "Telegram'da yozish"
+    "telegram": "Telegram orqali yozish"
   },
   "error": {
     "nf_code": "404",
@@ -617,7 +617,7 @@
     "pair": "Ikkita Radiocom ratsiyasi",
     "retail_box": "Qo'ldagi Radiocom ratsiyasi va Radiocom RCD-70 PRO qutisi",
     "display": "Ratsiya ekrani va tugmalari yaqindan",
-    "radio_macro": "Radiocom ratsiyasining antennasi va boshqaruv tugmalari yaqindan",
+    "radio_macro": "Radiocom ratsiyasining antennasi va aylanma tugmalari yaqindan",
     "service_bench": "Servis markazi stolidagi ratsiya: asboblar, yechib olingan akkumulyator va antenna",
     "compare_hands": "Qo'lda ushlab turilgan displeyli ikkita Radiocom ratsiyasi",
     "tradein": "Ratsiya almashtirish: bir qo'lda eskisi, ikkinchisida yangisi",
@@ -625,7 +625,7 @@
     "poc_box": "Qo'ldagi PoC ratsiyasi va uning qutisi",
     "poc_hand": "Qo'ldagi PoC ratsiyasi",
     "poc_fleet": "Displeyli va displeysiz PoC ratsiyalari",
-    "product_kit": "{{name}}: yetkazib berish to'plami",
+    "product_kit": "{{name}}: to'liq komplekt",
     "team_radios": "Qo'lida ratsiya ushlagan to'rt kishi — postlar orasidagi aloqa",
     "lineup": "Radiocom raqamli ratsiyalari liniyasi: yetti model old va orqa tomondan"
   },
