@@ -38,7 +38,7 @@
     "Trade-In dasturi"
   ],
   "industries": {
-    "title": "Sohalar bo'yicha ratsiyalar",
+    "title": "Biznes uchun ratsiyalar: sohalar bo'yicha",
     "kicker": "Ular qayerda ishlatiladi",
     "overview_sub": "Biz allaqachon hammasini sozlagan oltita soha. O'zingiznikini tanlang — u yerda qaysi ratsiyalar ishlashini va nega ishlashini ko'rsatamiz.",
     "view_all": "Barcha sohalar",
@@ -60,8 +60,9 @@
       "short": "HoReCa",
       "desc": "Mehmonxona, restoran, tadbirlar. Yashirin garnituralar, toza efir.",
       "seo": "HoReCa",
-      "h1": "Mehmonxona va restoranlar uchun ratsiyalar",
+      "h1": "Restoran va mehmonxonalar uchun ratsiyalar",
       "meta_desc": "Toshkentda restoran, mehmonxona va tadbirlar uchun ratsiyalar: Motorola XT185 bir zaryadda 24 soatgacha ishlaydi, komplektda ikkita garnitura. Bepul sinov.",
+      "meta_title": "Restoran uchun ratsiyalar — tanlash, narxlar, bepul sinov",
       "photo_alt": "Mehmonlar o'tirgan restoran zali"
     },
     "construction": {
@@ -71,6 +72,7 @@
       "seo": "Qurilish",
       "h1": "Qurilish uchun ratsiyalar",
       "meta_desc": "Toshkentda qurilish uchun ratsiyalar: RCD-70 PRO chang va suvdan IP67 himoyasi bilan, ochiq joyda 10 km gacha, maydon shovqinida toza ovoz. Sinov bepul.",
+      "meta_title": "Qurilish uchun ratsiyalar — tanlash, narxlar, bepul sinov",
       "photo_alt": "Qurilish maydonida kaska va jilet kiygan quruvchilar, ortida minorali kranlar"
     },
     "security": {
@@ -78,8 +80,9 @@
       "short": "Xavfsizlik",
       "desc": "Xususiy qo'riqlash, ob'ekt himoyasi, davlat xavfsizligi.",
       "seo": "Xavfsizlik xizmatlari",
-      "h1": "Xavfsizlik uchun ratsiyalar",
-      "meta_desc": "Toshkentda qo'riqlash xizmatlari uchun ratsiyalar: AES-256 shifrlash, trevoga tugmasi, RCD-70 PRO'da GPS, zich qurilishda 3 km gacha. 12 oy kafolat.",
+      "h1": "Qo'riqlash uchun ratsiyalar",
+      "meta_desc": "Toshkentda qo'riqlash uchun ratsiyalar: AES-256 shifrlash, trevoga tugmasi, RCD-70 PRO'da GPS, zich qurilishda 3 km gacha. 12 oy kafolat.",
+      "meta_title": "Qo'riqlash uchun ratsiyalar — tanlash, narxlar, bepul sinov",
       "photo_alt": "Videokuzatuv monitorlari oldida ratsiyada gaplashayotgan qo'riqchi ayol"
     },
     "mining": {
@@ -87,8 +90,9 @@
       "short": "Kon",
       "desc": "Karyerlar, konlar, neft-gaz infratuzilmasi.",
       "seo": "Kon, neft va gaz",
-      "h1": "Kon, neft va gaz uchun ratsiyalar",
-      "meta_desc": "Konchilik, neft va gaz uchun ratsiyalar: chang va suvdan IP67 himoya, AES-256 shifrlash, bir smenaga 3600 mA·s batareya. ERIELL va ENTER Engineering.",
+      "h1": "Kon sanoati uchun ratsiyalar",
+      "meta_desc": "Kon sanoati, neft va gaz uchun ratsiyalar: chang va suvdan IP67 himoya, AES-256 shifrlash, bir smenaga 3600 mA·soat batareya. ERIELL va ENTER Engineering.",
+      "meta_title": "Kon sanoati uchun ratsiyalar — tanlash, narxlar, bepul sinov",
       "photo_alt": "Quyosh botayotgan paytda neft konidagi tebranma nasos"
     },
     "transport": {
@@ -96,8 +100,9 @@
       "short": "Transport",
       "desc": "Avtoparklar, omborlar, ekspeditsiyalar.",
       "seo": "Transport va logistika",
-      "h1": "Transport va logistika uchun ratsiyalar",
-      "meta_desc": "Transport va logistika uchun ratsiyalar: dispetcher ekipajni xaritada ko'radi, trassada 10 km gacha, rulda bir smenaga 3600 mA·s. Sinov bepul.",
+      "h1": "Logistika va transport uchun ratsiyalar",
+      "meta_desc": "Logistika va transport uchun ratsiyalar: dispetcher ekipajni xaritada ko'radi, trassada 10 km gacha, rulda bir smenaga 3600 mA·soat. Sinov bepul.",
+      "meta_title": "Logistika uchun ratsiyalar — tanlash, narxlar, bepul sinov",
       "photo_alt": "Yuqoridan ko'rinish: konteyner terminali va temir yo'l izlari"
     },
     "manufacturing": {
@@ -107,6 +112,7 @@
       "seo": "Ishlab chiqarish va omborlar",
       "h1": "Ishlab chiqarish va omborlar uchun ratsiyalar",
       "meta_desc": "Toshkentda ishlab chiqarish va omborlar uchun ratsiyalar: sexlarda 2,5 km, abonent to'lovsiz o'z chastotangiz, skanerli terminallar. Bepul sinov.",
+      "meta_title": "Ishlab chiqarish uchun ratsiyalar — tanlash, narxlar, sinov",
       "photo_alt": "Dastgohlar va maxsus kiyimdagi ishchilar bo'lgan ishlab chiqarish sexi"
     },
     "banner_title": "Qaysi ratsiya biznesingizga mos kelishini bilmayapsizmi?",
@@ -436,8 +442,8 @@
       "schema_desc": "Toshkentda Motorola, Radiocom va Vertex Standard ratsiyalarini ta'mirlash — kafolat davrida va keyin."
     },
     "industries": {
-      "title": "Qurilish, qo'riqlash va mehmonxona uchun ratsiyalar | Radiocom",
-      "desc": "Oltita soha va har biriga mos ratsiyalar: qurilish, qo'riqlash, mehmonxona, kon, transport, ishlab chiqarish. Ob'ektingizga tanlaymiz, sinov bepul."
+      "title": "Biznes uchun ratsiyalar: qurilish, qo'riqlash, HoReCa, ombor",
+      "desc": "Sohalar bo'yicha biznes uchun ratsiyalar: qurilish, qo'riqlash, mehmonxona, kon, transport, ishlab chiqarish. Ob'ektingizga tanlaymiz, sinov bepul."
     },
     "industry": {
       "title": "{{name}} uchun ratsiyalar — narx | Radiocom",

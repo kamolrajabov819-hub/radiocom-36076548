@@ -3,7 +3,8 @@ import { head } from "@/pages/IndustryDetail.meta";
 import { IndustryPage } from "@/pages/IndustryDetail";
 import { INDUSTRY_SLUGS, type IndustrySlug } from "@/data/industries";
 import { loadIndustryContent } from "@/data/industries-content";
-import { pickDeep } from "@/data/copy/pick";
+import { fillDeep, pickDeep } from "@/data/copy/pick";
+import { catalogueFacts } from "@/data/copy/facts";
 import { DEFAULT_LANG, isLang } from "@/lib/i18n";
 
 /** `/{lang}/industries/{slug}` — see the specs route for why the guard lives here. */
@@ -26,11 +27,11 @@ export const Route = createFileRoute("/$lang/industries/$slug")({
   // The page body, for this slug and this language only. It is the one
   // industry module the visitor downloads; on the first, server-rendered view
   // it arrives inside the HTML instead (see `industries-content.ts`).
-  loader: async ({ params }) =>
-    pickDeep(
-      await loadIndustryContent(params.slug as IndustrySlug),
-      isLang(params.lang) ? params.lang : DEFAULT_LANG,
-    ),
+  loader: async ({ params }) => {
+    const lang = isLang(params.lang) ? params.lang : DEFAULT_LANG;
+    const content = await loadIndustryContent(params.slug as IndustrySlug);
+    return fillDeep(pickDeep(content, lang), catalogueFacts(lang));
+  },
   head,
   component: IndustryPage,
 });

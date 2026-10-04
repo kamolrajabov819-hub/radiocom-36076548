@@ -19,6 +19,7 @@ import { Section, SectionHead } from "@/components/Section";
 import { Faq } from "@/components/Faq";
 import { BentoGrid, FeatureCard } from "@/components/apple";
 import { TrustedBy } from "@/components/TrustedBy";
+import { SeoText } from "@/components/SeoText";
 // The client's own price list, dated 29.06.26. Replaces a CDN pointer to a
 // catalogue PDF that only existed on radiocom.lovable.app.
 import priceListPdf from "@/assets/radiocom-price-list.pdf";
@@ -294,9 +295,12 @@ export function IndustryPage() {
         </figure>
       </Section>
 
+      {/* ── What the search was asking ─────────────────────────── */}
+      <SeoText sections={copy.sections} band="soft" />
+
       {/* ── FAQ ──────────────────────────────────────────────── */}
       {faq.length > 0 && (
-        <Section band="soft" tight>
+        <Section band="plain" tight>
           <div className="mx-auto max-w-3xl">
             <div data-scrub-in>
               <SectionHead align="center" spacing="tight" title={t("industries.faq_title")} />

@@ -50,6 +50,12 @@ export type IndustryContent = {
   clients?: L;
   /** Rendered as the shared `Faq` and emitted as `FAQPage`, from the same array. */
   faq: { q: L; a: L }[];
+  /**
+   * The SEO text (`SeoText`): two or three `h2` sections built on the
+   * industry's keyword cluster. Strings may carry the catalogue
+   * `{{placeholders}}` of `src/data/copy/facts.ts`; the route loader fills them.
+   */
+  sections: { heading: L; body: L[] }[];
 };
 
 /**

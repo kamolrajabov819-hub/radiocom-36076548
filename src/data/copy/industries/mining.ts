@@ -74,7 +74,7 @@ const content: IndustryContent = {
       u: {
         ru: "мА·ч",
         en: "mAh",
-        uz: "mA·s",
+        uz: "mA·soat",
       },
       l: {
         ru: "Смена на одном заряде — RCD-70 и RCD-50 PRO",
@@ -134,6 +134,65 @@ const content: IndustryContent = {
         en: "12 months on the radio unit. Servicing is done in our authorised centre with original parts.",
         uz: "Radioblokka 12 oy kafolat. Xizmat ko'rsatish — o'z vakolatli servis markazimizda, original ehtiyot qismlar bilan.",
       },
+    },
+    {
+      q: {
+        ru: "Как организовать связь на удалённом месторождении?",
+        en: "How do you set up radio on a remote field?",
+        uz: "Uzoq konda aloqani qanday tashkil qilish mumkin?",
+      },
+      a: {
+        ru: "Если там есть мобильная сеть — через PoC-рации. Если нет — своей DMR-сетью с ретранслятором. Мы приезжаем на объект, замеряем связь и предлагаем решение.",
+        en: "If there is mobile coverage, with PoC radios. If not, with your own DMR network and a repeater. We come out to the site, measure the signal and propose a solution.",
+        uz: "Agar u yerda mobil tarmoq bo'lsa — PoC ratsiyalar orqali. Bo'lmasa — retranslyatorli o'z DMR tarmog'i bilan. Ob'ektga kelamiz, aloqani o'lchaymiz va yechim taklif qilamiz.",
+      },
+    },
+    {
+      q: {
+        ru: "Что лучше для карьера: DMR или PoC?",
+        en: "Which is better for a quarry: DMR or PoC?",
+        uz: "Karyer uchun nima yaxshi: DMR yoki PoC?",
+      },
+      a: {
+        ru: "DMR работает без мобильной сети и не зависит от оператора; PoC работает везде, где есть сеть, и связывает карьер с городом. Выбор зависит от покрытия на вашем участке — проверим его на выезде.",
+        en: "DMR works with no mobile network and depends on no operator; PoC works anywhere there is a network and links the quarry with town. The choice depends on the coverage at your site — we check it on a visit.",
+        uz: "DMR mobil tarmoqsiz ishlaydi va operatorga bog'liq emas; PoC esa tarmoq bor hamma joyda ishlaydi va karyerni shahar bilan bog'laydi. Tanlov uchastkangizdagi qamrovga bog'liq — buni ob'ektga chiqib tekshiramiz.",
+      },
+    },
+  ],
+  sections: [
+    {
+      heading: {
+        ru: "Рации для карьера и месторождения",
+        en: "Radios for quarries and oil fields",
+        uz: "Karyer va kon uchun ratsiyalar",
+      },
+      body: [
+        {
+          ru: "На карьере, руднике или месторождении рация живёт в пыли и на ветру, далеко от города. Поэтому берут цифровые DMR-рации с защитой IP67 — {{rcIp67}}: шифрование AES-256, аккумулятор 3600 мА·ч на смену, а у RCD-70 PRO ещё и GPS.",
+          en: "In a quarry, a mine or an oil field a radio lives in dust and wind, far from town. So the choice is a digital DMR radio rated IP67 — the {{rcIp67}}: AES-256 encryption, a 3,600 mAh battery for the shift, and GPS on the RCD-70 PRO as well.",
+          uz: "Karyer, rudnik yoki konda ratsiya chang va shamolda, shahardan uzoqda ishlaydi. Shuning uchun IP67 himoyali raqamli DMR ratsiyalari tanlanadi — {{rcIp67}}: AES-256 shifrlash, smenaga yetadigan 3600 mA·soat akkumulyator, RCD-70 PRO'da esa GPS ham bor.",
+        },
+        {
+          ru: "Для работы в одиночку на удалённом участке у {{rcDmr}} есть режим работы в одиночку. Искробезопасных версий в нашем каталоге нет: если участок требует Ex-исполнения, напишите класс — подберём решение отдельно.",
+          en: "For anyone working alone on a remote section, the {{rcDmr}} have a lone worker mode. There are no intrinsically safe versions in our catalogue: if your section requires Ex-rated equipment, tell us the class and we will source a solution separately.",
+          uz: "Uzoq uchastkada yolg'iz ishlash uchun {{rcDmr}} modellarida yolg'iz ishlash rejimi bor. Katalogimizda uchqun xavfsiz versiyalar yo'q: uchastkangiz Ex ijrosini talab qilsa, sinfini yozing — yechimni alohida tanlaymiz.",
+        },
+      ],
+    },
+    {
+      heading: {
+        ru: "Рации для нефти и газа: DMR или PoC",
+        en: "Radios for oil and gas: DMR or PoC",
+        uz: "Neft va gaz uchun ratsiyalar: DMR yoki PoC",
+      },
+      body: [
+        {
+          ru: "Там, где ловит мобильная сеть, удобны [PoC-рации](/poc): связь вахты с базой и городом без своей инфраструктуры. Где сети нет, нужна своя DMR-сеть — рации говорят напрямую, а на большой территории через ретранслятор. Такую сеть мы проектируем после выезда на объект, а частоты оформляем через Государственную комиссию по радиочастотам.",
+          en: "Where the mobile network reaches, [PoC radios](/poc) are convenient: the shift crew can talk to base and to town with no infrastructure of your own. Where there is no network, you need your own DMR network — radios talking directly, and through a repeater across a large area. We design such a network after a site visit and handle the frequencies through the State Commission on Radio Frequencies.",
+          uz: "Mobil tarmoq tutgan joyda [PoC ratsiyalar](/poc) qulay: vaxta baza va shahar bilan o'z infratuzilmasisiz bog'lanadi. Tarmoq yo'q joyda o'z DMR tarmog'i kerak — ratsiyalar to'g'ridan-to'g'ri, katta hududda esa retranslyator orqali gaplashadi. Bunday tarmoqni ob'ektga chiqqandan keyin loyihalaymiz, chastotalarni esa Radiochastotalar bo'yicha davlat komissiyasi orqali rasmiylashtiramiz.",
+        },
+      ],
     },
   ],
 };

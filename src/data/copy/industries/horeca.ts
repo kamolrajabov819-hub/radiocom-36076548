@@ -108,6 +108,65 @@ const content: IndustryContent = {
         uz: "Ha — ob'ektingizda bepul sinov.",
       },
     },
+    {
+      q: {
+        ru: "Будут ли гости слышать рации?",
+        en: "Will guests hear the radios?",
+        uz: "Mehmonlar ratsiyalarni eshitadimi?",
+      },
+      a: {
+        ru: "Нет, если персонал работает с гарнитурами: звук идёт только в ухо сотруднику. Гарнитуры есть в комплекте Motorola XT185 и Radiocom RC-20.",
+        en: "Not if the staff wear earpieces: the sound goes only to the wearer's ear. Earpieces come in the box with the Motorola XT185 and the Radiocom RC-20.",
+        uz: "Yo'q, agar xodimlar garnitura bilan ishlasa: ovoz faqat xodimning qulog'iga boradi. Garnituralar Motorola XT185 va Radiocom RC-20 komplektida bor.",
+      },
+    },
+    {
+      q: {
+        ru: "Хватит ли дальности на весь отель?",
+        en: "Will the range cover the whole hotel?",
+        uz: "Masofa butun mehmonxonaga yetadimi?",
+      },
+      a: {
+        ru: "Это зависит от здания: этажи и бетон гасят сигнал. Мы привозим рации на бесплатный тест и до покупки проверяем связь на всех этажах.",
+        en: "That depends on the building: floors and concrete absorb the signal. We bring radios for a free trial and check the signal on every floor before you buy.",
+        uz: "Bu binoga bog'liq: qavatlar va beton signalni so'ndiradi. Ratsiyalarni bepul sinovga olib boramiz va sotib olishdan oldin aloqani barcha qavatlarda tekshiramiz.",
+      },
+    },
+  ],
+  sections: [
+    {
+      heading: {
+        ru: "Рации для ресторана и кафе",
+        en: "Radios for restaurants and cafés",
+        uz: "Restoran va kafe uchun ratsiyalar",
+      },
+      body: [
+        {
+          ru: "В зале рация должна быть незаметной для гостей, а на кухне — слышной в шуме. Поэтому официантам, хостес и шефу дают компактные рации с гарнитурой: Motorola XT185 продаётся парой с двумя гарнитурами с кнопкой PTT, Radiocom RC-20 и RC-10 — тоже парой, с гарнитурами в коробке.",
+          en: "On the floor a radio should go unnoticed by guests; in the kitchen it has to be heard over the noise. So waiters, hosts and the chef get compact radios with earpieces: the Motorola XT185 comes as a pair with two PTT earpieces, and the Radiocom RC-20 and RC-10 also come as pairs with earpieces in the box.",
+          uz: "Zalda ratsiya mehmonlarga sezilmasligi, oshxonada esa shovqinda eshitilishi kerak. Shuning uchun ofitsiantlar, xostes va oshpazga garniturali ixcham ratsiyalar beriladi: Motorola XT185 ikkita PTT tugmali garnitura bilan juft bo'lib sotiladi, Radiocom RC-20 va RC-10 ham juft, qutida garniturasi bilan.",
+        },
+        {
+          ru: "Эти рации работают в свободном диапазоне 446 МГц: разрешение на частоту не нужно, абонентской платы нет.",
+          en: "These radios work on the free 446 MHz band: no frequency permit, and no monthly fee.",
+          uz: "Bu ratsiyalar erkin 446 MGts diapazonida ishlaydi: chastota ruxsatnomasi kerak emas, oylik to'lov yo'q.",
+        },
+      ],
+    },
+    {
+      heading: {
+        ru: "Рации для отеля и гостиницы",
+        en: "Radios for hotels",
+        uz: "Mehmonxona uchun ratsiyalar",
+      },
+      body: [
+        {
+          ru: "В отеле связь нужна между ресепшн, этажами, housekeeping и техслужбой. Перекрытия ослабляют сигнал, поэтому для здания в несколько этажей мы привозим рации на бесплатный тест и проверяем связь на всех этажах. Для большого комплекса есть цифровые рации, например RCD-30 PRO — комплект из двух. Остальные модели для гостеприимства — в [сравнении раций](/compare).",
+          en: "A hotel needs radio between reception, the floors, housekeeping and maintenance. Floors weaken the signal, so for a building of several storeys we bring radios out for a free trial and check the signal on every floor. A large complex can take digital radios such as the RCD-30 PRO, sold as a pair. The other models for hospitality are in the [radio comparison](/compare).",
+          uz: "Mehmonxonada aloqa resepshn, qavatlar, housekeeping va texnik xizmat orasida kerak. Qavatlar signalni kuchsizlantiradi, shuning uchun bir necha qavatli bino uchun ratsiyalarni bepul sinovga olib boramiz va aloqani barcha qavatlarda tekshiramiz. Katta majmua uchun raqamli ratsiyalar ham bor, masalan juft bo'lib sotiladigan RCD-30 PRO. Mehmondo'stlik uchun boshqa modellar [ratsiyalarni solishtirish](/compare) sahifasida.",
+        },
+      ],
+    },
   ],
 };
 

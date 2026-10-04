@@ -73,7 +73,7 @@ const content: IndustryContent = {
       u: {
         ru: "мА·ч",
         en: "mAh",
-        uz: "mA·s",
+        uz: "mA·soat",
       },
       l: {
         ru: "Смена за рулём без подзарядки — RCD-70 и RCD-50 PRO",
@@ -128,6 +128,65 @@ const content: IndustryContent = {
         en: "Yes. A gateway goes in the dispatch room and both kinds of radio share one channel.",
         uz: "Ha. Dispetcherlik xonasiga shlyuz o'rnatiladi va ikkala aloqa bitta kanalda ishlaydi.",
       },
+    },
+    {
+      q: {
+        ru: "Какая рация нужна водителю?",
+        en: "Which radio does a driver need?",
+        uz: "Haydovchiga qaysi ratsiya kerak?",
+      },
+      a: {
+        ru: "В пределах города и терминала — цифровая рация Radiocom RCD, например RCD-70 PRO с GPS. Для рейсов между городами — PoC-рация, которая работает через мобильную сеть.",
+        en: "Within the city and the terminal, a digital Radiocom RCD — the RCD-70 PRO with GPS, for example. For runs between cities, a PoC radio that works over the mobile network.",
+        uz: "Shahar va terminal ichida — raqamli Radiocom RCD ratsiyasi, masalan GPS'li RCD-70 PRO. Shaharlararo reyslar uchun — mobil tarmoq orqali ishlaydigan PoC ratsiya.",
+      },
+    },
+    {
+      q: {
+        ru: "Как связаться с водителем в другом городе?",
+        en: "How do I reach a driver in another city?",
+        uz: "Boshqa shahardagi haydovchi bilan qanday bog'lanish mumkin?",
+      },
+      a: {
+        ru: "Через PoC-рацию: она передаёт голос по мобильной сети, поэтому расстояние не ограничено — связь есть там, где ловит телефон.",
+        en: "With a PoC radio: it carries voice over the mobile network, so distance is no limit — it works wherever a phone has signal.",
+        uz: "PoC ratsiya orqali: u ovozni mobil tarmoq orqali uzatadi, shuning uchun masofa cheklanmagan — telefon tutgan joyda aloqa bor.",
+      },
+    },
+  ],
+  sections: [
+    {
+      heading: {
+        ru: "Рации для логистики и автопарка",
+        en: "Radios for logistics and fleets",
+        uz: "Logistika va avtopark uchun ratsiyalar",
+      },
+      body: [
+        {
+          ru: "Диспетчеру нужно знать, где машина, и говорить с водителем без звонков. На площадке терминала и в городе с этим справляются цифровые рации Radiocom: у RCD-70 PRO есть GPS, и экипаж видно на карте, а RCD-70, RCD-60 и RCD-50 PRO берут {{rcMaxOpen}} на открытой трассе.",
+          en: "A dispatcher needs to know where each vehicle is and to talk to its driver without phoning. In the terminal yard and in town, digital Radiocom radios handle it: the RCD-70 PRO has GPS, so the crew shows on a map, and the RCD-70, RCD-60 and RCD-50 PRO reach {{rcMaxOpen}} on an open road.",
+          uz: "Dispetcherga mashina qayerdaligini bilish va haydovchi bilan qo'ng'iroqsiz gaplashish kerak. Terminal maydonida va shaharda buni raqamli Radiocom ratsiyalari uddalaydi: RCD-70 PRO'da GPS bor, ekipaj xaritada ko'rinadi, RCD-70, RCD-60 va RCD-50 PRO esa ochiq yo'lda {{rcMaxOpen}} ishlaydi.",
+        },
+        {
+          ru: "Между городами дальности обычной рации не хватит. Там работают [PoC-рации](/poc): они говорят через мобильную сеть, поэтому водитель на связи везде, где ловит телефон.",
+          en: "Between cities a conventional radio runs out of range. That is the job for [PoC radios](/poc): they talk over the mobile network, so the driver is reachable anywhere a phone has signal.",
+          uz: "Shaharlar orasida oddiy ratsiyaning masofasi yetmaydi. U yerda [PoC ratsiyalar](/poc) ishlaydi: ular mobil tarmoq orqali gaplashadi, shuning uchun haydovchi telefon tutgan hamma joyda aloqada bo'ladi.",
+        },
+      ],
+    },
+    {
+      heading: {
+        ru: "Рации для водителей и диспетчерской",
+        en: "Radios for drivers and the dispatch room",
+        uz: "Haydovchilar va dispetcherlik uchun ratsiyalar",
+      },
+      body: [
+        {
+          ru: "Водителю нужна рация, которой можно пользоваться одной кнопкой, не отвлекаясь от дороги, а диспетчеру — общий вызов на всех и группы по маршрутам: у цифровых RCD есть индивидуальные, групповые и общие вызовы. Подбор под ваш автопарк начинается с бесплатного теста на маршруте.",
+          en: "A driver needs a radio that works with one button, without taking their eyes off the road; a dispatcher needs an all-call and groups per route — the digital RCD radios make individual, group and all-call calls. A choice for your fleet starts with a free trial on the route.",
+          uz: "Haydovchiga yo'ldan chalg'imay bitta tugma bilan ishlatiladigan ratsiya, dispetcherga esa hammaga umumiy chaqiruv va marshrutlar bo'yicha guruhlar kerak: raqamli RCD ratsiyalarida yakka, guruhli va umumiy chaqiruvlar bor. Avtoparkingiz uchun tanlov marshrutdagi bepul sinovdan boshlanadi.",
+        },
+      ],
     },
   ],
 };

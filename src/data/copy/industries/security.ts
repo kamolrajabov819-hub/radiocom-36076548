@@ -129,6 +129,65 @@ const content: IndustryContent = {
         uz: "Kanaldagi barchaga va dispetcherga — post koordinatalari bilan birga.",
       },
     },
+    {
+      q: {
+        ru: "Какую гарнитуру выбрать охраннику?",
+        en: "Which earpiece should a guard use?",
+        uz: "Qo'riqchiga qaysi garnitura kerak?",
+      },
+      a: {
+        ru: "Ту, что подходит к разъёму рации и к форме: у RCD-70 PRO разъём Motorola M5, у RCD-60 PRO — Motorola 2-pin. Подберём гарнитуру на бесплатном тесте.",
+        en: "One that fits the radio's connector and the uniform: the RCD-70 PRO takes a Motorola M5 connector, the RCD-60 PRO a Motorola 2-pin. We will match one during the free trial.",
+        uz: "Ratsiya ulagichiga va formaga mos keladiganini: RCD-70 PRO'da Motorola M5, RCD-60 PRO'da esa Motorola 2-pin ulagichi bor. Garniturani bepul sinovda tanlab beramiz.",
+      },
+    },
+    {
+      q: {
+        ru: "Есть ли функция «работа в одиночку»?",
+        en: "Is there a lone worker mode?",
+        uz: "Yolg'iz ishlash rejimi bormi?",
+      },
+      a: {
+        ru: "Да, у {{rcDmr}}. Этот режим нужен, когда охранник обходит территорию один.",
+        en: "Yes, on the {{rcDmr}}. It is there for a guard who patrols the grounds alone.",
+        uz: "Ha, {{rcDmr}} modellarida bor. Bu rejim qo'riqchi hududni yolg'iz aylanib chiqqanda kerak.",
+      },
+    },
+  ],
+  sections: [
+    {
+      heading: {
+        ru: "Рации для охраны объектов",
+        en: "Radios for site security",
+        uz: "Ob'ektlarni qo'riqlash uchun ratsiyalar",
+      },
+      body: [
+        {
+          ru: "Охране нужна связь, которую не слышат посторонние. У {{rcAes}} переговоры шифруются по AES-256, а у RCD-70 PRO есть GPS — диспетчер видит, где стоит каждый пост. Для обхода территории в одиночку у {{rcDmr}} есть режим работы в одиночку.",
+          en: "Security needs radio that outsiders cannot hear. The {{rcAes}} encrypt calls with AES-256, and the RCD-70 PRO adds GPS, so the dispatcher sees where every post is. For patrolling alone, the {{rcDmr}} have a lone worker mode.",
+          uz: "Qo'riqlash xizmatiga begonalar eshitmaydigan aloqa kerak. {{rcAes}} suhbatlarni AES-256 bilan shifrlaydi, RCD-70 PRO'da esa GPS bor — dispetcher har bir post qayerdaligini ko'radi. Hududni yolg'iz aylanib chiqish uchun {{rcDmr}} modellarida yolg'iz ishlash rejimi bor.",
+        },
+        {
+          ru: "В торговом центре, банке или офисе, где охрана работает среди посетителей, нужна компактная рация со скрытой гарнитурой. Гарнитуру подбираем к разъёму рации и к форме на бесплатном тесте.",
+          en: "In a shopping centre, a bank or an office, where guards work among the public, you want a compact radio with a concealed earpiece. We match the earpiece to the radio's connector and to the uniform during the free trial.",
+          uz: "Savdo markazi, bank yoki ofisda qo'riqchilar tashrif buyuruvchilar orasida ishlaydi, shuning uchun yashirin garniturali ixcham ratsiya kerak. Garniturani bepul sinovda ratsiya ulagichi va formaga mos qilib tanlaymiz.",
+        },
+      ],
+    },
+    {
+      heading: {
+        ru: "Рации для службы безопасности: какую выбрать",
+        en: "Radios for a security service: which to choose",
+        uz: "Xavfsizlik xizmati uchun ratsiya: qaysi birini tanlash",
+      },
+      body: [
+        {
+          ru: "В городской застройке главный вопрос — дальность: RCD-70 PRO берёт {{rcMaxCity}}. Для постов внутри одного здания хватит и Motorola XT420 из нашего подбора. Все модели Radiocom с шифрованием и GPS — на странице [рации Radiocom](/radiocom).",
+          en: "Among city buildings the first question is range: the RCD-70 PRO reaches {{rcMaxCity}}. For posts inside a single building, the Motorola XT420 from our shortlist is enough. Every Radiocom model with encryption and GPS is on the [Radiocom radios](/radiocom) page.",
+          uz: "Shahar binolari orasida asosiy savol — masofa: RCD-70 PRO {{rcMaxCity}} ishlaydi. Bitta bino ichidagi postlar uchun tanlovimizdagi Motorola XT420 ham yetarli. Shifrlash va GPS'li barcha Radiocom modellari [Radiocom ratsiyalari](/radiocom) sahifasida.",
+        },
+      ],
+    },
   ],
 };
 

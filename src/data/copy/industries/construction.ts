@@ -129,6 +129,65 @@ const content: IndustryContent = {
         uz: "IP67 chang va suv oqimiga chidaydi. Agar ratsiya baribir ishdan chiqsa — 12 oylik kafolat doirasida o'z servis markazimizda tiklaymiz yoki almashtiramiz.",
       },
     },
+    {
+      q: {
+        ru: "Какая рация лучше для стройки?",
+        en: "Which radio is best for a building site?",
+        uz: "Qurilish uchun qaysi ratsiya yaxshi?",
+      },
+      a: {
+        ru: "Для большинства площадок — цифровая DMR-рация с защитой IP67: {{rcIp67}}. На небольшом объекте подойдут и RC-50 или Motorola T82 Extreme из нашего подбора — привезём их на тест и сравним на месте.",
+        en: "For most sites, a digital DMR radio rated IP67: the {{rcIp67}}. A small site can manage with the RC-50 or the Motorola T82 Extreme from our shortlist — we will bring them out and compare them on the spot.",
+        uz: "Ko'pchilik maydonlar uchun — IP67 himoyali raqamli DMR ratsiya: {{rcIp67}}. Kichik ob'ektga tanlovimizdagi RC-50 yoki Motorola T82 Extreme ham mos keladi — ularni sinovga olib borib, joyida solishtiramiz.",
+      },
+    },
+    {
+      q: {
+        ru: "Пробивает ли рация бетонные перекрытия?",
+        en: "Can a radio get through concrete floors?",
+        uz: "Ratsiya beton qavatlardan o'tadimi?",
+      },
+      a: {
+        ru: "Частично: каждое перекрытие ослабляет сигнал, поэтому на высотке связь между нижними и верхними этажами может пропадать. Насколько — зависит от здания; мы проверяем это на выезде и при необходимости подбираем ретранслятор.",
+        en: "Partly: every floor slab weakens the signal, so in a tall building the lower and upper floors can lose each other. How much depends on the building; we check it on a site visit and add a repeater where it is needed.",
+        uz: "Qisman: har bir qavat signalni kuchsizlantiradi, shuning uchun baland binoda pastki va yuqori qavatlar orasida aloqa uzilishi mumkin. Qanchalik — binoga bog'liq; buni ob'ektga chiqib tekshiramiz va kerak bo'lsa retranslyator tanlaymiz.",
+      },
+    },
+  ],
+  sections: [
+    {
+      heading: {
+        ru: "Рации для строительства: что важно на площадке",
+        en: "Radios for construction: what matters on site",
+        uz: "Qurilish uchun ratsiyalar: maydonda nima muhim",
+      },
+      body: [
+        {
+          ru: "На стройке рация работает в пыли, под дождём и рядом с шумной техникой, поэтому начинать стоит с защиты корпуса. Класс IP67 у {{rcIp67}}: пыль внутрь не попадает, а вода рации не страшна. Цифровой DMR-звук RCD-50, RCD-60 и RCD-70 PRO остаётся разборчивым в шуме площадки.",
+          en: "On a building site a radio lives in dust, rain and the noise of machinery, so start with how well the casing is sealed. The {{rcIp67}} are rated IP67: dust stays out and water does them no harm. The digital DMR voice of the RCD-50, RCD-60 and RCD-70 PRO stays clear over site noise.",
+          uz: "Qurilishda ratsiya chang, yomg'ir va shovqinli texnika yonida ishlaydi, shuning uchun tanlovni korpus himoyasidan boshlash kerak. {{rcIp67}} IP67 darajasiga ega: ichiga chang kirmaydi, suv ham zarar qilmaydi. RCD-50, RCD-60 va RCD-70 PRO'ning raqamli DMR ovozi maydon shovqinida ham aniq eshitiladi.",
+        },
+        {
+          ru: "Прорабу и бригадирам удобна рация с дисплеем и клавиатурой — RCD-60 PRO: видно канал и заряд. Крановщику и монтажникам на высоте нужна гарнитура, чтобы руки оставались свободными; её подберём к разъёму рации на бесплатном тесте.",
+          en: "Site managers and foremen do well with a radio that has a display and keypad — the RCD-60 PRO shows the channel and the charge. A crane operator or a crew working at height needs an earpiece to keep both hands free; we match one to the radio's connector during the free trial.",
+          uz: "Prorab va brigadirlar uchun displey va klaviaturali ratsiya qulay — RCD-60 PRO'da kanal va zaryad ko'rinib turadi. Kranchi va balandlikda ishlaydigan montajchilarga qo'llari bo'sh qolishi uchun garnitura kerak; uni bepul sinovda ratsiya ulagichiga mos qilib tanlaymiz.",
+        },
+      ],
+    },
+    {
+      heading: {
+        ru: "Связь через бетон и этажи",
+        en: "Getting through concrete and floors",
+        uz: "Beton va qavatlar orqali aloqa",
+      },
+      body: [
+        {
+          ru: "Бетонные перекрытия и арматура гасят сигнал, поэтому на стройке дальность всегда меньше паспортной: даже {{rcMaxCityModel}} в городской застройке берёт {{rcMaxCity}}. На небольшом объекте рации говорят напрямую, а ретранслятор нужен, если объект длиннее 500 м или между бригадами есть перекрытия. Это мы оцениваем на бесплатном выезде; все модели с дальностью — в [сравнении раций](/compare).",
+          en: "Concrete slabs and rebar soak up the signal, so on a building site range is always below the rated figure: even the {{rcMaxCityModel}} reaches {{rcMaxCity}} among city buildings. On a small site radios talk directly; a repeater is needed when the site runs past 500 m or there are floors between crews. We assess that on a free site visit; every model's range is in the [radio comparison](/compare).",
+          uz: "Beton qavatlar va armatura signalni so'ndiradi, shuning uchun qurilishda masofa har doim pasportdagidan kam: hatto {{rcMaxCityModel}} ham shahar binolari orasida {{rcMaxCity}} ishlaydi. Kichik ob'ektda ratsiyalar to'g'ridan-to'g'ri gaplashadi, retranslyator esa ob'ekt 500 m dan uzun bo'lsa yoki brigadalar orasida qavatlar bo'lsa kerak bo'ladi. Buni bepul chiqishda baholaymiz; barcha modellar masofasi [ratsiyalarni solishtirish](/compare) sahifasida.",
+        },
+      ],
+    },
   ],
 };
 

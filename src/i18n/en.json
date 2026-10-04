@@ -38,7 +38,7 @@
     "Trade-in program"
   ],
   "industries": {
-    "title": "Radios by industry",
+    "title": "Radios for business, by industry",
     "kicker": "Where they are used",
     "overview_sub": "Six industries where we have already set everything up. Pick yours and we will show which radios work there, and why.",
     "view_all": "All industries",
@@ -60,8 +60,9 @@
       "short": "HoReCa",
       "desc": "Hotels, restaurants, events. Discreet earpieces, clean channels.",
       "seo": "HoReCa",
-      "h1": "Two-way radios for hotels and restaurants",
+      "h1": "Two-way radios for restaurants and hotels",
       "meta_desc": "Two-way radios for restaurants, hotels and events in Tashkent: the Motorola XT185 runs up to 24 hours on a charge, two earpieces in the box. Free trial.",
+      "meta_title": "Radios for Restaurants and Hotels — Selection, Prices, Trial",
       "photo_alt": "A restaurant dining room with guests"
     },
     "construction": {
@@ -69,8 +70,9 @@
       "short": "Construction",
       "desc": "Massive sites. IP67 ruggedness, long-range coverage.",
       "seo": "Construction",
-      "h1": "Two-way radios for construction",
+      "h1": "Two-way radios for construction sites",
       "meta_desc": "Radios for building sites in Tashkent: the RCD-70 PRO has IP67 dust and water protection, reaches 10 km in the open, and stays clear through site noise.",
+      "meta_title": "Radios for Construction Sites — Selection, Prices, Free Trial",
       "photo_alt": "Builders in hard hats and vests on site, tower cranes behind them"
     },
     "security": {
@@ -78,8 +80,9 @@
       "short": "Security",
       "desc": "Private security, facility protection, government.",
       "seo": "Security",
-      "h1": "Two-way radios for security",
+      "h1": "Two-way radios for security teams",
       "meta_desc": "Radios for security teams in Tashkent: AES-256 encryption, an alarm button, GPS on the RCD-70 PRO and up to 3 km through built-up streets. 12-month warranty.",
+      "meta_title": "Radios for Security Teams — Selection, Prices, Free Trial",
       "photo_alt": "A security officer on the radio in front of CCTV monitors"
     },
     "mining": {
@@ -89,6 +92,7 @@
       "seo": "Mining, Oil and Gas",
       "h1": "Two-way radios for mining, oil and gas",
       "meta_desc": "Two-way radios for mining, oil and gas: IP67 against dust and water, AES-256 encryption, a 3600 mAh battery that lasts a shift. ERIELL and ENTER Engineering.",
+      "meta_title": "Radios for Mining, Oil and Gas — Selection and Free Trial",
       "photo_alt": "A pumpjack working an oil field at sunset"
     },
     "transport": {
@@ -96,8 +100,9 @@
       "short": "Transport",
       "desc": "Fleets, warehouses, expeditions.",
       "seo": "Transport and Logistics",
-      "h1": "Two-way radios for transport and logistics",
-      "meta_desc": "Radios for transport and logistics: the dispatcher sees every crew on a map, up to 10 km on the highway, 3600 mAh for a shift at the wheel. Free trial.",
+      "h1": "Two-way radios for logistics and transport",
+      "meta_desc": "Radios for logistics and transport: the dispatcher sees every crew on a map, up to 10 km on the highway, 3600 mAh for a shift at the wheel. Free trial.",
+      "meta_title": "Radios for Logistics and Transport — Selection and Prices",
       "photo_alt": "A container terminal and rail yard from above"
     },
     "manufacturing": {
@@ -105,8 +110,9 @@
       "short": "Manufacturing",
       "desc": "Plants, workshops, distribution centers.",
       "seo": "Manufacturing and Warehousing",
-      "h1": "Two-way radios for manufacturing and warehouses",
+      "h1": "Two-way radios for factories and warehouses",
       "meta_desc": "Radios for factories and warehouses in Tashkent: 2.5 km across the shop floor, your own frequency with no monthly fee, warehouse scanners. Free trial.",
+      "meta_title": "Radios for Factories and Warehouses — Selection and Prices",
       "photo_alt": "A factory floor with machines and workers in workwear"
     },
     "banner_title": "Not sure which radio fits your operation?",
@@ -436,8 +442,8 @@
       "schema_desc": "Repair of Motorola, Radiocom and Vertex Standard radios in Tashkent, under warranty and after it."
     },
     "industries": {
-      "title": "Radios for building sites, security and hotels | Radiocom",
-      "desc": "Six industries and the radios that suit each: building sites, security, hotels, mining, transport and factories. Matched to your site, with a free trial."
+      "title": "Radios for Business: Construction, Security, HoReCa, Mining",
+      "desc": "Radios for business, by industry: building sites, security, hotels, mining, transport and factories. Matched to your site, with a free trial."
     },
     "industry": {
       "title": "Radios for {{name}} — prices | Radiocom",

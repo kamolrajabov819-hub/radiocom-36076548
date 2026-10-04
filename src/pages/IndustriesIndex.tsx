@@ -12,6 +12,8 @@ import miningImg from "@/assets/industry-mining.jpg";
 import transportImg from "@/assets/industry-transport.jpg";
 import manufacturingImg from "@/assets/industry-manufacturing.jpg";
 import { rise, spring } from "@/lib/springs";
+import { useLoaderData } from "@tanstack/react-router";
+import { SeoText } from "@/components/SeoText";
 
 const IMAGES: Record<string, string> = {
   horeca: horecaImg,
@@ -25,6 +27,8 @@ const IMAGES: Record<string, string> = {
 export function IndustriesOverview() {
   const { t } = useTranslation();
   const page = useScrollChoreography();
+  // The hub's SEO text, from the route loader (`src/data/copy`).
+  const copy = useLoaderData({ from: "/$lang/industries/" });
 
   return (
     <div ref={page}>
@@ -91,6 +95,7 @@ export function IndustriesOverview() {
           ))}
         </div>
       </Section>
+      <SeoText sections={copy.sections} band="soft" />
     </div>
   );
 }

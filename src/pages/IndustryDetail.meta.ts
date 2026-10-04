@@ -28,7 +28,12 @@ export const head = ({ params }: { params: { slug: string; lang: SeoLang } }) =>
   // genitive ("Рации для строительства", not "для строительство"), and the
   // display names carry "·" separators that do not belong in a page title.
   const inTitle = t(`industries.${slug}.seo`, { defaultValue: name });
-  const title = t("meta.industry.title", { name: inTitle });
+  // The industry's own title, written around its primary keyword
+  // (docs/seo/keyword-map.md) — «Рации для стройки — подбор, цены, тест на
+  // объекте». The «Рации для {{name}}» template stays as the fallback.
+  const title =
+    t(`industries.${slug}.meta_title`, { defaultValue: "" }) ||
+    t("meta.industry.title", { name: inTitle });
   // `.meta_desc`, not `.desc`.
   //
   // `.desc` is the card blurb — «Крупные объекты. IP67, дальняя связь.», 37
