@@ -61,7 +61,7 @@
       "desc": "Hotels, restaurants, events. Discreet earpieces, clean channels.",
       "seo": "HoReCa",
       "h1": "Two-way radios for hotels and restaurants",
-      "meta_desc": "Two-way radios for hotels, restaurants and events in Tashkent. Motorola CLP 446 and CLK 446: up to 7,400 m² of coverage, 68 g, earpiece in the box. Free trial.",
+      "meta_desc": "Two-way radios for restaurants, hotels and events in Tashkent: the Motorola XT185 runs up to 24 hours on a charge, two earpieces in the box. Free trial.",
       "photo_alt": "A restaurant dining room with guests"
     },
     "construction": {
@@ -243,7 +243,7 @@
         "We come out and walk the site",
         "We gather the data and draw up the project",
         "We pick the equipment to match your conditions",
-        "We arrange the frequency permits with State Comms of Uzbekistan",
+        "We prepare the frequency paperwork for the State Commission on Radio Frequencies",
         "We switch it on, tune it and hand it over with the paperwork"
       ]
     },
@@ -328,7 +328,7 @@
   },
   "footer": {
     "hours": "Mon-Fri · 09:00–18:00",
-    "address": "Tashkent, Uzbekiston Ovozi 2 (Tata Hotel, 1st–2nd floor)",
+    "address": "Tashkent, Mirzo-Ulugbek district, 2 Uzbekiston Ovozi St (Le Grande Plaza, formerly the Tata Hotel, 1st–2nd floor)",
     "rights": "© Radiocom. All rights reserved.",
     "follow": "Follow us on",
     "map_title": "Radiocom · Tashkent",
@@ -467,7 +467,7 @@
       "radiocom_name": "Radiocom radios",
       "radiocom_desc": "Analogue RC handhelds and digital RCD DMR radios with warranty and service in Tashkent.",
       "motorola_name": "Motorola radios",
-      "motorola_desc": "Talkabout, XT, TLKR, CLP and CLK — radios that need no frequency permit.",
+      "motorola_desc": "Talkabout, XT and TLKR — radios that need no frequency permit.",
       "compare_name": "Compare models",
       "compare_desc": "Every radio by range, standard, ingress protection and price in one table."
     },
@@ -475,11 +475,11 @@
       "radiocom_title": "Radiocom RC and RCD radios — buy in Tashkent | Radiocom",
       "radiocom_desc": "{{count}} Radiocom models: analogue RC and digital RCD. Prices, specifications, a 12-month warranty and a free trial anywhere in Uzbekistan.",
       "motorola_title": "Motorola two-way radios — buy in Tashkent | Radiocom",
-      "motorola_desc": "{{count}} Motorola models: Talkabout, XT, TLKR, CLP and CLK. No frequency permit needed. Warranty, delivery across Uzbekistan and a free trial.",
+      "motorola_desc": "{{count}} Motorola models: Talkabout, XT and TLKR. No frequency permit needed. Warranty, delivery across Uzbekistan and a free trial.",
       "radiocom_desc_one": "{{count}} Radiocom model: analogue RC and digital RCD. Prices, specifications, a 12-month warranty and a free trial anywhere in Uzbekistan.",
       "radiocom_desc_other": "{{count}} Radiocom models: analogue RC and digital RCD. Prices, specifications, a 12-month warranty and a free trial anywhere in Uzbekistan.",
-      "motorola_desc_one": "{{count}} Motorola model: Talkabout, XT, TLKR, CLP and CLK. No frequency permit needed. Warranty, delivery across Uzbekistan and a free trial.",
-      "motorola_desc_other": "{{count}} Motorola models: Talkabout, XT, TLKR, CLP and CLK. No frequency permit needed. Warranty, delivery across Uzbekistan and a free trial."
+      "motorola_desc_one": "{{count}} Motorola model: Talkabout, XT and TLKR. No frequency permit needed. Warranty, delivery across Uzbekistan and a free trial.",
+      "motorola_desc_other": "{{count}} Motorola models: Talkabout, XT and TLKR. No frequency permit needed. Warranty, delivery across Uzbekistan and a free trial."
     },
     "specs": {
       "title": "{{name}} — specifications and price | Radiocom",

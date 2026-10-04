@@ -50,7 +50,7 @@ website for a lot of local searches. This is the highest-value item after §1.
 - The name, address and phone must match `src/lib/seo.ts` → `BUSINESS`
   **character for character**. Both engines cross-check, and a mismatched suite
   number or a differently formatted phone weakens the match:
-  - Radiocom · ул. Узбекистон Овози, 2 (Гостиница Тата, 1–2 этаж), Ташкент
+  - Radiocom · Мирзо-Улугбекский район, ул. Узбекистон Овози, 2 (Le Grande Plaza, бывш. гостиница «Тата», 1–2 этаж), Ташкент
   - +998 93 389-07-10 (primary; the landline +998 78 113-16-18 as the second number)
   - Telegram: t.me/DiyorRadiocom
   - Mon–Fri 09:00–18:00

@@ -471,6 +471,13 @@ export const specs: Record<string, ProductSpec> = {
   },
 
   /* ── Radiocom RCD — digital ────────────────────────────── */
+  //
+  // RCD-60 and RCD-30 read «PMR» here until the keyword pass, while their own
+  // feature lists name TDMA Tier II — which is DMR — and the catalogue tags
+  // them DMR. The sheets are the evidence, so the standard row follows them.
+  // RCD-40's sheet names no TDMA, only the 446.0–446.1 MHz band and an
+  // analogue+digital mode: it stays PMR, and the question of whether it is DMR
+  // is with the owner (docs/seo/OWNER-QUESTIONS.md).
 
   "rcd-70": {
     inBox: [
@@ -517,7 +524,7 @@ export const specs: Record<string, ProductSpec> = {
       box(BOX.lanyard, 1),
     ],
     rows: [
-      row(SPEC.standard, V.pmr),
+      row(SPEC.standard, V.dmr),
       row(SPEC.mode, V.analogDigital),
       row(SPEC.ingress, ip("IP55")),
       row(SPEC.range, cityOpen(upToKm("2,5"), upToKm("10"))),
@@ -606,7 +613,7 @@ export const specs: Record<string, ProductSpec> = {
       box(BOX.lanyard, 2),
     ],
     rows: [
-      row(SPEC.standard, V.pmr),
+      row(SPEC.standard, V.dmr),
       row(SPEC.mode, V.analogDigital),
       row(SPEC.freq, V.freq4460),
       row(SPEC.range, cityOpen(upToKm("1,5"), upToKm("4"))),

@@ -10,7 +10,7 @@ Tillar: rus, ingliz, o'zbek. Kanonik til — rus tili.
 - https://radiocom.uz/uz
 
 ## Kontaktlar
-- Manzil: O'zbekiston Ovozi 2, Toshkent, O'zbekiston
+- Manzil: Toshkent, Mirzo Ulug'bek tumani, O'zbekiston Ovozi ko'chasi, 2 (Le Grande Plaza, sobiq «Tata» mehmonxonasi, 1–2-qavatlar)
 - Telefon: +998 93 389-07-10, +998 78 113-16-18 · Telegram: https://t.me/DiyorRadiocom
 - Ish vaqti: Du-Ju 09:00-18:00
 
@@ -20,9 +20,9 @@ Tillar: rus, ingliz, o'zbek. Kanonik til — rus tili.
 - [Radiocom RCD-60 PRO](https://radiocom.uz/uz/radiocom/rcd-60) — Displey va klaviaturali raqamli radiostansiya, to'liq komplektda. Masofa 2,5 km gacha.
 - [Radiocom RCD-50 PRO](https://radiocom.uz/uz/radiocom/rcd-50) — Brigadalar uchun ishchi model: toza raqamli ovoz va displey. Masofa 2,5 km gacha.
 - [Radiocom RCD-40 PRO](https://radiocom.uz/uz/radiocom/rcd-40) — Kuchaytirilgan qabul va uzoq ish sikliga ega o'rta sinf RCD. Masofa 2 km gacha.
-- [Radiocom RCD-30 PRO](https://radiocom.uz/uz/radiocom/rcd-30) — Liniyadagi eng arzon raqamli ratsiya — kichik smenalar uchun. Masofa 1,5 km gacha.
+- [Radiocom RCD-30 PRO](https://radiocom.uz/uz/radiocom/rcd-30) — Bitta komplektda ikkita raqamli ratsiya — kichik smenalar uchun. Masofa 1,5 km gacha.
 - [Radiocom RC-50](https://radiocom.uz/uz/radiocom/rc-50) — O'rta radiusdagi aloqa uchun universal model. Masofa 2–2,5 km gacha.
-- [Radiocom RC-20](https://radiocom.uz/uz/radiocom/rc-20) — Xodimlar uchun yengil radiostansiya — quvvatlagich va garnitura bilan. Masofa 1,5 km gacha.
+- [Radiocom RC-20](https://radiocom.uz/uz/radiocom/rc-20) — Xodimlar uchun ikkita yengil ratsiya — quvvatlagich va garnituralar bilan. Masofa 1,5 km gacha.
 - [Radiocom RC-10](https://radiocom.uz/uz/radiocom/rc-10) — Liniyaning boshlang'ich darajasi — sodda va ishonchli. Masofa 1 km gacha.
 
 ### Motorola

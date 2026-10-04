@@ -61,7 +61,7 @@
       "desc": "Mehmonxona, restoran, tadbirlar. Yashirin garnituralar, toza efir.",
       "seo": "HoReCa",
       "h1": "Mehmonxona va restoranlar uchun ratsiyalar",
-      "meta_desc": "Mehmonxona, restoran va tadbirlar uchun ratsiyalar. Motorola CLP 446 va CLK 446: 7400 m² gacha qamrov, 68 g og'irlik, garnitura to'plamda. Bepul sinov.",
+      "meta_desc": "Toshkentda restoran, mehmonxona va tadbirlar uchun ratsiyalar: Motorola XT185 bir zaryadda 24 soatgacha ishlaydi, komplektda ikkita garnitura. Bepul sinov.",
       "photo_alt": "Mehmonlar o'tirgan restoran zali"
     },
     "construction": {
@@ -243,7 +243,7 @@
         "Kelib ob'ektni ko'ramiz",
         "Ma'lumot yig'amiz va loyihani tayyorlaymiz",
         "Sizning sharoitingizga jihoz tanlaymiz",
-        "Chastotalarni O'zbekiston Aloqa qo'mitasida rasmiylashtiramiz",
+        "Radiochastotalar bo'yicha davlat komissiyasi uchun chastota hujjatlarini tayyorlaymiz",
         "Ishga tushiramiz, sozlaymiz va hujjatlar bilan topshiramiz"
       ]
     },
@@ -328,7 +328,7 @@
   },
   "footer": {
     "hours": "Du-Ju · 09:00–18:00",
-    "address": "Toshkent, O'zbekiston Ovozi 2 (Tata mehmonxonasi, 1–2-qavat)",
+    "address": "Toshkent, Mirzo Ulug'bek tumani, O'zbekiston Ovozi ko'chasi, 2 (Le Grande Plaza, sobiq «Tata» mehmonxonasi, 1–2-qavatlar)",
     "rights": "© Radiocom. Barcha huquqlar himoyalangan.",
     "follow": "Bizni kuzatib boring",
     "map_title": "Radiocom · Toshkent",
@@ -467,7 +467,7 @@
       "radiocom_name": "Radiocom ratsiyalari",
       "radiocom_desc": "Analog RC va raqamli RCD DMR ratsiyalari, Toshkentda kafolat va servis bilan.",
       "motorola_name": "Motorola ratsiyalari",
-      "motorola_desc": "Talkabout, XT, TLKR, CLP va CLK — chastota ruxsatnomasi kerak bo'lmaydigan ratsiyalar.",
+      "motorola_desc": "Talkabout, XT va TLKR — chastota ruxsatnomasi kerak bo'lmaydigan ratsiyalar.",
       "compare_name": "Modellarni solishtirish",
       "compare_desc": "Barcha ratsiyalar masofa, standart, himoya darajasi va narx bo'yicha bitta jadvalda."
     },
@@ -475,7 +475,7 @@
       "radiocom_title": "Radiocom RC va RCD ratsiyalari — Toshkentda sotib olish",
       "radiocom_desc": "Radiocom'ning {{count}} modeli: analog RC va raqamli RCD. Narxlar, xususiyatlar, 12 oy kafolat va butun O'zbekiston bo'ylab bepul sinov.",
       "motorola_title": "Motorola ratsiyalari — Toshkentda sotib olish | Radiocom",
-      "motorola_desc": "Motorola'ning {{count}} modeli: Talkabout, XT, TLKR, CLP va CLK. Chastota ruxsatnomasi kerak emas. Kafolat, O'zbekiston bo'ylab yetkazish va bepul sinov."
+      "motorola_desc": "Motorola'ning {{count}} modeli: Talkabout, XT va TLKR. Chastota ruxsatnomasi kerak emas. Kafolat, O'zbekiston bo'ylab yetkazish va bepul sinov."
     },
     "specs": {
       "title": "{{name}} — xususiyatlari va narxi | Radiocom",

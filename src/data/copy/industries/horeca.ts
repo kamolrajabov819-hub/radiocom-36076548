@@ -29,55 +29,34 @@ const content: IndustryContent = {
       uz: "Oddiy telefonlar smenaning yarmida o'chadi",
     },
   ],
+  // Figures from the Motorola XT185 sheet (specs.ts), a model the page
+  // recommends. The page used to lead on 7 400 m² and 68 g, both from the CLP
+  // and CLK 446, which are hidden in the catalogue for want of a photograph.
   outcomes: [
     {
-      n: {
-        ru: "7400",
-        en: "7,400",
-        uz: "7400",
-      },
-      u: {
-        ru: "м²",
-        en: "m²",
-        uz: "m²",
-      },
+      n: { ru: "24", en: "24", uz: "24" },
+      u: { ru: "ч", en: "h", uz: "soat" },
       l: {
-        ru: "Покрытие до 6 этажей — Motorola CLP 446 и CLK 446",
-        en: "Up to 6 floors of coverage — Motorola CLP 446 and CLK 446",
-        uz: "6 qavatgacha qamrov — Motorola CLP 446 va CLK 446",
+        ru: "До 24 часов на одном заряде — Motorola XT185",
+        en: "Up to 24 hours on a single charge — Motorola XT185",
+        uz: "Bir zaryadda 24 soatgacha ishlaydi — Motorola XT185",
       },
     },
     {
-      n: {
-        ru: "68",
-        en: "68",
-        uz: "68",
-      },
-      u: {
-        ru: "г",
-        en: "g",
-        uz: "g",
-      },
+      n: { ru: "2", en: "2", uz: "2" },
+      u: { ru: "гарнитуры", en: "earpieces", uz: "garnitura" },
       l: {
-        ru: "Вес рации: незаметна под формой, гарнитура в комплекте",
-        en: "Radio weight: invisible under a uniform, headset in the box",
-        uz: "Ratsiya vazni: forma ostida bilinmaydi, garnitura komplektda",
+        ru: "С кнопкой PTT, в комплекте Motorola XT185: гости переговоров не слышат",
+        en: "With a PTT button, in the Motorola XT185 box: guests don't hear the crew",
+        uz: "PTT tugmali, Motorola XT185 komplektida: mehmonlar suhbatni eshitmaydi",
       },
     },
     {
-      n: {
-        ru: "0,5",
-        en: "0.5",
-        uz: "0,5",
-      },
-      u: {
-        ru: "Вт",
-        en: "W",
-        uz: "Vt",
-      },
+      n: { ru: "0,5", en: "0.5", uz: "0,5" },
+      u: { ru: "Вт", en: "W", uz: "Vt" },
       l: {
         ru: "Свободный диапазон 446 МГц — разрешение не нужно",
-        en: "The free 446 MHz band — no permit needed",
+        en: "The licence-free 446 MHz band — no permit needed",
         uz: "Erkin 446 MGts diapazoni — ruxsatnoma kerak emas",
       },
     },

@@ -49,7 +49,11 @@ export const BUSINESS = {
   /** Primary first: `telephone` in both identity nodes is `phones[0]`. */
   phones: [PHONE_PRIMARY.e164, PHONE_LANDLINE.e164, PHONE_SERVICE.e164],
   servicePhone: PHONE_SERVICE.e164,
-  street: "ул. Узбекистон Овози, 2 (Гостиница Тата, 1–2 этаж)",
+  // The landmark is the hotel's current name with its former one beside it
+  // (owner's keyword map, 2026-10-04); the district is the README's. Every
+  // listing must copy this string as it is — see SEO-OFFSITE.md.
+  street:
+    "Мирзо-Улугбекский район, ул. Узбекистон Овози, 2 (Le Grande Plaza, бывш. гостиница «Тата», 1–2 этаж)",
   city: "Ташкент",
   region: "Toshkent",
   country: "UZ",

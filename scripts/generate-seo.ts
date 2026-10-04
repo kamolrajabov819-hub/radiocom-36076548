@@ -122,7 +122,8 @@ const LLMS_COPY = {
       "> проектирование систем радиосвязи. Офис и сервисный центр в Ташкенте.",
     languages: "Языки: русский, английский, узбекский. Канонический язык — русский.",
     contacts: "## Контакты",
-    address: "- Адрес: ул. Узбекистон Овози, 2, Ташкент, Узбекистан",
+    address:
+      "- Адрес: Ташкент, Мирзо-Улугбекский район, ул. Узбекистон Овози, 2 (Le Grande Plaza, бывш. гостиница «Тата», 1–2 этаж)",
     phone: `- Телефон: ${PHONE_PRIMARY.display}, ${PHONE_LANDLINE.display} · Telegram: ${TELEGRAM_URL}`,
     hours: "- Часы работы: Пн-Пт 09:00-18:00",
     catalogue: (n: number) => `## Каталог (${n} моделей)`,
@@ -140,7 +141,8 @@ const LLMS_COPY = {
       "> radio network design. Office and service centre in Tashkent.",
     languages: "Languages: Russian, English, Uzbek. Russian is the canonical language.",
     contacts: "## Contacts",
-    address: "- Address: Uzbekiston Ovozi 2, Tashkent, Uzbekistan",
+    address:
+      "- Address: 2 Uzbekiston Ovozi St, Mirzo-Ulugbek district, Tashkent (Le Grande Plaza, formerly the Tata Hotel, 1st–2nd floor)",
     phone: `- Phone: ${PHONE_PRIMARY.display}, ${PHONE_LANDLINE.display} · Telegram: ${TELEGRAM_URL}`,
     hours: "- Opening hours: Mon-Fri 09:00-18:00",
     catalogue: (n: number) => `## Catalogue (${n} models)`,
@@ -158,7 +160,8 @@ const LLMS_COPY = {
       "> tizimlarini loyihalash. Ofis va servis markazi Toshkentda.",
     languages: "Tillar: rus, ingliz, o'zbek. Kanonik til — rus tili.",
     contacts: "## Kontaktlar",
-    address: "- Manzil: O'zbekiston Ovozi 2, Toshkent, O'zbekiston",
+    address:
+      "- Manzil: Toshkent, Mirzo Ulug'bek tumani, O'zbekiston Ovozi ko'chasi, 2 (Le Grande Plaza, sobiq «Tata» mehmonxonasi, 1–2-qavatlar)",
     phone: `- Telefon: ${PHONE_PRIMARY.display}, ${PHONE_LANDLINE.display} · Telegram: ${TELEGRAM_URL}`,
     hours: "- Ish vaqti: Du-Ju 09:00-18:00",
     catalogue: (n: number) => `## Katalog (${n} model)`,

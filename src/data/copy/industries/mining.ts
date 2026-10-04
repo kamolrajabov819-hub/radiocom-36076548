@@ -59,9 +59,10 @@ const content: IndustryContent = {
         uz: "",
       },
       l: {
-        ru: "Разговор слышат только свои — линейка RCD PRO",
-        en: "Only your own team hears you — the RCD PRO range",
-        uz: "Suhbatni faqat o'zingiznikilar eshitadi — RCD PRO liniyasi",
+        // AES-256 is on the RCD-50/60/70 sheets only, not RCD-30 or RCD-40.
+        ru: "Разговор слышат только свои — RCD-50, RCD-60 и RCD-70 PRO",
+        en: "Only your own team hears you — RCD-50, RCD-60 and RCD-70 PRO",
+        uz: "Suhbatni faqat o'zingiznikilar eshitadi — RCD-50, RCD-60 va RCD-70 PRO",
       },
     },
     {
@@ -117,9 +118,9 @@ const content: IndustryContent = {
         uz: "Chastotalarni kelishish kerakmi?",
       },
       a: {
-        ru: "Да, и мы делаем это за вас: полностью сопровождаем оформление в Госкомсвязи РУз.",
-        en: "Yes, and we do it for you: we handle the whole filing with State Comms of Uzbekistan.",
-        uz: "Ha, va buni biz siz uchun qilamiz: O'zbekiston Aloqa qo'mitasidagi rasmiylashtirishni to'liq olib boramiz.",
+        ru: "Да, и мы делаем это за вас: готовим документы и сопровождаем оформление частот в Государственной комиссии по радиочастотам.",
+        en: "Yes, and we do it for you: we prepare the documents and see the frequency filing through with the State Commission on Radio Frequencies.",
+        uz: "Ha, va buni biz siz uchun qilamiz: hujjatlarni tayyorlaymiz va chastotalarni Radiochastotalar bo'yicha davlat komissiyasida rasmiylashtirishni olib boramiz.",
       },
     },
     {

@@ -42,9 +42,10 @@ const content: IndustryContent = {
         uz: "",
       },
       l: {
-        ru: "Цифровая связь без помех — линейка RCD PRO",
-        en: "Digital voice without interference — the RCD PRO range",
-        uz: "Xalaqitsiz raqamli aloqa — RCD PRO liniyasi",
+        // Named models, not "the RCD PRO range": RCD-40's sheet does not say DMR.
+        ru: "Цифровая связь без помех — RCD-50, RCD-60 и RCD-70 PRO",
+        en: "Digital voice without interference — RCD-50, RCD-60 and RCD-70 PRO",
+        uz: "Xalaqitsiz raqamli aloqa — RCD-50, RCD-60 va RCD-70 PRO",
       },
     },
     {

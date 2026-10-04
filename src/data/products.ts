@@ -395,7 +395,7 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     gallery: [rcd40Box, rcd40Kit],
     gallerySmall: [rcd40Box800, rcd40Kit800],
     galleryTiny: [rcd40Box400, rcd40Kit400],
-    tags: ["DMR", "Long range"],
+    tags: ["PMR446", "Long range"],
     price: 1_600_000,
     rangeCity: upToKm("2"),
     rangeOpen: upToKm("6"),
@@ -423,9 +423,11 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     rangeOpen: upToKm("4"),
     industries: ["horeca", "security", "construction"],
     blurb: {
-      ru: "Самая доступная цифровая рация в линейке — для небольших смен.",
-      en: "The most affordable digital radio in the range — for small crews.",
-      uz: "Liniyadagi eng arzon raqamli ratsiya — kichik smenalar uchun.",
+      // Priced as a pair: the price list's 1 800 000 is two radios, which is
+      // why it sits above the single RCD-40 while costing less per radio.
+      ru: "Две цифровые рации в одном комплекте — для небольших смен.",
+      en: "Two digital radios in one kit — for small crews.",
+      uz: "Bitta komplektda ikkita raqamli ratsiya — kichik smenalar uchun.",
     },
   },
 
@@ -469,9 +471,11 @@ const rawProducts: Omit<Product, "slug" | "brandSlug">[] = [
     rangeOpen: upToKm("4"),
     industries: ["horeca", "security"],
     blurb: {
-      ru: "Лёгкая рация для персонала — комплект с зарядкой и гарнитурой.",
-      en: "A light radio for floor staff — ships with charger and headset.",
-      uz: "Xodimlar uchun yengil radiostansiya — quvvatlagich va garnitura bilan.",
+      // A pair, like RC-10: the price list's 1 600 000 is two radios, against
+      // one for the RC-50.
+      ru: "Две лёгкие рации для персонала — с зарядками и гарнитурами в комплекте.",
+      en: "Two light radios for floor staff — chargers and headsets in the box.",
+      uz: "Xodimlar uchun ikkita yengil ratsiya — quvvatlagich va garnituralar bilan.",
     },
   },
   {

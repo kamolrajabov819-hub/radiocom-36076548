@@ -10,7 +10,7 @@ Languages: Russian, English, Uzbek. Russian is the canonical language.
 - https://radiocom.uz/uz
 
 ## Contacts
-- Address: Uzbekiston Ovozi 2, Tashkent, Uzbekistan
+- Address: 2 Uzbekiston Ovozi St, Mirzo-Ulugbek district, Tashkent (Le Grande Plaza, formerly the Tata Hotel, 1st–2nd floor)
 - Phone: +998 93 389-07-10, +998 78 113-16-18 · Telegram: https://t.me/DiyorRadiocom
 - Opening hours: Mon-Fri 09:00-18:00
 
@@ -20,9 +20,9 @@ Languages: Russian, English, Uzbek. Russian is the canonical language.
 - [Radiocom RCD-60 PRO](https://radiocom.uz/en/radiocom/rcd-60) — A digital radio with display and keypad, fully equipped. Range up to 2.5 km.
 - [Radiocom RCD-50 PRO](https://radiocom.uz/en/radiocom/rcd-50) — The crew workhorse: clean digital audio and a display. Range up to 2.5 km.
 - [Radiocom RCD-40 PRO](https://radiocom.uz/en/radiocom/rcd-40) — Mid-range RCD with boosted reception and a long duty cycle. Range up to 2 km.
-- [Radiocom RCD-30 PRO](https://radiocom.uz/en/radiocom/rcd-30) — The most affordable digital radio in the range — for small crews. Range up to 1.5 km.
+- [Radiocom RCD-30 PRO](https://radiocom.uz/en/radiocom/rcd-30) — Two digital radios in one kit — for small crews. Range up to 1.5 km.
 - [Radiocom RC-50](https://radiocom.uz/en/radiocom/rc-50) — An all-round model for mid-range coverage. Range up to 2–2.5 km.
-- [Radiocom RC-20](https://radiocom.uz/en/radiocom/rc-20) — A light radio for floor staff — ships with charger and headset. Range up to 1.5 km.
+- [Radiocom RC-20](https://radiocom.uz/en/radiocom/rc-20) — Two light radios for floor staff — chargers and headsets in the box. Range up to 1.5 km.
 - [Radiocom RC-10](https://radiocom.uz/en/radiocom/rc-10) — The entry point of the range — simple and dependable. Range up to 1 km.
 
 ### Motorola
