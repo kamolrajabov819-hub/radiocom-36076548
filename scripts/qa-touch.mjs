@@ -6,10 +6,14 @@
  * anything under 24 as a failure and anything between 24 and 44 as a note, so
  * the two standards stay distinguishable rather than collapsing into one number.
  *
- * Two exemptions, both explicit rather than accidental:
+ * Three exemptions, all explicit rather than accidental:
  *   - the skip link, which is 1x1 until focused and full-size after;
  *   - elements whose own `::after` box reaches 44px, which is how a compact
- *     control (the language toggle) extends its target without growing.
+ *     control (the language toggle) extends its target without growing;
+ *   - links inside a sentence (`link-inline`, the SEO text and answers). WCAG
+ *     2.5.8 exempts them by name — a target "in a sentence", whose size is set
+ *     by the line height of the text around it — and padding one to 24px
+ *     would pry the lines of the paragraph apart.
  *
  * Also flags text below 13px, which is where Cyrillic at 390px stops being
  * comfortable.
@@ -85,6 +89,8 @@ for (const route of ROUTES) {
       if (r.width === 0 || r.height === 0) continue;
       // The skip link is 1x1 until it takes focus.
       if (el.className && String(el.className).includes("sr-only")) continue;
+      // An in-sentence link: WCAG 2.5.8's "inline" exception.
+      if (el.classList.contains("link-inline")) continue;
       if ((el.textContent || "").trim() === "" && r.width <= 2) continue;
 
       // A control may extend its target with a pseudo-element rather than by

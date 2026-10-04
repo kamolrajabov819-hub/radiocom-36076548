@@ -79,11 +79,13 @@ export function ContactsPage() {
                   <Icon className="h-4 w-4 text-signal" aria-hidden />
                   {label}
                 </dt>
-                <dd className="mt-3 text-[17px] text-crisp">
+                <dd className="mt-2 text-[17px] text-crisp">
                   {href ? (
                     <a
                       href={href}
-                      className="link-inline"
+                      // Standalone, not in a sentence, so it gets the 44px
+                      // box of `pill-link` rather than the inline link style.
+                      className="pill-link text-[17px]"
                       {...(href.startsWith("http")
                         ? { target: "_blank", rel: "noopener noreferrer" }
                         : {})}
