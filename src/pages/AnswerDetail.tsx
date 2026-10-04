@@ -1,4 +1,4 @@
-import { Link, useParams } from "@tanstack/react-router";
+import { Link, useLoaderData, useParams } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
@@ -10,7 +10,7 @@ import { Faq } from "@/components/Faq";
 import { ProductCard } from "@/components/ProductCard";
 import { openLead } from "@/components/LeadFormSheet";
 import { answerBySlug } from "@/data/answers";
-import { answerContent, answerPicks } from "@/data/answers-content";
+import { answerPicks } from "@/data/answers-content";
 import { visibleProducts } from "@/data/products";
 import { pick } from "@/data/spec-dict";
 import { fadeUpAt } from "@/lib/springs";
@@ -34,6 +34,8 @@ export function AnswerDetailPage() {
   const { t, i18n } = useTranslation();
   const lang = (i18n.language.slice(0, 2) as "ru" | "en" | "uz") || "ru";
   const page = useScrollChoreography();
+  // The body comes from the route loader, already in this language.
+  const content = useLoaderData({ from: "/$lang/answers/$slug" });
 
   const a = answerBySlug(slug);
   // The route guard 404s an unknown slug before this renders, so this is the
@@ -41,9 +43,8 @@ export function AnswerDetailPage() {
   // during hydration if the two ever disagree.
   if (!a) return null;
 
-  const content = answerContent[a.slug];
   const picks = answerPicks(content, visibleProducts);
-  const faq = content.faq.map((f) => ({ q: pick(f.q, lang), a: pick(f.a, lang) }));
+  const faq = content.faq;
   const steps = content.steps ?? [];
 
   return (
@@ -70,7 +71,7 @@ export function AnswerDetailPage() {
                   name: pick(a.question, lang),
                   description: pick(a.answer, lang),
                   path: `/answers/${a.slug}`,
-                  steps: steps.map((s) => ({ name: pick(s.name, lang), text: pick(s.text, lang) })),
+                  steps,
                 },
                 lang,
               ),
@@ -114,10 +115,8 @@ export function AnswerDetailPage() {
                 <div className="type-caption text-signal">
                   {t("answers.step_label", { n: i + 1, defaultValue: String(i + 1) })}
                 </div>
-                <h3 className="type-title mt-2 text-crisp">{brandCase(pick(s.name, lang))}</h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-cool">
-                  {brandCase(pick(s.text, lang))}
-                </p>
+                <h3 className="type-title mt-2 text-crisp">{brandCase(s.name)}</h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-cool">{brandCase(s.text)}</p>
               </motion.li>
             ))}
           </ol>
@@ -129,10 +128,8 @@ export function AnswerDetailPage() {
         <div className="flex flex-col gap-14">
           {content.sections.map((s, i) => (
             <motion.div key={i} {...fadeUpAt(i)} className="measure">
-              <h2 className="type-headline text-crisp">{brandCase(pick(s.heading, lang))}</h2>
-              <p className="subhead mt-4 text-[17px] leading-relaxed">
-                {brandCase(pick(s.body, lang))}
-              </p>
+              <h2 className="type-headline text-crisp">{brandCase(s.heading)}</h2>
+              <p className="subhead mt-4 text-[17px] leading-relaxed">{brandCase(s.body)}</p>
             </motion.div>
           ))}
           {/* The commercial page this question leads to, anchored on that
@@ -142,8 +139,7 @@ export function AnswerDetailPage() {
               to={(content.cta.path === "/" ? `/${lang}` : `/${lang}${content.cta.path}`) as never}
               className="pill-link text-[17px]"
             >
-              {brandCase(pick(content.cta.anchor, lang))}{" "}
-              <ChevronRight className="h-4 w-4" aria-hidden />
+              {brandCase(content.cta.anchor)} <ChevronRight className="h-4 w-4" aria-hidden />
             </Link>
           </div>
         </div>

@@ -29,3 +29,5 @@ export const ANSWER_SLUGS = [
   "what-is-dmr",
   "ip67",
 ] as const;
+
+export type AnswerSlug = (typeof ANSWER_SLUGS)[number];

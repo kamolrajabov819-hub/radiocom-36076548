@@ -17,12 +17,15 @@
  * Run: bun scripts/verify-answers.ts
  */
 import { publishedAnswers, TODO_LEGAL } from "../src/data/answers";
-import { answerContent } from "../src/data/answers-content";
+import { loadAllAnswerContent } from "../src/data/answers-content";
 import { draftAnswers, draftContent } from "../src/data/answers-draft";
 import { ANSWER_SLUGS } from "../src/data/answer-slugs";
 import { visibleProducts } from "../src/data/products";
 import { LANGS } from "../src/lib/seo";
 import { existsSync } from "node:fs";
+
+// One module per page now (`src/data/copy/answers/`); this reads them all.
+const answerContent = await loadAllAnswerContent();
 
 const problems: string[] = [];
 const bad = (m: string) => problems.push(m);
@@ -211,7 +214,7 @@ const allContent: Record<string, (typeof answerContent)[string]> = {
   const drafted = new Set(draftAnswers.map((a) => a.slug));
   for (const a of publishedAnswers)
     if (!answerContent[a.slug])
-      bad(`${a.slug}: is published but has no body in answers-content.ts`);
+      bad(`${a.slug}: is published but has no loader in answers-content.ts`);
   for (const a of draftAnswers)
     if (!draftContent[a.slug]) bad(`${a.slug}: is a draft but has no body in answers-draft.ts`);
   for (const slug of Object.keys(answerContent)) {

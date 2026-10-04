@@ -5,8 +5,8 @@
  * are imported by `src/lib/i18n.ts`), so every string in them ships to every
  * visitor on every route, and `qa-weight`'s baseline is what pays. It lives in
  * `{ ru, en, uz }` modules that only a code-split page component imports —
- * `answers-content.ts` and everything under `src/data/copy/` (the industry
- * bodies are `copy/industries/<slug>.ts`).
+ * everything under `src/data/copy/` (the industry bodies are
+ * `copy/industries/<slug>.ts`, the answers `copy/answers/<slug>.ts`).
  *
  * That move would quietly take the copy out from under `verify-i18n`, which
  * only reads the JSONs. So this script walks every such module and applies the
@@ -39,7 +39,7 @@
  */
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
-import { answerContent } from "../src/data/answers-content";
+import { loadAllAnswerContent } from "../src/data/answers-content";
 import { entries } from "./lib/sitemap";
 import { catalogueFacts } from "../src/data/copy/facts";
 
@@ -68,9 +68,9 @@ function collect(value: unknown, path: string, out: [string, L][]) {
     for (const [k, v] of Object.entries(value)) collect(v, `${path}.${k}`, out);
 }
 
-const modules: [string, unknown][] = [["answers-content", answerContent]];
-// Every module in a subdirectory of src/data/copy — `pages/` and
-// `industries/`. The files at its top level are the machinery (types, the
+const modules: [string, unknown][] = [];
+// Every module in a subdirectory of src/data/copy — `pages/`, `industries/`
+// and `answers/`. The files at its top level are the machinery (types, the
 // loader, the facts), not copy.
 const copyFiles = readdirSync(COPY_DIR)
   .filter((d) => statSync(join(COPY_DIR, d)).isDirectory())
@@ -135,8 +135,8 @@ for (const [path, l] of strings) {
 }
 
 // Rule 5 for the answers' structured `cta` links, which are not `[](…)` syntax.
-for (const [slug, c] of Object.entries(answerContent))
-  if (!livePaths.has(c.cta.path)) problems.links.push(`answers-content.${slug}.cta: ${c.cta.path}`);
+for (const [slug, c] of Object.entries(await loadAllAnswerContent()))
+  if (!livePaths.has(c.cta.path)) problems.links.push(`copy/answers/${slug}.cta: ${c.cta.path}`);
 
 // Rule 4 for the locale file itself, which `verify-i18n` does not check.
 {
