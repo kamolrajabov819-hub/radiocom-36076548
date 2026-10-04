@@ -59,49 +59,8 @@
       "name": "HoReCa",
       "short": "HoReCa",
       "desc": "Mehmonxona, restoran, tadbirlar. Yashirin garnituralar, toza efir.",
-      "problem": "Xodimlar shovqinli zallarda va qavatlar orasida aloqani yo'qotadi. Mehmonlar xizmat suhbatlarini eshitadi.",
-      "solution": "Kichik ratsiyalar va yashirin garnituralar. Faqat xodimlar eshitadi, chastota ruxsatnomasi kerak emas.",
-      "pains": [
-        "Ofitsiantlar cho'qqi vaqtlarida oshxonani eshitmaydi",
-        "Mijozlar xodimlar suhbatini eshitib qoladi",
-        "Oddiy telefonlar smenaning yarmida o'chadi"
-      ],
-      "outcomes": [
-        {
-          "n": "7400",
-          "u": "m²",
-          "l": "6 qavatgacha qamrov — Motorola CLP 446 va CLK 446"
-        },
-        {
-          "n": "68",
-          "u": "g",
-          "l": "Ratsiya vazni: forma ostida bilinmaydi, garnitura komplektda"
-        },
-        {
-          "n": "0,5",
-          "u": "Vt",
-          "l": "Erkin 446 MGts diapazoni — ruxsatnoma kerak emas"
-        }
-      ],
-      "quote": "Mijozlar endi oshxonadagi gaplarni eshitmaydi. Smena tinchroq bo'ldi, tushum ko'paydi — jamoa stollarni tezroq bo'shatadi.",
-      "quote_author": "Restoran tarmog'i menejeri, Toshkent",
-      "faq": [
-        {
-          "q": "Chastota uchun ruxsatnoma kerakmi?",
-          "a": "Yo'q. Bu ratsiyalar erkin 446 MGts diapazonida ishlaydi — hech narsa rasmiylashtirish shart emas."
-        },
-        {
-          "q": "Restoranga nechta ratsiya kerak?",
-          "a": "Odatda 4–6 ta: xostes, zal menejeri, oshpaz, barista, ofitsiant va ombor. Kelib bepul hisoblab beramiz."
-        },
-        {
-          "q": "Sotib olishdan oldin sinab ko'rish mumkinmi?",
-          "a": "Ha — ob'ektingizda bepul sinov."
-        }
-      ],
       "seo": "HoReCa",
       "h1": "Mehmonxona va restoranlar uchun ratsiyalar",
-      "clients": "",
       "meta_desc": "Mehmonxona, restoran va tadbirlar uchun ratsiyalar. Motorola CLP 446 va CLK 446: 7400 m² gacha qamrov, 68 g og'irlik, garnitura to'plamda. Bepul sinov.",
       "photo_alt": "Mehmonlar o'tirgan restoran zali"
     },
@@ -109,49 +68,8 @@
       "name": "Qurilish",
       "short": "Qurilish",
       "desc": "Yirik ob'ektlar. IP67 himoya, uzoq masofa.",
-      "problem": "Chang, tebranish, brigadalar orasida kilometrlar. Oddiy telefonlar dosh bermaydi va ob'ektni qamrab ololmaydi.",
-      "solution": "IP67 himoyali zarbaga chidamli DMR ratsiyalar: obyektda RCD-70 PRO, brigadalar uchun RCD-50 va RCD-60 PRO.",
-      "pains": [
-        "Brigadir kran va montajchilarga yeta olmaydi",
-        "Telefonlar yorilib, cho'kib, changdan buziladi",
-        "Beton devor orasida mobil aloqa yo'qoladi"
-      ],
-      "outcomes": [
-        {
-          "n": "IP67",
-          "u": "",
-          "l": "Maydondagi chang va suv — RCD-70 PRO"
-        },
-        {
-          "n": "10 km gacha",
-          "u": "",
-          "l": "Ochiq joyda — RCD-70 PRO"
-        },
-        {
-          "n": "DMR",
-          "u": "",
-          "l": "Qurilish shovqinida toza raqamli ovoz — RCD-50, RCD-60 va RCD-70 PRO"
-        }
-      ],
-      "quote": "Ilgari brigadirlarni izlashga kunlik 2 soat ketardi. Endi — tugmani bosdim, butun smena eshitadi. Bir oyda o'zini oqladi.",
-      "quote_author": "Loyiha rahbari, savdo majmuasi",
-      "faq": [
-        {
-          "q": "Qish qurilishida chidaydimi?",
-          "a": "IP67 maydondagi chang, loy va suv oqimidan himoya qiladi. Aniq harorat diapazoni modelga bog'liq — ratsiyalarni obyektga olib kelamiz va sotib olishdan oldin sizning sharoitingizda sinab ko'ramiz."
-        },
-        {
-          "q": "Retranslyator kerakmi?",
-          "a": "Faqat ob'ekt 500 m dan uzun bo'lsa yoki brigadalar orasida to'siq bo'lsa. Chiqib bepul baholaymiz."
-        },
-        {
-          "q": "Ratsiya ho'l betonga tushib ketsa-chi?",
-          "a": "IP67 chang va suv oqimiga chidaydi. Agar ratsiya baribir ishdan chiqsa — 12 oylik kafolat doirasida o'z servis markazimizda tiklaymiz yoki almashtiramiz."
-        }
-      ],
       "seo": "Qurilish",
       "h1": "Qurilish uchun ratsiyalar",
-      "clients": "",
       "meta_desc": "Toshkentda qurilish uchun ratsiyalar: RCD-70 PRO chang va suvdan IP67 himoyasi bilan, ochiq joyda 10 km gacha, maydon shovqinida toza ovoz. Sinov bepul.",
       "photo_alt": "Qurilish maydonida kaska va jilet kiygan quruvchilar, ortida minorali kranlar"
     },
@@ -159,49 +77,8 @@
       "name": "Xavfsizlik",
       "short": "Xavfsizlik",
       "desc": "Xususiy qo'riqlash, ob'ekt himoyasi, davlat xavfsizligi.",
-      "problem": "Tinglab bo'lmaydigan aloqa, trevoga tugmasi va har bir postni ko'rsatadigan xarita kerak.",
-      "solution": "Shifrlash, trevoga tugmasi va GPS'li raqamli ratsiyalar. Dispetcher barcha postlarni xaritada ko'radi.",
-      "pains": [
-        "Xodimlar radardan yo'qoladi — hech kim qayerdaligini bilmaydi",
-        "Ochiq chastotalarni har kim eshitishi mumkin",
-        "Trevoga telefon orqali ko'tariladi — 30–90 soniya ketadi"
-      ],
-      "outcomes": [
-        {
-          "n": "AES-256",
-          "u": "",
-          "l": "Suhbatni faqat o'zingiznikilar eshitadi — RCD-50, RCD-60 va RCD-70 PRO"
-        },
-        {
-          "n": "GPS",
-          "u": "",
-          "l": "Post qayerda turgani ko'rinadi — RCD-70 PRO"
-        },
-        {
-          "n": "3 km gacha",
-          "u": "",
-          "l": "Zich shahar qurilishida — RCD-70 PRO"
-        }
-      ],
-      "quote": "Barcha ob'ektlarga shifrlangan DMR o'rnatdik. Dispetcher xodimlarni ko'radi, tugma ikki marta yordam berdi.",
-      "quote_author": "Xususiy qo'riqlash direktori",
-      "faq": [
-        {
-          "q": "Bizni tinglashlari mumkinmi?",
-          "a": "Deyarli yo'q: raqamli rejimda suhbat shifrlanadi, kalitni esa dasturdan o'zgartirish mumkin."
-        },
-        {
-          "q": "GPS bino ichida ishlaydimi?",
-          "a": "Ko'chada — ha. Bino ichida ratsiya signalni oxirgi marta tutgan nuqtani ko'rsatadi."
-        },
-        {
-          "q": "Trevoga tugmasi signalni qayerga yuboradi?",
-          "a": "Kanaldagi barchaga va dispetcherga — post koordinatalari bilan birga."
-        }
-      ],
       "seo": "Xavfsizlik xizmatlari",
       "h1": "Xavfsizlik uchun ratsiyalar",
-      "clients": "",
       "meta_desc": "Toshkentda qo'riqlash xizmatlari uchun ratsiyalar: AES-256 shifrlash, trevoga tugmasi, RCD-70 PRO'da GPS, zich qurilishda 3 km gacha. 12 oy kafolat.",
       "photo_alt": "Videokuzatuv monitorlari oldida ratsiyada gaplashayotgan qo'riqchi ayol"
     },
@@ -209,49 +86,8 @@
       "name": "Kon · Neft · Gaz",
       "short": "Kon",
       "desc": "Karyerlar, konlar, neft-gaz infratuzilmasi.",
-      "problem": "Katta hududlar, portlash xavfli zonalar, aniq uchqun xavfsizligi talablari.",
-      "solution": "IP67 himoyasi, shifrlash va smenaga yetadigan akkumulyatorli raqamli RCD PRO ratsiyalar. Komplektni uchastkaga moslaymiz.",
-      "pains": [
-        "3 km karyer — oddiy ratsiya yetmaydi",
-        "Xavfli zonalarda oddiy elektronika taqiqlangan",
-        "Yer ostidagi smena yer usti bilan aloqasiz"
-      ],
-      "outcomes": [
-        {
-          "n": "IP67",
-          "u": "",
-          "l": "Uchastkadagi chang va suv — RCD-70 PRO"
-        },
-        {
-          "n": "AES-256",
-          "u": "",
-          "l": "Suhbatni faqat o'zingiznikilar eshitadi — RCD PRO liniyasi"
-        },
-        {
-          "n": "3600",
-          "u": "mA·s",
-          "l": "Bir zaryadda butun smena — RCD-70 va RCD-50 PRO"
-        }
-      ],
-      "quote": "Radiocom karyerga DMR-tarmoqni 3 kunda o'rnatdi. Ikkinchi qish — hech qanday uzilish yo'q.",
-      "quote_author": "Bosh muhandis, kon korxonasi",
-      "faq": [
-        {
-          "q": "Portlash xavfli zonalar uchun sertifikat bormi?",
-          "a": "Joriy katalogda uchqundan himoyalangan (Ex) versiyalar yo'q. Uchastkangizga qaysi sinf kerakligini yozing — alohida yechim tanlaymiz."
-        },
-        {
-          "q": "Chastotalarni kelishish kerakmi?",
-          "a": "Ha, va buni biz siz uchun qilamiz: O'zbekiston Aloqa qo'mitasidagi rasmiylashtirishni to'liq olib boramiz."
-        },
-        {
-          "q": "Sanoat modellariga qanday kafolat?",
-          "a": "Radioblokka 12 oy kafolat. Xizmat ko'rsatish — o'z vakolatli servis markazimizda, original ehtiyot qismlar bilan."
-        }
-      ],
       "seo": "Kon, neft va gaz",
       "h1": "Kon, neft va gaz uchun ratsiyalar",
-      "clients": "Bizga ishonishadi: Uz-Kor Gas Chemical, ERIELL, ENTER Engineering, HYUNDAI Engineering, SAMSUNG Engineering Construction.",
       "meta_desc": "Konchilik, neft va gaz uchun ratsiyalar: chang va suvdan IP67 himoya, AES-256 shifrlash, bir smenaga 3600 mA·s batareya. ERIELL va ENTER Engineering.",
       "photo_alt": "Quyosh botayotgan paytda neft konidagi tebranma nasos"
     },
@@ -259,49 +95,8 @@
       "name": "Transport · Logistika",
       "short": "Transport",
       "desc": "Avtoparklar, omborlar, ekspeditsiyalar.",
-      "problem": "Dispetcher haydovchilarni shahar tashqarisida yo'qotadi. Mobil aloqa qimmat va uziladi.",
-      "solution": "Mashinalarga — Radiocom RCD ratsiyalari. Shahardan tashqarida — PoC ratsiyalari: ular mobil tarmoq orqali ishlaydi, shuning uchun aloqa butun mamlakat bo'ylab bor.",
-      "pains": [
-        "Haydovchi Buxoroda — Toshkentdagi dispetcher aloqasiz",
-        "Mobil tariflar tashish marjasini yeb qo'yadi",
-        "Kolonna bilan guruh aloqasi faqat telefon karnayi orqali"
-      ],
-      "outcomes": [
-        {
-          "n": "GPS",
-          "u": "",
-          "l": "Dispetcher ekipajni xaritada ko'radi — RCD-70 PRO"
-        },
-        {
-          "n": "10 km gacha",
-          "u": "",
-          "l": "Trassada va ochiq joyda — RCD-70, RCD-60 va RCD-50 PRO"
-        },
-        {
-          "n": "3600",
-          "u": "mA·s",
-          "l": "Rul ortida smena — quvvatlashsiz — RCD-70 va RCD-50 PRO"
-        }
-      ],
-      "quote": "Butun avtoparkni mobil tarmoq orqali aloqaga o'tkazdik — aloqa uchun 40% kam to'laymiz, dispetcher esa barcha haydovchilarni xaritada ko'radi.",
-      "quote_author": "Avtopark boshlig'i, logistika kompaniyasi",
-      "faq": [
-        {
-          "q": "Trassada va tog'larda aloqa bo'ladimi?",
-          "a": "Mobil tarmoq tutadigan joyda — ha. Aniq marshrut bo'yicha qamrovni o'z operatoringizdan aniqlang."
-        },
-        {
-          "q": "Oylik to'lov qancha?",
-          "a": "10 dan boshlab paketda 45 000 so'm/oy dan boshlab."
-        },
-        {
-          "q": "Oddiy ratsiyalar bilan birlashtirish mumkinmi?",
-          "a": "Ha. Dispetcherlik xonasiga shlyuz o'rnatiladi va ikkala aloqa bitta kanalda ishlaydi."
-        }
-      ],
       "seo": "Transport va logistika",
       "h1": "Transport va logistika uchun ratsiyalar",
-      "clients": "",
       "meta_desc": "Transport va logistika uchun ratsiyalar: dispetcher ekipajni xaritada ko'radi, trassada 10 km gacha, rulda bir smenaga 3600 mA·s. Sinov bepul.",
       "photo_alt": "Yuqoridan ko'rinish: konteyner terminali va temir yo'l izlari"
     },
@@ -309,49 +104,8 @@
       "name": "Ishlab chiqarish · Ombor",
       "short": "Zavod",
       "desc": "Zavodlar, sexlar, distribyutsiya markazlari.",
-      "problem": "Turli uchastkalardagi smenalar, sanoat shovqini, brigadirlar tezkor koordinatsiyaga muhtoj.",
-      "solution": "Retranslyatorli raqamli ratsiyalar: hududning istalgan burchagida hamma bir vaqtda eshitadi. Ustiga hisob uchun skanerli ombor terminallari.",
-      "pains": [
-        "Brigadirlar sex shovqinida bir-birini eshitmaydi",
-        "Omborchilar javonlar orasida qog'oz bilan yugurishadi",
-        "Smena boshqa uchastkada nima bo'lganini bilmaydi"
-      ],
-      "outcomes": [
-        {
-          "n": "DMR",
-          "u": "",
-          "l": "Xalaqitsiz raqamli aloqa — RCD PRO liniyasi"
-        },
-        {
-          "n": "2,5 km gacha",
-          "u": "",
-          "l": "Sexlarda va hududda — RCD-50 va RCD-60 PRO"
-        },
-        {
-          "n": "0",
-          "u": "so'm/daq",
-          "l": "O'z chastotangiz: abonent to'lovi va trafiksiz"
-        }
-      ],
-      "quote": "Ratsiyalar va ombor terminallarini bir haftada yo'lga qo'ydik. Omborchilar bloknot bilan yurishni bas qildi, yig'ish deyarli ikki barobar tezlashdi.",
-      "quote_author": "Operatsion direktor, qadoqlash zavodi",
-      "faq": [
-        {
-          "q": "Shovqinli sexda ishlaydimi?",
-          "a": "Ha. Shovqinni bostirish fonni olib tashlaydi — sexda 100 dB da ham eshitiladi."
-        },
-        {
-          "q": "Ombor terminallari 1C bilan ishlaydimi?",
-          "a": "Ha. Tayyor bog'lanishlar bor, kerak bo'lsa sizning hisobingizga moslab yozamiz."
-        },
-        {
-          "q": "Qancha vaqtda o'rnatasiz?",
-          "a": "Ishlab chiqarish hajmiga qarab 2 dan 7 kungacha."
-        }
-      ],
       "seo": "Ishlab chiqarish va omborlar",
       "h1": "Ishlab chiqarish va omborlar uchun ratsiyalar",
-      "clients": "",
       "meta_desc": "Toshkentda ishlab chiqarish va omborlar uchun ratsiyalar: sexlarda 2,5 km, abonent to'lovsiz o'z chastotangiz, skanerli terminallar. Bepul sinov.",
       "photo_alt": "Dastgohlar va maxsus kiyimdagi ishchilar bo'lgan ishlab chiqarish sexi"
     },
@@ -372,7 +126,7 @@
       },
       "service": {
         "t": "Servis va kafolat",
-        "d": "Motorola va Radiocom bo‘yicha vakolatli servis markazi: 12 oy kafolat, faqat zavod ehtiyot qismlari va diagnostikadan keyin belgilanadigan qat’iy narx.",
+        "d": "Motorola va Radiocom bo'yicha vakolatli servis markazi: 12 oy kafolat, faqat zavod ehtiyot qismlari va diagnostikadan keyin belgilanadigan qat'iy narx.",
         "c": "Shartlarni bilish"
       }
     }
@@ -631,14 +385,14 @@
       "eyebrow": "Nega Radiocom",
       "network": {
         "eyebrow": "Tarmoq loyihalash",
-        "title": "Aloqa bo‘lmagan joyda ham aloqa.",
+        "title": "Aloqa bo'lmagan joyda ham aloqa.",
         "sub": "Kelamiz, aloqani o'lchaymiz, qamrovni hisoblaymiz va antennalarni o'rnatamiz. Kalit topshirish, kafolat bilan."
       }
     },
     "featured": {
       "title": "Odatda shu modellardan boshlashadi.",
       "link": "Barcha Radiocom modellari",
-      "eyebrow": "Eng ko‘p sotilganlar"
+      "eyebrow": "Eng ko'p sotilganlar"
     },
     "final_cta": {
       "title": "Muhandis bilan gaplashing.",

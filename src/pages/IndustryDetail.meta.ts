@@ -13,7 +13,6 @@ import { tFor } from "@/lib/i18n";
 import {
   SITE_NAME,
   breadcrumbSchema,
-  faqSchema,
   jsonLd,
   localeLinks,
   pageMeta,
@@ -43,13 +42,6 @@ export const head = ({ params }: { params: { slug: string; lang: SeoLang } }) =>
     t("meta.industry.desc", { name: inTitle });
   const path = `/industries/${slug}`;
 
-  // The FAQ pairs must be this locale's — schema that disagrees with the
-  // rendered text counts as mismatched markup.
-  const faq = (t(`industries.${slug}.faq`, { returnObjects: true, defaultValue: [] }) ?? []) as {
-    q: string;
-    a: string;
-  }[];
-
   return {
     meta: pageMeta({
       lang: params.lang,
@@ -64,8 +56,9 @@ export const head = ({ params }: { params: { slug: string; lang: SeoLang } }) =>
       article: { section: name },
     }),
     links: localeLinks(params.lang, path),
+    // No FAQPage here: the questions live in the code-split
+    // `industries-content.ts`, so `IndustryDetail.tsx` emits it in the body.
     scripts: [
-      ...(Array.isArray(faq) && faq.length ? [jsonLd(faqSchema(faq, params.lang))] : []),
       jsonLd(
         breadcrumbSchema(
           [

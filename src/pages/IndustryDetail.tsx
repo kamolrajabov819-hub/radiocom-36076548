@@ -1,4 +1,4 @@
-import { useParams } from "@tanstack/react-router";
+import { useLoaderData, useParams } from "@tanstack/react-router";
 import { useScrollChoreography } from "@/lib/motion";
 import { LocaleLink } from "@/components/LocaleLink";
 import { useTranslation } from "react-i18next";
@@ -23,9 +23,7 @@ import { TrustedBy } from "@/components/TrustedBy";
 // catalogue PDF that only existed on radiocom.lovable.app.
 import priceListPdf from "@/assets/radiocom-price-list.pdf";
 import { fadeUpAt, rise } from "@/lib/springs";
-
-type Outcome = { n: string; u: string; l: string };
-type FAQ = { q: string; a: string };
+import { faqSchema } from "@/lib/seo";
 
 export function IndustryPage() {
   const { slug } = useParams({ strict: false }) as { slug: string };
@@ -36,15 +34,29 @@ export function IndustryPage() {
     .map((id) => visibleProducts.find((p) => p.id === id))
     .filter(Boolean) as typeof visibleProducts;
 
-  const outcomes = (t(`industries.${s}.outcomes`, { returnObjects: true }) as Outcome[]) || [];
-  const pains = (t(`industries.${s}.pains`, { returnObjects: true }) as string[]) || [];
-  const faq = (t(`industries.${s}.faq`, { returnObjects: true }) as FAQ[]) || [];
+  // The body copy comes from the route loader, already in this language: one
+  // code-split module per industry rather than the eager locale JSON — see the
+  // header of `industries-content.ts` for why and what it saved.
+  const copy = useLoaderData({ from: "/$lang/industries/$slug" });
+  const { outcomes, pains, faq } = copy;
+  const clients = copy.clients ?? "";
   const industryName = t(`industries.${s}.name`);
 
   const page = useScrollChoreography();
 
   return (
     <div ref={page} className="page-anim page-tight">
+      {/* FAQPage is emitted here rather than in `head`, because the questions
+          live in the code-split content module and `head` cannot import it
+          without putting it back on every route. Server-rendered, so a crawler
+          reads it in the delivered HTML, built from the same array the FAQ
+          below renders. */}
+      {faq.length ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(faq, lang)) }}
+        />
+      ) : null}
       {/* ── Cinematic hero ─────────────────────────────────── */}
       <section className="relative min-h-[78vh] overflow-hidden">
         {/* Scale only. The opacity half of this (0.6 → 1) dimmed the page's
@@ -157,20 +169,13 @@ export function IndustryPage() {
             ))}
           </dl>
 
-          {/* The client line, where an industry has one.
-              
-              Only the mining page carries it today, and it is the strongest
-              thing on that page: a buyer weighing radios for an oil and gas
-              site trusts five names they recognise more than any spec row.
-              Every industry carries the key, holding an empty string where
-              there is nothing to say. That is what keeps `verify-i18n`'s
-              dynamic-key check meaningful: it requires an interpolated `t()`
-              key to resolve across the whole set it iterates, which is right —
-              a key present on one industry and missing on five renders as raw
-              text on the other five. Truthiness, not a key comparison. */}
-          {t(`industries.${s}.clients`) && (
+          {/* The client line, where an industry has one. Only the mining page
+              carries it today, and it is the strongest thing on that page: a
+              buyer weighing radios for an oil and gas site trusts five names
+              they recognise more than any spec row. */}
+          {clients && (
             <motion.p {...fadeUpAt(3)} className="mt-12 max-w-3xl text-[15px] text-cool">
-              {t(`industries.${s}.clients`)}
+              {clients}
             </motion.p>
           )}
         </Section>
@@ -179,16 +184,8 @@ export function IndustryPage() {
       {/* ── Problem → solution ───────────────────────────────── */}
       <Section band="soft" tight>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <StoryCard
-            kicker={t("industries.problem_title")}
-            body={t(`industries.${s}.problem`)}
-            tone="light"
-          />
-          <StoryCard
-            kicker={t("industries.solution_title")}
-            body={t(`industries.${s}.solution`)}
-            tone="dark"
-          />
+          <StoryCard kicker={t("industries.problem_title")} body={copy.problem} tone="light" />
+          <StoryCard kicker={t("industries.solution_title")} body={copy.solution} tone="dark" />
         </div>
 
         {/*
@@ -291,11 +288,9 @@ export function IndustryPage() {
             {t("industries.quote_kicker")}
           </div>
           <blockquote className="headline text-2xl leading-[1.2] text-crisp md:text-4xl">
-            {t(`industries.${s}.quote`)}
+            {copy.quote}
           </blockquote>
-          <figcaption className="mt-6 text-[13px] text-cool">
-            — {t(`industries.${s}.quote_author`)}
-          </figcaption>
+          <figcaption className="mt-6 text-[13px] text-cool">— {copy.quoteAuthor}</figcaption>
         </figure>
       </Section>
 
