@@ -1,5 +1,6 @@
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { Plus } from "lucide-react";
+import { brandCase } from "@/lib/brand";
 import { cn } from "@/lib/utils";
 
 /**
@@ -42,7 +43,9 @@ import { cn } from "@/lib/utils";
  * the whole technique.
  *
  * Answers are plain strings with no focusable children, so a collapsed panel
- * cannot trap the keyboard even though its content stays in the DOM.
+ * cannot trap the keyboard even though its content stays in the DOM. Brand
+ * names go through `brandCase`, which changes only the glyphs: the text the
+ * `FAQPage` schema quotes is still the text node, letter for letter.
  */
 export function Faq({
   items,
@@ -90,7 +93,7 @@ export function Faq({
                     voice assistant reading the page aloud, so it reads the
                     answer rather than the nav — and `verify-seo` asserts the
                     two stay in step. */}
-                <span data-faq-q>{item.q}</span>
+                <span data-faq-q>{brandCase(item.q)}</span>
                 {/* One glyph, rotated 45° to become a minus. Swapping two
                     different icons cannot be animated and pops on toggle. */}
                 <Plus
@@ -117,7 +120,7 @@ export function Faq({
           >
             <div className="min-h-0 overflow-hidden">
               <p data-faq-a className="pb-6 pr-10 text-[15px] leading-relaxed text-cool">
-                {item.a}
+                {brandCase(item.a)}
               </p>
             </div>
           </AccordionPrimitive.Content>

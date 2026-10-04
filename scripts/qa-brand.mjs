@@ -85,9 +85,23 @@ for (const lang of ["ru", "en", "uz"]) {
         // Where does the first real character land? A space that falls on a
         // line break legitimately has no width, so only a gap that never
         // happened *on the same line* is a fault.
+        // The space can be a text node of its own — "Radiocom [ratsiyalari](…)"
+        // in the copy puts a link straight after it — and then the first real
+        // character is the start of whatever text follows, not in this node.
+        let at = next;
+        let offset = lead[0].length;
+        if (offset >= after.length) {
+          const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+          w.currentNode = next;
+          let t;
+          while ((t = w.nextNode()) && !(t.textContent ?? "").trim());
+          if (!t) continue;
+          at = t;
+          offset = (t.textContent ?? "").search(/\S/);
+        }
         const r = document.createRange();
-        r.setStart(next, lead[0].length);
-        r.setEnd(next, lead[0].length + 1);
+        r.setStart(at, offset);
+        r.setEnd(at, offset + 1);
         const word = r.getBoundingClientRect();
         const brand = span.getBoundingClientRect();
         if (!word.width || Math.abs(word.top - brand.top) > 2) continue;
